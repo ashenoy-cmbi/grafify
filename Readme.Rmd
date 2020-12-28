@@ -27,15 +27,15 @@ This package has four main kinds of functions as follows.
 
 1. Making graphs easily using 12 `plot_` functions of 5 broad types
 
-     a. using two variables: `plot_scatterbar`, `plot_dotbar`, `plot_dotbox`, `plot_dotviolin`
+     a. using two variables: `plot_scatterbar_sd`, `plot_dotbar_sd`, `plot_dotbox`, `plot_dotviolin`
      b. using three or four variables: `plot_3d_scatterbar`, `plot_3d_scatterbox`, `plot_4d_scatterbox`
-     c. before-after graphs of matched data: `plot_beafter_colours`, `plot_beafter_shapes`
+     c. before-after graphs of matched data: `plot_befafter_colours`, `plot_befafter_shapes`
      d. QQ plot to check distribution: `plot_qqline`
-     e. summary graphs with SD  error bars (less recommended): `plot_bar_sd`, `plot_point_sd`
+     e. summary graphs with SD  error bars: `plot_bar_sd`, `plot_point_sd`
   
 2. Fitting linear models and linear mixed models and obtaining ANOVA tables
 
-     a. linear models for ordinary ANOVAs: `simple_anova`, `simple_lmodel`, `simple_lmod_summary`, 
+     a. linear models for ordinary ANOVAs: `simple_anova`, `simple_model`, `simple_mod_summary`, 
      b. linear mixed effects ANOVAs: `mixed_anova`, `mixed_model`, `mixed_mod_summary`
   
 3. Perform post-hoc comparisons based on fitted models

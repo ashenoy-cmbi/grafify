@@ -11,7 +11,8 @@ remotes::install_github("ashenoy-cmbi/grafify", dependencies = T) #install with 
 ```
 
 This package requires `dplyr`, `purrr`, `ggplot2`, `lmerTest`, `emmeans`
-and `Hmisc`. I additionally suggest using `cowplot` and `colorblindr`.
+and `Hmisc`. Additionally, `cowplot` and `colorblindr` are suggested
+packages for making pretty graphs.
 
 ### Introduction
 
@@ -25,21 +26,21 @@ This package has four main kinds of functions as follows.
 
 1.  Making graphs easily using 12 `plot_` functions of 5 broad types
     
-    1.  using two variables: `plot_scatterbar`, `plot_dotbar`,
+    1.  using two variables: `plot_scatterbar_sd`, `plot_dotbar_sd`,
         `plot_dotbox`, `plot_dotviolin`
     2.  using three or four variables: `plot_3d_scatterbar`,
         `plot_3d_scatterbox`, `plot_4d_scatterbox`
-    3.  before-after graphs of matched data: `plot_beafter_colours`,
-        `plot_beafter_shapes`
+    3.  before-after graphs of matched data: `plot_befafter_colours`,
+        `plot_befafter_shapes`
     4.  QQ plot to check distribution: `plot_qqline`
-    5.  summary graphs with SD error bars (less recommended):
-        `plot_bar_sd`, `plot_point_sd`
+    5.  summary graphs with SD error bars: `plot_bar_sd`,
+        `plot_point_sd`
 
 2.  Fitting linear models and linear mixed models and obtaining ANOVA
     tables
     
     1.  linear models for ordinary ANOVAs: `simple_anova`,
-        `simple_lmodel`, `simple_lmod_summary`,
+        `simple_model`, `simple_mod_summary`,
     2.  linear mixed effects ANOVAs: `mixed_anova`, `mixed_model`,
         `mixed_mod_summary`
 
