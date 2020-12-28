@@ -7,7 +7,7 @@ it.
 
 ``` r
 install.packages("remotes") #install remotes
-remotes::install_github("avicmbi/grafify", dependencies = T) #install with dependencies
+remotes::install_github("ashenoy-cmbi/grafify", dependencies = T) #install with dependencies
 ```
 
 This package requires `dplyr`, `purrr`, `ggplot2`, `lmerTest`, `emmeans`

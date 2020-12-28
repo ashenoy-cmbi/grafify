@@ -5,7 +5,7 @@
 #' @format data.frame: 15 obs. of  3 variables.
 #'
 #' \describe{
-#' \item{Exp}{Experiment - a random factor with 5 levels "Exp_1","Exp_2"...}
+#' \item{Experiment}{Experiment - a random factor with 5 levels "Exp_1","Exp_2"...}
 #' \item{Genotype}{Genotypes - a fixed factor with 3 levels: "WT","KO_1","KO_2".}
 #' \item{Death}{Numerical dependent variable indicating percentage cell death.}
 #'}

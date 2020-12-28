@@ -8,7 +8,7 @@ To install this package use the following steps. You'll need the package `remote
 
 ```{r installation, eval = F, include=T, message=F, warning=F}
 install.packages("remotes") #install remotes
-remotes::install_github("avicmbi/grafify", dependencies = T) #install with dependencies
+remotes::install_github("ashenoy-cmbi/grafify", dependencies = T) #install with dependencies
 ```
 
 This package requires `dplyr`, `purrr`, `ggplot2`, `lmerTest`, `emmeans` and `Hmisc`. Additionally, `cowplot` and `colorblindr` are suggested packages for making pretty graphs.
