@@ -1,0 +1,47 @@
+#' Plot scatter dots on a bar graph with SD error bars with two variables.
+#'
+#' This function takes a data table, X and Y variables, and plots a graph with a jitterplot or scatterplot and bars using \code{\link[ggplot2]{ggplot}}.
+#'
+#' The function uses \code{\link[ggplot2]{stat_summary}} with \code{geom = "bar"}, and \code{\link[ggplot2]{geom_point}} with \code{position = position_jitter(width = 0.05)}.
+#' Standard deviation (SD) is plotted through \code{\link[ggplot2]{stat_summary}} calculated using \code{\link[Hmisc]{mean_sdl}} from the \code{Hmisc} package, and 1x SD is plotted (\code{fun.arg = list(mult = 1)}.
+#' The X variable is mapped to the \code{fill} aesthetic in the bar geometry and \code{colour} aesthetic in \code{geom_point}. Fill and colour can be changed using \code{\link[ggplot2]{scale_fill_brewer}} (or related) and \code{\link[ggplot2]{scale_colour_brewer}} (or related) options.
+#'
+#' This function is related to \code{\link{plot_dotbox}}, \code{\link{plot_dotbar_sd}} and \code{\link{plot_dotviolin}}.
+#'
+#' @param data a data table object, e.g. data.frame or tibble.
+#' @param xcol name of the column to plot on X axis. This should be a categorical variable.
+#' @param ycol name of the column to plot on quantitative Y axis. This should be a quantitative variable.
+#'
+#' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
+#' @export plot_scatterbar_sd
+#'
+#' @examples
+#'
+#' #Basic usage requires a data table and X & Y variables#'
+#' plot_scatterbar_sd(Chol, Treatment, Cholesterol)
+#'
+#' #Transformations of Y variable are possible as follows
+#' #' plot_scatterbar_sd(Chol, Treatment, log(Cholesterol))
+#'
+#'
+#' #Additional ggplot layering is possible
+#' plot_scatterbar_sd(Tab_doublings, Student, Doubling_time)+
+#'    labs(title = "Plot with scatter plot, bars (mean) & SD")+
+#'    scale_color_viridis_d()+scale_fill_viridis_d()+facet_wrap("Experiment")
+
+plot_scatterbar_sd <- function(data, xcol, ycol, size = 2){
+  ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+                            y = {{ ycol }}))+
+    stat_summary(geom = "bar", colour = "black",
+                 fun = "mean", alpha = 0.2,
+                 aes(fill = {{ xcol }}))+
+    stat_summary(geom = "errorbar",
+                 fun.data = "mean_sdl",
+                 fun.args = list(mult = 1),
+                 width = 0.3)+
+    geom_point(size = {{ size }}, alpha = 0.8,
+               position = position_jitter(width = 0.05),
+               aes(colour = {{ xcol }}))+
+    labs(x = enquo(xcol))+
+    theme_classic(base_size = 14)
+}

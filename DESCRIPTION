@@ -1,0 +1,28 @@
+Package: grafify
+Type: Package for easy graphs and mixed effects ANOVAs
+Title: Plots graphs and performs linear mixed effects analyses.
+Version: 0.1.0
+Author: Avinash Shenoy
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: What license is it under?
+Depends:
+    dplyr,
+    emmeans,
+    ggplot2,
+    Hmisc,
+    lmerTest,
+    purrr,
+    tidyr,
+    R (>= 2.10)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+Roxygen: list(markdown = TRUE)
+Suggests: 
+    knitr,
+    rmarkdown,
+    cowplot,
+    colorblindr
+VignetteBuilder: knitr

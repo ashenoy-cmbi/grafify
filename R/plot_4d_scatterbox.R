@@ -1,0 +1,59 @@
+#' Plot a dot plot with matched shapes on a box plot using four variables.
+#'
+#' The functions \code{\link{plot_3d_scatterbar}}, \code{\link{plot_3d_scatterbox}} and \code{\link{plot_4d_scatterbox}} allow 3d or 4d plots with 3 or 4 variables, respectively.
+#'
+#' These functions take a data table, X and Y variables, and a grouping variable "shapes" in the case of\code{plot_3d_scatterbox} and \code{plot_3d_scatterbar}, or two additional variables "boxes" and "dots" in \code{plot_4d_scatterbox}. All three functions plot scatter plots with matched shapes (e.g. when you want to depict matched subjects or experiments). The grouping variable is useful to plot two-way factorial data or when there are more dimensions in the data table. These functions call \code{\link[ggplot2]{ggplot}} with \code{\link[ggplot2]{geom_point}} and \code{\link[ggplot2]{geom_bar}} (actually through \code{stat_summary}) or \code{\link[ggplot2]{geom_boxplot}} geometries.
+#'
+#' Bars depict means using \code{\link[ggplot2]{stat_summary}} with \code{geom = "bar", fun = "mean"} , and scatter points are depicted using \code{\link[ggplot2]{geom_point}} with \code{position = position_jitterdodge(dodge.width = 0.8, jitter.width = 0.05)}, so dots are jittered and dodged along the X variable.
+#' The X and "shapes" variables are mapped with \code{group = interaction{ xcol, shapes}}. The xcol variable is mapped to the \code{fill} aesthetic of bar graph and \code{colour} aesthetic of scatterplot.
+#' Fill and colour can be changed using \code{scale_fill_brewer} (or related) and \code{scale_colour_brewer} (or related) options. The "shapes" argument is plotted to the shape of the \code{geom_point}.
+#' The "shapes" variable is mapped to the aesthetic \code{shape} of the scatterplot \code{\link{geom_point}} geometry.
+#'
+#' Boxplot geometry uses \code{\link[ggplot2]{geom_boxplot}} with \code{position = position_dodge(width = 0.9), width = 0.6}.
+#'
+#' In \code{plot_4d_scatterbox}, the third variable is mapped to the boxplot and 4th to shapes. Both variables could be entered as the same as well. Up to 25 levels can be mapped to "shapes".
+#'
+#' All three functions can be expanded further, for example with \code{\link[ggplot2]{facet_grid}} or \code{\link[ggplot2]{facet_wrap}}.
+#'
+#' @param data a data table, e.g. data.frame or tibble.
+#' @param xcol name of the column to plot on categorical X axis
+#' @param ycol name of the column to plot on quantitative Y axis
+#' @param boxes name of the column containing grouping within the factor plotted on X axis
+#' @param dots name of the column that contains matched observations, e.g. subject IDs, experiment number etc.
+#'
+#' @return This function returns a \code{ggplot2} object
+#' @export plot_4d_scatterbox
+#'
+#' @examples
+#' #Basic usage can take up to 4 variables from the data table
+#' plot_4d_scatterbox(Chol, Treatment, Cholesterol, Hospital, Subject)
+#'
+#' #boxes and dots can be the same factor if you want matched dots for them
+#' #pay attention to which variable is assigned to boxes and which one to dots
+#' #try swapping them to get the best-looking graph
+#' plot_4d_scatterbox(Tab_doublings, Student, Doubling_time, Student, Experiment)#'
+#'
+#' #Additional layers can be added
+#' plot_4d_scatterbox(Chol, Treatment, Cholesterol, Hospital, Subject)+
+#'    labs(title = "Plot with scatter plot, bars (mean) & SD")+
+#'    scale_color_viridis_d()+scale_fill_viridis_d()+
+#'    facet_wrap("Hospital")
+
+
+
+plot_4d_scatterbox <- function(data, xcol, ycol, boxes, dots){
+  ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+                            y = {{ ycol }},
+                            group = interaction({{ boxes }},
+                                                {{ xcol }})))+
+    geom_boxplot(width = 0.5, alpha = 0.2,
+                 aes(fill = {{ boxes }}), outlier.alpha = 0,
+                 position = position_dodge(width = 0.8))+
+    geom_point(size = 2.5, alpha = 0.8, stroke = 1.5,
+               position = position_dodge(width = 0.8),
+               aes(colour = {{ boxes }},
+                   shape = {{ dots }}))+
+    scale_shape_manual(values = 0:25)+
+    labs(x = enquo(xcol))+
+    theme_classic(base_size = 14)
+}

@@ -1,0 +1,42 @@
+#' Post-hoc comparisons to a control or reference group.
+#'
+#' This function is a wrapper based on \code{\link[emmeans]{emmeans}}, and needs a model produced by \code{\link{simple_model}} (which calls \code{\link{lm}}) or a linear mixed effects model produced by \code{\link{mixed_model}} (which calls \code{\link[lmerTest]{lmer}}). It also needs to know the fixed factors, which should match those in the model.
+#'
+#' The function will generate [treatment vs control type of comparisons](https://cran.r-project.org/web/packages/emmeans/vignettes/comparisons.html#contrasts), i.e. comparison of each level of a factor to a reference level, which is set by default to the first level in the factor (\code{ref = 1}).
+#' By default, P values are corrected by the FDR method (which can be changed). If the model was fit by transforming the quantitative response variable using "log", "logit", "sqrt" etc., results will still be on the [original scale](https://cran.r-project.org/web/packages/emmeans/vignettes/transformations.html#overview), i.e. \code{type = "response"} is the default. Data will be back-transformed (check results to confirm this), and for log or logit, [ratios will be compared](https://cran.r-project.org/web/packages/emmeans/vignettes/comparisons.html#logs).
+#'
+#' @param Model a model object fit using \code{\link{simple_model}} or \code{\link{mixed_model}} (or \code{\link{lm}} or \code{\link[lmerTest]{lmer}}).
+#' @param Factors Factors one or  more categorical variables, provided as a vector (see Examples), whose levels you wish to compare pairwise. Names of factors should match factors used to fit the model. When more than one factor is provided e.g. \code{Fixed_factor = c("A", "B")}, this function passes this on as \code{specs = A|B} (note the vertical | between the two factors) to \code{\link[emmeans]{emmeans}}. The specification internally is set to \code{specs = trt.vs.ctrl, ref = 1} to compare each group in A to the reference first group in A, separately at each level of B.
+#' @param P_Adj P_Adj method for correcting P values for multiple comparisons. Default is set to false discovery rate ("fdr"), can be changed to "none", "tukey", "bonferroni", "sidak". See the [manual](https://cran.r-project.org/web/packages/emmeans/vignettes/confidence-intervals.html#adjust) for \code{emmeans}
+#' @param ref the reference group provided as a number; default \code{ref = 1}.
+#'
+#' @return returns the result of \code{\link[emmeans]{emmeans}} contrasts.
+#' @export posthoc_vsRef
+#'
+#' @examples
+#' #basic usage to compare against ref = 1
+#' posthoc_vsRef(DoublMod, "Student")
+#'
+#' #to compare all students with student #9
+#' posthoc_vsRef(DoublMod, "Student", ref = 9)
+#'
+#' #for comparison between hospital #1 to every other hospital, separately at levels of Treatment
+#' posthoc_vsRef(CholMod, c("Hospital", "Treatment"))
+#'
+#' #for comparisons between reference group of treatment to every other group, listed separated at every level of Hospital
+#' posthoc_vsRef(CholMod, c("Treatment", "Hospital"))
+#'
+
+posthoc_vsRef <- function(Model, Factors, P_Adj = "fdr", ref = 1, ...){
+  ifelse(length(Factors) > 1,
+         comp <- paste0(Factors, collapse = "|"),
+         comp <- paste0(Factors, collapse = ""))
+  sp <- as.formula(paste0("~ ", comp, collapse = ""))
+  pc <- emmeans(Model,
+                specs = sp,
+                type = "response")
+  pct <- contrast(pc, method = "trt.vs.ctrl",
+                  ref=ref,
+                  adjust = P_Adj)
+  pct
+}
