@@ -51,5 +51,5 @@ This package has four main kinds of functions as follows.
 
 4.  Generating random one-way and two-way data based on mean and SD.
     
-    1.  one-way designs: `make_1way_data`
+    1.  one-way designs: `make_1way_data`, `make_1way_rb_data`
     2.  two-way designs: `make_2way_data`, `make_2way_rb_data`
