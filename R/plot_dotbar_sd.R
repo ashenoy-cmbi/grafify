@@ -12,6 +12,7 @@
 #' @param xcol name of the column to plot on X axis. This should be a categorical variable.
 #' @param ycol name of the column to plot on quantitative Y axis. This should be a quantitative variable.
 #' @param dotsize size of dots relative to binwidth used by \code{\link[ggplot2]{geom_dotplot}}. Default set to 1, increase/decrease as needed.
+#' @param ewid width of error bars, default set to 0.2
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #'
 #' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
@@ -31,7 +32,7 @@
 #'    facet_wrap("Hospital")
 
 
-plot_dotbar_sd <- function(data, xcol, ycol, dotsize = 1, fontsize = 20){
+plot_dotbar_sd <- function(data, xcol, ycol, dotsize = 1, ewid = 0.2, fontsize = 20){
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
     stat_summary(geom = "bar", colour = "black",
@@ -40,7 +41,7 @@ plot_dotbar_sd <- function(data, xcol, ycol, dotsize = 1, fontsize = 20){
     stat_summary(geom = "errorbar",
                  fun.data = "mean_sdl",
                  fun.args = list(mult = 1),
-                 width = 0.3)+
+                 width = {{ ewid }})+
     geom_dotplot(dotsize = {{ dotsize }},
                  binaxis = 'y', stackdir = 'center',
                  aes(fill = {{ xcol }})) +

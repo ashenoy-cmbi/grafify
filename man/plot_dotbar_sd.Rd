@@ -4,7 +4,7 @@
 \alias{plot_dotbar_sd}
 \title{Plot a dotplot on a bar graph with SD error bars with two variables.}
 \usage{
-plot_dotbar_sd(data, xcol, ycol, dotsize = 1, fontsize = 20)
+plot_dotbar_sd(data, xcol, ycol, dotsize = 1, ewid = 0.2, fontsize = 20)
 }
 \arguments{
 \item{data}{a data table object, e.g. data.frame or tibble.}
@@ -14,6 +14,8 @@ plot_dotbar_sd(data, xcol, ycol, dotsize = 1, fontsize = 20)
 \item{ycol}{name of the column to plot on quantitative Y axis. This should be a quantitative variable.}
 
 \item{dotsize}{size of dots relative to binwidth used by \code{\link[ggplot2]{geom_dotplot}}. Default set to 1, increase/decrease as needed.}
+
+\item{ewid}{width of error bars, default set to 0.2}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 }

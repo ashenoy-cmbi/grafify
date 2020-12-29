@@ -11,6 +11,9 @@
 #' @param data a data table object, e.g. data.frame or tibble.
 #' @param xcol name of the column to plot on X axis. This should be a categorical variable.
 #' @param ycol name of the column to plot on quantitative Y axis. This should be a quantitative variable.
+#' @param symsize size of point symbols, default set to 2
+#' @param bwid width of bars, default set to 0.7
+#' @param ewid width of error bars, default set to 0.2
 #'
 #' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
 #' @export plot_scatterbar_sd
@@ -29,17 +32,17 @@
 #'    labs(title = "Plot with scatter plot, bars (mean) & SD")+
 #'    scale_color_viridis_d()+scale_fill_viridis_d()+facet_wrap("Experiment")
 
-plot_scatterbar_sd <- function(data, xcol, ycol, size = 2){
+plot_scatterbar_sd <- function(data, xcol, ycol, symsize = 2, bwid = 0.7, ewid = 0.3){
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
-    stat_summary(geom = "bar", colour = "black",
+    stat_summary(geom = "bar", colour = "black", width = {{ bwid }},
                  fun = "mean", alpha = 0.2,
                  aes(fill = {{ xcol }}))+
     stat_summary(geom = "errorbar",
                  fun.data = "mean_sdl",
                  fun.args = list(mult = 1),
-                 width = 0.3)+
-    geom_point(size = {{ size }}, alpha = 0.8,
+                 width = {{ ewid }})+
+    geom_point(size = {{ symsize }}, alpha = 0.8,
                position = position_jitter(width = 0.05),
                aes(colour = {{ xcol }}))+
     labs(x = enquo(xcol))+

@@ -4,7 +4,16 @@
 \alias{plot_4d_scatterbox}
 \title{Plot a dot plot with matched shapes on a box plot using four variables.}
 \usage{
-plot_4d_scatterbox(data, xcol, ycol, boxes, dots, fontsize = 20)
+plot_4d_scatterbox(
+  data,
+  xcol,
+  ycol,
+  boxes,
+  shapes,
+  symsize = 2,
+  symthick = 1.5,
+  fontsize = 20
+)
 }
 \arguments{
 \item{data}{a data table, e.g. data.frame or tibble.}
@@ -15,7 +24,11 @@ plot_4d_scatterbox(data, xcol, ycol, boxes, dots, fontsize = 20)
 
 \item{boxes}{name of the column containing grouping within the factor plotted on X axis. Can be categorical or numeric X.}
 
-\item{dots}{name of the column that contains matched observations, e.g. subject IDs, experiment number etc.}
+\item{shapes}{name of the column that contains matched observations, e.g. subject IDs, experiment number etc.}
+
+\item{symsize}{size of symbols, default set to 3}
+
+\item{symthick}{size of outline of symbol lines (\code{stroke = 1.5}), default set to 1.5}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 }
@@ -26,9 +39,9 @@ This function returns a \code{ggplot2} object
 The functions \code{\link{plot_3d_scatterbar}}, \code{\link{plot_3d_scatterbox}} and \code{\link{plot_4d_scatterbox}} allow 3d or 4d plots with 3 or 4 variables, respectively.
 }
 \details{
-These functions take a data table, X and Y variables, and a grouping variable "shapes" in the case of\code{plot_3d_scatterbox} and \code{plot_3d_scatterbar}, or two additional variables "boxes" and "dots" in \code{plot_4d_scatterbox}. All three functions plot scatter plots with matched shapes (e.g. when you want to depict matched subjects or experiments). The grouping variable is useful to plot two-way factorial data or when there are more dimensions in the data table. These functions call \code{\link[ggplot2]{ggplot}} with \code{\link[ggplot2]{geom_point}} and \code{\link[ggplot2]{geom_bar}} (actually through \code{stat_summary}) or \code{\link[ggplot2]{geom_boxplot}} geometries.
+These functions take a data table, X and Y variables, and a grouping variable "shapes" in the case of\code{plot_3d_scatterbox} and \code{plot_3d_scatterbar}, or two additional variables "boxes" and "shapes" in \code{plot_4d_scatterbox}. All three functions plot scatter plots with matched shapes (e.g. when you want to depict matched subjects or experiments). The grouping variable is useful to plot two-way factorial data or when there are more dimensions in the data table. These functions call \code{\link[ggplot2]{ggplot}} with \code{\link[ggplot2]{geom_point}} and \code{\link[ggplot2]{geom_bar}} (actually through \code{stat_summary}) or \code{\link[ggplot2]{geom_boxplot}} geometries.
 
-Bars depict means using \code{\link[ggplot2]{stat_summary}} with \code{geom = "bar", fun = "mean"} , and scatter points are depicted using \code{\link[ggplot2]{geom_point}} with \code{position = position_jitterdodge(dodge.width = 0.8, jitter.width = 0.05)}, so dots are jittered and dodged along the X variable.
+Bars depict means using \code{\link[ggplot2]{stat_summary}} with \code{geom = "bar", fun = "mean"} , and scatter points are depicted using \code{\link[ggplot2]{geom_point}} with \code{position = position_jitterdodge(dodge.width = 0.8, jitter.width = 0.05)}, so shapes are jittered and dodged along the X variable.
 The X and "shapes" variables are mapped with \code{group = interaction{ xcol, shapes}}. The xcol variable is mapped to the \code{fill} aesthetic of bar graph and \code{colour} aesthetic of scatterplot.
 Fill and colour can be changed using \code{scale_fill_brewer} (or related) and \code{scale_colour_brewer} (or related) options. The "shapes" argument is plotted to the shape of the \code{geom_point}.
 The "shapes" variable is mapped to the aesthetic \code{shape} of the scatterplot \code{\link{geom_point}} geometry.
@@ -43,8 +56,8 @@ All three functions can be expanded further, for example with \code{\link[ggplot
 #Basic usage can take up to 4 variables from the data table
 plot_4d_scatterbox(Chol, Treatment, Cholesterol, Hospital, Subject)
 
-#boxes and dots can be the same factor if you want matched dots for them
-#pay attention to which variable is assigned to boxes and which one to dots
+#boxes and shapes can be the same factor if you want matched shapes for them
+#pay attention to which variable is assigned to boxes and which one to shapes
 #try swapping them to get the best-looking graph
 plot_4d_scatterbox(Tab_doublings, Student, Doubling_time, Student, Experiment)#'
 

@@ -19,6 +19,9 @@
 #' @param xcol name of the column with the categorical factor to be plotted on X axis.
 #' @param ycol name of the column with quantitative variable to plot on the Y axis.
 #' @param shapes name of the column with the second categorical factor, for example from a two-way ANOVA design.
+#' @param ewid width of error bars, default set to 0.2
+#' @param symsize size of symbols, default set to 3
+#' @param symthick size of outline of symbol lines (\code{stroke = 1.5}), default set to 1.5
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #'
 #' @return This function returns a \code{ggplot2} object.
@@ -34,7 +37,7 @@
 #'
 
 
-plot_3d_scatterbar <- function(data, xcol, ycol, shapes, fontsize = 20){
+plot_3d_scatterbar <- function(data, xcol, ycol, shapes, ewid = 0.2, symsize = 2, symthick = 1.5, fontsize = 20){
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }},
                             group = interaction(factor({{ xcol }}),
@@ -44,13 +47,13 @@ plot_3d_scatterbar <- function(data, xcol, ycol, shapes, fontsize = 20){
                  aes(fill = {{ xcol }}),
                  alpha = 0.2,
                  position = position_dodge(width = 0.8))+
-    geom_point(size = 2.5, stroke = 1.5,
+    geom_point(size = {{ symsize }}, stroke = {{ symthick }},
                alpha = 0.9,
                position = position_jitterdodge(dodge.width = 0.8,
                                                jitter.width = 0.05),
                aes(colour = {{ xcol }},
                    shape = {{ shapes }}))+
-    stat_summary(geom = "errorbar", width = 0.3,
+    stat_summary(geom = "errorbar", width = {{ ewid }},
                  fun.data = "mean_sdl",
                  fun.args = list(mult = 1),
                  position = position_dodge(width = 0.8))+

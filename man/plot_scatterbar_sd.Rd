@@ -4,7 +4,7 @@
 \alias{plot_scatterbar_sd}
 \title{Plot scatter dots on a bar graph with SD error bars with two variables.}
 \usage{
-plot_scatterbar_sd(data, xcol, ycol, size = 2)
+plot_scatterbar_sd(data, xcol, ycol, symsize = 2, bwid = 0.7, ewid = 0.3)
 }
 \arguments{
 \item{data}{a data table object, e.g. data.frame or tibble.}
@@ -12,6 +12,12 @@ plot_scatterbar_sd(data, xcol, ycol, size = 2)
 \item{xcol}{name of the column to plot on X axis. This should be a categorical variable.}
 
 \item{ycol}{name of the column to plot on quantitative Y axis. This should be a quantitative variable.}
+
+\item{symsize}{size of point symbols, default set to 2}
+
+\item{bwid}{width of bars, default set to 0.7}
+
+\item{ewid}{width of error bars, default set to 0.2}
 }
 \value{
 This function returns a \code{ggplot2} object on which additional geometries etc. can be added.

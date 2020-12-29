@@ -11,6 +11,8 @@
 #' @param xcol name of the column containing the categorical variable to be plotted on the X axis.
 #' @param ycol name of the column containing the quantitative Y values.
 #' @param groups name of the column with the grouping variable to pass on to \code{geom_line}.
+#' @param symsize size of symbols, default set to 3
+#' @param symthick size of outline of symbol lines (\code{stroke = 1.5}), default set to 1.5
 #'
 #' @return This function returns a \code{ggplot2} object.
 #' @export plot_befafter_shapes
@@ -26,14 +28,14 @@
 #'    facet_wrap("Hospital")
 
 
-plot_befafter_shapes <- function(data, xcol, ycol, groups){
+plot_befafter_shapes <- function(data, xcol, ycol, groups, symsize = 3, symthick = 1.5){
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }},
                             group = {{ groups }}))+
     geom_line(aes(group = factor({{ groups }})),
               colour = "grey35", alpha = 0.8)+
-    geom_point(alpha = 0.9, stroke = 1.5,
-               size = 3,
+    geom_point(alpha = 0.9, stroke = {{ symthick }},
+               size = {{ symsize }},
                aes(colour = factor({{ xcol }}),
                    shape = factor({{ groups }})))+
     scale_shape_manual(values = 0:25)+

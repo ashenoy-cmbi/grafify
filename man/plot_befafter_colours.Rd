@@ -4,7 +4,7 @@
 \alias{plot_befafter_colours}
 \title{Plot a before-after plot with lines joining colour-matched symbols.}
 \usage{
-plot_befafter_colours(data, xcol, ycol, groups)
+plot_befafter_colours(data, xcol, ycol, groups, symsize = 3)
 }
 \arguments{
 \item{data}{a data table object, e.g. data.frame or tibble.}
@@ -14,6 +14,8 @@ plot_befafter_colours(data, xcol, ycol, groups)
 \item{ycol}{name of the column containing the quantitative Y values.}
 
 \item{groups}{name of the column with the grouping variable to pass on to \code{geom_line}.}
+
+\item{symsize}{size of symbols, default set to 3}
 }
 \value{
 This function returns a \code{ggplot2} object.
