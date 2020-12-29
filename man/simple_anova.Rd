@@ -13,7 +13,7 @@ simple_anova(data, Y_value, Fixed_Factor, ...)
 
 \item{Fixed_Factor}{name(s) of categorical fixed factors (independent variables) provided as a vector if more than one or within "quotes".}
 
-\item{...}{any additional argument to ass on to \code{\link{lm}} or \code{\link{anova}}.}
+\item{...}{any additional argument to ass on to \code{\link{lm}} if required.}
 }
 \value{
 ANOVA table output by \code{anova}.

@@ -4,18 +4,20 @@
 \alias{plot_4d_scatterbox}
 \title{Plot a dot plot with matched shapes on a box plot using four variables.}
 \usage{
-plot_4d_scatterbox(data, xcol, ycol, boxes, dots)
+plot_4d_scatterbox(data, xcol, ycol, boxes, dots, fontsize = 20)
 }
 \arguments{
 \item{data}{a data table, e.g. data.frame or tibble.}
 
-\item{xcol}{name of the column to plot on categorical X axis}
+\item{xcol}{name of the column to plot on X axis.}
 
-\item{ycol}{name of the column to plot on quantitative Y axis}
+\item{ycol}{name of the column to plot on quantitative Y axis.}
 
-\item{boxes}{name of the column containing grouping within the factor plotted on X axis}
+\item{boxes}{name of the column containing grouping within the factor plotted on X axis. Can be categorical or numeric X.}
 
 \item{dots}{name of the column that contains matched observations, e.g. subject IDs, experiment number etc.}
+
+\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 }
 \value{
 This function returns a \code{ggplot2} object

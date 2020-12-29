@@ -10,7 +10,7 @@
 #' @param Y_value name of column containing quantitative (dependent) variable, provided within "quotes".
 #' @param Fixed_Factor name(s) of categorical fixed factors (independent variables) provided as a vector if more than one or within "quotes".
 #' @param Random_Factor name(s) of random factors to allow random intercepts; to be provided as a vector when more than one or within "quotes".
-#' @param ... any additional arguments to pass on to \code{\link[lmerTest]{lmer}}.
+#' @param ... any additional arguments to pass on to \code{\link[lmerTest]{lmer}} if required.
 #'
 #' @return This function returns the output of \code{lmerTest::lmer()}.
 #' @export mixed_model
@@ -36,7 +36,7 @@ mixed_model <- function(data, Y_value, Fixed_Factor, Random_Factor, ...){
                                paste(RFacs, collapse = ""),
                                sep = "+"),
                          sep = " ~ "))
-  mod1 <- lmerTest::lmer(fo, data)
+  mod1 <- lmerTest::lmer(fo, data, ...)
   mod1@call$formula <- fo
   mod1
 }

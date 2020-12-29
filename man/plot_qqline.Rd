@@ -4,7 +4,7 @@
 \alias{plot_qqline}
 \title{Plot quantile-quantile (QQ) graphs from data.}
 \usage{
-plot_qqline(data, ycol, xcol)
+plot_qqline(data, ycol, xcol, fontsize = 20)
 }
 \arguments{
 \item{data}{a data table e.g. data.frame or tibble.}
@@ -12,6 +12,8 @@ plot_qqline(data, ycol, xcol)
 \item{ycol}{name of the column containing the quantitative variable whose distribution is to be plotted}
 
 \item{xcol}{name of the column containing a categorical variable}
+
+\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 }
 \value{
 This function returns a \code{ggplot2} object.
@@ -20,9 +22,9 @@ This function returns a \code{ggplot2} object.
 This function takes a data table, X and Y variables, and plots a QQ graph using \code{\link[ggplot2]{ggplot}}.
 }
 \details{
-The function uses \code{\link[ggplot2]{stat_qq}} and \code{\link[ggplot2]{stat_qq_line}} geometries.
+The function uses \code{stat_qq} and \code{stat_qq_line} geometries (get help with \code{?stat_qq_line}).
 Note that the function requires the quantitative Y variable first, and groups them based on an X variable.
-The X variable is mapped to the \code{colour} aesthetic in both \code{stat_qq} and \code{stat_qq_line}, and its colour can be changed using \code{\link[ggplot2]{scale_colour_brewer}} or any \code{scale_colour...} option.
+The X variable is mapped to the \code{colour} aesthetic in both \code{stat_qq} and \code{stat_qq_line}, and its colour can be changed using \code{scale_colour_brewer} or any \code{scale_colour...} option.
 }
 \examples{
 #Basic usage

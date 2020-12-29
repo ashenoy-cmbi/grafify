@@ -15,7 +15,7 @@ mixed_mod_summary(data, Y_value, Fixed_Factor, Random_Factor, ...)
 
 \item{Random_Factor}{name(s) of random factors to allow random intercepts; to be provided as a vector when more than one or within "quotes".}
 
-\item{...}{any additional arguments to pass on to \code{\link[lmerTest]{lmer}}.}
+\item{...}{any additional arguments to pass on to \code{\link[lmerTest]{lmer}} if required.}
 }
 \value{
 This function returns the output of from \code{summary(lmerTest::lmer)}.

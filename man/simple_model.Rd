@@ -13,7 +13,7 @@ simple_model(data, Y_value, Fixed_Factor, ...)
 
 \item{Fixed_Factor}{name(s) of categorical fixed factors (independent variables) provided as a vector if more than one or within "quotes".}
 
-\item{...}{any additional arguments to pass on to \code{\link{lm}}.}
+\item{...}{any additional arguments to pass on to \code{\link{lm}} if required.}
 }
 \value{
 This function returns the output of \code{lm()}.

@@ -4,7 +4,7 @@
 \alias{posthoc_vsRef}
 \title{Post-hoc comparisons to a control or reference group.}
 \usage{
-posthoc_vsRef(Model, Factors, P_Adj = "fdr", ref = 1, ...)
+posthoc_vsRef(Model, Factors, Ref = 1, P_Adj = "fdr", ...)
 }
 \arguments{
 \item{Model}{a model object fit using \code{\link{simple_model}} or \code{\link{mixed_model}} (or \code{\link{lm}} or \code{\link[lmerTest]{lmer}}).}
@@ -12,6 +12,8 @@ posthoc_vsRef(Model, Factors, P_Adj = "fdr", ref = 1, ...)
 \item{Factors}{Factors one or  more categorical variables, provided as a vector (see Examples), whose levels you wish to compare pairwise. Names of factors should match factors used to fit the model. When more than one factor is provided e.g. \code{Fixed_factor = c("A", "B")}, this function passes this on as \code{specs = A|B} (note the vertical | between the two factors) to \code{\link[emmeans]{emmeans}}. The specification internally is set to \code{specs = trt.vs.ctrl, ref = 1} to compare each group in A to the reference first group in A, separately at each level of B.}
 
 \item{P_Adj}{P_Adj method for correcting P values for multiple comparisons. Default is set to false discovery rate ("fdr"), can be changed to "none", "tukey", "bonferroni", "sidak". See the \href{https://cran.r-project.org/web/packages/emmeans/vignettes/confidence-intervals.html#adjust}{manual} for \code{emmeans}}
+
+\item{...}{additional arguments for \code{\link[emmeans]{emmeans}} such as \code{lmer.df} or others. See help for sophisticated models in \href{https://cran.r-project.org/web/packages/emmeans/vignettes/sophisticated.html}{emmeans}.}
 
 \item{ref}{the reference group provided as a number; default \code{ref = 1}.}
 }
@@ -24,6 +26,7 @@ This function is a wrapper based on \code{\link[emmeans]{emmeans}}, and needs a 
 \details{
 The function will generate \href{https://cran.r-project.org/web/packages/emmeans/vignettes/comparisons.html#contrasts}{treatment vs control type of comparisons}, i.e. comparison of each level of a factor to a reference level, which is set by default to the first level in the factor (\code{ref = 1}).
 By default, P values are corrected by the FDR method (which can be changed). If the model was fit by transforming the quantitative response variable using "log", "logit", "sqrt" etc., results will still be on the \href{https://cran.r-project.org/web/packages/emmeans/vignettes/transformations.html#overview}{original scale}, i.e. \code{type = "response"} is the default. Data will be back-transformed (check results to confirm this), and for log or logit, \href{https://cran.r-project.org/web/packages/emmeans/vignettes/comparisons.html#logs}{ratios will be compared}.
+The first part of the \code{emmeans} results has the estimated marginal means, SE and CI (\code{$emmeans}), which are generated from the fitted model, and \strong{not} the original data table. The second part has the results of the comparisons (\code{$contrasts}).
 }
 \examples{
 #basic usage to compare against ref = 1

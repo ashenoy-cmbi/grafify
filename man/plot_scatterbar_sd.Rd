@@ -21,8 +21,8 @@ This function takes a data table, X and Y variables, and plots a graph with a ji
 }
 \details{
 The function uses \code{\link[ggplot2]{stat_summary}} with \code{geom = "bar"}, and \code{\link[ggplot2]{geom_point}} with \code{position = position_jitter(width = 0.05)}.
-Standard deviation (SD) is plotted through \code{\link[ggplot2]{stat_summary}} calculated using \code{\link[Hmisc]{mean_sdl}} from the \code{Hmisc} package, and 1x SD is plotted (\code{fun.arg = list(mult = 1)}.
-The X variable is mapped to the \code{fill} aesthetic in the bar geometry and \code{colour} aesthetic in \code{geom_point}. Fill and colour can be changed using \code{\link[ggplot2]{scale_fill_brewer}} (or related) and \code{\link[ggplot2]{scale_colour_brewer}} (or related) options.
+Standard deviation (SD) is plotted through \code{\link[ggplot2]{stat_summary}} calculated using \code{mean_sdl} from the \code{ggplot2} package (get help with \code{?mean_sdl}), and 1x SD is plotted (\code{fun.arg = list(mult = 1)}.
+The X variable is mapped to the \code{fill} aesthetic in the bar geometry and \code{colour} aesthetic in \code{geom_point}. Fill and colour can be changed using \code{scale_fill_brewer} (or related) and \code{scale_colour_brewer} (or related) options.
 
 This function is related to \code{\link{plot_dotbox}}, \code{\link{plot_dotbar_sd}} and \code{\link{plot_dotviolin}}.
 }

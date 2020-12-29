@@ -4,7 +4,7 @@
 \alias{plot_dotbox}
 \title{Plot a dotplot on a boxplot with two variables.}
 \usage{
-plot_dotbox(data, xcol, ycol, dotsize = 1)
+plot_dotbox(data, xcol, ycol, dotsize = 1, fontsize = 20)
 }
 \arguments{
 \item{data}{a data table object, e.g. data.frame or tibble.}
@@ -14,6 +14,8 @@ plot_dotbox(data, xcol, ycol, dotsize = 1)
 \item{ycol}{name of the column to plot on quantitative Y axis. This should be a quantitative variable.}
 
 \item{dotsize}{size of dots relative to binwidth used by \code{geom_dotplot}. Default set to 1, increase/decrease as needed.}
+
+\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 }
 \value{
 This function returns a \code{ggplot2} object on which additional geometries etc. can be added.

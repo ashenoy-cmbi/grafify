@@ -16,9 +16,10 @@
 #' All three functions can be expanded further, for example with \code{\link[ggplot2]{facet_grid}} or \code{\link[ggplot2]{facet_wrap}}.
 #'
 #' @param data a data table, e.g. data.frame or tibble.
-#' @param xcol name of the column with the categorical factor to be plotted on X axis
-#' @param ycol name of the column with quantitative variable to plot on the Y axis
+#' @param xcol name of the column with the factor to be plotted on X axis. Can be a categorical or numeric X.
+#' @param ycol name of the column with quantitative variable to plot on the Y axis.
 #' @param shapes name of the column with the second categorical factor in a two-way ANOVA design.
+#' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #'
 #' @return This function returns a \code{ggplot2} object.
 #' @export plot_3d_scatterbox
@@ -32,8 +33,8 @@
 #'    facet_wrap("Hospital")
 #'
 
-plot_3d_scatterbox <- function(data, xcol, ycol, shapes){
-  ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+plot_3d_scatterbox <- function(data, xcol, ycol, shapes, fontsize = 20){
+  ggplot2::ggplot(data, aes(x = {{ xcol }},
                             y = {{ ycol }},
                             group = interaction({{ xcol }},
                                                 {{ shapes }})))+
@@ -50,5 +51,5 @@ plot_3d_scatterbox <- function(data, xcol, ycol, shapes){
                    shape = {{ shapes }}))+
     scale_shape_manual(values = 0:25)+
     labs(x = enquo(xcol))+
-    theme_classic(base_size = 14)
+    theme_classic(base_size = {{ fontsize }})
 }

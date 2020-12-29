@@ -16,10 +16,11 @@
 #' All three functions can be expanded further, for example with \code{\link[ggplot2]{facet_grid}} or \code{\link[ggplot2]{facet_wrap}}.
 #'
 #' @param data a data table, e.g. data.frame or tibble.
-#' @param xcol name of the column to plot on categorical X axis
-#' @param ycol name of the column to plot on quantitative Y axis
-#' @param boxes name of the column containing grouping within the factor plotted on X axis
+#' @param xcol name of the column to plot on X axis.
+#' @param ycol name of the column to plot on quantitative Y axis.
+#' @param boxes name of the column containing grouping within the factor plotted on X axis. Can be categorical or numeric X.
 #' @param dots name of the column that contains matched observations, e.g. subject IDs, experiment number etc.
+#' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #'
 #' @return This function returns a \code{ggplot2} object
 #' @export plot_4d_scatterbox
@@ -41,8 +42,8 @@
 
 
 
-plot_4d_scatterbox <- function(data, xcol, ycol, boxes, dots){
-  ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+plot_4d_scatterbox <- function(data, xcol, ycol, boxes, dots, fontsize = 20){
+  ggplot2::ggplot(data, aes(x = {{ xcol }},
                             y = {{ ycol }},
                             group = interaction({{ boxes }},
                                                 {{ xcol }})))+
@@ -55,5 +56,5 @@ plot_4d_scatterbox <- function(data, xcol, ycol, boxes, dots){
                    shape = {{ dots }}))+
     scale_shape_manual(values = 0:25)+
     labs(x = enquo(xcol))+
-    theme_classic(base_size = 14)
+    theme_classic(base_size = {{ fontsize }})
 }

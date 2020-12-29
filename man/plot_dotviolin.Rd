@@ -4,7 +4,15 @@
 \alias{plot_dotviolin}
 \title{Plot a dotplot on a violin plot with two variables.}
 \usage{
-plot_dotviolin(data, xcol, ycol, dotsize = 1, trim = T, scale = "area")
+plot_dotviolin(
+  data,
+  xcol,
+  ycol,
+  dotsize = 1,
+  trim = T,
+  scale = "area",
+  fontsize = 20
+)
 }
 \arguments{
 \item{data}{a data table object, e.g. data.frame or tibble}
@@ -16,6 +24,8 @@ plot_dotviolin(data, xcol, ycol, dotsize = 1, trim = T, scale = "area")
 \item{dotsize}{size of dots relative to \code{binwidth} used by \code{geom_dotplot}. Default set to 1, increase/decrease as needed.}
 
 \item{trim}{set whether tips of violin plot should be trimmed at high/low data. Default \code{trim = T}, can be changed to F.}
+
+\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 }
 \value{
 This function returns a \code{ggplot2} object on which additional geometries etc. can be added.

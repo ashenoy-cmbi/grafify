@@ -12,6 +12,7 @@
 #' @param xcol name of the column to plot on X axis. This should be a categorical variable.
 #' @param ycol name of the column to plot on quantitative Y axis. This should be a quantitative variable.
 #' @param dotsize size of dots relative to binwidth used by \code{geom_dotplot}. Default set to 1, increase/decrease as needed.
+#' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #'
 #' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
 #' @export plot_dotbox
@@ -30,7 +31,7 @@
 #'    scale_color_viridis_d()+scale_fill_viridis_d()+
 #'    facet_wrap("Hospital")
 
-plot_dotbox <- function(data, xcol, ycol, dotsize = 1){
+plot_dotbox <- function(data, xcol, ycol, dotsize = 1, fontsize = 20){
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
     geom_boxplot(aes(fill = {{ xcol }}),
@@ -41,5 +42,5 @@ plot_dotbox <- function(data, xcol, ycol, dotsize = 1){
                  binaxis = 'y', dotsize = {{ dotsize }},
                  aes(fill = {{ xcol }}))+
     labs(x = enquo(xcol))+
-    theme_classic(base_size = 14)
+    theme_classic(base_size = {{ fontsize }})
 }

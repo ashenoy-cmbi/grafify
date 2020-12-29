@@ -4,7 +4,7 @@
 \alias{posthoc_Pairwise}
 \title{Pairwise post-hoc comparisons from a linear or linear mixed effects model.}
 \usage{
-posthoc_Pairwise(Model, Factors, P_Adj = "fdr")
+posthoc_Pairwise(Model, Factors, P_Adj = "fdr", ...)
 }
 \arguments{
 \item{Model}{a model object fit using \code{\link{simple_model}} or \code{\link{mixed_model}} (or \code{\link{lm}} or \code{\link[lmerTest]{lmer}}).}
@@ -12,6 +12,8 @@ posthoc_Pairwise(Model, Factors, P_Adj = "fdr")
 \item{Factors}{one or  more categorical variables, provided as a vector (see Examples), whose levels you wish to compare pairwise. Names of factors should match factors used to fit the model. When more than one factor is provided e.g. \code{Fixed_factor = c("A", "B")}, this function passes this on as \code{specs = A:B} (note the colon between the two factors) to \code{\link[emmeans]{emmeans}} to produce pairwise comparisons.}
 
 \item{P_Adj}{method for correcting P values for multiple comparisons. Default is set to false discovery rate ("fdr"), can be changed to "none", "tukey", "bonferroni", "sidak". See the \href{https://cran.r-project.org/web/packages/emmeans/vignettes/confidence-intervals.html#adjust}{manual} for \code{emmeans}.}
+
+\item{...}{additional arguments for \code{\link[emmeans]{emmeans}} such as \code{lmer.df} or others. See help for sophisticated models in \href{https://cran.r-project.org/web/packages/emmeans/vignettes/sophisticated.html}{emmeans}.}
 }
 \value{
 returns results produced by \code{\link[emmeans]{emmeans}}.
@@ -22,6 +24,7 @@ This function is a wrapper based on \code{\link[emmeans]{emmeans}}, and needs a 
 \details{
 The function will generate \href{https://cran.r-project.org/web/packages/emmeans/vignettes/comparisons.html#pairwise}{pairwise comparisons} of every level of every factor. Too many comparisons will be generated and only use this when necessary.
 By default, P values are corrected by the FDR method (which can be changed). If the model was fit by transforming the quantitative response variable using "log", "logit", "sqrt" etc., results will still be on the \href{https://cran.r-project.org/web/packages/emmeans/vignettes/transformations.html#overview}{original scale}, i.e. \code{type = "response"} is the default; data will be back-transformed (check results to confirm this), and for log or logit, \href{https://cran.r-project.org/web/packages/emmeans/vignettes/comparisons.html#logs}{ratios will be compared}.
+The first part of the \code{emmeans} results has the estimated marginal means, SE and CI (\code{$emmeans}), which are generated from the fitted model, and \strong{not} the original data table. The second part has the results of the comparisons (\code{$contrasts}).
 }
 \examples{
 #basic use with one factor

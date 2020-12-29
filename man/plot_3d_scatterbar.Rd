@@ -4,7 +4,7 @@
 \alias{plot_3d_scatterbar}
 \title{Plot a scatter graph with matched shapes on a bar plot using three variables.}
 \usage{
-plot_3d_scatterbar(data, xcol, ycol, shapes)
+plot_3d_scatterbar(data, xcol, ycol, shapes, fontsize = 20)
 }
 \arguments{
 \item{data}{a data table, e.g. data.frame or tibble.}
@@ -14,6 +14,8 @@ plot_3d_scatterbar(data, xcol, ycol, shapes)
 \item{ycol}{name of the column with quantitative variable to plot on the Y axis.}
 
 \item{shapes}{name of the column with the second categorical factor, for example from a two-way ANOVA design.}
+
+\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 }
 \value{
 This function returns a \code{ggplot2} object.

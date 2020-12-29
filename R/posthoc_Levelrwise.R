@@ -4,10 +4,12 @@
 #'
 #' The function will generate [level-wise comparisons](https://cran.r-project.org/web/packages/emmeans/vignettes/comparisons.html#pairwise), i.e. comparison between of every level of one factor separately at each level of the other factor.
 #' By default, P values are corrected by the FDR method (which can be changed). If the model was fit by transforming the quantitative response variable using "log", "logit", "sqrt" etc., results will still be on the [original scale](https://cran.r-project.org/web/packages/emmeans/vignettes/transformations.html#overview), i.e. \code{type = "response"} is the default; data will be back-transformed (check results to confirm this), and for log or logit, [ratios will be compared](https://cran.r-project.org/web/packages/emmeans/vignettes/comparisons.html#logs).
+#' The first part of the \code{emmeans} results has the estimated marginal means, SE and CI (\code{$emmeans}), which are generated from the fitted model, and **not** the original data table. The second part has the results of the comparisons (\code{$contrasts}).
 #'
 #' @param Model a model object fit using \code{\link{simple_model}} or \code{\link{mixed_model}} (or \code{\link{lm}} or \code{\link[lmerTest]{lmer}}).
 #' @param Factors one or  more categorical variables, provided as a vector (see Examples), whose levels you wish to compare pairwise. Names of factors should match factors used to fit the model. When more than one factor is provided e.g. \code{Fixed_factor = c("A", "B")}, this function passes this on as \code{specs = A|B} (note the vertical | between the two factors) to \code{\link[emmeans]{emmeans}} to produce comparisons between each level A with each other listed separately at each level of B.
 #' @param P_Adj method for correcting P values for multiple comparisons. Default is set to false discovery rate ("fdr"), can be changed to "none", "tukey", "bonferroni", "sidak". See the [manual](https://cran.r-project.org/web/packages/emmeans/vignettes/confidence-intervals.html#adjust) for \code{emmeans}.
+#' @param ... additional arguments for \code{\link[emmeans]{emmeans}} such as \code{lmer.df} or others. See help for sophisticated models in [emmeans](https://cran.r-project.org/web/packages/emmeans/vignettes/sophisticated.html).
 #'
 #' @return returns results produced by \code{\link[emmeans]{emmeans}}.
 #' @export posthoc_Levelwise
@@ -26,11 +28,13 @@ posthoc_Levelwise <- function(Model, Factors, P_Adj = "fdr", ...){
   ifelse(length(Factors) > 1,
          comp <- paste0(Factors, collapse = "|"),
          comp <- paste0(Factors))
-  sp <- as.formula(paste0("~",
+  sp <- as.formula(paste0("pairwise ~",
                           comp,
                           collapse = ""))
   pc <- emmeans(object = Model,
                 specs = sp,
-                type = "response")
-  pairs(pc, adjust = P_Adj)
+                type = "response",
+                adjut = P_Adj,
+                ...)
+  pc
 }

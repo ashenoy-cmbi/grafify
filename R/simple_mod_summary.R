@@ -7,7 +7,7 @@
 #' @param data a data table object, e.g. data.frame or tibble
 #' @param Y_value name of column containing quantitative (dependent) variable, provided within "quotes".
 #' @param Fixed_Factor name(s) of categorical fixed factors (independent variables) provided as a vector if more than one or within "quotes".
-#' @param ... any additional arguments to pass on to \code{lm} or \code{anova}.
+#' @param ... any additional arguments to pass on to \code{lm} if required.
 #'
 #' @return This function returns the output of from \code{summary(lm())}.
 #' @export simple_mod_summary
@@ -28,7 +28,7 @@ simple_mod_summary <- function(data, Y_value, Fixed_Factor, ...){
          Facs <- paste0(Fixed_Factor, collapse = ""),
          Facs <- paste0(Fixed_Factor, collapse = "*"))
   fo <- as.formula(paste(Y, "~", Facs))
-  mod <- lm(fo, data)
+  mod <- lm(fo, data, ...)
   mod$call$formula <-fo
   summary(mod)
 }

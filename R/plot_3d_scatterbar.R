@@ -19,6 +19,7 @@
 #' @param xcol name of the column with the categorical factor to be plotted on X axis.
 #' @param ycol name of the column with quantitative variable to plot on the Y axis.
 #' @param shapes name of the column with the second categorical factor, for example from a two-way ANOVA design.
+#' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #'
 #' @return This function returns a \code{ggplot2} object.
 #' @export plot_3d_scatterbar
@@ -33,7 +34,7 @@
 #'
 
 
-plot_3d_scatterbar <- function(data, xcol, ycol, shapes){
+plot_3d_scatterbar <- function(data, xcol, ycol, shapes, fontsize = 20){
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }},
                             group = interaction(factor({{ xcol }}),
@@ -49,11 +50,11 @@ plot_3d_scatterbar <- function(data, xcol, ycol, shapes){
                                                jitter.width = 0.05),
                aes(colour = {{ xcol }},
                    shape = {{ shapes }}))+
-    stat_summary(geom = "errorbar", width = 0.15,
+    stat_summary(geom = "errorbar", width = 0.3,
                  fun.data = "mean_sdl",
                  fun.args = list(mult = 1),
                  position = position_dodge(width = 0.8))+
     scale_shape_manual(values = 0:25)+
     labs(x = enquo(xcol))+
-    theme_classic(base_size = 14)
+    theme_classic(base_size = {{ fontsize }})
 }
