@@ -15,12 +15,16 @@ This package requires `dplyr`, `purrr`, `ggplot2`, `lmerTest`, `emmeans` and `Hm
  
 ### Introduction
 
+```{r, image-1hex, echo = F}
+knitr::include_graphics("grafify_pptx_small.png")
+```
+
+
 The main goals of this package are to make it easier to share data and functions for the statistics workshop, and the following:
 1. enable easy grafs based on `ggplot2`
 2. carry out ANOVA analysis using linear models and mixed effects
 3. perform post-hoc comparisons using `emmeans`
 4. make simple one-way and two-way ANOVA design data
-
 
 
 This package has four main kinds of functions as follows.
@@ -48,3 +52,8 @@ This package has four main kinds of functions as follows.
 
      a. one-way designs: `make_1way_data`, `make_1way_rb_data`
      b. two-way designs: `make_2way_data`, `make_2way_rb_data`
+
+
+### Vignettes
+
+Visit the `grafify` [vignettes](https://grafify-vignettes.netlify.app) website for detailed examples of usage.
