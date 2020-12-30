@@ -16,6 +16,8 @@ packages for making pretty graphs.
 
 ### Introduction
 
+<img src="grafify_pptx_small.png" width="150px" />
+
 The main goals of this package are to make it easier to share data and
 functions for the statistics workshop, and the following: 1. enable easy
 grafs based on `ggplot2` 2. carry out ANOVA analysis using linear models
@@ -54,3 +56,8 @@ This package has four main kinds of functions as follows.
     
     1.  one-way designs: `make_1way_data`, `make_1way_rb_data`
     2.  two-way designs: `make_2way_data`, `make_2way_rb_data`
+
+### Vignettes
+
+Visit the `grafify` [vignettes](https://grafify-vignettes.netlify.app)
+website for detailed examples of usage.
