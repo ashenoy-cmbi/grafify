@@ -39,6 +39,5 @@ plot_point_sd <- function(data, xcol, ycol, symsize = 2, ewid = 0.2, fontsize = 
                  size = {{ symsize }},
                  fun = "mean",
                  aes(colour = {{ xcol }}))+
-
     theme_classic(base_size = {{ fontsize }})
 }

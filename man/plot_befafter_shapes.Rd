@@ -4,7 +4,15 @@
 \alias{plot_befafter_shapes}
 \title{Plot a before-after plot with lines joining shape-matched symbols.}
 \usage{
-plot_befafter_shapes(data, xcol, ycol, groups, symsize = 3, symthick = 1.5)
+plot_befafter_shapes(
+  data,
+  xcol,
+  ycol,
+  groups,
+  symsize = 3,
+  symthick = 1.5,
+  fontsize = 20
+)
 }
 \arguments{
 \item{data}{a data table object, e.g. data.frame or tibble.}
@@ -18,6 +26,8 @@ plot_befafter_shapes(data, xcol, ycol, groups, symsize = 3, symthick = 1.5)
 \item{symsize}{size of symbols, default set to 3}
 
 \item{symthick}{size of outline of symbol lines (\code{stroke = 1.5}), default set to 1.5}
+
+\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 }
 \value{
 This function returns a \code{ggplot2} object.

@@ -44,20 +44,23 @@ plot_3d_scatterbar <- function(data, xcol, ycol, shapes, ewid = 0.2, symsize = 2
                                                 factor({{ shapes }}))))+
     stat_summary(geom = "bar", width = .7, colour = "black",
                  fun = "mean",
-                 aes(fill = {{ xcol }}),
+                 aes(fill = factor({{ xcol }})),
                  alpha = 0.2,
                  position = position_dodge(width = 0.8))+
     geom_point(size = {{ symsize }}, stroke = {{ symthick }},
                alpha = 0.9,
                position = position_jitterdodge(dodge.width = 0.8,
                                                jitter.width = 0.05),
-               aes(colour = {{ xcol }},
-                   shape = {{ shapes }}))+
+               aes(colour = factor({{ xcol }}),
+                   shape = factor({{ shapes }})))+
     stat_summary(geom = "errorbar", width = {{ ewid }},
                  fun.data = "mean_sdl",
                  fun.args = list(mult = 1),
                  position = position_dodge(width = 0.8))+
     scale_shape_manual(values = 0:25)+
-    labs(x = enquo(xcol))+
+    labs(x = enquo(xcol),
+         fill = enquo(xcol),
+         colour = enquo(xcol),
+         shape = enquo(shapes))+
     theme_classic(base_size = {{ fontsize }})
 }

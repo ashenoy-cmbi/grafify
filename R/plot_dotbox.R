@@ -34,13 +34,14 @@
 plot_dotbox <- function(data, xcol, ycol, dotsize = 1, fontsize = 20){
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
-    geom_boxplot(aes(fill = {{ xcol }}),
+    geom_boxplot(aes(fill = factor({{ xcol }})),
                  alpha = 0.5,
                  outlier.alpha = 0,
                  width = 0.7)+
     geom_dotplot(stackdir = "center",
                  binaxis = 'y', dotsize = {{ dotsize }},
-                 aes(fill = {{ xcol }}))+
-    labs(x = enquo(xcol))+
+                 aes(fill = factor({{ xcol }})))+
+    labs(x = enquo(xcol),
+         fill = enquo(xcol))+
     theme_classic(base_size = {{ fontsize }})
 }

@@ -22,7 +22,7 @@ This function returns the output of \code{anova}.
 }
 \description{
 This function uses \code{\link[lmerTest]{lmer}} to fit a linear mixed effect model, passes on the model to \code{\link{anova}} and provides the ANOVA table. It requires a data table, one dependent variable (Y_value), one or more independent variables (Fixed_Factor), and at least one random factor (Random_Factor).
-This function is related to \code{\link{mixed_model}} and \code{\link{mixed_mod_summary}}.
+This function is related to \code{\link{mixed_model}}.
 }
 \details{
 When more than one fixed factors are entered in the argument, a full model with interaction term is fitted. This means when \code{Y_value = Y, Fixed_factor = c("A", "B"), Random_factor = "R"} are entered as arguments, these are passed on as \code{Y ~ A*B + (1|R)} (which is equivalent to \code{Y ~ A + B + A:B + (1|R)}).

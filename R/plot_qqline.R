@@ -9,6 +9,7 @@
 #' @param data a data table e.g. data.frame or tibble.
 #' @param ycol name of the column containing the quantitative variable whose distribution is to be plotted
 #' @param xcol name of the column containing a categorical variable
+#' @param symsize size of symbols, default set to 3
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #'
 #' @return This function returns a \code{ggplot2} object.
@@ -22,10 +23,10 @@
 #' plot_qqline(Chol, Cholesterol, Treatment)+
 #'    facet_wrap("Treatment")
 
-plot_qqline <- function(data, ycol, xcol, fontsize = 20){
+plot_qqline <- function(data, ycol, xcol, symsize = 3, fontsize = 20){
   ggplot2::ggplot(data, aes(sample = {{ ycol }}))+
     stat_qq(geom = "point", na.rm = T,
-            size = 3,
+            size = {{ symsize }},
             alpha = 0.8,
             aes(colour = {{ xcol }}) )+
     stat_qq_line(aes(colour = {{ xcol }}),

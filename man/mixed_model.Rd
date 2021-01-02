@@ -22,7 +22,7 @@ This function returns the output of \code{lmerTest::lmer()}.
 }
 \description{
 This function uses \code{\link[lmerTest]{lmer}} to fit a linear mixed effect model and provides the model object, which could be used for post-hoc comparisons. It requires a data table, one dependent variable (Y_value), one or more independent variables (Fixed_Factor), and at least one random factor (Random_Factor).
-This function is related to \code{\link{mixed_mod_summary}} and \code{\link{mixed_anova}}. Output of this function can be used with \code{\link{posthoc_Pairwise}}, \code{\link{posthoc_Levelwise}} and \code{\link{posthoc_vsRef}}, or with \code{\link[emmeans]{emmeans}}.
+This function is related to \code{\link{mixed_anova}}. Output of this function can be used with \code{\link{posthoc_Pairwise}}, \code{\link{posthoc_Levelwise}} and \code{\link{posthoc_vsRef}}, or with \code{\link[emmeans]{emmeans}}.
 }
 \details{
 When more than one fixed factors are entered in the argument, a full model with interaction term is fitted. This means when \code{Y_value = Y, Fixed_factor = c("A", "B"), Random_factor = "R"} are entered as arguments, these are passed on as \code{Y ~ A*B + (1|R)} (which is equivalent to \code{Y ~ A + B + A:B + (1|R)}).
@@ -33,4 +33,10 @@ For simplicity, only random intercepts are fitted (\code{(1|R)}). For factorial 
 mixed_model(Chol, "Cholesterol", c("Treatment", "Hospital"), "Subject")
 
 mixed_model(Tab_doublings, "Doubling_time", "Student", "Experiment")
+
+#save model
+model <- mixed_model(Tab_doublings, "Doubling_time", "Student", "Experiment")
+
+#get model summary
+summary(model)
 }

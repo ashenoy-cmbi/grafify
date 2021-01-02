@@ -1,4 +1,4 @@
-#' Plot a before-after plot with lines joining shape-matched symbols.
+#' Plot a before-after plot with lines joining colour-matched symbols.
 #'
 #' The \code{\link{plot_befafter_colours}} and \code{\link{plot_befafter_shapes}} are for graphing matched data joined by lines. They take X and Y variables along with a grouping factor (e.g. matched subjects or experiments etc.) and plot symbols matched by colour or shape.
 #'
@@ -12,36 +12,35 @@
 #' @param ycol name of the column containing the quantitative Y values.
 #' @param groups name of the column with the grouping variable to pass on to \code{geom_line}.
 #' @param symsize size of symbols, default set to 3
-#' @param symthick size of outline of symbol lines (\code{stroke = 1.5}), default set to 1.5
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #'
 #' @return This function returns a \code{ggplot2} object.
-#' @export plot_befafter_shapes
+#' @export plot_befafter_colors
 #'
 #' @examples
 #' #Basic usage with Treatment as the X variable with Subject as the grouping variable that indicates which points to join by lines
-#' plot_befafter_shapes(Chol, Treatment, Cholesterol, Subject)
+#' plot_befafter_colours(Chol, Treatment, Cholesterol, Subject)
 #'
 #' #Additional layers are possible
-#' plot_befafter_shapes(Chol, Treatment, Cholesterol, Subject)+
+#' plot_befafter_colours(Chol, Treatment, Cholesterol, Subject)+
 #'    labs(title = "Plot with scatter plot, bars (mean) & SD")+
 #'    scale_color_viridis_d()+scale_fill_viridis_d()+
 #'    facet_wrap("Hospital")
 
 
-plot_befafter_shapes <- function(data, xcol, ycol, groups, symsize = 3, symthick = 1.5, fontsize = 20){
-  ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
-                            y = {{ ycol }},
-                            group = factor({{ groups }})))+
+plot_befafter_colors <- function(data, xcol, ycol, groups, symsize = 3, fontsize = 20){
+  ggplot2::ggplot({{ data }}, aes(x = factor({{ xcol }}),
+                                  y = {{ ycol }},
+                                  group = factor({{ groups }})))+
     geom_line(aes(group = factor({{ groups }})),
               colour = "grey35", alpha = 0.8)+
-    geom_point(alpha = 0.9, stroke = {{ symthick }},
-               size = {{ symsize }},
-               aes(colour = factor({{ xcol }}),
-                   shape = factor({{ groups }})))+
+    geom_point(size = {{ symsize }}, alpha = 0.9,
+               aes(fill = factor({{ xcol }}),
+                   colour = factor({{ groups }})))+
     scale_shape_manual(values = 0:25)+
     labs(x = enquo(xcol),
-         colour = enquo(xcol),
-         shape = enquo(groups))+
+         fill = enquo(xcol),
+         colour = enquo(groups))+
     theme_classic(base_size = {{ fontsize }})
 }
+

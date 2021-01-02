@@ -37,14 +37,15 @@ plot_dotbar_sd <- function(data, xcol, ycol, dotsize = 1, ewid = 0.2, fontsize =
                             y = {{ ycol }}))+
     stat_summary(geom = "bar", colour = "black",
                  fun = "mean",
-                 aes(fill = {{ xcol }}))+
+                 aes(fill = factor({{ xcol }})))+
     stat_summary(geom = "errorbar",
                  fun.data = "mean_sdl",
                  fun.args = list(mult = 1),
                  width = {{ ewid }})+
     geom_dotplot(dotsize = {{ dotsize }},
                  binaxis = 'y', stackdir = 'center',
-                 aes(fill = {{ xcol }})) +
+                 aes(fill = factor({{ xcol }}))) +
     labs(x = enquo(xcol))+
     theme_classic(base_size = {{ fontsize }})
 }
+

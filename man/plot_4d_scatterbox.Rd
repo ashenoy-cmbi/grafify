@@ -22,7 +22,7 @@ plot_4d_scatterbox(
 
 \item{ycol}{name of the column to plot on quantitative Y axis.}
 
-\item{boxes}{name of the column containing grouping within the factor plotted on X axis. Can be categorical or numeric X.}
+\item{boxes}{name of the column containing grouping within the factor plotted on X axis. Can be categorical or numeric X. If your table has numeric X and you want to plot as factor, enter \code{xcol = factor(name of colum)}.}
 
 \item{shapes}{name of the column that contains matched observations, e.g. subject IDs, experiment number etc.}
 

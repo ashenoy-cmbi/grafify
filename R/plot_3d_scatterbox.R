@@ -16,9 +16,11 @@
 #' All three functions can be expanded further, for example with \code{\link[ggplot2]{facet_grid}} or \code{\link[ggplot2]{facet_wrap}}.
 #'
 #' @param data a data table, e.g. data.frame or tibble.
-#' @param xcol name of the column with the factor to be plotted on X axis. Can be a categorical or numeric X.
+#' @param xcol name of the column with the factor to be plotted on X axis. Can be a categorical or numeric X. If your table has numeric X and you want to plot as factor, enter \code{xcol = factor(name of colum)}.
 #' @param ycol name of the column with quantitative variable to plot on the Y axis.
 #' @param shapes name of the column with the second categorical factor in a two-way ANOVA design.
+#' @param symsize size of symbols, default set to 3
+#' @param symthick size of outline of symbol lines (\code{stroke = 1.5}), default set to 1.5
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #'
 #' @return This function returns a \code{ggplot2} object.
@@ -33,23 +35,23 @@
 #'    facet_wrap("Hospital")
 #'
 
-plot_3d_scatterbox <- function(data, xcol, ycol, shapes, fontsize = 20){
+plot_3d_scatterbox <- function(data, xcol, ycol, shapes, symsize = 2, symthick = 1.5, fontsize = 20){
   ggplot2::ggplot(data, aes(x = {{ xcol }},
                             y = {{ ycol }},
                             group = interaction({{ xcol }},
-                                                {{ shapes }})))+
+                                                factor({{ shapes }}))))+
     geom_boxplot(aes(fill = {{ xcol }}),
                  alpha = 0.2,
                  position = position_dodge(width = 0.9),
                  width = 0.5,
                  outlier.alpha = 0)+
-    geom_point(size = 2.5, stroke = 1.5,
+    geom_point(size = {{ symsize }}, stroke = {{ symthick }},
                alpha = 0.8,
                position = position_jitterdodge(jitter.width = 0.05,
                                                dodge.width = 0.9),
                aes(colour = {{ xcol }},
-                   shape = {{ shapes }}))+
+                   shape = factor({{ shapes }})))+
     scale_shape_manual(values = 0:25)+
-    labs(x = enquo(xcol))+
+    labs(shape = enquo(shapes))+
     theme_classic(base_size = {{ fontsize }})
 }

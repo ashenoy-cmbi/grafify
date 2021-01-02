@@ -34,7 +34,7 @@
 plot_dotviolin <- function(data, xcol, ycol, dotsize = 1, trim = T, scale = "area", fontsize = 20){
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
-    geom_violin(aes(fill = {{ xcol }}),
+    geom_violin(aes(fill = factor({{ xcol }})),
                 alpha = 0.3,
                 trim = {{ trim }},
                 scale = {{ scale }},
@@ -43,7 +43,8 @@ plot_dotviolin <- function(data, xcol, ycol, dotsize = 1, trim = T, scale = "are
                 adjust = 0.8)+
     geom_dotplot(stackdir = "center", dotsize = {{ dotsize }},
                  binaxis = 'y',
-                 aes(fill = {{ xcol }}))+
-    labs(x = enquo(xcol))+
+                 aes(fill = factor({{ xcol }})))+
+    labs(x = enquo(xcol),
+         fill = enquo(xcol))+
     theme_classic(base_size = {{ fontsize }})
 }

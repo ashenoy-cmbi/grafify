@@ -61,3 +61,8 @@ This package has four main kinds of functions as follows.
 
 Visit the `grafify` [vignettes](https://grafify-vignettes.netlify.app)
 website for detailed examples of usage.
+
+### Companion website
+
+If you’re interested in basic stats in R, also visit Statistics for
+[Micro/Immuno Biologists](https://microimmunostats.netlify.app).

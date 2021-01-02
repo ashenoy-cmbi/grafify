@@ -18,7 +18,7 @@
 #' @param data a data table, e.g. data.frame or tibble.
 #' @param xcol name of the column to plot on X axis.
 #' @param ycol name of the column to plot on quantitative Y axis.
-#' @param boxes name of the column containing grouping within the factor plotted on X axis. Can be categorical or numeric X.
+#' @param boxes name of the column containing grouping within the factor plotted on X axis. Can be categorical or numeric X. If your table has numeric X and you want to plot as factor, enter \code{xcol = factor(name of colum)}.
 #' @param shapes name of the column that contains matched observations, e.g. subject IDs, experiment number etc.
 #' @param symsize size of symbols, default set to 3
 #' @param symthick size of outline of symbol lines (\code{stroke = 1.5}), default set to 1.5
@@ -47,16 +47,18 @@
 plot_4d_scatterbox <- function(data, xcol, ycol, boxes, shapes, symsize = 2, symthick = 1.5, fontsize = 20){
   ggplot2::ggplot(data, aes(x = {{ xcol }},
                             y = {{ ycol }},
-                            group = interaction({{ boxes }},
+                            group = interaction(factor({{ boxes }}),
                                                 {{ xcol }})))+
     geom_boxplot(width = 0.5, alpha = 0.2,
-                 aes(fill = {{ boxes }}), outlier.alpha = 0,
+                 aes(fill = factor({{ boxes }})), outlier.alpha = 0,
                  position = position_dodge(width = 0.8))+
     geom_point(size = {{ symsize }}, alpha = 0.8, stroke = {{ symthick }},
                position = position_dodge(width = 0.8),
-               aes(colour = {{ boxes }},
-                   shape = {{ shapes }}))+
+               aes(colour = factor({{ boxes }}),
+                   shape = factor({{ shapes }})))+
     scale_shape_manual(values = 0:25)+
-    labs(x = enquo(xcol))+
+    labs(shape = enquo(shapes),
+         fill = enquo(boxes),
+         colour = enquo(boxes))+
     theme_classic(base_size = {{ fontsize }})
 }

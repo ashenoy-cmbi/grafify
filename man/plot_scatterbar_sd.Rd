@@ -4,7 +4,15 @@
 \alias{plot_scatterbar_sd}
 \title{Plot scatter dots on a bar graph with SD error bars with two variables.}
 \usage{
-plot_scatterbar_sd(data, xcol, ycol, symsize = 2, bwid = 0.7, ewid = 0.3)
+plot_scatterbar_sd(
+  data,
+  xcol,
+  ycol,
+  symsize = 2,
+  bwid = 0.7,
+  ewid = 0.3,
+  fontsize = 20
+)
 }
 \arguments{
 \item{data}{a data table object, e.g. data.frame or tibble.}
@@ -18,6 +26,8 @@ plot_scatterbar_sd(data, xcol, ycol, symsize = 2, bwid = 0.7, ewid = 0.3)
 \item{bwid}{width of bars, default set to 0.7}
 
 \item{ewid}{width of error bars, default set to 0.2}
+
+\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 }
 \value{
 This function returns a \code{ggplot2} object on which additional geometries etc. can be added.

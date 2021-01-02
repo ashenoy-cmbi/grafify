@@ -34,11 +34,12 @@ plot_bar_sd <- function(data, xcol, ycol, bwid = 0.7, ewid = 0.3, fontsize = 20)
                             y = {{ ycol }}))+
     stat_summary(geom = "bar", width = {{ bwid }},
                  fun = "mean",
-                 aes(fill = {{ xcol }}))+
+                 aes(fill = factor({{ xcol }})))+
     stat_summary(geom = "errorbar",
                  fun.data = "mean_sdl",
                  fun.args = list(mult = 1),
                  width = {{ ewid }})+
-    labs(x = enquo(xcol))+
+    labs(x = enquo(xcol),
+         fill = enquo(xcol))+
     theme_classic(base_size = {{ fontsize }})
 }

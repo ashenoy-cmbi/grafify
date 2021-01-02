@@ -2,7 +2,7 @@
 #'
 #' This function uses \code{\link{lm}} to fit a linear model to data, passes it on to \code{\link{anova}}, and outputs the ANOVA table. It requires a data table, one quantitative dependent variable and one or more independent variables. If your experiment design has random factors, use the related function \code{\link{mixed_anova}}.
 #'
-#' This function is related to \code{link{simple_model}} and \code{\link{simple_mod_summary}}.
+#' This function is related to \code{link{simple_model}}.
 #'
 #' @param data a data table object, e.g. data.frame or tibble.
 #' @param Y_value name of column containing quantitative (dependent) variable, provided within "quotes".

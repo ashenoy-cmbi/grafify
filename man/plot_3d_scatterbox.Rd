@@ -4,16 +4,28 @@
 \alias{plot_3d_scatterbox}
 \title{Plot a scatter and box plot with three variables.}
 \usage{
-plot_3d_scatterbox(data, xcol, ycol, shapes, fontsize = 20)
+plot_3d_scatterbox(
+  data,
+  xcol,
+  ycol,
+  shapes,
+  symsize = 2,
+  symthick = 1.5,
+  fontsize = 20
+)
 }
 \arguments{
 \item{data}{a data table, e.g. data.frame or tibble.}
 
-\item{xcol}{name of the column with the factor to be plotted on X axis. Can be a categorical or numeric X.}
+\item{xcol}{name of the column with the factor to be plotted on X axis. Can be a categorical or numeric X. If your table has numeric X and you want to plot as factor, enter \code{xcol = factor(name of colum)}.}
 
 \item{ycol}{name of the column with quantitative variable to plot on the Y axis.}
 
 \item{shapes}{name of the column with the second categorical factor in a two-way ANOVA design.}
+
+\item{symsize}{size of symbols, default set to 3}
+
+\item{symthick}{size of outline of symbol lines (\code{stroke = 1.5}), default set to 1.5}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 }

@@ -22,14 +22,19 @@ This function returns the output of \code{lm()}.
 This function uses \code{\link{lm}} to fit a linear model to data and outputs the model object. It requires a data table, one quantitative dependent variable and one or more independent variables. The model output can be used to extract coefficients and other information, including post-hoc comparisons. If your experiment design has random factors, use the related function \code{\link{mixed_model}}.
 }
 \details{
-This function is related to \code{link{simple_anova}} and \code{\link{simple_mod_summary}}. Output of this function can be used with \code{\link{posthoc_Pairwise}}, \code{\link{posthoc_Levelwise}} and \code{\link{posthoc_vsRef}}, or with \code{\link[emmeans]{emmeans}}.
+This function is related to \code{link{simple_anova}}. Output of this function can be used with \code{\link{posthoc_Pairwise}}, \code{\link{posthoc_Levelwise}} and \code{\link{posthoc_vsRef}}, or with \code{\link[emmeans]{emmeans}}.
 }
 \examples{
 #Basic usage where the table Chol is passed with names of one variable within quotes
 
-simple_lmodel(Chol, "Cholesterol", "Treatment")
+simple_model(Chol, "Cholesterol", "Treatment")
 
 #two way ANOVA with Treatment & Hospital as fixed factors
-simple_lmodel(Chol, "Cholesterol", c("Treatment", "Hospital"))
+simple_model(Chol, "Cholesterol", c("Treatment", "Hospital"))
 
+#save model
+model <- simple_model(Chol, "Cholesterol", c("Treatment", "Hospital"))
+
+#get summary
+summary(model)
 }

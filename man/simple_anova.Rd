@@ -22,7 +22,7 @@ ANOVA table output by \code{anova}.
 This function uses \code{\link{lm}} to fit a linear model to data, passes it on to \code{\link{anova}}, and outputs the ANOVA table. It requires a data table, one quantitative dependent variable and one or more independent variables. If your experiment design has random factors, use the related function \code{\link{mixed_anova}}.
 }
 \details{
-This function is related to \code{link{simple_model}} and \code{\link{simple_mod_summary}}.
+This function is related to \code{link{simple_model}}.
 }
 \examples{
 #Basic usage where the table Chol is passed with names of one variable within quotes

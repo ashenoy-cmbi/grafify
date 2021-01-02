@@ -4,7 +4,7 @@
 \alias{plot_qqline}
 \title{Plot quantile-quantile (QQ) graphs from data.}
 \usage{
-plot_qqline(data, ycol, xcol, fontsize = 20)
+plot_qqline(data, ycol, xcol, symsize = 3, fontsize = 20)
 }
 \arguments{
 \item{data}{a data table e.g. data.frame or tibble.}
@@ -12,6 +12,8 @@ plot_qqline(data, ycol, xcol, fontsize = 20)
 \item{ycol}{name of the column containing the quantitative variable whose distribution is to be plotted}
 
 \item{xcol}{name of the column containing a categorical variable}
+
+\item{symsize}{size of symbols, default set to 3}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 }

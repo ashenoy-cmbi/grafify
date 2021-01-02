@@ -12,6 +12,7 @@
 #' @param ycol name of the column containing the quantitative Y values.
 #' @param groups name of the column with the grouping variable to pass on to \code{geom_line}.
 #' @param symsize size of symbols, default set to 3
+#' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #'
 #' @return This function returns a \code{ggplot2} object.
 #' @export plot_befafter_colours
@@ -27,7 +28,7 @@
 #'    facet_wrap("Hospital")
 
 
-plot_befafter_colours <- function(data, xcol, ycol, groups, symsize = 3){
+plot_befafter_colours <- function(data, xcol, ycol, groups, symsize = 3, fontsize = 20){
   ggplot2::ggplot({{ data }}, aes(x = factor({{ xcol }}),
                                   y = {{ ycol }},
                                   group = factor({{ groups }})))+
@@ -37,8 +38,9 @@ plot_befafter_colours <- function(data, xcol, ycol, groups, symsize = 3){
                aes(fill = factor({{ xcol }}),
                    colour = factor({{ groups }})))+
     scale_shape_manual(values = 0:25)+
-    labs(x = enquo(xcol))+
-    guides(fill = guide_legend(enquo(xcol)),
-           colour = guide_legend(enquo(groups)))+
-    theme_classic(base_size = 14)
+    labs(x = enquo(xcol),
+         fill = enquo(xcol),
+         colour = enquo(groups))+
+    theme_classic(base_size = {{ fontsize }})
 }
+
