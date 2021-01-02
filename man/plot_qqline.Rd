@@ -4,7 +4,7 @@
 \alias{plot_qqline}
 \title{Plot quantile-quantile (QQ) graphs from data.}
 \usage{
-plot_qqline(data, ycol, xcol, symsize = 3, fontsize = 20)
+plot_qqline(data, ycol, xcol, symsize = 3, fontsize = 20, alpha = 1)
 }
 \arguments{
 \item{data}{a data table e.g. data.frame or tibble.}
@@ -16,6 +16,8 @@ plot_qqline(data, ycol, xcol, symsize = 3, fontsize = 20)
 \item{symsize}{size of symbols, default set to 3}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{alpha}{fractional transparency, default set to 1 (i.e. zero transparency, fully opaque)}
 }
 \value{
 This function returns a \code{ggplot2} object.

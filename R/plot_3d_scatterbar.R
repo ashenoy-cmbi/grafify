@@ -23,6 +23,7 @@
 #' @param symsize size of symbols, default set to 3
 #' @param symthick size of outline of symbol lines (\code{stroke = 1.5}), default set to 1.5
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
+#' @param alpha fractional transparency of bars, default set to 1 (i.e. zero transparency, fully opaque)
 #'
 #' @return This function returns a \code{ggplot2} object.
 #' @export plot_3d_scatterbar
@@ -37,7 +38,7 @@
 #'
 
 
-plot_3d_scatterbar <- function(data, xcol, ycol, shapes, ewid = 0.2, symsize = 2, symthick = 1.5, fontsize = 20){
+plot_3d_scatterbar <- function(data, xcol, ycol, shapes, ewid = 0.2, symsize = 2, symthick = 1.5, fontsize = 20, alpha = 1){
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }},
                             group = interaction(factor({{ xcol }}),
@@ -45,7 +46,7 @@ plot_3d_scatterbar <- function(data, xcol, ycol, shapes, ewid = 0.2, symsize = 2
     stat_summary(geom = "bar", width = .7, colour = "black",
                  fun = "mean",
                  aes(fill = factor({{ xcol }})),
-                 alpha = 0.2,
+                 alpha = {{ alpha }},
                  position = position_dodge(width = 0.8))+
     geom_point(size = {{ symsize }}, stroke = {{ symthick }},
                alpha = 0.9,

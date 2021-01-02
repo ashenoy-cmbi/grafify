@@ -14,6 +14,7 @@
 #' @param dotsize size of dots relative to binwidth used by \code{\link[ggplot2]{geom_dotplot}}. Default set to 1, increase/decrease as needed.
 #' @param ewid width of error bars, default set to 0.2
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
+#' @param alpha fractional transparency, default set to 1 (i.e. zero transparency, fully opaque)
 #'
 #' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
 #' @export plot_dotbar_sd
@@ -32,11 +33,11 @@
 #'    facet_wrap("Hospital")
 
 
-plot_dotbar_sd <- function(data, xcol, ycol, dotsize = 1, ewid = 0.2, fontsize = 20){
+plot_dotbar_sd <- function(data, xcol, ycol, dotsize = 1, ewid = 0.2, alpha = 1, fontsize = 20){
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
     stat_summary(geom = "bar", colour = "black",
-                 fun = "mean",
+                 fun = "mean", alpha = {{ alpha }},
                  aes(fill = factor({{ xcol }})))+
     stat_summary(geom = "errorbar",
                  fun.data = "mean_sdl",

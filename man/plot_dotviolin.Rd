@@ -11,7 +11,8 @@ plot_dotviolin(
   dotsize = 1,
   trim = T,
   scale = "area",
-  fontsize = 20
+  fontsize = 20,
+  alpha = 1
 )
 }
 \arguments{
@@ -26,6 +27,8 @@ plot_dotviolin(
 \item{trim}{set whether tips of violin plot should be trimmed at high/low data. Default \code{trim = T}, can be changed to F.}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{alpha}{fractional transparency, default set to 1 (i.e. zero transparency, fully opaque)}
 }
 \value{
 This function returns a \code{ggplot2} object on which additional geometries etc. can be added.

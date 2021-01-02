@@ -14,6 +14,7 @@
 #' @param dotsize size of dots relative to \code{binwidth} used by \code{geom_dotplot}. Default set to 1, increase/decrease as needed.
 #' @param trim set whether tips of violin plot should be trimmed at high/low data. Default \code{trim = T}, can be changed to F.
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
+#' @param alpha fractional transparency, default set to 1 (i.e. zero transparency, fully opaque)
 #'
 #' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
 #' @export plot_dotviolin
@@ -31,11 +32,11 @@
 #'    scale_fill_viridis_d()+
 #'    scale_colour_viridis_d()
 
-plot_dotviolin <- function(data, xcol, ycol, dotsize = 1, trim = T, scale = "area", fontsize = 20){
+plot_dotviolin <- function(data, xcol, ycol, dotsize = 1, trim = T, scale = "area", fontsize = 20, alpha = 1){
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
     geom_violin(aes(fill = factor({{ xcol }})),
-                alpha = 0.3,
+                alpha = {{ alpha }},
                 trim = {{ trim }},
                 scale = {{ scale }},
                 draw_quantiles = c(0.25, .5, .75),

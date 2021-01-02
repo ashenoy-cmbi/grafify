@@ -14,7 +14,7 @@
 #' @param ... Additional parameters for `scale_fill` or `scale_colour`
 #'
 #' @return ggplot scale_fill function
-#' @export scale_fill_grafify
+#' @export scale_colour_grafify
 #'
 #' @examples
 #' #if p is a ggplot object produced by any of the `plot_` functions or `ggplot2`

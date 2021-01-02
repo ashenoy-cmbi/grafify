@@ -11,7 +11,8 @@ plot_scatterbar_sd(
   symsize = 2,
   bwid = 0.7,
   ewid = 0.3,
-  fontsize = 20
+  fontsize = 20,
+  alpha = 1
 )
 }
 \arguments{
@@ -28,6 +29,8 @@ plot_scatterbar_sd(
 \item{ewid}{width of error bars, default set to 0.2}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{alpha}{fractional transparency, default set to 1 (i.e. zero transparency, fully opaque)}
 }
 \value{
 This function returns a \code{ggplot2} object on which additional geometries etc. can be added.

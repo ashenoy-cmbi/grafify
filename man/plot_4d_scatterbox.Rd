@@ -12,7 +12,8 @@ plot_4d_scatterbox(
   shapes,
   symsize = 2,
   symthick = 1.5,
-  fontsize = 20
+  fontsize = 20,
+  alpha = 0.8
 )
 }
 \arguments{
@@ -31,6 +32,8 @@ plot_4d_scatterbox(
 \item{symthick}{size of outline of symbol lines (\code{stroke = 1.5}), default set to 1.5}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{alpha}{fractional transparency of boxplot, default set to 0.8 (i.e. 20\% transparency)}
 }
 \value{
 This function returns a \code{ggplot2} object

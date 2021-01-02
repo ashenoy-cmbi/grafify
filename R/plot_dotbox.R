@@ -13,6 +13,7 @@
 #' @param ycol name of the column to plot on quantitative Y axis. This should be a quantitative variable.
 #' @param dotsize size of dots relative to binwidth used by \code{geom_dotplot}. Default set to 1, increase/decrease as needed.
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
+#' @param alpha fractional transparency of boxplot, default set to 1 (i.e. zero transparency, fully opaque)
 #'
 #' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
 #' @export plot_dotbox
@@ -31,11 +32,11 @@
 #'    scale_color_viridis_d()+scale_fill_viridis_d()+
 #'    facet_wrap("Hospital")
 
-plot_dotbox <- function(data, xcol, ycol, dotsize = 1, fontsize = 20){
+plot_dotbox <- function(data, xcol, ycol, dotsize = 1, fontsize = 20, alpha = 1){
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
     geom_boxplot(aes(fill = factor({{ xcol }})),
-                 alpha = 0.5,
+                 alpha = {{ alpha }},
                  outlier.alpha = 0,
                  width = 0.7)+
     geom_dotplot(stackdir = "center",

@@ -13,6 +13,7 @@
 #' @param groups name of the column with the grouping variable to pass on to \code{geom_line}.
 #' @param symsize size of symbols, default set to 3
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
+#' @param alpha fractional transparency, default set to 1 (i.e. zero transparency, fully opaque)
 #'
 #' @return This function returns a \code{ggplot2} object.
 #' @export plot_befafter_colours
@@ -28,13 +29,13 @@
 #'    facet_wrap("Hospital")
 
 
-plot_befafter_colours <- function(data, xcol, ycol, groups, symsize = 3, fontsize = 20){
+plot_befafter_colours <- function(data, xcol, ycol, groups, symsize = 3, fontsize = 20, alpha = 1){
   ggplot2::ggplot({{ data }}, aes(x = factor({{ xcol }}),
                                   y = {{ ycol }},
                                   group = factor({{ groups }})))+
     geom_line(aes(group = factor({{ groups }})),
               colour = "grey35", alpha = 0.8)+
-    geom_point(size = {{ symsize }}, alpha = 0.9,
+    geom_point(size = {{ symsize }}, alpha = {{ alpha }},
                aes(fill = factor({{ xcol }}),
                    colour = factor({{ groups }})))+
     scale_shape_manual(values = 0:25)+

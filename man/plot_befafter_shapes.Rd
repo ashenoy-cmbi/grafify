@@ -11,7 +11,8 @@ plot_befafter_shapes(
   groups,
   symsize = 3,
   symthick = 1.5,
-  fontsize = 20
+  fontsize = 20,
+  alpha = 1
 )
 }
 \arguments{
@@ -28,6 +29,8 @@ plot_befafter_shapes(
 \item{symthick}{size of outline of symbol lines (\code{stroke = 1.5}), default set to 1.5}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{alpha}{fractional transparency, default set to 1 (i.e. zero transparency, fully opaque)}
 }
 \value{
 This function returns a \code{ggplot2} object.

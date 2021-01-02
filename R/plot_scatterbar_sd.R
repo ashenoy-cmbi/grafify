@@ -15,6 +15,7 @@
 #' @param bwid width of bars, default set to 0.7
 #' @param ewid width of error bars, default set to 0.2
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
+#' @param alpha fractional transparency, default set to 1 (i.e. zero transparency, fully opaque)
 #'
 #' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
 #' @export plot_scatterbar_sd
@@ -33,11 +34,11 @@
 #'    labs(title = "Plot with scatter plot, bars (mean) & SD")+
 #'    scale_color_viridis_d()+scale_fill_viridis_d()+facet_wrap("Experiment")
 
-plot_scatterbar_sd <- function(data, xcol, ycol, symsize = 2, bwid = 0.7, ewid = 0.3, fontsize = 20){
+plot_scatterbar_sd <- function(data, xcol, ycol, symsize = 2, bwid = 0.7, ewid = 0.3, fontsize = 20, alpha = 1){
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
     stat_summary(geom = "bar", colour = "black", width = {{ bwid }},
-                 fun = "mean", alpha = 0.2,
+                 fun = "mean", alpha = {{ alpha }},
                  aes(fill = factor({{ xcol }})))+
     stat_summary(geom = "errorbar",
                  fun.data = "mean_sdl",

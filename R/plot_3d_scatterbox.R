@@ -22,6 +22,7 @@
 #' @param symsize size of symbols, default set to 3
 #' @param symthick size of outline of symbol lines (\code{stroke = 1.5}), default set to 1.5
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
+#' @param alpha fractional transparency of boxplot, default set to 0.8 (i.e. 20% transparency)
 #'
 #' @return This function returns a \code{ggplot2} object.
 #' @export plot_3d_scatterbox
@@ -35,13 +36,13 @@
 #'    facet_wrap("Hospital")
 #'
 
-plot_3d_scatterbox <- function(data, xcol, ycol, shapes, symsize = 2, symthick = 1.5, fontsize = 20){
+plot_3d_scatterbox <- function(data, xcol, ycol, shapes, symsize = 2, symthick = 1.5, fontsize = 20, alpha = 0.8){
   ggplot2::ggplot(data, aes(x = {{ xcol }},
                             y = {{ ycol }},
                             group = interaction({{ xcol }},
                                                 factor({{ shapes }}))))+
     geom_boxplot(aes(fill = {{ xcol }}),
-                 alpha = 0.2,
+                 alpha = {{ alpha }},
                  position = position_dodge(width = 0.9),
                  width = 0.5,
                  outlier.alpha = 0)+

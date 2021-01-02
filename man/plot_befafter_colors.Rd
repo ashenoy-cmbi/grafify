@@ -4,7 +4,15 @@
 \alias{plot_befafter_colors}
 \title{Plot a before-after plot with lines joining colour-matched symbols.}
 \usage{
-plot_befafter_colors(data, xcol, ycol, groups, symsize = 3, fontsize = 20)
+plot_befafter_colors(
+  data,
+  xcol,
+  ycol,
+  groups,
+  symsize = 3,
+  fontsize = 20,
+  alpha = 1
+)
 }
 \arguments{
 \item{data}{a data table object, e.g. data.frame or tibble.}
@@ -18,6 +26,8 @@ plot_befafter_colors(data, xcol, ycol, groups, symsize = 3, fontsize = 20)
 \item{symsize}{size of symbols, default set to 3}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{alpha}{fractional transparency of symbols, default set to 1 (i.e. zero transparency, fully opaque)}
 }
 \value{
 This function returns a \code{ggplot2} object.

@@ -14,6 +14,7 @@
 #' @param symsize size of symbols, default set to 3
 #' @param symthick size of outline of symbol lines (\code{stroke = 1.5}), default set to 1.5
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
+#' @param alpha fractional transparency, default set to 1 (i.e. zero transparency, fully opaque)
 #'
 #' @return This function returns a \code{ggplot2} object.
 #' @export plot_befafter_shapes
@@ -29,13 +30,13 @@
 #'    facet_wrap("Hospital")
 
 
-plot_befafter_shapes <- function(data, xcol, ycol, groups, symsize = 3, symthick = 1.5, fontsize = 20){
+plot_befafter_shapes <- function(data, xcol, ycol, groups, symsize = 3, symthick = 1.5, fontsize = 20, alpha = 1){
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }},
                             group = factor({{ groups }})))+
     geom_line(aes(group = factor({{ groups }})),
               colour = "grey35", alpha = 0.8)+
-    geom_point(alpha = 0.9, stroke = {{ symthick }},
+    geom_point(alpha = {{ alpha }}, stroke = {{ symthick }},
                size = {{ symsize }},
                aes(colour = factor({{ xcol }}),
                    shape = factor({{ groups }})))+
