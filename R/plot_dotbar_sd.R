@@ -45,7 +45,8 @@ plot_dotbar_sd <- function(data, xcol, ycol, dotsize = 1, ewid = 0.2, fontsize =
     geom_dotplot(dotsize = {{ dotsize }},
                  binaxis = 'y', stackdir = 'center',
                  aes(fill = factor({{ xcol }}))) +
-    labs(x = enquo(xcol))+
+    labs(x = enquo(xcol),
+         fill = enquo(xcol))+
     theme_classic(base_size = {{ fontsize }})
 }
 

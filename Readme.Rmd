@@ -37,10 +37,16 @@ This package has four main kinds of functions as follows.
      d. QQ plot to check distribution: `plot_qqline`
      e. summary graphs with SD  error bars: `plot_bar_sd`, `plot_point_sd`
   
+  
+```{r, all-graphs, echo = F, out.width="90%"}
+knitr::include_graphics("all_graphs.jpg")
+```
+
+  
 2. Fitting linear models and linear mixed models and obtaining ANOVA tables
 
-     a. linear models for ordinary ANOVAs: `simple_anova`, `simple_model`, `simple_mod_summary`, 
-     b. linear mixed effects ANOVAs: `mixed_anova`, `mixed_model`, `mixed_mod_summary`
+     a. linear models for ordinary ANOVAs: `simple_anova`, `simple_model`, 
+     b. linear mixed effects ANOVAs: `mixed_anova`, `mixed_model`
   
 3. Perform post-hoc comparisons based on fitted models
   
@@ -53,6 +59,9 @@ This package has four main kinds of functions as follows.
      a. one-way designs: `make_1way_data`, `make_1way_rb_data`
      b. two-way designs: `make_2way_data`, `make_2way_rb_data`
 
+5. Colour-blind compatible schemes:
+    a. `okabe_ito` colour scheme as described at Mike Mol's [blog](https://mikemol.github.io/technique/colorblind/2018/02/11/color-safe-palette.html).
+    b. `bright`, `pale`, `muted`, `dark` and `light` colours described on Paul Tol's [blog](https://personal.sron.nl/~pault/#sec:qualitative).
 
 ### Vignettes
 

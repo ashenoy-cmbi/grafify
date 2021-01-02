@@ -38,13 +38,14 @@ This package has four main kinds of functions as follows.
     5.  summary graphs with SD error bars: `plot_bar_sd`,
         `plot_point_sd`
 
+<img src="all_graphs.jpg" width="90%" />
+
 2.  Fitting linear models and linear mixed models and obtaining ANOVA
     tables
     
     1.  linear models for ordinary ANOVAs: `simple_anova`,
-        `simple_model`, `simple_mod_summary`,
-    2.  linear mixed effects ANOVAs: `mixed_anova`, `mixed_model`,
-        `mixed_mod_summary`
+        `simple_model`,
+    2.  linear mixed effects ANOVAs: `mixed_anova`, `mixed_model`
 
 3.  Perform post-hoc comparisons based on fitted models
     
@@ -56,6 +57,14 @@ This package has four main kinds of functions as follows.
     
     1.  one-way designs: `make_1way_data`, `make_1way_rb_data`
     2.  two-way designs: `make_2way_data`, `make_2way_rb_data`
+
+5.  Colour-blind compatible schemes:
+    
+    1.  `okabe_ito` colour scheme as described at Mike Mol’s
+        [blog](https://mikemol.github.io/technique/colorblind/2018/02/11/color-safe-palette.html).
+    2.  `bright`, `pale`, `muted`, `dark` and `light` colours described
+        on Paul Tol’s
+        [blog](https://personal.sron.nl/~pault/#sec:qualitative).
 
 ### Vignettes
 
