@@ -3,7 +3,7 @@
 \docType{data}
 \name{data_2w_Tdeath}
 \alias{data_2w_Tdeath}
-\title{data_2w_Tdeath}
+\title{In vitro measurement of percentage cell death - two-way ANOVA design with repeated measures, and randomised blocks.}
 \format{
 data.frame:	24 obs. of  6 variables:
 

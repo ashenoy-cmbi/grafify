@@ -3,7 +3,7 @@
 \docType{data}
 \name{data_1w_death}
 \alias{data_1w_death}
-\title{data_1w_death}
+\title{In vitro experiments measuring percentage cell death in three genotypes of cells.}
 \format{
 data.frame: 15 obs. of  3 variables.
 

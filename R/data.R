@@ -1,4 +1,4 @@
-#' @title data_1w_death
+#' @title In vitro experiments measuring percentage cell death in three genotypes of cells.
 #'
 #' @description These data are from in vitro measurements of death of host cells (measured as percentage of total cells) after infection with three different strains of a pathogenic bacterium, from five independent experiments. The three strains are three levels within the fixed factor Genotype. The five independent experiments are levels within the random variable Experiment. These data can be analysed using linear mixed effects modeling. These data are from [Goddard _et al_, Cell Rep, 2019, doi.org/10.1016/j.celrep.2019.03.100](https://www.sciencedirect.com/science/article/pii/S2211124719304474)
 #'
@@ -11,7 +11,7 @@
 #'}
 "data_1w_death"
 
-#' @title data_2w_Festing
+#' @title Data from two-way ANOVA with randomised block design of treatments of strains of mice.
 #'
 #' @description Data from Festing, ILAR Journal (2014) 55, 472--476 [doi: 10.1093/ilar/ilu045](https://academic.oup.com/ilarjournal/article/55/3/472/645707). These data are suitable for two-way linear mixed effects modeling.
 #' The activity of GST (numerical dependent variable) was measured in 4 strains of mice (levels with the fixed factor Strain) either treated or controls (levels within the fixed factor Treatment). Once mouse each was used in two randomised blocks, which is the random factor (Block).
@@ -26,7 +26,7 @@
 #'}
 "data_2w_Festing"
 
-#' @title data_t_pdiff
+#' @title Matched data from two groups where ratio between them is consistent.
 #'
 #' @description An example dataset for paired difference Student's _t_ test. These are bodyweight (Mass) in grams of same mice left untreated or treated, which are two groups to be compared. The data are in a longtable format, and the two groups are levels within the factor "Condition". The Subject column lists ID of matched mice that were measured without and with treatment. These data are from [Sanchez-Garrido _et al_, Sci Signal, 2018, DOI: 10.1126/scisignal.aat6903](https://stke.sciencemag.org/content/11/559/eaat6903.abstract).
 #'
@@ -39,7 +39,7 @@
 #'}
 "data_t_pratio"
 
-#' @title data_t_pratio
+#' @title Matched data from two groups where difference between them is consistent.
 #'
 #' @description An example dataset for paired ratio Student's _t_ test. These are Cytokine measurements by ELISA (in ng/ml) from 33 independent in vitro experiments performed on two Genotypes that we want to compare. The data are in a longtable format, and the two groups are levels within the factor "Genotype". The Experiment column lists ID of matched experiments.
 #'
@@ -52,7 +52,7 @@
 #'}
 "data_t_pratio"
 
-#' @title data_2w_Tdeath
+#' @title In vitro measurement of percentage cell death - two-way ANOVA design with repeated measures, and randomised blocks.
 #'
 #' @description These are measurements of death of infected host cells (as percentage of total cells) upon infection with two strains of bacteria, measured at two time points, in 6 independent experiments.  These data repeated-measures data suitable for two-way linear mixed effects modeling with experiment and subjects as random factors.
 #'
@@ -68,7 +68,7 @@
 #'}
 "data_2w_Tdeath"
 
-#' @title data_doubling_time
+#' @title Doubling time of E.coli measured by 10 students three independent times.
 #'
 #' @description An example dataset showing measurements of _E. coli_ doubling times (in min) measured by 10 different students in 3 independent experiments each. Note that Experiments are just called Exp1-Exp3 even though Exp1 of any of the students are not connected in anyway - this will confuse R! Data are from [Micro/Immuno Stats](https://microimmunostats.netlify.app)
 #'
@@ -81,7 +81,7 @@
 #'}
 "data_doubling_time"
 
-#' @title data_cholesterol
+#' @title Hierarchical data from 25 subjects either treated or not at 5 hospitals - two-way ANOVA design with repeated measures.
 #'
 #' @description An example dataset on measurements of blood cholesterol levels measured in 5 subjects measured before and after receiving a Drug. Five patients each were recruited at 5 hospitals (a-e), so that there are 25 different subjects (1-25) measured twice.  Data are from [Micro/Immuno Stats](https://microimmunostats.netlify.app)
 #'

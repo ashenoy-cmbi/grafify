@@ -3,7 +3,7 @@
 \docType{data}
 \name{data_cholesterol}
 \alias{data_cholesterol}
-\title{data_cholesterol}
+\title{Hierarchical data from 25 subjects either treated or not at 5 hospitals - two-way ANOVA design with repeated measures.}
 \format{
 tibble:	30 obs. of  3 variables:
 

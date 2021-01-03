@@ -3,7 +3,7 @@
 \docType{data}
 \name{data_t_pratio}
 \alias{data_t_pratio}
-\title{data_t_pdiff}
+\title{Matched data from two groups where ratio between them is consistent.}
 \format{
 data.frame:	16 obs. of  4 variables:
 

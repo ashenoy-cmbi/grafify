@@ -3,7 +3,7 @@
 \docType{data}
 \name{data_doubling_time}
 \alias{data_doubling_time}
-\title{data_doubling_time}
+\title{Doubling time of E.coli measured by 10 students three independent times.}
 \format{
 tibble:	30 obs. of  3 variables:
 

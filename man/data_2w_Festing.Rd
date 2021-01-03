@@ -3,7 +3,7 @@
 \docType{data}
 \name{data_2w_Festing}
 \alias{data_2w_Festing}
-\title{data_2w_Festing}
+\title{Data from two-way ANOVA with randomised block design of treatments of strains of mice.}
 \format{
 data.frame:	16 obs. of  4 variables:
 
