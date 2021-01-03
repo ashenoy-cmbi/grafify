@@ -40,6 +40,10 @@ This package has four main kinds of functions as follows.
 
 <img src="all_graphs.jpg" width="90%" />
 
+The following palettes are available.
+
+<img src="Palette_images.jpg" width="90%" />
+
 2.  Fitting linear models and linear mixed models and obtaining ANOVA
     tables
     

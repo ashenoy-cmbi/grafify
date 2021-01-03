@@ -42,6 +42,13 @@ This package has four main kinds of functions as follows.
 knitr::include_graphics("all_graphs.jpg")
 ```
 
+The following palettes are available.
+
+
+```{r, image-palettes, echo = F, out.width="90%"}
+knitr::include_graphics("Palette_images.jpg")
+```
+
   
 2. Fitting linear models and linear mixed models and obtaining ANOVA tables
 
