@@ -64,11 +64,11 @@ The following palettes are available.
 
 5.  Colour-blind compatible schemes:
     
-    1.  `okabe_ito` colour scheme as described at Mike Mol’s
-        [blog](https://mikemol.github.io/technique/colorblind/2018/02/11/color-safe-palette.html).
-    2.  `bright`, `pale`, `muted`, `dark` and `light` colours described
-        on Paul Tol’s
-        [blog](https://personal.sron.nl/~pault/#sec:qualitative).
+    1.  `okabe_ito` (see Mike Mol’s
+        [blog](https://mikemol.github.io/technique/colorblind/2018/02/11/color-safe-palette.html)).
+    2.  `bright`, `pale`, `muted`, `dark`, `light`, `vibrant`, and
+        `contrast` colours (see Paul Tol’s
+        [blog](https://personal.sron.nl/~pault/#sec:qualitative)).
 
 ### Vignettes
 

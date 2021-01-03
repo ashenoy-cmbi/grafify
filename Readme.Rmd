@@ -67,8 +67,8 @@ knitr::include_graphics("Palette_images.jpg")
      b. two-way designs: `make_2way_data`, `make_2way_rb_data`
 
 5. Colour-blind compatible schemes:
-    a. `okabe_ito` colour scheme as described at Mike Mol's [blog](https://mikemol.github.io/technique/colorblind/2018/02/11/color-safe-palette.html).
-    b. `bright`, `pale`, `muted`, `dark` and `light` colours described on Paul Tol's [blog](https://personal.sron.nl/~pault/#sec:qualitative).
+    a. `okabe_ito` (see Mike Mol's [blog](https://mikemol.github.io/technique/colorblind/2018/02/11/color-safe-palette.html)).
+    b. `bright`, `pale`, `muted`, `dark`, `light`, `vibrant`, and `contrast`  colours (see Paul Tol's [blog](https://personal.sron.nl/~pault/#sec:qualitative)).
 
 ### Vignettes
 
