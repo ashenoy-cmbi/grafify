@@ -9,6 +9,7 @@ plot_scatterbar_sd(
   xcol,
   ycol,
   symsize = 2,
+  symthick = 1,
   bwid = 0.7,
   ewid = 0.3,
   fontsize = 20,
@@ -23,6 +24,8 @@ plot_scatterbar_sd(
 \item{ycol}{name of the column to plot on quantitative Y axis. This should be a quantitative variable.}
 
 \item{symsize}{size of point symbols, default set to 2}
+
+\item{symthick}{thickness of symbol border, default set to 1}
 
 \item{bwid}{width of bars, default set to 0.7}
 

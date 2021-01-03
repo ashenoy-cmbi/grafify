@@ -10,6 +10,7 @@
 #' @param ycol name of the column containing the quantitative variable whose distribution is to be plotted
 #' @param xcol name of the column containing a categorical variable
 #' @param symsize size of symbols, default set to 3
+#' @param symthick thickness of symbol border, default set to 1
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param alpha fractional transparency, default set to 1 (i.e. zero transparency, fully opaque)
 #'
@@ -24,10 +25,10 @@
 #' plot_qqline(Chol, Cholesterol, Treatment)+
 #'    facet_wrap("Treatment")
 
-plot_qqline <- function(data, ycol, xcol, symsize = 3, fontsize = 20, alpha = 1){
+plot_qqline <- function(data, ycol, xcol, symsize = 3, symthick = 1, fontsize = 20, alpha = 1){
   ggplot2::ggplot(data, aes(sample = {{ ycol }}))+
     stat_qq(geom = "point", na.rm = T, shape = 21,
-            size = {{ symsize }},
+            size = {{ symsize }}, stroke = {{ symthick }},
             alpha = {{ alpha }},
             aes(fill = {{ xcol }}) )+
     stat_qq_line(aes(colour = {{ xcol }}),

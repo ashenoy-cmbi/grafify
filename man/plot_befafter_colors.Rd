@@ -10,6 +10,7 @@ plot_befafter_colors(
   ycol,
   groups,
   symsize = 3,
+  symthick = 1,
   fontsize = 20,
   alpha = 1
 )
@@ -24,6 +25,8 @@ plot_befafter_colors(
 \item{groups}{name of the column with the grouping variable to pass on to \code{geom_line}.}
 
 \item{symsize}{size of symbols, default set to 3}
+
+\item{symthick}{thickness of symbol border, default set to 1}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 

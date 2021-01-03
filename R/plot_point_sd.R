@@ -12,6 +12,7 @@
 #' @param xcol name of the column with X variable
 #' @param ycol name of the column with quantitative Y variable
 #' @param symsize size of point symbols, default set to 2
+#' @param symthick thickness of symbol border, default set to 1
 #' @param ewid width of error bars, default set to 0.2
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #'
@@ -28,7 +29,7 @@
 #'    scale_color_viridis_d()
 #'
 
-plot_point_sd <- function(data, xcol, ycol, symsize = 2, ewid = 0.2, fontsize = 20){
+plot_point_sd <- function(data, xcol, ycol, symsize = 2, symthick = 1, ewid = 0.2, fontsize = 20){
   ggplot2::ggplot(data, aes(x = {{ xcol }},
                             y = {{ ycol }}))+
     stat_summary(geom = "errorbar",
@@ -36,7 +37,7 @@ plot_point_sd <- function(data, xcol, ycol, symsize = 2, ewid = 0.2, fontsize = 
                  fun.args = list(mult = 1),
                  width = {{ ewid }})+
     stat_summary(geom = "point", shape = 21,
-                 size = {{ symsize }},
+                 size = {{ symsize }}, stroke = {{ symthick }},
                  fun = "mean",
                  aes(fill = {{ xcol }}))+
     theme_classic(base_size = {{ fontsize }})

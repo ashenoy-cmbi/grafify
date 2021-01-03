@@ -4,7 +4,15 @@
 \alias{plot_point_sd}
 \title{Plot a point as mean with SD error bars using two variables.}
 \usage{
-plot_point_sd(data, xcol, ycol, symsize = 2, ewid = 0.2, fontsize = 20)
+plot_point_sd(
+  data,
+  xcol,
+  ycol,
+  symsize = 2,
+  symthick = 1,
+  ewid = 0.2,
+  fontsize = 20
+)
 }
 \arguments{
 \item{data}{a data table object, e.g. data.frame or tibble.}
@@ -14,6 +22,8 @@ plot_point_sd(data, xcol, ycol, symsize = 2, ewid = 0.2, fontsize = 20)
 \item{ycol}{name of the column with quantitative Y variable}
 
 \item{symsize}{size of point symbols, default set to 2}
+
+\item{symthick}{thickness of symbol border, default set to 1}
 
 \item{ewid}{width of error bars, default set to 0.2}
 
