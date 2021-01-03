@@ -1,11 +1,10 @@
 Package: grafify
-Type: Package for easy graphs and mixed effects ANOVAs
-Title: Plots graphs and performs linear mixed effects analyses.
+Type: Package for easy grafs, ANOVAs and post-hoc comparisons
+Title: This package make it easy to plot graphs, allow 8 colour-blind friendly colour schemes, and fitting ordinary linear models or mixed effects models, followed by post-hoc comparisons.
 Version: 0.1.0
 Author: Avinash Shenoy
 Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: This package make it easy to plot graphs, allow 8 colour-blind friendly colour schemes, and fitting ordinary linear models or mixed effects models, followed by post-hoc comparisons.
 License: What license is it under?
 Depends:
     dplyr,
@@ -15,7 +14,7 @@ Depends:
     lmerTest,
     purrr,
     tidyr,
-    R (>= 2.10)
+    R (>= 4.0)
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
@@ -23,6 +22,6 @@ Roxygen: list(markdown = TRUE)
 Suggests: 
     knitr,
     rmarkdown,
-    cowplot,
-    colorblindr
+    RColorBrewer,
+    viridis
 VignetteBuilder: knitr
