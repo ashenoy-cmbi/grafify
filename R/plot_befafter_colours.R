@@ -35,13 +35,12 @@ plot_befafter_colours <- function(data, xcol, ycol, groups, symsize = 3, fontsiz
                                   group = factor({{ groups }})))+
     geom_line(aes(group = factor({{ groups }})),
               colour = "grey35", alpha = 0.8)+
-    geom_point(size = {{ symsize }}, alpha = {{ alpha }},
-               aes(fill = factor({{ xcol }}),
-                   colour = factor({{ groups }})))+
+    geom_point(size = {{ symsize }},
+               alpha = {{ alpha }}, shape = 21,
+               aes(fill = factor({{ groups }})))+
     scale_shape_manual(values = 0:25)+
     labs(x = enquo(xcol),
-         fill = enquo(xcol),
-         colour = enquo(groups))+
+         fill = enquo(groups))+
     theme_classic(base_size = {{ fontsize }})
 }
 

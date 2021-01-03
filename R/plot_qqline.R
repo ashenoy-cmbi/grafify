@@ -26,10 +26,10 @@
 
 plot_qqline <- function(data, ycol, xcol, symsize = 3, fontsize = 20, alpha = 1){
   ggplot2::ggplot(data, aes(sample = {{ ycol }}))+
-    stat_qq(geom = "point", na.rm = T,
+    stat_qq(geom = "point", na.rm = T, shape = 21,
             size = {{ symsize }},
             alpha = {{ alpha }},
-            aes(colour = {{ xcol }}) )+
+            aes(fill = {{ xcol }}) )+
     stat_qq_line(aes(colour = {{ xcol }}),
                  na.rm = T,
                  size = 1)+

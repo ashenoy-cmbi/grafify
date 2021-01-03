@@ -35,9 +35,9 @@ plot_point_sd <- function(data, xcol, ycol, symsize = 2, ewid = 0.2, fontsize = 
                  fun.data = "mean_sdl",
                  fun.args = list(mult = 1),
                  width = {{ ewid }})+
-    stat_summary(geom = "point",
+    stat_summary(geom = "point", shape = 21,
                  size = {{ symsize }},
                  fun = "mean",
-                 aes(colour = {{ xcol }}))+
+                 aes(fill = {{ xcol }}))+
     theme_classic(base_size = {{ fontsize }})
 }

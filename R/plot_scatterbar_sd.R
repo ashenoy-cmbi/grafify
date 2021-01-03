@@ -40,15 +40,14 @@ plot_scatterbar_sd <- function(data, xcol, ycol, symsize = 2, bwid = 0.7, ewid =
     stat_summary(geom = "bar", colour = "black", width = {{ bwid }},
                  fun = "mean", alpha = {{ alpha }},
                  aes(fill = factor({{ xcol }})))+
-    geom_point(size = {{ symsize }}, alpha = 0.8,
+    geom_point(size = {{ symsize }}, alpha = 0.8, shape = 21,
                position = position_jitter(width = 0.05),
-               aes(color = factor({{ xcol }})))+
+               aes(fill = factor({{ xcol }})))+
     stat_summary(geom = "errorbar",
                  fun.data = "mean_sdl",
                  fun.args = list(mult = 1),
                  width = {{ ewid }} )+
     labs(x = enquo(xcol),
-         color = enquo(xcol),
          fill = enquo(xcol))+
     theme_classic(base_size = {{ fontsize }})
 }
