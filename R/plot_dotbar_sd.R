@@ -37,12 +37,12 @@ plot_dotbar_sd <- function(data, xcol, ycol, dotsize = 1, ewid = 0.2, fontsize =
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
     stat_summary(geom = "bar", colour = "black",
-                 fun = "mean", alpha = {{ alpha }},
+                 fun = "mean", alpha = {{ alpha }}, size = 1,
                  aes(fill = factor({{ xcol }})))+
-    geom_dotplot(dotsize = {{ dotsize }},
+    geom_dotplot(dotsize = {{ dotsize }}, stroke = 1,
                  binaxis = 'y', stackdir = 'center',
                  aes(fill = factor({{ xcol }})))+
-    stat_summary(geom = "errorbar",
+    stat_summary(geom = "errorbar", size = 1,
                  fun.data = "mean_sdl",
                  fun.args = list(mult = 1),
                  width = {{ ewid }}) +

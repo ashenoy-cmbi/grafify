@@ -44,7 +44,7 @@ plot_3d_scatterbar <- function(data, xcol, ycol, shapes, ewid = 0.2, symsize = 2
                             group = interaction(factor({{ xcol }}),
                                                 factor({{ shapes }}))))+
     stat_summary(geom = "bar", width = .7, colour = "black",
-                 fun = "mean",
+                 fun = "mean", size = 1,
                  aes(fill = factor({{ xcol }})),
                  alpha = {{ alpha }},
                  position = position_dodge(width = 0.8))+
@@ -55,7 +55,7 @@ plot_3d_scatterbar <- function(data, xcol, ycol, shapes, ewid = 0.2, symsize = 2
                aes(colour = factor({{ xcol }}),
                    shape = factor({{ shapes }})))+
     stat_summary(geom = "errorbar", width = {{ ewid }},
-                 fun.data = "mean_sdl",
+                 fun.data = "mean_sdl", size = 1,
                  fun.args = list(mult = 1),
                  position = position_dodge(width = 0.8))+
     scale_shape_manual(values = 0:25)+

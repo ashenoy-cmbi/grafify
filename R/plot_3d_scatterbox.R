@@ -41,7 +41,7 @@ plot_3d_scatterbox <- function(data, xcol, ycol, shapes, symsize = 2, symthick =
                             y = {{ ycol }},
                             group = interaction({{ xcol }},
                                                 factor({{ shapes }}))))+
-    geom_boxplot(aes(fill = {{ xcol }}),
+    geom_boxplot(aes(fill = {{ xcol }}), size = 1,
                  alpha = {{ alpha }},
                  position = position_dodge(width = 0.9),
                  width = 0.5,

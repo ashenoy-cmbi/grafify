@@ -50,7 +50,7 @@ plot_4d_scatterbox <- function(data, xcol, ycol, boxes, shapes, symsize = 2, sym
                             y = {{ ycol }},
                             group = interaction(factor({{ boxes }}),
                                                 {{ xcol }})))+
-    geom_boxplot(width = 0.5, alpha = {{ alpha }},
+    geom_boxplot(width = 0.5, alpha = {{ alpha }}, size = 1,
                  aes(fill = factor({{ boxes }})), outlier.alpha = 0,
                  position = position_dodge(width = 0.8))+
     geom_point(size = {{ symsize }}, alpha = 0.8, stroke = {{ symthick }},

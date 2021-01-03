@@ -39,12 +39,12 @@ plot_scatterbar_sd <- function(data, xcol, ycol, symsize = 2, symthick = 1, bwid
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
     stat_summary(geom = "bar", colour = "black", width = {{ bwid }},
-                 fun = "mean", alpha = {{ alpha }},
+                 fun = "mean", alpha = {{ alpha }}, size = 1,
                  aes(fill = factor({{ xcol }})))+
     geom_point(size = {{ symsize }}, alpha = 0.8, shape = 21,
                position = position_jitter(width = 0.05), stroke = {{ symthick }},
                aes(fill = factor({{ xcol }})))+
-    stat_summary(geom = "errorbar",
+    stat_summary(geom = "errorbar", size = 1,
                  fun.data = "mean_sdl",
                  fun.args = list(mult = 1),
                  width = {{ ewid }} )+

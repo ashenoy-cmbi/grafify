@@ -40,7 +40,7 @@ plot_dotviolin <- function(data, xcol, ycol, dotsize = 1, trim = T, scale = "are
                 trim = {{ trim }},
                 scale = {{ scale }},
                 draw_quantiles = c(0.25, .5, .75),
-                colour = "black",
+                colour = "black", size = 1,
                 adjust = 0.8)+
     geom_dotplot(stackdir = "center", dotsize = {{ dotsize }},
                  binaxis = 'y',

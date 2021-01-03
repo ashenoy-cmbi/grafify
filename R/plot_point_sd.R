@@ -33,7 +33,7 @@ plot_point_sd <- function(data, xcol, ycol, symsize = 2, symthick = 1, ewid = 0.
   ggplot2::ggplot(data, aes(x = {{ xcol }},
                             y = {{ ycol }}))+
     stat_summary(geom = "errorbar",
-                 fun.data = "mean_sdl",
+                 fun.data = "mean_sdl", size = 1,
                  fun.args = list(mult = 1),
                  width = {{ ewid }})+
     stat_summary(geom = "point", shape = 21,

@@ -32,10 +32,10 @@
 plot_bar_sd <- function(data, xcol, ycol, bwid = 0.7, ewid = 0.3, fontsize = 20){
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
-    stat_summary(geom = "bar", width = {{ bwid }},
+    stat_summary(geom = "bar", width = {{ bwid }}, size = 1,
                  fun = "mean", colour = "black",
                  aes(fill = factor({{ xcol }})))+
-    stat_summary(geom = "errorbar",
+    stat_summary(geom = "errorbar", size = 1,
                  fun.data = "mean_sdl",
                  fun.args = list(mult = 1),
                  width = {{ ewid }})+

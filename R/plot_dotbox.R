@@ -35,11 +35,11 @@
 plot_dotbox <- function(data, xcol, ycol, dotsize = 1, fontsize = 20, alpha = 1){
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
-    geom_boxplot(aes(fill = factor({{ xcol }})),
+    geom_boxplot(aes(fill = factor({{ xcol }})), size = 1,
                  alpha = {{ alpha }},
                  outlier.alpha = 0,
                  width = 0.7)+
-    geom_dotplot(stackdir = "center",
+    geom_dotplot(stackdir = "center", stroke = 1,
                  binaxis = 'y', dotsize = {{ dotsize }},
                  aes(fill = factor({{ xcol }})))+
     labs(x = enquo(xcol),
