@@ -10,8 +10,8 @@ plot_dotbar_sd(
   ycol,
   dotsize = 1,
   ewid = 0.2,
-  alpha = 1,
-  fontsize = 20
+  fontsize = 20,
+  alpha = 1
 )
 }
 \arguments{
@@ -25,9 +25,9 @@ plot_dotbar_sd(
 
 \item{ewid}{width of error bars, default set to 0.2}
 
-\item{alpha}{fractional transparency, default set to 1 (i.e. zero transparency, fully opaque)}
-
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{alpha}{fractional transparency, default set to 1 (i.e. zero transparency, fully opaque)}
 }
 \value{
 This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
@@ -52,6 +52,6 @@ plot_dotbar_sd(Chol, Treatment, Cholesterol)
 #Additional ggplot layering is possible
 plot_dotbar_sd(Chol, Treatment, Cholesterol, dotsize = 2)+
    labs(title = "Plot with scatter dots & boxplot")+
-   scale_color_viridis_d()+scale_fill_viridis_d()+
+   scale_colour_grafify()+scale_fill_grafify()+
    facet_wrap("Hospital")
 }

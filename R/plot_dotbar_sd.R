@@ -29,11 +29,11 @@
 #' #Additional ggplot layering is possible
 #' plot_dotbar_sd(Chol, Treatment, Cholesterol, dotsize = 2)+
 #'    labs(title = "Plot with scatter dots & boxplot")+
-#'    scale_color_viridis_d()+scale_fill_viridis_d()+
+#'    scale_colour_grafify()+scale_fill_grafify()+
 #'    facet_wrap("Hospital")
 
 
-plot_dotbar_sd <- function(data, xcol, ycol, dotsize = 1, ewid = 0.2, alpha = 1, fontsize = 20){
+plot_dotbar_sd <- function(data, xcol, ycol, dotsize = 1, ewid = 0.2, fontsize = 20, alpha = 1){
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
     stat_summary(geom = "bar", colour = "black",

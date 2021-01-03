@@ -29,7 +29,6 @@ graf_colours <- c(
   'pale_green' = "#ccddaa",
   'pale_yellow' = "#eeeebb",
   'pale_red' = "#ffcccc",
-  'pale_grey' = "#dddddd",
   'dark_blue' ="#222255",
   'dark_cyan' = "#225555",
   'dark_green' = "#225522",
@@ -44,6 +43,16 @@ graf_colours <- c(
   'light_yellow' = "#eedd88",
   'light_orange' = "#ee8866",
   'light_pink' = "#ffaabb",
-  'pale_grey' = "#dddddd"
+  'vibrant_blue' = "#0077bb",
+  'vibrant_cyan' = "#33bbee",
+  'vibrant_teal' = "#009988",
+  'vibrant_orange' = "#ee7733",
+  'vibrant_red' = "#cc3311",
+  'vibrant_magenta' = "#ee3377",
+  'contrast_white' = "#ffffff",
+  'contrast_yellow' = "#ddaa33",
+  'contrast_red' = "#bb5566",
+  'contrast_blue' = "#004488",
+  'contrast_black' = "#000000"
   )
 

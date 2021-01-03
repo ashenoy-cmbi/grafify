@@ -32,7 +32,7 @@
 #' #Additional ggplot layering is possible
 #' plot_scatterbar_sd(Tab_doublings, Student, Doubling_time)+
 #'    labs(title = "Plot with scatter plot, bars (mean) & SD")+
-#'    scale_color_viridis_d()+scale_fill_viridis_d()+facet_wrap("Experiment")
+#'    scale_colour_grafify()+scale_fill_grafify()+facet_wrap("Experiment")
 
 plot_scatterbar_sd <- function(data, xcol, ycol, symsize = 2, bwid = 0.7, ewid = 0.3, fontsize = 20, alpha = 1){
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
