@@ -26,6 +26,8 @@ plot_dotviolin(
 
 \item{trim}{set whether tips of violin plot should be trimmed at high/low data. Default \code{trim = T}, can be changed to F.}
 
+\item{scale}{set to "area" by default, can be changed to "count" or "width".}
+
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
 \item{alpha}{fractional transparency, default set to 1 (i.e. zero transparency, fully opaque)}
@@ -46,13 +48,9 @@ This function is related to \code{\link{plot_scatterbar_sd}}, \code{\link{plot_d
 \examples{
 
 #Basic usage requires a data table and X & Y variables#'
-plot_scatterviolin(Tab_doublings, Student, Doubling_time)
+#plot_dotviolin(data_doubling_time, Student, Doubling_time)
 
 # or with trim = F
-plot_scatterviolin(Tab_doublings, Student, Doubling_time, trim = F)
+#plot_dotviolin(data_doubling_time, Student, Doubling_time, trim = F)
 
-#Additional ggplot layering is possible
-plot_scatterviolin(Chol, Treatment, Cholesterol)+
-   scale_fill_viridis_d()+
-   scale_colour_viridis_d()
 }

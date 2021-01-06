@@ -18,11 +18,11 @@ packages for making pretty graphs.
 
 <img src="grafify_pptx_small.png" width="150px" />
 
-The main goals of this package are to make it easier to share data and
-functions for the statistics workshop, and the following: 1. enable easy
-grafs based on `ggplot2` 2. carry out ANOVA analysis using linear models
-and mixed effects 3. perform post-hoc comparisons using `emmeans` 4.
-make simple one-way and two-way ANOVA design data
+The main goals of this package, besides making it easier for me to share
+data and functions for the statistics workshop, are the following: 1.
+enable easy grafs based on `ggplot2` 2. carry out ANOVA analysis using
+linear models and mixed effects 3. perform post-hoc comparisons using
+`emmeans` 4. make simple one-way and two-way ANOVA design data
 
 This package has four main kinds of functions as follows.
 

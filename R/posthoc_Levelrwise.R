@@ -13,15 +13,16 @@
 #'
 #' @return returns results produced by \code{\link[emmeans]{emmeans}}.
 #' @export posthoc_Levelwise
+#' @import emmeans
 #'
 #' @examples
 #' #basic use with one factor
 #' #note quotes used only for fixed factors
 #' #to get comparisons between different hospitals separately for each level of Treatment
-#' posthoc_Levelwise(CholMod, c("Hospital", "Treatment"))
+#' #posthoc_Levelwise(CholMod, c("Hospital", "Treatment"))
 #'
 #' #get comparisons between treatments separately at each hospital
-#' posthoc_Levelwise(CholMod, c("Treatment", "Hospital"))
+#' #posthoc_Levelwise(CholMod, c("Treatment", "Hospital"))
 #'
 
 posthoc_Levelwise <- function(Model, Factors, P_Adj = "fdr", ...){
@@ -31,7 +32,7 @@ posthoc_Levelwise <- function(Model, Factors, P_Adj = "fdr", ...){
   sp <- as.formula(paste0("pairwise ~",
                           comp,
                           collapse = ""))
-  pc <- emmeans(object = Model,
+  pc <- emmeans::emmeans(object = Model,
                 specs = sp,
                 type = "response",
                 adjut = P_Adj,

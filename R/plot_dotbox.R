@@ -17,19 +17,20 @@
 #'
 #' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
 #' @export plot_dotbox
+#' @import ggplot2
 #'
 #' @examples
 #'
 #' #Basic usage requires a data table and X & Y variables#'
-#' plot_dotbox(Chol, Treatment, Cholesterol)
+#' plot_dotbox(data_cholesterol, Treatment, Cholesterol)
 #'
 #' #Transformations of Y variable are possible as follows
-#' #' plot_dotbox(Chol, Treatment, log(Cholesterol))
+#' #' plot_dotbox(data_cholesterol, Treatment, log(Cholesterol))
 #'
 #' #Additional ggplot layering is possible
-#' plot_dotbox(Chol, Treatment, Cholesterol, dotsize = 2)+
+#' plot_dotbox(data_cholesterol, Treatment, Cholesterol, dotsize = 2)+
 #'    labs(title = "Plot with scatter dots & boxplot")+
-#'    scale_color_viridis_d()+scale_fill_viridis_d()+
+#'    scale_colour_grafify()+
 #'    facet_wrap("Hospital")
 
 plot_dotbox <- function(data, xcol, ycol, dotsize = 1, fontsize = 20, alpha = 1){

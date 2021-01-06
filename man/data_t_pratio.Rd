@@ -5,14 +5,6 @@
 \alias{data_t_pratio}
 \title{Matched data from two groups where ratio between them is consistent.}
 \format{
-data.frame:	16 obs. of  4 variables:
-
-\describe{
-\item{Subject}{Factor with 10 levels, denoted by capital alphabets, representing mice used for experiments.}
-\item{Condition}{A fixed factor with 2 levels: "Untreated" & "Treated".}
-\item{GST}{Numerical dependent variable indicating bodyweight (Mass).}
-}
-
 data.frame:	66 obs. of  3 variables:
 
 \describe{
@@ -23,12 +15,8 @@ data.frame:	66 obs. of  3 variables:
 }
 \usage{
 data_t_pratio
-
-data_t_pratio
 }
 \description{
-An example dataset for paired difference Student's \emph{t} test. These are bodyweight (Mass) in grams of same mice left untreated or treated, which are two groups to be compared. The data are in a longtable format, and the two groups are levels within the factor "Condition". The Subject column lists ID of matched mice that were measured without and with treatment. These data are from \href{https://stke.sciencemag.org/content/11/559/eaat6903.abstract}{Sanchez-Garrido \emph{et al}, Sci Signal, 2018, DOI: 10.1126/scisignal.aat6903}.
-
 An example dataset for paired ratio Student's \emph{t} test. These are Cytokine measurements by ELISA (in ng/ml) from 33 independent in vitro experiments performed on two Genotypes that we want to compare. The data are in a longtable format, and the two groups are levels within the factor "Genotype". The Experiment column lists ID of matched experiments.
 }
 \keyword{datasets}

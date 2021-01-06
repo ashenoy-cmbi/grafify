@@ -46,11 +46,6 @@ Consider using \code{facet_wrap} or \code{facet_grid} to reduce crowding on a si
 }
 \examples{
 #Basic usage with Treatment as the X variable with Subject as the grouping variable that indicates which points to join by lines
-plot_befafter_colours(Chol, Treatment, Cholesterol, Subject)
+plot_befafter_colors(data_cholesterol, Treatment, Cholesterol, Subject)
 
-#Additional layers are possible
-plot_befafter_colours(Chol, Treatment, Cholesterol, Subject)+
-   labs(title = "Plot with scatter plot, bars (mean) & SD")+
-   scale_color_viridis_d()+scale_fill_viridis_d()+
-   facet_wrap("Hospital")
 }

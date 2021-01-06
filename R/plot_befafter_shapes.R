@@ -18,17 +18,13 @@
 #'
 #' @return This function returns a \code{ggplot2} object.
 #' @export plot_befafter_shapes
+#' @import ggplot2
 #'
 #' @examples
-#' #Basic usage with Treatment as the X variable with Subject as the grouping variable that indicates which points to join by lines
-#' plot_befafter_shapes(Chol, Treatment, Cholesterol, Subject)
+#' #Basic usage with Treatment as the X variable
+#' #Subject as the grouping variable that indicates which points to join by lines
+#' plot_befafter_shapes(data_cholesterol, Treatment, Cholesterol, Subject)
 #'
-#' #Additional layers are possible
-#' plot_befafter_shapes(Chol, Treatment, Cholesterol, Subject)+
-#'    labs(title = "Plot with scatter plot, bars (mean) & SD")+
-#'    scale_color_viridis_d()+scale_fill_viridis_d()+
-#'    facet_wrap("Hospital")
-
 
 plot_befafter_shapes <- function(data, xcol, ycol, groups, symsize = 3, symthick = 1.5, fontsize = 20, alpha = 1){
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),

@@ -20,18 +20,19 @@
 #'
 #' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
 #' @export plot_scatterbar_sd
+#' @import ggplot2 Hmisc
 #'
 #' @examples
 #'
 #' #Basic usage requires a data table and X & Y variables#'
-#' plot_scatterbar_sd(Chol, Treatment, Cholesterol)
+#' plot_scatterbar_sd(data_cholesterol, Treatment, Cholesterol)
 #'
 #' #Transformations of Y variable are possible as follows
-#' #' plot_scatterbar_sd(Chol, Treatment, log(Cholesterol))
+#' #' plot_scatterbar_sd(data_cholesterol, Treatment, log(Cholesterol))
 #'
 #'
 #' #Additional ggplot layering is possible
-#' plot_scatterbar_sd(Tab_doublings, Student, Doubling_time)+
+#' plot_scatterbar_sd(data_doubling_time, Student, Doubling_time)+
 #'    labs(title = "Plot with scatter plot, bars (mean) & SD")+
 #'    scale_colour_grafify()+scale_fill_grafify()+facet_wrap("Experiment")
 

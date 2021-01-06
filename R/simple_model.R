@@ -13,15 +13,15 @@
 #' @export simple_model
 #'
 #' @examples
-#' #Basic usage where the table Chol is passed with names of one variable within quotes
+#' #Basic usage where the table data_cholesterol is passed with names of one variable within quotes
 #'
-#' simple_model(Chol, "Cholesterol", "Treatment")
+#' simple_model(data_cholesterol, "Cholesterol", "Treatment")
 #'
 #' #two way ANOVA with Treatment & Hospital as fixed factors
-#' simple_model(Chol, "Cholesterol", c("Treatment", "Hospital"))
+#' simple_model(data_cholesterol, "Cholesterol", c("Treatment", "Hospital"))
 #'
 #' #save model
-#' model <- simple_model(Chol, "Cholesterol", c("Treatment", "Hospital"))
+#' model <- simple_model(data_cholesterol, "Cholesterol", c("Treatment", "Hospital"))
 #'
 #' #get summary
 #' summary(model)
@@ -35,6 +35,5 @@ simple_model <- function(data, Y_value, Fixed_Factor, ...){
   fo <- as.formula(paste(Y, "~", Facs))
   mod <- lm(fo, data,)
   mod$call$formula <-fo
-  summary(mod)
   mod
 }

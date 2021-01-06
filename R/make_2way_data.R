@@ -12,21 +12,19 @@
 #' The output is a data frame with one or two columns denoting the fixed factor with levels that match the number of means entered. For rb data, the column for RandFac denotes levels of the blocking factor.
 #' The quantitative response variables are in the numeric Values column.
 #'
-#' @param Group1_means a vector with means of each level of the first fixed factor (FixFac_X1) measured within Group 1
-#' @param Group2_means only for \code{make_2way_data} and \code{make_2way_rb_data}: a vector with mean(s) of each level of FactorX2 measured within Group 2
+#' @param Group_1_means a vector with means of each level of the first fixed factor (FixFac_X1) measured within Group 1
+#' @param Group_2_means only for \code{make_2way_data} and \code{make_2way_rb_data}: a vector with mean(s) of each level of FactorX2 measured within Group 2
 #' @param Num_obs a single numeric value indicating the number of independent measurements, i.e. levels within the random factor Experiment
 #' @param Residual_SD a single numeric value indicating residual SD in the model
 #'
 #' @return This function produces a \code{data.frame} object
 #' @export make_2way_data
+#' @import purrr tidyr
 #'
 #' @examples
 #' #Basic usage with two levels within FactorX2, 20 observations in each group, with residual SD 15
 #'
 #' two_independent_tab <- make_2way_data(c(100, 20), c(200, 300), 20, 15)
-#'
-#' str(two_independent_tab)
-#' head(two_independent_tab)
 #'
 #' #Four levels with 5 observations and residual SD 5
 #' two_independent_tab <- make_2way_data(c(100, 20, 1500, 20), c(150, 5, 1450, 25), 5, 5)

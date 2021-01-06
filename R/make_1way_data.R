@@ -18,6 +18,7 @@
 #'
 #' @return This function produces a \code{data.frame} object
 #' @export make_1way_data
+#' @import purrr tidyr
 #'
 #' @examples
 #' #Basic usage with three levels within Factor_X, 20 observations in each group, with residual SD 15

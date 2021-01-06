@@ -26,20 +26,20 @@
 #'}
 "data_2w_Festing"
 
-#' @title Matched data from two groups where ratio between them is consistent.
+#' @title Matched data from two groups where difference between them is consistent.
 #'
 #' @description An example dataset for paired difference Student's _t_ test. These are bodyweight (Mass) in grams of same mice left untreated or treated, which are two groups to be compared. The data are in a longtable format, and the two groups are levels within the factor "Condition". The Subject column lists ID of matched mice that were measured without and with treatment. These data are from [Sanchez-Garrido _et al_, Sci Signal, 2018, DOI: 10.1126/scisignal.aat6903](https://stke.sciencemag.org/content/11/559/eaat6903.abstract).
 #'
-#' @format data.frame:	16 obs. of  4 variables:
+#' @format data.frame:	20 obs. of  3 variables:
 #'
 #' \describe{
-#' \item{Subject}{Factor with 10 levels, denoted by capital alphabets, representing mice used for experiments.}
+#' \item{Subject}{Factor with 10 levels, denoted by capital letters, representing individuals or subjects.}
 #' \item{Condition}{A fixed factor with 2 levels: "Untreated" & "Treated".}
-#' \item{GST}{Numerical dependent variable indicating bodyweight (Mass).}
+#' \item{Mass}{Numerical dependent variable indicating body mass of mice}
 #'}
-"data_t_pratio"
+"data_t_pdiff"
 
-#' @title Matched data from two groups where difference between them is consistent.
+#' @title Matched data from two groups where ratio between them is consistent.
 #'
 #' @description An example dataset for paired ratio Student's _t_ test. These are Cytokine measurements by ELISA (in ng/ml) from 33 independent in vitro experiments performed on two Genotypes that we want to compare. The data are in a longtable format, and the two groups are levels within the factor "Genotype". The Experiment column lists ID of matched experiments.
 #'

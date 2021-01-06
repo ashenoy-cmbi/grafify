@@ -13,17 +13,18 @@
 #'
 #' @return returns results produced by \code{\link[emmeans]{emmeans}}.
 #' @export posthoc_Pairwise
+#' @import emmeans
 #'
 #' @examples
 #' #basic use with one factor
 #' #note quotes used only for fixed factors
-#' posthoc_Pairwise(DoublMod, "Student")
+#' #posthoc_Pairwise(DoublMod, "Student")
 #'
 #' #basic use with two factors provided as a vector
-#' posthoc_Pairwise(CholMod, c("Treatment", "Hospital"))
+#' #posthoc_Pairwise(CholMod, c("Treatment", "Hospital"))
 #'
 #' #same call with "tukey" adjustment
-#' posthoc_Pairwise(CholMod, c("Treatment", "Hospital"), P_adj = "tukey")
+#' #posthoc_Pairwise(CholMod, c("Treatment", "Hospital"), P_adj = "tukey")
 #'
 
 
@@ -34,7 +35,7 @@ posthoc_Pairwise <- function(Model, Factors, P_Adj = "fdr", ...){
   sp <- as.formula(paste("pairwise ~",
                          comp,
                          collapse = ""))
-  pc <- emmeans(object = Model,
+  pc <- emmeans::emmeans(object = Model,
                 specs = sp,
                 type = "response",
                 adjust = P_Adj,

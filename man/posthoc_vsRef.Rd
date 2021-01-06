@@ -11,11 +11,11 @@ posthoc_vsRef(Model, Factors, Ref = 1, P_Adj = "fdr", ...)
 
 \item{Factors}{Factors one or  more categorical variables, provided as a vector (see Examples), whose levels you wish to compare pairwise. Names of factors should match factors used to fit the model. When more than one factor is provided e.g. \code{Fixed_factor = c("A", "B")}, this function passes this on as \code{specs = A|B} (note the vertical | between the two factors) to \code{\link[emmeans]{emmeans}}. The specification internally is set to \code{specs = trt.vs.ctrl, ref = 1} to compare each group in A to the reference first group in A, separately at each level of B.}
 
+\item{Ref}{the reference group provided as a number; default \code{ref = 1}.}
+
 \item{P_Adj}{P_Adj method for correcting P values for multiple comparisons. Default is set to false discovery rate ("fdr"), can be changed to "none", "tukey", "bonferroni", "sidak". See the \href{https://cran.r-project.org/web/packages/emmeans/vignettes/confidence-intervals.html#adjust}{manual} for \code{emmeans}}
 
 \item{...}{additional arguments for \code{\link[emmeans]{emmeans}} such as \code{lmer.df} or others. See help for sophisticated models in \href{https://cran.r-project.org/web/packages/emmeans/vignettes/sophisticated.html}{emmeans}.}
-
-\item{ref}{the reference group provided as a number; default \code{ref = 1}.}
 }
 \value{
 returns the result of \code{\link[emmeans]{emmeans}} contrasts.
@@ -30,15 +30,15 @@ The first part of the \code{emmeans} results has the estimated marginal means, S
 }
 \examples{
 #basic usage to compare against ref = 1
-posthoc_vsRef(DoublMod, "Student")
+#posthoc_vsRef(DoublMod, "Student")
 
 #to compare all students with student #9
-posthoc_vsRef(DoublMod, "Student", ref = 9)
+#posthoc_vsRef(DoublMod, "Student", ref = 9)
 
 #for comparison between hospital #1 to every other hospital, separately at levels of Treatment
-posthoc_vsRef(CholMod, c("Hospital", "Treatment"))
+#posthoc_vsRef(CholMod, c("Hospital", "Treatment"))
 
 #for comparisons between reference group of treatment to every other group, listed separated at every level of Hospital
-posthoc_vsRef(CholMod, c("Treatment", "Hospital"))
+#posthoc_vsRef(CholMod, c("Treatment", "Hospital"))
 
 }

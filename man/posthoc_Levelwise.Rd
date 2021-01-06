@@ -30,9 +30,9 @@ The first part of the \code{emmeans} results has the estimated marginal means, S
 #basic use with one factor
 #note quotes used only for fixed factors
 #to get comparisons between different hospitals separately for each level of Treatment
-posthoc_Levelwise(CholMod, c("Hospital", "Treatment"))
+#posthoc_Levelwise(CholMod, c("Hospital", "Treatment"))
 
 #get comparisons between treatments separately at each hospital
-posthoc_Levelwise(CholMod, c("Treatment", "Hospital"))
+#posthoc_Levelwise(CholMod, c("Treatment", "Hospital"))
 
 }

@@ -26,14 +26,11 @@
 #'
 #' @return This function returns a \code{ggplot2} object.
 #' @export plot_3d_scatterbox
+#' @import ggplot2
 #'
 #' @examples
 #' #Basic usage
-#' plot_3d_scatterbox(Chol, Treatment, Cholesterol, Hospital)
-#'
-#' #Additional layers can be used for same or additional variables
-#' plot_3d_scatterbox(Chol, Treatment, Cholesterol, Hospital)+
-#'    facet_wrap("Hospital")
+#' plot_3d_scatterbox(data_cholesterol, Treatment, Cholesterol, Hospital)
 #'
 
 plot_3d_scatterbox <- function(data, xcol, ycol, shapes, symsize = 2, symthick = 1.5, fontsize = 20, alpha = 0.8){

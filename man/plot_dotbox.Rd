@@ -35,14 +35,14 @@ This function is related to \code{\link{plot_scatterbar_sd}}, \code{\link{plot_d
 \examples{
 
 #Basic usage requires a data table and X & Y variables#'
-plot_dotbox(Chol, Treatment, Cholesterol)
+plot_dotbox(data_cholesterol, Treatment, Cholesterol)
 
 #Transformations of Y variable are possible as follows
-#' plot_dotbox(Chol, Treatment, log(Cholesterol))
+#' plot_dotbox(data_cholesterol, Treatment, log(Cholesterol))
 
 #Additional ggplot layering is possible
-plot_dotbox(Chol, Treatment, Cholesterol, dotsize = 2)+
+plot_dotbox(data_cholesterol, Treatment, Cholesterol, dotsize = 2)+
    labs(title = "Plot with scatter dots & boxplot")+
-   scale_color_viridis_d()+scale_fill_viridis_d()+
+   scale_colour_grafify()+
    facet_wrap("Hospital")
 }

@@ -7,13 +7,13 @@
 make_2way_data(Group_1_means, Group_2_means, Num_obs, Residual_SD)
 }
 \arguments{
+\item{Group_1_means}{a vector with means of each level of the first fixed factor (FixFac_X1) measured within Group 1}
+
+\item{Group_2_means}{only for \code{make_2way_data} and \code{make_2way_rb_data}: a vector with mean(s) of each level of FactorX2 measured within Group 2}
+
 \item{Num_obs}{a single numeric value indicating the number of independent measurements, i.e. levels within the random factor Experiment}
 
 \item{Residual_SD}{a single numeric value indicating residual SD in the model}
-
-\item{Group1_means}{a vector with means of each level of the first fixed factor (FixFac_X1) measured within Group 1}
-
-\item{Group2_means}{only for \code{make_2way_data} and \code{make_2way_rb_data}: a vector with mean(s) of each level of FactorX2 measured within Group 2}
 }
 \value{
 This function produces a \code{data.frame} object
@@ -36,9 +36,6 @@ The quantitative response variables are in the numeric Values column.
 #Basic usage with two levels within FactorX2, 20 observations in each group, with residual SD 15
 
 two_independent_tab <- make_2way_data(c(100, 20), c(200, 300), 20, 15)
-
-str(two_independent_tab)
-head(two_independent_tab)
 
 #Four levels with 5 observations and residual SD 5
 two_independent_tab <- make_2way_data(c(100, 20, 1500, 20), c(150, 5, 1450, 25), 5, 5)

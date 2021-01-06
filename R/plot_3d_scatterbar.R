@@ -27,15 +27,11 @@
 #'
 #' @return This function returns a \code{ggplot2} object.
 #' @export plot_3d_scatterbar
+#' @import ggplot2 Hmisc
 #'
 #' @examples
 #' #Basic usage
-#' plot_3d_scatterbar(Chol, Treatment, Cholesterol, Hospital)
-#'
-#' #Additional layers can be used for same or additional variables
-#' plot_3d_scatterbar(Chol, Treatment, Cholesterol, Hospital)+
-#'    facet_wrap("Hospital")
-#'
+#' plot_3d_scatterbar(data_cholesterol, Treatment, Cholesterol, Hospital)
 
 
 plot_3d_scatterbar <- function(data, xcol, ycol, shapes, ewid = 0.2, symsize = 2, symthick = 1.5, fontsize = 20, alpha = 1){

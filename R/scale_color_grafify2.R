@@ -17,14 +17,15 @@
 #'
 #' @return ggplot scale_fill function
 #' @export scale_color_grafify2
+#' @import ggplot2
 #'
 #' @examples
 #' #if p is a ggplot object produced by any of the `plot_` functions or `ggplot2`
-#' p + scale_colour_grafify2() #for point and scatter graphs
-#' p + scale_colour_grafify2() + scale_fill_grafify2() #for dotbar, dotbox etc
+#' #p + scale_colour_grafify2() #for point and scatter graphs
+#' #p + scale_colour_grafify2() + scale_fill_grafify2() #for dotbar, dotbox etc
 #'
 #' #specify colour palette & reverse order
-#' p + scale_colour_grafify(palette = "okabe_ito", reverse = T)
+#' #p + scale_colour_grafify(palette = "okabe_ito", reverse = T)
 #'
 scale_color_grafify2 <- function(palette = "all_grafify", reverse = FALSE, ...){
   pal <- graf_col_palette_default(palette = palette, reverse = reverse)

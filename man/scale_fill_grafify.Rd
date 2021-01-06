@@ -31,10 +31,10 @@ Additional options include "okabe_ito", "vibrant, "bright", "pale", "muted", "da
 }
 \examples{
 #if p is a ggplot object produced by any of the `plot_` functions or `ggplot2`
-p + scale_colour_grafify() #for point and scatter graphs
-p + scale_colour_grafify() + scale_fill_graf() #for dotbar, dotbox etc
+#p + scale_colour_grafify() #for point and scatter graphs
+#p + scale_colour_grafify() + scale_fill_graf() #for dotbar, dotbox etc
 
 #specify colour palette & reverse order
-p + scale_colour_graf(palette = "okabe_ito", reverse = T)
+#p + scale_colour_graf(palette = "okabe_ito", reverse = T)
 
 }

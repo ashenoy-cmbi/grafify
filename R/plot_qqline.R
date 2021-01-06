@@ -16,14 +16,12 @@
 #'
 #' @return This function returns a \code{ggplot2} object.
 #' @export plot_qqline
+#' @import ggplot2
 #'
 #' @examples
 #' #Basic usage
-#' plot_qqline(Chol, Cholesterol, Treatment)
+#' plot_qqline(data_cholesterol, Cholesterol, Treatment)
 #'
-#' Additional layers are possible
-#' plot_qqline(Chol, Cholesterol, Treatment)+
-#'    facet_wrap("Treatment")
 
 plot_qqline <- function(data, ycol, xcol, symsize = 3, symthick = 1, fontsize = 20, alpha = 1){
   ggplot2::ggplot(data, aes(sample = {{ ycol }}))+

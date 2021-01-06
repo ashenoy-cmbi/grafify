@@ -44,11 +44,6 @@ You are instead encouraged to show all data using the following functions: \code
 }
 \examples{
 #Basic usage
-plot_point_sd(Tab_doublings, Student, Doubling_time)
-
-#Additional layers can be added
-plot_point_sd(Tab_doublings, Student, Doubling_time)+
-   labs(title = "Plot with dot (mean) & SD")+
-   scale_color_viridis_d()
+plot_point_sd(data_doubling_time, Student, Doubling_time)
 
 }

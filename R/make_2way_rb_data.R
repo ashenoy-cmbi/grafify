@@ -20,6 +20,7 @@
 
 #' @return This function produces a \code{data.frame} object
 #' @export make_2way_rb_data
+#' @import purrr tidyr
 #'
 #' @examples
 #' #Basic usage with two levels within FactorX2, 20 experiments with inter-experiment SD 20, and residual SD 15

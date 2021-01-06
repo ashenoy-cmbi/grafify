@@ -29,12 +29,12 @@ The first part of the \code{emmeans} results has the estimated marginal means, S
 \examples{
 #basic use with one factor
 #note quotes used only for fixed factors
-posthoc_Pairwise(DoublMod, "Student")
+#posthoc_Pairwise(DoublMod, "Student")
 
 #basic use with two factors provided as a vector
-posthoc_Pairwise(CholMod, c("Treatment", "Hospital"))
+#posthoc_Pairwise(CholMod, c("Treatment", "Hospital"))
 
 #same call with "tukey" adjustment
-posthoc_Pairwise(CholMod, c("Treatment", "Hospital"), P_adj = "tukey")
+#posthoc_Pairwise(CholMod, c("Treatment", "Hospital"), P_adj = "tukey")
 
 }

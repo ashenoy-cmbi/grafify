@@ -57,16 +57,11 @@ All three functions can be expanded further, for example with \code{\link[ggplot
 }
 \examples{
 #Basic usage can take up to 4 variables from the data table
-plot_4d_scatterbox(Chol, Treatment, Cholesterol, Hospital, Subject)
+plot_4d_scatterbox(data_cholesterol, Treatment, Cholesterol, Hospital, Subject)
 
 #boxes and shapes can be the same factor if you want matched shapes for them
 #pay attention to which variable is assigned to boxes and which one to shapes
 #try swapping them to get the best-looking graph
-plot_4d_scatterbox(Tab_doublings, Student, Doubling_time, Student, Experiment)#'
+plot_4d_scatterbox(data_doubling_time, Student, Doubling_time, Student, Experiment)#'
 
-#Additional layers can be added
-plot_4d_scatterbox(Chol, Treatment, Cholesterol, Hospital, Subject)+
-   labs(title = "Plot with scatter plot, bars (mean) & SD")+
-   scale_color_viridis_d()+scale_fill_viridis_d()+
-   facet_wrap("Hospital")
 }

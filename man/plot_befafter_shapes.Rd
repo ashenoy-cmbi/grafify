@@ -45,12 +45,8 @@ Use \code{scale_colour_brewer} or \code{scale_colour_viridis} or related to get 
 Consider using \code{facet_wrap} or \code{facet_grid} to reduce crowding on a single plot and/or plot additional dimensions.
 }
 \examples{
-#Basic usage with Treatment as the X variable with Subject as the grouping variable that indicates which points to join by lines
-plot_befafter_shapes(Chol, Treatment, Cholesterol, Subject)
+#Basic usage with Treatment as the X variable
+#Subject as the grouping variable that indicates which points to join by lines
+plot_befafter_shapes(data_cholesterol, Treatment, Cholesterol, Subject)
 
-#Additional layers are possible
-plot_befafter_shapes(Chol, Treatment, Cholesterol, Subject)+
-   labs(title = "Plot with scatter plot, bars (mean) & SD")+
-   scale_color_viridis_d()+scale_fill_viridis_d()+
-   facet_wrap("Hospital")
 }

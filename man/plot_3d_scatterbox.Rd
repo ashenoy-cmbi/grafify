@@ -54,10 +54,6 @@ All three functions can be expanded further, for example with \code{\link[ggplot
 }
 \examples{
 #Basic usage
-plot_3d_scatterbox(Chol, Treatment, Cholesterol, Hospital)
-
-#Additional layers can be used for same or additional variables
-plot_3d_scatterbox(Chol, Treatment, Cholesterol, Hospital)+
-   facet_wrap("Hospital")
+plot_3d_scatterbox(data_cholesterol, Treatment, Cholesterol, Hospital)
 
 }

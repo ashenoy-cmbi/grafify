@@ -30,12 +30,12 @@ For simplicity, only random intercepts are fitted (\code{(1|R)}). For factorial 
 }
 \examples{
 #Basic usage where the table Chol is passed with names of variables within quotes
-mixed_model(Chol, "Cholesterol", c("Treatment", "Hospital"), "Subject")
+mixed_model(data_cholesterol, "Cholesterol", c("Treatment", "Hospital"), "Subject")
 
-mixed_model(Tab_doublings, "Doubling_time", "Student", "Experiment")
+mixed_model(data_doubling_time, "Doubling_time", "Student", "Experiment")
 
 #save model
-model <- mixed_model(Tab_doublings, "Doubling_time", "Student", "Experiment")
+model <- mixed_model(data_doubling_time, "Doubling_time", "Student", "Experiment")
 
 #get model summary
 summary(model)

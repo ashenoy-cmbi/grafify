@@ -18,16 +18,17 @@
 #'
 #' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
 #' @export plot_dotbar_sd
+#' @import ggplot2 Hmisc
 #'
 #' @examples
 #' #Basic usage requires a data table and X & Y variables#'
-#' plot_dotbar_sd(Chol, Treatment, Cholesterol)
+#' plot_dotbar_sd(data_cholesterol, Treatment, Cholesterol)
 #'
 #' #Transformations of Y variable are possible as follows
-#' #' plot_dotbar_sd(Chol, Treatment, log(Cholesterol))
+#' #' plot_dotbar_sd(data_cholesterol, Treatment, log(Cholesterol))
 #'
 #' #Additional ggplot layering is possible
-#' plot_dotbar_sd(Chol, Treatment, Cholesterol, dotsize = 2)+
+#' plot_dotbar_sd(data_cholesterol, Treatment, Cholesterol, dotsize = 2)+
 #'    labs(title = "Plot with scatter dots & boxplot")+
 #'    scale_colour_grafify()+scale_fill_grafify()+
 #'    facet_wrap("Hospital")

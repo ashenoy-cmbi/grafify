@@ -35,10 +35,6 @@ You are instead encouraged to show all data using the following functions: \code
 \examples{
 
 #Basic usage
-plot_bar_sd(Tab_doublings, Student, Doubling_time)
+plot_bar_sd(data_doubling_time, Student, Doubling_time)
 
-#Additional layers can be added
-plot_bar_sd(Tab_doublings, Student, Doubling_time)+
-   labs(title = "Plot with bar (mean) & SD")+
-   scale_fill_viridis_d()
 }

@@ -11,7 +11,7 @@ graf_col_palette_default(palette = "all_grafify", reverse = FALSE, ...)
 
 \item{reverse}{internal}
 
-\item{...}{}
+\item{...}{additional parameters}
 }
 \description{
 Call palettes for scale & fill with default colorRampPalette

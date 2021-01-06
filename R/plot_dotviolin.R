@@ -13,24 +13,22 @@
 #' @param ycol name of the column to plot on quantitative Y axis. This should be a quantitative variable.
 #' @param dotsize size of dots relative to \code{binwidth} used by \code{geom_dotplot}. Default set to 1, increase/decrease as needed.
 #' @param trim set whether tips of violin plot should be trimmed at high/low data. Default \code{trim = T}, can be changed to F.
+#' @param scale set to "area" by default, can be changed to "count" or "width".
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param alpha fractional transparency, default set to 1 (i.e. zero transparency, fully opaque)
 #'
 #' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
 #' @export plot_dotviolin
+#' @import ggplot2
 #'
 #' @examples
 #'
 #' #Basic usage requires a data table and X & Y variables#'
-#' plot_scatterviolin(Tab_doublings, Student, Doubling_time)
+#' #plot_dotviolin(data_doubling_time, Student, Doubling_time)
 #'
 #' # or with trim = F
-#' plot_scatterviolin(Tab_doublings, Student, Doubling_time, trim = F)
+#' #plot_dotviolin(data_doubling_time, Student, Doubling_time, trim = F)
 #'
-#' #Additional ggplot layering is possible
-#' plot_scatterviolin(Chol, Treatment, Cholesterol)+
-#'    scale_fill_viridis_d()+
-#'    scale_colour_viridis_d()
 
 plot_dotviolin <- function(data, xcol, ycol, dotsize = 1, trim = T, scale = "area", fontsize = 20, alpha = 1){
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),

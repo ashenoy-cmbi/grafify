@@ -2,7 +2,8 @@
 #'
 #' @param palette internal
 #' @param reverse internal
-#' @param ...
+#' @param ... additional parameters
+#' @import grDevices
 #'
 #'
 graf_col_palette_default <- function(palette = "all_grafify",

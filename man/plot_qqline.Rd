@@ -42,9 +42,6 @@ The X variable is mapped to the \code{colour} aesthetic in both \code{stat_qq} a
 }
 \examples{
 #Basic usage
-plot_qqline(Chol, Cholesterol, Treatment)
+plot_qqline(data_cholesterol, Cholesterol, Treatment)
 
-Additional layers are possible
-plot_qqline(Chol, Cholesterol, Treatment)+
-   facet_wrap("Treatment")
 }

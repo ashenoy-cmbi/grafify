@@ -8,6 +8,7 @@
 #' @param space internal
 #' @param interpolate internal
 #' @param alpha internal
+#' @import grDevices
 #'
 
 colorRamp_d <- function (colors, n,

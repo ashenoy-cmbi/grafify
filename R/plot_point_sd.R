@@ -18,15 +18,11 @@
 #'
 #' @return This function returns a \code{ggplot2} object.
 #' @export plot_point_sd
+#' @import ggplot2 Hmisc
 #'
 #' @examples
 #' #Basic usage
-#' plot_point_sd(Tab_doublings, Student, Doubling_time)
-#'
-#' #Additional layers can be added
-#' plot_point_sd(Tab_doublings, Student, Doubling_time)+
-#'    labs(title = "Plot with dot (mean) & SD")+
-#'    scale_color_viridis_d()
+#' plot_point_sd(data_doubling_time, Student, Doubling_time)
 #'
 
 plot_point_sd <- function(data, xcol, ycol, symsize = 2, symthick = 1, ewid = 0.2, fontsize = 20){

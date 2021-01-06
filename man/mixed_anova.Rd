@@ -29,9 +29,9 @@ When more than one fixed factors are entered in the argument, a full model with 
 For simplicity, only random intercepts are fitted (\code{(1|R)}). For factorial ANOVAs the default sum of squares is Type II and degrees of freedom are calculated using the Kenward-Roger approximation. All other settings are \code{\link[lmerTest]{lmer}} and \code{\link{anova}} defaults.
 }
 \examples{
-#Basic usage where the table Chol is passed with names of two fixed factors as a vector
-mixed_anova(Chol, "Cholesterol", c("Treatment", "Hospital"), "Subject")
+#Basic usage where the table data_cholesterol is passed with names of two fixed factors as a vector
+mixed_anova(data_cholesterol, "Cholesterol", c("Treatment", "Hospital"), "Subject")
 
 #Usages with one fixed (Student) and random factor (Experiment), each within quotes
-mixed_anova(Tab_doublings, "Doubling_time", "Student", "Experiment")
+mixed_anova(data_doubling_time, "Doubling_time", "Student", "Experiment")
 }

@@ -4,6 +4,7 @@
 #'
 #' @param colors internal
 #' @param ... internal
+#' @import grDevices
 #'
 #' @return
 #' @export

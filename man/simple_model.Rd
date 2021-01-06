@@ -25,15 +25,15 @@ This function uses \code{\link{lm}} to fit a linear model to data and outputs th
 This function is related to \code{link{simple_anova}}. Output of this function can be used with \code{\link{posthoc_Pairwise}}, \code{\link{posthoc_Levelwise}} and \code{\link{posthoc_vsRef}}, or with \code{\link[emmeans]{emmeans}}.
 }
 \examples{
-#Basic usage where the table Chol is passed with names of one variable within quotes
+#Basic usage where the table data_cholesterol is passed with names of one variable within quotes
 
-simple_model(Chol, "Cholesterol", "Treatment")
+simple_model(data_cholesterol, "Cholesterol", "Treatment")
 
 #two way ANOVA with Treatment & Hospital as fixed factors
-simple_model(Chol, "Cholesterol", c("Treatment", "Hospital"))
+simple_model(data_cholesterol, "Cholesterol", c("Treatment", "Hospital"))
 
 #save model
-model <- simple_model(Chol, "Cholesterol", c("Treatment", "Hospital"))
+model <- simple_model(data_cholesterol, "Cholesterol", c("Treatment", "Hospital"))
 
 #get summary
 summary(model)
