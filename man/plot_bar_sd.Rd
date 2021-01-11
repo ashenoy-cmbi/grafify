@@ -4,7 +4,16 @@
 \alias{plot_bar_sd}
 \title{Plot a bar graph indicating mean with error bars (SD) using two variables.}
 \usage{
-plot_bar_sd(data, xcol, ycol, bwid = 0.7, ewid = 0.3, fontsize = 20)
+plot_bar_sd(
+  data,
+  xcol,
+  ycol,
+  bwid = 0.7,
+  ewid = 0.3,
+  fontsize = 20,
+  ColPal = "all_grafify",
+  ColRev = F
+)
 }
 \arguments{
 \item{data}{a data table object, e.g. a data.frame or tibble.}
@@ -18,6 +27,10 @@ plot_bar_sd(data, xcol, ycol, bwid = 0.7, ewid = 0.3, fontsize = 20)
 \item{ewid}{width of error bars, default 0.3}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
+
+\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)}
 }
 \value{
 This function returns a \code{ggplot2} object on which additional geometries etc. can be added.

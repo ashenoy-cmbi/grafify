@@ -4,8 +4,7 @@
 #'
 #' @param ... internal
 #'
-#'
-#'
+
 get_graf_colours <- function(...){
   cols <- c(...)
   if(is.null(cols))

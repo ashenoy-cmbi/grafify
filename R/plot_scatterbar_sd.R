@@ -16,7 +16,9 @@
 #' @param bwid width of bars, default set to 0.7
 #' @param ewid width of error bars, default set to 0.2
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
-#' @param alpha fractional transparency, default set to 1 (i.e. zero transparency, fully opaque)
+#' @param alpha fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency)
+#' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
+#' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
 #'
 #' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
 #' @export plot_scatterbar_sd
@@ -36,7 +38,7 @@
 #'    labs(title = "Plot with scatter plot, bars (mean) & SD")+
 #'    scale_colour_grafify()+scale_fill_grafify()+facet_wrap("Experiment")
 
-plot_scatterbar_sd <- function(data, xcol, ycol, symsize = 2, symthick = 1, bwid = 0.7, ewid = 0.3, fontsize = 20, alpha = 1){
+plot_scatterbar_sd <- function(data, xcol, ycol, symsize = 2, symthick = 1, bwid = 0.7, ewid = 0.3, fontsize = 20, alpha = 1, ColPal = "all_grafify", ColRev = F){
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
     stat_summary(geom = "bar", colour = "black", width = {{ bwid }},
@@ -51,5 +53,6 @@ plot_scatterbar_sd <- function(data, xcol, ycol, symsize = 2, symthick = 1, bwid
                  width = {{ ewid }} )+
     labs(x = enquo(xcol),
          fill = enquo(xcol))+
-    theme_classic(base_size = {{ fontsize }})
+    theme_classic(base_size = {{ fontsize }})+
+    scale_fill_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})
 }

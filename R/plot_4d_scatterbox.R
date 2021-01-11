@@ -16,14 +16,16 @@
 #' All three functions can be expanded further, for example with \code{\link[ggplot2]{facet_grid}} or \code{\link[ggplot2]{facet_wrap}}.
 #'
 #' @param data a data table, e.g. data.frame or tibble.
-#' @param xcol name of the column to plot on X axis.
-#' @param ycol name of the column to plot on quantitative Y axis.
+#' @param xcol name of the column with the categorical factor to plot on X axis. If column is numeric, enter as \code{factor(col)}.
+#' @param ycol name of the column to plot on quantitative variable on the Y axis.
 #' @param boxes name of the column containing grouping within the factor plotted on X axis. Can be categorical or numeric X. If your table has numeric X and you want to plot as factor, enter \code{xcol = factor(name of colum)}.
 #' @param shapes name of the column that contains matched observations, e.g. subject IDs, experiment number etc.
 #' @param symsize size of symbols, default set to 3
 #' @param symthick size of outline of symbol lines (\code{stroke = 1.5}), default set to 1.5
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
-#' @param alpha fractional transparency of boxplot, default set to 0.8 (i.e. 20% transparency)
+#' @param alpha fractional opacity of boxplot, default set to 1 (i.e. maximum opacity & zero transparency)
+#' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
+#' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
 #'
 #' @return This function returns a \code{ggplot2} object
 #' @export plot_4d_scatterbox
@@ -41,11 +43,11 @@
 
 
 
-plot_4d_scatterbox <- function(data, xcol, ycol, boxes, shapes, symsize = 2, symthick = 1.5, fontsize = 20, alpha = 0.8){
-  ggplot2::ggplot(data, aes(x = {{ xcol }},
+plot_4d_scatterbox <- function(data, xcol, ycol, boxes, shapes, symsize = 2, symthick = 1.5, fontsize = 20, alpha = 0.8, ColPal = "all_grafify", ColRev = F){
+  ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }},
                             group = interaction(factor({{ boxes }}),
-                                                {{ xcol }})))+
+                                                factor({{ xcol }}))))+
     geom_boxplot(width = 0.5, alpha = {{ alpha }}, size = 1,
                  aes(fill = factor({{ boxes }})), outlier.alpha = 0,
                  position = position_dodge(width = 0.8))+
@@ -57,5 +59,7 @@ plot_4d_scatterbox <- function(data, xcol, ycol, boxes, shapes, symsize = 2, sym
     labs(shape = enquo(shapes),
          fill = enquo(boxes),
          colour = enquo(boxes))+
-    theme_classic(base_size = {{ fontsize }})
+    theme_classic(base_size = {{ fontsize }})+
+    scale_fill_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})+
+    scale_colour_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})
 }

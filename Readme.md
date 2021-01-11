@@ -7,42 +7,67 @@ it.
 
 ``` r
 install.packages("remotes") #install remotes
-remotes::install_github("ashenoy-cmbi/grafify", dependencies = T) #install with dependencies
+remotes::install_github("ashenoy-cmbi/grafify@*release", dependencies = T) #install latest release with dependencies
 ```
 
 This package requires `dplyr`, `purrr`, `ggplot2`, `lmerTest`, `emmeans`
 and `Hmisc`. Additionally, `cowplot` and `colorblindr` are suggested
 packages for making pretty graphs.
 
-### Introduction
+### Motivation
 
 <img src="grafify_pptx_small.png" width="150px" />
 
 The main goals of this package, besides making it easier for me to share
 data and functions for the statistics workshop, are the following: 1.
-enable easy grafs based on `ggplot2` 2. carry out ANOVA analysis using
-linear models and mixed effects 3. perform post-hoc comparisons using
-`emmeans` 4. make simple one-way and two-way ANOVA design data
+easily make common types of grafs based on `ggplot2` but with fewer
+lines of code 2. carry out ANOVA analysis using linear models and mixed
+effects 3. perform different kinds of post-hoc comparisons 4. simulate
+simple one-way and two-way ANOVA design data
 
-This package has four main kinds of functions as follows.
+### **Latest version: v0.2.0**
 
-1.  Making graphs easily using 12 `plot_` functions of 5 broad types
+New in v0.2.0:
+
+1.  the main difference from v0.1.0 is that all `plot_` functions apply
+    the `all_grafify` colour scheme by default (see `plot_` vignettes on
+    how to change colours)
+2.  two new types of grafs are possible with two quantitative X-Y plots
+    with a third variable that is either numeric (`plot_xy_NumGroup`) or
+    categorical (`plot_xy_CatGroup`).
+3.  there are two new continuous colour schemes (`scale_fill_grafify_c`
+    and `scale_colour_grafify_c`), based on [Paul Tol’s
+    variant](https://personal.sron.nl/~pault/#sec:sequential) of YlOrBl
+    scheme.
+
+### Features
+
+`grafify` has four main kinds of functions as follows.
+
+1.  Making graphs easily using 14 `plot_` functions of 5 broad types
     
     1.  using two variables: `plot_scatterbar_sd`, `plot_dotbar_sd`,
         `plot_dotbox`, `plot_dotviolin`
     2.  using three or four variables: `plot_3d_scatterbar`,
         `plot_3d_scatterbox`, `plot_4d_scatterbox`
-    3.  before-after graphs of matched data: `plot_befafter_colours`,
+    3.  using 3 variables where 2 are quantiative: `plot_xy_NumGroup`,
+        `plot_xy_CatGroup` (new in v0.2.0)
+    4.  before-after graphs of matched data: `plot_befafter_colours`,
         `plot_befafter_shapes`
-    4.  QQ plot to check distribution: `plot_qqline`
-    5.  summary graphs with SD error bars: `plot_bar_sd`,
+    5.  QQ plot to check distribution: `plot_qqline`
+    6.  summary graphs with SD error bars: `plot_bar_sd`,
         `plot_point_sd`
 
-<img src="all_graphs.jpg" width="90%" />
+<img src="all_graphsv0.2.0.jpg" width="90%" />
 
-The following palettes are available.
+The following qualitative and continuous palettes are implemented in
+`grafify`:
 
-<img src="Palette_images.jpg" width="90%" />
+<img src="grafify_palettesv0.2.0.jpg" width="90%" />
+
+(The continuous colour scheme based on Paul Tol’s [YlOrBl
+variant](https://personal.sron.nl/~pault/#sec:sequential) is new in
+v0.2.0.)
 
 2.  Fitting linear models and linear mixed models and obtaining ANOVA
     tables

@@ -11,7 +11,9 @@ plot_qqline(
   symsize = 3,
   symthick = 1,
   fontsize = 20,
-  alpha = 1
+  alpha = 1,
+  ColPal = "all_grafify",
+  ColRev = F
 )
 }
 \arguments{
@@ -27,7 +29,11 @@ plot_qqline(
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
-\item{alpha}{fractional transparency, default set to 1 (i.e. zero transparency, fully opaque)}
+\item{alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)}
+
+\item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
+
+\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)}
 }
 \value{
 This function returns a \code{ggplot2} object.
@@ -38,7 +44,8 @@ This function takes a data table, X and Y variables, and plots a QQ graph using 
 \details{
 The function uses \code{stat_qq} and \code{stat_qq_line} geometries (get help with \code{?stat_qq_line}).
 Note that the function requires the quantitative Y variable first, and groups them based on an X variable.
-The X variable is mapped to the \code{colour} aesthetic in both \code{stat_qq} and \code{stat_qq_line}, and its colour can be changed using \code{scale_colour_brewer} or any \code{scale_colour...} option.
+The X variable is mapped to the \code{fill} aesthetic in\code{stat_qq} and  \code{colour} aesthetic for the \code{stat_qq_line}.
+ColPal & ColRev options are applied to both \code{fill} and \code{colour} scales.
 }
 \examples{
 #Basic usage

@@ -12,4 +12,3 @@ graf_col_palette_default <- function(palette = "all_grafify",
   if(reverse) pal <- rev(pal)
   colorRampPalette(pal, ...)
 }
-

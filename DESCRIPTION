@@ -1,7 +1,7 @@
 Package: grafify
 Type: Package
 Title: A package for easy grafs, ANOVAs and posthoc comparisons
-Version: 0.1.0
+Version: 0.2.0
 Author: Avinash R. Shenoy
 Maintainer: The package maintainer <a.shenoy@imperial.ac.uk>
 Description: This package makes it easy to plot graphs, has 8 colour-blind friendly colour schemes, and fits ordinary linear models or mixed effects models, and can perform post-hoc comparisons. It contains simple functions built mainly on ggplot2, lmerTest and emmeans. 
@@ -9,11 +9,14 @@ License: GPL
 Depends:
     R (>= 4.0),
     ggplot2,
-    Hmisc,
-    purrr,
-    tidyr,
     lmerTest,
     emmeans
+Imports: 
+    purrr,
+    Hmisc,
+    tidyr,
+    pbkrtest,
+    stats
 Encoding: UTF-8
 Date: 2021-01-05
 LazyData: true
@@ -21,8 +24,6 @@ RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
 Suggests: 
     knitr,
-    pbkrtest,
-    rmarkdown,
-    RColorBrewer
+    rmarkdown
 VignetteBuilder: knitr
 URL: https://github.com/ashenoy-cmbi/grafify

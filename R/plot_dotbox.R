@@ -13,7 +13,9 @@
 #' @param ycol name of the column to plot on quantitative Y axis. This should be a quantitative variable.
 #' @param dotsize size of dots relative to binwidth used by \code{geom_dotplot}. Default set to 1, increase/decrease as needed.
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
-#' @param alpha fractional transparency of boxplot, default set to 1 (i.e. zero transparency, fully opaque)
+#' @param alpha fractional opacity of boxplot, default set to 1 (i.e. maximum opacity & zero transparency)
+#' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
+#' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
 #'
 #' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
 #' @export plot_dotbox
@@ -33,7 +35,7 @@
 #'    scale_colour_grafify()+
 #'    facet_wrap("Hospital")
 
-plot_dotbox <- function(data, xcol, ycol, dotsize = 1, fontsize = 20, alpha = 1){
+plot_dotbox <- function(data, xcol, ycol, dotsize = 1, fontsize = 20, alpha = 1, ColPal = "all_grafify", ColRev = F){
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
     geom_boxplot(aes(fill = factor({{ xcol }})), size = 1,
@@ -45,5 +47,6 @@ plot_dotbox <- function(data, xcol, ycol, dotsize = 1, fontsize = 20, alpha = 1)
                  aes(fill = factor({{ xcol }})))+
     labs(x = enquo(xcol),
          fill = enquo(xcol))+
-    theme_classic(base_size = {{ fontsize }})
+    theme_classic(base_size = {{ fontsize }})+
+    scale_fill_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})
 }

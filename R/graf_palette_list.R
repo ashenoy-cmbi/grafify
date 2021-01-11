@@ -1,4 +1,4 @@
-#list of paletttes available in grafify package
+#list of palettes available in grafify package
 graf_palettes <- list(
   'okabe_ito' = get_graf_colours("ok_orange",
                                  "ok_skyblue",
@@ -58,6 +58,15 @@ graf_palettes <- list(
                                "vibrant_red",
                                "vibrant_magenta",
                                "bright_grey"),
+  'yellow_conti' = get_graf_colours("YlOrBr_1", 
+                                    "YlOrBr_2",
+                                    "YlOrBr_3",
+                                    "YlOrBr_4",
+                                    "YlOrBr_5",
+                                    "YlOrBr_6",
+                                    "YlOrBr_7",
+                                    "YlOrBr_8",
+                                    "YlOrBr_9"),
   'all_grafify' = get_graf_colours("ok_orange",
     "ok_skyblue",
     "ok_bluegreen",

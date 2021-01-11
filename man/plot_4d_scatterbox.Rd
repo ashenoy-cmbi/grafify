@@ -13,15 +13,17 @@ plot_4d_scatterbox(
   symsize = 2,
   symthick = 1.5,
   fontsize = 20,
-  alpha = 0.8
+  alpha = 0.8,
+  ColPal = "all_grafify",
+  ColRev = F
 )
 }
 \arguments{
 \item{data}{a data table, e.g. data.frame or tibble.}
 
-\item{xcol}{name of the column to plot on X axis.}
+\item{xcol}{name of the column with the categorical factor to plot on X axis. If column is numeric, enter as \code{factor(col)}.}
 
-\item{ycol}{name of the column to plot on quantitative Y axis.}
+\item{ycol}{name of the column to plot on quantitative variable on the Y axis.}
 
 \item{boxes}{name of the column containing grouping within the factor plotted on X axis. Can be categorical or numeric X. If your table has numeric X and you want to plot as factor, enter \code{xcol = factor(name of colum)}.}
 
@@ -33,7 +35,11 @@ plot_4d_scatterbox(
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
-\item{alpha}{fractional transparency of boxplot, default set to 0.8 (i.e. 20\% transparency)}
+\item{alpha}{fractional opacity of boxplot, default set to 1 (i.e. maximum opacity & zero transparency)}
+
+\item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
+
+\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)}
 }
 \value{
 This function returns a \code{ggplot2} object

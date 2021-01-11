@@ -14,7 +14,9 @@
 #' @param symsize size of symbols, default set to 3
 #' @param symthick thickness of symbol border, default set to 1
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
-#' @param alpha fractional transparency, default set to 1 (i.e. zero transparency, fully opaque)
+#' @param alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)
+#' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
+#' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
 #'
 #' @return This function returns a \code{ggplot2} object.
 #' @export plot_befafter_colours
@@ -26,7 +28,7 @@
 #'
 
 
-plot_befafter_colours <- function(data, xcol, ycol, groups, symsize = 3, symthick = 1, fontsize = 20, alpha = 1){
+plot_befafter_colours <- function(data, xcol, ycol, groups, symsize = 3, symthick = 1, fontsize = 20, alpha = 1, ColPal = "all_grafify", ColRev = F){
   ggplot2::ggplot({{ data }}, aes(x = factor({{ xcol }}),
                                   y = {{ ycol }},
                                   group = factor({{ groups }})))+
@@ -38,6 +40,7 @@ plot_befafter_colours <- function(data, xcol, ycol, groups, symsize = 3, symthic
     scale_shape_manual(values = 0:25)+
     labs(x = enquo(xcol),
          fill = enquo(groups))+
-    theme_classic(base_size = {{ fontsize }})
+    theme_classic(base_size = {{ fontsize }})+
+    scale_fill_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})
 }
 

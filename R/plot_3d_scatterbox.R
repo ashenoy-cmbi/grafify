@@ -16,13 +16,15 @@
 #' All three functions can be expanded further, for example with \code{\link[ggplot2]{facet_grid}} or \code{\link[ggplot2]{facet_wrap}}.
 #'
 #' @param data a data table, e.g. data.frame or tibble.
-#' @param xcol name of the column with the factor to be plotted on X axis. Can be a categorical or numeric X. If your table has numeric X and you want to plot as factor, enter \code{xcol = factor(name of colum)}.
+#' @param xcol name of the column with the categorical factor to be plotted on X axis. If your table has numeric X, enter \code{xcol = factor(name of colum)}.
 #' @param ycol name of the column with quantitative variable to plot on the Y axis.
 #' @param shapes name of the column with the second categorical factor in a two-way ANOVA design.
 #' @param symsize size of symbols, default set to 3
 #' @param symthick size of outline of symbol lines (\code{stroke = 1.5}), default set to 1.5
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
-#' @param alpha fractional transparency of boxplot, default set to 0.8 (i.e. 20% transparency)
+#' @param alpha fractional opacity of boxplot, default set to 1 (i.e. maximum opacity & zero transparency)
+#' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
+#' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
 #'
 #' @return This function returns a \code{ggplot2} object.
 #' @export plot_3d_scatterbox
@@ -33,12 +35,12 @@
 #' plot_3d_scatterbox(data_cholesterol, Treatment, Cholesterol, Hospital)
 #'
 
-plot_3d_scatterbox <- function(data, xcol, ycol, shapes, symsize = 2, symthick = 1.5, fontsize = 20, alpha = 0.8){
-  ggplot2::ggplot(data, aes(x = {{ xcol }},
+plot_3d_scatterbox <- function(data, xcol, ycol, shapes, symsize = 2, symthick = 1.5, fontsize = 20, alpha = 0.8, ColPal = "all_grafify", ColRev = F){
+  ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }},
-                            group = interaction({{ xcol }},
+                            group = interaction(factor({{ xcol }}),
                                                 factor({{ shapes }}))))+
-    geom_boxplot(aes(fill = {{ xcol }}), size = 1,
+    geom_boxplot(aes(fill = factor({{ xcol }})), size = 1,
                  alpha = {{ alpha }},
                  position = position_dodge(width = 0.9),
                  width = 0.5,
@@ -47,9 +49,13 @@ plot_3d_scatterbox <- function(data, xcol, ycol, shapes, symsize = 2, symthick =
                alpha = 0.8,
                position = position_jitterdodge(jitter.width = 0.05,
                                                dodge.width = 0.9),
-               aes(colour = {{ xcol }},
+               aes(colour = factor({{ xcol }}),
                    shape = factor({{ shapes }})))+
     scale_shape_manual(values = 0:25)+
-    labs(shape = enquo(shapes))+
-    theme_classic(base_size = {{ fontsize }})
+    labs(shape = enquo(shapes),
+         fill = enquo(xcol),
+         colour = enquo(xcol))+
+    theme_classic(base_size = {{ fontsize }})+
+    scale_fill_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})+
+    scale_colour_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})
 }

@@ -4,7 +4,8 @@
 #'
 #' The function uses \code{stat_qq} and \code{stat_qq_line} geometries (get help with \code{?stat_qq_line}).
 #' Note that the function requires the quantitative Y variable first, and groups them based on an X variable.
-#' The X variable is mapped to the \code{colour} aesthetic in both \code{stat_qq} and \code{stat_qq_line}, and its colour can be changed using \code{scale_colour_brewer} or any \code{scale_colour...} option.
+#' The X variable is mapped to the \code{fill} aesthetic in\code{stat_qq} and  \code{colour} aesthetic for the \code{stat_qq_line}.
+#' ColPal & ColRev options are applied to both `fill` and `colour` scales.
 #'
 #' @param data a data table e.g. data.frame or tibble.
 #' @param ycol name of the column containing the quantitative variable whose distribution is to be plotted
@@ -12,7 +13,9 @@
 #' @param symsize size of symbols, default set to 3
 #' @param symthick thickness of symbol border, default set to 1
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
-#' @param alpha fractional transparency, default set to 1 (i.e. zero transparency, fully opaque)
+#' @param alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)
+#' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
+#' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
 #'
 #' @return This function returns a \code{ggplot2} object.
 #' @export plot_qqline
@@ -23,7 +26,7 @@
 #' plot_qqline(data_cholesterol, Cholesterol, Treatment)
 #'
 
-plot_qqline <- function(data, ycol, xcol, symsize = 3, symthick = 1, fontsize = 20, alpha = 1){
+plot_qqline <- function(data, ycol, xcol, symsize = 3, symthick = 1, fontsize = 20, alpha = 1, ColPal = "all_grafify", ColRev = F){
   ggplot2::ggplot(data, aes(sample = {{ ycol }}))+
     stat_qq(geom = "point", na.rm = T, shape = 21,
             size = {{ symsize }}, stroke = {{ symthick }},
@@ -32,5 +35,9 @@ plot_qqline <- function(data, ycol, xcol, symsize = 3, symthick = 1, fontsize = 
     stat_qq_line(aes(colour = {{ xcol }}),
                  na.rm = T,
                  size = 1)+
-    theme_classic(base_size = {{ fontsize }})
+    theme_classic(base_size = {{ fontsize }})+
+    scale_fill_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})+
+    scale_colour_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})+
+    labs(fill = enquo(xcol),
+         colour = enquo(xcol))
 }

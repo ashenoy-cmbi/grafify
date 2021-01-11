@@ -12,7 +12,9 @@ plot_befafter_colors(
   symsize = 3,
   symthick = 1,
   fontsize = 20,
-  alpha = 1
+  alpha = 1,
+  ColPal = "all_grafify",
+  ColRev = F
 )
 }
 \arguments{
@@ -30,13 +32,18 @@ plot_befafter_colors(
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
-\item{alpha}{fractional transparency of symbols, default set to 1 (i.e. zero transparency, fully opaque)}
+\item{alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)}
+
+\item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
+
+\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)}
 }
 \value{
 This function returns a \code{ggplot2} object.
 }
 \description{
-The \code{\link{plot_befafter_colours}} and \code{\link{plot_befafter_shapes}} are for graphing matched data joined by lines. They take X and Y variables along with a grouping factor (e.g. matched subjects or experiments etc.) and plot symbols matched by colour or shape.
+The \code{\link{plot_befafter_colours}} and \code{\link{plot_befafter_shapes}} are for graphing matched data joined by lines.
+They take X and Y variables along with a grouping factor (e.g. matched subjects or experiments etc.) and plot symbols matched by colour or shape.
 }
 \details{
 Note that \code{ggplot} only allows 25 types of shapes, and \code{\link{plot_befafter_shapes}} function works when there are fewer than 25 matched observations.

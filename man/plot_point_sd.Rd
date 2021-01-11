@@ -11,13 +11,15 @@ plot_point_sd(
   symsize = 2,
   symthick = 1,
   ewid = 0.2,
-  fontsize = 20
+  fontsize = 20,
+  ColPal = "all_grafify",
+  ColRev = F
 )
 }
 \arguments{
 \item{data}{a data table object, e.g. data.frame or tibble.}
 
-\item{xcol}{name of the column with X variable}
+\item{xcol}{name of the column with a \strong{categorical} X variable.}
 
 \item{ycol}{name of the column with quantitative Y variable}
 
@@ -28,6 +30,10 @@ plot_point_sd(
 \item{ewid}{width of error bars, default set to 0.2}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
+
+\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)}
 }
 \value{
 This function returns a \code{ggplot2} object.
@@ -38,7 +44,7 @@ This function takes a data table, X and Y variables, and plots a graph with a su
 \details{
 The function uses \code{\link[ggplot2]{stat_summary}} with \code{geom = "point"} with \code{size = 3}.
 Standard deviation (SD) is plotted through \code{\link[ggplot2]{stat_summary}} calculated using \code{mean_sdl} from the \code{ggplot2} package (get help with \code{?mean_sdl}), and 1x SD is plotted (\code{fun.arg = list(mult = 1)}.
-The X variable is mapped to the \code{colour} aesthetic in the point geometry. Colour can be changed using \code{scale_colour_brewer} (or related) options.
+The categorical X variable is mapped to the \code{fill} aesthetic in the point geometry, and by default receives \code{all_grafify} palette.
 
 You are instead encouraged to show all data using the following functions: \code{\link{plot_scatterbar_sd}}, \code{\link{plot_dotbox}}, \code{\link{plot_dotbar_sd}} and \code{\link{plot_dotviolin}}.
 }

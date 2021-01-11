@@ -53,6 +53,15 @@ graf_colours <- c(
   'contrast_yellow' = "#ddaa33",
   'contrast_red' = "#bb5566",
   'contrast_blue' = "#004488",
-  'contrast_black' = "#000000"
+  'contrast_black' = "#000000",
+  'YlOrBr_1' = "#FFFFE5",
+  'YlOrBr_2' = "#FFF7BC",
+  'YlOrBr_3' = "#FEE391",
+  'YlOrBr_4' = "#FEC44F",
+  'YlOrBr_5' = "#FB9A29", 
+  'YlOrBr_6' = "#EC7014",
+  'YlOrBr_7' = "#CC4C02",
+  'YlOrBr_8' = "#993404",
+  'YlOrBr_9' = "#662506"
   )
 

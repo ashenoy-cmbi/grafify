@@ -15,7 +15,9 @@
 #' @param trim set whether tips of violin plot should be trimmed at high/low data. Default \code{trim = T}, can be changed to F.
 #' @param scale set to "area" by default, can be changed to "count" or "width".
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
-#' @param alpha fractional transparency, default set to 1 (i.e. zero transparency, fully opaque)
+#' @param alpha fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency)
+#' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
+#' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
 #'
 #' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
 #' @export plot_dotviolin
@@ -30,7 +32,7 @@
 #' #plot_dotviolin(data_doubling_time, Student, Doubling_time, trim = F)
 #'
 
-plot_dotviolin <- function(data, xcol, ycol, dotsize = 1, trim = T, scale = "area", fontsize = 20, alpha = 1){
+plot_dotviolin <- function(data, xcol, ycol, dotsize = 1, trim = T, scale = "area", fontsize = 20, alpha = 1, ColPal = "all_grafify", ColRev = F){
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
     geom_violin(aes(fill = factor({{ xcol }})),
@@ -45,5 +47,6 @@ plot_dotviolin <- function(data, xcol, ycol, dotsize = 1, trim = T, scale = "are
                  aes(fill = factor({{ xcol }})))+
     labs(x = enquo(xcol),
          fill = enquo(xcol))+
-    theme_classic(base_size = {{ fontsize }})
+    theme_classic(base_size = {{ fontsize }})+
+    scale_fill_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})
 }

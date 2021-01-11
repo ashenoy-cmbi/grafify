@@ -11,7 +11,9 @@ plot_dotbar_sd(
   dotsize = 1,
   ewid = 0.2,
   fontsize = 20,
-  alpha = 1
+  alpha = 1,
+  ColPal = "all_grafify",
+  ColRev = F
 )
 }
 \arguments{
@@ -27,7 +29,11 @@ plot_dotbar_sd(
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
-\item{alpha}{fractional transparency, default set to 1 (i.e. zero transparency, fully opaque)}
+\item{alpha}{fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency)}
+
+\item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
+
+\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)}
 }
 \value{
 This function returns a \code{ggplot2} object on which additional geometries etc. can be added.

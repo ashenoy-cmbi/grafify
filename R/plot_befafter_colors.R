@@ -1,6 +1,7 @@
 #' Plot a before-after plot with lines joining colour-matched symbols.
 #'
-#' The \code{\link{plot_befafter_colours}} and \code{\link{plot_befafter_shapes}} are for graphing matched data joined by lines. They take X and Y variables along with a grouping factor (e.g. matched subjects or experiments etc.) and plot symbols matched by colour or shape.
+#' The \code{\link{plot_befafter_colours}} and \code{\link{plot_befafter_shapes}} are for graphing matched data joined by lines. 
+#' They take X and Y variables along with a grouping factor (e.g. matched subjects or experiments etc.) and plot symbols matched by colour or shape.
 #'
 #' Note that \code{ggplot} only allows 25 types of shapes, and \code{\link{plot_befafter_shapes}} function works when there are fewer than 25 matched observations.
 #' Use \code{scale_colour_brewer} or \code{scale_colour_viridis} or related to get a spectrum of matched colours by the grouping factor.
@@ -14,7 +15,9 @@
 #' @param symsize size of symbols, default set to 3
 #' @param symthick thickness of symbol border, default set to 1
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
-#' @param alpha fractional transparency of symbols, default set to 1 (i.e. zero transparency, fully opaque)
+#' @param alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)
+#' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
+#' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
 #'
 #' @return This function returns a \code{ggplot2} object.
 #' @export plot_befafter_colors
@@ -26,7 +29,7 @@
 #'
 
 
-plot_befafter_colors <- function(data, xcol, ycol, groups, symsize = 3, symthick = 1, fontsize = 20, alpha = 1){
+plot_befafter_colors <- function(data, xcol, ycol, groups, symsize = 3, symthick = 1, fontsize = 20, alpha = 1, ColPal = "all_grafify", ColRev = F){
   ggplot2::ggplot({{ data }}, aes(x = factor({{ xcol }}),
                                   y = {{ ycol }},
                                   group = factor({{ groups }})))+
@@ -38,6 +41,7 @@ plot_befafter_colors <- function(data, xcol, ycol, groups, symsize = 3, symthick
     scale_shape_manual(values = 0:25)+
     labs(x = enquo(xcol),
          fill = enquo(groups))+
-    theme_classic(base_size = {{ fontsize }})
+    theme_classic(base_size = {{ fontsize }})+
+    scale_fill_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})
 }
 

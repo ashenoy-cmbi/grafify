@@ -13,7 +13,9 @@ plot_3d_scatterbar(
   symsize = 2,
   symthick = 1.5,
   fontsize = 20,
-  alpha = 1
+  alpha = 1,
+  ColPal = "all_grafify",
+  ColRev = F
 )
 }
 \arguments{
@@ -33,7 +35,11 @@ plot_3d_scatterbar(
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
-\item{alpha}{fractional transparency of bars, default set to 1 (i.e. zero transparency, fully opaque)}
+\item{alpha}{fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency)}
+
+\item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
+
+\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)}
 }
 \value{
 This function returns a \code{ggplot2} object.
