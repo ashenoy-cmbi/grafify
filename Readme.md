@@ -95,6 +95,9 @@ If you’re interested in basic stats in R, also visit Statistics for
 
 ### Release notes
 
+Full reference to all functions available at [`grafify`
+pages](https://ashenoy-cmbi.github.io/grafify/index.html).
+
 Fixed in v0.2.1:
 
 1.  Bug fixes in `plot_3d_scatterbar` and `plot_3d_scatterbox`, which

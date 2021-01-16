@@ -88,6 +88,8 @@ If you're interested in basic stats in R, also visit Statistics for [Micro/Immun
 
 ### Release notes
 
+Full reference to all functions available at [`grafify` pages](https://ashenoy-cmbi.github.io/grafify/index.html).
+
 Fixed in v0.2.1:
 
 1. Bug fixes in `plot_3d_scatterbar` and `plot_3d_scatterbox`, which now correctly use the "shapes" variable to fill colour of bars/boxes and shape of the symbols; symbols are depicted in black.
