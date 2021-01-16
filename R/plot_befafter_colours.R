@@ -23,7 +23,9 @@
 #' @import ggplot2
 #'
 #' @examples
-#' #Basic usage with Treatment as the X variable with Subject as the grouping variable that indicates which points to join by lines
+#' #Basic usage with Treatment as the X variable
+#' #Subject as the grouping variable 
+#' #this variable lists points to join by lines
 #' plot_befafter_colours(data_cholesterol, Treatment, Cholesterol, Subject)
 #'
 

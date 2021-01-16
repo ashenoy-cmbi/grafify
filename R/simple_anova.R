@@ -1,6 +1,9 @@
 #' ANOVA table from a linear model fit to data.
 #'
-#' This function uses \code{\link{lm}} to fit a linear model to data, passes it on to \code{\link{anova}}, and outputs the ANOVA table. It requires a data table, one quantitative dependent variable and one or more independent variables. If your experiment design has random factors, use the related function \code{\link{mixed_anova}}.
+#' Update in v0.2.1: This function uses \code{\link{lm}} to fit a linear model to data, passes it on to \code{\link[car]{Anova}}, and outputs the ANOVA table with type II sum of squares with F statistics and _P_ values. 
+#' (Previous versions produced type I sum of squares using \code{\link{anova}} call.)
+#' 
+#' It requires a data table, one quantitative dependent variable and one or more independent variables. If your experiment design has random factors, use the related function \code{\link{mixed_anova}}.
 #'
 #' This function is related to \code{link{simple_model}}.
 #'
@@ -11,6 +14,7 @@
 #'
 #' @return ANOVA table output by \code{anova}.
 #' @export simple_anova
+#' @importFrom car Anova
 #'
 #' @examples
 #' #Basic usage where the table data_cholesterol is passed with names of one variable within quotes
@@ -29,5 +33,7 @@ simple_anova <- function(data, Y_value, Fixed_Factor, ...){
   fo <- as.formula(paste(Y, "~", Facs))
   mod <- lm(fo, data, ...)
   mod$call$formula <-fo
-  anova(mod)
+  car::Anova(mod, 
+             type = 2,
+             test.statistic = "F")
 }

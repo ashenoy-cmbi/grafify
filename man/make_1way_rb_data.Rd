@@ -33,7 +33,8 @@ The output is a data frame with one or two columns denoting the fixed factor wit
 The quantitative response variables are in the numeric Values column.
 }
 \examples{
-#Basic usage with two levels within FactorX2, 20 experiments with inter-experiment SD 20, and residual SD 15
+#Basic usage with two levels within FactorX2, 
+#20 experiments with inter-experiment SD 20, and residual SD 15
 
 two_rb_tab <- make_2way_rb_data(c(100, 20), c(200, 300), 20, 20, 15)
 

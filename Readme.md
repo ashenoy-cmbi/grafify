@@ -10,35 +10,23 @@ install.packages("remotes") #install remotes
 remotes::install_github("ashenoy-cmbi/grafify@*release", dependencies = T) #install latest release with dependencies
 ```
 
-This package requires `dplyr`, `purrr`, `ggplot2`, `lmerTest`, `emmeans`
-and `Hmisc`. Additionally, `cowplot` and `colorblindr` are suggested
-packages for making pretty graphs.
+`grafify` depends on `ggplot2`, `lmerTest`, `emmeans`, `car`,
+`pbkrtest`, `tidyr`, `purrr` and `Hmisc` packages.
 
 ### Motivation
 
 <img src="grafify_pptx_small.png" width="150px" />
 
 The main goals of this package, besides making it easier for me to share
-data and functions for the statistics workshop, are the following: 1.
-easily make common types of grafs based on `ggplot2` but with fewer
-lines of code 2. carry out ANOVA analysis using linear models and mixed
-effects 3. perform different kinds of post-hoc comparisons 4. simulate
-simple one-way and two-way ANOVA design data
+data and functions for the statistics workshop, are the following:
 
-### **Latest version: v0.2.0**
+1.  easily make common types of grafs based on `ggplot2` but with fewer
+    lines of code
+2.  carry out ANOVA analysis using linear models and mixed effects
+3.  perform different kinds of post-hoc comparisons
+4.  simulate simple one-way and two-way ANOVA design data
 
-New in v0.2.0:
-
-1.  the main difference from v0.1.0 is that all `plot_` functions apply
-    the `all_grafify` colour scheme by default (see `plot_` vignettes on
-    how to change colours)
-2.  two new types of grafs are possible with two quantitative X-Y plots
-    with a third variable that is either numeric (`plot_xy_NumGroup`) or
-    categorical (`plot_xy_CatGroup`).
-3.  there are two new continuous colour schemes (`scale_fill_grafify_c`
-    and `scale_colour_grafify_c`), based on [Paul Tol’s
-    variant](https://personal.sron.nl/~pault/#sec:sequential) of YlOrBl
-    scheme.
+### **Latest version: v0.2.1**
 
 ### Features
 
@@ -104,3 +92,27 @@ website for detailed examples of usage.
 
 If you’re interested in basic stats in R, also visit Statistics for
 [Micro/Immuno Biologists](https://microimmunostats.netlify.app).
+
+### Release notes
+
+Fixed in v0.2.1:
+
+1.  Bug fixes in `plot_3d_scatterbar` and `plot_3d_scatterbox`, which
+    now correctly use the “shapes” variable to fill colour of bars/boxes
+    and shape of the symbols; symbols are depicted in black.
+2.  `simple_anova` generates type II ANOVA table through `car::Anova()`,
+    which is now a dependency. v0.1.0 and v0.2.0 generated type I ANOVA
+    table through `stats::anova()`.
+
+New in v0.2.0:
+
+1.  the main difference from v0.1.0 is that all `plot_` functions apply
+    the `all_grafify` colour scheme by default (see `plot_` vignettes on
+    how to change colours)
+2.  two new types of grafs are possible with two quantitative X-Y plots
+    with a third variable that is either numeric (`plot_xy_NumGroup`) or
+    categorical (`plot_xy_CatGroup`).
+3.  there are two new continuous colour schemes (`scale_fill_grafify_c`
+    and `scale_colour_grafify_c`), based on [Paul Tol’s
+    variant](https://personal.sron.nl/~pault/#sec:sequential) of YlOrBl
+    scheme.

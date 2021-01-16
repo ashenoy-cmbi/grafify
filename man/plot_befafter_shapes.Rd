@@ -52,7 +52,8 @@ Consider using \code{facet_wrap} or \code{facet_grid} to reduce crowding on a si
 }
 \examples{
 #Basic usage with Treatment as the X variable
-#Subject as the grouping variable that indicates which points to join by lines
+#Subject as the grouping variable 
+#this variable lists points to join by lines
 plot_befafter_shapes(data_cholesterol, Treatment, Cholesterol, Subject)
 
 }

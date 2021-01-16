@@ -19,9 +19,12 @@ simple_anova(data, Y_value, Fixed_Factor, ...)
 ANOVA table output by \code{anova}.
 }
 \description{
-This function uses \code{\link{lm}} to fit a linear model to data, passes it on to \code{\link{anova}}, and outputs the ANOVA table. It requires a data table, one quantitative dependent variable and one or more independent variables. If your experiment design has random factors, use the related function \code{\link{mixed_anova}}.
+Update in v0.2.1: This function uses \code{\link{lm}} to fit a linear model to data, passes it on to \code{\link[car]{Anova}}, and outputs the ANOVA table with type II sum of squares with F statistics and \emph{P} values.
+(Previous versions produced type I sum of squares using \code{\link{anova}} call.)
 }
 \details{
+It requires a data table, one quantitative dependent variable and one or more independent variables. If your experiment design has random factors, use the related function \code{\link{mixed_anova}}.
+
 This function is related to \code{link{simple_model}}.
 }
 \examples{

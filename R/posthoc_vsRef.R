@@ -26,7 +26,8 @@
 #' #for comparison between hospital #1 to every other hospital, separately at levels of Treatment
 #' #posthoc_vsRef(CholMod, c("Hospital", "Treatment"))
 #'
-#' #for comparisons between reference group of treatment to every other group, listed separated at every level of Hospital
+#' #for comparisons between reference group of treatment to every other group, 
+#' #listed separated at every level of Hospital
 #' #posthoc_vsRef(CholMod, c("Treatment", "Hospital"))
 #'
 

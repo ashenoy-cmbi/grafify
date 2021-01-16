@@ -13,7 +13,7 @@ plot_4d_scatterbox(
   symsize = 2,
   symthick = 1.5,
   fontsize = 20,
-  alpha = 0.8,
+  alpha = 1,
   ColPal = "all_grafify",
   ColRev = F
 )
@@ -35,7 +35,7 @@ plot_4d_scatterbox(
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
-\item{alpha}{fractional opacity of boxplot, default set to 1 (i.e. maximum opacity & zero transparency)}
+\item{alpha}{fractional opacity of boxes, default set to 1 (i.e. maximum opacity & zero transparency)}
 
 \item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
 

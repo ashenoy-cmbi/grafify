@@ -23,7 +23,7 @@
 #' @param symsize size of symbols, default set to 3
 #' @param symthick size of outline of symbol lines (\code{stroke = 1.5}), default set to 1.5
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
-#' @param alpha fractional opacity of boxplot, default set to 1 (i.e. maximum opacity & zero transparency)
+#' @param alpha fractional opacity of boxes, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
 #' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
 #'
@@ -43,7 +43,7 @@
 
 
 
-plot_4d_scatterbox <- function(data, xcol, ycol, boxes, shapes, symsize = 2, symthick = 1.5, fontsize = 20, alpha = 0.8, ColPal = "all_grafify", ColRev = F){
+plot_4d_scatterbox <- function(data, xcol, ycol, boxes, shapes, symsize = 2, symthick = 1.5, fontsize = 20, alpha = 1, ColPal = "all_grafify", ColRev = F){
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }},
                             group = interaction(factor({{ boxes }}),
@@ -58,7 +58,8 @@ plot_4d_scatterbox <- function(data, xcol, ycol, boxes, shapes, symsize = 2, sym
     scale_shape_manual(values = 0:25)+
     labs(shape = enquo(shapes),
          fill = enquo(boxes),
-         colour = enquo(boxes))+
+         colour = enquo(boxes),
+         x = enquo(xcol))+
     theme_classic(base_size = {{ fontsize }})+
     scale_fill_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})+
     scale_colour_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})
