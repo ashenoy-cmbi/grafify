@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
       </span>
     </div>
 
@@ -144,15 +144,15 @@
 <p><img src="grafify_pptx_small.png" width="150px"></p>
 <p>The main goals of this package, besides making it easier for me to share data and functions for the statistics workshop, are the following:</p>
 <ol>
-<li>easily make common types of grafs based on <code>ggplot2</code> but with fewer lines of code</li>
+<li>easily make common types of graphs based on <code>ggplot2</code> but with fewer lines of code</li>
 <li>carry out ANOVA analysis using linear models and mixed effects</li>
 <li>perform different kinds of post-hoc comparisons</li>
 <li>simulate simple one-way and two-way ANOVA design data</li>
 </ol>
 </div>
-<div id="latest-version-v021" class="section level3">
+<div id="latest-version-v030" class="section level3">
 <h3 class="hasAnchor">
-<a href="#latest-version-v021" class="anchor"></a><strong>Latest version: v0.2.1</strong>
+<a href="#latest-version-v030" class="anchor"></a><strong>Latest version: v0.3.0</strong>
 </h3>
 </div>
 <div id="features" class="section level3">
@@ -161,11 +161,11 @@
 <p><code>grafify</code> has four main kinds of functions as follows.</p>
 <ol>
 <li>
-<p>Making graphs easily using 14 <code>plot_</code> functions of 5 broad types</p>
+<p>Making graphs easily using 15 <code>plot_</code> functions of 6 broad types</p>
 <ol>
 <li>using two variables: <code>plot_scatterbar_sd</code>, <code>plot_dotbar_sd</code>, <code>plot_dotbox</code>, <code>plot_dotviolin</code>
 </li>
-<li>using three or four variables: <code>plot_3d_scatterbar</code>, <code>plot_3d_scatterbox</code>, <code>plot_4d_scatterbox</code>
+<li>using three or four variables: <code>plot_3d_scatterbar</code>, <code>plot_3d_scatterbox</code>, <code>plot_4d_scatterbar</code>, <code>plot_4d_scatterbox</code>
 </li>
 <li>using 3 variables where 2 are quantiative: <code>plot_xy_NumGroup</code>, <code>plot_xy_CatGroup</code> (new in v0.2.0)</li>
 <li>before-after graphs of matched data: <code>plot_befafter_colours</code>, <code>plot_befafter_shapes</code>
@@ -177,7 +177,7 @@
 </ol>
 </li>
 </ol>
-<p><img src="all_graphsv0.2.0.jpg" width="90%"></p>
+<p><img src="all_graphsv0.3.0.jpg" width="90%"></p>
 <p>The following qualitative and continuous palettes are implemented in <code>grafify</code>:</p>
 <p><img src="grafify_palettesv0.2.0.jpg" width="90%"></p>
 <p>(The continuous colour scheme based on Paul Tol’s <a href="https://personal.sron.nl/~pault/#sec:sequential">YlOrBl variant</a> is new in v0.2.0.)</p>
@@ -232,16 +232,26 @@
 <h3 class="hasAnchor">
 <a href="#release-notes" class="anchor"></a>Release notes</h3>
 <p>Full reference to all functions available at <a href="https://ashenoy-cmbi.github.io/grafify/index.html"><code>grafify</code> pages</a>.</p>
+<p>New in v0.3.0</p>
+<ol>
+<li>A new <code>plot_4d_scatterbar</code> function which is like <code>plot_4d_scatterbox</code> but plots bar and SD. So there are now two <code>plot_3d_</code> and <code>plot_4d_</code> functions.</li>
+<li>Text on X-axis on all graphs can be rotated from 0-90 using <code>TextXAngle</code> argument to prevent overlap.</li>
+<li>
+<code>plot_dot_</code> functions now have <code>dotthick</code> option to set stroke thickness. This is similar to <code>symthick</code> for scatter/jitter plots.</li>
+<li>Using <code>facet_wrap</code> or <code>facet_grid</code> will not draw a box around panel text (unlike the default in <code>theme_classic()</code>).</li>
+<li>
+<code>plot_3d_</code> and <code>plot_4d_</code> functions draw symbols in black colour.</li>
+</ol>
 <p>Fixed in v0.2.1:</p>
 <ol>
 <li>Bug fixes in <code>plot_3d_scatterbar</code> and <code>plot_3d_scatterbox</code>, which now correctly use the “shapes” variable to fill colour of bars/boxes and shape of the symbols; symbols are depicted in black.</li>
 <li>
-<code>simple_anova</code> generates type II ANOVA table through <code><a href="https://rdrr.io/pkg/car/man/Anova.html">car::Anova()</a></code>, which is now a dependency. v0.1.0 and v0.2.0 generated type I ANOVA table through <code><a href="https://rdrr.io/r/stats/anova.html">stats::anova()</a></code>.</li>
+<code>simple_anova</code> generates type II ANOVA table through <code><a href="https://rdrr.io/pkg/car/man/Anova.html">car::Anova()</a></code>, so the <code>car</code> package is now a dependency. v0.1.0 and v0.2.0 generated type I ANOVA table through <code><a href="https://rdrr.io/r/stats/anova.html">stats::anova()</a></code>.</li>
 </ol>
 <p>New in v0.2.0:</p>
 <ol>
 <li>the main difference from v0.1.0 is that all <code>plot_</code> functions apply the <code>all_grafify</code> colour scheme by default (see <code>plot_</code> vignettes on how to change colours)</li>
-<li>two new types of grafs are possible with two quantitative X-Y plots with a third variable that is either numeric (<code>plot_xy_NumGroup</code>) or categorical (<code>plot_xy_CatGroup</code>).</li>
+<li>two new types of graphs are possible with two quantitative X-Y plots with a third variable that is either numeric (<code>plot_xy_NumGroup</code>) or categorical (<code>plot_xy_CatGroup</code>).</li>
 <li>there are two new continuous colour schemes (<code>scale_fill_grafify_c</code> and <code>scale_colour_grafify_c</code>), based on <a href="https://personal.sron.nl/~pault/#sec:sequential">Paul Tol’s variant</a> of YlOrBl scheme.</li>
 </ol>
 </div>

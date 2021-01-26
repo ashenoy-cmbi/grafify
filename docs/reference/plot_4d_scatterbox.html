@@ -47,7 +47,9 @@
 
 
 <meta property="og:title" content="Plot a dot plot with matched shapes on a box plot using four variables. — plot_4d_scatterbox" />
-<meta property="og:description" content="The functions plot_3d_scatterbar, plot_3d_scatterbox and plot_4d_scatterbox allow 3d or 4d plots with 3 or 4 variables, respectively." />
+<meta property="og:description" content="The functions plot_3d_scatterbar, plot_3d_scatterbox, plot_4d_scatterbar  and plot_4d_scatterbox allow 3d or 4d plots with 3 or 4 variables, respectively.
+These four functions are useful for factorial ANOVA designs with randomised blocks or repeated-measures or for showing matched observations (e.g. depicting matched subjects or experiments).
+They rely on ggplot with geom_point and geom_bar (through stat_summary) or geom_boxplot geometries." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -90,7 +92,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
       </span>
     </div>
 
@@ -132,7 +134,9 @@
     </div>
 
     <div class="ref-description">
-    <p>The functions <code><a href='plot_3d_scatterbar.html'>plot_3d_scatterbar</a></code>, <code><a href='plot_3d_scatterbox.html'>plot_3d_scatterbox</a></code> and <code>plot_4d_scatterbox</code> allow 3d or 4d plots with 3 or 4 variables, respectively.</p>
+    <p>The functions <code><a href='plot_3d_scatterbar.html'>plot_3d_scatterbar</a></code>, <code><a href='plot_3d_scatterbox.html'>plot_3d_scatterbox</a></code>, <code><a href='plot_4d_scatterbar.html'>plot_4d_scatterbar</a></code>  and <code>plot_4d_scatterbox</code> allow 3d or 4d plots with 3 or 4 variables, respectively.
+These four functions are useful for factorial ANOVA designs with randomised blocks or repeated-measures or for showing matched observations (e.g. depicting matched subjects or experiments).
+They rely on <code><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></code> with <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></code> and <code><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_bar</a></code> (through <code>stat_summary</code>) or <code><a href='https://ggplot2.tidyverse.org/reference/geom_boxplot.html'>geom_boxplot</a></code> geometries.</p>
     </div>
 
     <pre class="usage"><span class='fu'>plot_4d_scatterbox</span><span class='op'>(</span>
@@ -141,8 +145,8 @@
   <span class='va'>ycol</span>,
   <span class='va'>boxes</span>,
   <span class='va'>shapes</span>,
-  symsize <span class='op'>=</span> <span class='fl'>2</span>,
-  symthick <span class='op'>=</span> <span class='fl'>1.5</span>,
+  symsize <span class='op'>=</span> <span class='fl'>2.5</span>,
+  symthick <span class='op'>=</span> <span class='fl'>1</span>,
   fontsize <span class='op'>=</span> <span class='fl'>20</span>,
   alpha <span class='op'>=</span> <span class='fl'>1</span>,
   ColPal <span class='op'>=</span> <span class='st'>"all_grafify"</span>,
@@ -179,7 +183,7 @@
     </tr>
     <tr>
       <th>symthick</th>
-      <td><p>size of outline of symbol lines (<code>stroke = 1.5</code>), default set to 1.5</p></td>
+      <td><p>size of outline of symbol lines (<code>stroke = 1.0</code>), default set to 1.0</p></td>
     </tr>
     <tr>
       <th>fontsize</th>
@@ -208,24 +212,28 @@
     <p>This function returns a <code>ggplot2</code> object</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>These functions take a data table, X and Y variables, and a grouping variable "shapes" in the case of<code>plot_3d_scatterbox</code> and <code>plot_3d_scatterbar</code>, or two additional variables "boxes" and "shapes" in <code>plot_4d_scatterbox</code>. All three functions plot scatter plots with matched shapes (e.g. when you want to depict matched subjects or experiments). The grouping variable is useful to plot two-way factorial data or when there are more dimensions in the data table. These functions call <code><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></code> with <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></code> and <code><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_bar</a></code> (actually through <code>stat_summary</code>) or <code><a href='https://ggplot2.tidyverse.org/reference/geom_boxplot.html'>geom_boxplot</a></code> geometries.</p>
-<p>Bars depict means using <code><a href='https://ggplot2.tidyverse.org/reference/stat_summary.html'>stat_summary</a></code> with <code>geom = "bar", fun = "mean"</code> , and scatter points are depicted using <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></code> with <code>position = position_jitterdodge(dodge.width = 0.8, jitter.width = 0.05)</code>, so shapes are jittered and dodged along the X variable.
-The X and "shapes" variables are mapped with <code>group = interaction{ xcol, shapes}</code>. The xcol variable is mapped to the <code>fill</code> aesthetic of bar graph and <code>colour</code> aesthetic of scatterplot.
-Fill and colour can be changed using <code>scale_fill_brewer</code> (or related) and <code>scale_colour_brewer</code> (or related) options. The "shapes" argument is plotted to the shape of the <code>geom_point</code>.
-The "shapes" variable is mapped to the aesthetic <code>shape</code> of the scatterplot <code>geom_point</code> geometry.
-Since v0.2.2, the scatter plots are jittered with <code>width = 0.05</code> to prevent overlapping and for consistency with <code>plot_3d_scatterbar</code> and <code>plot_3d_scatterbox</code>.</p>
-<p>Boxplot geometry uses <code><a href='https://ggplot2.tidyverse.org/reference/geom_boxplot.html'>geom_boxplot</a></code> with <code>position = position_dodge(width = 0.9), width = 0.6</code>.</p>
-<p>In <code>plot_4d_scatterbox</code>, the third variable is mapped to the boxplot and 4th to shapes. Both variables could be entered as the same as well. Up to 25 levels can be mapped to "shapes".</p>
-<p>All three functions can be expanded further, for example with <code><a href='https://ggplot2.tidyverse.org/reference/facet_grid.html'>facet_grid</a></code> or <code><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></code>.</p>
+    <p>These functions take a data table, X and Y variables, and a one or two more categorical variable for grouping together for boxes or bars, and the shape of symbols. These variables will be automatically converted to categorical variables even if numeric in the data table.
+In <code>plot_3d_scatterbox</code> and <code>plot_3d_scatterbar</code> the third variable is called "shapes" and is mapped to both the box/bar fill colour and the shape of symbols.
+In <code>plot_4d_scatterbox</code> and <code>plot_4d_scatterbar</code> the third variable is called "boxes" or "bars", respectively, is mapped to fill the colour of these geometries. The fourth variable "shapes" is mapped to the shape of symbols.
+Shapes are always plotted in black colour, with 80% opacity (to enable overlapping data points to be seen; cannot be changed).</p>
+<p>Scatter points are depicted using <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></code> with <code>position = position_jitterdodge(dodge.width = 0.8, jitter.width = 0.05)</code>, so shapes are jittered and dodged along the X variable.
+Bars depict means using <code><a href='https://ggplot2.tidyverse.org/reference/stat_summary.html'>stat_summary</a></code> with <code>geom = "bar", fun = "mean"</code> , and bar width is set to 0.7 and cannot be changed.
+Error bar width can be changed with the <code>ewid</code> argument.
+Boxplot geometry uses <code><a href='https://ggplot2.tidyverse.org/reference/geom_boxplot.html'>geom_boxplot</a></code> with <code>position = position_dodge(width = 0.9), width = 0.6</code>. The thick line depicts the median, the box the IQR and the whiskers 1.5*IQR.</p>
+<p>The X and "shapes" variables are mapped with <code>group = interaction{ xcol, shapes}</code>.
+In the 3d versions, the "shapes" variable is mapped to <code>scale_fill_grafify</code> aesthetic of bar/boxes, and in 4d versions, it is the "boxes" or "bars" argument that is mapped to the <code>scale_fill_grafify</code> call.</p>
+<p>Colour palette can be changed using <code>ColPal</code> and colours reversed with <code>ColRev</code>.</p>
+<p>Since v0.2.2, the scatter plots are jittered with <code>width = 0.05</code> to prevent overlapping and for consistency with <code>plot_3d_scatterbar</code> and <code>plot_3d_scatterbox</code>.
+The opacity of the boxes/bars can be changed with the <code>alpha</code> argument.</p>
+<p>In <code>plot_4d_scatterbox</code>, the third &amp; fourth variables can be the same (e.g. for one-way ANOVA with randomised blocks). Up to 25 levels can be mapped to "shapes".</p>
+<p>All four functions can be expanded further, for example with <code><a href='https://ggplot2.tidyverse.org/reference/facet_grid.html'>facet_grid</a></code> or <code><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>#Basic usage can take up to 4 variables from the data table</span>
 <span class='fu'>plot_4d_scatterbox</span><span class='op'>(</span><span class='va'>data_2w_Festing</span>, <span class='va'>Strain</span>, <span class='va'>GST</span>, <span class='va'>Treatment</span>, <span class='va'>Block</span><span class='op'>)</span>
 </div><div class='img'><img src='plot_4d_scatterbox-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>#boxes and shapes can be the same factor if you want matched shapes for them</span>
-<span class='co'>#pay attention to which variable is assigned to boxes and which one to shapes</span>
-<span class='co'>#try swapping them to get the best-looking graph</span>
-<span class='fu'>plot_4d_scatterbox</span><span class='op'>(</span><span class='va'>data_doubling_time</span>, <span class='va'>Student</span>, <span class='va'>Doubling_time</span>, <span class='va'>Student</span>, <span class='va'>Experiment</span><span class='op'>)</span><span class='co'>#'</span>
+<span class='fu'>plot_4d_scatterbox</span><span class='op'>(</span><span class='va'>data_doubling_time</span>, <span class='va'>Student</span>, <span class='va'>Doubling_time</span>, <span class='va'>Student</span>, <span class='va'>Experiment</span><span class='op'>)</span>
 </div><div class='img'><img src='plot_4d_scatterbox-2.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
