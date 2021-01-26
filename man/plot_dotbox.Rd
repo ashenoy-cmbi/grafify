@@ -8,11 +8,13 @@ plot_dotbox(
   data,
   xcol,
   ycol,
-  dotsize = 1,
+  dotsize = 1.5,
+  dotthick = 1,
   fontsize = 20,
   alpha = 1,
   ColPal = "all_grafify",
-  ColRev = F
+  ColRev = F,
+  TextXAngle = 0
 )
 }
 \arguments{
@@ -22,7 +24,9 @@ plot_dotbox(
 
 \item{ycol}{name of the column to plot on quantitative Y axis. This should be a quantitative variable.}
 
-\item{dotsize}{size of dots relative to binwidth used by \code{geom_dotplot}. Default set to 1, increase/decrease as needed.}
+\item{dotsize}{size of dots relative to binwidth used by \code{geom_dotplot}. Default set to 1.5, increase/decrease as needed.}
+
+\item{dotthick}{thickness of dot border (\code{stroke} parameter of \code{geom_dotplot}), default set to 1}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
@@ -31,6 +35,8 @@ plot_dotbox(
 \item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
 
 \item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)}
+
+\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
 }
 \value{
 This function returns a \code{ggplot2} object on which additional geometries etc. can be added.

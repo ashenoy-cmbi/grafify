@@ -30,11 +30,9 @@ Additional options include "okabe_ito", "vibrant, "bright", "pale", "muted", "da
 \code{scale_fill_grafify2} and \code{scale_colour_grafify2} are identical except that when the number of categorical variables is fewer than the total number of colour shades in the palette (e.g. if you have 3 groups and the "okabe_ito" palette has 7 colours), these functions will pick the most 'distant' colours from the scheme than going sequentially. If you want colours assigned sequencially do not use \code{scale_fill_grafify} or \code{scale_colour_grafify}.
 }
 \examples{
-#if p is a ggplot object produced by any of the `plot_` functions or `ggplot2`
-#p + scale_colour_grafify() #for point and scatter graphs
-#p + scale_colour_grafify() + scale_fill_graf() #for dotbar, dotbox etc
-
-#specify colour palette & reverse order
-#p + scale_colour_graf(palette = "okabe_ito", reverse = T)
+#add a grafify fill scheme to ggplot
+ggplot(neuralgia, aes(x = Treatment, y = Duration))+
+geom_point(aes(fill = Sex), shape = 21, size = 3)+
+scale_fill_grafify(palette = "muted")
 
 }

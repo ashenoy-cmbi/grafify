@@ -16,15 +16,17 @@
 #' @import emmeans
 #'
 #' @examples
-#' #basic use with one factor
-#' #note quotes used only for fixed factors
-#' #posthoc_Pairwise(DoublMod, "Student")
+#' #make linear models first
+#' DoublMod <- simple_model(data_doubling_time, "Doubling_time", "Student") 
+#' CholMod <- mixed_model(data_cholesterol, "Cholesterol", c("Hospital", "Treatment"), "Subject") 
+#' 
+#' posthoc_Pairwise(DoublMod, "Student")
 #'
 #' #basic use with two factors provided as a vector
-#' #posthoc_Pairwise(CholMod, c("Treatment", "Hospital"))
+#' posthoc_Pairwise(CholMod, c("Treatment", "Hospital"))
 #'
 #' #same call with "tukey" adjustment
-#' #posthoc_Pairwise(CholMod, c("Treatment", "Hospital"), P_adj = "tukey")
+#' posthoc_Pairwise(CholMod, c("Treatment", "Hospital"), P_adj = "tukey")
 #'
 
 

@@ -1,23 +1,30 @@
 #' Plot a scatter graph with matched shapes on a bar plot using three variables.
 #'
-#' The functions \code{\link{plot_3d_scatterbar}}, \code{\link{plot_3d_scatterbox}} and \code{\link{plot_4d_scatterbox}} allow 3d or 4d plots with 3 or 4 variables, respectively.
+#' The functions \code{\link{plot_3d_scatterbar}}, \code{\link{plot_3d_scatterbox}}, \code{\link{plot_4d_scatterbar}}  and \code{\link{plot_4d_scatterbox}} allow 3d or 4d plots with 3 or 4 variables, respectively.
+#' These four functions are useful for factorial ANOVA designs with randomised blocks or repeated-measures or for showing matched observations (e.g. depicting matched subjects or experiments). 
+#' They rely on \code{\link[ggplot2]{ggplot}} with \code{\link[ggplot2]{geom_point}} and \code{\link[ggplot2]{geom_bar}} (through \code{stat_summary}) or \code{\link[ggplot2]{geom_boxplot}} geometries.
 #'
-#' These functions take a data table, X and Y variables, and a grouping variable "shapes" in the case of\code{plot_3d_scatterbox} and \code{plot_3d_scatterbar}, or two additional variables "boxes" and "dots" in \code{plot_4d_scatterbox}. 
-#' All three functions plot scatter plots with matched shapes (e.g. when you want to depict matched subjects or experiments). The grouping variable is useful to plot two-way factorial data or when there are more dimensions in the data table. 
-#' These functions call \code{\link[ggplot2]{ggplot}} with \code{\link[ggplot2]{geom_point}} and \code{\link[ggplot2]{geom_bar}} (actually through \code{stat_summary}) or \code{\link[ggplot2]{geom_boxplot}} geometries.
+#' These functions take a data table, X and Y variables, and a one or two more categorical variable for grouping together for boxes or bars, and the shape of symbols. These variables will be automatically converted to categorical variables even if numeric in the data table.
+#' In \code{plot_3d_scatterbox} and \code{plot_3d_scatterbar} the third variable is called "shapes" and is mapped to both the box/bar fill colour and the shape of symbols. 
+#' In \code{plot_4d_scatterbox} and \code{plot_4d_scatterbar} the third variable is called "boxes" or "bars", respectively, is mapped to fill the colour of these geometries. The fourth variable "shapes" is mapped to the shape of symbols.
+#' Shapes are always plotted in black colour, with 80% opacity (to enable overlapping data points to be seen; cannot be changed).
 #'
-#' Bars depict means using \code{\link[ggplot2]{stat_summary}} with \code{geom = "bar", fun = "mean"} , and scatter points are depicted using \code{\link[ggplot2]{geom_point}},
-#' with \code{position = position_jitterdodge(dodge.width = 0.8, jitter.width = 0.05)}, so dots are jittered and dodged along the X variable.
-#' The X and "shapes" variables are mapped with \code{group = interaction{ xcol, shapes}}.
+#' Scatter points are depicted using \code{\link[ggplot2]{geom_point}} with \code{position = position_jitterdodge(dodge.width = 0.8, jitter.width = 0.05)}, so shapes are jittered and dodged along the X variable.
+#' Bars depict means using \code{\link[ggplot2]{stat_summary}} with \code{geom = "bar", fun = "mean"} , and bar width is set to 0.7 and cannot be changed. 
+#' Error bar width can be changed with the `ewid` argument.
+#' Boxplot geometry uses \code{\link[ggplot2]{geom_boxplot}} with \code{position = position_dodge(width = 0.9), width = 0.6}. The thick line depicts the median, the box the IQR and the whiskers 1.5*IQR.
 #' 
-#' Scatterplot symbols are plotted via \code{\link{geom_point}} geometry, and in v0.2.1 are depicted in black.
-#' In v0.2.1, "shapes" variable is mapped to the `fill` aesthetic of bars or boxes, and `shape` of symbols.
+#' The X and "shapes" variables are mapped with \code{group = interaction{ xcol, shapes}}. 
+#' In the 3d versions, the "shapes" variable is mapped to \code{scale_fill_grafify} aesthetic of bar/boxes, and in 4d versions, it is the "boxes" or "bars" argument that is mapped to the `scale_fill_grafify` call.
 #' 
-#' Boxplot geometry uses \code{\link[ggplot2]{geom_boxplot}} with \code{position = position_dodge(width = 0.9), width = 0.6}.
+#' Colour palette can be changed using `ColPal` and colours reversed with `ColRev`. 
+#' 
+#' Since v0.2.2, the scatter plots are jittered with `width = 0.05` to prevent overlapping and for consistency with `plot_3d_scatterbar` and `plot_3d_scatterbox`.
+#' The opacity of the boxes/bars can be changed with the `alpha` argument.
+#' 
+#' In \code{plot_4d_scatterbox}, the third & fourth variables can be the same (e.g. for one-way ANOVA with randomised blocks). Up to 25 levels can be mapped to "shapes".
 #'
-#' In \code{plot_4d_scatterbox}, the third variable is mapped to the boxplot and 4th to shapes. Both variables could be entered as the same as well. Up to 25 levels can be mapped to "shapes".
-#'
-#' All three functions can be expanded further, for example with \code{\link[ggplot2]{facet_grid}} or \code{\link[ggplot2]{facet_wrap}}.
+#' All four functions can be expanded further, for example with \code{\link[ggplot2]{facet_grid}} or \code{\link[ggplot2]{facet_wrap}}.
 #'
 #' @param data a data table, e.g. data.frame or tibble.
 #' @param xcol name of the column with the categorical factor to be plotted on X axis.
@@ -30,6 +37,7 @@
 #' @param alpha fractional opacity of boxes, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
 #' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
+#' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
 #'
 #' @return This function returns a \code{ggplot2} object.
 #' @export plot_3d_scatterbar
@@ -40,7 +48,7 @@
 #' plot_3d_scatterbar(data_cholesterol, Treatment, Cholesterol, Hospital)
 
 
-plot_3d_scatterbar <- function(data, xcol, ycol, shapes, ewid = 0.2, symsize = 2, symthick = 1.5, fontsize = 20, alpha = 1, ColPal = "all_grafify", ColRev = F){
+plot_3d_scatterbar <- function(data, xcol, ycol, shapes, ewid = 0.2, symsize = 2.5, symthick = 1, fontsize = 20, alpha = 1.0, ColPal = "all_grafify", ColRev = F, TextXAngle = 0){
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }},
                             group = interaction(factor({{ xcol }}),
@@ -50,10 +58,12 @@ plot_3d_scatterbar <- function(data, xcol, ycol, shapes, ewid = 0.2, symsize = 2
                  aes(fill = factor({{ shapes }})),
                  alpha = {{ alpha }},
                  position = position_dodge(width = 0.8))+
-    geom_point(size = {{ symsize }}, stroke = {{ symthick }},
-               alpha = 0.9, colour = "black",
+    geom_point(size = {{ symsize }}, 
+               stroke = {{ symthick }},
+               alpha = 0.8, 
+               colour = "black",
                position = position_jitterdodge(dodge.width = 0.8,
-                                               jitter.width = 0.05),
+                                               jitter.width = 0.1),
                aes(shape = factor({{ shapes }})))+
     stat_summary(geom = "errorbar", width = {{ ewid }},
                  fun.data = "mean_sdl", size = 1,
@@ -64,6 +74,8 @@ plot_3d_scatterbar <- function(data, xcol, ycol, shapes, ewid = 0.2, symsize = 2
          fill = enquo(shapes),
          shape = enquo(shapes))+
     theme_classic(base_size = {{ fontsize }})+
-    scale_fill_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})+
-    scale_colour_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})
+    theme(strip.background = element_blank())+
+    guides(x = guide_axis(angle = {{ TextXAngle }}))+
+    scale_fill_grafify(palette = {{ ColPal }}, 
+                       reverse = {{ ColRev }})
 }

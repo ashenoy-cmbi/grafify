@@ -20,13 +20,17 @@
 #' @import ggplot2
 #'
 #' @examples
-#' #if p is a ggplot object produced by any of the `plot_` functions or `ggplot2`
-#' #p + scale_colour_grafify() #for point and scatter graphs
-#' #p + scale_colour_grafify() + scale_fill_grafify() #for dotbar, dotbox etc
-#'
-#' #specify colour palette & reverse order
-#' #p + scale_colour_grafify(palette = "okabe_ito", reverse = T)
-#'
+#' #add a colour scheme to a ggplot object
+#' ggplot(neuralgia, aes(x = Treatment, y = Duration))+
+#' geom_point(aes(colour = Sex), size = 3)+
+#' scale_color_grafify(palette = "muted")
+#' 
+#' #reverse colour order
+#' ggplot(neuralgia, aes(x = Treatment, y = Duration))+
+#' geom_point(aes(colour = Sex), size = 3)+
+#' scale_color_grafify(palette = "muted", reverse = TRUE)
+
+
 scale_color_grafify <- function(palette = "all_grafify", reverse = FALSE, ...){
   pal <- graf_col_palette(palette = palette, reverse = reverse)
     discrete_scale("colour", paste0("graf_", palette), palette = pal, ...)

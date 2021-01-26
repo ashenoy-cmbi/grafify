@@ -16,6 +16,7 @@
 #' @param alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
 #' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
+#' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
 #'
 #' @return This function returns a \code{ggplot2} object.
 #' @export plot_qqline
@@ -26,18 +27,24 @@
 #' plot_qqline(data_cholesterol, Cholesterol, Treatment)
 #'
 
-plot_qqline <- function(data, ycol, xcol, symsize = 3, symthick = 1, fontsize = 20, alpha = 1, ColPal = "all_grafify", ColRev = F){
+plot_qqline <- function(data, ycol, xcol, symsize = 3, symthick = 1, fontsize = 20, alpha = 1, ColPal = "all_grafify", ColRev = F, TextXAngle = 0){
   ggplot2::ggplot(data, aes(sample = {{ ycol }}))+
-    stat_qq(geom = "point", na.rm = T, shape = 21,
-            size = {{ symsize }}, stroke = {{ symthick }},
+    stat_qq(geom = "point", na.rm = T, 
+            shape = 21,
+            size = {{ symsize }}, 
+            stroke = {{ symthick }},
             alpha = {{ alpha }},
             aes(fill = {{ xcol }}) )+
     stat_qq_line(aes(colour = {{ xcol }}),
                  na.rm = T,
                  size = 1)+
-    theme_classic(base_size = {{ fontsize }})+
-    scale_fill_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})+
-    scale_colour_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})+
     labs(fill = enquo(xcol),
-         colour = enquo(xcol))
+         colour = enquo(xcol))+
+    theme_classic(base_size = {{ fontsize }})+
+    theme(strip.background = element_blank())+
+    guides(x = guide_axis(angle = {{ TextXAngle }}))+
+    scale_fill_grafify(palette = {{ ColPal }},
+                       reverse = {{ ColRev }})+
+    scale_colour_grafify(palette = {{ ColPal }}, 
+                         reverse = {{ ColRev }})
 }

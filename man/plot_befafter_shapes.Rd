@@ -10,11 +10,12 @@ plot_befafter_shapes(
   ycol,
   groups,
   symsize = 3,
-  symthick = 1.5,
+  symthick = 1,
   fontsize = 20,
-  alpha = 1,
+  alpha = 0.8,
   ColPal = "all_grafify",
-  ColRev = F
+  ColRev = F,
+  TextXAngle = 0
 )
 }
 \arguments{
@@ -28,15 +29,17 @@ plot_befafter_shapes(
 
 \item{symsize}{size of symbols, default set to 3}
 
-\item{symthick}{size of outline of symbol lines (\code{stroke = 1.5}), default set to 1.5}
+\item{symthick}{size of outline of symbol lines (\code{stroke = 1}), default set to 1}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
-\item{alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)}
+\item{alpha}{fractional opacity of symbols, default set to 0.8 (i.e. 80\% opacity)}
 
 \item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
 
 \item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)}
+
+\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
 }
 \value{
 This function returns a \code{ggplot2} object.

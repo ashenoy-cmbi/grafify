@@ -14,7 +14,8 @@ plot_xy_CatGroup(
   fontsize = 20,
   alpha = 1,
   ColPal = "all_grafify",
-  ColRev = F
+  ColRev = F,
+  TextXAngle = 0
 )
 }
 \arguments{
@@ -38,6 +39,8 @@ Will be converted to \code{factor} if your column is numeric.}
 \item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
 
 \item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)}
+
+\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
 }
 \value{
 This function returns a \code{ggplot2} object.

@@ -29,14 +29,6 @@ Output of this function can be used with \code{\link{posthoc_Pairwise}}, \code{\
 \examples{
 #Basic usage where the table data_cholesterol is passed with names of one variable within quotes
 
-simple_model(data_cholesterol, "Cholesterol", "Treatment")
-
-#two way ANOVA with Treatment & Hospital as fixed factors
-simple_model(data_cholesterol, "Cholesterol", c("Treatment", "Hospital"))
-
-#save model
-model <- simple_model(data_cholesterol, "Cholesterol", c("Treatment", "Hospital"))
-
-#get summary
-summary(model)
+Doubmodel <- simple_model(data_doubling_time, "Doubling_time", "Student")#' #get summary
+summary(Doubmodel)
 }

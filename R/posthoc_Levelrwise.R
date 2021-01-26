@@ -16,13 +16,15 @@
 #' @import emmeans
 #'
 #' @examples
-#' #basic use with one factor
+#' #make a linear model first
+#' CholMod <- mixed_model(data_cholesterol, "Cholesterol", c("Hospital", "Treatment"), "Subject") 
+#' 
 #' #note quotes used only for fixed factors
 #' #to get comparisons between different hospitals separately for each level of Treatment
-#' #posthoc_Levelwise(CholMod, c("Hospital", "Treatment"))
+#' posthoc_Levelwise(CholMod, c("Hospital", "Treatment"))
 #'
 #' #get comparisons between treatments separately at each hospital
-#' #posthoc_Levelwise(CholMod, c("Treatment", "Hospital"))
+#' posthoc_Levelwise(CholMod, c("Treatment", "Hospital"))
 #'
 
 posthoc_Levelwise <- function(Model, Factors, P_Adj = "fdr", ...){

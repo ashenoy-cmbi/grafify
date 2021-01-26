@@ -20,12 +20,10 @@
 #' @import ggplot2
 #'
 #' @examples
-#' #if p is a ggplot object produced by any of the `plot_` functions or `ggplot2`
-#' #p + scale_colour_grafify2() #for point and scatter graphs
-#' #p + scale_colour_grafify2() + scale_fill_grafify2() #for dotbar, dotbox etc
-#'
-#' #specify colour palette & reverse order
-#' #p + scale_colour_graf(palette = "okabe_ito", reverse = T)
+#' #add a grafify2 fill scheme to ggplot
+#' ggplot(neuralgia, aes(x = Treatment, y = Duration))+
+#' geom_point(aes(fill = Sex), shape = 21, size = 3)+
+#' scale_fill_grafify2(palette = "muted")
 #'
 scale_fill_grafify2 <- function(palette = "all_grafify", reverse = FALSE, ...){
   pal <- graf_col_palette_default(palette = palette, reverse = reverse)

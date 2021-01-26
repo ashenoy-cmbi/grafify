@@ -17,6 +17,7 @@
 #' @param alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
 #' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
+#' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
 #'
 #' @return This function returns a \code{ggplot2} object.
 #' @export plot_befafter_colours
@@ -30,19 +31,23 @@
 #'
 
 
-plot_befafter_colours <- function(data, xcol, ycol, groups, symsize = 3, symthick = 1, fontsize = 20, alpha = 1, ColPal = "all_grafify", ColRev = F){
+plot_befafter_colours <- function(data, xcol, ycol, groups, symsize = 3, symthick = 1, fontsize = 20, alpha = 1, ColPal = "all_grafify", ColRev = F, TextXAngle = 0){
   ggplot2::ggplot({{ data }}, aes(x = factor({{ xcol }}),
                                   y = {{ ycol }},
                                   group = factor({{ groups }})))+
     geom_line(aes(group = factor({{ groups }})),
               colour = "grey35", alpha = 0.8)+
-    geom_point(size = {{ symsize }}, stroke = {{ symthick }},
-               alpha = {{ alpha }}, shape = 21,
+    geom_point(size = {{ symsize }}, 
+               stroke = {{ symthick }},
+               alpha = {{ alpha }}, 
+               shape = 21,
                aes(fill = factor({{ groups }})))+
-    scale_shape_manual(values = 0:25)+
     labs(x = enquo(xcol),
          fill = enquo(groups))+
     theme_classic(base_size = {{ fontsize }})+
-    scale_fill_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})
+    theme(strip.background = element_blank())+
+    guides(x = guide_axis(angle = {{ TextXAngle }}))+
+    scale_fill_grafify(palette = {{ ColPal }}, 
+                       reverse = {{ ColRev }})
 }
 

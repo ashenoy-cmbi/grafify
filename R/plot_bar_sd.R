@@ -16,6 +16,7 @@
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
 #' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
+#' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
 #'
 #' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
 #' @export plot_bar_sd
@@ -28,10 +29,11 @@
 #'
 
 
-plot_bar_sd <- function(data, xcol, ycol, bwid = 0.7, ewid = 0.3, fontsize = 20, ColPal = "all_grafify", ColRev = F){
+plot_bar_sd <- function(data, xcol, ycol, bwid = 0.7, ewid = 0.3, fontsize = 20, ColPal = "all_grafify", ColRev = F, TextXAngle = 0){
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
-    stat_summary(geom = "bar", width = {{ bwid }}, size = 1,
+    stat_summary(geom = "bar", 
+                 width = {{ bwid }}, size = 1,
                  fun = "mean", colour = "black",
                  aes(fill = factor({{ xcol }})))+
     stat_summary(geom = "errorbar", size = 1,
@@ -41,5 +43,8 @@ plot_bar_sd <- function(data, xcol, ycol, bwid = 0.7, ewid = 0.3, fontsize = 20,
     labs(x = enquo(xcol),
          fill = enquo(xcol))+
     theme_classic(base_size = {{ fontsize }})+
-    scale_fill_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})
+    theme(strip.background = element_blank())+
+    guides(x = guide_axis(angle = {{ TextXAngle }}))+
+    scale_fill_grafify(palette = {{ ColPal }}, 
+                       reverse = {{ ColRev }})
 }

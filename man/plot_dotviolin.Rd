@@ -8,13 +8,15 @@ plot_dotviolin(
   data,
   xcol,
   ycol,
-  dotsize = 1,
+  dotsize = 1.5,
+  dotthick = 1,
   trim = T,
   scale = "area",
   fontsize = 20,
   alpha = 1,
   ColPal = "all_grafify",
-  ColRev = F
+  ColRev = F,
+  TextXAngle = 0
 )
 }
 \arguments{
@@ -24,7 +26,9 @@ plot_dotviolin(
 
 \item{ycol}{name of the column to plot on quantitative Y axis. This should be a quantitative variable.}
 
-\item{dotsize}{size of dots relative to \code{binwidth} used by \code{geom_dotplot}. Default set to 1, increase/decrease as needed.}
+\item{dotsize}{size of dots relative to \code{binwidth} used by \code{geom_dotplot}. Default set to 1.5, increase/decrease as needed.}
+
+\item{dotthick}{thickness of dot border (\code{stroke} parameter of \code{geom_dotplot}), default set to 1}
 
 \item{trim}{set whether tips of violin plot should be trimmed at high/low data. Default \code{trim = T}, can be changed to F.}
 
@@ -37,6 +41,8 @@ plot_dotviolin(
 \item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
 
 \item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)}
+
+\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
 }
 \value{
 This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
@@ -53,10 +59,10 @@ This function is related to \code{\link{plot_scatterbar_sd}}, \code{\link{plot_d
 }
 \examples{
 
-#Basic usage requires a data table and X & Y variables#'
-#plot_dotviolin(data_doubling_time, Student, Doubling_time)
+#plot with trim = F
+plot_dotviolin(data_t_pdiff, Condition, Mass, dotsize = 2)
 
-# or with trim = F
-#plot_dotviolin(data_doubling_time, Student, Doubling_time, trim = F)
+#without trimming
+plot_dotviolin(data_t_pdiff, Condition, Mass, dotsize = 2, trim = FALSE)
 
 }

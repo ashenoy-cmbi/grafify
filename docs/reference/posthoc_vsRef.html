@@ -172,19 +172,81 @@ By default, P values are corrected by the FDR method (which can be changed). If 
 The first part of the <code>emmeans</code> results has the estimated marginal means, SE and CI (<code>$emmeans</code>), which are generated from the fitted model, and <strong>not</strong> the original data table. The second part has the results of the comparisons (<code>$contrasts</code>).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>#basic usage to compare against ref = 1</span>
-<span class='co'>#posthoc_vsRef(DoublMod, "Student")</span>
+    <pre class="examples"><div class='input'><span class='co'>#make linear models first</span>
+<span class='va'>DoublMod</span> <span class='op'>&lt;-</span> <span class='fu'><a href='simple_model.html'>simple_model</a></span><span class='op'>(</span><span class='va'>data_doubling_time</span>, <span class='st'>"Doubling_time"</span>, <span class='st'>"Student"</span><span class='op'>)</span> 
+<span class='va'>CholMod</span> <span class='op'>&lt;-</span> <span class='fu'><a href='mixed_model.html'>mixed_model</a></span><span class='op'>(</span><span class='va'>data_cholesterol</span>, <span class='st'>"Cholesterol"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Hospital"</span>, <span class='st'>"Treatment"</span><span class='op'>)</span>, <span class='st'>"Subject"</span><span class='op'>)</span> 
 
 <span class='co'>#to compare all students with student #9</span>
-<span class='co'>#posthoc_vsRef(DoublMod, "Student", ref = 9)</span>
-
-<span class='co'>#for comparison between hospital #1 to every other hospital, separately at levels of Treatment</span>
-<span class='co'>#posthoc_vsRef(CholMod, c("Hospital", "Treatment"))</span>
-
-<span class='co'>#for comparisons between reference group of treatment to every other group, </span>
-<span class='co'>#listed separated at every level of Hospital</span>
-<span class='co'>#posthoc_vsRef(CholMod, c("Treatment", "Hospital"))</span>
-
+<span class='fu'>posthoc_vsRef</span><span class='op'>(</span><span class='va'>DoublMod</span>, <span class='st'>"Student"</span>, Ref <span class='op'>=</span> <span class='fl'>9</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $emmeans
+#&gt;  Student emmean   SE df lower.CL upper.CL
+#&gt;  A         20.0 1.15 20     17.6     22.4
+#&gt;  B         19.6 1.15 20     17.2     22.0
+#&gt;  C         19.4 1.15 20     17.0     21.8
+#&gt;  D         18.8 1.15 20     16.4     21.2
+#&gt;  E         19.3 1.15 20     16.9     21.7
+#&gt;  F         20.7 1.15 20     18.3     23.1
+#&gt;  G         20.5 1.15 20     18.1     22.8
+#&gt;  H         19.2 1.15 20     16.8     21.5
+#&gt;  I         20.6 1.15 20     18.2     23.0
+#&gt;  J         21.2 1.15 20     18.8     23.6
+#&gt; 
+#&gt; Confidence level used: 0.95 
+#&gt; 
+#&gt; $contrasts
+#&gt;  contrast estimate   SE df t.ratio p.value
+#&gt;  A - I     -0.6775 1.62 20 -0.417  0.9588 
+#&gt;  B - I     -1.0488 1.62 20 -0.646  0.9463 
+#&gt;  C - I     -1.2704 1.62 20 -0.782  0.9463 
+#&gt;  D - I     -1.8503 1.62 20 -1.139  0.9463 
+#&gt;  E - I     -1.3061 1.62 20 -0.804  0.9463 
+#&gt;  F - I      0.0642 1.62 20  0.040  0.9689 
+#&gt;  G - I     -0.1890 1.62 20 -0.116  0.9689 
+#&gt;  H - I     -1.4858 1.62 20 -0.915  0.9463 
+#&gt;  J - I      0.5340 1.62 20  0.329  0.9588 
+#&gt; 
+#&gt; P value adjustment: fdr method for 9 tests 
+#&gt; </div><div class='input'>
+<span class='co'>#for comparison between hospital_a to every other hospital, separately at levels of Treatment</span>
+<span class='fu'>posthoc_vsRef</span><span class='op'>(</span><span class='va'>CholMod</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Hospital"</span>, <span class='st'>"Treatment"</span><span class='op'>)</span>, Ref <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $emmeans
+#&gt; Treatment = After_drug:
+#&gt;  Hospital emmean   SE   df lower.CL upper.CL
+#&gt;  Hosp_a      147 23.3 20.3     98.4      196
+#&gt;  Hosp_b      142 23.3 20.3     93.8      191
+#&gt;  Hosp_c      105 23.3 20.3     56.4      154
+#&gt;  Hosp_d      163 23.3 20.3    114.2      211
+#&gt;  Hosp_e      162 23.3 20.3    113.8      211
+#&gt; 
+#&gt; Treatment = Before_drug:
+#&gt;  Hospital emmean   SE   df lower.CL upper.CL
+#&gt;  Hosp_a      173 23.3 20.3    124.6      222
+#&gt;  Hosp_b      161 23.3 20.3    111.9      209
+#&gt;  Hosp_c      124 23.3 20.3     75.6      173
+#&gt;  Hosp_d      162 23.3 20.3    113.1      210
+#&gt;  Hosp_e      163 23.3 20.3    114.2      211
+#&gt; 
+#&gt; Degrees-of-freedom method: kenward-roger 
+#&gt; Confidence level used: 0.95 
+#&gt; 
+#&gt; $contrasts
+#&gt; Treatment = After_drug:
+#&gt;  contrast        estimate SE   df t.ratio p.value
+#&gt;  Hosp_b - Hosp_a    -4.59 33 20.3 -0.139  0.8908 
+#&gt;  Hosp_c - Hosp_a   -42.00 33 20.3 -1.273  0.8599 
+#&gt;  Hosp_d - Hosp_a    15.77 33 20.3  0.478  0.8599 
+#&gt;  Hosp_e - Hosp_a    15.43 33 20.3  0.468  0.8599 
+#&gt; 
+#&gt; Treatment = Before_drug:
+#&gt;  contrast        estimate SE   df t.ratio p.value
+#&gt;  Hosp_b - Hosp_a   -12.66 33 20.3 -0.384  0.7565 
+#&gt;  Hosp_c - Hosp_a   -49.00 33 20.3 -1.485  0.6112 
+#&gt;  Hosp_d - Hosp_a   -11.43 33 20.3 -0.347  0.7565 
+#&gt;  Hosp_e - Hosp_a   -10.37 33 20.3 -0.314  0.7565 
+#&gt; 
+#&gt; Degrees-of-freedom method: kenward-roger 
+#&gt; P value adjustment: fdr method for 4 tests 
+#&gt; </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

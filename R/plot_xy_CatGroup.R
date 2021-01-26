@@ -18,6 +18,7 @@
 #' @param alpha fractional opacity, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
 #' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
+#' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
 #'
 #' @return This function returns a \code{ggplot2} object.
 #' @export plot_xy_CatGroup
@@ -29,14 +30,18 @@
 #' plot_xy_CatGroup(mtcars, mpg, disp, gear)
 
 plot_xy_CatGroup <- function(data, xcol, ycol, CatGroup, symsize = 2, symthick = 1, 
-                             fontsize = 20, alpha = 1, ColPal = "all_grafify", ColRev = F){
+                             fontsize = 20, alpha = 1, ColPal = "all_grafify", ColRev = F, TextXAngle = 0){
   ggplot2::ggplot(data, aes(x = {{ xcol }},
                             y = {{ ycol }}))+
-    geom_point(size = {{ symsize }}, alpha = {{ alpha }},
+    geom_point(size = {{ symsize }}, 
+               alpha = {{ alpha }},
                aes(fill = factor({{ CatGroup }})),
-               shape = 21, stroke = {{ symthick }})+
+               shape = 21, 
+               stroke = {{ symthick }})+
     labs(fill = enquo(CatGroup))+
     theme_classic(base_size = {{ fontsize }})+
+    theme(strip.background = element_blank())+
+    guides(x = guide_axis(angle = {{ TextXAngle }}))+
     scale_fill_grafify(palette = {{ ColPal }},
                        reverse = {{ ColRev }})
 }

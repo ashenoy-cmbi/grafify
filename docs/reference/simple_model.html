@@ -171,64 +171,34 @@ Output of this function can be used with <code><a href='posthoc_Pairwise.html'>p
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>#Basic usage where the table data_cholesterol is passed with names of one variable within quotes</span>
 
-<span class='fu'>simple_model</span><span class='op'>(</span><span class='va'>data_cholesterol</span>, <span class='st'>"Cholesterol"</span>, <span class='st'>"Treatment"</span><span class='op'>)</span>
+<span class='va'>Doubmodel</span> <span class='op'>&lt;-</span> <span class='fu'>simple_model</span><span class='op'>(</span><span class='va'>data_doubling_time</span>, <span class='st'>"Doubling_time"</span>, <span class='st'>"Student"</span><span class='op'>)</span><span class='co'>#' #get summary</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>Doubmodel</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; 
 #&gt; Call:
-#&gt; lm(formula = Cholesterol ~ Treatment, data = data)
-#&gt; 
-#&gt; Coefficients:
-#&gt;          (Intercept)  TreatmentBefore_drug  
-#&gt;               143.93                 12.55  
-#&gt; </div><div class='input'>
-<span class='co'>#two way ANOVA with Treatment &amp; Hospital as fixed factors</span>
-<span class='fu'>simple_model</span><span class='op'>(</span><span class='va'>data_cholesterol</span>, <span class='st'>"Cholesterol"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Treatment"</span>, <span class='st'>"Hospital"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; Call:
-#&gt; lm(formula = Cholesterol ~ Treatment * Hospital, data = data)
-#&gt; 
-#&gt; Coefficients:
-#&gt;                         (Intercept)                 TreatmentBefore_drug  
-#&gt;                             147.011                               26.165  
-#&gt;                      HospitalHosp_b                       HospitalHosp_c  
-#&gt;                              -4.587                              -42.004  
-#&gt;                      HospitalHosp_d                       HospitalHosp_e  
-#&gt;                              15.770                               15.432  
-#&gt; TreatmentBefore_drug:HospitalHosp_b  TreatmentBefore_drug:HospitalHosp_c  
-#&gt;                              -8.075                               -7.001  
-#&gt; TreatmentBefore_drug:HospitalHosp_d  TreatmentBefore_drug:HospitalHosp_e  
-#&gt;                             -27.202                              -25.803  
-#&gt; </div><div class='input'>
-<span class='co'>#save model</span>
-<span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'>simple_model</span><span class='op'>(</span><span class='va'>data_cholesterol</span>, <span class='st'>"Cholesterol"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Treatment"</span>, <span class='st'>"Hospital"</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='co'>#get summary</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; Call:
-#&gt; lm(formula = Cholesterol ~ Treatment * Hospital, data = data)
+#&gt; lm(formula = Doubling_time ~ Student, data = data)
 #&gt; 
 #&gt; Residuals:
 #&gt;     Min      1Q  Median      3Q     Max 
-#&gt; -94.992 -25.853  -8.857  20.918 128.431 
+#&gt; -3.8699 -0.8091 -0.0815  0.8474  2.9019 
 #&gt; 
 #&gt; Coefficients:
-#&gt;                                     Estimate Std. Error t value Pr(&gt;|t|)    
-#&gt; (Intercept)                          147.011     23.329   6.302 1.78e-07 ***
-#&gt; TreatmentBefore_drug                  26.165     32.992   0.793    0.432    
-#&gt; HospitalHosp_b                        -4.587     32.992  -0.139    0.890    
-#&gt; HospitalHosp_c                       -42.004     32.992  -1.273    0.210    
-#&gt; HospitalHosp_d                        15.770     32.992   0.478    0.635    
-#&gt; HospitalHosp_e                        15.432     32.992   0.468    0.642    
-#&gt; TreatmentBefore_drug:HospitalHosp_b   -8.075     46.658  -0.173    0.863    
-#&gt; TreatmentBefore_drug:HospitalHosp_c   -7.001     46.658  -0.150    0.881    
-#&gt; TreatmentBefore_drug:HospitalHosp_d  -27.202     46.658  -0.583    0.563    
-#&gt; TreatmentBefore_drug:HospitalHosp_e  -25.803     46.658  -0.553    0.583    
+#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept)  19.9619     1.1484  17.383 1.54e-13 ***
+#&gt; StudentB     -0.3713     1.6241  -0.229    0.821    
+#&gt; StudentC     -0.5929     1.6241  -0.365    0.719    
+#&gt; StudentD     -1.1728     1.6241  -0.722    0.479    
+#&gt; StudentE     -0.6286     1.6241  -0.387    0.703    
+#&gt; StudentF      0.7416     1.6241   0.457    0.653    
+#&gt; StudentG      0.4885     1.6241   0.301    0.767    
+#&gt; StudentH     -0.8083     1.6241  -0.498    0.624    
+#&gt; StudentI      0.6775     1.6241   0.417    0.681    
+#&gt; StudentJ      1.2115     1.6241   0.746    0.464    
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; 
-#&gt; Residual standard error: 52.17 on 40 degrees of freedom
-#&gt; Multiple R-squared:  0.156,	Adjusted R-squared:  -0.03385 
-#&gt; F-statistic: 0.8218 on 9 and 40 DF,  p-value: 0.5998
+#&gt; Residual standard error: 1.989 on 20 degrees of freedom
+#&gt; Multiple R-squared:  0.1753,	Adjusted R-squared:  -0.1958 
+#&gt; F-statistic: 0.4725 on 9 and 20 DF,  p-value: 0.8761
 #&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

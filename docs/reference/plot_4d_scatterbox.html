@@ -146,7 +146,8 @@
   fontsize <span class='op'>=</span> <span class='fl'>20</span>,
   alpha <span class='op'>=</span> <span class='fl'>1</span>,
   ColPal <span class='op'>=</span> <span class='st'>"all_grafify"</span>,
-  ColRev <span class='op'>=</span> <span class='cn'>F</span>
+  ColRev <span class='op'>=</span> <span class='cn'>F</span>,
+  TextXAngle <span class='op'>=</span> <span class='fl'>0</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -196,6 +197,10 @@
       <th>ColRev</th>
       <td><p>whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)</p></td>
     </tr>
+    <tr>
+      <th>TextXAngle</th>
+      <td><p>orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -207,14 +212,15 @@
 <p>Bars depict means using <code><a href='https://ggplot2.tidyverse.org/reference/stat_summary.html'>stat_summary</a></code> with <code>geom = "bar", fun = "mean"</code> , and scatter points are depicted using <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></code> with <code>position = position_jitterdodge(dodge.width = 0.8, jitter.width = 0.05)</code>, so shapes are jittered and dodged along the X variable.
 The X and "shapes" variables are mapped with <code>group = interaction{ xcol, shapes}</code>. The xcol variable is mapped to the <code>fill</code> aesthetic of bar graph and <code>colour</code> aesthetic of scatterplot.
 Fill and colour can be changed using <code>scale_fill_brewer</code> (or related) and <code>scale_colour_brewer</code> (or related) options. The "shapes" argument is plotted to the shape of the <code>geom_point</code>.
-The "shapes" variable is mapped to the aesthetic <code>shape</code> of the scatterplot <code>geom_point</code> geometry.</p>
+The "shapes" variable is mapped to the aesthetic <code>shape</code> of the scatterplot <code>geom_point</code> geometry.
+Since v0.2.2, the scatter plots are jittered with <code>width = 0.05</code> to prevent overlapping and for consistency with <code>plot_3d_scatterbar</code> and <code>plot_3d_scatterbox</code>.</p>
 <p>Boxplot geometry uses <code><a href='https://ggplot2.tidyverse.org/reference/geom_boxplot.html'>geom_boxplot</a></code> with <code>position = position_dodge(width = 0.9), width = 0.6</code>.</p>
 <p>In <code>plot_4d_scatterbox</code>, the third variable is mapped to the boxplot and 4th to shapes. Both variables could be entered as the same as well. Up to 25 levels can be mapped to "shapes".</p>
 <p>All three functions can be expanded further, for example with <code><a href='https://ggplot2.tidyverse.org/reference/facet_grid.html'>facet_grid</a></code> or <code><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>#Basic usage can take up to 4 variables from the data table</span>
-<span class='fu'>plot_4d_scatterbox</span><span class='op'>(</span><span class='va'>data_cholesterol</span>, <span class='va'>Treatment</span>, <span class='va'>Cholesterol</span>, <span class='va'>Hospital</span>, <span class='va'>Subject</span><span class='op'>)</span>
+<span class='fu'>plot_4d_scatterbox</span><span class='op'>(</span><span class='va'>data_2w_Festing</span>, <span class='va'>Strain</span>, <span class='va'>GST</span>, <span class='va'>Treatment</span>, <span class='va'>Block</span><span class='op'>)</span>
 </div><div class='img'><img src='plot_4d_scatterbox-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>#boxes and shapes can be the same factor if you want matched shapes for them</span>
 <span class='co'>#pay attention to which variable is assigned to boxes and which one to shapes</span>

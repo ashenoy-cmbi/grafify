@@ -169,25 +169,16 @@
 <p>This function is related to <code>link{simple_model}</code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>#Basic usage where the table data_cholesterol is passed with names of one variable within quotes</span>
+    <pre class="examples"><div class='input'><span class='co'>#Basic usage where the table data_doubling_time is passed with names of the fixed factor within quotes</span>
 
-<span class='fu'>simple_anova</span><span class='op'>(</span><span class='va'>data_cholesterol</span>, <span class='st'>"Cholesterol"</span>, <span class='st'>"Treatment"</span><span class='op'>)</span>
+<span class='fu'>simple_anova</span><span class='op'>(</span><span class='va'>data_doubling_time</span>, <span class='st'>"Doubling_time"</span>, <span class='st'>"Student"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Anova Table (Type II tests)
 #&gt; 
-#&gt; Response: Cholesterol
+#&gt; Response: Doubling_time
 #&gt;           Sum Sq Df F value Pr(&gt;F)
-#&gt; Treatment   1968  1  0.7439 0.3927
-#&gt; Residuals 127005 48               </div><div class='input'>
-<span class='co'>#two way ANOVA with Treatment &amp; Hospital as fixed factors</span>
-<span class='fu'>simple_anova</span><span class='op'>(</span><span class='va'>data_cholesterol</span>, <span class='st'>"Cholesterol"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Treatment"</span>, <span class='st'>"Hospital"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Anova Table (Type II tests)
-#&gt; 
-#&gt; Response: Cholesterol
-#&gt;                    Sum Sq Df F value Pr(&gt;F)
-#&gt; Treatment            1968  1  0.7234 0.4001
-#&gt; Hospital            16675  4  1.5319 0.2114
-#&gt; Treatment:Hospital   1482  4  0.1362 0.9680
-#&gt; Residuals          108848 40               </div></pre>
+#&gt; Student   16.824  9  0.4725 0.8761
+#&gt; Residuals 79.126 20               </div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

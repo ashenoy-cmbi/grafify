@@ -8,12 +8,13 @@ plot_point_sd(
   data,
   xcol,
   ycol,
-  symsize = 2,
+  symsize = 3.5,
   symthick = 1,
   ewid = 0.2,
   fontsize = 20,
   ColPal = "all_grafify",
-  ColRev = F
+  ColRev = F,
+  TextXAngle = 0
 )
 }
 \arguments{
@@ -23,7 +24,7 @@ plot_point_sd(
 
 \item{ycol}{name of the column with quantitative Y variable}
 
-\item{symsize}{size of point symbols, default set to 2}
+\item{symsize}{size of point symbols, default set to 3.5}
 
 \item{symthick}{thickness of symbol border, default set to 1}
 
@@ -34,6 +35,8 @@ plot_point_sd(
 \item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
 
 \item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)}
+
+\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
 }
 \value{
 This function returns a \code{ggplot2} object.

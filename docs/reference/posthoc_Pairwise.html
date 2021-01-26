@@ -168,16 +168,214 @@ By default, P values are corrected by the FDR method (which can be changed). If 
 The first part of the <code>emmeans</code> results has the estimated marginal means, SE and CI (<code>$emmeans</code>), which are generated from the fitted model, and <strong>not</strong> the original data table. The second part has the results of the comparisons (<code>$contrasts</code>).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>#basic use with one factor</span>
-<span class='co'>#note quotes used only for fixed factors</span>
-<span class='co'>#posthoc_Pairwise(DoublMod, "Student")</span>
+    <pre class="examples"><div class='input'><span class='co'>#make linear models first</span>
+<span class='va'>DoublMod</span> <span class='op'>&lt;-</span> <span class='fu'><a href='simple_model.html'>simple_model</a></span><span class='op'>(</span><span class='va'>data_doubling_time</span>, <span class='st'>"Doubling_time"</span>, <span class='st'>"Student"</span><span class='op'>)</span> 
+<span class='va'>CholMod</span> <span class='op'>&lt;-</span> <span class='fu'><a href='mixed_model.html'>mixed_model</a></span><span class='op'>(</span><span class='va'>data_cholesterol</span>, <span class='st'>"Cholesterol"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Hospital"</span>, <span class='st'>"Treatment"</span><span class='op'>)</span>, <span class='st'>"Subject"</span><span class='op'>)</span> 
 
+<span class='fu'>posthoc_Pairwise</span><span class='op'>(</span><span class='va'>DoublMod</span>, <span class='st'>"Student"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $emmeans
+#&gt;  Student emmean   SE df lower.CL upper.CL
+#&gt;  A         20.0 1.15 20     17.6     22.4
+#&gt;  B         19.6 1.15 20     17.2     22.0
+#&gt;  C         19.4 1.15 20     17.0     21.8
+#&gt;  D         18.8 1.15 20     16.4     21.2
+#&gt;  E         19.3 1.15 20     16.9     21.7
+#&gt;  F         20.7 1.15 20     18.3     23.1
+#&gt;  G         20.5 1.15 20     18.1     22.8
+#&gt;  H         19.2 1.15 20     16.8     21.5
+#&gt;  I         20.6 1.15 20     18.2     23.0
+#&gt;  J         21.2 1.15 20     18.8     23.6
+#&gt; 
+#&gt; Confidence level used: 0.95 
+#&gt; 
+#&gt; $contrasts
+#&gt;  contrast estimate   SE df t.ratio p.value
+#&gt;  A - B      0.3713 1.62 20  0.229  0.9554 
+#&gt;  A - C      0.5929 1.62 20  0.365  0.9554 
+#&gt;  A - D      1.1728 1.62 20  0.722  0.9554 
+#&gt;  A - E      0.6286 1.62 20  0.387  0.9554 
+#&gt;  A - F     -0.7416 1.62 20 -0.457  0.9554 
+#&gt;  A - G     -0.4885 1.62 20 -0.301  0.9554 
+#&gt;  A - H      0.8083 1.62 20  0.498  0.9554 
+#&gt;  A - I     -0.6775 1.62 20 -0.417  0.9554 
+#&gt;  A - J     -1.2115 1.62 20 -0.746  0.9554 
+#&gt;  B - C      0.2216 1.62 20  0.136  0.9554 
+#&gt;  B - D      0.8014 1.62 20  0.493  0.9554 
+#&gt;  B - E      0.2572 1.62 20  0.158  0.9554 
+#&gt;  B - F     -1.1130 1.62 20 -0.685  0.9554 
+#&gt;  B - G     -0.8598 1.62 20 -0.529  0.9554 
+#&gt;  B - H      0.4370 1.62 20  0.269  0.9554 
+#&gt;  B - I     -1.0488 1.62 20 -0.646  0.9554 
+#&gt;  B - J     -1.5829 1.62 20 -0.975  0.9554 
+#&gt;  C - D      0.5798 1.62 20  0.357  0.9554 
+#&gt;  C - E      0.0356 1.62 20  0.022  0.9827 
+#&gt;  C - F     -1.3346 1.62 20 -0.822  0.9554 
+#&gt;  C - G     -1.0814 1.62 20 -0.666  0.9554 
+#&gt;  C - H      0.2154 1.62 20  0.133  0.9554 
+#&gt;  C - I     -1.2704 1.62 20 -0.782  0.9554 
+#&gt;  C - J     -1.8044 1.62 20 -1.111  0.9554 
+#&gt;  D - E     -0.5442 1.62 20 -0.335  0.9554 
+#&gt;  D - F     -1.9144 1.62 20 -1.179  0.9554 
+#&gt;  D - G     -1.6612 1.62 20 -1.023  0.9554 
+#&gt;  D - H     -0.3644 1.62 20 -0.224  0.9554 
+#&gt;  D - I     -1.8503 1.62 20 -1.139  0.9554 
+#&gt;  D - J     -2.3843 1.62 20 -1.468  0.9554 
+#&gt;  E - F     -1.3702 1.62 20 -0.844  0.9554 
+#&gt;  E - G     -1.1170 1.62 20 -0.688  0.9554 
+#&gt;  E - H      0.1798 1.62 20  0.111  0.9554 
+#&gt;  E - I     -1.3061 1.62 20 -0.804  0.9554 
+#&gt;  E - J     -1.8401 1.62 20 -1.133  0.9554 
+#&gt;  F - G      0.2532 1.62 20  0.156  0.9554 
+#&gt;  F - H      1.5500 1.62 20  0.954  0.9554 
+#&gt;  F - I      0.0642 1.62 20  0.040  0.9827 
+#&gt;  F - J     -0.4699 1.62 20 -0.289  0.9554 
+#&gt;  G - H      1.2968 1.62 20  0.798  0.9554 
+#&gt;  G - I     -0.1890 1.62 20 -0.116  0.9554 
+#&gt;  G - J     -0.7231 1.62 20 -0.445  0.9554 
+#&gt;  H - I     -1.4858 1.62 20 -0.915  0.9554 
+#&gt;  H - J     -2.0199 1.62 20 -1.244  0.9554 
+#&gt;  I - J     -0.5340 1.62 20 -0.329  0.9554 
+#&gt; 
+#&gt; P value adjustment: fdr method for 45 tests 
+#&gt; </div><div class='input'>
 <span class='co'>#basic use with two factors provided as a vector</span>
-<span class='co'>#posthoc_Pairwise(CholMod, c("Treatment", "Hospital"))</span>
-
+<span class='fu'>posthoc_Pairwise</span><span class='op'>(</span><span class='va'>CholMod</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Treatment"</span>, <span class='st'>"Hospital"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $emmeans
+#&gt;  Treatment   Hospital emmean   SE   df lower.CL upper.CL
+#&gt;  After_drug  Hosp_a      147 23.3 20.3     98.4      196
+#&gt;  Before_drug Hosp_a      173 23.3 20.3    124.6      222
+#&gt;  After_drug  Hosp_b      142 23.3 20.3     93.8      191
+#&gt;  Before_drug Hosp_b      161 23.3 20.3    111.9      209
+#&gt;  After_drug  Hosp_c      105 23.3 20.3     56.4      154
+#&gt;  Before_drug Hosp_c      124 23.3 20.3     75.6      173
+#&gt;  After_drug  Hosp_d      163 23.3 20.3    114.2      211
+#&gt;  Before_drug Hosp_d      162 23.3 20.3    113.1      210
+#&gt;  After_drug  Hosp_e      162 23.3 20.3    113.8      211
+#&gt;  Before_drug Hosp_e      163 23.3 20.3    114.2      211
+#&gt; 
+#&gt; Degrees-of-freedom method: kenward-roger 
+#&gt; Confidence level used: 0.95 
+#&gt; 
+#&gt; $contrasts
+#&gt;  contrast                                estimate    SE   df t.ratio p.value
+#&gt;  After_drug Hosp_a - Before_drug Hosp_a  -26.1648  4.13 20.0 -6.341  0.0002 
+#&gt;  After_drug Hosp_a - After_drug Hosp_b     4.5865 32.99 20.3  0.139  0.9994 
+#&gt;  After_drug Hosp_a - Before_drug Hosp_b  -13.5032 32.99 20.3 -0.409  0.9994 
+#&gt;  After_drug Hosp_a - After_drug Hosp_c    42.0038 32.99 20.3  1.273  0.7505 
+#&gt;  After_drug Hosp_a - Before_drug Hosp_c   22.8400 32.99 20.3  0.692  0.9994 
+#&gt;  After_drug Hosp_a - After_drug Hosp_d   -15.7699 32.99 20.3 -0.478  0.9994 
+#&gt;  After_drug Hosp_a - Before_drug Hosp_d  -14.7329 32.99 20.3 -0.447  0.9994 
+#&gt;  After_drug Hosp_a - After_drug Hosp_e   -15.4323 32.99 20.3 -0.468  0.9994 
+#&gt;  After_drug Hosp_a - Before_drug Hosp_e  -15.7946 32.99 20.3 -0.479  0.9994 
+#&gt;  Before_drug Hosp_a - After_drug Hosp_b   30.7514 32.99 20.3  0.932  0.9056 
+#&gt;  Before_drug Hosp_a - Before_drug Hosp_b  12.6616 32.99 20.3  0.384  0.9994 
+#&gt;  Before_drug Hosp_a - After_drug Hosp_c   68.1686 32.99 20.3  2.066  0.5390 
+#&gt;  Before_drug Hosp_a - Before_drug Hosp_c  49.0049 32.99 20.3  1.485  0.6876 
+#&gt;  Before_drug Hosp_a - After_drug Hosp_d   10.3949 32.99 20.3  0.315  0.9994 
+#&gt;  Before_drug Hosp_a - Before_drug Hosp_d  11.4319 32.99 20.3  0.347  0.9994 
+#&gt;  Before_drug Hosp_a - After_drug Hosp_e   10.7326 32.99 20.3  0.325  0.9994 
+#&gt;  Before_drug Hosp_a - Before_drug Hosp_e  10.3703 32.99 20.3  0.314  0.9994 
+#&gt;  After_drug Hosp_b - Before_drug Hosp_b  -18.0898  4.13 20.0 -4.384  0.0043 
+#&gt;  After_drug Hosp_b - After_drug Hosp_c    37.4172 32.99 20.3  1.134  0.7505 
+#&gt;  After_drug Hosp_b - Before_drug Hosp_c   18.2535 32.99 20.3  0.553  0.9994 
+#&gt;  After_drug Hosp_b - After_drug Hosp_d   -20.3565 32.99 20.3 -0.617  0.9994 
+#&gt;  After_drug Hosp_b - Before_drug Hosp_d  -19.3195 32.99 20.3 -0.586  0.9994 
+#&gt;  After_drug Hosp_b - After_drug Hosp_e   -20.0188 32.99 20.3 -0.607  0.9994 
+#&gt;  After_drug Hosp_b - Before_drug Hosp_e  -20.3811 32.99 20.3 -0.618  0.9994 
+#&gt;  Before_drug Hosp_b - After_drug Hosp_c   55.5070 32.99 20.3  1.682  0.5390 
+#&gt;  Before_drug Hosp_b - Before_drug Hosp_c  36.3433 32.99 20.3  1.102  0.7505 
+#&gt;  Before_drug Hosp_b - After_drug Hosp_d   -2.2667 32.99 20.3 -0.069  0.9994 
+#&gt;  Before_drug Hosp_b - Before_drug Hosp_d  -1.2297 32.99 20.3 -0.037  0.9994 
+#&gt;  Before_drug Hosp_b - After_drug Hosp_e   -1.9290 32.99 20.3 -0.058  0.9994 
+#&gt;  Before_drug Hosp_b - Before_drug Hosp_e  -2.2913 32.99 20.3 -0.069  0.9994 
+#&gt;  After_drug Hosp_c - Before_drug Hosp_c  -19.1637  4.13 20.0 -4.645  0.0035 
+#&gt;  After_drug Hosp_c - After_drug Hosp_d   -57.7737 32.99 20.3 -1.751  0.5390 
+#&gt;  After_drug Hosp_c - Before_drug Hosp_d  -56.7367 32.99 20.3 -1.720  0.5390 
+#&gt;  After_drug Hosp_c - After_drug Hosp_e   -57.4361 32.99 20.3 -1.741  0.5390 
+#&gt;  After_drug Hosp_c - Before_drug Hosp_e  -57.7984 32.99 20.3 -1.752  0.5390 
+#&gt;  Before_drug Hosp_c - After_drug Hosp_d  -38.6100 32.99 20.3 -1.170  0.7505 
+#&gt;  Before_drug Hosp_c - Before_drug Hosp_d -37.5730 32.99 20.3 -1.139  0.7505 
+#&gt;  Before_drug Hosp_c - After_drug Hosp_e  -38.2723 32.99 20.3 -1.160  0.7505 
+#&gt;  Before_drug Hosp_c - Before_drug Hosp_e -38.6346 32.99 20.3 -1.171  0.7505 
+#&gt;  After_drug Hosp_d - Before_drug Hosp_d    1.0370  4.13 20.0  0.251  0.9994 
+#&gt;  After_drug Hosp_d - After_drug Hosp_e     0.3377 32.99 20.3  0.010  0.9994 
+#&gt;  After_drug Hosp_d - Before_drug Hosp_e   -0.0247 32.99 20.3 -0.001  0.9994 
+#&gt;  Before_drug Hosp_d - After_drug Hosp_e   -0.6993 32.99 20.3 -0.021  0.9994 
+#&gt;  Before_drug Hosp_d - Before_drug Hosp_e  -1.0616 32.99 20.3 -0.032  0.9994 
+#&gt;  After_drug Hosp_e - Before_drug Hosp_e   -0.3623  4.13 20.0 -0.088  0.9994 
+#&gt; 
+#&gt; Degrees-of-freedom method: kenward-roger 
+#&gt; P value adjustment: fdr method for 45 tests 
+#&gt; </div><div class='input'>
 <span class='co'>#same call with "tukey" adjustment</span>
-<span class='co'>#posthoc_Pairwise(CholMod, c("Treatment", "Hospital"), P_adj = "tukey")</span>
-
+<span class='fu'>posthoc_Pairwise</span><span class='op'>(</span><span class='va'>CholMod</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Treatment"</span>, <span class='st'>"Hospital"</span><span class='op'>)</span>, P_adj <span class='op'>=</span> <span class='st'>"tukey"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $emmeans
+#&gt;  Treatment   Hospital emmean   SE   df lower.CL upper.CL
+#&gt;  After_drug  Hosp_a      147 23.3 20.3     98.4      196
+#&gt;  Before_drug Hosp_a      173 23.3 20.3    124.6      222
+#&gt;  After_drug  Hosp_b      142 23.3 20.3     93.8      191
+#&gt;  Before_drug Hosp_b      161 23.3 20.3    111.9      209
+#&gt;  After_drug  Hosp_c      105 23.3 20.3     56.4      154
+#&gt;  Before_drug Hosp_c      124 23.3 20.3     75.6      173
+#&gt;  After_drug  Hosp_d      163 23.3 20.3    114.2      211
+#&gt;  Before_drug Hosp_d      162 23.3 20.3    113.1      210
+#&gt;  After_drug  Hosp_e      162 23.3 20.3    113.8      211
+#&gt;  Before_drug Hosp_e      163 23.3 20.3    114.2      211
+#&gt; 
+#&gt; Degrees-of-freedom method: kenward-roger 
+#&gt; Confidence level used: 0.95 
+#&gt; 
+#&gt; $contrasts
+#&gt;  contrast                                estimate    SE   df t.ratio p.value
+#&gt;  After_drug Hosp_a - Before_drug Hosp_a  -26.1648  4.13 20.0 -6.341  0.0002 
+#&gt;  After_drug Hosp_a - After_drug Hosp_b     4.5865 32.99 20.3  0.139  0.9994 
+#&gt;  After_drug Hosp_a - Before_drug Hosp_b  -13.5032 32.99 20.3 -0.409  0.9994 
+#&gt;  After_drug Hosp_a - After_drug Hosp_c    42.0038 32.99 20.3  1.273  0.7505 
+#&gt;  After_drug Hosp_a - Before_drug Hosp_c   22.8400 32.99 20.3  0.692  0.9994 
+#&gt;  After_drug Hosp_a - After_drug Hosp_d   -15.7699 32.99 20.3 -0.478  0.9994 
+#&gt;  After_drug Hosp_a - Before_drug Hosp_d  -14.7329 32.99 20.3 -0.447  0.9994 
+#&gt;  After_drug Hosp_a - After_drug Hosp_e   -15.4323 32.99 20.3 -0.468  0.9994 
+#&gt;  After_drug Hosp_a - Before_drug Hosp_e  -15.7946 32.99 20.3 -0.479  0.9994 
+#&gt;  Before_drug Hosp_a - After_drug Hosp_b   30.7514 32.99 20.3  0.932  0.9056 
+#&gt;  Before_drug Hosp_a - Before_drug Hosp_b  12.6616 32.99 20.3  0.384  0.9994 
+#&gt;  Before_drug Hosp_a - After_drug Hosp_c   68.1686 32.99 20.3  2.066  0.5390 
+#&gt;  Before_drug Hosp_a - Before_drug Hosp_c  49.0049 32.99 20.3  1.485  0.6876 
+#&gt;  Before_drug Hosp_a - After_drug Hosp_d   10.3949 32.99 20.3  0.315  0.9994 
+#&gt;  Before_drug Hosp_a - Before_drug Hosp_d  11.4319 32.99 20.3  0.347  0.9994 
+#&gt;  Before_drug Hosp_a - After_drug Hosp_e   10.7326 32.99 20.3  0.325  0.9994 
+#&gt;  Before_drug Hosp_a - Before_drug Hosp_e  10.3703 32.99 20.3  0.314  0.9994 
+#&gt;  After_drug Hosp_b - Before_drug Hosp_b  -18.0898  4.13 20.0 -4.384  0.0043 
+#&gt;  After_drug Hosp_b - After_drug Hosp_c    37.4172 32.99 20.3  1.134  0.7505 
+#&gt;  After_drug Hosp_b - Before_drug Hosp_c   18.2535 32.99 20.3  0.553  0.9994 
+#&gt;  After_drug Hosp_b - After_drug Hosp_d   -20.3565 32.99 20.3 -0.617  0.9994 
+#&gt;  After_drug Hosp_b - Before_drug Hosp_d  -19.3195 32.99 20.3 -0.586  0.9994 
+#&gt;  After_drug Hosp_b - After_drug Hosp_e   -20.0188 32.99 20.3 -0.607  0.9994 
+#&gt;  After_drug Hosp_b - Before_drug Hosp_e  -20.3811 32.99 20.3 -0.618  0.9994 
+#&gt;  Before_drug Hosp_b - After_drug Hosp_c   55.5070 32.99 20.3  1.682  0.5390 
+#&gt;  Before_drug Hosp_b - Before_drug Hosp_c  36.3433 32.99 20.3  1.102  0.7505 
+#&gt;  Before_drug Hosp_b - After_drug Hosp_d   -2.2667 32.99 20.3 -0.069  0.9994 
+#&gt;  Before_drug Hosp_b - Before_drug Hosp_d  -1.2297 32.99 20.3 -0.037  0.9994 
+#&gt;  Before_drug Hosp_b - After_drug Hosp_e   -1.9290 32.99 20.3 -0.058  0.9994 
+#&gt;  Before_drug Hosp_b - Before_drug Hosp_e  -2.2913 32.99 20.3 -0.069  0.9994 
+#&gt;  After_drug Hosp_c - Before_drug Hosp_c  -19.1637  4.13 20.0 -4.645  0.0035 
+#&gt;  After_drug Hosp_c - After_drug Hosp_d   -57.7737 32.99 20.3 -1.751  0.5390 
+#&gt;  After_drug Hosp_c - Before_drug Hosp_d  -56.7367 32.99 20.3 -1.720  0.5390 
+#&gt;  After_drug Hosp_c - After_drug Hosp_e   -57.4361 32.99 20.3 -1.741  0.5390 
+#&gt;  After_drug Hosp_c - Before_drug Hosp_e  -57.7984 32.99 20.3 -1.752  0.5390 
+#&gt;  Before_drug Hosp_c - After_drug Hosp_d  -38.6100 32.99 20.3 -1.170  0.7505 
+#&gt;  Before_drug Hosp_c - Before_drug Hosp_d -37.5730 32.99 20.3 -1.139  0.7505 
+#&gt;  Before_drug Hosp_c - After_drug Hosp_e  -38.2723 32.99 20.3 -1.160  0.7505 
+#&gt;  Before_drug Hosp_c - Before_drug Hosp_e -38.6346 32.99 20.3 -1.171  0.7505 
+#&gt;  After_drug Hosp_d - Before_drug Hosp_d    1.0370  4.13 20.0  0.251  0.9994 
+#&gt;  After_drug Hosp_d - After_drug Hosp_e     0.3377 32.99 20.3  0.010  0.9994 
+#&gt;  After_drug Hosp_d - Before_drug Hosp_e   -0.0247 32.99 20.3 -0.001  0.9994 
+#&gt;  Before_drug Hosp_d - After_drug Hosp_e   -0.6993 32.99 20.3 -0.021  0.9994 
+#&gt;  Before_drug Hosp_d - Before_drug Hosp_e  -1.0616 32.99 20.3 -0.032  0.9994 
+#&gt;  After_drug Hosp_e - Before_drug Hosp_e   -0.3623  4.13 20.0 -0.088  0.9994 
+#&gt; 
+#&gt; Degrees-of-freedom method: kenward-roger 
+#&gt; P value adjustment: fdr method for 45 tests 
+#&gt; </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

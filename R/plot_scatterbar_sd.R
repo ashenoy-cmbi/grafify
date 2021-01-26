@@ -19,6 +19,7 @@
 #' @param alpha fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
 #' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
+#' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
 #'
 #' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
 #' @export plot_scatterbar_sd
@@ -29,23 +30,19 @@
 #' #Basic usage requires a data table and X & Y variables#'
 #' plot_scatterbar_sd(data_cholesterol, Treatment, Cholesterol)
 #'
-#' #Transformations of Y variable are possible as follows
-#' #' plot_scatterbar_sd(data_cholesterol, Treatment, log(Cholesterol))
-#'
-#'
-#' #Additional ggplot layering is possible
-#' plot_scatterbar_sd(data_doubling_time, Student, Doubling_time)+
-#'    labs(title = "Plot with scatter plot, bars (mean) & SD")+
-#'    scale_colour_grafify()+scale_fill_grafify()+facet_wrap("Experiment")
 
-plot_scatterbar_sd <- function(data, xcol, ycol, symsize = 2, symthick = 1, bwid = 0.7, ewid = 0.3, fontsize = 20, alpha = 1, ColPal = "all_grafify", ColRev = F){
+plot_scatterbar_sd <- function(data, xcol, ycol, symsize = 2.5, symthick = 1, bwid = 0.7, ewid = 0.3, fontsize = 20, alpha = 1, ColPal = "all_grafify", ColRev = F, TextXAngle = 0){
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
-    stat_summary(geom = "bar", colour = "black", width = {{ bwid }},
-                 fun = "mean", alpha = {{ alpha }}, size = 1,
+    stat_summary(geom = "bar", colour = "black", 
+                 width = {{ bwid }},
+                 fun = "mean", 
+                 alpha = {{ alpha }}, size = 1,
                  aes(fill = factor({{ xcol }})))+
-    geom_point(size = {{ symsize }}, alpha = 0.8, shape = 21,
-               position = position_jitter(width = 0.05), stroke = {{ symthick }},
+    geom_point(size = {{ symsize }}, 
+               alpha = 1, shape = 21,
+               position = position_jitter(width = 0.05), 
+               stroke = {{ symthick }},
                aes(fill = factor({{ xcol }})))+
     stat_summary(geom = "errorbar", size = 1,
                  fun.data = "mean_sdl",
@@ -54,5 +51,8 @@ plot_scatterbar_sd <- function(data, xcol, ycol, symsize = 2, symthick = 1, bwid
     labs(x = enquo(xcol),
          fill = enquo(xcol))+
     theme_classic(base_size = {{ fontsize }})+
-    scale_fill_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})
+    theme(strip.background = element_blank())+
+    guides(x = guide_axis(angle = {{ TextXAngle }}))+
+    scale_fill_grafify(palette = {{ ColPal }}, 
+                       reverse = {{ ColRev }})
 }

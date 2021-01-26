@@ -29,17 +29,14 @@ By default, P values are corrected by the FDR method (which can be changed). If 
 The first part of the \code{emmeans} results has the estimated marginal means, SE and CI (\code{$emmeans}), which are generated from the fitted model, and \strong{not} the original data table. The second part has the results of the comparisons (\code{$contrasts}).
 }
 \examples{
-#basic usage to compare against ref = 1
-#posthoc_vsRef(DoublMod, "Student")
+#make linear models first
+DoublMod <- simple_model(data_doubling_time, "Doubling_time", "Student") 
+CholMod <- mixed_model(data_cholesterol, "Cholesterol", c("Hospital", "Treatment"), "Subject") 
 
 #to compare all students with student #9
-#posthoc_vsRef(DoublMod, "Student", ref = 9)
+posthoc_vsRef(DoublMod, "Student", Ref = 9)
 
-#for comparison between hospital #1 to every other hospital, separately at levels of Treatment
-#posthoc_vsRef(CholMod, c("Hospital", "Treatment"))
-
-#for comparisons between reference group of treatment to every other group, 
-#listed separated at every level of Hospital
-#posthoc_vsRef(CholMod, c("Treatment", "Hospital"))
+#for comparison between hospital_a to every other hospital, separately at levels of Treatment
+posthoc_vsRef(CholMod, c("Hospital", "Treatment"), Ref = 1)
 
 }

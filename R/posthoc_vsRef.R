@@ -17,19 +17,17 @@
 #' @import emmeans
 #'
 #' @examples
-#' #basic usage to compare against ref = 1
-#' #posthoc_vsRef(DoublMod, "Student")
-#'
+#' #make linear models first
+#' DoublMod <- simple_model(data_doubling_time, "Doubling_time", "Student") 
+#' CholMod <- mixed_model(data_cholesterol, "Cholesterol", c("Hospital", "Treatment"), "Subject") 
+#' 
 #' #to compare all students with student #9
-#' #posthoc_vsRef(DoublMod, "Student", ref = 9)
+#' posthoc_vsRef(DoublMod, "Student", Ref = 9)
 #'
-#' #for comparison between hospital #1 to every other hospital, separately at levels of Treatment
-#' #posthoc_vsRef(CholMod, c("Hospital", "Treatment"))
+#' #for comparison between hospital_a to every other hospital, separately at levels of Treatment
+#' posthoc_vsRef(CholMod, c("Hospital", "Treatment"), Ref = 1)
 #'
-#' #for comparisons between reference group of treatment to every other group, 
-#' #listed separated at every level of Hospital
-#' #posthoc_vsRef(CholMod, c("Treatment", "Hospital"))
-#'
+
 
 posthoc_vsRef <- function(Model, Factors, Ref = 1, P_Adj = "fdr", ...){
   ifelse(length(Factors) > 1,
