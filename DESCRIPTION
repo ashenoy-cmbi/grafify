@@ -1,7 +1,7 @@
 Package: grafify
 Type: Package
 Title: A package for easy grafs, ANOVAs and posthoc comparisons
-Version: 0.3.0
+Version: 0.3.1
 Author: Avinash R. Shenoy
 Maintainer: Avinash Shenoy <a.shenoy@imperial.ac.uk>
 Description: This package makes it easy to plot graphs, has 8 colour-blind friendly colour schemes, and fits ordinary linear models or mixed effects models, and can perform post-hoc comparisons. It contains simple functions built mainly on ggplot2, lmerTest and emmeans. 

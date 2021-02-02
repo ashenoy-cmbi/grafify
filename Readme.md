@@ -26,7 +26,7 @@ data and functions for the statistics workshop, are the following:
 3.  perform different kinds of post-hoc comparisons
 4.  simulate simple one-way and two-way ANOVA design data
 
-### **Latest version: v0.3.0**
+### **Latest version: v0.3.1**
 
 ### Features
 
@@ -97,6 +97,11 @@ If you’re interested in basic stats in R, also visit Statistics for
 
 Full reference to all functions available at [`grafify`
 pages](https://ashenoy-cmbi.github.io/grafify/index.html).
+
+New in v0.3.1
+
+Bug fixes in `mixed_model` and `simple_model` which now correctly lists
+the data used in the call field.
 
 New in v0.3.0
 

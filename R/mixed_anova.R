@@ -28,6 +28,7 @@
 
 mixed_anova <- function(data, Y_value, Fixed_Factor, Random_Factor, ...){
   Y <- substitute(Y_value)
+  d <- substitute(data)
   ifelse(length(Fixed_Factor) == 1,
          Facs <- paste0(Fixed_Factor, collapse = ""),
          Facs <- paste0(Fixed_Factor, collapse = "*"))
@@ -41,8 +42,9 @@ mixed_anova <- function(data, Y_value, Fixed_Factor, Random_Factor, ...){
                                paste(RFacs, collapse = ""),
                                sep = "+"),
                          sep = " ~ "))
-  mod1 <- lmerTest::lmer(fo, data, ...)
+  mod1 <- lmer(fo, data, ...)
   mod1@call$formula <- fo
+  mod1@call$data <- d
   mod1
   anova(mod1, type = "II", ddf = "Kenward-Roger")
 }

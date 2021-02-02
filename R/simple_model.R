@@ -22,12 +22,13 @@
 
 simple_model <- function(data, Y_value, Fixed_Factor, ...){
   Y <- substitute(Y_value)
-
+  d <- substitute(data)
   ifelse(length(Fixed_Factor) == 1,
          Facs <- paste0(Fixed_Factor, collapse = ""),
          Facs <- paste0(Fixed_Factor, collapse = "*"))
   fo <- as.formula(paste(Y, "~", Facs))
   mod <- lm(fo, data,)
   mod$call$formula <-fo
+  mod$call$data <- d
   mod
 }
