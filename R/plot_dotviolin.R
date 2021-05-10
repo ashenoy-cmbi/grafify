@@ -16,7 +16,8 @@
 #' @param trim set whether tips of violin plot should be trimmed at high/low data. Default \code{trim = T}, can be changed to F.
 #' @param scale set to "area" by default, can be changed to "count" or "width".
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
-#' @param alpha fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency)
+#' @param v_alpha fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency)
+#' @param d_alpha fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
 #' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
@@ -34,11 +35,11 @@
 #' plot_dotviolin(data_t_pdiff, Condition, Mass, dotsize = 2, trim = FALSE)
 #'
 
-plot_dotviolin <- function(data, xcol, ycol, dotsize = 1.5, dotthick = 1, trim = T, scale = "area", fontsize = 20, alpha = 1, ColPal = "all_grafify", ColRev = F, TextXAngle = 0){
+plot_dotviolin <- function(data, xcol, ycol, dotsize = 1.5, dotthick = 1, trim = T, scale = "area", fontsize = 20, v_alpha = 1, d_alpha = 1, ColPal = "all_grafify", ColRev = F, TextXAngle = 0){
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
     geom_violin(aes(fill = factor({{ xcol }})),
-                alpha = {{ alpha }},
+                alpha = {{ v_alpha }},
                 trim = {{ trim }},
                 scale = {{ scale }},
                 draw_quantiles = c(0.25, .5, .75),
@@ -46,6 +47,7 @@ plot_dotviolin <- function(data, xcol, ycol, dotsize = 1.5, dotthick = 1, trim =
                 adjust = 0.8)+
     geom_dotplot(stackdir = "center", 
                  stroke = {{ dotthick }}, 
+                 alpha = {{ d_alpha }},
                  dotsize = {{ dotsize }},
                  binaxis = 'y',
                  aes(fill = factor({{ xcol }})))+

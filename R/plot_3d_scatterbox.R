@@ -32,8 +32,10 @@
 #' @param shapes name of the column with the second categorical factor in a two-way ANOVA design.
 #' @param symsize size of symbols, default set to 3
 #' @param symthick size of outline of symbol lines (\code{stroke = 1.0}), default set to 1.0
+#' @param jitter extent of jitter (scatter) of symbols, default is 0.1. Increase to reduce symbol overlap, set to 0 for aligned symbols.  
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
-#' @param alpha fractional opacity of boxes, default set to 1 (i.e. maximum opacity & zero transparency)
+#' @param b_alpha fractional opacity of boxes, default set to 1 (i.e. maximum opacity & zero transparency)
+#' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
 #' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
@@ -47,20 +49,20 @@
 #' plot_3d_scatterbox(data_cholesterol, Treatment, Cholesterol, Hospital)
 #'
 
-plot_3d_scatterbox <- function(data, xcol, ycol, shapes, symsize = 2.5, symthick = 1.0, fontsize = 20, alpha = 1, ColPal = "all_grafify", ColRev = F, TextXAngle = 0){
+plot_3d_scatterbox <- function(data, xcol, ycol, shapes, symsize = 2.5, symthick = 1.0, jitter = 0.1, fontsize = 20, b_alpha = 1, s_alpha = 1, ColPal = "all_grafify", ColRev = F, TextXAngle = 0){
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }},
                             group = interaction(factor({{ xcol }}),
                                                 factor({{ shapes }}))))+
     geom_boxplot(aes(fill = factor({{ shapes }})), size = 1,
-                 alpha = {{ alpha }},
+                 alpha = {{ b_alpha }},
                  position = position_dodge(width = 0.8),
                  width = 0.5,
                  outlier.alpha = 0)+
     geom_point(size = {{ symsize }}, 
                stroke = {{ symthick }},
-               alpha = 0.8, colour = "black",
-               position = position_jitterdodge(jitter.width = 0.1,
+               alpha = {{ s_alpha }}, colour = "black",
+               position = position_jitterdodge(jitter.width = {{ jitter }},
                                                dodge.width = 0.8),
                aes(shape = factor({{ shapes }})))+
     scale_shape_manual(values = 0:25)+

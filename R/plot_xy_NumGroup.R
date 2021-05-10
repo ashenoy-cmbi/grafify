@@ -14,7 +14,7 @@
 #' @param symsize size of point symbols, default set to 2
 #' @param symthick thickness of symbol border, default set to 1
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
-#' @param alpha fractional opacity, default set to 1 (i.e. maximum opacity & zero transparency)
+#' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
 #'
 #' @return This function returns a \code{ggplot2} object.
@@ -27,11 +27,11 @@
 #' plot_xy_NumGroup(mtcars, mpg, disp, gear)
 
 plot_xy_NumGroup <- function(data, xcol, ycol, NumGroup, symsize = 2, symthick = 1, 
-                             fontsize = 20, alpha = 1, TextXAngle = 0){
+                             fontsize = 20, s_alpha = 1, TextXAngle = 0){
   ggplot2::ggplot(data, aes(x = {{ xcol }},
                             y = {{ ycol }}))+
     geom_point(size = {{ symsize }}, 
-               alpha = {{ alpha }},
+               alpha = {{ s_alpha }},
                aes(fill = {{ NumGroup }}),
                shape = 21, 
                stroke = {{ symthick }})+

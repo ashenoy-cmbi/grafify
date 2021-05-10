@@ -12,7 +12,7 @@ plot_xy_CatGroup(
   symsize = 2,
   symthick = 1,
   fontsize = 20,
-  alpha = 1,
+  s_alpha = 1,
   ColPal = "all_grafify",
   ColRev = F,
   TextXAngle = 0
@@ -34,7 +34,7 @@ Will be converted to \code{factor} if your column is numeric.}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
-\item{alpha}{fractional opacity, default set to 1 (i.e. maximum opacity & zero transparency)}
+\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)}
 
 \item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
 

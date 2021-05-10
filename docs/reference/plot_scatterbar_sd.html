@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.1</span>
       </span>
     </div>
 
@@ -143,8 +143,10 @@
   symthick <span class='op'>=</span> <span class='fl'>1</span>,
   bwid <span class='op'>=</span> <span class='fl'>0.7</span>,
   ewid <span class='op'>=</span> <span class='fl'>0.3</span>,
+  jitter <span class='op'>=</span> <span class='fl'>0</span>,
   fontsize <span class='op'>=</span> <span class='fl'>20</span>,
-  alpha <span class='op'>=</span> <span class='fl'>1</span>,
+  b_alpha <span class='op'>=</span> <span class='fl'>1</span>,
+  s_alpha <span class='op'>=</span> <span class='fl'>1</span>,
   ColPal <span class='op'>=</span> <span class='st'>"all_grafify"</span>,
   ColRev <span class='op'>=</span> <span class='cn'>F</span>,
   TextXAngle <span class='op'>=</span> <span class='fl'>0</span>
@@ -179,15 +181,23 @@
     </tr>
     <tr>
       <th>ewid</th>
-      <td><p>width of error bars, default set to 0.2</p></td>
+      <td><p>width of error bars, default set to 0.3</p></td>
+    </tr>
+    <tr>
+      <th>jitter</th>
+      <td><p>extent of jitter (scatter) of symbols, default is 0 (i.e. aligned symbols). To reduce symbol overlap, try 0.1-0.3 or higher.</p></td>
     </tr>
     <tr>
       <th>fontsize</th>
       <td><p>parameter of <code>base_size</code> of fonts in <code>theme_classic</code>, default set to size 20.</p></td>
     </tr>
     <tr>
-      <th>alpha</th>
+      <th>b_alpha</th>
       <td><p>fractional opacity of bars, default set to 1 (i.e. maximum opacity &amp; zero transparency)</p></td>
+    </tr>
+    <tr>
+      <th>s_alpha</th>
+      <td><p>fractional opacity of symbols, default set to 1 (i.e. maximum opacity &amp; zero transparency)</p></td>
     </tr>
     <tr>
       <th>ColPal</th>
@@ -211,14 +221,17 @@
     <p>The function uses <code><a href='https://ggplot2.tidyverse.org/reference/stat_summary.html'>stat_summary</a></code> with <code>geom = "bar"</code>, and <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></code> with <code>position = position_jitter(width = 0.05)</code>.
 Standard deviation (SD) is plotted through <code><a href='https://ggplot2.tidyverse.org/reference/stat_summary.html'>stat_summary</a></code> calculated using <code>mean_sdl</code> from the <code>ggplot2</code> package (get help with <code>?mean_sdl</code>), and 1x SD is plotted (<code>fun.arg = list(mult = 1)</code>.
 The X variable is mapped to the <code>fill</code> aesthetic in the bar geometry and <code>colour</code> aesthetic in <code>geom_point</code>. Fill and colour can be changed using <code>scale_fill_brewer</code> (or related) and <code>scale_colour_brewer</code> (or related) options.</p>
-<p>This function is related to <code><a href='plot_dotbox.html'>plot_dotbox</a></code>, <code><a href='plot_dotbar_sd.html'>plot_dotbar_sd</a></code> and <code><a href='plot_dotviolin.html'>plot_dotviolin</a></code>.</p>
+<p>Three types of plots are available for scatter/jitter symbols and either bars+SD, boxplot or violin plots: <code>plot_scatterbar_sd</code>, <code><a href='plot_scatterbox.html'>plot_scatterbox</a></code> and <code><a href='plot_scatterviolin.html'>plot_scatterviolin</a></code>.
+These are related to the three "dot" versions that use a different geometry for symbols: <code><a href='plot_dotbox.html'>plot_dotbox</a></code>, <code><a href='plot_dotbar_sd.html'>plot_dotbar_sd</a></code> and <code><a href='plot_dotviolin.html'>plot_dotviolin</a></code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'>#Basic usage requires a data table and X &amp; Y variables#'</span>
 <span class='fu'>plot_scatterbar_sd</span><span class='op'>(</span><span class='va'>data_cholesterol</span>, <span class='va'>Treatment</span>, <span class='va'>Cholesterol</span><span class='op'>)</span>
 </div><div class='img'><img src='plot_scatterbar_sd-1.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></pre>
+<span class='co'>#with jitter</span>
+<span class='fu'>plot_scatterbar_sd</span><span class='op'>(</span><span class='va'>data_cholesterol</span>, <span class='va'>Treatment</span>, <span class='va'>Cholesterol</span>, jitter <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span>
+</div><div class='img'><img src='plot_scatterbar_sd-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

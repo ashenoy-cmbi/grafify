@@ -12,8 +12,10 @@ plot_scatterbar_sd(
   symthick = 1,
   bwid = 0.7,
   ewid = 0.3,
+  jitter = 0,
   fontsize = 20,
-  alpha = 1,
+  b_alpha = 1,
+  s_alpha = 1,
   ColPal = "all_grafify",
   ColRev = F,
   TextXAngle = 0
@@ -32,11 +34,15 @@ plot_scatterbar_sd(
 
 \item{bwid}{width of bars, default set to 0.7}
 
-\item{ewid}{width of error bars, default set to 0.2}
+\item{ewid}{width of error bars, default set to 0.3}
+
+\item{jitter}{extent of jitter (scatter) of symbols, default is 0 (i.e. aligned symbols). To reduce symbol overlap, try 0.1-0.3 or higher.}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
-\item{alpha}{fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency)}
+\item{b_alpha}{fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency)}
+
+\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)}
 
 \item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
 
@@ -55,11 +61,14 @@ The function uses \code{\link[ggplot2]{stat_summary}} with \code{geom = "bar"}, 
 Standard deviation (SD) is plotted through \code{\link[ggplot2]{stat_summary}} calculated using \code{mean_sdl} from the \code{ggplot2} package (get help with \code{?mean_sdl}), and 1x SD is plotted (\code{fun.arg = list(mult = 1)}.
 The X variable is mapped to the \code{fill} aesthetic in the bar geometry and \code{colour} aesthetic in \code{geom_point}. Fill and colour can be changed using \code{scale_fill_brewer} (or related) and \code{scale_colour_brewer} (or related) options.
 
-This function is related to \code{\link{plot_dotbox}}, \code{\link{plot_dotbar_sd}} and \code{\link{plot_dotviolin}}.
+Three types of plots are available for scatter/jitter symbols and either bars+SD, boxplot or violin plots: \code{\link{plot_scatterbar_sd}}, \code{\link{plot_scatterbox}} and \code{\link{plot_scatterviolin}}.
+These are related to the three "dot" versions that use a different geometry for symbols: \code{\link{plot_dotbox}}, \code{\link{plot_dotbar_sd}} and \code{\link{plot_dotviolin}}.
 }
 \examples{
 
 #Basic usage requires a data table and X & Y variables#'
 plot_scatterbar_sd(data_cholesterol, Treatment, Cholesterol)
 
+#with jitter
+plot_scatterbar_sd(data_cholesterol, Treatment, Cholesterol, jitter = 0.1)
 }

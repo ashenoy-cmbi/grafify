@@ -11,7 +11,8 @@ plot_dotbox(
   dotsize = 1.5,
   dotthick = 1,
   fontsize = 20,
-  alpha = 1,
+  b_alpha = 1,
+  d_alpha = 1,
   ColPal = "all_grafify",
   ColRev = F,
   TextXAngle = 0
@@ -30,7 +31,9 @@ plot_dotbox(
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
-\item{alpha}{fractional opacity of boxplot, default set to 1 (i.e. maximum opacity & zero transparency)}
+\item{b_alpha}{fractional opacity of boxes, default set to 1 (i.e. maximum opacity & zero transparency)}
+
+\item{d_alpha}{fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency)}
 
 \item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
 

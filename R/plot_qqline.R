@@ -13,7 +13,7 @@
 #' @param symsize size of symbols, default set to 3
 #' @param symthick thickness of symbol border, default set to 1
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
-#' @param alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)
+#' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
 #' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
@@ -27,13 +27,13 @@
 #' plot_qqline(data_cholesterol, Cholesterol, Treatment)
 #'
 
-plot_qqline <- function(data, ycol, xcol, symsize = 3, symthick = 1, fontsize = 20, alpha = 1, ColPal = "all_grafify", ColRev = F, TextXAngle = 0){
+plot_qqline <- function(data, ycol, xcol, symsize = 3, symthick = 1, fontsize = 20, s_alpha = 1, ColPal = "all_grafify", ColRev = F, TextXAngle = 0){
   ggplot2::ggplot(data, aes(sample = {{ ycol }}))+
     stat_qq(geom = "point", na.rm = T, 
             shape = 21,
             size = {{ symsize }}, 
             stroke = {{ symthick }},
-            alpha = {{ alpha }},
+            alpha = {{ s_alpha }},
             aes(fill = {{ xcol }}) )+
     stat_qq_line(aes(colour = {{ xcol }}),
                  na.rm = T,

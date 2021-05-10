@@ -12,8 +12,10 @@ plot_4d_scatterbox(
   shapes,
   symsize = 2.5,
   symthick = 1,
+  jitter = 0.1,
   fontsize = 20,
-  alpha = 1,
+  b_alpha = 1,
+  s_alpha = 1,
   ColPal = "all_grafify",
   ColRev = F,
   TextXAngle = 0
@@ -34,9 +36,13 @@ plot_4d_scatterbox(
 
 \item{symthick}{size of outline of symbol lines (\code{stroke = 1.0}), default set to 1.0}
 
+\item{jitter}{extent of jitter (scatter) of symbols, default is 0.1. Increase to reduce symbol overlap, set to 0 for aligned symbols.}
+
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
-\item{alpha}{fractional opacity of boxes, default set to 1 (i.e. maximum opacity & zero transparency)}
+\item{b_alpha}{fractional opacity of boxes, default set to 1 (i.e. maximum opacity & zero transparency)}
+
+\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)}
 
 \item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
 

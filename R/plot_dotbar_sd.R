@@ -13,9 +13,11 @@
 #' @param ycol name of the column to plot on quantitative Y axis. This should be a quantitative variable.
 #' @param dotsize size of dots relative to binwidth used by \code{\link[ggplot2]{geom_dotplot}}. Default set to 1.5, increase/decrease as needed.
 #' @param dotthick thickness of dot border (`stroke` parameter of `geom_dotplot`), default set to 1
+#' @param bwid width of bars, default set to 0.7
 #' @param ewid width of error bars, default set to 0.2
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
-#' @param alpha fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency)
+#' @param b_alpha fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency)
+#' @param d_alpha fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
 #' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
@@ -38,16 +40,18 @@
 #'    facet_wrap("Hospital")
 
 
-plot_dotbar_sd <- function(data, xcol, ycol, dotsize = 1.5, dotthick = 1, ewid = 0.2, fontsize = 20, alpha = 1, ColPal = "all_grafify", ColRev = F, TextXAngle = 0){
+plot_dotbar_sd <- function(data, xcol, ycol, dotsize = 1.5, dotthick = 1, bwid = 0.7, ewid = 0.2, fontsize = 20, b_alpha = 1, d_alpha = 1, ColPal = "all_grafify", ColRev = F, TextXAngle = 0){
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
-    stat_summary(geom = "bar", colour = "black",
+    stat_summary(geom = "bar", colour = "black", 
+                 width = {{ bwid }},
                  fun = "mean", 
-                 alpha = {{ alpha }}, size = 1,
+                 alpha = {{ b_alpha }}, size = 1,
                  aes(fill = factor({{ xcol }})))+
     geom_dotplot(dotsize = {{ dotsize }}, 
                  stroke = {{ dotthick }},
                  binaxis = 'y', 
+                 alpha = {{ d_alpha }},
                  stackdir = 'center',
                  aes(fill = factor({{ xcol }})))+
     stat_summary(geom = "errorbar", size = 1,

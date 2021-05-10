@@ -12,7 +12,7 @@ plot_xy_NumGroup(
   symsize = 2,
   symthick = 1,
   fontsize = 20,
-  alpha = 1,
+  s_alpha = 1,
   TextXAngle = 0
 )
 }
@@ -31,7 +31,7 @@ plot_xy_NumGroup(
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
-\item{alpha}{fractional opacity, default set to 1 (i.e. maximum opacity & zero transparency)}
+\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)}
 
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
 }

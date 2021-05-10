@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.1</span>
       </span>
     </div>
 
@@ -92,18 +92,19 @@
 <div id="motivation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#motivation" class="anchor"></a>Motivation</h3>
-<p><img src="grafify_pptx_small.png" width="150px"></p>
+<p><img src="grafify.png" width="150px"></p>
 <p>The main goals of this package, besides making it easier for me to share data and functions for the statistics workshop, are the following:</p>
 <ol>
 <li>easily make common types of graphs based on <code>ggplot2</code> but with fewer lines of code</li>
-<li>carry out ANOVA analysis using linear models and mixed effects</li>
-<li>perform different kinds of post-hoc comparisons</li>
-<li>simulate simple one-way and two-way ANOVA design data</li>
+<li>carry out ANOVA analysis using linear models (<code>lm</code>) and mixed effects (<code>lmer</code>)</li>
+<li>perform post-hoc comparisons (through <code>emmeans</code>)</li>
+<li>simulate one-way and two-way ANOVA design data for power analysis</li>
 </ol>
+<p>If you’re interested in basic theory and code for stats in R, also visit Statistics for <a href="https://microimmunostats.netlify.app">Micro/Immuno Biologists</a>.</p>
 </div>
-<div id="latest-version-v031" class="section level3">
+<div id="latest-version-v141" class="section level3">
 <h3 class="hasAnchor">
-<a href="#latest-version-v031" class="anchor"></a><strong>Latest version: v0.3.1</strong>
+<a href="#latest-version-v141" class="anchor"></a><strong>Latest version: v1.4.1</strong>
 </h3>
 </div>
 <div id="features" class="section level3">
@@ -112,23 +113,23 @@
 <p><code>grafify</code> has four main kinds of functions as follows.</p>
 <ol>
 <li>
-<p>Making graphs easily using 15 <code>plot_</code> functions of 6 broad types</p>
+<p>There are 19 <code>plot_</code> functions of 6 broad types in <code>grafify</code>. The <code>plot_scatter..</code> versions are preferred when there are many data points, <code>plot_dot..</code> versions have a “cleaner” layout for smaller datasets.</p>
 <ol>
-<li>using two variables: <code>plot_scatterbar_sd</code>, <code>plot_dotbar_sd</code>, <code>plot_dotbox</code>, <code>plot_dotviolin</code>
+<li>Two categorical variables: these graphs either use scatter (or also called jitter) or dot plot geometries: <code>plot_scatterbar_sd</code>, <code>plot_scatterbox</code>, <code>plot_scatterviolin</code> and <code>plot_dotbar_sd</code>, <code>plot_dotbox</code>, <code>plot_dotviolin</code>
 </li>
-<li>using three or four variables: <code>plot_3d_scatterbar</code>, <code>plot_3d_scatterbox</code>, <code>plot_4d_scatterbar</code>, <code>plot_4d_scatterbox</code>
+<li>Three or four categorical variables: <code>plot_3d_scatterbar</code>, <code>plot_3d_scatterbox</code>, <code>plot_4d_scatterbar</code>, <code>plot_4d_scatterbox</code>
 </li>
-<li>using 3 variables where 2 are quantiative: <code>plot_xy_NumGroup</code>, <code>plot_xy_CatGroup</code> (new in v0.2.0)</li>
-<li>before-after graphs of matched data: <code>plot_befafter_colours</code>, <code>plot_befafter_shapes</code>
+<li>Quantitative X-Y &amp; a third variable: <code>plot_xy_NumGroup</code>, <code>plot_xy_CatGroup</code> (new in v0.2.0)</li>
+<li>Matched before-after graphs: <code>plot_befafter_colours</code>, <code>plot_befafter_shapes</code>
 </li>
-<li>QQ plot to check distribution: <code>plot_qqline</code>
+<li>Data distributions: <code>plot_qqline</code>, <code>plot_density</code> <code>plot_histogram</code>
 </li>
-<li>summary graphs with SD error bars: <code>plot_bar_sd</code>, <code>plot_point_sd</code>
-</li>
-</ol>
+<li>Summary graphs with SD error bars: <code>plot_bar_sd</code>, <code>plot_point_sd</code>
 </li>
 </ol>
-<p><img src="all_graphsv0.3.0.jpg" width="90%"></p>
+</li>
+</ol>
+<p><img src="all_graphsv1.4.1.jpg" width="90%"></p>
 <p>The following qualitative and continuous palettes are implemented in <code>grafify</code>:</p>
 <p><img src="grafify_palettesv0.2.0.jpg" width="90%"></p>
 <p>(The continuous colour scheme based on Paul Tol’s <a href="https://personal.sron.nl/~pault/#sec:sequential">YlOrBl variant</a> is new in v0.2.0.)</p>
@@ -174,18 +175,46 @@
 <a href="#vignettes" class="anchor"></a>Vignettes</h3>
 <p>Visit the <code>grafify</code> <a href="https://grafify-vignettes.netlify.app">vignettes</a> website for detailed examples of usage.</p>
 </div>
-<div id="companion-website" class="section level3">
-<h3 class="hasAnchor">
-<a href="#companion-website" class="anchor"></a>Companion website</h3>
-<p>If you’re interested in basic stats in R, also visit Statistics for <a href="https://microimmunostats.netlify.app">Micro/Immuno Biologists</a>.</p>
-</div>
 <div id="release-notes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#release-notes" class="anchor"></a>Release notes</h3>
 <p>Full reference to all functions available at <a href="https://ashenoy-cmbi.github.io/grafify/index.html"><code>grafify</code> pages</a>.</p>
-<p>New in v0.3.1</p>
+<div id="new-in-v141" class="section level4">
+<h4 class="hasAnchor">
+<a href="#new-in-v141" class="anchor"></a>New in v1.4.1</h4>
+<p>This version “breaks” a few arguments from v0.3.1, therefore is v1.4.1. Specifically, opacity for both symbols and bars/boxes/violins can be set using <code>s_alpha</code> and <code>b_alpha</code> or <code>v_alpha</code>, respectively; previously, only bars/boxes/violin opacity could be set with a single <code>alpha</code> parameter. Old code with just <code>alpha</code> will no longer work, sorry! There are also new graph types and arguments for ANOVAs as below.</p>
+<ol>
+<li>
+<p>New graph types</p>
+<ol>
+<li>
+<code>plot_density</code> and <code>plot_histogram</code> for smooth density or histogram plots through <code>geom_density</code> and <code>geom_histogram</code> respectively.</li>
+<li>two new plot types <code>plot_scatterbox</code> and <code>plot_scatterviolin</code> that complement the <code>plot_dot...</code> versions and instead use <code>geom_point</code> with <code>position_jitter</code>. These versions are useful when a large number of data points are needed to be plotted.</li>
+</ol>
+</li>
+<li>
+<p>Updates</p>
+<ol>
+<li>
+<code>simple_anova</code> where the table also has Mean SS.</li>
+<li>
+<code>mixed_anova</code> now has two new arguments, one to change method for Df calculation and second to get type I or III SS (default is type II).</li>
+<li>
+<code>jitter</code> argument added to <code>plot_3d..</code> and <code>plot_4d..</code> functions for consistency with other scatter plots.</li>
+<li>
+<code>bwid</code> argument (for adjusting width of bars) added to <code>plot_scatterbar_sd</code> for consistency.</li>
+</ol>
+</li>
+</ol>
+</div>
+<div id="new-in-v031" class="section level4">
+<h4 class="hasAnchor">
+<a href="#new-in-v031" class="anchor"></a>New in v0.3.1</h4>
 <p>Bug fixes in <code>mixed_model</code> and <code>simple_model</code> which now correctly lists the data used in the call field.</p>
-<p>New in v0.3.0</p>
+</div>
+<div id="new-in-v030" class="section level4">
+<h4 class="hasAnchor">
+<a href="#new-in-v030" class="anchor"></a>New in v0.3.0</h4>
 <ol>
 <li>A new <code>plot_4d_scatterbar</code> function which is like <code>plot_4d_scatterbox</code> but plots bar and SD. So there are now two <code>plot_3d_</code> and <code>plot_4d_</code> functions.</li>
 <li>Text on X-axis on all graphs can be rotated from 0-90 using <code>TextXAngle</code> argument to prevent overlap.</li>
@@ -195,18 +224,25 @@
 <li>
 <code>plot_3d_</code> and <code>plot_4d_</code> functions draw symbols in black colour.</li>
 </ol>
-<p>Fixed in v0.2.1:</p>
+</div>
+<div id="fixed-in-v021" class="section level4">
+<h4 class="hasAnchor">
+<a href="#fixed-in-v021" class="anchor"></a>Fixed in v0.2.1:</h4>
 <ol>
 <li>Bug fixes in <code>plot_3d_scatterbar</code> and <code>plot_3d_scatterbox</code>, which now correctly use the “shapes” variable to fill colour of bars/boxes and shape of the symbols; symbols are depicted in black.</li>
 <li>
 <code>simple_anova</code> generates type II ANOVA table through <code><a href="https://rdrr.io/pkg/car/man/Anova.html">car::Anova()</a></code>, so the <code>car</code> package is now a dependency. v0.1.0 and v0.2.0 generated type I ANOVA table through <code><a href="https://rdrr.io/r/stats/anova.html">stats::anova()</a></code>.</li>
 </ol>
-<p>New in v0.2.0:</p>
+</div>
+<div id="new-in-v020" class="section level4">
+<h4 class="hasAnchor">
+<a href="#new-in-v020" class="anchor"></a>New in v0.2.0:</h4>
 <ol>
 <li>the main difference from v0.1.0 is that all <code>plot_</code> functions apply the <code>all_grafify</code> colour scheme by default (see <code>plot_</code> vignettes on how to change colours)</li>
 <li>two new types of graphs are possible with two quantitative X-Y plots with a third variable that is either numeric (<code>plot_xy_NumGroup</code>) or categorical (<code>plot_xy_CatGroup</code>).</li>
 <li>there are two new continuous colour schemes (<code>scale_fill_grafify_c</code> and <code>scale_colour_grafify_c</code>), based on <a href="https://personal.sron.nl/~pault/#sec:sequential">Paul Tol’s variant</a> of YlOrBl scheme.</li>
 </ol>
+</div>
 </div>
 
   </div>

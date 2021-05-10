@@ -16,36 +16,37 @@ remotes::install_github("ashenoy-cmbi/grafify@*release", dependencies = T) #inst
 ### Motivation 
 
 ```{r, image-1hex, echo = F, out.width="150px"}
-knitr::include_graphics("grafify_pptx_small.png")
+knitr::include_graphics("grafify.png")
 ```
 
 
 The main goals of this package, besides making it easier for me to share data and functions for the statistics workshop, are the following:
 
 1. easily make common types of graphs based on `ggplot2` but with fewer lines of code
-2. carry out ANOVA analysis using linear models and mixed effects
-3. perform different kinds of post-hoc comparisons 
-4. simulate simple one-way and two-way ANOVA design data
+2. carry out ANOVA analysis using linear models (`lm`) and mixed effects (`lmer`)
+3. perform post-hoc comparisons (through `emmeans`) 
+4. simulate one-way and two-way ANOVA design data for power analysis
 
-### **Latest version: v0.3.1**
+If you're interested in basic theory and code for stats in R, also visit Statistics for [Micro/Immuno Biologists](https://microimmunostats.netlify.app).
+
+### **Latest version: v1.4.1**
 
 ### Features
 
 `grafify` has four main kinds of functions as follows.
 
-1. Making graphs easily using 15 `plot_` functions of 6 broad types
+1. There are 19 `plot_` functions of 6 broad types in `grafify`. The `plot_scatter..` versions are preferred when there are many data points, `plot_dot..` versions have a "cleaner" layout for smaller datasets. 
 
-     a. using two variables: `plot_scatterbar_sd`, `plot_dotbar_sd`, `plot_dotbox`, `plot_dotviolin`
-     b. using three or four variables: `plot_3d_scatterbar`, `plot_3d_scatterbox`, `plot_4d_scatterbar`, `plot_4d_scatterbox` 
-     c. using 3 variables where 2 are quantiative: `plot_xy_NumGroup`, `plot_xy_CatGroup` (new in v0.2.0)
-     d. before-after graphs of matched data: `plot_befafter_colours`, `plot_befafter_shapes`
-     e. QQ plot to check distribution: `plot_qqline`
-     f. summary graphs with SD  error bars: `plot_bar_sd`, `plot_point_sd`
-     
+     a. Two categorical variables: these graphs either use scatter (or also called jitter) or dot plot geometries: `plot_scatterbar_sd`, `plot_scatterbox`, `plot_scatterviolin` and `plot_dotbar_sd`, `plot_dotbox`, `plot_dotviolin`
+     b. Three or four categorical variables: `plot_3d_scatterbar`, `plot_3d_scatterbox`, `plot_4d_scatterbar`, `plot_4d_scatterbox` 
+     c. Quantitative X-Y & a third variable: `plot_xy_NumGroup`, `plot_xy_CatGroup` 
+     d. Matched before-after graphs: `plot_befafter_colours`, `plot_befafter_shapes`
+     e. Data distributions: `plot_qqline`, `plot_density` `plot_histogram`
+     f. Summary graphs with SD error bars: `plot_bar_sd`, `plot_point_sd`
   
   
 ```{r, all-graphs, echo = F, out.width="90%"}
-knitr::include_graphics("all_graphsv0.3.0.jpg")
+knitr::include_graphics("all_graphsv1.4.1.jpg")
 ```
 
 The following qualitative and continuous palettes are implemented in `grafify`:
@@ -82,19 +83,31 @@ knitr::include_graphics("grafify_palettesv0.2.0.jpg")
 Visit the `grafify` [vignettes](https://grafify-vignettes.netlify.app) website for detailed examples of usage.
 
 
-### Companion website
-
-If you're interested in basic stats in R, also visit Statistics for [Micro/Immuno Biologists](https://microimmunostats.netlify.app).
-
 ### Release notes
 
 Full reference to all functions available at [`grafify` pages](https://ashenoy-cmbi.github.io/grafify/index.html).
 
-New in v0.3.1
+#### New in v1.4.1
+
+This version "breaks" a few arguments from v0.3.1, therefore is v1.4.1. Specifically, opacity for both symbols and bars/boxes/violins can be set using `s_alpha` and `b_alpha` or `v_alpha`, respectively; previously, only bars/boxes/violin opacity could be set with a single `alpha` parameter. Old code with just `alpha` will no longer work, sorry! There are also new graph types and arguments for ANOVAs as below.
+
+1. New graph types
+   
+    a. `plot_density` and `plot_histogram` for smooth density or histogram plots through `geom_density` and `geom_histogram` respectively.
+    b. two new plot types `plot_scatterbox` and `plot_scatterviolin` that complement the `plot_dot...` versions and instead use `geom_point` with `position_jitter`. These versions are useful when a large number of data points are needed to be plotted.
+    
+1. Updates 
+
+      a. `simple_anova` where the table also has Mean SS.
+      b. `mixed_anova` now has two new arguments, one to change method for Df calculation and second to get type I or III SS (default is type II).
+      c. `jitter` argument added to `plot_3d..` and `plot_4d..` functions for consistency with other scatter plots.
+      d. `bwid` argument (for adjusting width of bars) added to `plot_scatterbar_sd` for consistency.
+
+#### New in v0.3.1
 
 Bug fixes in `mixed_model` and `simple_model` which now correctly lists the data used in the call field. 
 
-New in v0.3.0
+#### New in v0.3.0
 
 1. A new `plot_4d_scatterbar` function which is like `plot_4d_scatterbox` but plots bar and SD. So there are now two `plot_3d_` and `plot_4d_` functions.
 2. Text on X-axis on all graphs can be rotated from 0-90 using `TextXAngle` argument to prevent overlap. 
@@ -102,12 +115,12 @@ New in v0.3.0
 4. Using `facet_wrap` or `facet_grid` will not draw a box around panel text (unlike the default in `theme_classic()`).
 5. `plot_3d_` and `plot_4d_` functions draw symbols in black colour. 
 
-Fixed in v0.2.1:
+#### Fixed in v0.2.1:
 
 1. Bug fixes in `plot_3d_scatterbar` and `plot_3d_scatterbox`, which now correctly use the "shapes" variable to fill colour of bars/boxes and shape of the symbols; symbols are depicted in black.
 2. `simple_anova` generates type II ANOVA table through `car::Anova()`, so the `car` package is now a dependency. v0.1.0 and v0.2.0 generated type I ANOVA table through `stats::anova()`. 
 
-New in v0.2.0:
+#### New in v0.2.0:
 
 1. the main difference from v0.1.0 is that all `plot_` functions apply the `all_grafify` colour scheme by default (see `plot_` vignettes on how to change colours)
 2. two new types of graphs are possible with two quantitative X-Y plots with a third variable that is either numeric (`plot_xy_NumGroup`) or categorical (`plot_xy_CatGroup`).

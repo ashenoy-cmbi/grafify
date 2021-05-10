@@ -93,7 +93,7 @@ This function is related to mixed_model." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.1</span>
       </span>
     </div>
 
@@ -141,7 +141,15 @@ It requires a data table, one dependent variable (Y_value), one or more independ
 This function is related to <code><a href='mixed_model.html'>mixed_model</a></code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>mixed_anova</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>Y_value</span>, <span class='va'>Fixed_Factor</span>, <span class='va'>Random_Factor</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>mixed_anova</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  <span class='va'>Y_value</span>,
+  <span class='va'>Fixed_Factor</span>,
+  <span class='va'>Random_Factor</span>,
+  Df_method <span class='op'>=</span> <span class='st'>"Kenward-Roger"</span>,
+  SS_method <span class='op'>=</span> <span class='st'>"II"</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -163,6 +171,14 @@ This function is related to <code><a href='mixed_model.html'>mixed_model</a></co
       <td><p>name(s) of random factors to allow random intercepts; to be provided as a vector when more than one or within "quotes".</p></td>
     </tr>
     <tr>
+      <th>Df_method</th>
+      <td><p>method for calculating degrees of freedom. Default is Kenward-Roger, can be changed to "Satterthwaite".</p></td>
+    </tr>
+    <tr>
+      <th>SS_method</th>
+      <td><p>type of sum of square, default is type II, can be changed to "I", "III", "1" or "2", or others.</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>any additional arguments to pass on to <code><a href='https://rdrr.io/pkg/lmerTest/man/lmer.html'>lmer</a></code> if required.</p></td>
     </tr>
@@ -175,7 +191,8 @@ This function is related to <code><a href='mixed_model.html'>mixed_model</a></co
 
     <p>When more than one fixed factors are entered in the argument, a full model with interaction term is fitted.
 This means when <code>Y_value = Y, Fixed_factor = c("A", "B"), Random_factor = "R"</code> are entered as arguments, these are passed on as <code>Y ~ A*B + (1|R)</code> (which is equivalent to <code>Y ~ A + B + A:B + (1|R)</code>).
-For simplicity, only random intercepts are fitted (<code>(1|R)</code>). For factorial ANOVAs the default sum of squares is Type II and degrees of freedom are calculated using the Kenward-Roger approximation. All other settings are <code><a href='https://rdrr.io/pkg/lmerTest/man/lmer.html'>lmer</a></code> and <code><a href='https://rdrr.io/r/stats/anova.html'>anova</a></code> defaults.</p>
+For simplicity, only random intercepts are fitted (<code>(1|R)</code>). For factorial ANOVAs the default sum of squares is Type II and degrees of freedom are calculated using the Kenward-Roger approximation.
+Check <code><a href='https://rdrr.io/pkg/lmerTest/man/lmer.html'>lmer</a></code> for more details.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>#Basic usage where the table data_cholesterol is passed with names of two fixed factors as a vector</span>

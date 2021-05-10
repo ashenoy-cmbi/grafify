@@ -7,12 +7,15 @@
 #'
 #' When more than one fixed factors are entered in the argument, a full model with interaction term is fitted. 
 #' This means when \code{Y_value = Y, Fixed_factor = c("A", "B"), Random_factor = "R"} are entered as arguments, these are passed on as \code{Y ~ A*B + (1|R)} (which is equivalent to \code{Y ~ A + B + A:B + (1|R)}).
-#' For simplicity, only random intercepts are fitted (\code{(1|R)}). For factorial ANOVAs the default sum of squares is Type II and degrees of freedom are calculated using the Kenward-Roger approximation. All other settings are \code{\link[lmerTest]{lmer}} and \code{\link{anova}} defaults.
+#' For simplicity, only random intercepts are fitted (\code{(1|R)}). For factorial ANOVAs the default sum of squares is Type II and degrees of freedom are calculated using the Kenward-Roger approximation. 
+#' Check \code{\link[lmerTest]{lmer}} for more details.
 #'
 #' @param data a data table object, e.g. data.frame or tibble.
 #' @param Y_value name of column containing quantitative (dependent) variable, provided within "quotes".
 #' @param Fixed_Factor name(s) of categorical fixed factors (independent variables) provided as a vector if more than one or within "quotes".
 #' @param Random_Factor name(s) of random factors to allow random intercepts; to be provided as a vector when more than one or within "quotes".
+#' @param Df_method method for calculating degrees of freedom. Default is Kenward-Roger, can be changed to "Satterthwaite".
+#' @param SS_method type of sum of square, default is type II, can be changed to "I", "III", "1" or "2", or others.
 #' @param ... any additional arguments to pass on to \code{\link[lmerTest]{lmer}} if required.
 #'
 #' @return This function returns the output of \code{anova}.
@@ -26,7 +29,7 @@
 #' #Usages with one fixed (Student) and random factor (Experiment), each within quotes
 #' mixed_anova(data_doubling_time, "Doubling_time", "Student", "Experiment")
 
-mixed_anova <- function(data, Y_value, Fixed_Factor, Random_Factor, ...){
+mixed_anova <- function(data, Y_value, Fixed_Factor, Random_Factor, Df_method = "Kenward-Roger", SS_method = "II", ...){
   Y <- substitute(Y_value)
   d <- substitute(data)
   ifelse(length(Fixed_Factor) == 1,
@@ -46,5 +49,7 @@ mixed_anova <- function(data, Y_value, Fixed_Factor, Random_Factor, ...){
   mod1@call$formula <- fo
   mod1@call$data <- d
   mod1
-  anova(mod1, type = "II", ddf = "Kenward-Roger")
+  lmerTest:::single_anova(mod1, 
+        type = SS_method, 
+        ddf = Df_method)
 }

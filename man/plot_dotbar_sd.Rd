@@ -10,9 +10,11 @@ plot_dotbar_sd(
   ycol,
   dotsize = 1.5,
   dotthick = 1,
+  bwid = 0.7,
   ewid = 0.2,
   fontsize = 20,
-  alpha = 1,
+  b_alpha = 1,
+  d_alpha = 1,
   ColPal = "all_grafify",
   ColRev = F,
   TextXAngle = 0
@@ -29,11 +31,15 @@ plot_dotbar_sd(
 
 \item{dotthick}{thickness of dot border (\code{stroke} parameter of \code{geom_dotplot}), default set to 1}
 
+\item{bwid}{width of bars, default set to 0.7}
+
 \item{ewid}{width of error bars, default set to 0.2}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
-\item{alpha}{fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency)}
+\item{b_alpha}{fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency)}
+
+\item{d_alpha}{fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency)}
 
 \item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
 

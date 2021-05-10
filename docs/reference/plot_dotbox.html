@@ -90,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.1</span>
       </span>
     </div>
 
@@ -142,7 +142,8 @@
   dotsize <span class='op'>=</span> <span class='fl'>1.5</span>,
   dotthick <span class='op'>=</span> <span class='fl'>1</span>,
   fontsize <span class='op'>=</span> <span class='fl'>20</span>,
-  alpha <span class='op'>=</span> <span class='fl'>1</span>,
+  b_alpha <span class='op'>=</span> <span class='fl'>1</span>,
+  d_alpha <span class='op'>=</span> <span class='fl'>1</span>,
   ColPal <span class='op'>=</span> <span class='st'>"all_grafify"</span>,
   ColRev <span class='op'>=</span> <span class='cn'>F</span>,
   TextXAngle <span class='op'>=</span> <span class='fl'>0</span>
@@ -176,8 +177,12 @@
       <td><p>parameter of <code>base_size</code> of fonts in <code>theme_classic</code>, default set to size 20.</p></td>
     </tr>
     <tr>
-      <th>alpha</th>
-      <td><p>fractional opacity of boxplot, default set to 1 (i.e. maximum opacity &amp; zero transparency)</p></td>
+      <th>b_alpha</th>
+      <td><p>fractional opacity of boxes, default set to 1 (i.e. maximum opacity &amp; zero transparency)</p></td>
+    </tr>
+    <tr>
+      <th>d_alpha</th>
+      <td><p>fractional opacity of dots, default set to 1 (i.e. maximum opacity &amp; zero transparency)</p></td>
     </tr>
     <tr>
       <th>ColPal</th>

@@ -31,7 +31,10 @@ simple_anova <- function(data, Y_value, Fixed_Factor, ...){
   fo <- as.formula(paste(Y, "~", Facs))
   mod <- lm(fo, data, ...)
   mod$call$formula <-fo
-  car::Anova(mod, 
-             type = 2,
-             test.statistic = "F")
+  t1 <- car::Anova(mod)
+  h1 <- attr(t1, "heading")
+  t1$`Mean sq` <- t1$`Sum Sq`/t1$Df
+  t1 <- t1[, c(1, 5, 2,3,4)]
+  attr(t1, "heading") <- h1
+  t1
 }
