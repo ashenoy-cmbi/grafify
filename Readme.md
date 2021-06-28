@@ -7,11 +7,16 @@ it.
 
 ``` r
 install.packages("remotes") #install remotes
-remotes::install_github("ashenoy-cmbi/grafify@*release", dependencies = T) #install latest release with dependencies
+remotes::install_github("ashenoy-cmbi/grafify@*release") #install latest release 
 ```
 
-`grafify` depends on `ggplot2`, `lmerTest`, `emmeans`, `car`,
-`pbkrtest`, `tidyr`, `purrr` and `Hmisc` packages.
+I’ve noticed (personal experience) that if RStudio prompts you to update
+other packages while installing `grafify`, skipping that step (blank
+line or none) works best. Update other packages after installing
+`grafify` for smoother installation.
+
+`grafify` also requires the following packages: `ggplot2`, `lmerTest`,
+`emmeans`, `car`, `pbkrtest`, `tidyr`, `purrr` and `Hmisc`.
 
 ### Motivation
 
@@ -68,25 +73,25 @@ The following qualitative and continuous palettes are implemented in
 variant](https://personal.sron.nl/~pault/#sec:sequential) is new in
 v0.2.0.)
 
-1.  Fitting linear models and linear mixed models and obtaining ANOVA
+2.  Fitting linear models and linear mixed models and obtaining ANOVA
     tables
 
     1.  linear models for ordinary ANOVAs: `simple_anova`,
         `simple_model`,
     2.  linear mixed effects ANOVAs: `mixed_anova`, `mixed_model`
 
-2.  Perform post-hoc comparisons based on fitted models
+3.  Perform post-hoc comparisons based on fitted models
 
     1.  `posthoc_Pariwise`
     2.  `posthoc_Levelwise`
     3.  `posthoc_vsRef`
 
-3.  Generating random one-way and two-way data based on mean and SD.
+4.  Generating random one-way and two-way data based on mean and SD.
 
     1.  one-way designs: `make_1way_data`, `make_1way_rb_data`
     2.  two-way designs: `make_2way_data`, `make_2way_rb_data`
 
-4.  Colour-blind compatible schemes:
+5.  Colour-blind compatible schemes:
 
     1.  `okabe_ito` (see Mike Mol’s
         [blog](https://mikemol.github.io/technique/colorblind/2018/02/11/color-safe-palette.html)).

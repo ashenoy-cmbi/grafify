@@ -8,10 +8,12 @@ To install this package use the following steps. You'll need the package `remote
 
 ```{r installation, eval = F, include=T, message=F, warning=F}
 install.packages("remotes") #install remotes
-remotes::install_github("ashenoy-cmbi/grafify@*release", dependencies = T) #install latest release with dependencies
+remotes::install_github("ashenoy-cmbi/grafify@*release") #install latest release 
 ```
 
-`grafify` depends on `ggplot2`, `lmerTest`, `emmeans`, `car`, `pbkrtest`, `tidyr`, `purrr` and `Hmisc` packages.
+I've noticed (personal experience) that if RStudio prompts you to update other packages while installing `grafify`, skipping that step (blank line or none) works best. Update other packages after installing `grafify` for smoother installation.
+
+`grafify` also requires the following packages: `ggplot2`, `lmerTest`, `emmeans`, `car`, `pbkrtest`, `tidyr`, `purrr` and `Hmisc`.
  
 ### Motivation 
 
