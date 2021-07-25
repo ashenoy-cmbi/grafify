@@ -1,4 +1,8 @@
 
+If you use `grafify`, please cite using the following DOI.
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5136508.svg)](https://doi.org/10.5281/zenodo.5136508)
+
 ### Installation
 
 To install this package use the following steps. You’ll need the package

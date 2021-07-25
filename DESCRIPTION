@@ -1,6 +1,6 @@
 Package: grafify
 Type: Package
-Title: A package for easy grafs, ANOVAs and posthoc comparisons
+Title: An R package for easy grafs, ANOVAs and posthoc comparisons
 Version: 1.4.1
 Author: Avinash R. Shenoy
 Maintainer: Avinash Shenoy <a.shenoy@imperial.ac.uk>
@@ -27,4 +27,4 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
-URL: https://github.com/ashenoy-cmbi/grafify
+URL: https://github.com/ashenoy-cmbi/grafify, https://doi.org/10.5281/zenodo.5136508
