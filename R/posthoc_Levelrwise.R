@@ -37,7 +37,7 @@ posthoc_Levelwise <- function(Model, Factors, P_Adj = "fdr", ...){
   pc <- emmeans::emmeans(object = Model,
                 specs = sp,
                 type = "response",
-                adjut = P_Adj,
+                adjust = P_Adj,
                 ...)
   pc
 }

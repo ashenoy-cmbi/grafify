@@ -46,7 +46,8 @@ This function takes a data table, X and Y variables, and plots a QQ graph using 
 }
 \details{
 The function uses \code{stat_qq} and \code{stat_qq_line} geometries (get help with \code{?stat_qq_line}).
-Note that the function requires the quantitative Y variable first, and groups them based on an X variable.
+Note that the function requires the quantitative Y variable first, and can be passed on a grouping variable as \code{xcol} if required.
+The graph plots sample quantiles on Y axis & theoretical quantiles on X axis.
 The X variable is mapped to the \code{fill} aesthetic in\code{stat_qq} and  \code{colour} aesthetic for the \code{stat_qq_line}.
 ColPal & ColRev options are applied to both \code{fill} and \code{colour} scales.
 }

@@ -3,7 +3,8 @@
 #' This function takes a data table, X and Y variables, and plots a QQ graph using \code{\link[ggplot2]{ggplot}}.
 #'
 #' The function uses \code{stat_qq} and \code{stat_qq_line} geometries (get help with \code{?stat_qq_line}).
-#' Note that the function requires the quantitative Y variable first, and groups them based on an X variable.
+#' Note that the function requires the quantitative Y variable first, and can be passed on a grouping variable as `xcol` if required.
+#' The graph plots sample quantiles on Y axis & theoretical quantiles on X axis.
 #' The X variable is mapped to the \code{fill} aesthetic in\code{stat_qq} and  \code{colour} aesthetic for the \code{stat_qq_line}.
 #' ColPal & ColRev options are applied to both `fill` and `colour` scales.
 #'
@@ -29,15 +30,15 @@
 
 plot_qqline <- function(data, ycol, xcol, symsize = 3, symthick = 1, fontsize = 20, s_alpha = 1, ColPal = "all_grafify", ColRev = F, TextXAngle = 0){
   ggplot2::ggplot(data, aes(sample = {{ ycol }}))+
+    stat_qq_line(aes(colour = {{ xcol }}),
+                 na.rm = T,
+                 size = 1)+
     stat_qq(geom = "point", na.rm = T, 
             shape = 21,
             size = {{ symsize }}, 
             stroke = {{ symthick }},
             alpha = {{ s_alpha }},
             aes(fill = {{ xcol }}) )+
-    stat_qq_line(aes(colour = {{ xcol }}),
-                 na.rm = T,
-                 size = 1)+
     labs(fill = enquo(xcol),
          colour = enquo(xcol))+
     theme_classic(base_size = {{ fontsize }})+

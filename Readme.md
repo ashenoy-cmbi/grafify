@@ -40,7 +40,7 @@ If you’re interested in basic theory and code for stats in R, also visit
 Statistics for [Micro/Immuno
 Biologists](https://microimmunostats.netlify.app).
 
-### **Latest version: v1.4.1**
+### **Latest version: v1.5.0**
 
 ### Features
 
@@ -54,7 +54,11 @@ Biologists](https://microimmunostats.netlify.app).
     1.  Two categorical variables: these graphs either use scatter (or
         also called jitter) or dot plot geometries:
         `plot_scatterbar_sd`, `plot_scatterbox`, `plot_scatterviolin`
-        and `plot_dotbar_sd`, `plot_dotbox`, `plot_dotviolin`
+        and `plot_dotbar_sd`, `plot_dotbox`, `plot_dotviolin` **New in
+        v1.5.0**: new `plot_` functions like the above but ending in
+        `_sc` for *same colour* or *single colour* which plot
+        boxes/dots/violins in one colour. This colour can be picked from
+        `all_grafify` palettes or defined with a hexcode.
     2.  Three or four categorical variables: `plot_3d_scatterbar`,
         `plot_3d_scatterbox`, `plot_4d_scatterbar`, `plot_4d_scatterbox`
     3.  Quantitative X-Y & a third variable: `plot_xy_NumGroup`,
@@ -62,9 +66,11 @@ Biologists](https://microimmunostats.netlify.app).
     4.  Matched before-after graphs: `plot_befafter_colours`,
         `plot_befafter_shapes`
     5.  Data distributions: `plot_qqline`, `plot_density`
-        `plot_histogram`
+        `plot_histogram` **New in v1.5.0**: `plot_qqmodel` which
+        generates a Q-Q plot of standardised model residuals
     6.  Summary graphs with SD error bars: `plot_bar_sd`,
-        `plot_point_sd`
+        `plot_point_sd` **New in v1.5.0**: *single colour* versions of
+        these available as names ending with `_sc`
 
 <img src="all_graphsv1.4.1.jpg" width="90%" />
 
@@ -112,6 +118,28 @@ website for detailed examples of usage.
 
 Full reference to all functions available at [`grafify`
 pages](https://ashenoy-cmbi.github.io/grafify/index.html).
+
+#### New in v1.5.0
+
+1.  New graph types
+
+This version has 8 new `plot_` functions ending in `_sc` for plotting
+data with two variables wherein the X variable is plotted in a single
+colour. This contrasts existing versions that plot the X variable with
+multiple colours chosen from the `all_grafify` palette. This is
+convenient when there are too many groups on the X axis and multiple
+colours are not necessary.
+
+2.  Plotting Q-Q plot of model residuals
+
+`plot_qqmodel` will plot a diagnostic Q-Q plot of a simple linear model
+(generated with `simple_model` or `lm`) or mixed effects linear model
+(generated with `mixed_model` or `lmer`) in a single step.
+
+3.  Minor fixes
+
+Fixed a typo in `posthoc_Levelwise` where the `adjust` argument wasn not
+being correctly passed on to `emmeans`.
 
 #### New in v1.4.1
 
