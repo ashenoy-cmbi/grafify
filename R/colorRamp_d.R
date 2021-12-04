@@ -9,7 +9,8 @@
 #' @param interpolate internal
 #' @param alpha internal
 #' @import grDevices
-#'
+#' @param ... internal
+
 
 colorRamp_d <- function (colors, n,
                          bias = 1,
