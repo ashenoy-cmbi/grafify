@@ -31,12 +31,14 @@ Additional options include "okabe_ito", "vibrant, "bright", "pale", "muted", "da
 }
 \examples{
 #add a colour scheme to a ggplot object
-ggplot(neuralgia, aes(x = Treatment, y = Duration))+
-geom_point(aes(colour = Sex), size = 3)+
-scale_colour_grafify(palette = "muted")
+ggplot(emmeans::neuralgia, aes(x = Treatment, y = Duration))+
+geom_point(aes(colour = Treatment, shape = Sex), size = 3, alpha = 0.9, 
+position = position_jitter(0.15)  )+
+scale_colour_grafify(palette = "bright")+facet_wrap("Sex")
 
 #reverse colour order
-ggplot(neuralgia, aes(x = Treatment, y = Duration))+
-geom_point(aes(colour = Sex), size = 3)+
-scale_colour_grafify(palette = "muted", reverse = TRUE)
+ggplot(emmeans::neuralgia, aes(x = Treatment, y = Duration))+
+geom_point(aes(colour = Treatment, shape = Sex), size = 3, alpha = 0.9, 
+position = position_jitter(0.1)  )+
+scale_colour_grafify(palette = "bright", reverse = TRUE)+facet_wrap("Sex")
 }

@@ -28,8 +28,7 @@ It requires a data table, one quantitative dependent variable and one or more in
 This function is related to \code{link{simple_model}}.
 }
 \examples{
-#Basic usage where the table data_doubling_time is passed with names of the fixed factor within quotes
-
+#Basic usage 
 simple_anova(data_doubling_time, "Doubling_time", "Student")
 
 }

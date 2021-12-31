@@ -26,13 +26,13 @@
 #' plot_scatterbox(data_cholesterol, Treatment, Cholesterol)
 #' 
 #' #with jitter
-#' plot_scatterbox(data_cholesterol, Treatment, Cholesterol, jitter = 0.1)
-#' plot_scatterbox(data_cholesterol, Treatment, Cholesterol, "ok_grey", jitter = 0.1)
+#' plot_scatterbox_sc(data_cholesterol, Treatment, Cholesterol, jitter = 0.1)
+#' plot_scatterbox_sc(data_cholesterol, Treatment, Cholesterol, "ok_grey", jitter = 0.1)
 
 plot_scatterbox_sc <- function(data, xcol, ycol, colour = "ok_orange", symsize = 2.5, symthick = 1, jitter = 0, fontsize = 20, b_alpha = 1, s_alpha = 1, TextXAngle = 0){
 ifelse(grepl("#", colour), 
          a <- colour,
-         a <- grafify:::get_graf_colours({{ colour }}))
+         a <- get_graf_colours({{ colour }}))
   
 ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+

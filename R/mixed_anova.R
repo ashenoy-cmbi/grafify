@@ -20,7 +20,9 @@
 #'
 #' @return This function returns the output of \code{anova}.
 #' @export mixed_anova
-#' @import lmerTest
+#' @importFrom lmerTest as_lmerModLmerTest
+#' @importFrom stats as.formula anova
+#' @importFrom lme4 lmer
 #'
 #' @examples
 #' #Basic usage where the table data_cholesterol is passed with names of two fixed factors as a vector
@@ -45,11 +47,14 @@ mixed_anova <- function(data, Y_value, Fixed_Factor, Random_Factor, Df_method = 
                                paste(RFacs, collapse = ""),
                                sep = "+"),
                          sep = " ~ "))
-  mod1 <- lmer(fo, data, ...)
-  mod1@call$formula <- fo
-  mod1@call$data <- d
-  mod1
-  lmerTest:::single_anova(mod1, 
-        type = SS_method, 
+  call1 <- paste0("lmer(formula = ", 
+                  deparse1(fo), 
+                  ", data = ", 
+                  deparse1(d), 
+                  ", ...)")
+  mod1 <- eval(parse(text = call1))
+  mod1 <- as_lmerModLmerTest(mod1)
+  anova(mod1,
+        type = SS_method,
         ddf = Df_method)
 }

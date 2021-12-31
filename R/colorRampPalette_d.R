@@ -4,7 +4,7 @@
 #'
 #' @param colors internal
 #' @param ... internal
-#' @import grDevices
+#' @export colorRampPalette_d
 
 colorRampPalette_d <- function (colors, ...){
   # n: number of classes

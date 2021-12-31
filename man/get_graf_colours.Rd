@@ -10,5 +10,5 @@ get_graf_colours(...)
 \item{...}{internal}
 }
 \description{
-Internal function to make grafify colour scheme. \href{https://drsimonj.svbtle.com/creating-corporate-colour-palettes-for-ggplot2}{Thank you Dr Simon}.
+Function to make grafify colour scheme. \href{https://drsimonj.svbtle.com/creating-corporate-colour-palettes-for-ggplot2}{Thank you Dr Simon}.
 }

@@ -13,6 +13,7 @@
 #'
 #' @return This function returns the output of \code{lm()}.
 #' @export simple_model
+#' @importFrom stats as.formula lm
 #'
 #' @examples
 #' #Basic usage where the table data_cholesterol is passed with names of one variable within quotes
@@ -26,9 +27,12 @@ simple_model <- function(data, Y_value, Fixed_Factor, ...){
   ifelse(length(Fixed_Factor) == 1,
          Facs <- paste0(Fixed_Factor, collapse = ""),
          Facs <- paste0(Fixed_Factor, collapse = "*"))
-  fo <- as.formula(paste(Y, "~", Facs))
-  mod <- lm(fo, data,)
-  mod$call$formula <-fo
-  mod$call$data <- d
+  fo <- as.formula(paste(Y, Facs, sep = "~"))
+  call1 <- paste0("lm(formula = ", 
+                  deparse1(fo), 
+                  ", data = ", 
+                  deparse1(d), 
+                  ")")
+  mod <- eval(parse(text = call1))
   mod
 }

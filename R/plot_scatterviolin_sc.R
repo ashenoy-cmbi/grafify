@@ -23,15 +23,17 @@
 #' @import ggplot2
 #'
 #' @examples
-#' plot_scatterviolin_sc(data_doubling_time, Student, Doubling_time, symsize = 2, trim = FALSE, scale = "width")
-#' plot_scatterviolin_sc(data_doubling_time, Student, Doubling_time, "ok_grey", symsize = 2, trim = FALSE, scale = "width")
+#' plot_scatterviolin_sc(data_doubling_time, Student, Doubling_time, symsize = 2, 
+#' trim = FALSE, scale = "width")
+#' plot_scatterviolin_sc(data_doubling_time, Student, Doubling_time, "ok_grey", 
+#' symsize = 2, trim = FALSE, scale = "width")
 
 
 plot_scatterviolin_sc <- function(data, xcol, ycol, colour = "ok_orange", symsize = 2.5, symthick = 1, jitter = 0, trim = T, scale = "area", fontsize = 20, v_alpha = 1, s_alpha = 1, TextXAngle = 0){
   
 ifelse(grepl("#", colour), 
          a <- colour,
-         a <- grafify:::get_graf_colours({{ colour }}))
+         a <- get_graf_colours({{ colour }}))
   
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+

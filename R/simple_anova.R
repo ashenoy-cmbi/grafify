@@ -15,22 +15,26 @@
 #' @return ANOVA table output by \code{anova}.
 #' @export simple_anova
 #' @importFrom car Anova
+#' @importFrom stats as.formula lm
 #'
 #' @examples
-#' #Basic usage where the table data_doubling_time is passed with names of the fixed factor within quotes
-#'
+#' #Basic usage 
 #' simple_anova(data_doubling_time, "Doubling_time", "Student")
 #'
 
 simple_anova <- function(data, Y_value, Fixed_Factor, ...){
   Y <- substitute(Y_value)
-
+  d <- substitute(data)
   ifelse(length(Fixed_Factor) == 1,
          Facs <- paste0(Fixed_Factor, collapse = ""),
          Facs <- paste0(Fixed_Factor, collapse = "*"))
-  fo <- as.formula(paste(Y, "~", Facs))
-  mod <- lm(fo, data, ...)
-  mod$call$formula <-fo
+  fo <- as.formula(paste(Y, Facs, sep = "~"))
+  call1 <- paste0("lm(formula = ", 
+                  deparse1(fo), 
+                  ", data = ", 
+                  deparse1(d), 
+                  ")")
+  mod <- eval(parse(text = call1))
   t1 <- car::Anova(mod)
   h1 <- attr(t1, "heading")
   t1$`Mean sq` <- t1$`Sum Sq`/t1$Df

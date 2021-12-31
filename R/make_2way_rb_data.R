@@ -20,7 +20,10 @@
 
 #' @return This function produces a \code{data.frame} object
 #' @export make_2way_rb_data
-#' @import purrr tidyr
+#' @importFrom purrr map_dfc set_names
+#' @importFrom tidyr pivot_longer
+#' @importFrom stats rnorm
+#' @importFrom magrittr %>% 
 #'
 #' @examples
 #' #Basic usage with two levels within FactorX2, 

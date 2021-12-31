@@ -6,3 +6,13 @@
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^all.png
+favicon.ico
+microstat_hexsticker.R
+Other_files$
+all_graphsv1.4.1.jpg
+grafify_palettesv0.2.0.jpg
+grafify.png
+Readme.Rmd
+Readme.md
+^\.github$

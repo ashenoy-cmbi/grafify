@@ -21,7 +21,7 @@ Note that this scheme is \strong{only} for continuous variables and has one pale
 \examples{
 #basic usage on mtcars data with x and y quantitative axes
 ggplot(mtcars, aes(x = mpg, y = disp))+
-geom_point(aes(colour= disp))+
+geom_point(aes(colour = disp), size = 3)+
 scale_colour_grafify_c()
 
 }

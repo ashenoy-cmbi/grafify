@@ -18,16 +18,22 @@
 #'
 #' @return This function produces a \code{data.frame} object
 #' @export make_1way_data
-#' @import purrr tidyr
+#' @importFrom purrr pmap_dfc map_df set_names
+#' @importFrom tidyr pivot_longer
+#' @importFrom stats rnorm
+#' @importFrom magrittr %>% 
+#' @importFrom utils globalVariables
 #'
 #' @examples
-#' #Basic usage with three levels within Factor_X, 20 observations in each group, with residual SD 15
+#' #Basic usage with three levels within Factor_X, 
+#' #20 observations in each group, with residual SD 15
 #'
 #' one_independent_tab <- make_1way_data(c(350, 250, 100), 15, 20)
 #'
 #' str(one_independent_tab)
 #' head(one_independent_tab)
 
+#globalVariables(".")
 
 make_1way_data <- function(Group_means, Num_obs, Residual_SD) {
   suppressMessages(ymce <- function(m, c, e){
@@ -39,12 +45,14 @@ make_1way_data <- function(Group_means, Num_obs, Residual_SD) {
                                         e = Residual_SD),
                                    ymce) %>%
                      set_names(paste0("Lev_",
-                                      rep(1:length(Group_means)))) %>%
-                     map_df(., function(x) rnorm(n = Num_obs, mean = x, sd = Residual_SD)) %>%
+                                      rep(1:length(Group_means))))) 
+                     df1 <- map_df(df1, function(x) rnorm(n = Num_obs, 
+                                                 mean = x, 
+                                                 sd = Residual_SD)) %>%
                      pivot_longer(cols = 1:length(Group_means),
                                   names_to = "FixFac_1",
-                                  values_to = "Values") %>%
-                     data.frame(.))
+                                  values_to = "Values")
+  df1 <- as.data.frame(df1)
   df1$FixFac_1 <- as.factor(df1$FixFac_1)
   as.data.frame(df1)
 }

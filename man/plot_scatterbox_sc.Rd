@@ -55,6 +55,6 @@ The default colour is \code{ok_orange}. \code{ColPal} and \code{ColRev} argument
 plot_scatterbox(data_cholesterol, Treatment, Cholesterol)
 
 #with jitter
-plot_scatterbox(data_cholesterol, Treatment, Cholesterol, jitter = 0.1)
-plot_scatterbox(data_cholesterol, Treatment, Cholesterol, "ok_grey", jitter = 0.1)
+plot_scatterbox_sc(data_cholesterol, Treatment, Cholesterol, jitter = 0.1)
+plot_scatterbox_sc(data_cholesterol, Treatment, Cholesterol, "ok_grey", jitter = 0.1)
 }

@@ -24,15 +24,15 @@
 #' @examples
 #'
 #' #plot with trim = F
-#' plot_dotviolin_sc(data_1w_death, Genotype, Death, scale = "width", trim = F)
-#' plot_dotviolin_sc(data_1w_death, Genotype, Death, "ok_grey", scale = "width", trim = F)
+#' plot_dotviolin_sc(data_1w_death, Genotype, Death, scale = "width", trim = FALSE)
+#' plot_dotviolin_sc(data_1w_death, Genotype, Death, "ok_grey", scale = "width", trim = FALSE)
 #' 
 
 plot_dotviolin_sc <- function(data, xcol, ycol, colour = "ok_orange", dotsize = 1.5, dotthick = 1, trim = T, scale = "area", fontsize = 20, v_alpha = 1, d_alpha = 1, TextXAngle = 0){
   
 ifelse(grepl("#", colour), 
          a <- colour,
-         a <- grafify:::get_graf_colours({{ colour }}))
+         a <- get_graf_colours({{ colour }}))
   
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+

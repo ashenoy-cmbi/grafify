@@ -13,7 +13,8 @@
 #'
 #' @return returns results produced by \code{\link[emmeans]{emmeans}}.
 #' @export posthoc_Levelwise
-#' @import emmeans
+#' @importFrom emmeans emmeans
+#' @importFrom stats as.formula
 #'
 #' @examples
 #' #make a linear model first

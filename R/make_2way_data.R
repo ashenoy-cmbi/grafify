@@ -19,7 +19,10 @@
 #'
 #' @return This function produces a \code{data.frame} object
 #' @export make_2way_data
-#' @import purrr tidyr
+#' @importFrom purrr map_dfc set_names
+#' @importFrom tidyr pivot_longer
+#' @importFrom stats rnorm
+#' @importFrom magrittr %>% 
 #'
 #' @examples
 #' #Basic usage with two levels within FactorX2, 20 observations in each group, with residual SD 15
@@ -47,8 +50,8 @@ make_2way_data <- function(Group_1_means, Group_2_means, Num_obs, Residual_SD) {
                                       names_sep = "x",
                                       cols = 1:(length(Group_1_means)+
                                                   length(Group_2_means)),
-                                      values_to = "Values") %>%
-                         data.frame(.))
+                                      values_to = "Values"))
+                         df1 <- as.data.frame(df1)
       df1$FixFac_1 <- as.factor(df1$FixFac_1)
       df1$FixFac_2 <- as.factor(df1$FixFac_2)
       df1

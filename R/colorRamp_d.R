@@ -8,9 +8,9 @@
 #' @param space internal
 #' @param interpolate internal
 #' @param alpha internal
-#' @import grDevices
-#' @param ... internal
-
+#' @importFrom grDevices convertColor
+#' @importFrom stats approxfun splinefun
+#' @export colorRamp_d
 
 colorRamp_d <- function (colors, n,
                          bias = 1,

@@ -13,7 +13,8 @@
 #'
 #' @return returns results produced by \code{\link[emmeans]{emmeans}}.
 #' @export posthoc_Pairwise
-#' @import emmeans
+#' @importFrom emmeans emmeans
+#' @importFrom stats as.formula
 #'
 #' @examples
 #' #make linear models first

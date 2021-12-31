@@ -20,10 +20,16 @@
 #' @import ggplot2
 #'
 #' @examples
-#' #add a grafify2 fill scheme to ggplot
-#' ggplot(neuralgia, aes(x = Treatment, y = Duration))+
-#' geom_point(aes(fill = Sex), shape = 21, size = 3)+
-#' scale_fill_grafify2(palette = "muted")
+#' #add a grafify fill scheme to ggplot
+#' ggplot(emmeans::neuralgia, aes(x = Treatment, y = Duration))+
+#' geom_point(aes(fill = Treatment), shape = 21, size = 3,
+#' position = position_jitter(0.15), alpha = 0.8)+
+#' scale_fill_grafify2(palette = "muted")+facet_wrap("Sex")
+#' #reverse colour order
+#' ggplot(emmeans::neuralgia, aes(x = Treatment, y = Duration))+
+#' geom_point(aes(fill = Treatment), shape = 21, size = 3,
+#' position = position_jitter(0.15), alpha = 0.8)+
+#' scale_fill_grafify2(palette = "muted", reverse = TRUE)+facet_wrap("Sex")
 #'
 scale_fill_grafify2 <- function(palette = "all_grafify", reverse = FALSE, ...){
   pal <- graf_col_palette_default(palette = palette, reverse = reverse)

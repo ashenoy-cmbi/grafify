@@ -25,8 +25,6 @@ colorRamp_d(
 \item{interpolate}{internal}
 
 \item{alpha}{internal}
-
-\item{...}{internal}
 }
 \description{
 Variant of \code{colorRamp} for sequential use of colours for discrete scales. \href{https://stackoverflow.com/questions/61674217/custom-discrete-color-scale-in-ggplot-does-not-respect-order}{Thank you linog}.

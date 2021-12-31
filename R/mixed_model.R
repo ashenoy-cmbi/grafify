@@ -18,7 +18,9 @@
 #'
 #' @return This function returns the output of \code{lmerTest::lmer()}.
 #' @export mixed_model
-#' @import lmerTest
+#' @importFrom lme4 lmer
+#' @importFrom lmerTest as_lmerModLmerTest
+#' @importFrom stats as.formula
 #'
 #' @examples
 #' #Basic usage where the table Chol is passed with names of variables within quotes
@@ -48,8 +50,12 @@ mixed_model <- function(data, Y_value, Fixed_Factor, Random_Factor, ...){
                                paste(RFacs, collapse = ""),
                                sep = "+"),
                          sep = " ~ "))
-  mod1 <- lmer(fo, data, ...)
-  mod1@call$formula <- fo
-  mod1@call$data <- d
+  call1 <- paste0("lmer(formula = ", 
+                  deparse1(fo), 
+                  ", data = ", 
+                  deparse1(d), 
+                  ", ...)")
+  mod1 <- eval(parse(text = call1))
+  mod1 <- as_lmerModLmerTest(mod1)
   mod1
 }

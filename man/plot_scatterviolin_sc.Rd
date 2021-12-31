@@ -56,6 +56,8 @@ The only new argument is \code{colour}, which can be any hexcode or name of colo
 The default colour is \code{ok_orange}. \code{ColPal} and \code{ColRev} arguments are not available.
 }
 \examples{
-plot_scatterviolin_sc(data_doubling_time, Student, Doubling_time, symsize = 2, trim = FALSE, scale = "width")
-plot_scatterviolin_sc(data_doubling_time, Student, Doubling_time, "ok_grey", symsize = 2, trim = FALSE, scale = "width")
+plot_scatterviolin_sc(data_doubling_time, Student, Doubling_time, symsize = 2, 
+trim = FALSE, scale = "width")
+plot_scatterviolin_sc(data_doubling_time, Student, Doubling_time, "ok_grey", 
+symsize = 2, trim = FALSE, scale = "width")
 }

@@ -55,7 +55,7 @@ The default colour is \code{ok_orange}. \code{ColPal} and \code{ColRev} argument
 \examples{
 
 #plot with trim = F
-plot_dotviolin_sc(data_1w_death, Genotype, Death, scale = "width", trim = F)
-plot_dotviolin_sc(data_1w_death, Genotype, Death, "ok_grey", scale = "width", trim = F)
+plot_dotviolin_sc(data_1w_death, Genotype, Death, scale = "width", trim = FALSE)
+plot_dotviolin_sc(data_1w_death, Genotype, Death, "ok_grey", scale = "width", trim = FALSE)
 
 }

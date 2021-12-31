@@ -30,7 +30,7 @@ plot_point_sd_sc <- function(data, xcol, ycol, colour = "ok_orange", symsize = 3
   
 ifelse(grepl("#", colour), 
          a <- colour,
-         a <- grafify:::get_graf_colours({{ colour }}))
+         a <- get_graf_colours({{ colour }}))
 
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+

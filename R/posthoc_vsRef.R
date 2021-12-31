@@ -14,7 +14,8 @@
 #'
 #' @return returns the result of \code{\link[emmeans]{emmeans}} contrasts.
 #' @export posthoc_vsRef
-#' @import emmeans
+#' @importFrom emmeans emmeans
+#' @importFrom stats as.formula
 #'
 #' @examples
 #' #make linear models first

@@ -31,7 +31,8 @@ The output is a data frame with one or two columns denoting the fixed factor wit
 The quantitative response variables are in the numeric Values column.
 }
 \examples{
-#Basic usage with three levels within Factor_X, 20 observations in each group, with residual SD 15
+#Basic usage with three levels within Factor_X, 
+#20 observations in each group, with residual SD 15
 
 one_independent_tab <- make_1way_data(c(350, 250, 100), 15, 20)
 
