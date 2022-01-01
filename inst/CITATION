@@ -1,0 +1,12 @@
+note <- sprintf("R package version %s", meta$Version)
+
+bibentry(bibtype = "Manual",
+         title = "grafify: an R package for easy graphs, ANOVAs and post-hoc comparisons",
+         author = c(person("Avinash R", "Shenoy", 
+                           email = "a.shenoy@imperial.ac.uk", #
+                           role = c("cre", "aut"), 
+                           comment = c(ORCID = "0000-0001-6228-9303"))),
+         year = 2021,
+         note = note,
+         url = "https://doi.org/10.5281/zenodo.5136508",
+         doi = "10.5281/zenodo.5136508")

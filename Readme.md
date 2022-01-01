@@ -1,7 +1,8 @@
 
-If you use `grafify`, please cite Shenoy, A. R. (2021) grafify: an R
-package for easy graphs, ANOVAs and post-hoc comparisons (Version
-v1.4.1). Zenodo. <http://doi.org/10.5281/zenodo.5136508>
+If you use `grafify`, please cite
+
+Shenoy, A. R. (2021) grafify: an R package for easy graphs, ANOVAs and
+post-hoc comparisons. Zenodo. <http://doi.org/10.5281/zenodo.5136508>
 
 Latest DOI for all versions:
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5136507.svg)](https://doi.org/10.5281/zenodo.5136507)
