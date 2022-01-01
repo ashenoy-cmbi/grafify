@@ -2,7 +2,7 @@
 #'
 #' The \code{\link{make_1way_data}}, \code{\link{make_1way_rb_data}}, \code{\link{make_2way_data}} and \code{\link{make_2way_rb_data}} functions generate independent or randomised block (rb) design data of one-way or two-way designs.
 #'
-#' Random variates from the normal distribution based on user provided mean and SD provided are generated. For independent designs, the `Residual_SD` argument is used to set expected residual SD from the linear model. Exp_SD is used to set experiment-to-experiment SD, that will be assigned to the random factor for rb designs.
+#' Random variates from the normal distribution based on user provided mean and SD provided are generated. For independent designs, the `Residual_SD` argument is used to set expected residual SD from the linear model. Exp_SD is used to set experiment-to-experiment SD, that will be assigned to the random factor (RandFac) for rb designs.
 #'
 #' Num_exp sets the number of independent measurements per group.
 #'
@@ -14,8 +14,8 @@
 #'
 #' @param Group1_means a vector with means of each level of the first fixed factor (FixFac_X1) measured within Group 1
 #' @param Group2_means only for \code{make_2way_data} and \code{make_2way_rb_data}: a vector with mean(s) of each level of FactorX2 measured within Group 2
-#' @param Num_exp a single numeric value indicating the number of independent measurements, i.e. levels within the random factor Experiment
-#' @param Exp_SD a single numeric value indicating the standard deviation (SD) between experiments
+#' @param Num_exp a single numeric value indicating the number of independent measurements, i.e. levels within the random factor RandFac
+#' @param Exp_SD a single numeric value indicating the standard deviation (SD) between experiment, i.e. within RandFac
 #' @param Residual_SD a single numeric value indicating residual SD in the model
 
 #' @return This function produces a \code{data.frame} object
@@ -50,29 +50,29 @@ make_2way_rb_data <- function(Group1_means, Group2_means, Num_exp, Exp_SD, Resid
                                         rnorm(Num_exp,
                                               0,
                                               Residual_SD)}) %>%
-                       set_names(paste0("Fac_",
+                       set_names(paste0("Fx1Lev_",
                                         rep(1:2,
                                             each = length(Group1_means),
                                             length = length(Group1_means)*2),
-                                        "x",
-                                        paste0("Lev_",
+                                        "zz",
+                                        paste0("Fx2Lev_",
                                                rep(1:length(Group2_means),
                                                    length = length(Group2_means)*2)))))
-
-
+    
+    
     suppressMessages(Group_names <- paste0("Exp_",
                                            rep(1:Num_exp)))
-
-    df1$Experiment <- Group_names
+    
+    df1$RandFac <- Group_names
     suppressMessages(df1 <- as.data.frame(df1) %>%
                        pivot_longer(cols = 1:length(All_means),
                                     names_to = c("FixFac_1", "FixFac_2"),
-                                    names_sep="x",
+                                    names_sep= "zz",
                                     values_to = "Values"))
-
+    
     df1$FixFac_1 <- as.factor(df1$FixFac_1)
     df1$FixFac_2 <- as.factor(df1$FixFac_2)
-    df1$Experiment <- as.factor(df1$Experiment)
+    df1$RandFac <- as.factor(df1$RandFac)
     as.data.frame(df1)
   }
 }

@@ -67,9 +67,9 @@
     <dl><dt>Group_means</dt>
 <dd><p>a vector with means of each level of the first fixed factor (FixFac_X1) measured within Group 1</p></dd>
 <dt>Num_exp</dt>
-<dd><p>a single numeric value indicating the number of independent measurements, i.e. levels within the random factor Experiment</p></dd>
+<dd><p>a single numeric value indicating the number of independent measurements, i.e. levels within the random factor RandFac</p></dd>
 <dt>Exp_SD</dt>
-<dd><p>a single numeric value indicating the standard deviation (SD) between experiments</p></dd>
+<dd><p>a single numeric value indicating the standard deviation (SD) between experiments, i.e. within RandFac</p></dd>
 <dt>Residual_SD</dt>
 <dd><p>a single numeric value indicating residual SD in the model</p></dd>
 </dl></div>
@@ -99,15 +99,15 @@ The quantitative response variables are in the numeric Values column.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ Experiment: Factor w/ 20 levels "Exp_1","Exp_10",..: 1 1 1 1 12 12 12 12 14 14 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ FixFac_1  : Factor w/ 2 levels "Fac_1","Fac_2": 1 1 2 2 1 1 2 2 1 1 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ FixFac_2  : Factor w/ 2 levels "Lev_1","Lev_2": 1 2 1 2 1 2 1 2 1 2 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ Values    : num  68.6 8.1 162.8 262.6 75.3 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ Values    : num  65.5 -16.3 169 255.5 90.8 ...</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">two_rb_tab</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Experiment FixFac_1 FixFac_2     Values</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1      Exp_1    Fac_1    Lev_1  68.589333</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2      Exp_1    Fac_1    Lev_2   8.095778</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3      Exp_1    Fac_2    Lev_1 162.843131</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4      Exp_1    Fac_2    Lev_2 262.594633</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5      Exp_2    Fac_1    Lev_1  75.335834</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6      Exp_2    Fac_1    Lev_2  10.572959</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Experiment FixFac_1 FixFac_2    Values</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      Exp_1    Fac_1    Lev_1  65.48970</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2      Exp_1    Fac_1    Lev_2 -16.33648</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3      Exp_1    Fac_2    Lev_1 169.01106</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4      Exp_1    Fac_2    Lev_2 255.53628</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5      Exp_2    Fac_1    Lev_1  90.76518</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6      Exp_2    Fac_1    Lev_2  51.06872</span>
 </code></pre></div>
     </div>
   </div>

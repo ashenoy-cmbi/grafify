@@ -69,9 +69,9 @@
 <dt>Group2_means</dt>
 <dd><p>only for <code>make_2way_data</code> and <code>make_2way_rb_data</code>: a vector with mean(s) of each level of FactorX2 measured within Group 2</p></dd>
 <dt>Num_exp</dt>
-<dd><p>a single numeric value indicating the number of independent measurements, i.e. levels within the random factor Experiment</p></dd>
+<dd><p>a single numeric value indicating the number of independent measurements, i.e. levels within the random factor RandFac</p></dd>
 <dt>Exp_SD</dt>
-<dd><p>a single numeric value indicating the standard deviation (SD) between experiments</p></dd>
+<dd><p>a single numeric value indicating the standard deviation (SD) between experiment, i.e. within RandFac</p></dd>
 <dt>Residual_SD</dt>
 <dd><p>a single numeric value indicating residual SD in the model</p></dd>
 </dl></div>
@@ -81,7 +81,7 @@
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>Random variates from the normal distribution based on user provided mean and SD provided are generated. For independent designs, the <code>Residual_SD</code> argument is used to set expected residual SD from the linear model. Exp_SD is used to set experiment-to-experiment SD, that will be assigned to the random factor for rb designs.</p>
+    <p>Random variates from the normal distribution based on user provided mean and SD provided are generated. For independent designs, the <code>Residual_SD</code> argument is used to set expected residual SD from the linear model. Exp_SD is used to set experiment-to-experiment SD, that will be assigned to the random factor (RandFac) for rb designs.</p>
 <p>Num_exp sets the number of independent measurements per group.</p>
 <p>For one-way designs, the user provides Group_means as a vector. Number of levels are recognised based on number of means.
 For two-way designs, two vectors are to be provided by the user containing means of levels of a second factor. Number of means in both vectors should be the same. These functions can only handle balanced designs, i.e. same number of observations in all groups.</p>
@@ -101,15 +101,15 @@ The quantitative response variables are in the numeric Values column.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ Experiment: Factor w/ 20 levels "Exp_1","Exp_10",..: 1 1 1 1 12 12 12 12 14 14 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ FixFac_1  : Factor w/ 2 levels "Fac_1","Fac_2": 1 1 2 2 1 1 2 2 1 1 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ FixFac_2  : Factor w/ 2 levels "Lev_1","Lev_2": 1 2 1 2 1 2 1 2 1 2 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ Values    : num  117.5 33.5 190.6 287 126.4 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ Values    : num  80.8 10.2 204.6 294.6 122.4 ...</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">two_rb_tab</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Experiment FixFac_1 FixFac_2    Values</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1      Exp_1    Fac_1    Lev_1 117.47743</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2      Exp_1    Fac_1    Lev_2  33.47520</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3      Exp_1    Fac_2    Lev_1 190.56561</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4      Exp_1    Fac_2    Lev_2 286.99367</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5      Exp_2    Fac_1    Lev_1 126.43029</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6      Exp_2    Fac_1    Lev_2  36.51585</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      Exp_1    Fac_1    Lev_1  80.78050</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2      Exp_1    Fac_1    Lev_2  10.16614</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3      Exp_1    Fac_2    Lev_1 204.61203</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4      Exp_1    Fac_2    Lev_2 294.59239</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5      Exp_2    Fac_1    Lev_1 122.36619</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6      Exp_2    Fac_1    Lev_2  29.07286</span>
 </code></pre></div>
     </div>
   </div>

@@ -32,7 +32,7 @@ simple_model <- function(data, Y_value, Fixed_Factor, ...){
                   deparse1(fo), 
                   ", data = ", 
                   deparse1(d), 
-                  ")")
+                  ", ...)")
   mod <- eval(parse(text = call1))
   mod
 }

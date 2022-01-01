@@ -1,53 +1,50 @@
 
-If you use `grafify`, please cite using the following DOI.
+If you use `grafify`, please cite Shenoy, A. R. (2021) grafify: an R
+package for easy graphs, ANOVAs and post-hoc comparisons (Version
+v1.4.1). Zenodo. <http://doi.org/10.5281/zenodo.5136508>
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5136508.svg)](https://doi.org/10.5281/zenodo.5136508)
+Latest DOI for all versions:
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5136507.svg)](https://doi.org/10.5281/zenodo.5136507)
 
 ### Installation
 
-To install this package use the following steps. You’ll need the package
-`remotes` installed first, skip to the second step if you already have
-it.
+You’ll need the `remotes` package to install `grafify` from GitHub (skip
+to the second step if you already have it).
 
 ``` r
 install.packages("remotes") #install remotes
 remotes::install_github("ashenoy-cmbi/grafify@*release") #install latest release 
 ```
 
-I’ve noticed (personal experience) that if RStudio prompts you to update
-other packages while installing `grafify`, skipping that step (blank
-line or none) works best. Update other packages after installing
-`grafify`.
-
-`grafify` also requires the following packages: `broom.mixed`,
-`magrittr`, `ggplot2`, `lme4`, `lmerTest`, `emmeans`, `car`, `pbkrtest`,
-`tidyr`, `purrr` and `Hmisc`.
+`grafify` requires the following packages to be installed:
+`broom.mixed`, `magrittr`, `ggplot2`, `lme4`, `lmerTest`, `emmeans`,
+`car`, `pbkrtest`, `tidyr`, `purrr` and `Hmisc`.
 
 ### Motivation
 
-<img src="man/figures/grafify.png" width="150px" />
+I made this package for the following:
 
-The main goals of this package, besides making it easier for me to share
-data and functions for the statistics workshop in my teaching, are the
-following:
-
-1.  easily make common types of graphs based on `ggplot2` but with fewer
-    lines of code
+1.  easily make graphs based on `ggplot2` but with far fewer lines of
+    code
 2.  carry out ANOVA analysis using linear models (`lm`) and mixed
-    effects (`lmer`) with little code
+    effects (`lmer`), quickly get ANOVA tables and perform model
+    diagnostics
 3.  perform post-hoc comparisons (through `emmeans`)
 4.  simulate one-way and two-way ANOVA design data for power analysis
     (documentation pending)
+5.  use and distribute it to for teaching purposes
 
-If you’re interested in basic theory and code for stats in R, also visit
-Statistics for [Micro/Immuno
+If you’re interested in basic theory and code for statistics written for
+biologists, also visit Statistics for [Micro/Immuno
 Biologists](https://microimmunostats.netlify.app).
 
-### **Latest version: v2.0.0**
+### **Latest version: v1.5.1**
 
 ### Features
 
-`grafify` has five main kinds of functions as follows:
+`grafify` has five main features (graphs, colour blind-friendly colour
+schemes, ANOVAs & post-hoc comparisons, practice datasets and data
+simulations) briefly described below:
 
 1.  There are 19 `plot_` functions of 6 broad types in `grafify`. The
     `plot_scatter..` versions are preferred when there are many data
@@ -77,8 +74,8 @@ Biologists](https://microimmunostats.netlify.app).
 
 <img src="man/figures/all_graphsv1.4.1.jpg" width="90%" />
 
-The following qualitative and continuous palettes are implemented in
-`grafify`:
+The following discreet (qualitative) and continuous (quantitative)
+palettes are implemented in `grafify`:
 
 <img src="man/figures/grafify_palettesv0.2.0.jpg" width="90%" />
 
@@ -99,7 +96,8 @@ v0.2.0.)
     2.  `posthoc_Levelwise`
     3.  `posthoc_vsRef`
 
-4.  Generating random one-way and two-way data based on mean and SD.
+4.  Generating random one-way and two-way data based on mean and SD and
+    residual error.
 
     1.  one-way designs: `make_1way_data`, `make_1way_rb_data`
     2.  two-way designs: `make_2way_data`, `make_2way_rb_data`
@@ -119,6 +117,10 @@ v0.2.0.)
 
 Visit the `grafify` [vignettes](https://grafify-vignettes.netlify.app)
 website for detailed examples of usage.
+
+### Hexsticker
+
+<img src="man/figures/grafify.png" width="150px" />
 
 ### Status
 

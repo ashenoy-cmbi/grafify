@@ -11,9 +11,9 @@ make_2way_rb_data(Group1_means, Group2_means, Num_exp, Exp_SD, Residual_SD)
 
 \item{Group2_means}{only for \code{make_2way_data} and \code{make_2way_rb_data}: a vector with mean(s) of each level of FactorX2 measured within Group 2}
 
-\item{Num_exp}{a single numeric value indicating the number of independent measurements, i.e. levels within the random factor Experiment}
+\item{Num_exp}{a single numeric value indicating the number of independent measurements, i.e. levels within the random factor RandFac}
 
-\item{Exp_SD}{a single numeric value indicating the standard deviation (SD) between experiments}
+\item{Exp_SD}{a single numeric value indicating the standard deviation (SD) between experiment, i.e. within RandFac}
 
 \item{Residual_SD}{a single numeric value indicating residual SD in the model}
 }
@@ -24,7 +24,7 @@ This function produces a \code{data.frame} object
 The \code{\link{make_1way_data}}, \code{\link{make_1way_rb_data}}, \code{\link{make_2way_data}} and \code{\link{make_2way_rb_data}} functions generate independent or randomised block (rb) design data of one-way or two-way designs.
 }
 \details{
-Random variates from the normal distribution based on user provided mean and SD provided are generated. For independent designs, the \code{Residual_SD} argument is used to set expected residual SD from the linear model. Exp_SD is used to set experiment-to-experiment SD, that will be assigned to the random factor for rb designs.
+Random variates from the normal distribution based on user provided mean and SD provided are generated. For independent designs, the \code{Residual_SD} argument is used to set expected residual SD from the linear model. Exp_SD is used to set experiment-to-experiment SD, that will be assigned to the random factor (RandFac) for rb designs.
 
 Num_exp sets the number of independent measurements per group.
 

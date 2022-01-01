@@ -13,8 +13,8 @@
 #' The quantitative response variables are in the numeric Values column.
 #'
 #' @param Group_means a vector with means of each level of the first fixed factor (FixFac_X1) measured within Group 1
-#' @param Num_exp a single numeric value indicating the number of independent measurements, i.e. levels within the random factor Experiment
-#' @param Exp_SD a single numeric value indicating the standard deviation (SD) between experiments
+#' @param Num_exp a single numeric value indicating the number of independent measurements, i.e. levels within the random factor RandFac
+#' @param Exp_SD a single numeric value indicating the standard deviation (SD) between experiments, i.e. within RandFac
 #' @param Residual_SD a single numeric value indicating residual SD in the model
 #'
 #' @return This function produces a \code{data.frame} object

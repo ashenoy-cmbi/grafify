@@ -1,10 +1,10 @@
 Package: grafify
 Type: Package
-Title: Easy data visualisation and linear models (ANOVAs)
+Title: Easy graphs for data visualisation and ANOVA as linear regression
 Version: 1.5.1
 Author: Avinash R. Shenoy
 Maintainer: Avinash Shenoy <a.shenoy@imperial.ac.uk>
-Description: Easily plot many types of graphs with few lines of code as compared to `ggplot2`. Options include scatter or dotplots and boxes, violins or SD error bars to depict dispersion, factorial ANOVAs, before-after plots, QQ plots and more. Choose from 8 colour-blind friendly discreet or 1 continuous colour scheme. Includes simple code to perform ANOVA analyses using ordinary (`lm`) or mixed-effects linear models (`lme4`) for randomised-block or repeated-measures designs. You can then carry out post-hoc comparisons of interest (`emmeans`). Also includes practice datasets for plotting graphs and performing analyses.
+Description: Easily plot many types of graphs with few lines of code. These wrappers can generate scatter or dotplots with boxes, violins or SD error bars to depict dispersion, data distributions, before-after plots, factorial ANOVAs and more (`ggplot`). Choose from 8 colour-blind friendly discreet or 1 continuous colour schemes. Perform ANOVA analyses as ordinary (`lm`) or mixed-effects linear models (`lmer`), including randomised-block or repeated-measures designs. Carry out post-hoc comparisons of interest (`emmeans`). Practice datasets included for plotting graphs and performing analyses.
 License: GPL
 Imports: 
     broom.mixed,
@@ -27,9 +27,11 @@ LazyData: true
 RoxygenNote: 7.1.2
 Roxygen: list(markdown = TRUE)
 Suggests: 
-    testthat (>= 3.0.0),
+    dplyr,
     knitr,
-    rmarkdown
+    rlang,
+    rmarkdown,
+    testthat (>= 3.0.0)
 VignetteBuilder: knitr
 URL: https://github.com/ashenoy-cmbi/grafify, https://doi.org/10.5281/zenodo.5136508; https://grafify-vignettes.netlify.app/
 Config/testthat/edition: 3

@@ -53,33 +53,32 @@
     </div>
 
 
-<p>If you use <code>grafify</code>, please cite using the following DOI.</p>
-<p><a href="https://doi.org/10.5281/zenodo.5136508" class="external-link"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.5136508.svg" alt="DOI"></a></p>
+<p>If you use <code>grafify</code>, please cite Shenoy, A. R. (2021) grafify: an R package for easy graphs, ANOVAs and post-hoc comparisons (Version v1.4.1). Zenodo. <a href="http://doi.org/10.5281/zenodo.5136508" class="external-link uri">http://doi.org/10.5281/zenodo.5136508</a></p>
+<p>Latest DOI for all versions: <a href="https://doi.org/10.5281/zenodo.5136507" class="external-link"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.5136507.svg" alt="DOI"></a></p>
 <div class="section level3">
 <h3 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a></h3>
-<p>To install this package use the following steps. You’ll need the package <code>remotes</code> installed first, skip to the second step if you already have it.</p>
+<p>You’ll need the <code>remotes</code> package to install <code>grafify</code> from GitHub (skip to the second step if you already have it).</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span> <span class="co">#install remotes</span>
 <span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"ashenoy-cmbi/grafify@*release"</span><span class="op">)</span> <span class="co">#install latest release </span></code></pre></div>
-<p>I’ve noticed (personal experience) that if RStudio prompts you to update other packages while installing <code>grafify</code>, skipping that step (blank line or none) works best. Update other packages after installing <code>grafify</code>.</p>
-<p><code>grafify</code> also requires the following packages: <code>broom.mixed</code>, <code>magrittr</code>, <code>ggplot2</code>, <code>lme4</code>, <code>lmerTest</code>, <code>emmeans</code>, <code>car</code>, <code>pbkrtest</code>, <code>tidyr</code>, <code>purrr</code> and <code>Hmisc</code>.</p>
+<p><code>grafify</code> requires the following packages to be installed: <code>broom.mixed</code>, <code>magrittr</code>, <code>ggplot2</code>, <code>lme4</code>, <code>lmerTest</code>, <code>emmeans</code>, <code>car</code>, <code>pbkrtest</code>, <code>tidyr</code>, <code>purrr</code> and <code>Hmisc</code>.</p>
 </div>
 <div class="section level3">
 <h3 id="motivation">Motivation<a class="anchor" aria-label="anchor" href="#motivation"></a></h3>
-<p><img src="reference/figures/grafify.png" width="150px"></p>
-<p>The main goals of this package, besides making it easier for me to share data and functions for the statistics workshop in my teaching, are the following:</p>
-<ol style="list-style-type: decimal"><li>easily make common types of graphs based on <code>ggplot2</code> but with fewer lines of code</li>
-<li>carry out ANOVA analysis using linear models (<code>lm</code>) and mixed effects (<code>lmer</code>) with little code</li>
+<p>I made this package for the following:</p>
+<ol style="list-style-type: decimal"><li>easily make graphs based on <code>ggplot2</code> but with far fewer lines of code</li>
+<li>carry out ANOVA analysis using linear models (<code>lm</code>) and mixed effects (<code>lmer</code>), quickly get ANOVA tables and perform model diagnostics</li>
 <li>perform post-hoc comparisons (through <code>emmeans</code>)</li>
 <li>simulate one-way and two-way ANOVA design data for power analysis (documentation pending)</li>
-</ol><p>If you’re interested in basic theory and code for stats in R, also visit Statistics for <a href="https://microimmunostats.netlify.app" class="external-link">Micro/Immuno Biologists</a>.</p>
+<li>use and distribute it to for teaching purposes</li>
+</ol><p>If you’re interested in basic theory and code for statistics written for biologists, also visit Statistics for <a href="https://microimmunostats.netlify.app" class="external-link">Micro/Immuno Biologists</a>.</p>
 </div>
 <div class="section level3">
-<h3 id="latest-version-v200"><strong>Latest version: v2.0.0</strong><a class="anchor" aria-label="anchor" href="#latest-version-v200"></a></h3>
+<h3 id="latest-version-v151"><strong>Latest version: v1.5.1</strong><a class="anchor" aria-label="anchor" href="#latest-version-v151"></a></h3>
 </div>
 <div class="section level3">
 <h3 id="features">Features<a class="anchor" aria-label="anchor" href="#features"></a></h3>
-<p><code>grafify</code> has five main kinds of functions as follows:</p>
+<p><code>grafify</code> has five main features (graphs, colour blind-friendly colour schemes, ANOVAs &amp; post-hoc comparisons, practice datasets and data simulations) briefly described below:</p>
 <ol style="list-style-type: decimal"><li>
 <p>There are 19 <code>plot_</code> functions of 6 broad types in <code>grafify</code>. The <code>plot_scatter..</code> versions are preferred when there are many data points, <code>plot_dot..</code> versions have a “cleaner” layout for smaller datasets.</p>
 <ol style="list-style-type: decimal"><li>Two categorical variables: these graphs either use scatter (or also called jitter) or dot plot geometries: <code>plot_scatterbar_sd</code>, <code>plot_scatterbox</code>, <code>plot_scatterviolin</code> and <code>plot_dotbar_sd</code>, <code>plot_dotbox</code>, <code>plot_dotviolin</code> <strong>New since v1.5.0</strong>: new <code>plot_</code> functions like the above but ending in <code>_sc</code> for <em>same colour</em> or <em>single colour</em> which plot boxes/dots/violins in one colour. The colour can be picked from <code>all_grafify</code> palettes or defined with a hexcode.</li>
@@ -94,7 +93,7 @@
 </li>
 </ol></li>
 </ol><p><img src="reference/figures/all_graphsv1.4.1.jpg" width="90%"></p>
-<p>The following qualitative and continuous palettes are implemented in <code>grafify</code>:</p>
+<p>The following discreet (qualitative) and continuous (quantitative) palettes are implemented in <code>grafify</code>:</p>
 <p><img src="reference/figures/grafify_palettesv0.2.0.jpg" width="90%"></p>
 <p>(The continuous colour scheme based on Paul Tol’s <a href="https://personal.sron.nl/~pault/#sec:sequential" class="external-link">YlOrBl variant</a> is new in v0.2.0.)</p>
 <ol start="2" style="list-style-type: decimal"><li>
@@ -110,7 +109,7 @@
 <li><code>posthoc_vsRef</code></li>
 </ol></li>
 <li>
-<p>Generating random one-way and two-way data based on mean and SD.</p>
+<p>Generating random one-way and two-way data based on mean and SD and residual error.</p>
 <ol style="list-style-type: decimal"><li>one-way designs: <code>make_1way_data</code>, <code>make_1way_rb_data</code>
 </li>
 <li>two-way designs: <code>make_2way_data</code>, <code>make_2way_rb_data</code>
@@ -126,6 +125,15 @@
 <div class="section level3">
 <h3 id="vignettes">Vignettes<a class="anchor" aria-label="anchor" href="#vignettes"></a></h3>
 <p>Visit the <code>grafify</code> <a href="https://grafify-vignettes.netlify.app" class="external-link">vignettes</a> website for detailed examples of usage.</p>
+</div>
+<div class="section level3">
+<h3 id="hexsticker">Hexsticker<a class="anchor" aria-label="anchor" href="#hexsticker"></a></h3>
+<p><img src="reference/figures/grafify.png" width="150px"></p>
+</div>
+<div class="section level3">
+<h3 id="status">Status<a class="anchor" aria-label="anchor" href="#status"></a></h3>
+<!-- badges: start -->
+<p><a href="https://github.com/ashenoy-cmbi/grafify/actions" class="external-link"><img src="https://github.com/ashenoy-cmbi/grafify/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a> <!-- badges: end --></p>
 </div>
 
 
