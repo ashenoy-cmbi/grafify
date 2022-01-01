@@ -16,3 +16,4 @@ grafify.png
 Readme.Rmd
 Readme.md
 ^\.github$
+cran-comments.md
