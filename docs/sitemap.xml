@@ -49,10 +49,16 @@
     <loc>/reference/get_graf_colours.html</loc>
   </url>
   <url>
+    <loc>/reference/graf_colours.html</loc>
+  </url>
+  <url>
     <loc>/reference/graf_col_palette.html</loc>
   </url>
   <url>
     <loc>/reference/graf_col_palette_default.html</loc>
+  </url>
+  <url>
+    <loc>/reference/graf_palettes.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
@@ -73,7 +79,13 @@
     <loc>/reference/mixed_anova.html</loc>
   </url>
   <url>
+    <loc>/reference/mixed_anova_slopes.html</loc>
+  </url>
+  <url>
     <loc>/reference/mixed_model.html</loc>
+  </url>
+  <url>
+    <loc>/reference/mixed_model_slopes.html</loc>
   </url>
   <url>
     <loc>/reference/plot_3d_scatterbar.html</loc>
@@ -167,6 +179,9 @@
   </url>
   <url>
     <loc>/reference/posthoc_Pairwise.html</loc>
+  </url>
+  <url>
+    <loc>/reference/posthoc_Trends.html</loc>
   </url>
   <url>
     <loc>/reference/posthoc_vsRef.html</loc>

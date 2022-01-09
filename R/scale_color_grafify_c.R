@@ -3,6 +3,13 @@
 #' `grafify` internally includes color-blind compatible schemes for fill and color/color aesthetics.
 #' Note that this scheme is **only** for continuous variables and has one palette (\code{yellow_conti}) [modified from](http://personal.sron.nl/~pault/#sec:sequential) the YlOrBr scheme from RColorBrewer. 
 #'
+#' Colour palettes available are as follows:
+#' 
+#' \if{latex}{\figure{grafify_palettesv0.2.0.jpg}{options:width=0.5in}}
+#' \if{html}{\out{<div style="text-align: center">}\figure{grafify_palettesv0.2.0.jpg}{options: style="width:750px;max-width:70\%;"}\out{</div>}}
+#'
+#' 
+#' 
 #' @param reverse Whether the color order should be reversed.
 #' @param ... Additional parameters for `scale_fill` or `scale_color`
 #'

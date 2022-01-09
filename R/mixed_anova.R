@@ -1,14 +1,15 @@
 #' ANOVA table from linear mixed effects analysis.
+#' 
+#' There are four related functions for mixed effects analyses: \code{mixed_model}, \code{mixed_anova}, \code{mixed_model_slopes}, and \code{mixed_anova_slopes}.
 #'
 #' This function uses \code{\link[lmerTest]{lmer}} to fit a linear mixed effect model, passes on the model to \code{\link{anova}} and provides the ANOVA table. 
 #' It produces a type II sum of squares ANOVA table with Kenward-Roger approximation for degrees of freedom (as implemented in \code{lmerTest}) package.
-#' It requires a data table, one dependent variable (Y_value), one or more independent variables (Fixed_Factor), and at least one random factor (Random_Factor).
+#' It requires a data table, one dependent variable (Y_value), one or more independent variables (Fixed_Factor), and at least one random factor (Random_Factor). These should match names of variables in the long-format data table exactly.
 #' This function is related to \code{\link{mixed_model}}.
 #'
-#' When more than one fixed factors are entered in the argument, a full model with interaction term is fitted. 
+#' More than one fixed factors can be provided as a vector (e.g. c("A", "B")). A full model with interaction term is fitted. 
 #' This means when \code{Y_value = Y, Fixed_factor = c("A", "B"), Random_factor = "R"} are entered as arguments, these are passed on as \code{Y ~ A*B + (1|R)} (which is equivalent to \code{Y ~ A + B + A:B + (1|R)}).
-#' For simplicity, only random intercepts are fitted (\code{(1|R)}). For factorial ANOVAs the default sum of squares is Type II and degrees of freedom are calculated using the Kenward-Roger approximation. 
-#' Check \code{\link[lmerTest]{lmer}} for more details.
+#' For simplicity, only random intercepts are fitted (\code{(1|R)}). 
 #'
 #' @param data a data table object, e.g. data.frame or tibble.
 #' @param Y_value name of column containing quantitative (dependent) variable, provided within "quotes".
@@ -25,11 +26,18 @@
 #' @importFrom lme4 lmer
 #'
 #' @examples
-#' #Basic usage where the table data_cholesterol is passed with names of two fixed factors as a vector
-#' mixed_anova(data_cholesterol, "Cholesterol", c("Treatment", "Hospital"), "Subject")
+#' #Usage with one fixed (Student) and random factor (Experiment), each within quotes
+#' mixed_anova(data = data_doubling_time, 
+#' Y_value = "Doubling_time", 
+#' Fixed_Factor = "Student", 
+#' Random_Factor = "Experiment")
+#' 
+#' #two fixed factors provided as a vector
+#' mixed_anova(data = data_cholesterol, 
+#' Y_value = "Cholesterol", 
+#' Fixed_Factor = c("Treatment", "Hospital"), 
+#' Random_Factor = "Subject")
 #'
-#' #Usages with one fixed (Student) and random factor (Experiment), each within quotes
-#' mixed_anova(data_doubling_time, "Doubling_time", "Student", "Experiment")
 
 mixed_anova <- function(data, Y_value, Fixed_Factor, Random_Factor, Df_method = "Kenward-Roger", SS_method = "II", ...){
   Y <- substitute(Y_value)

@@ -4,12 +4,12 @@
 \alias{posthoc_Levelwise}
 \title{Level-wise post-hoc comparisons from a linear or linear mixed effects model.}
 \usage{
-posthoc_Levelwise(Model, Factors, P_Adj = "fdr", ...)
+posthoc_Levelwise(Model, Fixed_Factor, P_Adj = "fdr", ...)
 }
 \arguments{
 \item{Model}{a model object fit using \code{\link{simple_model}} or \code{\link{mixed_model}} (or \code{\link{lm}} or \code{\link[lmerTest]{lmer}}).}
 
-\item{Factors}{one or  more categorical variables, provided as a vector (see Examples), whose levels you wish to compare pairwise. Names of factors should match factors used to fit the model. When more than one factor is provided e.g. \code{Fixed_factor = c("A", "B")}, this function passes this on as \code{specs = A|B} (note the vertical | between the two factors) to \code{\link[emmeans]{emmeans}} to produce comparisons between each level A with each other listed separately at each level of B.}
+\item{Fixed_Factor}{one or  more categorical variables, provided as a vector (see Examples), whose levels you wish to compare pairwise. Names of Fixed_Factor should match Fixed_Factor used to fit the model. When more than one factor is provided e.g. \code{Fixed_factor = c("A", "B")}, this function passes this on as \code{specs = A|B} (note the vertical | between the two Fixed_Factor) to \code{\link[emmeans]{emmeans}} to produce comparisons between each level A with each other listed separately at each level of B.}
 
 \item{P_Adj}{method for correcting P values for multiple comparisons. Default is set to false discovery rate ("fdr"), can be changed to "none", "tukey", "bonferroni", "sidak". See the \href{https://cran.r-project.org/web/packages/emmeans/vignettes/confidence-intervals.html#adjust}{manual} for \code{emmeans}.}
 
@@ -19,7 +19,7 @@ posthoc_Levelwise(Model, Factors, P_Adj = "fdr", ...)
 returns results produced by \code{\link[emmeans]{emmeans}}.
 }
 \description{
-This function is a wrapper based on \code{\link[emmeans]{emmeans}}, and needs a model produced by \code{\link{simple_model}} (which calls \code{\link{lm}}) or a linear mixed effects model produced by \code{\link{mixed_model}} (which calls \code{\link[lmerTest]{lmer}}). It also needs to know the fixed factors, which should match those in the model.
+This function is a wrapper based on \code{\link[emmeans]{emmeans}}, and needs a model produced by \code{\link{simple_model}} (which calls \code{\link{lm}}) or a linear mixed effects model produced by \code{\link{mixed_model}} (which calls \code{\link[lmerTest]{lmer}}). It also needs to know the fixed factor(s), which should match those in the model and data table.
 }
 \details{
 The function will generate \href{https://cran.r-project.org/web/packages/emmeans/vignettes/comparisons.html#pairwise}{level-wise comparisons}, i.e. comparison between of every level of one factor separately at each level of the other factor.
@@ -28,13 +28,18 @@ The first part of the \code{emmeans} results has the estimated marginal means, S
 }
 \examples{
 #make a linear model first
-CholMod <- mixed_model(data_cholesterol, "Cholesterol", c("Hospital", "Treatment"), "Subject") 
+CholMod <- mixed_model(data = data_cholesterol, 
+Y_value =  "Cholesterol", 
+Fixed_Factor = c("Hospital", "Treatment"),
+Random_Factor =  "Subject") 
 
-#note quotes used only for fixed factors
+#note quotes used only for fixed Fixed_Factor
 #to get comparisons between different hospitals separately for each level of Treatment
-posthoc_Levelwise(CholMod, c("Hospital", "Treatment"))
+posthoc_Levelwise(Model = CholMod, 
+Fixed_Factor = c("Hospital", "Treatment"))
 
 #get comparisons between treatments separately at each hospital
-posthoc_Levelwise(CholMod, c("Treatment", "Hospital"))
+posthoc_Levelwise(Model = CholMod, 
+Fixed_Factor = c("Treatment", "Hospital"))
 
 }

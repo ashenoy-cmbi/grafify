@@ -7,6 +7,13 @@
 #'
 #' Obviously, it is not recommended to use so many colours, but implementing this was easiest to prevent errors when using a lot of categorical variables.
 #'
+#' Colour palettes available are as follows:
+#' 
+#' \if{latex}{\figure{grafify_palettesv0.2.0.jpg}{options:width=0.5in}}
+#' \if{html}{\out{<div style="text-align: center">}\figure{grafify_palettesv0.2.0.jpg}{options: style="width:750px;max-width:70\%;"}\out{</div>}}
+#'
+#' 
+#' 
 #' There are eight palettes with 5-10 colours each, which are recommended. These can be called by naming the colour scheme using \code{palette = } argument.
 #' Additional options include "okabe_ito", "vibrant, "bright", "pale", "muted", "dark", "light", and "contrast". These are taken from [Paul Taul](https://personal.sron.nl/~pault/#sec:qualitative),  [Mike Mol](https://mikemol.github.io/technique/colorblind/2018/02/11/color-safe-palette.html) and [Okabe Ito](http://jfly.iam.u-tokyo.ac.jp/color/#pallet).
 #' `scale_fill_grafify2` and `scale_colour_grafify2` are identical except that when the number of categorical variables is fewer than the total number of colour shades in the palette (e.g. if you have 3 groups and the "okabe_ito" palette has 7 colours), these functions will pick the most 'distant' colours from the scheme than going sequentially. If you want colours assigned sequencially do not use `scale_fill_grafify` or `scale_colour_grafify`.

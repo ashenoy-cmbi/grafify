@@ -27,8 +27,10 @@ This function is related to \code{link{simple_anova}}.
 Output of this function can be used with \code{\link{posthoc_Pairwise}}, \code{\link{posthoc_Levelwise}} and \code{\link{posthoc_vsRef}}, or with \code{\link[emmeans]{emmeans}}.
 }
 \examples{
-#Basic usage where the table data_cholesterol is passed with names of one variable within quotes
-
-Doubmodel <- simple_model(data_doubling_time, "Doubling_time", "Student")#' #get summary
+#fixed factors provided as a vector
+Doubmodel <- simple_model(data = data_doubling_time,
+Y_value =  "Doubling_time", 
+Fixed_Factor = "Student")
+#get summary
 summary(Doubmodel)
 }

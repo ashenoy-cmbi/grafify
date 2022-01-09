@@ -16,7 +16,8 @@ plot_dotbar_sd(
   b_alpha = 1,
   d_alpha = 1,
   ColPal = "all_grafify",
-  ColRev = F,
+  ColRev = FALSE,
+  ColSeq = TRUE,
   TextXAngle = 0
 )
 }
@@ -45,6 +46,8 @@ plot_dotbar_sd(
 
 \item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)}
 
+\item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
+
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
 }
 \value{
@@ -56,20 +59,27 @@ This function takes a data table, X and Y variables, and plots a graph with a do
 \details{
 The function uses \code{\link[ggplot2]{stat_summary}} with \code{geom = "bar"}, and \code{\link[ggplot2]{geom_dotplot}} geometries.
 Standard deviation (SD) is plotted through \code{\link[ggplot2]{stat_summary}} calculated using \code{mean_sdl} from the \code{ggplot2} package (get help with \code{?mean_sdl}), and 1x SD is plotted (\code{fun.arg = list(mult = 1)}.
-The X variable is mapped to the \code{fill} aesthetic in both bar and dotplot, and its colour can be changed using \code{scale_fill_brewer} or any \code{scale_fill...} option. The size of dots can be adjusted using the parameter, which is  \code{dotsize = 1} by default.
+The X variable is mapped to the \code{fill} aesthetic in both bar and dotplot.
+Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} arguments.
+\code{ColPal} can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
+\code{ColRev} (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette.
+\code{ColSeq} decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
+The size of dots can be adjusted using the parameter, which is  \code{dotsize = 1} by default.
 
 This function is related to \code{\link{plot_scatterbar_sd}}, \code{\link{plot_dotbar_sd}} and \code{\link{plot_dotviolin}}.
 }
 \examples{
-#Basic usage requires a data table and X & Y variables#'
-plot_dotbar_sd(data_cholesterol, Treatment, Cholesterol)
+plot_dotbar_sd(data = data_cholesterol, 
+xcol = Treatment,
+ycol = Cholesterol)
 
 #Transformations of Y variable are possible as follows
-#' plot_dotbar_sd(data_cholesterol, Treatment, log(Cholesterol))
+plot_dotbar_sd(data = data_cholesterol, 
+xcol = Treatment, ycol = log(Cholesterol))
 
 #Additional ggplot layering is possible
-plot_dotbar_sd(data_cholesterol, Treatment, Cholesterol, dotsize = 2)+
+plot_dotbar_sd(data = data_cholesterol, 
+xcol = Treatment, ycol = Cholesterol, dotsize = 2)+
    labs(title = "Plot with scatter dots & boxplot")+
-   scale_colour_grafify()+scale_fill_grafify()+
    facet_wrap("Hospital")
 }

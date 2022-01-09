@@ -37,7 +37,6 @@ colorRamp_d <- function (colors, n,
 
   # RESPECT ORDER IF NCLASSES<NCOLORS
   if (n<nrow(colors)) colors <- colors[1:n,]
-
   if ((nc <- nrow(colors)) == 1L) {
     colors <- colors[c(1L, 1L), ]
     nc <- 2L

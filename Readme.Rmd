@@ -21,17 +21,17 @@ remotes::install_github("ashenoy-cmbi/grafify@*release") #install latest release
  
 ### Motivation 
 
-I made this package for the following:
+I made this package mainly to make it easier for plotting graphs during data exploration, teaching purposes to introduce linear models. I wanted to:
 
-1. easily make graphs based on `ggplot2` but with far fewer lines of code
+1. make many types of graphs based on `ggplot2` but with far fewer lines of code
 2. carry out ANOVA analysis using linear models (`lm`) and mixed effects (`lmer`), quickly get ANOVA tables and perform model diagnostics 
 3. perform post-hoc comparisons (through `emmeans`) 
 4. simulate one-way and two-way ANOVA design data for power analysis (documentation pending)
-5. use and distribute it to for teaching purposes 
+5. use and distribute data & functions for teaching purposes 
 
 If you're interested in basic theory and code for statistics written for biologists, also visit Statistics for [Micro/Immuno Biologists](https://microimmunostats.netlify.app). 
 
-### **Latest version: v1.5.1**
+### **Latest release version: v1.5.1**
 
 ### Features
 

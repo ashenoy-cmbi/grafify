@@ -22,9 +22,11 @@
 #' @import ggplot2 Hmisc
 #'
 #' @examples
-#' #Basic usage requires a data table and X & Y variables#'
-#' plot_dotbar_sd_sc(data_doubling_time, Student, Doubling_time)
-#' plot_dotbar_sd_sc(data_doubling_time, Student, Doubling_time, "ok_grey")
+#' plot_dotbar_sd_sc(data = data_doubling_time, 
+#' xcol = Student, ycol = Doubling_time)
+#' plot_dotbar_sd_sc(data = data_doubling_time, 
+#' xcol = Student, ycol = Doubling_time, 
+#' colour = "ok_grey")
 #'
 
 plot_dotbar_sd_sc <- function(data, xcol, ycol, colour = "ok_orange", dotsize = 1.5, dotthick = 1, bwid = 0.7, ewid = 0.2, fontsize = 20, b_alpha = 1, d_alpha = 1, TextXAngle = 0){

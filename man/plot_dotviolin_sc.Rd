@@ -11,12 +11,15 @@ plot_dotviolin_sc(
   colour = "ok_orange",
   dotsize = 1.5,
   dotthick = 1,
+  bvthick = 1,
+  bwid = 0.2,
   trim = T,
-  scale = "area",
-  fontsize = 20,
+  scale = "width",
+  b_alpha = 1,
   v_alpha = 1,
   d_alpha = 1,
-  TextXAngle = 0
+  TextXAngle = 0,
+  fontsize = 20
 )
 }
 \arguments{
@@ -32,17 +35,23 @@ plot_dotviolin_sc(
 
 \item{dotthick}{thickness of dot border (\code{stroke} parameter of \code{geom_dotplot}), default set to 1}
 
+\item{bvthick}{thickness of violin an boxplot lines; default 1}
+
+\item{bwid}{width of boxplots; default 0.2}
+
 \item{trim}{set whether tips of violin plot should be trimmed at high/low data. Default \code{trim = T}, can be changed to F.}
 
 \item{scale}{set to "area" by default, can be changed to "count" or "width".}
 
-\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+\item{b_alpha}{fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency)}
 
 \item{v_alpha}{fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency)}
 
 \item{d_alpha}{fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency)}
 
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
+
+\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 }
 \value{
 This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
@@ -55,7 +64,11 @@ The default colour is \code{ok_orange}. \code{ColPal} and \code{ColRev} argument
 \examples{
 
 #plot with trim = F
-plot_dotviolin_sc(data_1w_death, Genotype, Death, scale = "width", trim = FALSE)
-plot_dotviolin_sc(data_1w_death, Genotype, Death, "ok_grey", scale = "width", trim = FALSE)
+plot_dotviolin_sc(data = data_1w_death, 
+xcol = Genotype, ycol = Death, 
+scale = "width", trim = FALSE)
+plot_dotviolin_sc(data = data_1w_death, 
+xcol = Genotype, ycol = Death, colour = "ok_grey", 
+scale = "width", trim = FALSE)
 
 }

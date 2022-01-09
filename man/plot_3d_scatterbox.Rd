@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_3d_scatterbox.R
 \name{plot_3d_scatterbox}
 \alias{plot_3d_scatterbox}
-\title{Plot a scatter and box plot with three variables.}
+\title{Plot a scatter and box plot with matched symbols.}
 \usage{
 plot_3d_scatterbox(
   data,
@@ -15,8 +15,9 @@ plot_3d_scatterbox(
   fontsize = 20,
   b_alpha = 1,
   s_alpha = 1,
+  ColSeq = TRUE,
   ColPal = "all_grafify",
-  ColRev = F,
+  ColRev = FALSE,
   TextXAngle = 0
 )
 }
@@ -41,6 +42,8 @@ plot_3d_scatterbox(
 
 \item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)}
 
+\item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
+
 \item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
 
 \item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)}
@@ -51,35 +54,57 @@ plot_3d_scatterbox(
 This function returns a \code{ggplot2} object.
 }
 \description{
-The functions \code{\link{plot_3d_scatterbar}}, \code{\link{plot_3d_scatterbox}}, \code{\link{plot_4d_scatterbar}}  and \code{\link{plot_4d_scatterbox}} allow 3d or 4d plots with 3 or 4 variables, respectively.
-These four functions are useful for factorial ANOVA designs with randomised blocks or repeated-measures or for showing matched observations (e.g. depicting matched subjects or experiments).
-They rely on \code{\link[ggplot2]{ggplot}} with \code{\link[ggplot2]{geom_point}} and \code{\link[ggplot2]{geom_bar}} (through \code{stat_summary}) or \code{\link[ggplot2]{geom_boxplot}} geometries.
+The functions \code{\link{plot_3d_scatterbar}}, \code{\link{plot_3d_scatterbox}}, \code{\link{plot_4d_scatterbar}}  and \code{\link{plot_4d_scatterbox}} are useful for plotting one-way or two-way ANOVA designs with randomised blocks or repeated measures. The blocks or subjects can be mapped to the \code{shapes} argument in both functions (up to 25 levels can be mapped to \code{shapes}; there will be an error if this number is exceeded). The 3d versions use the categorical variable (\code{xcol}) for grouping (e.g. one-way ANOVA designs), and 4d versions take an additional grouping variable (e.g. two-way ANOVA designs) that is passed to either \code{boxes} or \code{bars} argument.
 }
 \details{
-These functions take a data table, X and Y variables, and a one or two more categorical variable for grouping together for boxes or bars, and the shape of symbols. These variables will be automatically converted to categorical variables even if numeric in the data table.
-In \code{plot_3d_scatterbox} and \code{plot_3d_scatterbar} the third variable is called "shapes" and is mapped to both the box/bar fill colour and the shape of symbols.
-In \code{plot_4d_scatterbox} and \code{plot_4d_scatterbar} the third variable is called "boxes" or "bars", respectively, is mapped to fill the colour of these geometries. The fourth variable "shapes" is mapped to the shape of symbols.
-Shapes are always plotted in black colour, with 80\% opacity (to enable overlapping data points to be seen; cannot be changed).
+These functions rely on \code{\link[ggplot2]{ggplot}} with \code{\link[ggplot2]{geom_point}} and \code{\link[ggplot2]{geom_bar}} (through \code{stat_summary}) or \code{\link[ggplot2]{geom_boxplot}} geometries.
 
-Scatter points are depicted using \code{\link[ggplot2]{geom_point}} with \code{position = position_jitterdodge(dodge.width = 0.8, jitter.width = 0.05)}, so shapes are jittered and dodged along the X variable.
-Bars depict means using \code{\link[ggplot2]{stat_summary}} with \code{geom = "bar", fun = "mean"} , and bar width is set to 0.7 and cannot be changed.
-Error bar width can be changed with the \code{ewid} argument.
-Boxplot geometry uses \code{\link[ggplot2]{geom_boxplot}} with \code{position = position_dodge(width = 0.9), width = 0.6}. The thick line depicts the median, the box the IQR and the whiskers 1.5*IQR.
+Variables other than the quantitative variable (\code{ycol}) will be automatically converted to categorical variables even if they are numeric in the data table.
 
-The X and "shapes" variables are mapped with \code{group = interaction{ xcol, shapes}}.
-In the 3d versions, the "shapes" variable is mapped to \code{scale_fill_grafify} aesthetic of bar/boxes, and in 4d versions, it is the "boxes" or "bars" argument that is mapped to the \code{scale_fill_grafify} call.
+Shapes are always plotted in black colour, and their opacity can be changed with the \code{s_alpha} argument and overlap can be reduced with the \code{jitter} argument. Other arguments are similar to other plot functions as briefly explained below.
 
-Colour palette can be changed using \code{ColPal} and colours reversed with \code{ColRev}.
+Bars depict means using \code{\link[ggplot2]{stat_summary}} with \code{geom = "bar", fun = "mean"} , and bar width is set to 0.7 (cannot be changed). Error bar width can be changed with the \code{ewid} argument.
 
-Since v0.2.2, the scatter plots are jittered with \code{width = 0.05} to prevent overlapping and for consistency with \code{plot_3d_scatterbar} and \code{plot_3d_scatterbox}.
-The opacity of the boxes/bars can be changed with the \code{alpha} argument.
+Boxplot geometry uses \code{\link[ggplot2]{geom_boxplot}} with \code{position = position_dodge(width = 0.9), width = 0.6}. The thick line within the boxplot depicts the median, the box the IQR (interquantile range) and the whiskers 1.5*IQR.
 
-In \code{plot_4d_scatterbox}, the third & fourth variables can be the same (e.g. for one-way ANOVA with randomised blocks). Up to 25 levels can be mapped to "shapes".
+In 4d versions, the two grouping variables (i.e. \code{xcol} and either \code{boxes} or \code{bars}) are passed to ggplot aesthetics through \code{group = interaction{ xcol, shapes}}.
+
+Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} arguments.
+\code{ColPal} can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
+\code{ColRev} (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette.
+\code{ColSeq} decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
+
+All four functions can be expanded further, for example with \code{\link[ggplot2]{facet_grid}} or \code{\link[ggplot2]{facet_wrap}}.
 
 All four functions can be expanded further, for example with \code{\link[ggplot2]{facet_grid}} or \code{\link[ggplot2]{facet_wrap}}.
 }
 \examples{
-#Basic usage
-plot_3d_scatterbox(data_cholesterol, Treatment, Cholesterol, Hospital)
+#3d version for 1-way data with blocking
+plot_3d_scatterbox(data = data_1w_death, 
+xcol = Genotype, ycol = Death, shapes = Experiment)
+#compare above graph to
+plot_scatterbox(data = data_1w_death, xcol = Genotype, ycol = Death)
+
+#for more complex data
+plot_3d_scatterbox(data = data_cholesterol, 
+xcol = Treatment, 
+ycol = Cholesterol, 
+shapes = Hospital, 
+fontsize = 10, 
+TextXAngle = 45)+
+facet_wrap("Hospital")
+
+#4d version for 2-way data with blocking
+plot_4d_scatterbar(data = data_2w_Festing, 
+xcol = Strain, 
+ycol = GST, 
+bars = Treatment, 
+shapes = Block)
+
+plot_4d_scatterbox(data = data_2w_Tdeath, 
+xcol = Genotype, 
+ycol = PI, 
+boxes = Time, 
+shapes = Experiment)
 
 }

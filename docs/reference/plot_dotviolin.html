@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.0.9000</span>
       </span>
     </div>
 
@@ -65,14 +65,18 @@
   <span class="va">ycol</span>,
   dotsize <span class="op">=</span> <span class="fl">1.5</span>,
   dotthick <span class="op">=</span> <span class="fl">1</span>,
+  bvthick <span class="op">=</span> <span class="fl">1</span>,
+  bwid <span class="op">=</span> <span class="fl">0.2</span>,
   trim <span class="op">=</span> <span class="cn">T</span>,
-  scale <span class="op">=</span> <span class="st">"area"</span>,
-  fontsize <span class="op">=</span> <span class="fl">20</span>,
+  scale <span class="op">=</span> <span class="st">"width"</span>,
+  b_alpha <span class="op">=</span> <span class="fl">1</span>,
   v_alpha <span class="op">=</span> <span class="fl">1</span>,
   d_alpha <span class="op">=</span> <span class="fl">1</span>,
   ColPal <span class="op">=</span> <span class="st">"all_grafify"</span>,
-  ColRev <span class="op">=</span> <span class="cn">F</span>,
-  TextXAngle <span class="op">=</span> <span class="fl">0</span>
+  ColRev <span class="op">=</span> <span class="cn">FALSE</span>,
+  ColSeq <span class="op">=</span> <span class="cn">TRUE</span>,
+  TextXAngle <span class="op">=</span> <span class="fl">0</span>,
+  fontsize <span class="op">=</span> <span class="fl">20</span>
 <span class="op">)</span></code></pre></div>
     </div>
 
@@ -88,12 +92,16 @@
 <dd><p>size of dots relative to <code>binwidth</code> used by <code>geom_dotplot</code>. Default set to 1.5, increase/decrease as needed.</p></dd>
 <dt>dotthick</dt>
 <dd><p>thickness of dot border (<code>stroke</code> parameter of <code>geom_dotplot</code>), default set to 1</p></dd>
+<dt>bvthick</dt>
+<dd><p>thickness of violin and boxplot lines; default 1</p></dd>
+<dt>bwid</dt>
+<dd><p>width of boxplots; default 0.2</p></dd>
 <dt>trim</dt>
 <dd><p>set whether tips of violin plot should be trimmed at high/low data. Default <code>trim = T</code>, can be changed to F.</p></dd>
 <dt>scale</dt>
 <dd><p>set to "area" by default, can be changed to "count" or "width".</p></dd>
-<dt>fontsize</dt>
-<dd><p>parameter of <code>base_size</code> of fonts in <code>theme_classic</code>, default set to size 20.</p></dd>
+<dt>b_alpha</dt>
+<dd><p>fractional opacity of violins, default set to 1 (i.e. maximum opacity &amp; zero transparency)</p></dd>
 <dt>v_alpha</dt>
 <dd><p>fractional opacity of violins, default set to 1 (i.e. maximum opacity &amp; zero transparency)</p></dd>
 <dt>d_alpha</dt>
@@ -102,8 +110,12 @@
 <dd><p>grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".</p></dd>
 <dt>ColRev</dt>
 <dd><p>whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)</p></dd>
+<dt>ColSeq</dt>
+<dd><p>logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  <code>scale_fill_grafify2</code>.</p></dd>
 <dt>TextXAngle</dt>
 <dd><p>orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text</p></dd>
+<dt>fontsize</dt>
+<dd><p>parameter of <code>base_size</code> of fonts in <code>theme_classic</code>, default set to size 20.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -112,8 +124,14 @@
     <div id="details">
     <h2>Details</h2>
     <p>The function uses <code><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html" class="external-link">geom_violin</a></code> and <code><a href="https://ggplot2.tidyverse.org/reference/geom_dotplot.html" class="external-link">geom_dotplot</a></code> geometries.
-Note that the <code>geom_violin</code> options are set as follows: <code>scale = "area", draw_quantiles = c(0.25, .5, .75)</code>. The <code>trim = T</code> set by default can be changed when calling the function.
-The X variable is mapped to the <code>fill</code> aesthetic in both violinplot and dotplot, and its colour can be changed using <code>scale_fill_brewer</code> or any <code>scale_fill...</code> option. The size of dots can be adjusted using the parameter, which is <code>dotsize = 1</code> by default.</p>
+Note that the <code>geom_violin</code> options are set as follows: <code>scale = "width"</code>. The <code>trim = T</code> set by default can be changed when calling the function.
+The boxplot shows IQR and the median is marked with a thicker horizontal line.
+The X variable is mapped to the <code>fill</code> aesthetic in both violinplot and dotplot.
+Colours can be changed using <code>ColPal</code>, <code>ColRev</code> or <code>ColSeq</code> arguments.
+<code>ColPal</code> can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
+<code>ColRev</code> (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette.
+<code>ColSeq</code> decides whether colours are picked by respecting the order in the palette or the most distant ones using <code><a href="https://rdrr.io/r/grDevices/colorRamp.html" class="external-link">colorRampPalette</a></code>.</p>
+<p>The size of dots can be adjusted using the parameter, which is <code>dotsize = 1</code> by default.</p>
 <p>This function is related to <code><a href="plot_scatterbar_sd.html">plot_scatterbar_sd</a></code>, <code><a href="plot_dotbar_sd.html">plot_dotbar_sd</a></code> and <code>plot_dotviolin</code>.</p>
     </div>
 
@@ -121,12 +139,15 @@ The X variable is mapped to the <code>fill</code> aesthetic in both violinplot a
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
 <span class="r-in"><span class="co">#plot with trim = F</span></span>
-<span class="r-in"><span class="fu">plot_dotviolin</span><span class="op">(</span><span class="va">data_t_pdiff</span>, <span class="va">Condition</span>, <span class="va">Mass</span>, dotsize <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu">plot_dotviolin</span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_t_pdiff</span>, </span>
+<span class="r-in">xcol <span class="op">=</span> <span class="va">Condition</span>, ycol <span class="op">=</span> <span class="va">Mass</span>, dotsize <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Bin width defaults to 1/30 of the range of the data. Pick better value with `binwidth`.</span>
 <span class="r-plt img"><img src="plot_dotviolin-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co">#without trimming</span></span>
-<span class="r-in"><span class="fu">plot_dotviolin</span><span class="op">(</span><span class="va">data_t_pdiff</span>, <span class="va">Condition</span>, <span class="va">Mass</span>, dotsize <span class="op">=</span> <span class="fl">2</span>, trim <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu">plot_dotviolin</span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_t_pdiff</span>, </span>
+<span class="r-in">xcol <span class="op">=</span> <span class="va">Condition</span>, ycol <span class="op">=</span> <span class="va">Mass</span>, </span>
+<span class="r-in">dotsize <span class="op">=</span> <span class="fl">2</span>, trim <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Bin width defaults to 1/30 of the range of the data. Pick better value with `binwidth`.</span>
 <span class="r-plt img"><img src="plot_dotviolin-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"></span>
@@ -140,7 +161,7 @@ The X variable is mapped to the <code>fill</code> aesthetic in both violinplot a
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Avinash Shenoy.</p>
+  <p></p><p>Developed by Avinash R Shenoy.</p>
 </div>
 
 <div class="pkgdown">

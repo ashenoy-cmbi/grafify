@@ -10,11 +10,12 @@
 #' @param xcol name of the column with a **categorical** X variable.
 #' @param ycol name of the column with quantitative Y variable
 #' @param colour colour of boxes and dots; a number between 1-64, any hexcode or names from `grafify` colour palettes. Default is `ok_orange`.
+#' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param symsize size of point symbols, default set to 3.5
 #' @param symthick thickness of symbol border, default set to 1
 #' @param ewid width of error bars, default set to 0.2
-#' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
+#' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #'
 #' @return This function returns a \code{ggplot2} object.
 #' @export plot_point_sd_sc
@@ -22,11 +23,14 @@
 #'
 #' @examples
 #' #Basic usage
-#' plot_point_sd_sc(data_doubling_time, Student, Doubling_time)
-#' plot_point_sd_sc(data_doubling_time, Student, Doubling_time, "ok_grey")
+#' plot_point_sd_sc(data = data_doubling_time, 
+#' xcol = Student, ycol = Doubling_time)
+#' plot_point_sd_sc(data = data_doubling_time, 
+#' xcol = Student, ycol = Doubling_time, 
+#' colour = "ok_grey")
 #'
 
-plot_point_sd_sc <- function(data, xcol, ycol, colour = "ok_orange", symsize = 3.5, symthick = 1, ewid = 0.2, fontsize = 20, TextXAngle = 0){
+plot_point_sd_sc <- function(data, xcol, ycol, colour = "ok_orange", s_alpha = 1, symsize = 3.5, symthick = 1, ewid = 0.2, TextXAngle = 0, fontsize = 20){
   
 ifelse(grepl("#", colour), 
          a <- colour,
@@ -37,6 +41,7 @@ ifelse(grepl("#", colour),
     stat_summary(geom = "errorbar",
                  fun.data = "mean_sdl", size = 1,
                  fun.args = list(mult = 1),
+                 alpha = {{ s_alpha }},
                  width = {{ ewid }})+
     stat_summary(geom = "point", shape = 21,
                  size = {{ symsize }}, 

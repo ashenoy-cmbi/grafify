@@ -10,15 +10,19 @@ plot_scatterviolin(
   ycol,
   symsize = 2.5,
   symthick = 1,
-  jitter = 0,
-  trim = T,
-  scale = "area",
-  fontsize = 20,
-  v_alpha = 1,
+  bwid = 0.1,
+  bvthick = 1,
+  b_alpha = 1,
   s_alpha = 1,
+  v_alpha = 1,
   ColPal = "all_grafify",
-  ColRev = F,
-  TextXAngle = 0
+  ColSeq = TRUE,
+  ColRev = FALSE,
+  jitter = 0,
+  trim = TRUE,
+  scale = "width",
+  TextXAngle = 0,
+  fontsize = 20
 )
 }
 \arguments{
@@ -32,23 +36,31 @@ plot_scatterviolin(
 
 \item{symthick}{thickness of dot border (\code{stroke} parameter of \code{geom_point}), default set to 1}
 
+\item{bwid}{width of boxplots; default 0.2}
+
+\item{bvthick}{thickeness of both violin and boxplot lines; defalut 1}
+
+\item{b_alpha}{fractional opacity of boxplots, default set to 1 (i.e. maximum opacity & zero transparency). For white boxplots inside violins, set \code{b_alpha = 0}.}
+
+\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency). Set \code{s_alpha = 0} to not show scatter plot.}
+
+\item{v_alpha}{fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency)}
+
+\item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
+
+\item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
+
+\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)}
+
 \item{jitter}{extent of jitter (scatter) of symbols, default is 0 (i.e. aligned symbols). To reduce symbol overlap, try 0.1-0.3 or higher.}
 
 \item{trim}{set whether tips of violin plot should be trimmed at high/low data. Default \code{trim = T}, can be changed to F.}
 
 \item{scale}{set to "area" by default, can be changed to "count" or "width".}
 
-\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
-
-\item{v_alpha}{fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency)}
-
-\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)}
-
-\item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
-
-\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)}
-
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
+
+\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 }
 \value{
 This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
@@ -58,8 +70,15 @@ This function takes a data table, X and Y variables, and plots a graph with a sc
 }
 \details{
 The function uses \code{\link[ggplot2]{geom_violin}} and \code{\link[ggplot2]{geom_point}} geometries.
-Note that the \code{\link{geom_violin}} options are set as follows: \code{scale = "area", draw_quantiles = c(0.25, .5, .75)}. The \code{trim = T} set by default can be changed when calling the function.
-The X variable is mapped to the \code{fill} aesthetic in both violin and symbols, and its colour can be changed using \code{ColPal} option. The size of symbols can be adjusted using \code{symsize} set to 1 by default.
+Note that the \code{\link{geom_violin}} options are set as follows: \code{scale = "width"}. The \code{trim = T} set by default can be changed when calling the function.
+The boxplot shows IQR and the median is marked with a thicker horizontal line.
+The X variable is mapped to the \code{fill} aesthetic in both violin and symbols, and its colour can be changed using \code{ColPal} option.
+Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} arguments.
+\code{ColPal} can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
+\code{ColRev} (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette.
+\code{ColSeq} decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
+
+The size of symbols can be adjusted using \code{symsize} set to 1 by default.
 Transparency of violins and symbols can be set independently with \code{v_alpha} and \code{s_alpha}, respectively.
 
 Three types of plots are available for scatter/jitter symbols and either bars+SD, boxplot or violin plots: \code{\link{plot_scatterbar_sd}}, \code{\link{plot_scatterbox}} and \code{\link{plot_scatterviolin}}.
@@ -68,9 +87,20 @@ These are related to the three "dot" versions that use a different geometry for 
 \examples{
 
 #plot without jitter
-plot_scatterviolin(data_t_pdiff, Condition, Mass, symsize = 2, trim = FALSE)
+plot_scatterviolin(data = data_t_pdiff, 
+xcol = Condition, ycol = Mass, 
+symsize = 2, trim = FALSE)
 
 #with jitter
-plot_scatterviolin(data_t_pdiff, Condition, Mass, symsize = 2, trim = FALSE, jitter = 0.1)
+plot_scatterviolin(data = data_t_pdiff, 
+xcol = Condition, ycol = Mass, 
+symsize = 2, trim = FALSE, jitter = 0.1)
+
+#white boxplot and no symbols
+plot_scatterviolin(data = data_t_pdiff, 
+xcol = Condition, ycol = Mass, 
+b_alpha = 0, s_alpha = 0,
+symsize = 2, trim = FALSE, jitter = 0.1)
+
 
 }

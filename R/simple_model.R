@@ -16,9 +16,11 @@
 #' @importFrom stats as.formula lm
 #'
 #' @examples
-#' #Basic usage where the table data_cholesterol is passed with names of one variable within quotes
-#'
-#' Doubmodel <- simple_model(data_doubling_time, "Doubling_time", "Student")#' #get summary
+#' #fixed factors provided as a vector
+#' Doubmodel <- simple_model(data = data_doubling_time,
+#' Y_value =  "Doubling_time", 
+#' Fixed_Factor = "Student")
+#' #get summary
 #' summary(Doubmodel)
 
 simple_model <- function(data, Y_value, Fixed_Factor, ...){

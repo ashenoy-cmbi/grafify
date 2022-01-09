@@ -11,9 +11,9 @@ plot_xy_NumGroup(
   NumGroup,
   symsize = 2,
   symthick = 1,
-  fontsize = 20,
   s_alpha = 1,
-  TextXAngle = 0
+  TextXAngle = 0,
+  fontsize = 20
 )
 }
 \arguments{
@@ -29,11 +29,11 @@ plot_xy_NumGroup(
 
 \item{symthick}{thickness of symbol border, default set to 1}
 
-\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
-
 \item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)}
 
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
+
+\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 }
 \value{
 This function returns a \code{ggplot2} object.
@@ -48,7 +48,7 @@ This plot is related to \code{\link{plot_xy_CatGroup}} which requires a categori
 When summary statistics (mean/median) are required, use \code{\link{plot_3d_scatterbar}}, \code{\link{plot_3d_scatterbox}} or \code{\link{plot_4d_scatterbox}}.
 }
 \examples{
-#Basic usage with mtcars data
 #The grouping factor gear is numeric 
-plot_xy_NumGroup(mtcars, mpg, disp, gear)
+plot_xy_NumGroup(data = mtcars, 
+xcol = mpg, ycol = disp, NumGroup = gear)
 }

@@ -13,21 +13,20 @@
 #' @param NumGroup a numeric factor for `fill` aesthetic of data points.
 #' @param symsize size of point symbols, default set to 2
 #' @param symthick thickness of symbol border, default set to 1
-#' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
+#' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #'
 #' @return This function returns a \code{ggplot2} object.
 #' @export plot_xy_NumGroup
 #' @import ggplot2
 #'
 #' @examples
-#' #Basic usage with mtcars data
 #' #The grouping factor gear is numeric 
-#' plot_xy_NumGroup(mtcars, mpg, disp, gear)
+#' plot_xy_NumGroup(data = mtcars, 
+#' xcol = mpg, ycol = disp, NumGroup = gear)
 
-plot_xy_NumGroup <- function(data, xcol, ycol, NumGroup, symsize = 2, symthick = 1, 
-                             fontsize = 20, s_alpha = 1, TextXAngle = 0){
+plot_xy_NumGroup <- function(data, xcol, ycol, NumGroup, symsize = 2, symthick = 1, s_alpha = 1, TextXAngle = 0, fontsize = 20){
   ggplot2::ggplot(data, aes(x = {{ xcol }},
                             y = {{ ycol }}))+
     geom_point(size = {{ symsize }}, 

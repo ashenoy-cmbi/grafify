@@ -29,6 +29,8 @@ This function is related to \code{link{simple_model}}.
 }
 \examples{
 #Basic usage 
-simple_anova(data_doubling_time, "Doubling_time", "Student")
+simple_anova(data = data_doubling_time, 
+Y_value = "Doubling_time", 
+Fixed_Factor = "Student")
 
 }

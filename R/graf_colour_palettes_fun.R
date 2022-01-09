@@ -1,5 +1,5 @@
 #' Call palettes for scale & fill
-#'
+#' 
 #' @param palette internal
 #' @param reverse internal
 #' @param ... additional parameters

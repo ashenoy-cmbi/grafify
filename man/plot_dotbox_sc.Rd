@@ -49,7 +49,10 @@ The default colour is \code{ok_orange}. \code{ColPal} and \code{ColRev} argument
 \examples{
 
 #Basic usage requires a data table and X & Y variables#'
-plot_dotbox_sc(data_doubling_time, Student, Doubling_time)
-plot_dotbox_sc(data_doubling_time, Student, Doubling_time, "ok_grey")
+plot_dotbox_sc(data = data_doubling_time, 
+xcol = Student, ycol = Doubling_time)
+plot_dotbox_sc(data = data_doubling_time, 
+xcol = Student, ycol = Doubling_time, 
+colour = "ok_grey")
 
 }

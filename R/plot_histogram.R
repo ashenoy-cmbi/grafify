@@ -1,22 +1,28 @@
 #' Plot data distribution as histograms.
 #'
-#' This function takes a data table, X and a Grouping variable (if available) and plots a histogram graph using \code{\link[ggplot2]{ggplot}}.
+#' This function takes a data table, a quantitative variable (`ycol`) and a Grouping variable (`group`), if available, and plots a histogram graph using \code{\link[ggplot2]{ggplot}}.
 #'
 #' The function uses \code{\link{geom_histogram}}).
 #' Note that the function requires the quantitative Y variable first, and groups them based on an X variable.
 #' The Group variable is mapped to the \code{fill} and \code{colour} aesthetics in \code{geom_histogram}.
+#' 
 #' ColPal & ColRev options are applied to both `fill` and `colour` scales.
+#' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. 
+#' `ColPal` can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
+#' `ColRev` (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette. 
+#' `ColSeq` decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
 #'
 #' @param data a data table e.g. data.frame or tibble.
 #' @param ycol name of the column containing the quantitative variable whose histogram distribution is to be plotted
-#' @param Group name of the column containing a categorical grouping variable
+#' @param group name of the column containing a categorical grouping variable
 #' @param BinSize bins to use on X-axis, default set to 30. 
 #' @param linethick thickness of symbol border, default set to 1
-#' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
-#' @param alpha fractional opacity of symbols, default set to 0.2 (i.e. 20% opacity)
+#' @param c_alpha fractional opacity of colour filled within histograms, default set to 0.2 (i.e. 20% opacity)
 #' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
+#' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
+#' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #'
 #' @return This function returns a \code{ggplot2} object.
 #' @export plot_histogram
@@ -24,24 +30,28 @@
 #'
 #' @examples
 #' #Basic usage
-#' plot_histogram(data_t_pratio, Cytokine, Genotype, BinSize = 10)+scale_x_log10()
+#' plot_histogram(data = data_t_pratio, 
+#' ycol = Cytokine, group = Genotype, BinSize = 10)+
+#' scale_x_log10()
 
-plot_histogram <- function(data, ycol, Group, BinSize = 30, linethick = 1, fontsize = 20, alpha = 0.2, ColPal = "all_grafify", ColRev = F, TextXAngle = 0){
-  ggplot2::ggplot(data, aes(sample = {{ ycol }}))+
+plot_histogram <- function(data, ycol, group, BinSize = 30, linethick = 1, c_alpha = 0.2, ColPal = "all_grafify", ColRev = FALSE, ColSeq = TRUE, TextXAngle = 0, fontsize = 20){
+  P <- ggplot2::ggplot(data, aes(sample = {{ ycol }}))+
     geom_histogram(size = {{ linethick }},
-                   alpha = {{ alpha }},
+                   alpha = {{ c_alpha }},
                    bins = {{ BinSize }}, 
                    aes(x = {{ ycol }},
-                       fill = {{ Group }},
-                       colour = {{ Group }}))+
-    labs(fill = enquo(Group),
-         colour = enquo(Group),
+                       fill = {{ group }},
+                       colour = {{ group }}))+
+    labs(fill = enquo(group),
+         colour = enquo(group),
          y = "Count")+
     theme_classic(base_size = {{ fontsize }})+
     theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = {{ TextXAngle }}))+
-    scale_fill_grafify(palette = {{ ColPal }},
-                       reverse = {{ ColRev }})+
-    scale_colour_grafify(palette = {{ ColPal }}, 
-                         reverse = {{ ColRev }})
+    guides(x = guide_axis(angle = {{ TextXAngle }}))
+  if (ColSeq) {
+    P <- P + scale_fill_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }}) + scale_colour_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})
+  } else {
+    P <- P + scale_fill_grafify2(palette = {{ ColPal }}, reverse = {{ ColRev }}) + scale_colour_grafify2(palette = {{ ColPal }}, reverse = {{ ColRev }})
+    }
+  P
 }

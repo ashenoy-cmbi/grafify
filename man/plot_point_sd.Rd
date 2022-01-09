@@ -8,13 +8,15 @@ plot_point_sd(
   data,
   xcol,
   ycol,
+  s_alpha = 1,
   symsize = 3.5,
   symthick = 1,
   ewid = 0.2,
-  fontsize = 20,
   ColPal = "all_grafify",
-  ColRev = F,
-  TextXAngle = 0
+  ColSeq = TRUE,
+  ColRev = FALSE,
+  TextXAngle = 0,
+  fontsize = 20
 )
 }
 \arguments{
@@ -24,19 +26,23 @@ plot_point_sd(
 
 \item{ycol}{name of the column with quantitative Y variable}
 
+\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)}
+
 \item{symsize}{size of point symbols, default set to 3.5}
 
 \item{symthick}{thickness of symbol border, default set to 1}
 
 \item{ewid}{width of error bars, default set to 0.2}
 
-\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
-
 \item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
+
+\item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 
 \item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)}
 
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
+
+\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 }
 \value{
 This function returns a \code{ggplot2} object.
@@ -47,12 +53,19 @@ This function takes a data table, X and Y variables, and plots a graph with a su
 \details{
 The function uses \code{\link[ggplot2]{stat_summary}} with \code{geom = "point"} with \code{size = 3}.
 Standard deviation (SD) is plotted through \code{\link[ggplot2]{stat_summary}} calculated using \code{mean_sdl} from the \code{ggplot2} package (get help with \code{?mean_sdl}), and 1x SD is plotted (\code{fun.arg = list(mult = 1)}.
+
 The categorical X variable is mapped to the \code{fill} aesthetic in the point geometry, and by default receives \code{all_grafify} palette.
+
+Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} arguments.
+\code{ColPal} can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
+\code{ColRev} (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette.
+\code{ColSeq} decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
 
 You are instead encouraged to show all data using the following functions: \code{\link{plot_scatterbar_sd}}, \code{\link{plot_dotbox}}, \code{\link{plot_dotbar_sd}} and \code{\link{plot_dotviolin}}.
 }
 \examples{
 #Basic usage
-plot_point_sd(data_doubling_time, Student, Doubling_time)
+plot_point_sd(data = data_doubling_time, 
+xcol = Student, ycol = Doubling_time)
 
 }

@@ -11,11 +11,12 @@ plot_befafter_colors(
   groups,
   symsize = 3,
   symthick = 1,
-  fontsize = 20,
-  alpha = 1,
+  s_alpha = 1,
   ColPal = "all_grafify",
-  ColRev = F,
-  TextXAngle = 0
+  ColSeq = TRUE,
+  ColRev = FALSE,
+  TextXAngle = 0,
+  fontsize = 20
 )
 }
 \arguments{
@@ -31,15 +32,17 @@ plot_befafter_colors(
 
 \item{symthick}{thickness of symbol border, default set to 1}
 
-\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
-
-\item{alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)}
+\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)}
 
 \item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
+
+\item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 
 \item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)}
 
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
+
+\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 }
 \value{
 This function returns a \code{ggplot2} object.
@@ -50,7 +53,10 @@ They take X and Y variables along with a grouping factor (e.g. matched subjects 
 }
 \details{
 Note that \code{ggplot} only allows 25 types of shapes, and \code{\link{plot_befafter_shapes}} function works when there are fewer than 25 matched observations.
-Use \code{scale_colour_brewer} or \code{scale_colour_viridis} or related to get a spectrum of matched colours by the grouping factor.
+Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} arguments.
+\code{ColPal} can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
+\code{ColRev} (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette.
+\code{ColSeq} decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
 
 Consider using \code{facet_wrap} or \code{facet_grid} to reduce crowding on a single plot and/or plot additional dimensions.
 }
@@ -58,6 +64,8 @@ Consider using \code{facet_wrap} or \code{facet_grid} to reduce crowding on a si
 #Basic usage with Treatment as the X variable
 #Subject as the grouping variable 
 #this variable lists points to join by lines
-plot_befafter_colors(data_cholesterol, Treatment, Cholesterol, Subject)
+plot_befafter_colors(data = data_cholesterol, 
+xcol = Treatment, ycol = Cholesterol, 
+groups = Subject)
 
 }

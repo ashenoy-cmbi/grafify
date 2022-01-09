@@ -1,3 +1,12 @@
+#' List of hexcodes of colours in grafify palettes
+#' Colour palettes available are as follows:
+#' 
+#' \if{latex}{\figure{grafify_palettesv0.2.0.jpg}{options:width=0.5in}}
+#' \if{html}{\out{<div style="text-align: center">}\figure{grafify_palettesv0.2.0.jpg}{options: style="width:750px;max-width:70\%;"}\out{</div>}}
+#'
+#' 
+#' 
+#' @export
 graf_colours <- c(
   'ok_orange' = "#E69F00",
   'ok_skyblue' = "#56B4E9",

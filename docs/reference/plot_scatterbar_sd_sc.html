@@ -25,7 +25,7 @@ The default colour is ok_orange. ColPal and ColRev arguments are not available."
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.0.9000</span>
       </span>
     </div>
 
@@ -73,10 +73,10 @@ The default colour is <code>ok_orange</code>. <code>ColPal</code> and <code>ColR
   bwid <span class="op">=</span> <span class="fl">0.7</span>,
   ewid <span class="op">=</span> <span class="fl">0.3</span>,
   jitter <span class="op">=</span> <span class="fl">0</span>,
-  fontsize <span class="op">=</span> <span class="fl">20</span>,
   b_alpha <span class="op">=</span> <span class="fl">1</span>,
   s_alpha <span class="op">=</span> <span class="fl">1</span>,
-  TextXAngle <span class="op">=</span> <span class="fl">0</span>
+  TextXAngle <span class="op">=</span> <span class="fl">0</span>,
+  fontsize <span class="op">=</span> <span class="fl">20</span>
 <span class="op">)</span></code></pre></div>
     </div>
 
@@ -100,14 +100,14 @@ The default colour is <code>ok_orange</code>. <code>ColPal</code> and <code>ColR
 <dd><p>width of error bars, default set to 0.3</p></dd>
 <dt>jitter</dt>
 <dd><p>extent of jitter (scatter) of symbols, default is 0 (i.e. aligned symbols). To reduce symbol overlap, try 0.1-0.3 or higher.</p></dd>
-<dt>fontsize</dt>
-<dd><p>parameter of <code>base_size</code> of fonts in <code>theme_classic</code>, default set to size 20.</p></dd>
 <dt>b_alpha</dt>
 <dd><p>fractional opacity of bars, default set to 1 (i.e. maximum opacity &amp; zero transparency)</p></dd>
 <dt>s_alpha</dt>
 <dd><p>fractional opacity of symbols, default set to 1 (i.e. maximum opacity &amp; zero transparency)</p></dd>
 <dt>TextXAngle</dt>
 <dd><p>orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text</p></dd>
+<dt>fontsize</dt>
+<dd><p>parameter of <code>base_size</code> of fonts in <code>theme_classic</code>, default set to size 20.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -117,9 +117,12 @@ The default colour is <code>ok_orange</code>. <code>ColPal</code> and <code>ColR
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="fu">plot_scatterbar_sd_sc</span><span class="op">(</span><span class="va">data_doubling_time</span>, <span class="va">Student</span>, <span class="va">Doubling_time</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu">plot_scatterbar_sd_sc</span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_doubling_time</span>, </span>
+<span class="r-in">xcol <span class="op">=</span> <span class="va">Student</span>, ycol <span class="op">=</span> <span class="va">Doubling_time</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="plot_scatterbar_sd_sc-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="fu">plot_scatterbar_sd_sc</span><span class="op">(</span><span class="va">data_doubling_time</span>, <span class="va">Student</span>, <span class="va">Doubling_time</span>, <span class="st">"ok_grey"</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu">plot_scatterbar_sd_sc</span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_doubling_time</span>, </span>
+<span class="r-in">xcol <span class="op">=</span> <span class="va">Student</span>, ycol <span class="op">=</span> <span class="va">Doubling_time</span>, </span>
+<span class="r-in">colour <span class="op">=</span> <span class="st">"ok_grey"</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="plot_scatterbar_sd_sc-2.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -131,7 +134,7 @@ The default colour is <code>ok_orange</code>. <code>ColPal</code> and <code>ColR
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Avinash Shenoy.</p>
+  <p></p><p>Developed by Avinash R Shenoy.</p>
 </div>
 
 <div class="pkgdown">

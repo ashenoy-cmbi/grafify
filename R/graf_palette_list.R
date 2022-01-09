@@ -1,4 +1,14 @@
-#list of palettes available in grafify package
+#' List of palettes available in grafify package
+#' 
+#' Colour palettes available are as follows:
+#' 
+#' \if{latex}{\figure{grafify_palettesv0.2.0.jpg}{options:width=0.5in}}
+#' \if{html}{\out{<div style="text-align: center">}\figure{grafify_palettesv0.2.0.jpg}{options: style="width:750px;max-width:70\%;"}\out{</div>}}
+#'
+#' 
+#' 
+#' @export
+#' 
 graf_palettes <- list(
   'okabe_ito' = get_graf_colours("ok_orange",
                                  "ok_skyblue",

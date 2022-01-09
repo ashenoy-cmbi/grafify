@@ -13,12 +13,13 @@ plot_scatterbar_sd(
   bwid = 0.7,
   ewid = 0.3,
   jitter = 0,
-  fontsize = 20,
   b_alpha = 1,
   s_alpha = 1,
   ColPal = "all_grafify",
-  ColRev = F,
-  TextXAngle = 0
+  ColSeq = TRUE,
+  ColRev = FALSE,
+  TextXAngle = 0,
+  fontsize = 20
 )
 }
 \arguments{
@@ -38,17 +39,19 @@ plot_scatterbar_sd(
 
 \item{jitter}{extent of jitter (scatter) of symbols, default is 0 (i.e. aligned symbols). To reduce symbol overlap, try 0.1-0.3 or higher.}
 
-\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
-
 \item{b_alpha}{fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency)}
 
 \item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)}
 
 \item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
 
+\item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
+
 \item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)}
 
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
+
+\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 }
 \value{
 This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
@@ -59,7 +62,11 @@ This function takes a data table, X and Y variables, and plots a graph with a ji
 \details{
 The function uses \code{\link[ggplot2]{stat_summary}} with \code{geom = "bar"}, and \code{\link[ggplot2]{geom_point}} with \code{position = position_jitter(width = 0.05)}.
 Standard deviation (SD) is plotted through \code{\link[ggplot2]{stat_summary}} calculated using \code{mean_sdl} from the \code{ggplot2} package (get help with \code{?mean_sdl}), and 1x SD is plotted (\code{fun.arg = list(mult = 1)}.
-The X variable is mapped to the \code{fill} aesthetic in the bar geometry and \code{colour} aesthetic in \code{geom_point}. Fill and colour can be changed using \code{scale_fill_brewer} (or related) and \code{scale_colour_brewer} (or related) options.
+The X variable is mapped to the \code{fill} aesthetic in the bar geometry and \code{colour} aesthetic in \code{geom_point}.
+Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} arguments.
+\code{ColPal} can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
+\code{ColRev} (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette.
+\code{ColSeq} decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
 
 Three types of plots are available for scatter/jitter symbols and either bars+SD, boxplot or violin plots: \code{\link{plot_scatterbar_sd}}, \code{\link{plot_scatterbox}} and \code{\link{plot_scatterviolin}}.
 These are related to the three "dot" versions that use a different geometry for symbols: \code{\link{plot_dotbox}}, \code{\link{plot_dotbar_sd}} and \code{\link{plot_dotviolin}}.
@@ -67,8 +74,11 @@ These are related to the three "dot" versions that use a different geometry for 
 \examples{
 
 #Basic usage requires a data table and X & Y variables#'
-plot_scatterbar_sd(data_cholesterol, Treatment, Cholesterol)
+plot_scatterbar_sd(data = data_cholesterol, 
+xcol = Treatment, ycol = Cholesterol)
 
 #with jitter
-plot_scatterbar_sd(data_cholesterol, Treatment, Cholesterol, jitter = 0.1)
+plot_scatterbar_sd(data = data_cholesterol, 
+xcol = Treatment, ycol = Cholesterol, 
+jitter = 0.1)
 }

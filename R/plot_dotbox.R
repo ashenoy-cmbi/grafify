@@ -4,7 +4,13 @@
 #'
 #' The function uses \code{\link[ggplot2]{geom_boxplot}} and \code{\link[ggplot2]{geom_dotplot}} geometries.
 #' Note that \code{\link{geom_boxplot}} option for outliers is set to \code{outlier.alpha = 0}.
-#' The X variable is mapped to the \code{fill} aesthetic in both boxplot and dotplot, and its colour can be changed using \code{scale_fill_brewer} or any \code{scale_fill...} option. The size of dots can be adjusted using the parameter, which is \code{dotsize = 1} by default.
+#' The X variable is mapped to the \code{fill} aesthetic in both boxplot and dotplot.
+#' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. 
+#' `ColPal` can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
+#' `ColRev` (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette. 
+#' `ColSeq` decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
+#' 
+#' The size of dots can be adjusted using the parameter, which is \code{dotsize = 1} by default.
 #'
 #' This function is related to \code{\link{plot_scatterbar_sd}}, \code{\link{plot_dotbar_sd}} and \code{\link{plot_dotviolin}}.
 #'
@@ -18,6 +24,7 @@
 #' @param d_alpha fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
 #' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
+#' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
 #'
 #' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
@@ -27,19 +34,21 @@
 #' @examples
 #'
 #' #Basic usage requires a data table and X & Y variables#'
-#' plot_dotbox(data_cholesterol, Treatment, Cholesterol)
+#' plot_dotbox(data = data_cholesterol, 
+#' xcol = Treatment, ycol = Cholesterol)
 #'
 #' #Transformations of Y variable are possible as follows
-#' #' plot_dotbox(data_cholesterol, Treatment, log(Cholesterol))
+#' plot_dotbox(data = data_cholesterol, 
+#' xcol = Treatment, ycol = log(Cholesterol))
 #'
 #' #Additional ggplot layering is possible
-#' plot_dotbox(data_cholesterol, Treatment, Cholesterol, dotsize = 2)+
+#' plot_dotbox(data = data_cholesterol, 
+#' xcol = Treatment, ycol = Cholesterol, dotsize = 2)+
 #'    labs(title = "Plot with scatter dots & boxplot")+
-#'    scale_colour_grafify()+
 #'    facet_wrap("Hospital")
 
-plot_dotbox <- function(data, xcol, ycol, dotsize = 1.5, dotthick = 1, fontsize = 20, b_alpha = 1, d_alpha = 1, ColPal = "all_grafify", ColRev = F, TextXAngle = 0){
-  ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+plot_dotbox <- function(data, xcol, ycol, dotsize = 1.5, dotthick = 1, fontsize = 20, b_alpha = 1, d_alpha = 1, ColPal = "all_grafify", ColRev = FALSE, ColSeq = TRUE, TextXAngle = 0){
+  P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
     geom_boxplot(aes(fill = factor({{ xcol }})), size = 1,
                  alpha = {{ b_alpha }},
@@ -55,7 +64,10 @@ plot_dotbox <- function(data, xcol, ycol, dotsize = 1.5, dotthick = 1, fontsize 
          fill = enquo(xcol))+
     theme_classic(base_size = {{ fontsize }})+
     theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = {{ TextXAngle }}))+
-    scale_fill_grafify(palette = {{ ColPal }}, 
-                       reverse = {{ ColRev }})
+    guides(x = guide_axis(angle = {{ TextXAngle }}))
+  if (ColSeq) {
+    P <- P + scale_fill_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})
+  } else {
+    P <- P + scale_fill_grafify2(palette = {{ ColPal }}, reverse = {{ ColRev }})}
+  P
 }

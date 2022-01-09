@@ -19,7 +19,9 @@
 #'
 #' @examples
 #' #Basic usage 
-#' simple_anova(data_doubling_time, "Doubling_time", "Student")
+#' simple_anova(data = data_doubling_time, 
+#' Y_value = "Doubling_time", 
+#' Fixed_Factor = "Student")
 #'
 
 simple_anova <- function(data, Y_value, Fixed_Factor, ...){

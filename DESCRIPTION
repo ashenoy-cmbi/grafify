@@ -1,9 +1,9 @@
 Package: grafify
 Type: Package
 Title: Easy graphs for data visualisation and ANOVA as linear regression
-Version: 1.5.1
+Version: 2.0.0.9000
 Authors@R: c(person("Avinash R", "Shenoy", email = "a.shenoy@imperial.ac.uk", role = c("cre", "aut"), comment = c(ORCID = "0000-0001-6228-9303")))
-Description: Easily plot many types of graphs with few lines of code. These wrappers can generate scatter or dotplots with boxes, violins or SD error bars to depict dispersion, data distributions, before-after plots, factorial ANOVAs and more (`ggplot`). Choose from 8 colour-blind friendly discreet or 1 continuous colour schemes. Perform ANOVA analyses as ordinary (`lm`) or mixed-effects linear models (`lmer`), including randomised-block or repeated-measures designs. Carry out post-hoc comparisons of interest (`emmeans`). Practice datasets included for plotting graphs and performing analyses.
+Description: Easily plot many types of graphs with few lines of code. These wrappers can generate scatter or dotplots with boxes, violins or SD error bars to depict dispersion, data distributions plots, before-after plots, factorial ANOVAs plots and more (based on `ggplot`). Choose from 8 colour-blind friendly discreet or 1 continuous colour schemes. Perform ANOVA analyses as ordinary (`lm`) or mixed-effects linear models (`lmer`), including randomised-block or repeated-measures designs. Carry out post-hoc comparisons of interest (`emmeans`). Practice datasets included for plotting graphs and performing analyses.
 License: GPL (>= 2)
 Imports: 
     broom.mixed,
@@ -21,7 +21,7 @@ Depends:
     R (>= 4.0),
     ggplot2
 Encoding: UTF-8
-Date: 2022-01-01
+Date: 2022-01-09
 LazyData: true
 RoxygenNote: 7.1.2
 Roxygen: list(markdown = TRUE)

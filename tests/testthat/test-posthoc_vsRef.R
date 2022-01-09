@@ -32,5 +32,24 @@ test_that("Check post-hoc vsRef comparisonss", {
   expect_no_match(em3$contrasts@misc$adjust, em4$contrasts@misc$adjust)   #different from default in grafify
   expect_equal(em3$contrasts@misc$orig.grid[,2], em4$contrasts@misc$orig.grid[,2])
   expect_equal(em3$contrasts@model.info$call, em4$contrasts@model.info$call)
+})
+
+
+test_that("Check post-hoc Trends comparisonss", {
+  #make a mixed effects model with grafify
+  mmod5 <- mixed_model(data_2w_Tdeath,
+                       PI,
+                       c("Genotype", "Time2"),
+                       "Experiment")
+  #fit same model with lmer call
+  mmod6 <- lmerTest::lmer(PI ~ Genotype*Time2+
+                            (1|Experiment),          #native call
+                          data = data_2w_Tdeath)
   
+  #compare posthoc_ tests from grafify with native emmeans call on grafify model 
+  em1 <- posthoc_Trends(mmod5, c("Genotype"), Trend_Factor = "Time2")
+  em2 <- emtrends(mmod5, specs = ~Genotype, var = "Time2")
+  expect_equal(em1@model.info$call, em2@model.info$call)
+  expect_equal(levels(em1@grid$Genotype), levels(em2@grid$Genotype))
+  expect_equal(em1@misc$sigma, em2@misc$sigma)
 })

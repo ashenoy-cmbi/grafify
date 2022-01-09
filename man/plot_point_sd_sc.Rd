@@ -9,11 +9,12 @@ plot_point_sd_sc(
   xcol,
   ycol,
   colour = "ok_orange",
+  s_alpha = 1,
   symsize = 3.5,
   symthick = 1,
   ewid = 0.2,
-  fontsize = 20,
-  TextXAngle = 0
+  TextXAngle = 0,
+  fontsize = 20
 )
 }
 \arguments{
@@ -25,15 +26,17 @@ plot_point_sd_sc(
 
 \item{colour}{colour of boxes and dots; a number between 1-64, any hexcode or names from \code{grafify} colour palettes. Default is \code{ok_orange}.}
 
+\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)}
+
 \item{symsize}{size of point symbols, default set to 3.5}
 
 \item{symthick}{thickness of symbol border, default set to 1}
 
 \item{ewid}{width of error bars, default set to 0.2}
 
-\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
-
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
+
+\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 }
 \value{
 This function returns a \code{ggplot2} object.
@@ -48,7 +51,10 @@ You are instead encouraged to show all data using the following functions: \code
 }
 \examples{
 #Basic usage
-plot_point_sd_sc(data_doubling_time, Student, Doubling_time)
-plot_point_sd_sc(data_doubling_time, Student, Doubling_time, "ok_grey")
+plot_point_sd_sc(data = data_doubling_time, 
+xcol = Student, ycol = Doubling_time)
+plot_point_sd_sc(data = data_doubling_time, 
+xcol = Student, ycol = Doubling_time, 
+colour = "ok_grey")
 
 }

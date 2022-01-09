@@ -10,11 +10,14 @@
 #' @param colour colour of boxes and dots; a number between 1-64, any hexcode or names from `grafify` colour palettes. Default is `ok_orange`.
 #' @param dotsize size of dots relative to \code{binwidth} used by \code{geom_dotplot}. Default set to 1.5, increase/decrease as needed.
 #' @param dotthick thickness of dot border (`stroke` parameter of `geom_dotplot`), default set to 1
+#' @param bvthick thickness of violin an boxplot lines; default 1
+#' @param bwid width of boxplots; default 0.2
 #' @param trim set whether tips of violin plot should be trimmed at high/low data. Default \code{trim = T}, can be changed to F.
 #' @param scale set to "area" by default, can be changed to "count" or "width".
-#' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
+#' @param b_alpha fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param v_alpha fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param d_alpha fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency)
+#' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
 #'
 #' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
@@ -24,11 +27,15 @@
 #' @examples
 #'
 #' #plot with trim = F
-#' plot_dotviolin_sc(data_1w_death, Genotype, Death, scale = "width", trim = FALSE)
-#' plot_dotviolin_sc(data_1w_death, Genotype, Death, "ok_grey", scale = "width", trim = FALSE)
+#' plot_dotviolin_sc(data = data_1w_death, 
+#' xcol = Genotype, ycol = Death, 
+#' scale = "width", trim = FALSE)
+#' plot_dotviolin_sc(data = data_1w_death, 
+#' xcol = Genotype, ycol = Death, colour = "ok_grey", 
+#' scale = "width", trim = FALSE)
 #' 
 
-plot_dotviolin_sc <- function(data, xcol, ycol, colour = "ok_orange", dotsize = 1.5, dotthick = 1, trim = T, scale = "area", fontsize = 20, v_alpha = 1, d_alpha = 1, TextXAngle = 0){
+plot_dotviolin_sc <- function(data, xcol, ycol, colour = "ok_orange", dotsize = 1.5, dotthick = 1, bvthick = 1, bwid = 0.2, trim = T, scale = "width", b_alpha = 1, v_alpha = 1, d_alpha = 1, TextXAngle = 0, fontsize = 20){
   
 ifelse(grepl("#", colour), 
          a <- colour,
@@ -40,9 +47,15 @@ ifelse(grepl("#", colour),
                 alpha = {{ v_alpha }},
                 trim = {{ trim }},
                 scale = {{ scale }},
-                draw_quantiles = c(0.25, .5, .75),
-                colour = "black", size = 1,
+                colour = "black", 
+                size = {{ bvthick }},
                 adjust = 0.8)+
+    geom_boxplot(fill = a,
+                 alpha = {{ b_alpha }},
+                 colour = "black", 
+                 size = {{ bvthick }},
+                 outlier.alpha = 0,
+                 width = {{ bwid }})+
     geom_dotplot(stackdir = "center", 
                  stroke = {{ dotthick }}, 
                  alpha = {{ d_alpha }},

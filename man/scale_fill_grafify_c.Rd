@@ -18,6 +18,12 @@ ggplot scale_fill function
 \code{grafify} internally includes colour-blind compatible schemes for fill and colour/color aesthetics.
 Note that this scheme is \strong{only} for continuous variables and has one palette (\code{yellow_conti}) \href{http://personal.sron.nl/~pault/#sec:sequential}{modified from} the YlOrBr scheme from RColorBrewer.
 }
+\details{
+Colour palettes available are as follows:
+
+\if{latex}{\figure{grafify_palettesv0.2.0.jpg}{options:width=0.5in}}
+\if{html}{\out{<div style="text-align: center">}\figure{grafify_palettesv0.2.0.jpg}{options: style="width:750px;max-width:70\%;"}\out{</div>}}
+}
 \examples{
 #basic usage on mtcars data with x and y quantitative axes
 ggplot(mtcars, aes(x = mpg, y = disp))+

@@ -21,25 +21,38 @@ mixed_model(data, Y_value, Fixed_Factor, Random_Factor, ...)
 This function returns the output of \code{lmerTest::lmer()}.
 }
 \description{
-This function uses \code{\link[lmerTest]{lmer}} to fit a linear mixed effect model and provides the model object, which could be used for post-hoc comparisons.
-It requires a data table, one dependent variable (Y_value), one or more independent variables (Fixed_Factor), and at least one random factor (Random_Factor).
-This function is related to \code{\link{mixed_anova}}.
-Output of this function can be used with \code{\link{posthoc_Pairwise}}, \code{\link{posthoc_Levelwise}} and \code{\link{posthoc_vsRef}}, or with \code{\link[emmeans]{emmeans}}.
+There are four related functions for mixed effects analyses: \code{mixed_model}, \code{mixed_anova}, \code{mixed_model_slopes}, and \code{mixed_anova_slopes}.
 }
 \details{
-When more than one fixed factors are entered in the argument, a full model with interaction term is fitted.
+This function uses \code{\link[lmerTest]{lmer}} to fit a linear mixed effect model and provides the model object, which could be used for post-hoc comparisons.
+It requires a data table, one dependent variable (Y_value), one or more independent variables (Fixed_Factor), and at least one random factor (Random_Factor). These should match names of variables in the long-format data table exactly.
+This function is related to \code{\link{mixed_anova}}.
+Output of this function can be used with \code{\link{posthoc_Pairwise}}, \code{\link{posthoc_Levelwise}} and \code{\link{posthoc_vsRef}}, or with \code{\link[emmeans]{emmeans}}.
+
+More than one fixed factors can be provided as a vector (e.g. c("A", "B")). A full model with interaction term is fitted.
 This means when \code{Y_value = Y, Fixed_factor = c("A", "B"), Random_factor = "R"} are entered as arguments, these are passed on as \code{Y ~ A*B + (1|R)} (which is equivalent to \code{Y ~ A + B + A:B + (1|R)}).
-For simplicity, only random intercepts are fitted (\code{(1|R)}). For factorial ANOVAs the default sum of squares is Type II and degrees of freedom are calculated using the Kenward-Roger approximation.
-All other settings are \code{\link[lmerTest]{lmer}} and \code{\link{anova}} defaults.
+For simplicity, only random intercepts are fitted (\code{(1|R)}).
+
+Also see \code{mixed_anova_slopes} and \code{mixed_model_slopes} for similar functions where variable slopes and intercept models are fit.
 }
 \examples{
-#Basic usage where the table Chol is passed with names of variables within quotes
-mixed_model(data_cholesterol, "Cholesterol", c("Treatment", "Hospital"), "Subject")
+#two fixed factors as a vector
+mixed_model(data = data_cholesterol, 
+Y_value = "Cholesterol", 
+Fixed_Factor = c("Treatment", "Hospital"), 
+Random_Factor = "Subject")
 
-mixed_model(data_doubling_time, "Doubling_time", "Student", "Experiment")
+#one fixed factor
+mixed_model(data = data_doubling_time, 
+Y_value = "Doubling_time", 
+Fixed_Factor = "Student", 
+Random_Factor = "Experiment")
 
 #save model
-model <- mixed_model(data_doubling_time, "Doubling_time", "Student", "Experiment")
+model <- mixed_model(data = data_doubling_time, 
+Y_value =  "Doubling_time", 
+Fixed_Factor = "Student", 
+Random_Factor = "Experiment")
 
 #get model summary
 summary(model)

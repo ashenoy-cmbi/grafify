@@ -13,10 +13,10 @@
 #' @param bwid width of bars, default set to 0.7
 #' @param ewid width of error bars, default set to 0.3
 #' @param jitter extent of jitter (scatter) of symbols, default is 0 (i.e. aligned symbols). To reduce symbol overlap, try 0.1-0.3 or higher.  
-#' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param b_alpha fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
+#' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #'
 #' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
 #' @export plot_scatterbar_sd_sc
@@ -24,10 +24,13 @@
 #'
 #' @examples
 #'
-#' plot_scatterbar_sd_sc(data_doubling_time, Student, Doubling_time)
-#' plot_scatterbar_sd_sc(data_doubling_time, Student, Doubling_time, "ok_grey")
+#' plot_scatterbar_sd_sc(data = data_doubling_time, 
+#' xcol = Student, ycol = Doubling_time)
+#' plot_scatterbar_sd_sc(data = data_doubling_time, 
+#' xcol = Student, ycol = Doubling_time, 
+#' colour = "ok_grey")
 
-plot_scatterbar_sd_sc <- function(data, xcol, ycol, colour = "ok_orange", symsize = 2.5, symthick = 1, bwid = 0.7, ewid = 0.3, jitter = 0, fontsize = 20, b_alpha = 1, s_alpha = 1, TextXAngle = 0){
+plot_scatterbar_sd_sc <- function(data, xcol, ycol, colour = "ok_orange", symsize = 2.5, symthick = 1, bwid = 0.7, ewid = 0.3, jitter = 0, b_alpha = 1, s_alpha = 1, TextXAngle = 0, fontsize = 20){
 
   ifelse(grepl("#", colour), 
          a <- colour,

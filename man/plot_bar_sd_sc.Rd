@@ -9,10 +9,11 @@ plot_bar_sd_sc(
   xcol,
   ycol,
   colour = "ok_orange",
+  b_alpha = 1,
   bwid = 0.7,
   ewid = 0.3,
-  fontsize = 20,
-  TextXAngle = 0
+  TextXAngle = 0,
+  fontsize = 20
 )
 }
 \arguments{
@@ -24,13 +25,15 @@ plot_bar_sd_sc(
 
 \item{colour}{colour of boxes and dots; a number between 1-64, any hexcode or names from \code{grafify} colour palettes. Default is \code{ok_orange}.}
 
+\item{b_alpha}{fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency)}
+
 \item{bwid}{width of bars, default 0.7}
 
 \item{ewid}{width of error bars, default 0.3}
 
-\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
-
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
+
+\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 }
 \value{
 This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
@@ -46,7 +49,10 @@ You are instead encouraged to show all data using the following functions: \code
 \examples{
 
 #Basic usage
-plot_bar_sd_sc(data_doubling_time, Student, Doubling_time)
-plot_bar_sd_sc(data_doubling_time, Student, Doubling_time, "ok_grey")
+plot_bar_sd_sc(data = data_doubling_time, 
+xcol = Student, ycol = Doubling_time)
+plot_bar_sd_sc(data = data_doubling_time, 
+xcol = Student, ycol = Doubling_time, 
+colour = "ok_grey")
 
 }

@@ -22,7 +22,6 @@
 #' @importFrom tidyr pivot_longer
 #' @importFrom stats rnorm
 #' @importFrom magrittr %>% 
-#' @importFrom utils globalVariables
 #'
 #' @examples
 #' #Basic usage with three levels within Factor_X, 
@@ -32,8 +31,6 @@
 #'
 #' str(one_independent_tab)
 #' head(one_independent_tab)
-
-#globalVariables(".")
 
 make_1way_data <- function(Group_means, Num_obs, Residual_SD) {
   suppressMessages(ymce <- function(m, c, e){

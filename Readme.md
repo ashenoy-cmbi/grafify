@@ -39,7 +39,7 @@ If you’re interested in basic theory and code for statistics written for
 biologists, also visit Statistics for [Micro/Immuno
 Biologists](https://microimmunostats.netlify.app).
 
-### **Latest version: v1.5.1**
+### **Latest release version: v1.5.1**
 
 ### Features
 

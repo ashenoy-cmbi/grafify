@@ -1,6 +1,13 @@
 #' Get graf internal
 #'
 #' Function to make grafify colour scheme. [Thank you Dr Simon](https://drsimonj.svbtle.com/creating-corporate-colour-palettes-for-ggplot2).
+#' 
+#' Colour palettes available are as follows:
+#' 
+#' \if{latex}{\figure{grafify_palettesv0.2.0.jpg}{options:width=0.5in}}
+#' \if{html}{\out{<div style="text-align: center">}\figure{grafify_palettesv0.2.0.jpg}{options: style="width:750px;max-width:70\%;"}\out{</div>}}
+#'
+#' 
 #'
 #' @param ... internal
 #' @export get_graf_colours

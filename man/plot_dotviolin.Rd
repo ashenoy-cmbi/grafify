@@ -10,14 +10,18 @@ plot_dotviolin(
   ycol,
   dotsize = 1.5,
   dotthick = 1,
+  bvthick = 1,
+  bwid = 0.2,
   trim = T,
-  scale = "area",
-  fontsize = 20,
+  scale = "width",
+  b_alpha = 1,
   v_alpha = 1,
   d_alpha = 1,
   ColPal = "all_grafify",
-  ColRev = F,
-  TextXAngle = 0
+  ColRev = FALSE,
+  ColSeq = TRUE,
+  TextXAngle = 0,
+  fontsize = 20
 )
 }
 \arguments{
@@ -31,11 +35,15 @@ plot_dotviolin(
 
 \item{dotthick}{thickness of dot border (\code{stroke} parameter of \code{geom_dotplot}), default set to 1}
 
+\item{bvthick}{thickness of violin and boxplot lines; default 1}
+
+\item{bwid}{width of boxplots; default 0.2}
+
 \item{trim}{set whether tips of violin plot should be trimmed at high/low data. Default \code{trim = T}, can be changed to F.}
 
 \item{scale}{set to "area" by default, can be changed to "count" or "width".}
 
-\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+\item{b_alpha}{fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency)}
 
 \item{v_alpha}{fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency)}
 
@@ -45,7 +53,11 @@ plot_dotviolin(
 
 \item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)}
 
+\item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
+
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
+
+\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 }
 \value{
 This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
@@ -55,17 +67,27 @@ This function takes a data table, X and Y variables, and plots a graph with a do
 }
 \details{
 The function uses \code{\link[ggplot2]{geom_violin}} and \code{\link[ggplot2]{geom_dotplot}} geometries.
-Note that the \code{\link{geom_violin}} options are set as follows: \code{scale = "area", draw_quantiles = c(0.25, .5, .75)}. The \code{trim = T} set by default can be changed when calling the function.
-The X variable is mapped to the \code{fill} aesthetic in both violinplot and dotplot, and its colour can be changed using \code{scale_fill_brewer} or any \code{scale_fill...} option. The size of dots can be adjusted using the parameter, which is \code{dotsize = 1} by default.
+Note that the \code{\link{geom_violin}} options are set as follows: \code{scale = "width"}. The \code{trim = T} set by default can be changed when calling the function.
+The boxplot shows IQR and the median is marked with a thicker horizontal line.
+The X variable is mapped to the \code{fill} aesthetic in both violinplot and dotplot.
+Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} arguments.
+\code{ColPal} can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
+\code{ColRev} (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette.
+\code{ColSeq} decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
+
+The size of dots can be adjusted using the parameter, which is \code{dotsize = 1} by default.
 
 This function is related to \code{\link{plot_scatterbar_sd}}, \code{\link{plot_dotbar_sd}} and \code{\link{plot_dotviolin}}.
 }
 \examples{
 
 #plot with trim = F
-plot_dotviolin(data_t_pdiff, Condition, Mass, dotsize = 2)
+plot_dotviolin(data = data_t_pdiff, 
+xcol = Condition, ycol = Mass, dotsize = 2)
 
 #without trimming
-plot_dotviolin(data_t_pdiff, Condition, Mass, dotsize = 2, trim = FALSE)
+plot_dotviolin(data = data_t_pdiff, 
+xcol = Condition, ycol = Mass, 
+dotsize = 2, trim = FALSE)
 
 }

@@ -2,6 +2,26 @@
 
 Full reference to all functions available at [`grafify` GitHub pages](https://ashenoy-cmbi.github.io/grafify/index.html).
 
+# grafify v2.0.0.9000
+
+This is a major update with some new features, bugfixes, and further cleaning up of code and consistent names of arguments in preparation for CRAN submission. Some previous code may not work because of renaming of some arguments for grouping variables in `plot_` functions (but order of those arguments is still same, and some code without explicit argument calls might still work).
+
+## New features:
+
+  a. Plot functions have a new argument `ColSeq` (logical TRUE/FALSE) that picks colours sequentially from palette chosen by `ColPal` when `TRUE` (default). If set to `FALSE`, the most distant colours are chosen, as already implemented in `scale_..._grafify2` functions.
+  b. Violin plots get a major face-lift with a box-whiskers plot on top of the violin. This gives a clearer picture of data and dispersion than the default quantile lines in `geom_violin`. They also get new arguments to set thickness of lines (`bvthick`) and transparency of boxplots (`b_alpha`).
+  c. There are new functions for fitting linear models with varying slopes and intercepts. These are `mixed_model_slopes` and `mixed_anova_slopes`.
+  d. A function for comparing slopes of linear fits `posthoc_Trends` implements the `emmeans::emtrends` call.
+
+## Bug fixes
+
+  a. Distribution plots: the The `xcol` grouping argument in `plot_density`, `plot_histogram` and `plot_qqline` is now called `group` for consistency with other `plot_` functions.
+  c. The `Factor` argument in post-hoc comparisons functions (`posthoc_Pairwise`, `posthoc_vsRes`, and `posthoc_Levelwise`) renamed as `Fixed_Factor` to be consistent with `mixed_model`, `simple_model`, `mixed_anova` and `simple_anova` functions.
+  d. The `plot_3d_scatterbar` and `plot_3d_scatterbox` now correctly plot one-way ANOVA designs with randomised blocks with `shapes` mapped to levels of the random factor, and `xcol` as the grouping factor as originally intended but incorrectly implemented. This complements `plot_4d_scatterbar` and `plot_4d_scatterbox` which take two grouping factors and a random factor.
+  e. Examples in help files have arguments explicitly labelled to make them easier to follow.
+  f. `Groups` in before-after plots is now called `groups` for consistency. 
+  g. For consistency, the argument for controlling opacity in distribution plots is renamed `c_alpha` in `plot_density` and `plot_histogram` (for colour opacity of colours under the density curve or histogram); opacity of symbols in `plot_qqline` is still called `s_alpha`.
+
 # grafify v1.5.1
 
 This update fixes and cleans up code to remove all errors, warnings and notes from `devtools::check()`. All previous code should still work. 
