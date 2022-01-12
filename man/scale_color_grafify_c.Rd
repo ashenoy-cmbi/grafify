@@ -21,8 +21,7 @@ Note that this scheme is \strong{only} for continuous variables and has one pale
 \details{
 Colour palettes available are as follows:
 
-\if{latex}{\figure{grafify_palettesv0.2.0.jpg}{options:width=0.5in}}
-\if{html}{\out{<div style="text-align: center">}\figure{grafify_palettesv0.2.0.jpg}{options: style="width:750px;max-width:70\%;"}\out{</div>}}
+\if{html}{\out{<div style="text-align: center">}\figure{grafify_palettesv020.jpg}{options: style="width:750px;max-width:70\%;"}\out{</div>}}
 }
 \examples{
 #basic usage on mtcars data with x and y quantitative axes
