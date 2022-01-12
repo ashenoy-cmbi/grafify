@@ -1,6 +1,6 @@
 Package: grafify
 Type: Package
-Title: Easy graphs for data visualisation and linear models for ANOVAs
+Title: Easy Graphs for Data Visualisation and Linear Models for ANOVAs
 Version: 2.0.0
 Authors@R: c(person("Avinash R", "Shenoy", email = "a.shenoy@imperial.ac.uk", role = c("cre", "aut"), comment = c(ORCID = "0000-0001-6228-9303")))
 Description: Easily explore data by generating different kinds of graphs with few lines of code. Use these `ggplot2` wrappers to quickly draw graphs of scatter/dots with box-whiskers, violins or SD error bars, data distributions, before-after graphs, factorial ANOVAs and more. Customise graphs and choose from 8 colour-blind friendly discreet or 1 continuous colour scheme. Simple code for ANOVAs as ordinary (`lm`) or mixed-effects linear models (`lmer`), including randomised-block or repeated-measures designs. Carry out post-hoc comparisons on fitted models (via `emmeans` wrappers). Also includes small datasets for practicing code and teaching basics before users move on to more complex designs. See vignettes for details on usage <https://grafify-vignettes.netlify.app/>. Citation: <doi:10.5281/zenodo.5136508>.
@@ -13,7 +13,6 @@ Imports:
     lme4,
     lmerTest,
     magrittr,
-    pbkrtest,
     purrr,
     stats,
     tidyr
@@ -30,6 +29,7 @@ Suggests:
     knitr,
     rlang,
     rmarkdown,
+    pbkrtest,
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
 URL: https://github.com/ashenoy-cmbi/grafify

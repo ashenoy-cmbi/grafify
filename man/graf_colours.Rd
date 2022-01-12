@@ -12,7 +12,6 @@ An object of class \code{character} of length 64.
 graf_colours
 }
 \description{
-\if{latex}{\figure{grafify_palettesv0.2.0.jpg}{options:width=0.5in}}
 \if{html}{\out{<div style="text-align: center">}\figure{grafify_palettesv0.2.0.jpg}{options: style="width:750px;max-width:70\%;"}\out{</div>}}
 }
 \keyword{datasets}
