@@ -22,7 +22,8 @@ plot_scatterviolin(
   trim = TRUE,
   scale = "width",
   TextXAngle = 0,
-  fontsize = 20
+  fontsize = 20,
+  ...
 )
 }
 \arguments{
@@ -61,6 +62,8 @@ plot_scatterviolin(
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_boxplot}, \code{ggplot2}\link{geom_point} or \code{ggplot2}\link{geom_violin}.}
 }
 \value{
 This function returns a \code{ggplot2} object on which additional geometries etc. can be added.

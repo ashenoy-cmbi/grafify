@@ -22,16 +22,17 @@
 #' @param dotthick thickness of dot border (`stroke` parameter of `geom_dotplot`), default set to 1
 #' @param bvthick thickness of violin and boxplot lines; default 1
 #' @param bwid width of boxplots; default 0.2
-#' @param trim set whether tips of violin plot should be trimmed at high/low data. Default \code{trim = T}, can be changed to F.
-#' @param scale set to "area" by default, can be changed to "count" or "width".
-#' @param b_alpha fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency)
+#' @param b_alpha fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency). For white boxplots inside violins, set `b_alpha = 0`.
 #' @param v_alpha fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param d_alpha fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
 #' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
+#' @param trim set whether tips of violin plot should be trimmed at high/low data. Default \code{trim = T}, can be changed to F.
+#' @param scale set to "area" by default, can be changed to "count" or "width".
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
+#' @param ... any additional arguments to pass to \code{ggplot2}[geom_boxplot], \code{ggplot2}[geom_dotplot] or \code{ggplot2}[geom_violin].
 #'
 #' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
 #' @export plot_dotviolin
@@ -39,18 +40,20 @@
 #'
 #' @examples
 #'
-#' #plot with trim = F
-#' plot_dotviolin(data = data_t_pdiff, 
-#' xcol = Condition, ycol = Mass, dotsize = 2)
-#' 
-#' #without trimming
+#' #plot without trim = FALSE
 #' plot_dotviolin(data = data_t_pdiff, 
 #' xcol = Condition, ycol = Mass, 
 #' dotsize = 2, trim = FALSE)
-#'
+#' 
+#' #white boxplots
+#' plot_dotviolin(data = data_t_pdiff, 
+#' xcol = Condition, ycol = Mass,
+#' trim = FALSE, b_alpha = 0, 
+#' ColPal = "pale", ColSeq = FALSE)
 
-plot_dotviolin <- function(data, xcol, ycol, dotsize = 1.5, dotthick = 1, bvthick = 1, bwid = 0.2, trim = T, scale = "width", b_alpha =1, v_alpha = 1, d_alpha = 1, ColPal = "all_grafify", ColRev = FALSE, ColSeq = TRUE, TextXAngle = 0, fontsize = 20){
-  P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+plot_dotviolin <- function(data, xcol, ycol, dotsize = 1.5, dotthick = 1, bvthick = 1, bwid = 0.2, trim = T, scale = "width", b_alpha =1, v_alpha = 1, d_alpha = 1, ColPal = "all_grafify", ColRev = FALSE, ColSeq = TRUE, TextXAngle = 0, fontsize = 20, ...){
+  if (b_alpha == 0) {
+  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
     geom_violin(aes(fill = factor({{ xcol }})),
                 alpha = {{ v_alpha }},
@@ -58,24 +61,55 @@ plot_dotviolin <- function(data, xcol, ycol, dotsize = 1.5, dotthick = 1, bvthic
                 scale = {{ scale }},
                 colour = "black", 
                 size = {{ bvthick }},
-                adjust = 0.8)+
-    geom_boxplot(aes(fill = factor({{ xcol }})),
-                 alpha = {{ b_alpha }},
+                ...)+
+    geom_boxplot(fill = "white",
                  colour = "black", 
                  size = {{ bvthick }},
                  outlier.alpha = 0,
-                 width = {{ bwid }})+
+                 width = {{ bwid }},
+                 ...)+
     geom_dotplot(stackdir = "center", 
                  stroke = {{ dotthick }}, 
                  alpha = {{ d_alpha }},
                  dotsize = {{ dotsize }},
                  binaxis = 'y',
-                 aes(fill = factor({{ xcol }})))+
+                 aes(fill = factor({{ xcol }})),
+                 ...)+
     labs(x = enquo(xcol),
          fill = enquo(xcol))+
     theme_classic(base_size = {{ fontsize }})+
     theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = {{ TextXAngle }}))
+    guides(x = guide_axis(angle = {{ TextXAngle }})))
+  } else {
+    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+                                   y = {{ ycol }}))+
+      geom_violin(aes(fill = factor({{ xcol }})),
+                  alpha = {{ v_alpha }},
+                  trim = {{ trim }},
+                  scale = {{ scale }},
+                  colour = "black", 
+                  size = {{ bvthick }},
+                  ...)+
+      geom_boxplot(aes(fill = factor({{ xcol }})),
+                   alpha = {{ b_alpha }},
+                   colour = "black", 
+                   size = {{ bvthick }},
+                   outlier.alpha = 0,
+                   width = {{ bwid }},
+                   ...)+
+      geom_dotplot(stackdir = "center", 
+                   stroke = {{ dotthick }}, 
+                   alpha = {{ d_alpha }},
+                   dotsize = {{ dotsize }},
+                   binaxis = 'y',
+                   aes(fill = factor({{ xcol }})),
+                   ...)+
+      labs(x = enquo(xcol),
+           fill = enquo(xcol))+
+      theme_classic(base_size = {{ fontsize }})+
+      theme(strip.background = element_blank())+
+      guides(x = guide_axis(angle = {{ TextXAngle }}))) 
+  }
   if (ColSeq) {
     P <- P + scale_fill_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})
   } else {

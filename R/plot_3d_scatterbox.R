@@ -37,6 +37,7 @@
 #' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
 #' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
+#' @param ... any additional arguments to pass to \code{ggplot2}[geom_boxplot].
 #'
 #' @return This function returns a \code{ggplot2} object.
 #' @export plot_3d_scatterbox
@@ -72,7 +73,7 @@
 #' shapes = Experiment)
 #'
 
-plot_3d_scatterbox <- function(data, xcol, ycol, shapes, symsize = 2.5, symthick = 1.0, jitter = 0.1, fontsize = 20, b_alpha = 1, s_alpha = 1, ColSeq = TRUE, ColPal = "all_grafify", ColRev = FALSE, TextXAngle = 0){
+plot_3d_scatterbox <- function(data, xcol, ycol, shapes, symsize = 2.5, symthick = 1.0, jitter = 0.1, fontsize = 20, b_alpha = 1, s_alpha = 1, ColSeq = TRUE, ColPal = "all_grafify", ColRev = FALSE, TextXAngle = 0, ...){
   P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }},
                             group = factor({{ xcol }})))+
@@ -80,7 +81,8 @@ plot_3d_scatterbox <- function(data, xcol, ycol, shapes, symsize = 2.5, symthick
                  alpha = {{ b_alpha }},
                  position = position_dodge(width = 0.8),
                  width = 0.5,
-                 outlier.alpha = 0)+
+                 outlier.alpha = 0, 
+                 ...)+
     geom_point(size = {{ symsize }}, 
                stroke = {{ symthick }},
                alpha = {{ s_alpha }}, colour = "black",

@@ -35,6 +35,7 @@
 #' @param scale set to "area" by default, can be changed to "count" or "width".
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
+#' @param ... any additional arguments to pass to \code{ggplot2}[geom_boxplot], \code{ggplot2}[geom_point] or \code{ggplot2}[geom_violin].
 #'
 #' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
 #' @export plot_scatterviolin
@@ -60,9 +61,9 @@
 #'
 #'
 
-plot_scatterviolin <- function(data, xcol, ycol, symsize = 2.5, symthick = 1, bwid = 0.1, bvthick = 1, b_alpha = 1, s_alpha = 1, v_alpha = 1, ColPal = "all_grafify", ColSeq = TRUE, ColRev = FALSE, jitter = 0, trim = TRUE, scale = "width", TextXAngle = 0, fontsize = 20){
+plot_scatterviolin <- function(data, xcol, ycol, symsize = 2.5, symthick = 1, bwid = 0.1, bvthick = 1, b_alpha = 1, s_alpha = 1, v_alpha = 1, ColPal = "all_grafify", ColSeq = TRUE, ColRev = FALSE, jitter = 0, trim = TRUE, scale = "width", TextXAngle = 0, fontsize = 20, ...){
   if (b_alpha == 0){
-    P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                    y = {{ ycol }}))+
       geom_violin(aes(fill = factor({{ xcol }})),
                   alpha = {{ v_alpha }},
@@ -70,25 +71,27 @@ plot_scatterviolin <- function(data, xcol, ycol, symsize = 2.5, symthick = 1, bw
                   scale = {{ scale }},
                   colour = "black", 
                   size = {{ bvthick }},
-                  adjust = 0.8)+
+                  ...)+
       geom_boxplot(fill = "white",
                    colour = "black", 
                    size = {{ bvthick }},
                    outlier.alpha = 0,
-                   width = {{ bwid }})+
+                   width = {{ bwid }},
+                   ...)+
       geom_point(shape = 21,
                  position = position_jitter(width = {{ jitter }}),
                  alpha = {{ s_alpha }},
                  stroke = {{ symthick }},
                  size = {{ symsize }},
-                 aes(fill = factor({{ xcol }})))+
+                 aes(fill = factor({{ xcol }})),
+                 ...)+
       labs(x = enquo(xcol),
            fill = enquo(xcol))+
       theme_classic(base_size = {{ fontsize }})+
       theme(strip.background = element_blank())+
-      guides(x = guide_axis(angle = {{ TextXAngle }}))
+      guides(x = guide_axis(angle = {{ TextXAngle }})))
   } else {
-    P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                    y = {{ ycol }}))+
       geom_violin(aes(fill = factor({{ xcol }})),
                   alpha = {{ v_alpha }},
@@ -96,24 +99,26 @@ plot_scatterviolin <- function(data, xcol, ycol, symsize = 2.5, symthick = 1, bw
                   scale = {{ scale }},
                   colour = "black", 
                   size = {{ bvthick }},
-                  adjust = 0.8)+
+                  ...)+
       geom_boxplot(aes(fill = factor({{ xcol }})),
                    alpha = {{ b_alpha }},
                    colour = "black", 
                    size = {{ bvthick }},
                    outlier.alpha = 0,
-                   width = {{ bwid }})+
+                   width = {{ bwid }},
+                   ...)+
       geom_point(shape = 21,
                  position = position_jitter(width = {{ jitter }}),
                  alpha = {{ s_alpha }},
                  stroke = {{ symthick }},
                  size = {{ symsize }},
-                 aes(fill = factor({{ xcol }})))+
+                 aes(fill = factor({{ xcol }})),
+                 ...)+
       labs(x = enquo(xcol),
            fill = enquo(xcol))+
       theme_classic(base_size = {{ fontsize }})+
       theme(strip.background = element_blank())+
-      guides(x = guide_axis(angle = {{ TextXAngle }}))
+      guides(x = guide_axis(angle = {{ TextXAngle }})))
   }
   if (ColSeq) {
     P <- P + scale_fill_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})

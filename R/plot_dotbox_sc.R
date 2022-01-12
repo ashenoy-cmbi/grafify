@@ -14,6 +14,7 @@
 #' @param b_alpha fractional opacity of boxes, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param d_alpha fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
+#' @param ... any additional arguments to pass to \code{ggplot2}[geom_boxplot] or \code{ggplot2}[geom_dotplot].
 #'
 #' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
 #' @export plot_dotbox_sc
@@ -21,35 +22,39 @@
 #'
 #' @examples
 #'
-#' #Basic usage requires a data table and X & Y variables#'
+#' #with default colour ("okabe_ito")
 #' plot_dotbox_sc(data = data_doubling_time, 
 #' xcol = Student, ycol = Doubling_time)
+#' #set a different colour
 #' plot_dotbox_sc(data = data_doubling_time, 
 #' xcol = Student, ycol = Doubling_time, 
-#' colour = "ok_grey")
+#' colour = "pale_blue")
 #'
 
 
-plot_dotbox_sc <- function(data, xcol, ycol, colour = "ok_orange", dotsize = 1.5, dotthick = 1, fontsize = 20, b_alpha = 1, d_alpha = 1, TextXAngle = 0){
+plot_dotbox_sc <- function(data, xcol, ycol, colour = "ok_orange", dotsize = 1.5, dotthick = 1,  b_alpha = 1, d_alpha = 1, TextXAngle = 0, fontsize = 20, ...){
 
 ifelse(grepl("#", colour), 
        a <- colour,
        a <- get_graf_colours({{ colour }}))
-ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+ suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
     geom_boxplot(size = 1,
                  alpha = {{ b_alpha }},
                  outlier.alpha = 0,
                  width = 0.7,
-                 fill = a)+
+                 fill = a,
+                 ...)+
     geom_dotplot(stackdir = "center", 
                  stroke = {{ dotthick }},
                  alpha = {{ d_alpha }},
                  binaxis = 'y', 
                  dotsize = {{ dotsize }},
-                 fill = a)+
+                 fill = a,
+                 ...)+
     labs(x = enquo(xcol))+
     theme_classic(base_size = {{ fontsize }})+
     theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = {{ TextXAngle }}))
+    guides(x = guide_axis(angle = {{ TextXAngle }})))
+ P
 }

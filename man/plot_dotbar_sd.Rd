@@ -12,13 +12,14 @@ plot_dotbar_sd(
   dotthick = 1,
   bwid = 0.7,
   ewid = 0.2,
-  fontsize = 20,
   b_alpha = 1,
   d_alpha = 1,
   ColPal = "all_grafify",
   ColRev = FALSE,
   ColSeq = TRUE,
-  TextXAngle = 0
+  TextXAngle = 0,
+  fontsize = 20,
+  ...
 )
 }
 \arguments{
@@ -36,8 +37,6 @@ plot_dotbar_sd(
 
 \item{ewid}{width of error bars, default set to 0.2}
 
-\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
-
 \item{b_alpha}{fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency)}
 
 \item{d_alpha}{fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency)}
@@ -49,6 +48,10 @@ plot_dotbar_sd(
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
+
+\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_dotplot}.}
 }
 \value{
 This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
@@ -73,13 +76,7 @@ plot_dotbar_sd(data = data_cholesterol,
 xcol = Treatment,
 ycol = Cholesterol)
 
-#Transformations of Y variable are possible as follows
-plot_dotbar_sd(data = data_cholesterol, 
-xcol = Treatment, ycol = log(Cholesterol))
-
-#Additional ggplot layering is possible
-plot_dotbar_sd(data = data_cholesterol, 
-xcol = Treatment, ycol = Cholesterol, dotsize = 2)+
-   labs(title = "Plot with scatter dots & boxplot")+
-   facet_wrap("Hospital")
+plot_dotbar_sd(data = data_1w_death, 
+xcol = Genotype, ycol = Death, 
+ColPal = "pale", ColSeq = FALSE, ColRev = TRUE)
 }

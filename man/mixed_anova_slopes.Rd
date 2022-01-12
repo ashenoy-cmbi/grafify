@@ -30,7 +30,7 @@ mixed_anova_slopes(
 
 \item{SS_method}{type of sum of square, default is type II, can be changed to "I", "III", "1" or "2", or others.}
 
-\item{...}{any additional arguments to pass on to \code{\link[lmerTest]{lmer}} if required.}
+\item{...}{any additional arguments to pass on to \code{\link[lme4]{lmer}} if required.}
 }
 \value{
 This function returns the output of \code{anova}.
@@ -39,7 +39,8 @@ This function returns the output of \code{anova}.
 There are four related functions for mixed effects analyses: \code{mixed_model}, \code{mixed_anova}, \code{mixed_model_slopes}, and \code{mixed_anova_slopes}.
 }
 \details{
-This function uses \code{\link[lmerTest]{lmer}} to fit a linear mixed effect model, passes on the model to \code{\link{anova}} and provides the ANOVA table.
+This function uses \code{\link[lme4]{lmer}} to fit a linear mixed effect model and provides the model object, which could be used for post-hoc comparisons. The model object is converted to class \code{lmerModLmerTest} object by \code{\link[lmerTest]{as_lmerModLmerTest}}.
+
 It produces a type II sum of squares ANOVA table with Kenward-Roger approximation for degrees of freedom (as implemented in \code{lmerTest}) package.
 It requires a data table, one dependent variable (Y_value), one or more independent variables (Fixed_Factor). Exactly one random factor (Random_Factor) and Slope_Factor should be provided.
 This function is related to \code{\link{mixed_model}}.

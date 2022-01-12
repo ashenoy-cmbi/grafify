@@ -25,6 +25,6 @@ plot_qqmodel <- function(Model) {
     mod <- augment(Model)
     p <- plot_qqline(data = mod,
                      ycol = mod$`.resid`)
-    p
+    suppressWarnings(print(p))
 }
 

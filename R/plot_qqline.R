@@ -22,6 +22,8 @@
 #' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
+#' @param Group deprecated old argument for `group`; retained for backward compatibility.
+#' @param ... any additional arguments to pass to \code{ggplot2}[stat_qq] or \code{ggplot2}[stat_qq_line].
 #'
 #' @return This function returns a \code{ggplot2} object.
 #' @export plot_qqline
@@ -31,19 +33,29 @@
 #' #Basic usage
 #' plot_qqline(data = data_cholesterol, 
 #' ycol = Cholesterol, group = Treatment)
+#' 
+#' #with faceting
+#' plot_qqline(data = data_cholesterol, 
+#' ycol = Cholesterol, group = Treatment, 
+#' fontsize = 10)+facet_wrap("Treatment")
 #'
 
-plot_qqline <- function(data, ycol, group, symsize = 3, symthick = 1, s_alpha = 1, ColPal = "all_grafify", ColSeq = TRUE, ColRev = FALSE, TextXAngle = 0, fontsize = 20){
+plot_qqline <- function(data, ycol, group, symsize = 3, symthick = 1, s_alpha = 1, ColPal = "all_grafify", ColSeq = TRUE, ColRev = FALSE, TextXAngle = 0, fontsize = 20, Group, ...){
+  if (!missing("Group")) {
+    warning("Use `group` argument instead, as `Group` is deprecated.")
+    group <- substitute(Group)}
   P <- ggplot2::ggplot(data, aes(sample = {{ ycol }}))+
     stat_qq_line(aes(colour = {{ group }}),
                  na.rm = T,
-                 size = 1)+
+                 size = 1,
+                 ...)+
     stat_qq(geom = "point", na.rm = T, 
             shape = 21,
             size = {{ symsize }}, 
             stroke = {{ symthick }},
             alpha = {{ s_alpha }},
-            aes(fill = {{ group }}) )+
+            aes(fill = {{ group }}),
+            ...)+
     labs(fill = enquo(group),
          colour = enquo(group))+
     theme_classic(base_size = {{ fontsize }})+

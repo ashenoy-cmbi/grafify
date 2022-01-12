@@ -20,6 +20,7 @@
 #' @param scale set to "area" by default, can be changed to "count" or "width".
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
+#' @param ... any additional arguments to pass to \code{ggplot2}[geom_boxplot], \code{ggplot2}[geom_point] or \code{ggplot2}[geom_violin].
 #'
 #' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
 #' @export plot_scatterviolin_sc
@@ -27,13 +28,10 @@
 #'
 #' @examples
 #' plot_scatterviolin_sc(data = data_doubling_time, 
-#' xcol = Student, ycol = Doubling_time, symsize = 2, 
-#' trim = FALSE, scale = "width")
-#' #without trimming
-#' plot_scatterviolin_sc(data = data_doubling_time, 
 #' xcol = Student, ycol = Doubling_time, 
 #' colour = "ok_grey", 
 #' symsize = 2, trim = FALSE, scale = "width")
+#' 
 #' #white boxplots and no symbols
 #' plot_scatterviolin_sc(data = data_1w_death, 
 #' xcol = Genotype, ycol = Death, 
@@ -41,12 +39,12 @@
 #' symsize = 2, trim = FALSE, scale = "width")
 
 
-plot_scatterviolin_sc <- function(data, xcol, ycol, colour = "ok_orange", symsize = 2.5, symthick = 1, bwid = 0.2, bvthick = 1, b_alpha = 1, v_alpha = 1, s_alpha = 1, jitter = 0, trim = TRUE, scale = "width", TextXAngle = 0, fontsize = 20){
+plot_scatterviolin_sc <- function(data, xcol, ycol, colour = "ok_orange", symsize = 2.5, symthick = 1, bwid = 0.2, bvthick = 1, b_alpha = 1, v_alpha = 1, s_alpha = 1, jitter = 0, trim = TRUE, scale = "width", TextXAngle = 0, fontsize = 20, ...){
   ifelse(grepl("#", colour), 
          a <- colour,
          a <- get_graf_colours({{ colour }}))
   if (b_alpha == 0){
-    P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                               y = {{ ycol }}))+
       geom_violin(fill = a,
                   alpha = {{ v_alpha }},
@@ -54,24 +52,26 @@ plot_scatterviolin_sc <- function(data, xcol, ycol, colour = "ok_orange", symsiz
                   scale = {{ scale }},
                   colour = "black", 
                   size = {{ bvthick }},
-                  adjust = 0.8)+
+                  ...)+
       geom_boxplot(fill = "white",
                    colour = "black", 
                    size = {{ bvthick }},
                    outlier.alpha = 0,
-                   width = {{ bwid }})+
+                   width = {{ bwid }},
+                   ...)+
       geom_point(shape = 21,
                  position = position_jitter(width = {{ jitter }}),
                  alpha = {{ s_alpha }},
                  stroke = {{ symthick }},
                  size = {{ symsize }},
-                 fill = a)+
+                 fill = a,
+                 ...)+
       labs(x = enquo(xcol))+
       theme_classic(base_size = {{ fontsize }})+
       theme(strip.background = element_blank())+
-      guides(x = guide_axis(angle = {{ TextXAngle }}))
+      guides(x = guide_axis(angle = {{ TextXAngle }})))
   } else {
-  P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
     geom_violin(fill = a,
                 alpha = {{ v_alpha }},
@@ -79,23 +79,25 @@ plot_scatterviolin_sc <- function(data, xcol, ycol, colour = "ok_orange", symsiz
                 scale = {{ scale }},
                 colour = "black", 
                 size = {{ bvthick }},
-                adjust = 0.8)+
+                ...)+
     geom_boxplot(fill = a,
                  alpha = {{ b_alpha }},
                  colour = "black", 
                  size = {{ bvthick }},
                  outlier.alpha = 0,
-                 width = {{ bwid }})+
+                 width = {{ bwid }},
+                 ...)+
     geom_point(shape = 21,
                position = position_jitter(width = {{ jitter }}),
                alpha = {{ s_alpha }},
                stroke = {{ symthick }},
                size = {{ symsize }},
-               fill = a)+
+               fill = a,
+               ...)+
     labs(x = enquo(xcol))+
     theme_classic(base_size = {{ fontsize }})+
     theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = {{ TextXAngle }}))
+    guides(x = guide_axis(angle = {{ TextXAngle }})))
   }
   P
 }

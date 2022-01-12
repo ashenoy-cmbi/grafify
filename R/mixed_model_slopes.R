@@ -2,7 +2,7 @@
 #'
 #' There are four related functions for mixed effects analyses: \code{mixed_model}, \code{mixed_anova}, \code{mixed_model_slopes}, and \code{mixed_anova_slopes}.
 #'
-#' This function uses \code{\link[lmerTest]{lmer}} to fit a linear mixed effect model and provides the model object, which could be used for post-hoc comparisons. 
+#' This function uses \code{\link[lme4]{lmer}} to fit a linear mixed effect model and provides the model object, which could be used for post-hoc comparisons. The model object is converted to class `lmerModLmerTest` object by \code{\link[lmerTest]{as_lmerModLmerTest}}.
 #' It requires a data table, one dependent variable (Y_value), one or more independent variables (Fixed_Factor).  Exactly one random factor (Random_Factor) and Slope_Factor should be provided.
 #' This function is related to \code{\link{mixed_anova_slopes}}. 
 #' Output of this function can be used with \code{\link{posthoc_Pairwise}}, \code{\link{posthoc_Levelwise}} and \code{\link{posthoc_vsRef}}, or with \code{\link[emmeans]{emmeans}}.
@@ -16,7 +16,7 @@
 #' @param Fixed_Factor name(s) of categorical fixed factors (independent variables) provided as a vector if more than one or within "quotes".
 #' @param Slopes_Factor name of factor to allow varying slopes on. 
 #' @param Random_Factor name(s) of random factors to allow random intercepts; to be provided as a vector when more than one or within "quotes".
-#' @param ... any additional arguments to pass on to \code{\link[lmerTest]{lmer}} if required.
+#' @param ... any additional arguments to pass on to \code{\link[lme4]{lmer}} if required.
 #'
 #' @return This function returns the output of \code{lmerTest::lmer()}.
 #' @export mixed_model_slopes

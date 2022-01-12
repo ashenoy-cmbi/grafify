@@ -9,16 +9,17 @@
 #' @param ycol name of the column to plot on quantitative Y axis. This should be a quantitative variable.
 #' @param colour colour of boxes and dots; a number between 1-64, any hexcode or names from `grafify` colour palettes. Default is `ok_orange`.
 #' @param dotsize size of dots relative to \code{binwidth} used by \code{geom_dotplot}. Default set to 1.5, increase/decrease as needed.
-#' @param dotthick thickness of dot border (`stroke` parameter of `geom_dotplot`), default set to 1
+#' @param b_alpha fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency). For white boxplots inside violins, set `b_alpha = 0`.
+#' @param d_alpha fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency)
+#' @param v_alpha fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param bvthick thickness of violin an boxplot lines; default 1
+#' @param dotthick thickness of dot border (`stroke` parameter of `geom_dotplot`), default set to 1
 #' @param bwid width of boxplots; default 0.2
 #' @param trim set whether tips of violin plot should be trimmed at high/low data. Default \code{trim = T}, can be changed to F.
 #' @param scale set to "area" by default, can be changed to "count" or "width".
-#' @param b_alpha fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency)
-#' @param v_alpha fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency)
-#' @param d_alpha fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
+#' @param ... any additional arguments to pass to \code{ggplot2}[geom_boxplot], \code{ggplot2}[geom_dotplot] or \code{ggplot2}[geom_violin].
 #'
 #' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
 #' @export plot_dotviolin_sc
@@ -30,18 +31,19 @@
 #' plot_dotviolin_sc(data = data_1w_death, 
 #' xcol = Genotype, ycol = Death, 
 #' scale = "width", trim = FALSE)
+#' #white boxplots
 #' plot_dotviolin_sc(data = data_1w_death, 
-#' xcol = Genotype, ycol = Death, colour = "ok_grey", 
-#' scale = "width", trim = FALSE)
+#' xcol = Genotype, ycol = Death, colour = "light_orange", 
+#' scale = "width", trim = FALSE, b_alpha = 0)
 #' 
 
-plot_dotviolin_sc <- function(data, xcol, ycol, colour = "ok_orange", dotsize = 1.5, dotthick = 1, bvthick = 1, bwid = 0.2, trim = T, scale = "width", b_alpha = 1, v_alpha = 1, d_alpha = 1, TextXAngle = 0, fontsize = 20){
+plot_dotviolin_sc <- function(data, xcol, ycol, colour = "ok_orange", dotsize = 1.5,  dotthick = 1, bvthick = 1, bwid = 0.2, b_alpha = 1, d_alpha = 1, v_alpha = 1,  trim = T, scale = "width", TextXAngle = 0, fontsize = 20, ...){
   
 ifelse(grepl("#", colour), 
          a <- colour,
          a <- get_graf_colours({{ colour }}))
-  
-  ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+  if (b_alpha == 0){
+  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
     geom_violin(fill = a,
                 alpha = {{ v_alpha }},
@@ -49,21 +51,52 @@ ifelse(grepl("#", colour),
                 scale = {{ scale }},
                 colour = "black", 
                 size = {{ bvthick }},
-                adjust = 0.8)+
-    geom_boxplot(fill = a,
-                 alpha = {{ b_alpha }},
+                ...)+
+    geom_boxplot(fill = "white",
                  colour = "black", 
                  size = {{ bvthick }},
                  outlier.alpha = 0,
-                 width = {{ bwid }})+
+                 width = {{ bwid }},
+                 ...)+
     geom_dotplot(stackdir = "center", 
                  stroke = {{ dotthick }}, 
                  alpha = {{ d_alpha }},
                  dotsize = {{ dotsize }},
                  binaxis = 'y',
-                 fill = a)+
+                 fill = a,
+                 ...)+
     labs(x = enquo(xcol))+
     theme_classic(base_size = {{ fontsize }})+
     theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = {{ TextXAngle }}))
+    guides(x = guide_axis(angle = {{ TextXAngle }})))
+  } else {
+    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+                                   y = {{ ycol }}))+
+      geom_violin(fill = a,
+                  alpha = {{ v_alpha }},
+                  trim = {{ trim }},
+                  scale = {{ scale }},
+                  colour = "black", 
+                  size = {{ bvthick }},
+                  ...)+
+      geom_boxplot(fill = a,
+                   alpha = {{ b_alpha }},
+                   colour = "black", 
+                   size = {{ bvthick }},
+                   outlier.alpha = 0,
+                   width = {{ bwid }},
+                   ...)+
+      geom_dotplot(stackdir = "center", 
+                   stroke = {{ dotthick }}, 
+                   alpha = {{ d_alpha }},
+                   dotsize = {{ dotsize }},
+                   binaxis = 'y',
+                   fill = a,
+                   ...)+
+      labs(x = enquo(xcol))+
+      theme_classic(base_size = {{ fontsize }})+
+      theme(strip.background = element_blank())+
+      guides(x = guide_axis(angle = {{ TextXAngle }})))
+  }
+  P
 }

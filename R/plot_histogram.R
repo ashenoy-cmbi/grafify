@@ -23,6 +23,9 @@
 #' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
+#' @param Group deprecated old argument for `group`; retained for backward compatibility.
+#' @param alpha deprecated old argument for `c_alpha`; retained for backward compatibility.
+#' @param ... any additional arguments to pass to \code{ggplot2}[geom_histogram].
 #'
 #' @return This function returns a \code{ggplot2} object.
 #' @export plot_histogram
@@ -31,17 +34,28 @@
 #' @examples
 #' #Basic usage
 #' plot_histogram(data = data_t_pratio, 
-#' ycol = Cytokine, group = Genotype, BinSize = 10)+
-#' scale_x_log10()
+#' ycol = Cytokine, group = Genotype, 
+#' BinSize = 10)
+#' #with log transformation
+#' plot_histogram(data = data_t_pratio, 
+#' ycol = log(Cytokine), group = Genotype, 
+#' BinSize = 10)
 
-plot_histogram <- function(data, ycol, group, BinSize = 30, linethick = 1, c_alpha = 0.2, ColPal = "all_grafify", ColRev = FALSE, ColSeq = TRUE, TextXAngle = 0, fontsize = 20){
+plot_histogram <- function(data, ycol, group, BinSize = 30, linethick = 1, c_alpha = 0.2, ColPal = "all_grafify", ColRev = FALSE, ColSeq = TRUE, TextXAngle = 0, fontsize = 20, Group, alpha, ...){
+  if (!missing("Group")) {
+    warning("Use `group` argument instead, as `Group` is deprecated.")
+    group <- substitute(Group)}
+  if (!missing("alpha")) {
+    warning("Use `c_alpha` argument instead, as `alpha` is deprecated.")
+    c_alpha <- substitute(alpha)}
   P <- ggplot2::ggplot(data, aes(sample = {{ ycol }}))+
     geom_histogram(size = {{ linethick }},
                    alpha = {{ c_alpha }},
                    bins = {{ BinSize }}, 
                    aes(x = {{ ycol }},
                        fill = {{ group }},
-                       colour = {{ group }}))+
+                       colour = {{ group }}),
+                   ...)+
     labs(fill = enquo(group),
          colour = enquo(group),
          y = "Count")+

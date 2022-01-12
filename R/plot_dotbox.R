@@ -26,45 +26,40 @@
 #' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
+#' @param ... any additional arguments to pass to \code{ggplot2}[geom_boxplot] or \code{ggplot2}[geom_dotplot].
 #'
 #' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
 #' @export plot_dotbox
 #' @import ggplot2
 #'
 #' @examples
-#'
-#' #Basic usage requires a data table and X & Y variables#'
-#' plot_dotbox(data = data_cholesterol, 
-#' xcol = Treatment, ycol = Cholesterol)
-#'
-#' #Transformations of Y variable are possible as follows
-#' plot_dotbox(data = data_cholesterol, 
-#' xcol = Treatment, ycol = log(Cholesterol))
-#'
-#' #Additional ggplot layering is possible
-#' plot_dotbox(data = data_cholesterol, 
-#' xcol = Treatment, ycol = Cholesterol, dotsize = 2)+
-#'    labs(title = "Plot with scatter dots & boxplot")+
-#'    facet_wrap("Hospital")
+#' plot_dotbox(data = data_1w_death, 
+#' xcol = Genotype, ycol = Death)
+#' 
+#' plot_dotbox(data = data_1w_death, 
+#' xcol = Genotype, ycol = Death, 
+#' ColPal = "vibrant", b_alpha = 0.5)
 
-plot_dotbox <- function(data, xcol, ycol, dotsize = 1.5, dotthick = 1, fontsize = 20, b_alpha = 1, d_alpha = 1, ColPal = "all_grafify", ColRev = FALSE, ColSeq = TRUE, TextXAngle = 0){
-  P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+plot_dotbox <- function(data, xcol, ycol, dotsize = 1.5, dotthick = 1, b_alpha = 1, d_alpha = 1, ColPal = "all_grafify", ColRev = FALSE, ColSeq = TRUE, TextXAngle = 0, fontsize = 20,  ...){
+  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
     geom_boxplot(aes(fill = factor({{ xcol }})), size = 1,
                  alpha = {{ b_alpha }},
                  outlier.alpha = 0,
-                 width = 0.7)+
+                 width = 0.7,
+                 ...)+
     geom_dotplot(stackdir = "center", 
                  stroke = {{ dotthick }},
                  alpha = {{ d_alpha }},
                  binaxis = 'y', 
                  dotsize = {{ dotsize }},
-                 aes(fill = factor({{ xcol }})))+
+                 aes(fill = factor({{ xcol }})),
+                 ...)+
     labs(x = enquo(xcol),
          fill = enquo(xcol))+
     theme_classic(base_size = {{ fontsize }})+
     theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = {{ TextXAngle }}))
+    guides(x = guide_axis(angle = {{ TextXAngle }})))
   if (ColSeq) {
     P <- P + scale_fill_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})
   } else {

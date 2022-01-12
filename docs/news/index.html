@@ -55,22 +55,23 @@
 
     <div class="section level2">
 <h2 class="page-header" data-toc-text="2.0.0.9000" id="grafify-v2009000">grafify v2.0.0.9000<a class="anchor" aria-label="anchor" href="#grafify-v2009000"></a></h2>
-<p>This is a major update with some new features, bugfixes, and further cleaning up of code and consistent names of arguments in preparation for CRAN submission. Some previous code may not work because of renaming of some arguments for grouping variables in <code>plot_</code> functions (but order of those arguments is still same, and some code without explicit argument calls might still work).</p>
+<p>This is a major update with some new features, bugfixes, and further cleaning up of code and consistent names of arguments in preparation for CRAN submission. Some previous code may not work because of renaming of some arguments for grouping variables in <code>plot_</code> functions. But older arguments are retained with deprecation warnings in most cases, so old code should largely work.</p>
 <div class="section level3">
-<h3 id="new-features-2-0-0-9000">New features:<a class="anchor" aria-label="anchor" href="#new-features-2-0-0-9000"></a></h3>
+<h3 id="major-new-features-2-0-0-9000">Major new features:<a class="anchor" aria-label="anchor" href="#major-new-features-2-0-0-9000"></a></h3>
 <ol style="list-style-type: lower-alpha"><li>Plot functions have a new argument <code>ColSeq</code> (logical TRUE/FALSE) that picks colours sequentially from palette chosen by <code>ColPal</code> when <code>TRUE</code> (default). If set to <code>FALSE</code>, the most distant colours are chosen, as already implemented in <code>scale_..._grafify2</code> functions.</li>
 <li>Violin plots get a major face-lift with a box-whiskers plot on top of the violin. This gives a clearer picture of data and dispersion than the default quantile lines in <code>geom_violin</code>. They also get new arguments to set thickness of lines (<code>bvthick</code>) and transparency of boxplots (<code>b_alpha</code>).</li>
 <li>There are new functions for fitting linear models with varying slopes and intercepts. These are <code>mixed_model_slopes</code> and <code>mixed_anova_slopes</code>.</li>
-<li>A function for comparing slopes of linear fits <code>posthoc_Trends</code> implements the <code><a href="https://rdrr.io/pkg/emmeans/man/emtrends.html" class="external-link">emmeans::emtrends</a></code> call.</li>
+<li>A function for comparing slopes of linear fits <code>posthoc_Trends</code> implements the <code><a href="https://rdrr.io/pkg/emmeans/man/emtrends.html" class="external-link">emmeans::emtrends</a></code> call.<br></li>
+<li>Most <code>plot_</code> functions now have the <code>...</code> argument forwarding dots for advanced users to add arguments to <code>ggplot</code> geometries where necessary.</li>
 </ol></div>
 <div class="section level3">
 <h3 id="bug-fixes-2-0-0-9000">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-2-0-0-9000"></a></h3>
-<ol style="list-style-type: lower-alpha"><li>Distribution plots: the The <code>xcol</code> grouping argument in <code>plot_density</code>, <code>plot_histogram</code> and <code>plot_qqline</code> is now called <code>group</code> for consistency with other <code>plot_</code> functions.</li>
+<ol style="list-style-type: lower-alpha"><li>Distribution plots: the The <code>Group</code> grouping argument in <code>plot_density</code>, <code>plot_histogram</code> and <code>plot_qqline</code> is now called <code>group</code> for consistency with other <code>plot_</code> functions.</li>
 <li>The <code>Factor</code> argument in post-hoc comparisons functions (<code>posthoc_Pairwise</code>, <code>posthoc_vsRes</code>, and <code>posthoc_Levelwise</code>) renamed as <code>Fixed_Factor</code> to be consistent with <code>mixed_model</code>, <code>simple_model</code>, <code>mixed_anova</code> and <code>simple_anova</code> functions.</li>
 <li>The <code>plot_3d_scatterbar</code> and <code>plot_3d_scatterbox</code> now correctly plot one-way ANOVA designs with randomised blocks with <code>shapes</code> mapped to levels of the random factor, and <code>xcol</code> as the grouping factor as originally intended but incorrectly implemented. This complements <code>plot_4d_scatterbar</code> and <code>plot_4d_scatterbox</code> which take two grouping factors and a random factor.</li>
 <li>Examples in help files have arguments explicitly labelled to make them easier to follow.</li>
 <li>
-<code>Groups</code> in before-after plots is now called <code>groups</code> for consistency.</li>
+<code>groups</code> in before-after plots is now called <code>match</code> as it is a bit more informative when showing matched data.</li>
 <li>For consistency, the argument for controlling opacity in distribution plots is renamed <code>c_alpha</code> in <code>plot_density</code> and <code>plot_histogram</code> (for colour opacity of colours under the density curve or histogram); opacity of symbols in <code>plot_qqline</code> is still called <code>s_alpha</code>.</li>
 </ol></div>
 </div>

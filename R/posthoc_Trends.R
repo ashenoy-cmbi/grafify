@@ -25,6 +25,11 @@
 #'
 
 posthoc_Trends <- function(Model, Fixed_Factor, Trend_Factor, P_Adj = "sidak", ...){
+  if (class(Model) == "lmerModLmerTest") {
+    t1 <- Model@frame} else {
+      t1 <- Model$model
+    }
+  if (!is.numeric(t1[, Trend_Factor])) stop("Trend_Factor should be numeric.")
   ifelse(length(Fixed_Factor) > 1,
          comp <- paste0(Fixed_Factor, collapse = ":"),
          comp <- paste0(Fixed_Factor))

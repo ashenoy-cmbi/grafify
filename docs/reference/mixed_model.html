@@ -73,7 +73,7 @@
 <dt>Random_Factor</dt>
 <dd><p>name(s) of random factors to allow random intercepts; to be provided as a vector when more than one or within "quotes".</p></dd>
 <dt>...</dt>
-<dd><p>any additional arguments to pass on to <code><a href="https://rdrr.io/pkg/lmerTest/man/lmer.html" class="external-link">lmer</a></code> if required.</p></dd>
+<dd><p>any additional arguments to pass on to <code><a href="https://rdrr.io/pkg/lme4/man/lmer.html" class="external-link">lmer</a></code> if required.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -81,8 +81,8 @@
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>This function uses <code><a href="https://rdrr.io/pkg/lmerTest/man/lmer.html" class="external-link">lmer</a></code> to fit a linear mixed effect model and provides the model object, which could be used for post-hoc comparisons.
-It requires a data table, one dependent variable (Y_value), one or more independent variables (Fixed_Factor), and at least one random factor (Random_Factor). These should match names of variables in the long-format data table exactly.
+    <p>This function uses <code><a href="https://rdrr.io/pkg/lme4/man/lmer.html" class="external-link">lmer</a></code> to fit a linear mixed effect model and provides the model object, which could be used for post-hoc comparisons. The model object is converted to class <code>lmerModLmerTest</code> object by <code><a href="https://rdrr.io/pkg/lmerTest/man/as_lmerModLmerTest.html" class="external-link">as_lmerModLmerTest</a></code>.</p>
+<p>It requires a data table, one dependent variable (Y_value), one or more independent variables (Fixed_Factor), and at least one random factor (Random_Factor). These should match names of variables in the long-format data table exactly.
 This function is related to <code><a href="mixed_anova.html">mixed_anova</a></code>.
 Output of this function can be used with <code><a href="posthoc_Pairwise.html">posthoc_Pairwise</a></code>, <code><a href="posthoc_Levelwise.html">posthoc_Levelwise</a></code> and <code><a href="posthoc_vsRef.html">posthoc_vsRef</a></code>, or with <code><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></code>.</p>
 <p>More than one fixed factors can be provided as a vector (e.g. c("A", "B")). A full model with interaction term is fitted.

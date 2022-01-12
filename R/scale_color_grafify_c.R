@@ -20,7 +20,7 @@
 #' @examples
 #' #basic usage on mtcars data with x and y quantitative axes
 #' ggplot(mtcars, aes(x = mpg, y = disp))+
-#' geom_point(aes(color= disp))+
+#' geom_point(aes(color= disp), size = 3)+
 #' scale_color_grafify_c()
 #' 
 

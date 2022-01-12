@@ -9,7 +9,7 @@ plot_xy_CatGroup(
   xcol,
   ycol,
   CatGroup,
-  symsize = 2,
+  symsize = 2.5,
   symthick = 1,
   s_alpha = 1,
   ColPal = "all_grafify",
@@ -27,9 +27,9 @@ plot_xy_CatGroup(
 \item{ycol}{name of the column with quantitative Y variable}
 
 \item{CatGroup}{a categorical variable as grouping factor for colour of data points, should be a categorical variable for default colours to work.
-Will be converted to \code{factor} if your column is numeric.}
+Will be converted to \code{factor} if your column is numeric}
 
-\item{symsize}{size of point symbols, default set to 2}
+\item{symsize}{size of symbols used by \code{geom_point}. Default set to 2.5, increase/decrease as needed.}
 
 \item{symthick}{thickness of symbol border, default set to 1}
 
@@ -63,7 +63,8 @@ This plot is related to \code{\link{plot_xy_NumGroup}} which requires a numeric 
 When summary statistics (mean/median) are required, use \code{\link{plot_3d_scatterbar}}, \code{\link{plot_3d_scatterbox}} or \code{\link{plot_4d_scatterbox}}.
 }
 \examples{
-#The grouping factor gear is converted to factor automatically
-plot_xy_CatGroup(data = mtcars, 
-xcol = mpg, ycol = disp, CatGroup = gear)
+#The grouping factor cyl  is automatically converted to categorical variable
+plot_xy_CatGroup(data = mtcars,
+xcol = mpg, ycol = disp, CatGroup = cyl, 
+ColPal = "vibrant", ColSeq = FALSE)
 }

@@ -88,7 +88,7 @@
 <dt>SS_method</dt>
 <dd><p>type of sum of square, default is type II, can be changed to "I", "III", "1" or "2", or others.</p></dd>
 <dt>...</dt>
-<dd><p>any additional arguments to pass on to <code><a href="https://rdrr.io/pkg/lmerTest/man/lmer.html" class="external-link">lmer</a></code> if required.</p></dd>
+<dd><p>any additional arguments to pass on to <code><a href="https://rdrr.io/pkg/lme4/man/lmer.html" class="external-link">lmer</a></code> if required.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -96,8 +96,8 @@
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>This function uses <code><a href="https://rdrr.io/pkg/lmerTest/man/lmer.html" class="external-link">lmer</a></code> to fit a linear mixed effect model, passes on the model to <code><a href="https://rdrr.io/r/stats/anova.html" class="external-link">anova</a></code> and provides the ANOVA table.
-It produces a type II sum of squares ANOVA table with Kenward-Roger approximation for degrees of freedom (as implemented in <code>lmerTest</code>) package.
+    <p>This function uses <code><a href="https://rdrr.io/pkg/lme4/man/lmer.html" class="external-link">lmer</a></code> to fit a linear mixed effect model and provides the model object, which could be used for post-hoc comparisons. The model object is converted to class <code>lmerModLmerTest</code> object by <code><a href="https://rdrr.io/pkg/lmerTest/man/as_lmerModLmerTest.html" class="external-link">as_lmerModLmerTest</a></code>.</p>
+<p>It produces a type II sum of squares ANOVA table with Kenward-Roger approximation for degrees of freedom (as implemented in <code>lmerTest</code>) package.
 It requires a data table, one dependent variable (Y_value), one or more independent variables (Fixed_Factor). Exactly one random factor (Random_Factor) and Slope_Factor should be provided.
 This function is related to <code><a href="mixed_model.html">mixed_model</a></code>.</p>
 <p>More than one fixed factors can be provided as a vector (e.g. c("A", "B")). A full model with interaction term is fitted with one term each for varying slopes and intercepts.

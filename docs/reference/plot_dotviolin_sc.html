@@ -72,13 +72,14 @@ The default colour is <code>ok_orange</code>. <code>ColPal</code> and <code>ColR
   dotthick <span class="op">=</span> <span class="fl">1</span>,
   bvthick <span class="op">=</span> <span class="fl">1</span>,
   bwid <span class="op">=</span> <span class="fl">0.2</span>,
+  b_alpha <span class="op">=</span> <span class="fl">1</span>,
+  d_alpha <span class="op">=</span> <span class="fl">1</span>,
+  v_alpha <span class="op">=</span> <span class="fl">1</span>,
   trim <span class="op">=</span> <span class="cn">T</span>,
   scale <span class="op">=</span> <span class="st">"width"</span>,
-  b_alpha <span class="op">=</span> <span class="fl">1</span>,
-  v_alpha <span class="op">=</span> <span class="fl">1</span>,
-  d_alpha <span class="op">=</span> <span class="fl">1</span>,
   TextXAngle <span class="op">=</span> <span class="fl">0</span>,
-  fontsize <span class="op">=</span> <span class="fl">20</span>
+  fontsize <span class="op">=</span> <span class="fl">20</span>,
+  <span class="va">...</span>
 <span class="op">)</span></code></pre></div>
     </div>
 
@@ -100,20 +101,22 @@ The default colour is <code>ok_orange</code>. <code>ColPal</code> and <code>ColR
 <dd><p>thickness of violin an boxplot lines; default 1</p></dd>
 <dt>bwid</dt>
 <dd><p>width of boxplots; default 0.2</p></dd>
+<dt>b_alpha</dt>
+<dd><p>fractional opacity of violins, default set to 1 (i.e. maximum opacity &amp; zero transparency). For white boxplots inside violins, set <code>b_alpha = 0</code>.</p></dd>
+<dt>d_alpha</dt>
+<dd><p>fractional opacity of dots, default set to 1 (i.e. maximum opacity &amp; zero transparency)</p></dd>
+<dt>v_alpha</dt>
+<dd><p>fractional opacity of violins, default set to 1 (i.e. maximum opacity &amp; zero transparency)</p></dd>
 <dt>trim</dt>
 <dd><p>set whether tips of violin plot should be trimmed at high/low data. Default <code>trim = T</code>, can be changed to F.</p></dd>
 <dt>scale</dt>
 <dd><p>set to "area" by default, can be changed to "count" or "width".</p></dd>
-<dt>b_alpha</dt>
-<dd><p>fractional opacity of violins, default set to 1 (i.e. maximum opacity &amp; zero transparency)</p></dd>
-<dt>v_alpha</dt>
-<dd><p>fractional opacity of violins, default set to 1 (i.e. maximum opacity &amp; zero transparency)</p></dd>
-<dt>d_alpha</dt>
-<dd><p>fractional opacity of dots, default set to 1 (i.e. maximum opacity &amp; zero transparency)</p></dd>
 <dt>TextXAngle</dt>
 <dd><p>orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text</p></dd>
 <dt>fontsize</dt>
 <dd><p>parameter of <code>base_size</code> of fonts in <code>theme_classic</code>, default set to size 20.</p></dd>
+<dt>...</dt>
+<dd><p>any additional arguments to pass to <code>ggplot2</code>geom_boxplot, <code>ggplot2</code>geom_dotplot or <code>ggplot2</code>geom_violin.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -129,9 +132,10 @@ The default colour is <code>ok_orange</code>. <code>ColPal</code> and <code>ColR
 <span class="r-in">scale <span class="op">=</span> <span class="st">"width"</span>, trim <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Bin width defaults to 1/30 of the range of the data. Pick better value with `binwidth`.</span>
 <span class="r-plt img"><img src="plot_dotviolin_sc-1.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span class="co">#white boxplots</span></span>
 <span class="r-in"><span class="fu">plot_dotviolin_sc</span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_1w_death</span>, </span>
-<span class="r-in">xcol <span class="op">=</span> <span class="va">Genotype</span>, ycol <span class="op">=</span> <span class="va">Death</span>, colour <span class="op">=</span> <span class="st">"ok_grey"</span>, </span>
-<span class="r-in">scale <span class="op">=</span> <span class="st">"width"</span>, trim <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span class="r-in">xcol <span class="op">=</span> <span class="va">Genotype</span>, ycol <span class="op">=</span> <span class="va">Death</span>, colour <span class="op">=</span> <span class="st">"light_orange"</span>, </span>
+<span class="r-in">scale <span class="op">=</span> <span class="st">"width"</span>, trim <span class="op">=</span> <span class="cn">FALSE</span>, b_alpha <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Bin width defaults to 1/30 of the range of the data. Pick better value with `binwidth`.</span>
 <span class="r-plt img"><img src="plot_dotviolin_sc-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"></span>

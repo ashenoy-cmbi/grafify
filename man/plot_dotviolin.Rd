@@ -21,7 +21,8 @@ plot_dotviolin(
   ColRev = FALSE,
   ColSeq = TRUE,
   TextXAngle = 0,
-  fontsize = 20
+  fontsize = 20,
+  ...
 )
 }
 \arguments{
@@ -43,7 +44,7 @@ plot_dotviolin(
 
 \item{scale}{set to "area" by default, can be changed to "count" or "width".}
 
-\item{b_alpha}{fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency)}
+\item{b_alpha}{fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency). For white boxplots inside violins, set \code{b_alpha = 0}.}
 
 \item{v_alpha}{fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency)}
 
@@ -58,6 +59,8 @@ plot_dotviolin(
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_boxplot}, \code{ggplot2}\link{geom_dotplot} or \code{ggplot2}\link{geom_violin}.}
 }
 \value{
 This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
@@ -81,13 +84,14 @@ This function is related to \code{\link{plot_scatterbar_sd}}, \code{\link{plot_d
 }
 \examples{
 
-#plot with trim = F
-plot_dotviolin(data = data_t_pdiff, 
-xcol = Condition, ycol = Mass, dotsize = 2)
-
-#without trimming
+#plot without trim = FALSE
 plot_dotviolin(data = data_t_pdiff, 
 xcol = Condition, ycol = Mass, 
 dotsize = 2, trim = FALSE)
 
+#white boxplots
+plot_dotviolin(data = data_t_pdiff, 
+xcol = Condition, ycol = Mass,
+trim = FALSE, b_alpha = 0, 
+ColPal = "pale", ColSeq = FALSE)
 }

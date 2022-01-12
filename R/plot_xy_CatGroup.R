@@ -16,8 +16,8 @@
 #' @param xcol name of the column with quantitative X variable
 #' @param ycol name of the column with quantitative Y variable
 #' @param CatGroup a categorical variable as grouping factor for colour of data points, should be a categorical variable for default colours to work. 
-#' Will be converted to `factor` if your column is numeric.
-#' @param symsize size of point symbols, default set to 2
+#' Will be converted to `factor` if your column is numeric
+#' @param symsize size of symbols used by \code{geom_point}. Default set to 2.5, increase/decrease as needed.
 #' @param symthick thickness of symbol border, default set to 1
 #' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
@@ -31,11 +31,12 @@
 #' @import ggplot2
 #'
 #' @examples
-#' #The grouping factor gear is converted to factor automatically
-#' plot_xy_CatGroup(data = mtcars, 
-#' xcol = mpg, ycol = disp, CatGroup = gear)
+#' #The grouping factor cyl  is automatically converted to categorical variable
+#' plot_xy_CatGroup(data = mtcars,
+#' xcol = mpg, ycol = disp, CatGroup = cyl, 
+#' ColPal = "vibrant", ColSeq = FALSE)
 
-plot_xy_CatGroup <- function(data, xcol, ycol, CatGroup, symsize = 2, symthick = 1, s_alpha = 1, ColPal = "all_grafify", ColSeq = TRUE, ColRev = FALSE, TextXAngle = 0, fontsize = 20){
+plot_xy_CatGroup <- function(data, xcol, ycol, CatGroup, symsize = 2.5, symthick = 1, s_alpha = 1, ColPal = "all_grafify", ColSeq = TRUE, ColRev = FALSE, TextXAngle = 0, fontsize = 20){
   P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
                             y = {{ ycol }}))+
     geom_point(size = {{ symsize }}, 

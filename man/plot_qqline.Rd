@@ -15,7 +15,9 @@ plot_qqline(
   ColSeq = TRUE,
   ColRev = FALSE,
   TextXAngle = 0,
-  fontsize = 20
+  fontsize = 20,
+  Group,
+  ...
 )
 }
 \arguments{
@@ -40,6 +42,10 @@ plot_qqline(
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{Group}{deprecated old argument for \code{group}; retained for backward compatibility.}
+
+\item{...}{any additional arguments to pass to \code{ggplot2}\link{stat_qq} or \code{ggplot2}\link{stat_qq_line}.}
 }
 \value{
 This function returns a \code{ggplot2} object.
@@ -61,5 +67,10 @@ Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} argum
 #Basic usage
 plot_qqline(data = data_cholesterol, 
 ycol = Cholesterol, group = Treatment)
+
+#with faceting
+plot_qqline(data = data_cholesterol, 
+ycol = Cholesterol, group = Treatment, 
+fontsize = 10)+facet_wrap("Treatment")
 
 }

@@ -18,22 +18,26 @@ remotes::install_github("ashenoy-cmbi/grafify@*release") #install latest release
 ```
 
 `grafify` requires the following packages to be installed:
-`broom.mixed`, `magrittr`, `ggplot2`, `lme4`, `lmerTest`, `emmeans`,
-`car`, `pbkrtest`, `tidyr`, `purrr` and `Hmisc`.
+`broom.mixed`, `car`, `emmeans`, `ggplot2`, `Hmisc`, `lme4`, `lmerTest`,
+`magrittr`, `pbkrtest`, `purrr`, `stats`, `tidyr`.
 
 ### Motivation
 
-I made this package for the following:
+I made this package mainly to make it easier for making graphs while
+exploring data, and to introduce linear models in my teaching using
+simpler code and practice data sets.
 
-1.  easily make graphs based on `ggplot2` but with far fewer lines of
-    code
+I mainly wanted to:
+
+1.  make many types of graphs based on `ggplot2` but with far fewer
+    lines of code
 2.  carry out ANOVA analysis using linear models (`lm`) and mixed
     effects (`lmer`), quickly get ANOVA tables and perform model
     diagnostics
 3.  perform post-hoc comparisons (through `emmeans`)
 4.  simulate one-way and two-way ANOVA design data for power analysis
     (documentation pending)
-5.  use and distribute it to for teaching purposes
+5.  use and distribute data & functions for teaching purposes
 
 If you’re interested in basic theory and code for statistics written for
 biologists, also visit Statistics for [Micro/Immuno
@@ -45,7 +49,7 @@ Biologists](https://microimmunostats.netlify.app).
 
 `grafify` has five main features (graphs, colour blind-friendly colour
 schemes, ANOVAs & post-hoc comparisons, practice datasets and data
-simulations) briefly described below:
+simulations):
 
 1.  There are 19 `plot_` functions of 6 broad types in `grafify`. The
     `plot_scatter..` versions are preferred when there are many data
@@ -57,11 +61,11 @@ simulations) briefly described below:
         `plot_scatterbar_sd`, `plot_scatterbox`, `plot_scatterviolin`
         and `plot_dotbar_sd`, `plot_dotbox`, `plot_dotviolin` **New
         since v1.5.0**: new `plot_` functions like the above but ending
-        in `_sc` for *same colour* or *single colour* which plot
-        boxes/dots/violins in one colour. The colour can be picked from
-        `all_grafify` palettes or defined with a hexcode.
-    2.  Three or four categorical variables: `plot_3d_scatterbar`,
-        `plot_3d_scatterbox`, `plot_4d_scatterbar`, `plot_4d_scatterbox`
+        in `_sc` for *same colour* or *single colour*. See vignettes for
+        details.
+    2.  Three or four categorical variables (one-way or two-way ANOVA
+        desigs): `plot_3d_scatterbar`, `plot_3d_scatterbox`,
+        `plot_4d_scatterbar`, `plot_4d_scatterbox`
     3.  Quantitative X & Y, plus a third variable: `plot_xy_NumGroup`,
         `plot_xy_CatGroup`
     4.  Matched before-after graphs: `plot_befafter_colours`,
@@ -89,13 +93,16 @@ v0.2.0.)
 
     1.  linear models for ordinary ANOVAs: `simple_anova`,
         `simple_model`,
-    2.  linear mixed effects ANOVAs: `mixed_anova`, `mixed_model`
+    2.  linear mixed effects for repeated-measures and randomised-block
+        design ANOVAs: `mixed_anova`, `mixed_model`,
+        `mixed_anova_slopes` & `mixed_model_slopes`.
 
 3.  Perform post-hoc comparisons based on fitted models
 
     1.  `posthoc_Pariwise`
     2.  `posthoc_Levelwise`
     3.  `posthoc_vsRef`
+    4.  `posthoc_Trends`
 
 4.  Generating random one-way and two-way data based on mean and SD and
     residual error.

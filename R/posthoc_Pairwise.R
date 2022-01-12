@@ -10,6 +10,7 @@
 #' @param Fixed_Factor one or  more categorical variables, provided as a vector (see Examples), whose levels you wish to compare pairwise. Names of Fixed_Factor should match Fixed_Factor used to fit the model. When more than one factor is provided e.g. \code{Fixed_factor = c("A", "B")}, this function passes this on as \code{specs = A:B} (note the colon between the two Fixed_Factor) to \code{\link[emmeans]{emmeans}} to produce pairwise comparisons.
 #' @param P_Adj method for correcting P values for multiple comparisons. Default is set to false discovery rate ("fdr"), can be changed to "none", "tukey", "bonferroni", "sidak". See the [manual](https://cran.r-project.org/web/packages/emmeans/vignettes/confidence-intervals.html#adjust) for \code{emmeans}.
 #' @param ... additional arguments for \code{\link[emmeans]{emmeans}} such as \code{lmer.df} or others. See help for sophisticated models in [emmeans](https://cran.r-project.org/web/packages/emmeans/vignettes/sophisticated.html).
+#' @param Factor old argument name for `Fixed_Factor`; retained for backward compatibility.
 #'
 #' @return returns results produced by \code{\link[emmeans]{emmeans}}.
 #' @export posthoc_Pairwise
@@ -39,7 +40,10 @@
 #'
 
 
-posthoc_Pairwise <- function(Model, Fixed_Factor, P_Adj = "fdr", ...){
+posthoc_Pairwise <- function(Model, Fixed_Factor, P_Adj = "fdr", Factor, ...){
+  if (!missing("Factor")) {
+    warning("Use `Fixed_Factor` argument instead, as `Factor` is deprecated.")
+    Fixed_Factor <- Factor}
   ifelse(length(Fixed_Factor) > 1,
          comp <- paste0(Fixed_Factor, collapse = ":"),
          comp <- paste0(Fixed_Factor))

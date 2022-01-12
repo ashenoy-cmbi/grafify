@@ -18,7 +18,8 @@ plot_3d_scatterbox(
   ColSeq = TRUE,
   ColPal = "all_grafify",
   ColRev = FALSE,
-  TextXAngle = 0
+  TextXAngle = 0,
+  ...
 )
 }
 \arguments{
@@ -49,6 +50,8 @@ plot_3d_scatterbox(
 \item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)}
 
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
+
+\item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_boxplot}.}
 }
 \value{
 This function returns a \code{ggplot2} object.

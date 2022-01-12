@@ -15,7 +15,10 @@ plot_histogram(
   ColRev = FALSE,
   ColSeq = TRUE,
   TextXAngle = 0,
-  fontsize = 20
+  fontsize = 20,
+  Group,
+  alpha,
+  ...
 )
 }
 \arguments{
@@ -40,6 +43,12 @@ plot_histogram(
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{Group}{deprecated old argument for \code{group}; retained for backward compatibility.}
+
+\item{alpha}{deprecated old argument for \code{c_alpha}; retained for backward compatibility.}
+
+\item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_histogram}.}
 }
 \value{
 This function returns a \code{ggplot2} object.
@@ -61,6 +70,10 @@ Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} argum
 \examples{
 #Basic usage
 plot_histogram(data = data_t_pratio, 
-ycol = Cytokine, group = Genotype, BinSize = 10)+
-scale_x_log10()
+ycol = Cytokine, group = Genotype, 
+BinSize = 10)
+#with log transformation
+plot_histogram(data = data_t_pratio, 
+ycol = log(Cytokine), group = Genotype, 
+BinSize = 10)
 }

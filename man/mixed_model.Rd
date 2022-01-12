@@ -15,7 +15,7 @@ mixed_model(data, Y_value, Fixed_Factor, Random_Factor, ...)
 
 \item{Random_Factor}{name(s) of random factors to allow random intercepts; to be provided as a vector when more than one or within "quotes".}
 
-\item{...}{any additional arguments to pass on to \code{\link[lmerTest]{lmer}} if required.}
+\item{...}{any additional arguments to pass on to \code{\link[lme4]{lmer}} if required.}
 }
 \value{
 This function returns the output of \code{lmerTest::lmer()}.
@@ -24,7 +24,8 @@ This function returns the output of \code{lmerTest::lmer()}.
 There are four related functions for mixed effects analyses: \code{mixed_model}, \code{mixed_anova}, \code{mixed_model_slopes}, and \code{mixed_anova_slopes}.
 }
 \details{
-This function uses \code{\link[lmerTest]{lmer}} to fit a linear mixed effect model and provides the model object, which could be used for post-hoc comparisons.
+This function uses \code{\link[lme4]{lmer}} to fit a linear mixed effect model and provides the model object, which could be used for post-hoc comparisons. The model object is converted to class \code{lmerModLmerTest} object by \code{\link[lmerTest]{as_lmerModLmerTest}}.
+
 It requires a data table, one dependent variable (Y_value), one or more independent variables (Fixed_Factor), and at least one random factor (Random_Factor). These should match names of variables in the long-format data table exactly.
 This function is related to \code{\link{mixed_anova}}.
 Output of this function can be used with \code{\link{posthoc_Pairwise}}, \code{\link{posthoc_Levelwise}} and \code{\link{posthoc_vsRef}}, or with \code{\link[emmeans]{emmeans}}.

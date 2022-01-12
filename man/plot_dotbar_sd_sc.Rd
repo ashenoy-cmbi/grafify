@@ -13,10 +13,11 @@ plot_dotbar_sd_sc(
   dotthick = 1,
   bwid = 0.7,
   ewid = 0.2,
-  fontsize = 20,
   b_alpha = 1,
   d_alpha = 1,
-  TextXAngle = 0
+  TextXAngle = 0,
+  fontsize = 20,
+  ...
 )
 }
 \arguments{
@@ -36,13 +37,15 @@ plot_dotbar_sd_sc(
 
 \item{ewid}{width of error bars, default set to 0.2}
 
-\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
-
 \item{b_alpha}{fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency)}
 
 \item{d_alpha}{fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency)}
 
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
+
+\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_dotplot}.}
 }
 \value{
 This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
@@ -53,10 +56,12 @@ The only new argument is \code{colour}, which can be any hexcode or name of colo
 The default colour is \code{ok_orange}. \code{ColPal} and \code{ColRev} arguments are not available.
 }
 \examples{
+#default "okabe_ito" colour
 plot_dotbar_sd_sc(data = data_doubling_time, 
 xcol = Student, ycol = Doubling_time)
+
+#a different colour
 plot_dotbar_sd_sc(data = data_doubling_time, 
 xcol = Student, ycol = Doubling_time, 
-colour = "ok_grey")
-
+colour = "#88ccee")
 }

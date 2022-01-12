@@ -34,15 +34,15 @@
 #' @import ggplot2 Hmisc
 #'
 #' @examples
-#'
-#' #Basic usage requires a data table and X & Y variables#'
-#' plot_scatterbar_sd(data = data_cholesterol, 
-#' xcol = Treatment, ycol = Cholesterol)
-#' 
 #' #with jitter
 #' plot_scatterbar_sd(data = data_cholesterol, 
 #' xcol = Treatment, ycol = Cholesterol, 
 #' jitter = 0.1)
+#' #white bars
+#' plot_scatterbar_sd(data = data_cholesterol, 
+#' xcol = Treatment, ycol = Cholesterol,
+#' b_alpha = 0) 
+#' 
 
 plot_scatterbar_sd <- function(data, xcol, ycol, symsize = 2.5, symthick = 1, bwid = 0.7, ewid = 0.3, jitter = 0, b_alpha = 1, s_alpha = 1, ColPal = "all_grafify", ColSeq = TRUE, ColRev = FALSE, TextXAngle = 0, fontsize = 20){
   P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),

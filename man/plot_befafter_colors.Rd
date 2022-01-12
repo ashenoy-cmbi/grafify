@@ -8,7 +8,7 @@ plot_befafter_colors(
   data,
   xcol,
   ycol,
-  groups,
+  match,
   symsize = 3,
   symthick = 1,
   s_alpha = 1,
@@ -16,7 +16,9 @@ plot_befafter_colors(
   ColSeq = TRUE,
   ColRev = FALSE,
   TextXAngle = 0,
-  fontsize = 20
+  fontsize = 20,
+  groups,
+  ...
 )
 }
 \arguments{
@@ -26,7 +28,7 @@ plot_befafter_colors(
 
 \item{ycol}{name of the column containing the quantitative Y values.}
 
-\item{groups}{name of the column with the grouping variable to pass on to \code{geom_line}.}
+\item{match}{name of the column with the grouping variable to pass on to \code{geom_line}.}
 
 \item{symsize}{size of symbols, default set to 3}
 
@@ -43,13 +45,17 @@ plot_befafter_colors(
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{groups}{old argument name for \code{match}; retained for backward compatibility.}
+
+\item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_line}.}
 }
 \value{
 This function returns a \code{ggplot2} object.
 }
 \description{
-The \code{\link{plot_befafter_colours}} and \code{\link{plot_befafter_shapes}} are for graphing matched data joined by lines.
-They take X and Y variables along with a grouping factor (e.g. matched subjects or experiments etc.) and plot symbols matched by colour or shape.
+The \code{\link{plot_befafter_colours}} and \code{\link{plot_befafter_shapes}} are for plotting matched data joined by lines.
+They take X and Y variables along with a data column with matching information (e.g. matched subjects or experiments etc.) and plot symbols matched by colour or shape.
 }
 \details{
 Note that \code{ggplot} only allows 25 types of shapes, and \code{\link{plot_befafter_shapes}} function works when there are fewer than 25 matched observations.
@@ -62,10 +68,15 @@ Consider using \code{facet_wrap} or \code{facet_grid} to reduce crowding on a si
 }
 \examples{
 #Basic usage with Treatment as the X variable
-#Subject as the grouping variable 
-#this variable lists points to join by lines
+#Subject as the matching variable 
 plot_befafter_colors(data = data_cholesterol, 
 xcol = Treatment, ycol = Cholesterol, 
-groups = Subject)
+match = Subject)
+#plot without legends if necessary
+plot_befafter_colors(data = data_t_pdiff, 
+xcol = Condition, ycol = Mass, 
+match = Subject, s_alpha = .9, ColSeq = FALSE)+
+guides(fill = "none", 
+colour = "none") #remove guides
 
 }

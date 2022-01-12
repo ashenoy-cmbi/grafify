@@ -15,7 +15,8 @@ plot_scatterbox_sc(
   b_alpha = 1,
   s_alpha = 1,
   TextXAngle = 0,
-  fontsize = 20
+  fontsize = 20,
+  ...
 )
 }
 \arguments{
@@ -40,6 +41,8 @@ plot_scatterbox_sc(
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_boxplot}.}
 }
 \value{
 This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
@@ -50,12 +53,10 @@ The only new argument is \code{colour}, which can be any hexcode or name of colo
 The default colour is \code{ok_orange}. \code{ColPal} and \code{ColRev} arguments are not available.
 }
 \examples{
-plot_scatterbox(data = data_cholesterol, 
-xcol = Treatment, ycol = Cholesterol)
-
 #with jitter
 plot_scatterbox_sc(data = data_cholesterol, 
 xcol = Treatment, ycol = Cholesterol, jitter = 0.1)
+#with "ok_grey" colour
 plot_scatterbox_sc(data = data_cholesterol, 
 xcol = Treatment, ycol = Cholesterol, 
 colour = "ok_grey", jitter = 0.1)

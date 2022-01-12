@@ -36,6 +36,7 @@
 #' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
 #' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
+#' @param ... any additional arguments to pass to \code{ggplot2}[geom_boxplot].
 #'
 #' @return This function returns a \code{ggplot2} object
 #' @export plot_4d_scatterbox
@@ -70,7 +71,7 @@
 #' boxes = Time, 
 #' shapes = Experiment)
 
-plot_4d_scatterbox <- function(data, xcol, ycol, boxes, shapes, symsize = 2.5, symthick = 1.0, jitter = 0.1, fontsize = 20, b_alpha = 1, s_alpha = 1, ColSeq = TRUE, ColPal = "all_grafify", ColRev = FALSE, TextXAngle = 0){
+plot_4d_scatterbox <- function(data, xcol, ycol, boxes, shapes, symsize = 2.5, symthick = 1.0, jitter = 0.1, fontsize = 20, b_alpha = 1, s_alpha = 1, ColSeq = TRUE, ColPal = "all_grafify", ColRev = FALSE, TextXAngle = 0, ...){
   P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }},
                             group = interaction(factor({{ boxes }}),
@@ -78,7 +79,8 @@ plot_4d_scatterbox <- function(data, xcol, ycol, boxes, shapes, symsize = 2.5, s
     geom_boxplot(width = 0.5, alpha = {{ b_alpha }}, size = 1,
                  aes(fill = factor({{ boxes }})), 
                  outlier.alpha = 0,
-                 position = position_dodge(width = 0.8))+
+                 position = position_dodge(width = 0.8),
+                 ...)+
     geom_point(size = {{ symsize }}, 
                alpha = {{ s_alpha }}, 
                stroke = {{ symthick }}, 

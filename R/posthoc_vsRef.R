@@ -11,6 +11,7 @@
 #' @param P_Adj P_Adj method for correcting P values for multiple comparisons. Default is set to false discovery rate ("fdr"), can be changed to "none", "tukey", "bonferroni", "sidak". See the [manual](https://cran.r-project.org/web/packages/emmeans/vignettes/confidence-intervals.html#adjust) for \code{emmeans}
 #' @param Ref_Level the level within that factor to be considered the reference or control to compare other levels to (to be provided as a number - by default R orders levels alphabetically); default \code{Ref_Level = 1}.
 #' @param ... additional arguments for \code{\link[emmeans]{emmeans}} such as \code{lmer.df} or others. See help for sophisticated models in [emmeans](https://cran.r-project.org/web/packages/emmeans/vignettes/sophisticated.html).
+#' @param Factor old argument name for `Fixed_Factor`; retained for backward compatibility.
 #'
 #' @return returns the result of \code{\link[emmeans]{emmeans}} contrasts.
 #' @export posthoc_vsRef
@@ -37,8 +38,10 @@
 #' Fixed_Factor = c("Hospital", "Treatment"), Ref_Level = 1)
 #'
 
-
-posthoc_vsRef <- function(Model, Fixed_Factor, Ref_Level = 1, P_Adj = "fdr", ...){
+posthoc_vsRef <- function(Model, Fixed_Factor, Ref_Level = 1, P_Adj = "fdr", Factor, ...){
+  if (!missing("Factor")) {
+    warning("Use `Fixed_Factor` argument instead, as `Factor` is deprecated.")
+    Fixed_Factor <- Factor}
   ifelse(length(Fixed_Factor) > 1,
          comp <- paste0(Fixed_Factor, collapse = "|"),
          comp <- paste0(Fixed_Factor, collapse = ""))

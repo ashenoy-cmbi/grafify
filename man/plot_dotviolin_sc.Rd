@@ -13,13 +13,14 @@ plot_dotviolin_sc(
   dotthick = 1,
   bvthick = 1,
   bwid = 0.2,
+  b_alpha = 1,
+  d_alpha = 1,
+  v_alpha = 1,
   trim = T,
   scale = "width",
-  b_alpha = 1,
-  v_alpha = 1,
-  d_alpha = 1,
   TextXAngle = 0,
-  fontsize = 20
+  fontsize = 20,
+  ...
 )
 }
 \arguments{
@@ -39,19 +40,21 @@ plot_dotviolin_sc(
 
 \item{bwid}{width of boxplots; default 0.2}
 
+\item{b_alpha}{fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency). For white boxplots inside violins, set \code{b_alpha = 0}.}
+
+\item{d_alpha}{fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency)}
+
+\item{v_alpha}{fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency)}
+
 \item{trim}{set whether tips of violin plot should be trimmed at high/low data. Default \code{trim = T}, can be changed to F.}
 
 \item{scale}{set to "area" by default, can be changed to "count" or "width".}
 
-\item{b_alpha}{fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency)}
-
-\item{v_alpha}{fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency)}
-
-\item{d_alpha}{fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency)}
-
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_boxplot}, \code{ggplot2}\link{geom_dotplot} or \code{ggplot2}\link{geom_violin}.}
 }
 \value{
 This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
@@ -67,8 +70,9 @@ The default colour is \code{ok_orange}. \code{ColPal} and \code{ColRev} argument
 plot_dotviolin_sc(data = data_1w_death, 
 xcol = Genotype, ycol = Death, 
 scale = "width", trim = FALSE)
+#white boxplots
 plot_dotviolin_sc(data = data_1w_death, 
-xcol = Genotype, ycol = Death, colour = "ok_grey", 
-scale = "width", trim = FALSE)
+xcol = Genotype, ycol = Death, colour = "light_orange", 
+scale = "width", trim = FALSE, b_alpha = 0)
 
 }

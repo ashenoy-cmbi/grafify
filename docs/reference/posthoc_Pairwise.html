@@ -59,7 +59,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">posthoc_Pairwise</span><span class="op">(</span><span class="va">Model</span>, <span class="va">Fixed_Factor</span>, P_Adj <span class="op">=</span> <span class="st">"fdr"</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">posthoc_Pairwise</span><span class="op">(</span><span class="va">Model</span>, <span class="va">Fixed_Factor</span>, P_Adj <span class="op">=</span> <span class="st">"fdr"</span>, <span class="va">Factor</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -70,6 +70,8 @@
 <dd><p>one or  more categorical variables, provided as a vector (see Examples), whose levels you wish to compare pairwise. Names of Fixed_Factor should match Fixed_Factor used to fit the model. When more than one factor is provided e.g. <code>Fixed_factor = c("A", "B")</code>, this function passes this on as <code>specs = A:B</code> (note the colon between the two Fixed_Factor) to <code><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></code> to produce pairwise comparisons.</p></dd>
 <dt>P_Adj</dt>
 <dd><p>method for correcting P values for multiple comparisons. Default is set to false discovery rate ("fdr"), can be changed to "none", "tukey", "bonferroni", "sidak". See the <a href="https://cran.r-project.org/web/packages/emmeans/vignettes/confidence-intervals.html#adjust" class="external-link">manual</a> for <code>emmeans</code>.</p></dd>
+<dt>Factor</dt>
+<dd><p>old argument name for <code>Fixed_Factor</code>; retained for backward compatibility.</p></dd>
 <dt>...</dt>
 <dd><p>additional arguments for <code><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></code> such as <code>lmer.df</code> or others. See help for sophisticated models in <a href="https://cran.r-project.org/web/packages/emmeans/vignettes/sophisticated.html" class="external-link">emmeans</a>.</p></dd>
 </dl></div>

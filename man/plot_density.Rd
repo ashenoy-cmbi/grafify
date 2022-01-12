@@ -14,7 +14,10 @@ plot_density(
   ColSeq = TRUE,
   ColRev = FALSE,
   TextXAngle = 0,
-  fontsize = 20
+  fontsize = 20,
+  Group,
+  alpha,
+  ...
 )
 }
 \arguments{
@@ -37,6 +40,12 @@ plot_density(
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{Group}{deprecated old argument for \code{group}; retained for backward compatibility.}
+
+\item{alpha}{deprecated old argument for \code{c_alpha}; retained for backward compatibility.}
+
+\item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_density}.}
 }
 \value{
 This function returns a \code{ggplot2} object.
@@ -55,6 +64,10 @@ Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} argum
 }
 \examples{
 plot_density(data = data_t_pratio, 
-ycol = Cytokine, group = Genotype)+
-scale_x_log10()
+ycol = log(Cytokine), group = Genotype)
+
+#with faceting
+plot_density(data = data_cholesterol, 
+ycol = Cholesterol, group = Treatment, 
+fontsize = 10)+facet_wrap("Treatment")
 }

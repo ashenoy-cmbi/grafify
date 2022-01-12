@@ -16,20 +16,23 @@
 #' @param b_alpha fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param d_alpha fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
+#' @param ... any additional arguments to pass to \code{ggplot2}[geom_dotplot].
 #'
 #' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
 #' @export plot_dotbar_sd_sc
 #' @import ggplot2 Hmisc
 #'
 #' @examples
+#' #default "okabe_ito" colour
 #' plot_dotbar_sd_sc(data = data_doubling_time, 
 #' xcol = Student, ycol = Doubling_time)
+#' 
+#' #a different colour
 #' plot_dotbar_sd_sc(data = data_doubling_time, 
 #' xcol = Student, ycol = Doubling_time, 
-#' colour = "ok_grey")
-#'
+#' colour = "#88ccee")
 
-plot_dotbar_sd_sc <- function(data, xcol, ycol, colour = "ok_orange", dotsize = 1.5, dotthick = 1, bwid = 0.7, ewid = 0.2, fontsize = 20, b_alpha = 1, d_alpha = 1, TextXAngle = 0){
+plot_dotbar_sd_sc <- function(data, xcol, ycol, colour = "ok_orange", dotsize = 1.5, dotthick = 1, bwid = 0.7, ewid = 0.2,  b_alpha = 1, d_alpha = 1, TextXAngle = 0, fontsize = 20, ...){
 
   ifelse(grepl("#", colour), 
          a <- colour,
@@ -47,7 +50,8 @@ plot_dotbar_sd_sc <- function(data, xcol, ycol, colour = "ok_orange", dotsize = 
                  binaxis = 'y', 
                  alpha = {{ d_alpha }},
                  stackdir = 'center',
-                 fill = a)+
+                 fill = a,
+                 ...)+
     stat_summary(geom = "errorbar", size = 1,
                  fun.data = "mean_sdl",
                  fun.args = list(mult = 1),
@@ -57,4 +61,3 @@ plot_dotbar_sd_sc <- function(data, xcol, ycol, colour = "ok_orange", dotsize = 
     theme(strip.background = element_blank())+
     guides(x = guide_axis(angle = {{ TextXAngle }}))
 }
-

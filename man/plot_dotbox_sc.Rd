@@ -11,10 +11,11 @@ plot_dotbox_sc(
   colour = "ok_orange",
   dotsize = 1.5,
   dotthick = 1,
-  fontsize = 20,
   b_alpha = 1,
   d_alpha = 1,
-  TextXAngle = 0
+  TextXAngle = 0,
+  fontsize = 20,
+  ...
 )
 }
 \arguments{
@@ -30,13 +31,15 @@ plot_dotbox_sc(
 
 \item{dotthick}{thickness of dot border (\code{stroke} parameter of \code{geom_dotplot}), default set to 1}
 
-\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
-
 \item{b_alpha}{fractional opacity of boxes, default set to 1 (i.e. maximum opacity & zero transparency)}
 
 \item{d_alpha}{fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency)}
 
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
+
+\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_boxplot} or \code{ggplot2}\link{geom_dotplot}.}
 }
 \value{
 This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
@@ -48,11 +51,12 @@ The default colour is \code{ok_orange}. \code{ColPal} and \code{ColRev} argument
 }
 \examples{
 
-#Basic usage requires a data table and X & Y variables#'
+#with default colour ("okabe_ito")
 plot_dotbox_sc(data = data_doubling_time, 
 xcol = Student, ycol = Doubling_time)
+#set a different colour
 plot_dotbox_sc(data = data_doubling_time, 
 xcol = Student, ycol = Doubling_time, 
-colour = "ok_grey")
+colour = "pale_blue")
 
 }

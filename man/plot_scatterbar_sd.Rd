@@ -72,13 +72,13 @@ Three types of plots are available for scatter/jitter symbols and either bars+SD
 These are related to the three "dot" versions that use a different geometry for symbols: \code{\link{plot_dotbox}}, \code{\link{plot_dotbar_sd}} and \code{\link{plot_dotviolin}}.
 }
 \examples{
-
-#Basic usage requires a data table and X & Y variables#'
-plot_scatterbar_sd(data = data_cholesterol, 
-xcol = Treatment, ycol = Cholesterol)
-
 #with jitter
 plot_scatterbar_sd(data = data_cholesterol, 
 xcol = Treatment, ycol = Cholesterol, 
 jitter = 0.1)
+#white bars
+plot_scatterbar_sd(data = data_cholesterol, 
+xcol = Treatment, ycol = Cholesterol,
+b_alpha = 0) 
+
 }

@@ -10,7 +10,7 @@
 #' @param data a data table object, e.g. data.frame or tibble.
 #' @param Y_value name of column containing quantitative (dependent) variable, provided within "quotes".
 #' @param Fixed_Factor name(s) of categorical fixed factors (independent variables) provided as a vector if more than one or within "quotes".
-#' @param ... any additional argument to ass on to \code{\link{lm}} if required.
+#' @param ... any additional argument to pass on to \code{\link{lm}} if required.
 #'
 #' @return ANOVA table output by \code{anova}.
 #' @export simple_anova
@@ -35,7 +35,7 @@ simple_anova <- function(data, Y_value, Fixed_Factor, ...){
                   deparse1(fo), 
                   ", data = ", 
                   deparse1(d), 
-                  ")")
+                  ", ...)")
   mod <- eval(parse(text = call1))
   t1 <- car::Anova(mod)
   h1 <- attr(t1, "heading")

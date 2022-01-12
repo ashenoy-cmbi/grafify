@@ -29,6 +29,7 @@
 #' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
+#' @param ... any additional arguments to pass to \code{ggplot2}[geom_boxplot].
 #'
 #' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
 #' @export plot_scatterbox
@@ -43,13 +44,14 @@
 #' xcol = Treatment, ycol = Cholesterol, jitter = 0.1)
 #'
 
-plot_scatterbox <- function(data, xcol, ycol, symsize = 2.5, symthick = 1, jitter = 0, b_alpha = 1, s_alpha = 1, ColPal = "all_grafify", ColSeq = TRUE, ColRev = FALSE, TextXAngle = 0, fontsize = 20){
+plot_scatterbox <- function(data, xcol, ycol, symsize = 2.5, symthick = 1, jitter = 0, b_alpha = 1, s_alpha = 1, ColPal = "all_grafify", ColSeq = TRUE, ColRev = FALSE, TextXAngle = 0, fontsize = 20, ...){
   P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
     geom_boxplot(aes(fill = factor({{ xcol }})), size = 1,
                  alpha = {{ b_alpha }},
                  outlier.alpha = 0,
-                 width = 0.7)+
+                 width = 0.7,
+                 ...)+
     geom_point(shape = 21,
                position = position_jitter(width = {{ jitter }}),
                alpha = {{ s_alpha }},

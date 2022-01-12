@@ -15,23 +15,22 @@
 #' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
+#' @param ... any additional arguments to pass to \code{ggplot2}[geom_boxplot].
 #'
 #' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
 #' @export plot_scatterbox_sc
 #' @import ggplot2
 #'
 #' @examples
-#' plot_scatterbox(data = data_cholesterol, 
-#' xcol = Treatment, ycol = Cholesterol)
-#' 
 #' #with jitter
 #' plot_scatterbox_sc(data = data_cholesterol, 
 #' xcol = Treatment, ycol = Cholesterol, jitter = 0.1)
+#' #with "ok_grey" colour
 #' plot_scatterbox_sc(data = data_cholesterol, 
 #' xcol = Treatment, ycol = Cholesterol, 
 #' colour = "ok_grey", jitter = 0.1)
 
-plot_scatterbox_sc <- function(data, xcol, ycol, colour = "ok_orange", symsize = 2.5, symthick = 1, jitter = 0, b_alpha = 1, s_alpha = 1, TextXAngle = 0, fontsize = 20){
+plot_scatterbox_sc <- function(data, xcol, ycol, colour = "ok_orange", symsize = 2.5, symthick = 1, jitter = 0, b_alpha = 1, s_alpha = 1, TextXAngle = 0, fontsize = 20, ...){
 ifelse(grepl("#", colour), 
          a <- colour,
          a <- get_graf_colours({{ colour }}))
@@ -41,7 +40,8 @@ ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
     geom_boxplot(fill = a, size = 1,
                  alpha = {{ b_alpha }},
                  outlier.alpha = 0,
-                 width = 0.7)+
+                 width = 0.7, 
+                 ...)+
     geom_point(shape = 21,
                position = position_jitter(width = {{ jitter }}),
                alpha = {{ s_alpha }},

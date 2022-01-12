@@ -10,13 +10,14 @@ plot_dotbox(
   ycol,
   dotsize = 1.5,
   dotthick = 1,
-  fontsize = 20,
   b_alpha = 1,
   d_alpha = 1,
   ColPal = "all_grafify",
   ColRev = FALSE,
   ColSeq = TRUE,
-  TextXAngle = 0
+  TextXAngle = 0,
+  fontsize = 20,
+  ...
 )
 }
 \arguments{
@@ -30,8 +31,6 @@ plot_dotbox(
 
 \item{dotthick}{thickness of dot border (\code{stroke} parameter of \code{geom_dotplot}), default set to 1}
 
-\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
-
 \item{b_alpha}{fractional opacity of boxes, default set to 1 (i.e. maximum opacity & zero transparency)}
 
 \item{d_alpha}{fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency)}
@@ -43,6 +42,10 @@ plot_dotbox(
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
+
+\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_boxplot} or \code{ggplot2}\link{geom_dotplot}.}
 }
 \value{
 This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
@@ -64,18 +67,10 @@ The size of dots can be adjusted using the parameter, which is \code{dotsize = 1
 This function is related to \code{\link{plot_scatterbar_sd}}, \code{\link{plot_dotbar_sd}} and \code{\link{plot_dotviolin}}.
 }
 \examples{
+plot_dotbox(data = data_1w_death, 
+xcol = Genotype, ycol = Death)
 
-#Basic usage requires a data table and X & Y variables#'
-plot_dotbox(data = data_cholesterol, 
-xcol = Treatment, ycol = Cholesterol)
-
-#Transformations of Y variable are possible as follows
-plot_dotbox(data = data_cholesterol, 
-xcol = Treatment, ycol = log(Cholesterol))
-
-#Additional ggplot layering is possible
-plot_dotbox(data = data_cholesterol, 
-xcol = Treatment, ycol = Cholesterol, dotsize = 2)+
-   labs(title = "Plot with scatter dots & boxplot")+
-   facet_wrap("Hospital")
+plot_dotbox(data = data_1w_death, 
+xcol = Genotype, ycol = Death, 
+ColPal = "vibrant", b_alpha = 0.5)
 }

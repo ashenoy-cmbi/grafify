@@ -10,8 +10,8 @@
 #' @param data a data table object, e.g. data.frame or tibble.
 #' @param xcol name of the column with quantitative X variable
 #' @param ycol name of the column with quantitative Y variable
-#' @param NumGroup a numeric factor for `fill` aesthetic of data points.
-#' @param symsize size of point symbols, default set to 2
+#' @param NumGroup a numeric factor for `fill` aesthetic of data points
+#' @param symsize size of symbols used by \code{geom_point}. Default set to 2.5, increase/decrease as needed
 #' @param symthick thickness of symbol border, default set to 1
 #' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
@@ -23,10 +23,11 @@
 #'
 #' @examples
 #' #The grouping factor gear is numeric 
-#' plot_xy_NumGroup(data = mtcars, 
-#' xcol = mpg, ycol = disp, NumGroup = gear)
+#' plot_xy_NumGroup(data = mtcars,
+#' xcol = mpg, ycol = disp, NumGroup = cyl,
+#' s_alpha = 0.8)
 
-plot_xy_NumGroup <- function(data, xcol, ycol, NumGroup, symsize = 2, symthick = 1, s_alpha = 1, TextXAngle = 0, fontsize = 20){
+plot_xy_NumGroup <- function(data, xcol, ycol, NumGroup, symsize = 2.5, symthick = 1, s_alpha = 1, TextXAngle = 0, fontsize = 20){
   ggplot2::ggplot(data, aes(x = {{ xcol }},
                             y = {{ ycol }}))+
     geom_point(size = {{ symsize }}, 

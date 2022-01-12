@@ -9,7 +9,7 @@ plot_xy_NumGroup(
   xcol,
   ycol,
   NumGroup,
-  symsize = 2,
+  symsize = 2.5,
   symthick = 1,
   s_alpha = 1,
   TextXAngle = 0,
@@ -23,9 +23,9 @@ plot_xy_NumGroup(
 
 \item{ycol}{name of the column with quantitative Y variable}
 
-\item{NumGroup}{a numeric factor for \code{fill} aesthetic of data points.}
+\item{NumGroup}{a numeric factor for \code{fill} aesthetic of data points}
 
-\item{symsize}{size of point symbols, default set to 2}
+\item{symsize}{size of symbols used by \code{geom_point}. Default set to 2.5, increase/decrease as needed}
 
 \item{symthick}{thickness of symbol border, default set to 1}
 
@@ -49,6 +49,7 @@ When summary statistics (mean/median) are required, use \code{\link{plot_3d_scat
 }
 \examples{
 #The grouping factor gear is numeric 
-plot_xy_NumGroup(data = mtcars, 
-xcol = mpg, ycol = disp, NumGroup = gear)
+plot_xy_NumGroup(data = mtcars,
+xcol = mpg, ycol = disp, NumGroup = cyl,
+s_alpha = 0.8)
 }

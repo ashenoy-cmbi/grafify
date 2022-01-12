@@ -4,7 +4,7 @@
 \alias{posthoc_vsRef}
 \title{Post-hoc comparisons to a control or reference group.}
 \usage{
-posthoc_vsRef(Model, Fixed_Factor, Ref_Level = 1, P_Adj = "fdr", ...)
+posthoc_vsRef(Model, Fixed_Factor, Ref_Level = 1, P_Adj = "fdr", Factor, ...)
 }
 \arguments{
 \item{Model}{a model object fit using \code{\link{simple_model}} or \code{\link{mixed_model}} (or \code{\link{lm}} or \code{\link[lmerTest]{lmer}}).}
@@ -14,6 +14,8 @@ posthoc_vsRef(Model, Fixed_Factor, Ref_Level = 1, P_Adj = "fdr", ...)
 \item{Ref_Level}{the level within that factor to be considered the reference or control to compare other levels to (to be provided as a number - by default R orders levels alphabetically); default \code{Ref_Level = 1}.}
 
 \item{P_Adj}{P_Adj method for correcting P values for multiple comparisons. Default is set to false discovery rate ("fdr"), can be changed to "none", "tukey", "bonferroni", "sidak". See the \href{https://cran.r-project.org/web/packages/emmeans/vignettes/confidence-intervals.html#adjust}{manual} for \code{emmeans}}
+
+\item{Factor}{old argument name for \code{Fixed_Factor}; retained for backward compatibility.}
 
 \item{...}{additional arguments for \code{\link[emmeans]{emmeans}} such as \code{lmer.df} or others. See help for sophisticated models in \href{https://cran.r-project.org/web/packages/emmeans/vignettes/sophisticated.html}{emmeans}.}
 }
