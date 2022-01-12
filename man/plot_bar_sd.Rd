@@ -10,12 +10,14 @@ plot_bar_sd(
   ycol,
   b_alpha = 1,
   bwid = 0.7,
+  bthick = 1,
   ewid = 0.3,
   ColPal = "all_grafify",
   ColSeq = TRUE,
   ColRev = FALSE,
   TextXAngle = 0,
-  fontsize = 20
+  fontsize = 20,
+  ...
 )
 }
 \arguments{
@@ -29,6 +31,8 @@ plot_bar_sd(
 
 \item{bwid}{width of bars, default 0.7}
 
+\item{bthick}{thickness of bar borders; default 1}
+
 \item{ewid}{width of error bars, default 0.3}
 
 \item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
@@ -40,6 +44,8 @@ plot_bar_sd(
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{...}{any additional arguments to pass to \code{stat_summary}.}
 }
 \value{
 This function returns a \code{ggplot2} object on which additional geometries etc. can be added.

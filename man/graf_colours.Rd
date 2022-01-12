@@ -3,8 +3,7 @@
 \docType{data}
 \name{graf_colours}
 \alias{graf_colours}
-\title{List of hexcodes of colours in grafify palettes
-Colour palettes available are as follows:}
+\title{List of hexcodes of colours in grafify palettes}
 \format{
 An object of class \code{character} of length 64.
 }
@@ -12,6 +11,6 @@ An object of class \code{character} of length 64.
 graf_colours
 }
 \description{
-\if{html}{\out{<div style="text-align: center">}\figure{grafify_palettesv020.jpg}{options: style="width:750px;max-width:70\%;"}\out{</div>}}
+To visualise these colours use \code{plot_grafify_palette}.
 }
 \keyword{datasets}

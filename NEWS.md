@@ -18,6 +18,8 @@ This is a major update with some new features, bugfixes, and further cleaning up
   c. There are new functions for fitting linear models with varying slopes and intercepts. These are `mixed_model_slopes` and `mixed_anova_slopes`.
   d. A function for comparing slopes of linear fits `posthoc_Trends` implements the `emmeans::emtrends` call.  
   e. Most `plot_` functions now have the `...` argument forwarding dots for advanced users to add arguments to `ggplot` geometries where necessary.
+  f. New `plot_grafify_palette` function that helps quickly visualise colours in palettes along with their names and hexcodes.
+  g. `plot_bar_sd` and `plot_bar_sd_sc` have a new argument `bthick` to adjust the thickness of lines of the bars.
 
 ## Bug fixes
 

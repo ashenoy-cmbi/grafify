@@ -18,12 +18,14 @@
 #' @param ycol name of the column to plot on the Y axis. This should be a quantitative variable.
 #' @param b_alpha fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param bwid width of bars, default 0.7
+#' @param bthick thickness of bar borders; default 1
 #' @param ewid width of error bars, default 0.3
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
 #' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
+#' @param ... any additional arguments to pass to \code{stat_summary}.
 #'
 #' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
 #' @export plot_bar_sd
@@ -41,14 +43,14 @@
 #' ColSeq = FALSE)
 #'
 
-plot_bar_sd <- function(data, xcol, ycol, b_alpha = 1, bwid = 0.7, ewid = 0.3, ColPal = "all_grafify", ColSeq = TRUE, ColRev = FALSE, TextXAngle = 0, fontsize = 20){
+plot_bar_sd <- function(data, xcol, ycol, b_alpha = 1, bwid = 0.7, bthick = 1, ewid = 0.3, ColPal = "all_grafify", ColSeq = TRUE, ColRev = FALSE, TextXAngle = 0, fontsize = 20, ...){
   P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                  y = {{ ycol }}))+
     stat_summary(geom = "bar", 
-                 width = {{ bwid }}, size = 1,
+                 width = {{ bwid }}, size = {{ bthick }},
                  fun = "mean", colour = "black",
                  alpha = {{ b_alpha }},
-                 aes(fill = factor({{ xcol }})))+
+                 aes(fill = factor({{ xcol }})), ...)+
     stat_summary(geom = "errorbar", size = 1,
                  fun.data = "mean_sdl",
                  fun.args = list(mult = 1),

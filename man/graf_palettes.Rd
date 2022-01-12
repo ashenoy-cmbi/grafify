@@ -11,9 +11,6 @@ An object of class \code{list} of length 10.
 graf_palettes
 }
 \description{
-Colour palettes available are as follows:
-}
-\details{
-\if{html}{\out{<div style="text-align: center">}\figure{grafify_palettesv020.jpg}{options: style="width:750px;max-width:70\%;"}\out{</div>}}
+To visualise these colours use \code{plot_grafify_palette}.
 }
 \keyword{datasets}

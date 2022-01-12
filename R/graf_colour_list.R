@@ -1,9 +1,6 @@
 #' List of hexcodes of colours in grafify palettes
-#' Colour palettes available are as follows:
 #' 
-#' \if{html}{\out{<div style="text-align: center">}\figure{grafify_palettesv020.jpg}{options: style="width:750px;max-width:70\%;"}\out{</div>}}
-#'
-#' 
+#' To visualise these colours use \code{plot_grafify_palette}.
 #' 
 #' @export
 graf_colours <- c(

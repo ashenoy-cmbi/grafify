@@ -12,9 +12,11 @@
 #' @param colour colour of boxes and dots; a number between 1-64, any hexcode or names from `grafify` colour palettes. Default is `ok_orange`.
 #' @param b_alpha fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param bwid width of bars, default 0.7
+#' @param bthick thickness of bar borders; default 1
 #' @param ewid width of error bars, default 0.3
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
+#' @param ... any additional arguments to pass to \code{stat_summary}.
 #'
 #' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
 #' @export plot_bar_sd_sc
@@ -30,7 +32,7 @@
 #' colour = "ok_grey")
 #' 
 
-plot_bar_sd_sc <- function(data, xcol, ycol, colour = "ok_orange", b_alpha = 1, bwid = 0.7, ewid = 0.3, TextXAngle = 0, fontsize = 20){
+plot_bar_sd_sc <- function(data, xcol, ycol, colour = "ok_orange", b_alpha = 1, bwid = 0.7, bthick = 1, ewid = 0.3, TextXAngle = 0, fontsize = 20, ...){
   
 ifelse(grepl("#", colour),
        a <- colour,
@@ -39,10 +41,10 @@ ifelse(grepl("#", colour),
   ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
     stat_summary(geom = "bar", 
-                 width = {{ bwid }}, size = 1,
+                 width = {{ bwid }}, size = {{ bthick }},
                  fun = "mean", colour = "black",
                  alpha = {{ b_alpha }},
-                 fill = a)+
+                 fill = a, ...)+
     stat_summary(geom = "errorbar", size = 1,
                  fun.data = "mean_sdl",
                  fun.args = list(mult = 1),

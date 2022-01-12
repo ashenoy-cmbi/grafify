@@ -13,7 +13,5 @@ get_graf_colours(...)
 Function to make grafify colour scheme. \href{https://drsimonj.svbtle.com/creating-corporate-colour-palettes-for-ggplot2}{Thank you Dr Simon}.
 }
 \details{
-Colour palettes available are as follows:
-
-\if{html}{\out{<div style="text-align: center">}\figure{grafify_palettesv020.jpg}{options: style="width:750px;max-width:70\%;"}\out{</div>}}
+To visualise grafify colours use \code{plot_grafify_palette}.
 }

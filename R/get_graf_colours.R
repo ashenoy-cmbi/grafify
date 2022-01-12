@@ -2,11 +2,7 @@
 #'
 #' Function to make grafify colour scheme. [Thank you Dr Simon](https://drsimonj.svbtle.com/creating-corporate-colour-palettes-for-ggplot2).
 #' 
-#' Colour palettes available are as follows:
-#' 
-#' \if{html}{\out{<div style="text-align: center">}\figure{grafify_palettesv020.jpg}{options: style="width:750px;max-width:70\%;"}\out{</div>}}
-#'
-#' 
+#' To visualise grafify colours use \code{plot_grafify_palette}.
 #'
 #' @param ... internal
 #' @export get_graf_colours
