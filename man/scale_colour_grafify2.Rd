@@ -27,7 +27,7 @@ Obviously, it is not recommended to use so many colours, but implementing this w
 
 Colour palettes available are as follows:
 
-\if{html}{\out{<div style="text-align: center">}\figure{grafify_palettesv0.2.0.jpg}{options: style="width:750px;max-width:70\%;"}\out{</div>}}
+\if{html}{\out{<div style="text-align: center">}\figure{grafify_palettesv020.jpg}{options: style="width:750px;max-width:70\%;"}\out{</div>}}
 
 There are eight palettes with 5-10 colours each, which are recommended. These can be called by naming the colour scheme using \code{palette = } argument.
 Additional options include "okabe_ito", "vibrant, "bright", "pale", "muted", "dark", "light", and "contrast". These are taken from \href{https://personal.sron.nl/~pault/#sec:qualitative}{Paul Taul},  \href{https://mikemol.github.io/technique/colorblind/2018/02/11/color-safe-palette.html}{Mike Mol} and \href{https://jfly.uni-koeln.de/color/}{Okabe Ito}.

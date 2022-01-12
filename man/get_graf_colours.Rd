@@ -15,5 +15,5 @@ Function to make grafify colour scheme. \href{https://drsimonj.svbtle.com/creati
 \details{
 Colour palettes available are as follows:
 
-\if{html}{\out{<div style="text-align: center">}\figure{grafify_palettesv0.2.0.jpg}{options: style="width:750px;max-width:70\%;"}\out{</div>}}
+\if{html}{\out{<div style="text-align: center">}\figure{grafify_palettesv020.jpg}{options: style="width:750px;max-width:70\%;"}\out{</div>}}
 }

@@ -9,7 +9,7 @@
 #'
 #' Colour palettes available are as follows:
 #' 
-#' \if{html}{\out{<div style="text-align: center">}\figure{grafify_palettesv0.2.0.jpg}{options: style="width:750px;max-width:70\%;"}\out{</div>}}
+#' \if{html}{\out{<div style="text-align: center">}\figure{grafify_palettesv020.jpg}{options: style="width:750px;max-width:70\%;"}\out{</div>}}
 #'
 #' 
 #' There are eight palettes with 5-10 colours each, which are recommended. These can be called by naming the colour scheme using \code{palette = } argument.
