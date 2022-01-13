@@ -2,7 +2,7 @@
 #'
 #' This function is related to \code{plot_scatterviolin}, but this one maps a single or same colour, therefore `_sc`.
 #' The only new argument is `colour`, which can be any hexcode or name of colours in the `all_grafify` [palette](https://grafify-vignettes.netlify.app/colour_palettes.html#full-list-of-hexcodes).
-#' The default colour is `ok_orange`. `ColPal` and `ColRev` arguments are not available.
+#' The default colour is `ok_orange`. `ColPal` and `ColRev` arguments are not available. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
 #'
 #' @param data a data table object, e.g. data.frame or tibble
 #' @param xcol name of the column to plot on X axis. This should be a categorical variable.

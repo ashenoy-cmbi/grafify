@@ -45,18 +45,14 @@ plot_bar_sd_sc(
 This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
 }
 \description{
-This function is related to \code{plot_bar_sd}, but this one maps a single or same colour, therefore \verb{_sc}.
+This function is related to \code{\link{plot_bar_sd}}, but this one maps a single or same colour, therefore \verb{_sc}.
 The only new argument is \code{colour}, which can be any hexcode or name of colours in the \code{all_grafify} \href{https://grafify-vignettes.netlify.app/colour_palettes.html#full-list-of-hexcodes}{palette}.
-The default colour is \code{ok_orange}. \code{ColPal} and \code{ColRev} arguments are not available.
+The default colour is \code{ok_orange}. \code{ColPal} and \code{ColRev} arguments are not available. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
 }
 \details{
-You are instead encouraged to show all data using the following functions: \code{\link{plot_scatterbar_sd}}, \code{\link{plot_dotbox}}, \code{\link{plot_dotbar_sd}} and \code{\link{plot_dotviolin}}.
+You are instead encouraged to show all data using the following functions: \code{\link{plot_scatterbar_sd}}, \code{\link{plot_scatterbox}}, \code{\link{plot_dotbox}}, \code{\link{plot_dotbar_sd}}, \code{\link{plot_scatterviolin}} or \code{\link{plot_dotviolin}}.
 }
 \examples{
-
-#Basic usage
-plot_bar_sd_sc(data = data_doubling_time, 
-xcol = Student, ycol = Doubling_time)
 plot_bar_sd_sc(data = data_doubling_time, 
 xcol = Student, ycol = Doubling_time, 
 colour = "ok_grey")

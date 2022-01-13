@@ -1,11 +1,10 @@
 #' Plot a dotplot on a bar graph with SD error bars with two variables.
 #'
-#' This function takes a data table, X and Y variables, and plots a graph with a dotplot and bars using \code{\link[ggplot2]{ggplot}}.
-#'
-#' The function uses \code{\link[ggplot2]{stat_summary}} with \code{geom = "bar"}, and \code{\link[ggplot2]{geom_dotplot}} geometries.
-#' Standard deviation (SD) is plotted through \code{\link[ggplot2]{stat_summary}} calculated using \code{mean_sdl} from the \code{ggplot2} package (get help with \code{?mean_sdl}), and 1x SD is plotted (\code{fun.arg = list(mult = 1)}.
+#' This function takes a data table, X and Y variables, and plots a graph with a dotplot and bars using \code{\link[ggplot2]{stat_summary}} with \code{geom = "bar"}, and \code{\link[ggplot2]{geom_dotplot}} geometries. Standard deviation (SD) is plotted through \code{\link[ggplot2]{stat_summary}} calculated using \code{mean_sdl} from the \code{ggplot2} package (get help with \code{?mean_sdl}), and 1x SD is plotted (\code{fun.arg = list(mult = 1)}.
+#' 
 #' The X variable is mapped to the \code{fill} aesthetic in both bar and dotplot.
-#' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. 
+#' 
+#' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
 #' `ColPal` can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
 #' `ColRev` (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette. 
 #' `ColSeq` decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.

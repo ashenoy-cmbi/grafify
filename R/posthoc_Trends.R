@@ -1,8 +1,8 @@
 #' Use emtrends to get slopes for an independent quantitative variable from a linear model.
 #'
-#' This function is a wrapper based on \code{\link[emmeans]{emtrends}}, and needs a model produced by \code{\link{simple_model}} (which calls \code{\link{lm}}) or a linear mixed effects model produced by \code{\link{mixed_model}} (which calls \code{\link[lme4]{lmer}}). It also needs to know the fixed factor(s), which should match those in the model and data table. 
+#' This function is a wrapper based on \code{\link[emmeans]{emmeans}}, and needs a ordinary linear model produced by \code{\link{simple_model}} or a mixed effects model produced by \code{\link{mixed_model}} or \code{\link{mixed_model_slopes}} (or generated directly with `lm`,  `lme4` or `lmerTest` calls). At least one of the factors should be a numeric covariate whose slopes you wish to find. It also needs to know the fixed factor(s), which should match those in the model and data table. 
+#' 
 #' Checkout the Interactions with covariates section in the [emmeans](https://CRAN.R-project.org/package=emmeans) vignette for more details. One of the independent variables should  be a quantitative (e.g. time points) variable whose slope (trend) you want to find at levels of the other factor.
-#'
 #'
 #' @param Model a model object fit using \code{\link{simple_model}} or \code{\link{mixed_model}} (or \code{\link{lm}} or \code{\link[lmerTest]{lmer}}).
 #' @param Fixed_Factor one or  more categorical variables, provided as a vector (see Examples), whose levels you wish to compare pairwise. Names of Fixed_Factor should match Fixed_Factor used to fit the model. When more than one factor is provided e.g. \code{Fixed_factor = c("A", "B")}, this function passes this on as \code{specs = A:B} (note the colon between the two Fixed_Factor) to \code{\link[emmeans]{emmeans}} to produce pairwise comparisons.
@@ -17,6 +17,7 @@
 #'
 #' @examples
 #' #create an lm model 
+#' #Time2 is numeric (time points)
 #' m1 <- simple_model(data = data_2w_Tdeath, 
 #' Y_value = "PI", Fixed_Factor = c("Genotype", "Time2"))
 #' posthoc_Trends(Model = m1, 

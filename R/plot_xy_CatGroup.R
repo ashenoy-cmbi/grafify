@@ -1,13 +1,11 @@
 #' Plot points on a quantitative X - Y plot & a categorical grouping variable.
 #'
-#' This function takes a data table, quantitative X and Y variables, and a and plots a graph with using \code{\link[ggplot2]{ggplot}}.
-#'
-#' The function uses \code{\link[ggplot2]{geom_point}} with \code{size = 3}, which can be changed using the `symsize` argument.
-#' The categorical `CatGroup` variable is mapped to the \code{fill} aesthetic of symbols.
-#' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. 
+#' This function takes a data table, quantitative X and Y variables along with a categorical grouping variabnle, and a and plots a graph with using \code{\link[ggplot2]{geom_point}}. The categorical `CatGroup` variable is mapped to the \code{fill} aesthetic of symbols.
+#' 
+#' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
 #' `ColPal` can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
 #' `ColRev` (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette. 
-#' `ColSeq` decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
+#' `ColSeq` (logical TRUE/FALSE) decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
 #' 
 #' This plot is related to \code{\link{plot_xy_NumGroup}} which requires a numeric grouping factor.
 #' When summary statistics (mean/median) are required, use \code{\link{plot_3d_scatterbar}}, \code{\link{plot_3d_scatterbox}} or \code{\link{plot_4d_scatterbox}}. 

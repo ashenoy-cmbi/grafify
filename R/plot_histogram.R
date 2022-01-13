@@ -1,12 +1,10 @@
 #' Plot data distribution as histograms.
 #'
-#' This function takes a data table, a quantitative variable (`ycol`) and a Grouping variable (`group`), if available, and plots a histogram graph using \code{\link[ggplot2]{ggplot}}.
-#'
-#' The function uses \code{\link{geom_histogram}}).
-#' Note that the function requires the quantitative Y variable first, and groups them based on an X variable.
-#' The Group variable is mapped to the \code{fill} and \code{colour} aesthetics in \code{geom_histogram}.
+#' This function takes a data table, a quantitative variable (`ycol`) and a Grouping variable (`group`), if available, and plots a histogram graph using \code{\link{geom_histogram}}).
 #' 
-#' ColPal & ColRev options are applied to both `fill` and `colour` scales.
+#' Note that the function requires the quantitative Y variable first, and groups them based on an X variable. The group variable is mapped to the \code{fill} and \code{colour} aesthetics in \code{geom_histogram}.
+#' 
+#' ColPal & ColRev options are applied to both `fill` and `colour` scales. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
 #' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. 
 #' `ColPal` can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
 #' `ColRev` (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette. 

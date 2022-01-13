@@ -1,15 +1,15 @@
 #' Plot a dotplot on a violin plot with two variables.
 #'
-#' This function takes a data table, X and Y variables, and plots a graph with a dotplot and violinplot using \code{ggplot}.
-#'
-#' The function uses \code{\link[ggplot2]{geom_violin}} and \code{\link[ggplot2]{geom_dotplot}} geometries.
+#' This function takes a data table, X and Y variables, and plots a graph with a dotplot, box-whiskers and violinplot using \code{\link[ggplot2]{geom_violin}}, \code{\link[ggplot2]{geom_boxplot}}  \code{\link[ggplot2]{geom_dotplot}} geometries. 
+#' 
 #' Note that the \code{\link{geom_violin}} options are set as follows: \code{scale = "width"}. The \code{trim = T} set by default can be changed when calling the function.
-#' The boxplot shows IQR and the median is marked with a thicker horizontal line.
+#' The boxplot shows IQR, and whiskers show 1.5*IQR; the median is marked with a thicker horizontal line.
+#' 
 #' The X variable is mapped to the \code{fill} aesthetic in both violinplot and dotplot.
-#' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. 
+#' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
 #' `ColPal` can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
 #' `ColRev` (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette. 
-#' `ColSeq` decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
+#' `ColSeq` (logical TRUE/FALSE) decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
 #' 
 #' The size of dots can be adjusted using the parameter, which is \code{dotsize = 1} by default.
 #'
@@ -40,7 +40,7 @@
 #'
 #' @examples
 #'
-#' #plot without trim = FALSE
+#' #plot with trim = FALSE
 #' plot_dotviolin(data = data_t_pdiff, 
 #' xcol = Condition, ycol = Mass, 
 #' dotsize = 2, trim = FALSE)

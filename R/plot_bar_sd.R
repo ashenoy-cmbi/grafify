@@ -1,18 +1,16 @@
 #' Plot a bar graph indicating mean with error bars (SD) using two variables.
 #'
-#' This function takes a data table, X and Y variables, and plots a graph with a summary bar graph showing the mean of data using \code{ggplot2}.
-#'
-#' The function uses \code{\link[ggplot2]{stat_summary}} with \code{geom = "bar"}.
-#' Standard deviation (SD) is plotted through \code{\link[ggplot2]{stat_summary}} calculated using \code{mean_sdl} from the \code{ggplot2} package (get help with \code{?mean_sdl}), and 1x SD is plotted (\code{fun.arg = list(mult = 1)}.
-#' The X variable is mapped to the \code{fill} aesthetic in the point geometry.
+#' This function takes a data table, categorical X and numeric Y variables, and plots bars showing the mean with SD error bars. The X variable is mapped to the \code{fill} aesthetic of bars. The related \code{plot_bar_sd_sc} plots bars with a single colour.
 #' 
-#' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. 
+#' The function uses \code{\link[ggplot2]{stat_summary}} with \code{geom = "bar"}. Standard deviation (SD) is plotted through \code{\link[ggplot2]{stat_summary}} calculated using \code{mean_sdl} from the \code{ggplot2} package (get help with \code{?mean_sdl}), and 1x SD is plotted (\code{fun.arg = list(mult = 1)}.
+#' 
+#' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
 #' `ColPal` can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
 #' `ColRev` (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette. 
 #' `ColSeq` decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
 #'
-#' You are instead encouraged to show all data using the following functions: \code{\link{plot_scatterbar_sd}}, \code{\link{plot_dotbox}}, \code{\link{plot_dotbar_sd}} and \code{\link{plot_dotviolin}}.
-#'
+#' You are instead encouraged to show all data using the following functions: \code{\link{plot_scatterbar_sd}}, \code{\link{plot_scatterbox}}, \code{\link{plot_dotbox}}, \code{\link{plot_dotbar_sd}}, \code{\link{plot_scatterviolin}} or \code{\link{plot_dotviolin}}.
+#' 
 #' @param data a data table object, e.g. a data.frame or tibble.
 #' @param xcol name of the column to plot on X axis. This should be a categorical variable.
 #' @param ycol name of the column to plot on the Y axis. This should be a quantitative variable.

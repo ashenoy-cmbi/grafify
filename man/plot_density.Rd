@@ -51,13 +51,11 @@ plot_density(
 This function returns a \code{ggplot2} object.
 }
 \description{
-This function takes a data table, \code{ycol} of quantitative variable and a categorical grouping variable (\code{group}), if available, and plots a density graph using \code{\link[ggplot2]{ggplot}}.
+This function takes a data table, \code{ycol} of quantitative variable and a categorical grouping variable (\code{group}), if available, and plots a density graph using \code{\link{geom_density}}).
 }
 \details{
-The function uses \code{\link{geom_density}}).
-Note that the function requires the quantitative Y variable first, and groups them based on an X variable.
-The Group variable is mapped to the \code{fill} and \code{colour} aesthetics in \code{geom_density}.
-Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} arguments.
+Note that the function requires the quantitative Y variable first, and groups them based on an X variable. The group variable is mapped to the \code{fill} and \code{colour} aesthetics in \code{geom_density}.
+Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} arguments. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
 \code{ColPal} can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
 \code{ColRev} (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette.
 \code{ColSeq} decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.

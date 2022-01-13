@@ -39,11 +39,9 @@ plot_xy_NumGroup(
 This function returns a \code{ggplot2} object.
 }
 \description{
-This function takes a data table, quantitative X and Y variables, and a and plots a graph with using \code{\link[ggplot2]{ggplot}}.
+This function takes a data table, quantitative X and Y variables, and a numeric grouping variable, and a and plots a graph with using \code{\link[ggplot2]{geom_point}}. The numerical \code{NumGroup} variable is mapped to the \code{fill} aesthetic of symbols, which receives the \code{scale_fill_grafify_c} default palette.
 }
 \details{
-The function uses \code{\link[ggplot2]{geom_point}} with \code{size = 3}, which can be changed using the \code{symsize} argument.
-The numerical \code{NumGroup} variable is mapped to the \code{fill} aesthetic of symbols, which receives the \code{scale_fill_grafify_c} default palette.
 This plot is related to \code{\link{plot_xy_CatGroup}} which requires a categorical grouping factor.
 When summary statistics (mean/median) are required, use \code{\link{plot_3d_scatterbar}}, \code{\link{plot_3d_scatterbox}} or \code{\link{plot_4d_scatterbox}}.
 }

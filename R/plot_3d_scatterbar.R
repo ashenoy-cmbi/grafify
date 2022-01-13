@@ -10,14 +10,14 @@
 #'
 #' Bars depict means using \code{\link[ggplot2]{stat_summary}} with \code{geom = "bar", fun = "mean"} , and bar width is set to 0.7 (cannot be changed). Error bar width can be changed with the `ewid` argument.
 #' 
-#' Boxplot geometry uses \code{\link[ggplot2]{geom_boxplot}} with \code{position = position_dodge(width = 0.9), width = 0.6}. The thick line within the boxplot depicts the median, the box the IQR (interquantile range) and the whiskers 1.5*IQR.
+#' Boxplot geometry uses \code{\link[ggplot2]{geom_boxplot}} with \code{position = position_dodge(width = 0.9), width = 0.6}. The thick line within the boxplot depicts the median, the box the IQR (interquantile range) and the whiskers show 1.5*IQR.
 #' 
 #' In 4d versions, the two grouping variables (i.e. `xcol` and either `boxes` or `bars`) are passed to ggplot aesthetics through \code{group = interaction{ xcol, shapes}}. 
 #'  
 #' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. 
 #' `ColPal` can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
 #' `ColRev` (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette. 
-#' `ColSeq` decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
+#' `ColSeq` (logical TRUE/FALSE) decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
 #' 
 #' All four functions can be expanded further, for example with \code{\link[ggplot2]{facet_grid}} or \code{\link[ggplot2]{facet_wrap}}.
 #'
@@ -48,28 +48,19 @@
 #' #compare above graph to
 #' plot_scatterbox(data = data_1w_death, xcol = Genotype, ycol = Death)
 #' 
-#' #for more complex data
-#' plot_3d_scatterbox(data = data_cholesterol, 
-#' xcol = Treatment, 
-#' ycol = Cholesterol, 
-#' shapes = Hospital, 
-#' fontsize = 10, 
-#' TextXAngle = 45)+
-#' facet_wrap("Hospital")
-#' 
 #' #4d version for 2-way data with blocking
+#' plot_4d_scatterbox(data = data_2w_Tdeath, 
+#' xcol = Genotype, 
+#' ycol = PI, 
+#' boxes = Time, 
+#' shapes = Experiment)
+#' 
 #' plot_4d_scatterbar(data = data_2w_Festing, 
 #' xcol = Strain, 
 #' ycol = GST, 
 #' bars = Treatment, 
 #' shapes = Block)
 #' 
-#' plot_4d_scatterbox(data = data_2w_Tdeath, 
-#' xcol = Genotype, 
-#' ycol = PI, 
-#' boxes = Time, 
-#' shapes = Experiment)
-#'
 
 plot_3d_scatterbar <- function(data, xcol, ycol, shapes, ewid = 0.2, symsize = 2.5, symthick = 1, jitter = 0.1, fontsize = 20, b_alpha = 1.0, s_alpha = 1, ColSeq = TRUE, ColPal = "all_grafify", ColRev = FALSE, TextXAngle = 0){
   P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),

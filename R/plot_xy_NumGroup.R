@@ -1,9 +1,7 @@
 #' Plot points on a quantitative X - Y plot & a numeric grouping variable.
 #'
-#' This function takes a data table, quantitative X and Y variables, and a and plots a graph with using \code{\link[ggplot2]{ggplot}}.
-#'
-#' The function uses \code{\link[ggplot2]{geom_point}} with \code{size = 3}, which can be changed using the `symsize` argument.
-#' The numerical `NumGroup` variable is mapped to the \code{fill} aesthetic of symbols, which receives the `scale_fill_grafify_c` default palette.
+#' This function takes a data table, quantitative X and Y variables, and a numeric grouping variable, and a and plots a graph with using \code{\link[ggplot2]{geom_point}}. The numerical `NumGroup` variable is mapped to the \code{fill} aesthetic of symbols, which receives the `scale_fill_grafify_c` default palette.
+#' 
 #' This plot is related to \code{\link{plot_xy_CatGroup}} which requires a categorical grouping factor.
 #' When summary statistics (mean/median) are required, use \code{\link{plot_3d_scatterbar}}, \code{\link{plot_3d_scatterbox}} or \code{\link{plot_4d_scatterbox}}. 
 #'

@@ -1,12 +1,10 @@
 #' Plot quantile-quantile (QQ) graphs from data.
 #'
-#' This function takes a data table, a quantitative variable (`ycol`), and a categorical grouping variable (`group`), if available, and plots a QQ graph using \code{\link[ggplot2]{ggplot}}.
-#'
-#' The function uses \code{stat_qq} and \code{stat_qq_line} geometries (get help with \code{?stat_qq_line}).
-#' Note that the function requires the quantitative Y variable first, and can be passed on a grouping variable as `group` if required.
-#' The graph plots sample quantiles on Y axis & theoretical quantiles on X axis.
-#' The X variable is mapped to the \code{fill} aesthetic in\code{stat_qq} and  \code{colour} aesthetic for the \code{stat_qq_line}.
-#' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. 
+#' This function takes a data table, a quantitative variable (`ycol`), and a categorical grouping variable (`group`), if available, and plots a QQ graph using \code{stat_qq} and \code{stat_qq_line}.
+#' 
+#' Note that the function requires the quantitative Y variable first, and can be passed on a grouping variable as `group` if required. The graph plots sample quantiles on Y axis & theoretical quantiles on X axis. The X variable is mapped to the \code{fill} aesthetic in\code{stat_qq} and \code{colour} aesthetic for the \code{stat_qq_line}.
+#' 
+#' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
 #' `ColPal` can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
 #' `ColRev` (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette. 
 #' `ColSeq` decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.

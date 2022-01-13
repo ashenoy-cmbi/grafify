@@ -1,11 +1,9 @@
 #' Plot a dotplot on a boxplot with two variables.
 #'
-#' This function takes a data table, X and Y variables, and plots a graph with a dotplot and boxplot using \code{ggplot}.
-#'
-#' The function uses \code{\link[ggplot2]{geom_boxplot}} and \code{\link[ggplot2]{geom_dotplot}} geometries.
-#' Note that \code{\link{geom_boxplot}} option for outliers is set to \code{outlier.alpha = 0}.
+#' This function takes a data table, X and Y variables, and plots a graph with a dotplot and boxplot using \code{\link[ggplot2]{geom_boxplot}} and \code{\link[ggplot2]{geom_dotplot}} geometries. Note that \code{\link{geom_boxplot}} option for outliers is set to \code{outlier.alpha = 0}.
+#' 
 #' The X variable is mapped to the \code{fill} aesthetic in both boxplot and dotplot.
-#' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. 
+#' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
 #' `ColPal` can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
 #' `ColRev` (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette. 
 #' `ColSeq` decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.

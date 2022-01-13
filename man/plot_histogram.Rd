@@ -54,14 +54,12 @@ plot_histogram(
 This function returns a \code{ggplot2} object.
 }
 \description{
-This function takes a data table, a quantitative variable (\code{ycol}) and a Grouping variable (\code{group}), if available, and plots a histogram graph using \code{\link[ggplot2]{ggplot}}.
+This function takes a data table, a quantitative variable (\code{ycol}) and a Grouping variable (\code{group}), if available, and plots a histogram graph using \code{\link{geom_histogram}}).
 }
 \details{
-The function uses \code{\link{geom_histogram}}).
-Note that the function requires the quantitative Y variable first, and groups them based on an X variable.
-The Group variable is mapped to the \code{fill} and \code{colour} aesthetics in \code{geom_histogram}.
+Note that the function requires the quantitative Y variable first, and groups them based on an X variable. The group variable is mapped to the \code{fill} and \code{colour} aesthetics in \code{geom_histogram}.
 
-ColPal & ColRev options are applied to both \code{fill} and \code{colour} scales.
+ColPal & ColRev options are applied to both \code{fill} and \code{colour} scales. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
 Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} arguments.
 \code{ColPal} can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
 \code{ColRev} (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette.

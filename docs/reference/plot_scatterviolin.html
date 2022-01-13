@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.0</span>
       </span>
     </div>
 
@@ -129,14 +129,14 @@
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>The function uses <code><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html" class="external-link">geom_violin</a></code> and <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></code> geometries.
+    <p>The function uses <code><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html" class="external-link">geom_violin</a></code>, <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></code>  and <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></code> geometries.
 Note that the <code>geom_violin</code> options are set as follows: <code>scale = "width"</code>. The <code>trim = T</code> set by default can be changed when calling the function.
-The boxplot shows IQR and the median is marked with a thicker horizontal line.
+The boxplot shows IQR and the median is marked with a thicker horizontal line, and whisker depicts 1.5*IQR.
 The X variable is mapped to the <code>fill</code> aesthetic in both violin and symbols, and its colour can be changed using <code>ColPal</code> option.
-Colours can be changed using <code>ColPal</code>, <code>ColRev</code> or <code>ColSeq</code> arguments.
+Colours can be changed using <code>ColPal</code>, <code>ColRev</code> or <code>ColSeq</code> arguments. Colours available can be seen quickly with <code><a href="plot_grafify_palette.html">plot_grafify_palette</a></code>.
 <code>ColPal</code> can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
 <code>ColRev</code> (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette.
-<code>ColSeq</code> decides whether colours are picked by respecting the order in the palette or the most distant ones using <code><a href="https://rdrr.io/r/grDevices/colorRamp.html" class="external-link">colorRampPalette</a></code>.</p>
+<code>ColSeq</code> (logical TRUE/FALSE) decides whether colours are picked by respecting the order in the palette or the most distant ones using <code><a href="https://rdrr.io/r/grDevices/colorRamp.html" class="external-link">colorRampPalette</a></code>.</p>
 <p>The size of symbols can be adjusted using <code>symsize</code> set to 1 by default.
 Transparency of violins and symbols can be set independently with <code>v_alpha</code> and <code>s_alpha</code>, respectively.</p>
 <p>Three types of plots are available for scatter/jitter symbols and either bars+SD, boxplot or violin plots: <code><a href="plot_scatterbar_sd.html">plot_scatterbar_sd</a></code>, <code><a href="plot_scatterbox.html">plot_scatterbox</a></code> and <code>plot_scatterviolin</code>.

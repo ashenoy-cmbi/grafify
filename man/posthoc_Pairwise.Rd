@@ -21,12 +21,12 @@ posthoc_Pairwise(Model, Fixed_Factor, P_Adj = "fdr", Factor, ...)
 returns results produced by \code{\link[emmeans]{emmeans}}.
 }
 \description{
-This function is a wrapper based on \code{\link[emmeans]{emmeans}}, and needs a model produced by \code{\link{simple_model}} (which calls \code{\link{lm}}) or a linear mixed effects model produced by \code{\link{mixed_model}} (which calls \code{\link[lmerTest]{lmer}}). It also needs to know the fixed factor(s), which should match those in the model and data table.
+This function is a wrapper based on \code{\link[emmeans]{emmeans}}, and needs a ordinary linear model produced by \code{\link{simple_model}} or a mixed effects model produced by \code{\link{mixed_model}} or \code{\link{mixed_model_slopes}} (or generated directly with \code{lm},  \code{lme4} or \code{lmerTest} calls). It also needs to know the fixed factor(s), which should match those in the model and data table.
 }
 \details{
 The function will generate \href{https://CRAN.R-project.org/package=emmeans}{pairwise comparisons} of every level of every factor (as described in Comparisons and contrasts in emmeans). Too many comparisons will be generated and only use this when necessary.
 By default, P values are corrected by the FDR method (which can be changed). If the model was fit by transforming the quantitative response variable using "log", "logit", "sqrt" etc., results will still be on the original scale, i.e. \code{type = "response"} is the default; data will be back-transformed (check results to confirm this), and for log or logit see Transformations and link functions in emmeans, \href{https://CRAN.R-project.org/package=emmeans}{ratios will be compared}.
-The first part of the \code{emmeans} results has the estimated marginal means, SE and CI (\code{$emmeans}), which are generated from the fitted model, and \strong{not} the original data table. The second part has the results of the comparisons (\code{$contrasts}).
+The first part of the \code{\link{emmeans}} results has the estimated marginal means, SE and CI (\code{$emmeans}), which are generated from the fitted model, and \strong{not} the original data table. The second part has the results of the comparisons (\code{$contrasts}).
 }
 \examples{
 #make linear models first

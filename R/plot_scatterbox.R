@@ -1,14 +1,12 @@
 #' Plot a scatter plot on a boxplot with two variables.
 #'
-#' This function takes a data table, X and Y variables, and plots a graph with a scatter plot and boxplot using \code{ggplot}.
-#'
-#' The function uses \code{\link[ggplot2]{geom_boxplot}} and \code{\link[ggplot2]{geom_point}} geometries.
+#' This function takes a data table, X and Y variables, and plots a graph with a scatter plot and boxp and whiskers using \code{\link[ggplot2]{geom_boxplot}} and \code{\link[ggplot2]{geom_point}} geometries. The boxplot shows IQR and wiskhers depict 1.5*IQR.
 #' Note that \code{\link{geom_boxplot}} option for outliers is set to \code{outlier.alpha = 0}.
 #' The X variable is mapped to the \code{fill} aesthetic in both boxplot and symbols, and its colour can be changed using `ColPal` option. 
-#' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. 
+#' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
 #' `ColPal` can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
 #' `ColRev` (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette. 
-#' `ColSeq` decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
+#' `ColSeq` (logical TRUE/FALSE) decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
 #' 
 #' The size of symbols can be adjusted using \code{symsize} set to 1 by default.
 #' Transparency of boxplot and symbols can be set independently with `b_alpha` and `s_alpha`, respectively.

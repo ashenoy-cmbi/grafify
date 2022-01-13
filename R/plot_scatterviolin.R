@@ -2,14 +2,14 @@
 #'
 #' This function takes a data table, X and Y variables, and plots a graph with a scatter plot and violinplot using \code{ggplot}.
 #'
-#' The function uses \code{\link[ggplot2]{geom_violin}} and \code{\link[ggplot2]{geom_point}} geometries.
+#' The function uses \code{\link[ggplot2]{geom_violin}}, \code{\link[ggplot2]{geom_boxplot}}  and \code{\link[ggplot2]{geom_point}} geometries.
 #' Note that the \code{\link{geom_violin}} options are set as follows: \code{scale = "width"}. The \code{trim = T} set by default can be changed when calling the function.
-#' The boxplot shows IQR and the median is marked with a thicker horizontal line.
+#' The boxplot shows IQR and the median is marked with a thicker horizontal line, and whisker depicts 1.5*IQR.
 #' The X variable is mapped to the \code{fill} aesthetic in both violin and symbols, and its colour can be changed using `ColPal` option. 
-#' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. 
+#' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
 #' `ColPal` can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
 #' `ColRev` (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette. 
-#' `ColSeq` decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
+#' `ColSeq` (logical TRUE/FALSE) decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
 #' 
 #' The size of symbols can be adjusted using \code{symsize} set to 1 by default.
 #' Transparency of violins and symbols can be set independently with `v_alpha` and `s_alpha`, respectively.

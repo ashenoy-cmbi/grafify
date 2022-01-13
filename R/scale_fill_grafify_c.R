@@ -2,6 +2,8 @@
 #'
 #' `grafify` internally includes colour-blind compatible schemes for fill and colour/color aesthetics.
 #' Note that this scheme is **only** for continuous variables and has one palette (\code{yellow_conti}) [modified from](http://personal.sron.nl/~pault/#sec:sequential) the YlOrBr scheme from RColorBrewer. 
+#' 
+#' Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
 #'
 #' @param reverse Whether the colour order should be reversed.
 #' @param ... Additional parameters for `scale_fill` or `scale_colour`

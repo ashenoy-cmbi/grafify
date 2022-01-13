@@ -46,7 +46,7 @@ This means when \code{Y_value = Y, Fixed_factor = c("A", "B"), Random_factor = "
 For simplicity, only random intercepts are fitted (\code{(1|R)}).
 }
 \examples{
-#Usage with one fixed (Student) and random factor (Experiment), each within quotes
+#Usage with one fixed (Student) and random factor (Experiment)
 mixed_anova(data = data_doubling_time, 
 Y_value = "Doubling_time", 
 Fixed_Factor = "Student", 

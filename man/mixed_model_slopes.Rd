@@ -43,9 +43,13 @@ This means when \code{Y_value = Y, Fixed_factor = c("A", "B"), Slopes_Factor = "
 In this experimental implementation, random slopes and intercepts are fitted (\code{(Slopes_Factor|Random_Factor)}). Only one term each is allowed for \code{Slopes_Factor} and \code{Random_Factor}.
 }
 \examples{
-mixed_model_slopes(data = data_2w_Tdeath,
+#two fixed factors as a vector, 
+#exactly one slope factor and random factor
+mod <- mixed_model_slopes(data = data_2w_Tdeath,
 Y_value = "PI",
 Fixed_Factor = c("Genotype", "Time"),
 Slopes_Factor = "Time",
 Random_Factor = "Experiment")
+#get summary
+summary(mod)
 }

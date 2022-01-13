@@ -25,11 +25,15 @@
 #' @importFrom stats as.formula
 #'
 #' @examples
-#' mixed_model_slopes(data = data_2w_Tdeath,
+#' #two fixed factors as a vector, 
+#' #exactly one slope factor and random factor
+#' mod <- mixed_model_slopes(data = data_2w_Tdeath,
 #' Y_value = "PI",
 #' Fixed_Factor = c("Genotype", "Time"),
 #' Slopes_Factor = "Time",
 #' Random_Factor = "Experiment")
+#' #get summary
+#' summary(mod)
 
 mixed_model_slopes <- function(data, Y_value, Fixed_Factor, Slopes_Factor, Random_Factor, ...){
   Y <- substitute(Y_value)

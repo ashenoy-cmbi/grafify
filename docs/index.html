@@ -45,7 +45,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.0</span>
       </span>
     </div>
 
@@ -88,18 +88,19 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span> <span class="co">#install remotes</span>
 <span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"ashenoy-cmbi/grafify@*release"</span><span class="op">)</span> <span class="co">#install latest release </span></code></pre></div>
-<p><code>grafify</code> requires the following packages to be installed: <code>broom.mixed</code>, <code>magrittr</code>, <code>ggplot2</code>, <code>lme4</code>, <code>lmerTest</code>, <code>emmeans</code>, <code>car</code>, <code>pbkrtest</code>, <code>tidyr</code>, <code>purrr</code> and <code>Hmisc</code>.</p>
+<p><code>grafify</code> requires the following packages to be installed: <code>broom.mixed</code>, <code>car</code>, <code>emmeans</code>, <code>ggplot2</code>, <code>Hmisc</code>, <code>lme4</code>, <code>lmerTest</code>, <code>magrittr</code>, <code>pbkrtest</code>, <code>purrr</code>, <code>stats</code>, <code>tidyr</code>.</p>
 </div>
 <div class="section level3">
 <h3 id="motivation">Motivation<a class="anchor" aria-label="anchor" href="#motivation"></a>
 </h3>
-<p>I made this package for the following:</p>
+<p>I made this package mainly to make it easier for making graphs while exploring data, and to introduce linear models in my teaching using simpler code and practice data sets.</p>
+<p>I mainly wanted to:</p>
 <ol style="list-style-type: decimal">
-<li>easily make graphs based on <code>ggplot2</code> but with far fewer lines of code</li>
+<li>make many types of graphs based on <code>ggplot2</code> but with far fewer lines of code</li>
 <li>carry out ANOVA analysis using linear models (<code>lm</code>) and mixed effects (<code>lmer</code>), quickly get ANOVA tables and perform model diagnostics</li>
 <li>perform post-hoc comparisons (through <code>emmeans</code>)</li>
 <li>simulate one-way and two-way ANOVA design data for power analysis (documentation pending)</li>
-<li>use and distribute it to for teaching purposes</li>
+<li>use and distribute data &amp; functions for teaching purposes</li>
 </ol>
 <p>If you’re interested in basic theory and code for statistics written for biologists, also visit Statistics for <a href="https://microimmunostats.netlify.app" class="external-link">Micro/Immuno Biologists</a>.</p>
 </div>
@@ -111,13 +112,13 @@
 <div class="section level3">
 <h3 id="features">Features<a class="anchor" aria-label="anchor" href="#features"></a>
 </h3>
-<p><code>grafify</code> has five main features (graphs, colour blind-friendly colour schemes, ANOVAs &amp; post-hoc comparisons, practice datasets and data simulations) briefly described below:</p>
+<p><code>grafify</code> has five main features (graphs, colour blind-friendly colour schemes, ANOVAs &amp; post-hoc comparisons, practice datasets and data simulations):</p>
 <ol style="list-style-type: decimal">
 <li>
 <p>There are 19 <code>plot_</code> functions of 6 broad types in <code>grafify</code>. The <code>plot_scatter..</code> versions are preferred when there are many data points, <code>plot_dot..</code> versions have a “cleaner” layout for smaller datasets.</p>
 <ol style="list-style-type: decimal">
-<li>Two categorical variables: these graphs either use scatter (or also called jitter) or dot plot geometries: <code>plot_scatterbar_sd</code>, <code>plot_scatterbox</code>, <code>plot_scatterviolin</code> and <code>plot_dotbar_sd</code>, <code>plot_dotbox</code>, <code>plot_dotviolin</code> <strong>New since v1.5.0</strong>: new <code>plot_</code> functions like the above but ending in <code>_sc</code> for <em>same colour</em> or <em>single colour</em> which plot boxes/dots/violins in one colour. The colour can be picked from <code>all_grafify</code> palettes or defined with a hexcode.</li>
-<li>Three or four categorical variables: <code>plot_3d_scatterbar</code>, <code>plot_3d_scatterbox</code>, <code>plot_4d_scatterbar</code>, <code>plot_4d_scatterbox</code>
+<li>Two categorical variables: these graphs either use scatter (or also called jitter) or dot plot geometries: <code>plot_scatterbar_sd</code>, <code>plot_scatterbox</code>, <code>plot_scatterviolin</code> and <code>plot_dotbar_sd</code>, <code>plot_dotbox</code>, <code>plot_dotviolin</code> <strong>New since v1.5.0</strong>: new <code>plot_</code> functions like the above but ending in <code>_sc</code> for <em>same colour</em> or <em>single colour</em>. See vignettes for details.</li>
+<li>Three or four categorical variables (one-way or two-way ANOVA desigs): <code>plot_3d_scatterbar</code>, <code>plot_3d_scatterbox</code>, <code>plot_4d_scatterbar</code>, <code>plot_4d_scatterbox</code>
 </li>
 <li>Quantitative X &amp; Y, plus a third variable: <code>plot_xy_NumGroup</code>, <code>plot_xy_CatGroup</code>
 </li>
@@ -138,8 +139,7 @@
 <p>Fitting linear models and linear mixed models and obtaining ANOVA tables</p>
 <ol style="list-style-type: decimal">
 <li>linear models for ordinary ANOVAs: <code>simple_anova</code>, <code>simple_model</code>,</li>
-<li>linear mixed effects ANOVAs: <code>mixed_anova</code>, <code>mixed_model</code>
-</li>
+<li>linear mixed effects for repeated-measures and randomised-block design ANOVAs: <code>mixed_anova</code>, <code>mixed_model</code>, <code>mixed_anova_slopes</code> &amp; <code>mixed_model_slopes</code>.</li>
 </ol>
 </li>
 <li>
@@ -148,6 +148,7 @@
 <li><code>posthoc_Pariwise</code></li>
 <li><code>posthoc_Levelwise</code></li>
 <li><code>posthoc_vsRef</code></li>
+<li><code>posthoc_Trends</code></li>
 </ol>
 </li>
 <li>

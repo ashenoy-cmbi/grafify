@@ -7,7 +7,7 @@
 #' 
 #' \if{html}{\out{<div style="text-align: center">}\figure{grafify_palettesv020.jpg}{options: style="width:750px;max-width:70\%;"}\out{</div>}}
 #'
-#' 
+#' Colours available can be seen quickly with \code{\link{plot_grafify_palette}}. 
 #' 
 #' @param reverse Whether the color order should be reversed.
 #' @param ... Additional parameters for `scale_fill` or `scale_color`

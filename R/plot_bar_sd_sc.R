@@ -1,10 +1,10 @@
 #' Plot a bar graph indicating mean with error bars (SD) using two variables.
 #'
-#' This function is related to \code{plot_bar_sd}, but this one maps a single or same colour, therefore `_sc`.
+#' This function is related to \code{\link{plot_bar_sd}}, but this one maps a single or same colour, therefore `_sc`.
 #' The only new argument is `colour`, which can be any hexcode or name of colours in the `all_grafify` [palette](https://grafify-vignettes.netlify.app/colour_palettes.html#full-list-of-hexcodes).
-#' The default colour is `ok_orange`. `ColPal` and `ColRev` arguments are not available.
+#' The default colour is `ok_orange`. `ColPal` and `ColRev` arguments are not available. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
 #'
-#' You are instead encouraged to show all data using the following functions: \code{\link{plot_scatterbar_sd}}, \code{\link{plot_dotbox}}, \code{\link{plot_dotbar_sd}} and \code{\link{plot_dotviolin}}.
+#' You are instead encouraged to show all data using the following functions: \code{\link{plot_scatterbar_sd}}, \code{\link{plot_scatterbox}}, \code{\link{plot_dotbox}}, \code{\link{plot_dotbar_sd}}, \code{\link{plot_scatterviolin}} or \code{\link{plot_dotviolin}}.
 #'
 #' @param data a data table object, e.g. a data.frame or tibble.
 #' @param xcol name of the column to plot on X axis. This should be a categorical variable.
@@ -23,10 +23,6 @@
 #' @import ggplot2 Hmisc
 #'
 #' @examples
-#'
-#' #Basic usage
-#' plot_bar_sd_sc(data = data_doubling_time, 
-#' xcol = Student, ycol = Doubling_time)
 #' plot_bar_sd_sc(data = data_doubling_time, 
 #' xcol = Student, ycol = Doubling_time, 
 #' colour = "ok_grey")

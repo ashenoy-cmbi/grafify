@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.0</span>
       </span>
     </div>
 
@@ -63,6 +63,9 @@
 <li>There are new functions for fitting linear models with varying slopes and intercepts. These are <code>mixed_model_slopes</code> and <code>mixed_anova_slopes</code>.</li>
 <li>A function for comparing slopes of linear fits <code>posthoc_Trends</code> implements the <code><a href="https://rdrr.io/pkg/emmeans/man/emtrends.html" class="external-link">emmeans::emtrends</a></code> call.<br></li>
 <li>Most <code>plot_</code> functions now have the <code>...</code> argument forwarding dots for advanced users to add arguments to <code>ggplot</code> geometries where necessary.</li>
+<li>New <code>plot_grafify_palette</code> function that helps quickly visualise colours in palettes along with their names and hexcodes.</li>
+<li>
+<code>plot_bar_sd</code> and <code>plot_bar_sd_sc</code> have a new argument <code>bthick</code> to adjust the thickness of lines of the bars.</li>
 </ol></div>
 <div class="section level3">
 <h3 id="bug-fixes-2-0-0-9000">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-2-0-0-9000"></a></h3>

@@ -37,17 +37,17 @@ For simplicity, only random intercepts are fitted (\code{(1|R)}).
 Also see \code{mixed_anova_slopes} and \code{mixed_model_slopes} for similar functions where variable slopes and intercept models are fit.
 }
 \examples{
-#two fixed factors as a vector
-mixed_model(data = data_cholesterol, 
-Y_value = "Cholesterol", 
-Fixed_Factor = c("Treatment", "Hospital"), 
-Random_Factor = "Subject")
-
-#one fixed factor
+#one fixed factor and random factor
 mixed_model(data = data_doubling_time, 
 Y_value = "Doubling_time", 
 Fixed_Factor = "Student", 
 Random_Factor = "Experiment")
+
+#two fixed factors as a vector, one random factor
+mixed_model(data = data_cholesterol, 
+Y_value = "Cholesterol", 
+Fixed_Factor = c("Treatment", "Hospital"), 
+Random_Factor = "Subject")
 
 #save model
 model <- mixed_model(data = data_doubling_time, 

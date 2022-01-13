@@ -26,7 +26,7 @@
 #' @importFrom lme4 lmer
 #'
 #' @examples
-#' #Usage with one fixed (Student) and random factor (Experiment), each within quotes
+#' #Usage with one fixed (Student) and random factor (Experiment)
 #' mixed_anova(data = data_doubling_time, 
 #' Y_value = "Doubling_time", 
 #' Fixed_Factor = "Student", 
