@@ -21,21 +21,13 @@ remotes::install_github("ashenoy-cmbi/grafify@*release") #install latest release
  
 ### Motivation 
 
-I made this package mainly to make it easier for making graphs while exploring data, and to introduce linear models in my teaching using simpler code and practice data sets. 
+I made this package mainly to plot great-looking graphs quickly while exploring data, and for linear regressions for ANOVA. I also use it to introduce linear models in my teaching. If you're interested in basic theory and code for statistics written for biologists, also visit Statistics for [Micro/Immuno Biologists](https://microimmunostats.netlify.app). 
 
-I mainly wanted to:
-
-1. make many types of graphs based on `ggplot2` but with far fewer lines of code
-2. carry out ANOVA analysis using linear models (`lm`) and mixed effects (`lmer`), quickly get ANOVA tables and perform model diagnostics 
-3. perform post-hoc comparisons (through `emmeans`) 
-4. simulate one-way and two-way ANOVA design data for power analysis (documentation pending)
-5. use and distribute data & functions for teaching purposes 
-
-If you're interested in basic theory and code for statistics written for biologists, also visit Statistics for [Micro/Immuno Biologists](https://microimmunostats.netlify.app). 
-
-### **Latest release version: v1.5.1**
+### **Latest release version: v2.0.0**
 
 ### Features
+
+#### Graphs
 
 `grafify` has five main features (graphs, colour blind-friendly colour schemes, ANOVAs & post-hoc comparisons, practice datasets and data simulations):
 
@@ -46,7 +38,7 @@ If you're interested in basic theory and code for statistics written for biologi
      b. Three or four categorical variables (one-way or two-way ANOVA desigs): `plot_3d_scatterbar`, `plot_3d_scatterbox`, `plot_4d_scatterbar`, `plot_4d_scatterbox` 
      c. Quantitative X & Y, plus a third variable: `plot_xy_NumGroup`, `plot_xy_CatGroup` 
      d. Matched before-after graphs: `plot_befafter_colours`, `plot_befafter_shapes`
-     e. Data distributions: `plot_qqline`, `plot_density` `plot_histogram`
+     e. Data distributions: `plot_qqline`, `plot_density` `plot_histogram`, and residuals of linear models with `plot_qqmodel`
      **New since v1.5.0**: `plot_qqmodel` which generates a Q-Q plot of model residuals
      f. Summary graphs with SD error bars: `plot_bar_sd`, `plot_point_sd`
      **New since v1.5.0**: *single colour* versions of these available as names ending with `_sc`
@@ -56,6 +48,8 @@ If you're interested in basic theory and code for statistics written for biologi
 knitr::include_graphics("man/figures/all_graphsv1.4.1.jpg")
 ```
 
+#### Colourblind-friendly colour schemes
+
 The following discreet (qualitative) and continuous (quantitative) palettes are implemented in `grafify`:
 
 ```{r, image-palettes, echo = F, out.width="90%"}
@@ -64,30 +58,39 @@ knitr::include_graphics("man/figures/grafify_palettesv0.2.0.jpg")
 
 (The continuous colour scheme based on Paul Tol's [YlOrBl variant](https://personal.sron.nl/~pault/#sec:sequential) is new in v0.2.0.)
   
-2. Fitting linear models and linear mixed models and obtaining ANOVA tables
+Apply these discrete palettes to any `ggplot2` object with `scale_fill_grafify`, `scale_colour_grafify`, `scale_fill_grafify2` or `scale_colour_grafify2`. Palettes available are: `okabe_ito` (see Mike Mol's [blog](https://mikemol.github.io/technique/colorblind/2018/02/11/color-safe-palette.html)), `bright`, `pale`, `muted`, `dark`, `light`, `vibrant`, and `contrast`  colours (see Paul Tol's [blog](https://personal.sron.nl/~pault/#sec:qualitative)).
+    
+Apply the `yellow_conti` continuous colour scheme using `scale_fill_grafify_c` and `scale_colour_grafify_c`.
 
-     a. linear models for ordinary ANOVAs: `simple_anova`, `simple_model`, 
-     b. linear mixed effects for repeated-measures and randomised-block design ANOVAs: `mixed_anova`, `mixed_model`, `mixed_anova_slopes` & `mixed_model_slopes`.
-  
-3. Perform post-hoc comparisons based on fitted models
-  
-     a. `posthoc_Pariwise`
-     b. `posthoc_Levelwise`
-     c. `posthoc_vsRef`
-     d. `posthoc_Trends`
-  
-4. Generating random one-way and two-way data based on mean and SD and residual error.
+#### Linear models 
 
-     a. one-way designs: `make_1way_data`, `make_1way_rb_data`
-     b. two-way designs: `make_2way_data`, `make_2way_rb_data`
+Fitting linear models and linear mixed models and obtaining ANOVA tables
 
-5. Colour-blind compatible discreet and continuous schemes with `scale_fill...` or `scale_colour...` for `ggplot` objects
-    a. `okabe_ito` (see Mike Mol's [blog](https://mikemol.github.io/technique/colorblind/2018/02/11/color-safe-palette.html)), `bright`, `pale`, `muted`, `dark`, `light`, `vibrant`, and `contrast`  colours (see Paul Tol's [blog](https://personal.sron.nl/~pault/#sec:qualitative)).
-    b. Continuous colour scheme available through `scale_fill_grafify_c` and `scale_colour_grafify_c`.
+  a. linear models for ordinary ANOVAs: `simple_anova`, `simple_model`, 
+   b. linear mixed effects for repeated-measures and randomised-block design ANOVAs: `mixed_anova`, `mixed_model`, `mixed_anova_slopes` & `mixed_model_slopes`.
+
+#### Post-hoc comparisons
+Perform post-hoc comparisons based on fitted models
+  
+  a. `posthoc_Pariwise`
+  b. `posthoc_Levelwise`
+  c. `posthoc_vsRef`
+  d. `posthoc_Trends`
+  
+#### Data simulation
+
+Generating random one-way and two-way data based on mean and SD and residual error.
+
+  a. one-way designs: `make_1way_data`, `make_1way_rb_data`
+  b. two-way designs: `make_2way_data`, `make_2way_rb_data`
 
 ### Vignettes
 
-Visit the `grafify` [vignettes](https://grafify-vignettes.netlify.app) website for detailed examples of usage.
+The best place to see `grafify`  in action is the [vignettes](https://grafify-vignettes.netlify.app) website, which has detailed description of all functions.
+
+### Function references
+
+Go to this [website](https://ashenoy-cmbi.github.io/grafify/index.html) for function documentations.
 
 ### Hexsticker
 

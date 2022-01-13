@@ -66,20 +66,15 @@
 </div>
 <div class="section level3">
 <h3 id="motivation">Motivation<a class="anchor" aria-label="anchor" href="#motivation"></a></h3>
-<p>I made this package mainly to make it easier for making graphs while exploring data, and to introduce linear models in my teaching using simpler code and practice data sets.</p>
-<p>I mainly wanted to:</p>
-<ol style="list-style-type: decimal"><li>make many types of graphs based on <code>ggplot2</code> but with far fewer lines of code</li>
-<li>carry out ANOVA analysis using linear models (<code>lm</code>) and mixed effects (<code>lmer</code>), quickly get ANOVA tables and perform model diagnostics</li>
-<li>perform post-hoc comparisons (through <code>emmeans</code>)</li>
-<li>simulate one-way and two-way ANOVA design data for power analysis (documentation pending)</li>
-<li>use and distribute data &amp; functions for teaching purposes</li>
-</ol><p>If you’re interested in basic theory and code for statistics written for biologists, also visit Statistics for <a href="https://microimmunostats.netlify.app" class="external-link">Micro/Immuno Biologists</a>.</p>
+<p>I made this package mainly to plot great-looking graphs quickly while exploring data, and for linear regressions for ANOVA. I also use it to introduce linear models in my teaching. If you’re interested in basic theory and code for statistics written for biologists, also visit Statistics for <a href="https://microimmunostats.netlify.app" class="external-link">Micro/Immuno Biologists</a>.</p>
 </div>
 <div class="section level3">
-<h3 id="latest-release-version-v151"><strong>Latest release version: v1.5.1</strong><a class="anchor" aria-label="anchor" href="#latest-release-version-v151"></a></h3>
+<h3 id="latest-release-version-v200"><strong>Latest release version: v2.0.0</strong><a class="anchor" aria-label="anchor" href="#latest-release-version-v200"></a></h3>
 </div>
 <div class="section level3">
 <h3 id="features">Features<a class="anchor" aria-label="anchor" href="#features"></a></h3>
+<div class="section level4">
+<h4 id="graphs">Graphs<a class="anchor" aria-label="anchor" href="#graphs"></a></h4>
 <p><code>grafify</code> has five main features (graphs, colour blind-friendly colour schemes, ANOVAs &amp; post-hoc comparisons, practice datasets and data simulations):</p>
 <ol style="list-style-type: decimal"><li>
 <p>There are 19 <code>plot_</code> functions of 6 broad types in <code>grafify</code>. The <code>plot_scatter..</code> versions are preferred when there are many data points, <code>plot_dot..</code> versions have a “cleaner” layout for smaller datasets.</p>
@@ -90,43 +85,50 @@
 </li>
 <li>Matched before-after graphs: <code>plot_befafter_colours</code>, <code>plot_befafter_shapes</code>
 </li>
-<li>Data distributions: <code>plot_qqline</code>, <code>plot_density</code> <code>plot_histogram</code> <strong>New since v1.5.0</strong>: <code>plot_qqmodel</code> which generates a Q-Q plot of model residuals</li>
+<li>Data distributions: <code>plot_qqline</code>, <code>plot_density</code> <code>plot_histogram</code>, and residuals of linear models with <code>plot_qqmodel</code> <strong>New since v1.5.0</strong>: <code>plot_qqmodel</code> which generates a Q-Q plot of model residuals</li>
 <li>Summary graphs with SD error bars: <code>plot_bar_sd</code>, <code>plot_point_sd</code> <strong>New since v1.5.0</strong>: <em>single colour</em> versions of these available as names ending with <code>_sc</code>
 </li>
 </ol></li>
 </ol><p><img src="reference/figures/all_graphsv1.4.1.jpg" width="90%"></p>
+</div>
+<div class="section level4">
+<h4 id="colourblind-friendly-colour-schemes">Colourblind-friendly colour schemes<a class="anchor" aria-label="anchor" href="#colourblind-friendly-colour-schemes"></a></h4>
 <p>The following discreet (qualitative) and continuous (quantitative) palettes are implemented in <code>grafify</code>:</p>
 <p><img src="reference/figures/grafify_palettesv0.2.0.jpg" width="90%"></p>
 <p>(The continuous colour scheme based on Paul Tol’s <a href="https://personal.sron.nl/~pault/#sec:sequential" class="external-link">YlOrBl variant</a> is new in v0.2.0.)</p>
-<ol start="2" style="list-style-type: decimal"><li>
+<p>Apply these discrete palettes to any <code>ggplot2</code> object with <code>scale_fill_grafify</code>, <code>scale_colour_grafify</code>, <code>scale_fill_grafify2</code> or <code>scale_colour_grafify2</code>. Palettes available are: <code>okabe_ito</code> (see Mike Mol’s <a href="https://mikemol.github.io/technique/colorblind/2018/02/11/color-safe-palette.html" class="external-link">blog</a>), <code>bright</code>, <code>pale</code>, <code>muted</code>, <code>dark</code>, <code>light</code>, <code>vibrant</code>, and <code>contrast</code> colours (see Paul Tol’s <a href="https://personal.sron.nl/~pault/#sec:qualitative" class="external-link">blog</a>).</p>
+<p>Apply the <code>yellow_conti</code> continuous colour scheme using <code>scale_fill_grafify_c</code> and <code>scale_colour_grafify_c</code>.</p>
+</div>
+<div class="section level4">
+<h4 id="linear-models">Linear models<a class="anchor" aria-label="anchor" href="#linear-models"></a></h4>
 <p>Fitting linear models and linear mixed models and obtaining ANOVA tables</p>
 <ol style="list-style-type: decimal"><li>linear models for ordinary ANOVAs: <code>simple_anova</code>, <code>simple_model</code>,</li>
 <li>linear mixed effects for repeated-measures and randomised-block design ANOVAs: <code>mixed_anova</code>, <code>mixed_model</code>, <code>mixed_anova_slopes</code> &amp; <code>mixed_model_slopes</code>.</li>
-</ol></li>
-<li>
+</ol></div>
+<div class="section level4">
+<h4 id="post-hoc-comparisons">Post-hoc comparisons<a class="anchor" aria-label="anchor" href="#post-hoc-comparisons"></a></h4>
 <p>Perform post-hoc comparisons based on fitted models</p>
 <ol style="list-style-type: decimal"><li><code>posthoc_Pariwise</code></li>
 <li><code>posthoc_Levelwise</code></li>
 <li><code>posthoc_vsRef</code></li>
 <li><code>posthoc_Trends</code></li>
-</ol></li>
-<li>
+</ol></div>
+<div class="section level4">
+<h4 id="data-simulation">Data simulation<a class="anchor" aria-label="anchor" href="#data-simulation"></a></h4>
 <p>Generating random one-way and two-way data based on mean and SD and residual error.</p>
 <ol style="list-style-type: decimal"><li>one-way designs: <code>make_1way_data</code>, <code>make_1way_rb_data</code>
 </li>
 <li>two-way designs: <code>make_2way_data</code>, <code>make_2way_rb_data</code>
 </li>
-</ol></li>
-<li>
-<p>Colour-blind compatible discreet and continuous schemes with <code>scale_fill...</code> or <code>scale_colour...</code> for <code>ggplot</code> objects</p>
-<ol style="list-style-type: decimal"><li>
-<code>okabe_ito</code> (see Mike Mol’s <a href="https://mikemol.github.io/technique/colorblind/2018/02/11/color-safe-palette.html" class="external-link">blog</a>), <code>bright</code>, <code>pale</code>, <code>muted</code>, <code>dark</code>, <code>light</code>, <code>vibrant</code>, and <code>contrast</code> colours (see Paul Tol’s <a href="https://personal.sron.nl/~pault/#sec:qualitative" class="external-link">blog</a>).</li>
-<li>Continuous colour scheme available through <code>scale_fill_grafify_c</code> and <code>scale_colour_grafify_c</code>.</li>
-</ol></li>
 </ol></div>
+</div>
 <div class="section level3">
 <h3 id="vignettes">Vignettes<a class="anchor" aria-label="anchor" href="#vignettes"></a></h3>
-<p>Visit the <code>grafify</code> <a href="https://grafify-vignettes.netlify.app" class="external-link">vignettes</a> website for detailed examples of usage.</p>
+<p>The best place to see <code>grafify</code> in action is the <a href="https://grafify-vignettes.netlify.app" class="external-link">vignettes</a> website, which has detailed description of all functions.</p>
+</div>
+<div class="section level3">
+<h3 id="function-references">Function references<a class="anchor" aria-label="anchor" href="#function-references"></a></h3>
+<p>Go to this <a href="https://ashenoy-cmbi.github.io/grafify/index.html" class="external-link">website</a> for function documentations.</p>
 </div>
 <div class="section level3">
 <h3 id="hexsticker">Hexsticker<a class="anchor" aria-label="anchor" href="#hexsticker"></a></h3>
@@ -135,7 +137,7 @@
 <div class="section level3">
 <h3 id="status">Status<a class="anchor" aria-label="anchor" href="#status"></a></h3>
 <!-- badges: start -->
-<p><a href="https://github.com/ashenoy-cmbi/grafify/actions" class="external-link"><img src="https://github.com/ashenoy-cmbi/grafify/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a> <!-- badges: end --></p>
+<p><a href="https://github.com/ashenoy-cmbi/grafify/actions" class="external-link"><img src="https://github.com/ashenoy-cmbi/grafify/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></p>
 </div>
 
 

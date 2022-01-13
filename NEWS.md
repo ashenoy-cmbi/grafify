@@ -7,7 +7,7 @@ output:
 
 Full reference to all functions available at [`grafify` GitHub pages](https://ashenoy-cmbi.github.io/grafify/index.html).
 
-# grafify v2.0.0.9000
+# grafify v2.0.0
 
 This is a major update with some new features, bugfixes, and further cleaning up of code and consistent names of arguments in preparation for CRAN submission. Some previous code may not work because of renaming of some arguments for grouping variables in `plot_` functions. But older arguments are retained with deprecation warnings in most cases, so old code should largely work.
 
