@@ -135,6 +135,3 @@ website for detailed examples of usage.
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/ashenoy-cmbi/grafify/workflows/R-CMD-check/badge.svg)](https://github.com/ashenoy-cmbi/grafify/actions)
-[![Travis build
-status](https://travis-ci.com/ashenoy-cmbi/grafify.svg?branch=master)](https://travis-ci.com/ashenoy-cmbi/grafify)
-<!-- badges: end -->

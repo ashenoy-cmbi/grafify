@@ -17,4 +17,3 @@ Readme.Rmd
 Readme.md
 ^\.github$
 cran-comments.md
-^\.travis\.yml$
