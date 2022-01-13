@@ -39,7 +39,7 @@ plot_scatterviolin_sc(
 
 \item{bwid}{width of boxplots; default 0.2}
 
-\item{bvthick}{thickeness of both violin and box plot lines; default 1}
+\item{bvthick}{thickness of both violin and box plot lines; default 1}
 
 \item{b_alpha}{fractional opacity of boxplots, default set to 1 (i.e. maximum opacity & zero transparency). For white boxplots inside violins, set \code{b_alpha = 0}.}
 

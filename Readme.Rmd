@@ -35,7 +35,7 @@ I made this package mainly to plot great-looking graphs quickly while exploring 
 
      a. Two categorical variables: these graphs either use scatter (or also called jitter) or dot plot geometries: `plot_scatterbar_sd`, `plot_scatterbox`, `plot_scatterviolin` and `plot_dotbar_sd`, `plot_dotbox`, `plot_dotviolin`
      **New since v1.5.0**: new `plot_` functions like the above but ending in `_sc` for *same colour* or *single colour*. See vignettes for details. 
-     b. Three or four categorical variables (one-way or two-way ANOVA desigs): `plot_3d_scatterbar`, `plot_3d_scatterbox`, `plot_4d_scatterbar`, `plot_4d_scatterbox` 
+     b. Three or four categorical variables (one-way or two-way ANOVA designs): `plot_3d_scatterbar`, `plot_3d_scatterbox`, `plot_4d_scatterbar`, `plot_4d_scatterbox` 
      c. Quantitative X & Y, plus a third variable: `plot_xy_NumGroup`, `plot_xy_CatGroup` 
      d. Matched before-after graphs: `plot_befafter_colours`, `plot_befafter_shapes`
      e. Data distributions: `plot_qqline`, `plot_density` `plot_histogram`, and residuals of linear models with `plot_qqmodel`

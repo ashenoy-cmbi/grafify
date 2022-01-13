@@ -27,7 +27,7 @@ Obviously, it is not recommended to use so many colours, but implementing this w
 
 Colours available can be seen quickly with \code{\link{plot_grafify_palette}}. There are eight palettes with 5-10 colours each, which are recommended. These can be called by naming the colour scheme using \code{palette = } argument.
 Additional options include "okabe_ito", "vibrant, "bright", "pale", "muted", "dark", "light", and "contrast". These are taken from \href{https://personal.sron.nl/~pault/#sec:qualitative}{Paul Taul},  \href{https://mikemol.github.io/technique/colorblind/2018/02/11/color-safe-palette.html}{Mike Mol} and \href{https://jfly.uni-koeln.de/color/}{Okabe Ito}.
-\code{scale_fill_grafify2} and \code{scale_colour_grafify2} are identical except that when the number of categorical variables is fewer than the total number of colour shades in the palette (e.g. if you have 3 groups and the "okabe_ito" palette has 7 colours), these functions will pick the most 'distant' colours from the scheme than going sequentially. If you want colours assigned sequencially do not use \code{scale_fill_grafify} or \code{scale_colour_grafify}.
+\code{scale_fill_grafify2} and \code{scale_colour_grafify2} are identical except that when the number of categorical variables is fewer than the total number of colour shades in the palette (e.g. if you have 3 groups and the "okabe_ito" palette has 7 colours), these functions will pick the most 'distant' colours from the scheme than going sequentially. If you want colours assigned sequentially use \code{scale_fill_grafify} or \code{scale_colour_grafify}.
 }
 \examples{
 #add a grafify fill scheme to ggplot

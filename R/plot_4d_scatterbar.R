@@ -103,4 +103,3 @@ plot_4d_scatterbar <- function(data, xcol, ycol, bars, shapes, symsize = 2.5, sy
   }
   P
 }
-  

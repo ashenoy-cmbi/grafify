@@ -56,7 +56,7 @@ This version has 8 new `plot_` functions ending in `_sc` for plotting data with 
 
 ## Minor fixes
 
-Fixed a typo in `posthoc_Levelwise` where the `adjust` argument wasn not being correctly passed on to `emmeans`.
+Fixed a typo in `posthoc_Levelwise` where the `adjust` argument was not being correctly passed on to `emmeans`.
 
 
 # grafify v1.4.1

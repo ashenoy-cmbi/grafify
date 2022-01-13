@@ -2,6 +2,8 @@
 .Rhistory
 .RData
 .Ruserdata
+.Rapp.history
+*-Ex.R
 inst/doc
 data-raw
 doc
@@ -9,3 +11,4 @@ Meta
 Other_files
 grafify.Rproj
 cran-comments.md
+

@@ -10,7 +10,7 @@
 #' @param colour colour of boxes and dots; a number between 1-64, any hexcode or names from `grafify` colour palettes. Default is `ok_orange`.
 #' @param symsize size of dots relative to \code{binwidth} used by \code{geom_point}. Default set to 2.5, increase/decrease as needed.
 #' @param symthick thickness of dot border (`stroke` parameter of `geom_point`), default set to 1
-#' @param bvthick thickeness of both violin and box plot lines; default 1
+#' @param bvthick thickness of both violin and box plot lines; default 1
 #' @param bwid width of boxplots; default 0.2
 #' @param b_alpha fractional opacity of boxplots, default set to 1 (i.e. maximum opacity & zero transparency). For white boxplots inside violins, set `b_alpha = 0`.
 #' @param v_alpha fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency).  Set `s_alpha = 0` to not show scatter plot.

@@ -1,6 +1,6 @@
 #' Plot scatter dots on a bar graph with SD error bars with two variables.
 #'
-#' This function takes a data table, categorial X and numeric Y variables, and plots a graph with a jitterplot or scatterplot and bars showing means with SD error bars. It uses \code{\link[ggplot2]{stat_summary}} with \code{geom = "bar"}, and \code{\link[ggplot2]{geom_point}} with \code{position = position_jitter(width = 0.05)}.
+#' This function takes a data table, categorical X and numeric Y variables, and plots a graph with a jitterplot or scatterplot and bars showing means with SD error bars. It uses \code{\link[ggplot2]{stat_summary}} with \code{geom = "bar"}, and \code{\link[ggplot2]{geom_point}} with \code{position = position_jitter(width = 0.05)}.
 #' 
 #' Standard deviation (SD) is plotted through \code{\link[ggplot2]{stat_summary}} calculated using \code{mean_sdl} from the \code{ggplot2} package (get help with \code{?mean_sdl}), and 1x SD is plotted (\code{fun.arg = list(mult = 1)}.
 #' The X variable is mapped to the \code{fill} aesthetic in the bar geometry and \code{colour} aesthetic in \code{geom_point}. 

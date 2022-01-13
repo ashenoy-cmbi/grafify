@@ -49,7 +49,7 @@ Will be converted to \code{factor} if your column is numeric}
 This function returns a \code{ggplot2} object.
 }
 \description{
-This function takes a data table, quantitative X and Y variables along with a categorical grouping variabnle, and a and plots a graph with using \code{\link[ggplot2]{geom_point}}. The categorical \code{CatGroup} variable is mapped to the \code{fill} aesthetic of symbols.
+This function takes a data table, quantitative X and Y variables along with a categorical grouping variable, and a and plots a graph with using \code{\link[ggplot2]{geom_point}}. The categorical \code{CatGroup} variable is mapped to the \code{fill} aesthetic of symbols.
 }
 \details{
 Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} arguments. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.

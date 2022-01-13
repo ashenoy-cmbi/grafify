@@ -64,7 +64,7 @@
 #' \item{Time2}{A numeric column that allows plotting data on a quantitative "Time" axis. The "Time" column has "factor" type values that should be used for the ANOVA..}
 #' \item{Genotype}{A fixed factor with 2 levels that we want to compare "WT" & "KO".}
 #' \item{Subject}{A random factor with 12 levels: "s1", "s2"... These are cell culture wells that were measured at two time points, and indicate "subjects" that underwent repeated-measures within each of 6 experiments. Subject IDs for WT and KO are unique and clearly indicate different wells.}
-#' \item{PI}{Numerical dependent variable indicating propidium iodide dye uptake as a meaure of cell death. These are percentage of dead cells out of total cells plated.}
+#' \item{PI}{Numerical dependent variable indicating propidium iodide dye uptake as a measure of cell death. These are percentage of dead cells out of total cells plated.}
 #'}
 "data_2w_Tdeath"
 

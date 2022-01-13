@@ -54,7 +54,7 @@ plot_scatterbox(
 This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
 }
 \description{
-This function takes a data table, X and Y variables, and plots a graph with a scatter plot and boxp and whiskers using \code{\link[ggplot2]{geom_boxplot}} and \code{\link[ggplot2]{geom_point}} geometries. The boxplot shows IQR and wiskhers depict 1.5*IQR.
+This function takes a data table, X and Y variables, and plots a graph with a scatter plot and box and whiskers using \code{\link[ggplot2]{geom_boxplot}} and \code{\link[ggplot2]{geom_point}} geometries. The boxplot shows IQR and whiskers depict 1.5*IQR.
 Note that \code{\link{geom_boxplot}} option for outliers is set to \code{outlier.alpha = 0}.
 The X variable is mapped to the \code{fill} aesthetic in both boxplot and symbols, and its colour can be changed using \code{ColPal} option.
 Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} arguments. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
