@@ -20,7 +20,7 @@ Depends:
     R (>= 4.0),
     ggplot2
 Encoding: UTF-8
-Date: 2022-01-09
+Date: 2022-01-14
 LazyData: true
 RoxygenNote: 7.1.2
 Roxygen: list(markdown = TRUE)
