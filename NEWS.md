@@ -9,11 +9,11 @@ Full reference to all functions available at [`grafify` GitHub pages](https://as
 
 # grafify v2.0.0
 
-This is a major update with some new features, bugfixes, and further cleaning up of code and consistent names of arguments in preparation for CRAN submission. Some previous code may not work because of renaming of some arguments for grouping variables in `plot_` functions. But older arguments are retained with deprecation warnings in most cases, so old code should largely work.
+This is a major update with some new features, bugfixes, and further cleaning up of code with consistent names of arguments in preparation for CRAN submission. Some previous code may not work because of renaming of some arguments for grouping variables in `plot_` functions. But older arguments are retained with deprecation warnings in most cases, so old code should largely work.
 
-## Major new features:
+## New features:
 
-  a. Plot functions have a new argument `ColSeq` (logical TRUE/FALSE) that picks colours sequentially from palette chosen by `ColPal` when `TRUE` (default). If set to `FALSE`, the most distant colours are chosen, as already implemented in `scale_..._grafify2` functions.
+  a. `plot_` functions have a new argument `ColSeq` (logical TRUE/FALSE) that picks colours sequentially from palette chosen by `ColPal` when `TRUE` (default). If set to `FALSE`, the most distant colours are chosen, as already implemented in `scale_..._grafify2` functions.
   b. Violin plots get a major face-lift with a box-whiskers plot on top of the violin. This gives a clearer picture of data and dispersion than the default quantile lines in `geom_violin`. They also get new arguments to set thickness of lines (`bvthick`) and transparency of boxplots (`b_alpha`).
   c. There are new functions for fitting linear models with varying slopes and intercepts. These are `mixed_model_slopes` and `mixed_anova_slopes`.
   d. A function for comparing slopes of linear fits `posthoc_Trends` implements the `emmeans::emtrends` call.  

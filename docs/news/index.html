@@ -55,10 +55,11 @@
 
     <div class="section level2">
 <h2 class="page-header" data-toc-text="2.0.0" id="grafify-v200">grafify v2.0.0<a class="anchor" aria-label="anchor" href="#grafify-v200"></a></h2>
-<p>This is a major update with some new features, bugfixes, and further cleaning up of code and consistent names of arguments in preparation for CRAN submission. Some previous code may not work because of renaming of some arguments for grouping variables in <code>plot_</code> functions. But older arguments are retained with deprecation warnings in most cases, so old code should largely work.</p>
+<p>This is a major update with some new features, bugfixes, and further cleaning up of code with consistent names of arguments in preparation for CRAN submission. Some previous code may not work because of renaming of some arguments for grouping variables in <code>plot_</code> functions. But older arguments are retained with deprecation warnings in most cases, so old code should largely work.</p>
 <div class="section level3">
-<h3 id="major-new-features-2-0-0">Major new features:<a class="anchor" aria-label="anchor" href="#major-new-features-2-0-0"></a></h3>
-<ol style="list-style-type: lower-alpha"><li>Plot functions have a new argument <code>ColSeq</code> (logical TRUE/FALSE) that picks colours sequentially from palette chosen by <code>ColPal</code> when <code>TRUE</code> (default). If set to <code>FALSE</code>, the most distant colours are chosen, as already implemented in <code>scale_..._grafify2</code> functions.</li>
+<h3 id="new-features-2-0-0">New features:<a class="anchor" aria-label="anchor" href="#new-features-2-0-0"></a></h3>
+<ol style="list-style-type: lower-alpha"><li>
+<code>plot_</code> functions have a new argument <code>ColSeq</code> (logical TRUE/FALSE) that picks colours sequentially from palette chosen by <code>ColPal</code> when <code>TRUE</code> (default). If set to <code>FALSE</code>, the most distant colours are chosen, as already implemented in <code>scale_..._grafify2</code> functions.</li>
 <li>Violin plots get a major face-lift with a box-whiskers plot on top of the violin. This gives a clearer picture of data and dispersion than the default quantile lines in <code>geom_violin</code>. They also get new arguments to set thickness of lines (<code>bvthick</code>) and transparency of boxplots (<code>b_alpha</code>).</li>
 <li>There are new functions for fitting linear models with varying slopes and intercepts. These are <code>mixed_model_slopes</code> and <code>mixed_anova_slopes</code>.</li>
 <li>A function for comparing slopes of linear fits <code>posthoc_Trends</code> implements the <code><a href="https://rdrr.io/pkg/emmeans/man/emtrends.html" class="external-link">emmeans::emtrends</a></code> call.<br></li>
@@ -99,7 +100,7 @@
 </div>
 <div class="section level3">
 <h3 id="minor-fixes-1-5-0">Minor fixes<a class="anchor" aria-label="anchor" href="#minor-fixes-1-5-0"></a></h3>
-<p>Fixed a typo in <code>posthoc_Levelwise</code> where the <code>adjust</code> argument wasn not being correctly passed on to <code>emmeans</code>.</p>
+<p>Fixed a typo in <code>posthoc_Levelwise</code> where the <code>adjust</code> argument was not being correctly passed on to <code>emmeans</code>.</p>
 </div>
 </div>
     <div class="section level2">
