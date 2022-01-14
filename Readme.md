@@ -30,7 +30,7 @@ theory and code for statistics written for biologists, also visit
 Statistics for [Micro/Immuno
 Biologists](https://microimmunostats.netlify.app).
 
-### **Latest release version: v2.0.0**
+### **Latest release version: v1.5.1**
 
 ### Features
 
@@ -53,7 +53,7 @@ simulations):
         in `_sc` for *same colour* or *single colour*. See vignettes for
         details.
     2.  Three or four categorical variables (one-way or two-way ANOVA
-        desigs): `plot_3d_scatterbar`, `plot_3d_scatterbox`,
+        designs): `plot_3d_scatterbar`, `plot_3d_scatterbox`,
         `plot_4d_scatterbar`, `plot_4d_scatterbox`
     3.  Quantitative X & Y, plus a third variable: `plot_xy_NumGroup`,
         `plot_xy_CatGroup`
