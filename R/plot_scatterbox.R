@@ -18,18 +18,18 @@
 #' @param xcol name of the column to plot on X axis. This should be a categorical variable.
 #' @param ycol name of the column to plot on quantitative Y axis. This should be a quantitative variable.
 #' @param symsize size of symbols used by \code{geom_point}. Default set to 2.5, increase/decrease as needed.
-#' @param symthick thickness of symbol border (`stroke` parameter of `geom_point`), default set to 1
+#' @param symthick thickness of symbol border (`stroke` parameter of `geom_point`), default set to 1.
 #' @param jitter extent of jitter (scatter) of symbols, default is 0 (i.e. aligned symbols). To reduce symbol overlap, try 0.1-0.3 or higher.  
-#' @param b_alpha fractional opacity of boxplot, default set to 1 (i.e. maximum opacity & zero transparency)
-#' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)
+#' @param b_alpha fractional opacity of boxplot, default set to 1 (i.e. maximum opacity & zero transparency).
+#' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).
 #' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
-#' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
-#' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
+#' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE).
+#' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param ... any additional arguments to pass to \code{ggplot2}[geom_boxplot].
 #'
-#' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
+#' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 #' @export plot_scatterbox
 #' @import ggplot2
 #'

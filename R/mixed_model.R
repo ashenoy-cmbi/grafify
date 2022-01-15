@@ -21,7 +21,7 @@
 #' @param Random_Factor name(s) of random factors to allow random intercepts; to be provided as a vector when more than one or within "quotes".
 #' @param ... any additional arguments to pass on to \code{\link[lme4]{lmer}} if required.
 #'
-#' @return This function returns the output of \code{lmerTest::lmer()}.
+#' @return This function returns an S4 object of class "lmerModLmerTest".
 #' @export mixed_model
 #' @importFrom lme4 lmer
 #' @importFrom lmerTest as_lmerModLmerTest

@@ -75,7 +75,7 @@ The default colour is <code>ok_orange</code>. <code>ColPal</code> and <code>ColR
   b_alpha <span class="op">=</span> <span class="fl">1</span>,
   d_alpha <span class="op">=</span> <span class="fl">1</span>,
   v_alpha <span class="op">=</span> <span class="fl">1</span>,
-  trim <span class="op">=</span> <span class="cn">T</span>,
+  trim <span class="op">=</span> <span class="cn">TRUE</span>,
   scale <span class="op">=</span> <span class="st">"width"</span>,
   TextXAngle <span class="op">=</span> <span class="fl">0</span>,
   fontsize <span class="op">=</span> <span class="fl">20</span>,
@@ -86,7 +86,7 @@ The default colour is <code>ok_orange</code>. <code>ColPal</code> and <code>ColR
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>data</dt>
-<dd><p>a data table object, e.g. data.frame or tibble</p></dd>
+<dd><p>a data table object, e.g. data.frame or tibble.</p></dd>
 <dt>xcol</dt>
 <dd><p>name of the column to plot on X axis. This should be a categorical variable.</p></dd>
 <dt>ycol</dt>
@@ -96,15 +96,15 @@ The default colour is <code>ok_orange</code>. <code>ColPal</code> and <code>ColR
 <dt>dotsize</dt>
 <dd><p>size of dots relative to <code>binwidth</code> used by <code>geom_dotplot</code>. Default set to 1.5, increase/decrease as needed.</p></dd>
 <dt>dotthick</dt>
-<dd><p>thickness of dot border (<code>stroke</code> parameter of <code>geom_dotplot</code>), default set to 1</p></dd>
+<dd><p>thickness of dot border (<code>stroke</code> parameter of <code>geom_dotplot</code>), default set to 1.</p></dd>
 <dt>bvthick</dt>
-<dd><p>thickness of violin an boxplot lines; default 1</p></dd>
+<dd><p>thickness of violin an boxplot lines; default 1.</p></dd>
 <dt>bwid</dt>
 <dd><p>width of boxplots; default 0.2</p></dd>
 <dt>b_alpha</dt>
 <dd><p>fractional opacity of violins, default set to 1 (i.e. maximum opacity &amp; zero transparency). For white boxplots inside violins, set <code>b_alpha = 0</code>.</p></dd>
 <dt>d_alpha</dt>
-<dd><p>fractional opacity of dots, default set to 1 (i.e. maximum opacity &amp; zero transparency)</p></dd>
+<dd><p>fractional opacity of dots, default set to 1 (i.e. maximum opacity &amp; zero transparency).</p></dd>
 <dt>v_alpha</dt>
 <dd><p>fractional opacity of violins, default set to 1 (i.e. maximum opacity &amp; zero transparency)</p></dd>
 <dt>trim</dt>
@@ -112,7 +112,7 @@ The default colour is <code>ok_orange</code>. <code>ColPal</code> and <code>ColR
 <dt>scale</dt>
 <dd><p>set to "area" by default, can be changed to "count" or "width".</p></dd>
 <dt>TextXAngle</dt>
-<dd><p>orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text</p></dd>
+<dd><p>orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.</p></dd>
 <dt>fontsize</dt>
 <dd><p>parameter of <code>base_size</code> of fonts in <code>theme_classic</code>, default set to size 20.</p></dd>
 <dt>...</dt>
@@ -120,7 +120,7 @@ The default colour is <code>ok_orange</code>. <code>ColPal</code> and <code>ColR
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>This function returns a <code>ggplot2</code> object on which additional geometries etc. can be added.</p>
+    <p>This function returns a <code>ggplot2</code> object of class "gg" and "ggplot".</p>
     </div>
 
     <div id="ref-examples">

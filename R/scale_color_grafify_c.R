@@ -10,9 +10,9 @@
 #' Colours available can be seen quickly with \code{\link{plot_grafify_palette}}. 
 #' 
 #' @param reverse Whether the color order should be reversed.
-#' @param ... Additional parameters for `scale_fill` or `scale_color`
+#' @param ... Additional parameters for `scale_fill` or `scale_color`.
 #'
-#' @return ggplot scale_fill function
+#' @return ggplot scale_fill function for continuous colours.
 #' @export scale_color_grafify_c
 #' @import ggplot2
 #'

@@ -25,19 +25,19 @@
 #' @param xcol name of the column with the categorical factor to be plotted on X axis. If your table has numeric X, enter \code{xcol = factor(name of colum)}.
 #' @param ycol name of the column with quantitative variable to plot on the Y axis.
 #' @param shapes name of the column with the second categorical factor in a two-way ANOVA design.
-#' @param symsize size of symbols, default set to 3
-#' @param symthick size of outline of symbol lines (\code{stroke = 1.0}), default set to 1.0
+#' @param symsize size of symbols, default set to 3.
+#' @param symthick size of outline of symbol lines (\code{stroke = 1.0}), default set to 1.0.
 #' @param jitter extent of jitter (scatter) of symbols, default is 0.1. Increase to reduce symbol overlap, set to 0 for aligned symbols.  
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
-#' @param b_alpha fractional opacity of boxes, default set to 1 (i.e. maximum opacity & zero transparency)
-#' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)
+#' @param b_alpha fractional opacity of boxes, default set to 1 (i.e. maximum opacity & zero transparency).
+#' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
-#' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
-#' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
+#' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE).
+#' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
 #' @param ... any additional arguments to pass to \code{ggplot2}[geom_boxplot].
 #'
-#' @return This function returns a \code{ggplot2} object.
+#' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 #' @export plot_3d_scatterbox
 #' @import ggplot2
 #'

@@ -20,26 +20,26 @@ plot_point_sd_sc(
 \arguments{
 \item{data}{a data table object, e.g. data.frame or tibble.}
 
-\item{xcol}{name of the column with a \strong{categorical} X variable.}
+\item{xcol}{name of the column with a categorical X variable.}
 
-\item{ycol}{name of the column with quantitative Y variable}
+\item{ycol}{name of the column with quantitative Y variable.}
 
 \item{colour}{colour of boxes and dots; a number between 1-64, any hexcode or names from \code{grafify} colour palettes. Default is \code{ok_orange}.}
 
-\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)}
+\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).}
 
-\item{symsize}{size of point symbols, default set to 3.5}
+\item{symsize}{size of point symbols, default set to 3.5.}
 
 \item{symthick}{thickness of symbol border, default set to 1}
 
-\item{ewid}{width of error bars, default set to 0.2}
+\item{ewid}{width of error bars, default set to 0.2.}
 
-\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
+\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 }
 \value{
-This function returns a \code{ggplot2} object.
+This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
 This function is related to \code{plot_point_sd}, but this one maps a single or same colour, therefore \verb{_sc}. The only new argument is \code{colour}, which can be any hexcode or name of colours in the \code{all_grafify} \href{https://grafify-vignettes.netlify.app/colour_palettes.html#full-list-of-hexcodes}{palette}.

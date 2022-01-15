@@ -9,10 +9,10 @@ scale_color_grafify_c(reverse = FALSE, ...)
 \arguments{
 \item{reverse}{Whether the color order should be reversed.}
 
-\item{...}{Additional parameters for \code{scale_fill} or \code{scale_color}}
+\item{...}{Additional parameters for \code{scale_fill} or \code{scale_color}.}
 }
 \value{
-ggplot scale_fill function
+ggplot scale_fill function for continuous colours.
 }
 \description{
 \code{grafify} internally includes color-blind compatible schemes for fill and color/color aesthetics.

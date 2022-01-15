@@ -10,7 +10,7 @@
 #' @param P_Adj method for correcting P values for multiple comparisons. Default is "sidak", can be changed to "bonferroni". See Interaction analysis in emmeans in the [manual](https://CRAN.R-project.org/package=emmeans) for \code{emmeans}.
 #' @param ... additional arguments for \code{\link[emmeans]{emmeans}} such as \code{lmer.df} or others. See help for sophisticated models in [emmeans](https://CRAN.R-project.org/package=emmeans).
 #'
-#' @return returns results produced by \code{\link[emmeans]{emmeans}}.
+#' @return returns an "emm_list" object containing contrasts and emmeans through  \code{\link[emmeans]{emmeans}}.
 #' @export posthoc_Trends
 #' @importFrom emmeans emtrends
 #' @importFrom stats as.formula

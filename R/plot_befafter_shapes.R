@@ -14,18 +14,18 @@
 #' @param xcol name of the column containing the categorical variable to be plotted on the X axis.
 #' @param ycol name of the column containing the quantitative Y values.
 #' @param match name of the column with the matching variable to pass on to \code{geom_line}.
-#' @param symsize size of symbols, default set to 3
-#' @param symthick size of outline of symbol lines (\code{stroke = 1}), default set to 1
-#' @param s_alpha fractional opacity of symbols, default set to 0.8 (i.e. 80% opacity)
+#' @param symsize size of symbols, default set to 3.
+#' @param symthick size of outline of symbol lines (\code{stroke = 1}), default set to 1.
+#' @param s_alpha fractional opacity of symbols, default set to 0.8 (i.e. 80% opacity).
 #' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
-#' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
-#' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
+#' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE).
+#' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param groups old argument name for `match`; retained for backward compatibility.
 #' @param ... any additional arguments to pass to \code{ggplot2}[geom_line].
 #'
-#' @return This function returns a \code{ggplot2} object.
+#' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 #' @export plot_befafter_shapes
 #' @import ggplot2
 #'

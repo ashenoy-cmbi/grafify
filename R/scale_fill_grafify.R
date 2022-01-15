@@ -13,9 +13,9 @@
 #'
 #' @param palette Name of the colour scheme. Default set to \code{palette = "all_grafify"}. Provide names as above in quotes.
 #' @param reverse Whether the colour order should be reversed.
-#' @param ... Additional parameters for `scale_fill` or `scale_colour`
+#' @param ... Additional parameters for `scale_fill` or `scale_colour`.
 #'
-#' @return ggplot scale_fill function
+#' @return ggplot scale_fill function for discrete colours.
 #' @export scale_fill_grafify
 #' @import ggplot2
 #'

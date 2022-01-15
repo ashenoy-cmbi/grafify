@@ -11,10 +11,10 @@ scale_fill_grafify2(palette = "all_grafify", reverse = FALSE, ...)
 
 \item{reverse}{Whether the colour order should be reversed.}
 
-\item{...}{Additional parameters for \code{scale_fill} or \code{scale_colour}}
+\item{...}{Additional parameters for \code{scale_fill} or \code{scale_colour}.}
 }
 \value{
-ggplot scale_fill function
+ggplot scale_fill function for discrete colours.
 }
 \description{
 \code{grafify} internally includes colour-blind compatible schemes for fill and colour/color aesthetics.

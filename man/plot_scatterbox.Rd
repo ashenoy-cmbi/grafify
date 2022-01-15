@@ -30,28 +30,28 @@ plot_scatterbox(
 
 \item{symsize}{size of symbols used by \code{geom_point}. Default set to 2.5, increase/decrease as needed.}
 
-\item{symthick}{thickness of symbol border (\code{stroke} parameter of \code{geom_point}), default set to 1}
+\item{symthick}{thickness of symbol border (\code{stroke} parameter of \code{geom_point}), default set to 1.}
 
 \item{jitter}{extent of jitter (scatter) of symbols, default is 0 (i.e. aligned symbols). To reduce symbol overlap, try 0.1-0.3 or higher.}
 
-\item{b_alpha}{fractional opacity of boxplot, default set to 1 (i.e. maximum opacity & zero transparency)}
+\item{b_alpha}{fractional opacity of boxplot, default set to 1 (i.e. maximum opacity & zero transparency).}
 
-\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)}
+\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).}
 
 \item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 
-\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)}
+\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE).}
 
-\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
+\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
 \item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_boxplot}.}
 }
 \value{
-This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
+This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
 This function takes a data table, X and Y variables, and plots a graph with a scatter plot and box and whiskers using \code{\link[ggplot2]{geom_boxplot}} and \code{\link[ggplot2]{geom_point}} geometries. The boxplot shows IQR and whiskers depict 1.5*IQR.

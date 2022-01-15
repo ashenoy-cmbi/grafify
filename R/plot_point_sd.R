@@ -13,19 +13,19 @@
 #' You are instead encouraged to show all data using the following functions: \code{\link{plot_scatterbar_sd}}, \code{\link{plot_scatterbox}}, \code{\link{plot_dotbox}}, \code{\link{plot_dotbar_sd}}, \code{\link{plot_scatterviolin}} or \code{\link{plot_dotviolin}}.
 #'
 #' @param data a data table object, e.g. data.frame or tibble.
-#' @param xcol name of the column with a **categorical** X variable.
-#' @param ycol name of the column with quantitative Y variable
-#' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)
-#' @param symsize size of point symbols, default set to 3.5
-#' @param symthick thickness of symbol border, default set to 1
-#' @param ewid width of error bars, default set to 0.2
+#' @param xcol name of the column with a categorical X variable.
+#' @param ycol name of the column with quantitative Y variable.
+#' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).
+#' @param symsize size of point symbols, default set to 3.5.
+#' @param symthick thickness of symbol border, default set to 1.
+#' @param ewid width of error bars, default set to 0.2.
 #' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
-#' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
-#' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
+#' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE).
+#' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #'
-#' @return This function returns a \code{ggplot2} object.
+#' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 #' @export plot_point_sd
 #' @import ggplot2 Hmisc
 #'

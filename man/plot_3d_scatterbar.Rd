@@ -31,9 +31,9 @@ plot_3d_scatterbar(
 
 \item{shapes}{name of the column with the second categorical factor, for example from a two-way ANOVA design.}
 
-\item{ewid}{width of error bars, default set to 0.2}
+\item{ewid}{width of error bars, default set to 0.2.}
 
-\item{symsize}{size of symbols, default set to 3}
+\item{symsize}{size of symbols, default set to 3.}
 
 \item{symthick}{size of outline of symbol lines (\code{stroke = 1.5}), default set to 1.5}
 
@@ -41,20 +41,20 @@ plot_3d_scatterbar(
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
-\item{b_alpha}{fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency)}
+\item{b_alpha}{fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency).}
 
-\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)}
+\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).}
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 
 \item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
 
-\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)}
+\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE).}
 
-\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
+\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 }
 \value{
-This function returns a \code{ggplot2} object.
+This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
 The functions \code{\link{plot_3d_scatterbar}}, \code{\link{plot_3d_scatterbox}}, \code{\link{plot_4d_scatterbar}}  and \code{\link{plot_4d_scatterbox}} are useful for plotting one-way or two-way ANOVA designs with randomised blocks or repeated measures. The blocks or subjects can be mapped to the \code{shapes} argument in both functions (up to 25 levels can be mapped to \code{shapes}; there will be an error if this number is exceeded). The 3d versions use the categorical variable (\code{xcol}) for grouping (e.g. one-way ANOVA designs), and 4d versions take an additional grouping variable (e.g. two-way ANOVA designs) that is passed to either \code{boxes} or \code{bars} argument.

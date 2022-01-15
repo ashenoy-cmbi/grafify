@@ -65,19 +65,19 @@
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>Group1_means</dt>
-<dd><p>a vector with means of each level of the first fixed factor (FixFac_X1) measured within Group 1</p></dd>
+<dd><p>a vector with means of each level of the first fixed factor (FixFac_X1) measured within Group 1.</p></dd>
 <dt>Group2_means</dt>
-<dd><p>only for <code>make_2way_data</code> and <code>make_2way_rb_data</code>: a vector with mean(s) of each level of FactorX2 measured within Group 2</p></dd>
+<dd><p>only for <code>make_2way_data</code> and <code>make_2way_rb_data</code>: a vector with mean(s) of each level of FactorX2 measured within Group 2.</p></dd>
 <dt>Num_exp</dt>
-<dd><p>a single numeric value indicating the number of independent measurements, i.e. levels within the random factor RandFac</p></dd>
+<dd><p>a single numeric value indicating the number of independent measurements, i.e. levels within the random factor RandFac.</p></dd>
 <dt>Exp_SD</dt>
-<dd><p>a single numeric value indicating the standard deviation (SD) between experiment, i.e. within RandFac</p></dd>
+<dd><p>a single numeric value indicating the standard deviation (SD) between experiment, i.e. within RandFac.</p></dd>
 <dt>Residual_SD</dt>
-<dd><p>a single numeric value indicating residual SD in the model</p></dd>
+<dd><p>a single numeric value indicating residual SD in the model.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>This function produces a <code>data.frame</code> object</p>
+    <p>This function produces a <code>data.frame</code> object containing simulated data.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -101,15 +101,15 @@ The quantitative response variables are in the numeric Values column.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ RandFac : Factor w/ 20 levels "Exp_1","Exp_10",..: 1 1 1 1 12 12 12 12 14 14 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ FixFac_1: Factor w/ 2 levels "Fx1Lev_1","Fx1Lev_2": 1 1 2 2 1 1 2 2 1 1 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ FixFac_2: Factor w/ 2 levels "Fx2Lev_1","Fx2Lev_2": 1 2 1 2 1 2 1 2 1 2 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ Values  : num  82.48 3.32 168.63 268.18 133.09 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ Values  : num  66.5 -42.3 190.6 305.7 94.1 ...</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">two_rb_tab</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   RandFac FixFac_1 FixFac_2     Values</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   Exp_1 Fx1Lev_1 Fx2Lev_1  82.481655</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   Exp_1 Fx1Lev_1 Fx2Lev_2   3.322372</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   Exp_1 Fx1Lev_2 Fx2Lev_1 168.633444</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   Exp_1 Fx1Lev_2 Fx2Lev_2 268.175782</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5   Exp_2 Fx1Lev_1 Fx2Lev_1 133.091087</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6   Exp_2 Fx1Lev_1 Fx2Lev_2  34.486849</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   RandFac FixFac_1 FixFac_2    Values</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   Exp_1 Fx1Lev_1 Fx2Lev_1  66.50612</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   Exp_1 Fx1Lev_1 Fx2Lev_2 -42.27228</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   Exp_1 Fx1Lev_2 Fx2Lev_1 190.57854</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   Exp_1 Fx1Lev_2 Fx2Lev_2 305.66628</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   Exp_2 Fx1Lev_1 Fx2Lev_1  94.06633</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   Exp_2 Fx1Lev_1 Fx2Lev_2  11.07359</span>
 </code></pre></div>
     </div>
   </div>

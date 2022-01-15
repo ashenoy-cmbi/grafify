@@ -15,26 +15,26 @@
 #'
 #' This function is related to \code{\link{plot_scatterbar_sd}}, \code{\link{plot_dotbar_sd}} and \code{\link{plot_dotviolin}}.
 #'
-#' @param data a data table object, e.g. data.frame or tibble
+#' @param data a data table object, e.g. data.frame or tibble.
 #' @param xcol name of the column to plot on X axis. This should be a categorical variable.
 #' @param ycol name of the column to plot on quantitative Y axis. This should be a quantitative variable.
 #' @param dotsize size of dots relative to \code{binwidth} used by \code{geom_dotplot}. Default set to 1.5, increase/decrease as needed.
-#' @param dotthick thickness of dot border (`stroke` parameter of `geom_dotplot`), default set to 1
-#' @param bvthick thickness of violin and boxplot lines; default 1
+#' @param dotthick thickness of dot border (`stroke` parameter of `geom_dotplot`), default set to 1.
+#' @param bvthick thickness of violin and boxplot lines; default 1.
 #' @param bwid width of boxplots; default 0.2
 #' @param b_alpha fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency). For white boxplots inside violins, set `b_alpha = 0`.
-#' @param v_alpha fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency)
-#' @param d_alpha fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency)
+#' @param v_alpha fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency).
+#' @param d_alpha fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency).
 #' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
-#' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
+#' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE).
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param trim set whether tips of violin plot should be trimmed at high/low data. Default \code{trim = T}, can be changed to F.
 #' @param scale set to "area" by default, can be changed to "count" or "width".
-#' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
+#' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param ... any additional arguments to pass to \code{ggplot2}[geom_boxplot], \code{ggplot2}[geom_dotplot] or \code{ggplot2}[geom_violin].
 #'
-#' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
+#' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 #' @export plot_dotviolin
 #' @import ggplot2
 #'
@@ -51,7 +51,7 @@
 #' trim = FALSE, b_alpha = 0, 
 #' ColPal = "pale", ColSeq = FALSE)
 
-plot_dotviolin <- function(data, xcol, ycol, dotsize = 1.5, dotthick = 1, bvthick = 1, bwid = 0.2, trim = T, scale = "width", b_alpha =1, v_alpha = 1, d_alpha = 1, ColPal = "all_grafify", ColRev = FALSE, ColSeq = TRUE, TextXAngle = 0, fontsize = 20, ...){
+plot_dotviolin <- function(data, xcol, ycol, dotsize = 1.5, dotthick = 1, bvthick = 1, bwid = 0.2, trim = TRUE, scale = "width", b_alpha =1, v_alpha = 1, d_alpha = 1, ColPal = "all_grafify", ColRev = FALSE, ColSeq = TRUE, TextXAngle = 0, fontsize = 20, ...){
   if (b_alpha == 0) {
   suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+

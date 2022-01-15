@@ -12,7 +12,7 @@
 #' @param ... additional arguments for \code{\link[emmeans]{emmeans}} such as \code{lmer.df} or others. See help for sophisticated models in [emmeans](https://CRAN.R-project.org/package=emmeans).
 #' @param Factor old argument name for `Fixed_Factor`; retained for backward compatibility.
 #'
-#' @return returns results produced by \code{\link[emmeans]{emmeans}}.
+#' @return returns an "emm_list" object containing contrasts and emmeans through \code{\link[emmeans]{emmeans}}.
 #' @export posthoc_Levelwise
 #' @importFrom emmeans emmeans
 #' @importFrom stats as.formula

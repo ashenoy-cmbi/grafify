@@ -5,6 +5,7 @@
 #' To visualise grafify colours use \code{plot_grafify_palette}.
 #'
 #' @param ... internal
+#' @return This function returns names and hexcodes of colours in grafify as a character vector.
 #' @export get_graf_colours
 
 get_graf_colours <- function(...){

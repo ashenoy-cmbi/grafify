@@ -17,27 +17,27 @@
 #' Three types of plots are available for scatter/jitter symbols and either bars+SD, boxplot or violin plots: \code{\link{plot_scatterbar_sd}}, \code{\link{plot_scatterbox}} and \code{\link{plot_scatterviolin}}.
 #' These are related to the three "dot" versions that use a different geometry for symbols: \code{\link{plot_dotbox}}, \code{\link{plot_dotbar_sd}} and \code{\link{plot_dotviolin}}.
 #'
-#' @param data a data table object, e.g. data.frame or tibble
+#' @param data a data table object, e.g. data.frame or tibble.
 #' @param xcol name of the column to plot on X axis. This should be a categorical variable.
 #' @param ycol name of the column to plot on quantitative Y axis. This should be a quantitative variable.
 #' @param symsize size of dots relative to \code{binwidth} used by \code{geom_point}. Default set to 2.5, increase/decrease as needed.
-#' @param symthick thickness of dot border (`stroke` parameter of `geom_point`), default set to 1
-#' @param bvthick thickness of both violin and boxplot lines; default 1
+#' @param symthick thickness of dot border (`stroke` parameter of `geom_point`), default set to 1.
+#' @param bvthick thickness of both violin and boxplot lines; default 1.
 #' @param bwid width of boxplots; default 0.2
 #' @param b_alpha fractional opacity of boxplots, default set to 1 (i.e. maximum opacity & zero transparency). For white boxplots inside violins, set `b_alpha = 0`.
-#' @param v_alpha fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency)
+#' @param v_alpha fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency).
 #' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency). Set `s_alpha = 0` to not show scatter plot.
 #' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
-#' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
+#' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE).
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param jitter extent of jitter (scatter) of symbols, default is 0 (i.e. aligned symbols). To reduce symbol overlap, try 0.1-0.3 or higher.  
 #' @param trim set whether tips of violin plot should be trimmed at high/low data. Default \code{trim = T}, can be changed to F.
 #' @param scale set to "area" by default, can be changed to "count" or "width".
-#' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
+#' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param ... any additional arguments to pass to \code{ggplot2}[geom_boxplot], \code{ggplot2}[geom_point] or \code{ggplot2}[geom_violin].
 #'
-#' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
+#' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 #' @export plot_scatterviolin
 #' @import ggplot2
 #'

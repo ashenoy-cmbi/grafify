@@ -12,7 +12,7 @@ plot_dotviolin(
   dotthick = 1,
   bvthick = 1,
   bwid = 0.2,
-  trim = T,
+  trim = TRUE,
   scale = "width",
   b_alpha = 1,
   v_alpha = 1,
@@ -26,7 +26,7 @@ plot_dotviolin(
 )
 }
 \arguments{
-\item{data}{a data table object, e.g. data.frame or tibble}
+\item{data}{a data table object, e.g. data.frame or tibble.}
 
 \item{xcol}{name of the column to plot on X axis. This should be a categorical variable.}
 
@@ -34,9 +34,9 @@ plot_dotviolin(
 
 \item{dotsize}{size of dots relative to \code{binwidth} used by \code{geom_dotplot}. Default set to 1.5, increase/decrease as needed.}
 
-\item{dotthick}{thickness of dot border (\code{stroke} parameter of \code{geom_dotplot}), default set to 1}
+\item{dotthick}{thickness of dot border (\code{stroke} parameter of \code{geom_dotplot}), default set to 1.}
 
-\item{bvthick}{thickness of violin and boxplot lines; default 1}
+\item{bvthick}{thickness of violin and boxplot lines; default 1.}
 
 \item{bwid}{width of boxplots; default 0.2}
 
@@ -46,24 +46,24 @@ plot_dotviolin(
 
 \item{b_alpha}{fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency). For white boxplots inside violins, set \code{b_alpha = 0}.}
 
-\item{v_alpha}{fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency)}
+\item{v_alpha}{fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency).}
 
-\item{d_alpha}{fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency)}
+\item{d_alpha}{fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency).}
 
 \item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
 
-\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)}
+\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE).}
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 
-\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
+\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
 \item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_boxplot}, \code{ggplot2}\link{geom_dotplot} or \code{ggplot2}\link{geom_violin}.}
 }
 \value{
-This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
+This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
 This function takes a data table, X and Y variables, and plots a graph with a dotplot, box-whiskers and violinplot using \code{\link[ggplot2]{geom_violin}}, \code{\link[ggplot2]{geom_boxplot}}  \code{\link[ggplot2]{geom_dotplot}} geometries.

@@ -11,6 +11,9 @@ colorRampPalette_d(colors, ...)
 
 \item{...}{internal}
 }
+\value{
+This is a variant of \code{colourRampPalette} that generates sequential colours from chosen grafify palettes when called by \code{graf_col_palette_d}.
+}
 \description{
-Variant of \code{colorRampPalette} for sequential use of colours for discrete scales. \href{https://stackoverflow.com/questions/61674217/custom-discrete-color-scale-in-ggplot-does-not-respect-order}{Thank you linog}.
+Variant of \code{colorRampPalette} for sequential use of colours for discrete scales. \href{https://stackoverflow.com/questions/61674217/custom-discrete-color-scale-in-ggplot-does-not-respect-order}{Thank you linog}. Called by other functions in grafify and not generally meant to be called by user.
 }

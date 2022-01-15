@@ -19,24 +19,24 @@ plot_xy_NumGroup(
 \arguments{
 \item{data}{a data table object, e.g. data.frame or tibble.}
 
-\item{xcol}{name of the column with quantitative X variable}
+\item{xcol}{name of the column with quantitative X variable.}
 
-\item{ycol}{name of the column with quantitative Y variable}
+\item{ycol}{name of the column with quantitative Y variable.}
 
-\item{NumGroup}{a numeric factor for \code{fill} aesthetic of data points}
+\item{NumGroup}{a numeric factor for \code{fill} aesthetic of data points.}
 
-\item{symsize}{size of symbols used by \code{geom_point}. Default set to 2.5, increase/decrease as needed}
+\item{symsize}{size of symbols used by \code{geom_point}. Default set to 2.5, increase/decrease as needed.}
 
-\item{symthick}{thickness of symbol border, default set to 1}
+\item{symthick}{thickness of symbol border, default set to 1.}
 
-\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)}
+\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).}
 
-\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
+\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 }
 \value{
-This function returns a \code{ggplot2} object.
+This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
 This function takes a data table, quantitative X and Y variables, and a numeric grouping variable, and a and plots a graph with using \code{\link[ggplot2]{geom_point}}. The numerical \code{NumGroup} variable is mapped to the \code{fill} aesthetic of symbols, which receives the \code{scale_fill_grafify_c} default palette.

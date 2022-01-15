@@ -23,21 +23,21 @@ plot_density(
 \arguments{
 \item{data}{a data table e.g. data.frame or tibble.}
 
-\item{ycol}{name of the column containing the quantitative variable whose density distribution is to be plotted}
+\item{ycol}{name of the column containing the quantitative variable whose density distribution is to be plotted.}
 
 \item{group}{name of the column containing a categorical grouping variable}
 
-\item{linethick}{thickness of symbol border, default set to 1}
+\item{linethick}{thickness of symbol border, default set to 1.}
 
-\item{c_alpha}{fractional opacity of filled colours under the curve, default set to 0.2 (i.e. 20\% opacity)}
+\item{c_alpha}{fractional opacity of filled colours under the curve, default set to 0.2 (i.e. 20\% opacity).}
 
 \item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 
-\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)}
+\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE).}
 
-\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
+\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
@@ -48,7 +48,7 @@ plot_density(
 \item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_density}.}
 }
 \value{
-This function returns a \code{ggplot2} object.
+This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
 This function takes a data table, \code{ycol} of quantitative variable and a categorical grouping variable (\code{group}), if available, and plots a density graph using \code{\link{geom_density}}).

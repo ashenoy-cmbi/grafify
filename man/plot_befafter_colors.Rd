@@ -30,19 +30,19 @@ plot_befafter_colors(
 
 \item{match}{name of the column with the grouping variable to pass on to \code{geom_line}.}
 
-\item{symsize}{size of symbols, default set to 3}
+\item{symsize}{size of symbols, default set to 3.}
 
-\item{symthick}{thickness of symbol border, default set to 1}
+\item{symthick}{thickness of symbol border, default set to 1.}
 
-\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)}
+\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).}
 
 \item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 
-\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)}
+\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE).}
 
-\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
+\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
@@ -51,7 +51,7 @@ plot_befafter_colors(
 \item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_line}.}
 }
 \value{
-This function returns a \code{ggplot2} object.
+This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
 The \code{\link{plot_befafter_colours}}, \code{\link{plot_befafter_colors}} and \code{\link{plot_befafter_shapes}} are for plotting matched data joined by lines. These functions take X and Y variables along with a data column with matching information (e.g. matched subjects or experiments etc.) and plot symbols matched by colour or shape.

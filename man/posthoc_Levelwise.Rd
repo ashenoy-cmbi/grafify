@@ -18,7 +18,7 @@ posthoc_Levelwise(Model, Fixed_Factor, P_Adj = "fdr", Factor, ...)
 \item{...}{additional arguments for \code{\link[emmeans]{emmeans}} such as \code{lmer.df} or others. See help for sophisticated models in \href{https://CRAN.R-project.org/package=emmeans}{emmeans}.}
 }
 \value{
-returns results produced by \code{\link[emmeans]{emmeans}}.
+returns an "emm_list" object containing contrasts and emmeans through \code{\link[emmeans]{emmeans}}.
 }
 \description{
 This function is a wrapper based on \code{\link[emmeans]{emmeans}}, and needs a ordinary linear model produced by \code{\link{simple_model}} or a mixed effects model produced by \code{\link{mixed_model}} or \code{\link{mixed_model_slopes}} (or generated directly with \code{lm},  \code{lme4} or \code{lmerTest} calls). It also needs to know the fixed factor(s), which should match those in the model and data table.

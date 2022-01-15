@@ -13,6 +13,9 @@ graf_col_palette(palette = "all_grafify", reverse = FALSE, ...)
 
 \item{...}{additional parameters}
 }
+\value{
+This generates required number of sequential colours from the chosen grafify palette when called by scale functions of  ggplot2.
+}
 \description{
 Call palettes for scale & fill
 }

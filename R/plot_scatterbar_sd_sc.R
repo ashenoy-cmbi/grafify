@@ -8,17 +8,17 @@
 #' @param xcol name of the column to plot on X axis. This should be a categorical variable.
 #' @param ycol name of the column to plot on quantitative Y axis. This should be a quantitative variable.
 #' @param colour colour of boxes and dots; a number between 1-64, any hexcode or names from `grafify` colour palettes. Default is `ok_orange`.
-#' @param symsize size of point symbols, default set to 2
-#' @param symthick thickness of symbol border, default set to 1
+#' @param symsize size of point symbols, default set to 2.
+#' @param symthick thickness of symbol border, default set to 1.
 #' @param bwid width of bars, default set to 0.7
-#' @param ewid width of error bars, default set to 0.3
+#' @param ewid width of error bars, default set to 0.3.
 #' @param jitter extent of jitter (scatter) of symbols, default is 0 (i.e. aligned symbols). To reduce symbol overlap, try 0.1-0.3 or higher.  
-#' @param b_alpha fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency)
-#' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)
-#' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
+#' @param b_alpha fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency).
+#' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).
+#' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #'
-#' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
+#' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 #' @export plot_scatterbar_sd_sc
 #' @import ggplot2 Hmisc
 #'

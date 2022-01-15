@@ -12,11 +12,11 @@
 #' The output is a data frame with one or two columns denoting the fixed factor with levels that match the number of means entered. For rb data, the column for RandFac denotes levels of the blocking factor.
 #' The quantitative response variables are in the numeric Values column.
 #'
-#' @param Group_means a vector with means of each level of the first fixed factor (FixFac_X1) measured within Group 1
-#' @param Num_obs a single numeric value indicating the number of independent measurements, i.e. levels within the random factor Experiment
-#' @param Residual_SD a single numeric value indicating residual SD in the model
+#' @param Group_means a vector with means of each level of the first fixed factor (FixFac_X1) measured within Group 1.
+#' @param Num_obs a single numeric value indicating the number of independent measurements, i.e. levels within the random factor Experiment.
+#' @param Residual_SD a single numeric value indicating residual SD in the model.
 #'
-#' @return This function produces a \code{data.frame} object
+#' @return This function produces a \code{data.frame} object containing simulated data.
 #' @export make_1way_data
 #' @importFrom purrr pmap_dfc map_df set_names
 #' @importFrom tidyr pivot_longer

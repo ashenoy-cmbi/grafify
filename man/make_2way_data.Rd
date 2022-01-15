@@ -7,16 +7,16 @@
 make_2way_data(Group_1_means, Group_2_means, Num_obs, Residual_SD)
 }
 \arguments{
-\item{Group_1_means}{a vector with means of each level of the first fixed factor (FixFac_X1) measured within Group 1}
+\item{Group_1_means}{a vector with means of each level of the first fixed factor (FixFac_X1) measured within Group 1.}
 
-\item{Group_2_means}{only for \code{make_2way_data} and \code{make_2way_rb_data}: a vector with mean(s) of each level of FactorX2 measured within Group 2}
+\item{Group_2_means}{only for \code{make_2way_data} and \code{make_2way_rb_data}: a vector with mean(s) of each level of FactorX2 measured within Group 2.}
 
-\item{Num_obs}{a single numeric value indicating the number of independent measurements, i.e. levels within the random factor Experiment}
+\item{Num_obs}{a single numeric value indicating the number of independent measurements, i.e. levels within the random factor Experiment.}
 
-\item{Residual_SD}{a single numeric value indicating residual SD in the model}
+\item{Residual_SD}{a single numeric value indicating residual SD in the model.}
 }
 \value{
-This function produces a \code{data.frame} object
+This function produces a \code{data.frame} object containing simulated data.
 }
 \description{
 The \code{\link{make_1way_data}}, \code{\link{make_1way_rb_data}}, \code{\link{make_2way_data}} and \code{\link{make_2way_rb_data}} functions generate independent or randomised block (rb) design data of one-way or two-way designs.

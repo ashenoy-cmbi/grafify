@@ -31,30 +31,30 @@ plot_dotbar_sd(
 
 \item{dotsize}{size of dots relative to binwidth used by \code{\link[ggplot2]{geom_dotplot}}. Default set to 1.5, increase/decrease as needed.}
 
-\item{dotthick}{thickness of dot border (\code{stroke} parameter of \code{geom_dotplot}), default set to 1}
+\item{dotthick}{thickness of dot border (\code{stroke} parameter of \code{geom_dotplot}), default set to 1.}
 
 \item{bwid}{width of bars, default set to 0.7}
 
-\item{ewid}{width of error bars, default set to 0.2}
+\item{ewid}{width of error bars, default set to 0.2.}
 
-\item{b_alpha}{fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency)}
+\item{b_alpha}{fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency).}
 
-\item{d_alpha}{fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency)}
+\item{d_alpha}{fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency).}
 
 \item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
 
-\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)}
+\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE).}
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 
-\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
+\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
 \item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_dotplot}.}
 }
 \value{
-This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
+This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
 This function takes a data table, X and Y variables, and plots a graph with a dotplot and bars using \code{\link[ggplot2]{stat_summary}} with \code{geom = "bar"}, and \code{\link[ggplot2]{geom_dotplot}} geometries. Standard deviation (SD) is plotted through \code{\link[ggplot2]{stat_summary}} calculated using \code{mean_sdl} from the \code{ggplot2} package (get help with \code{?mean_sdl}), and 1x SD is plotted (\code{fun.arg = list(mult = 1)}.

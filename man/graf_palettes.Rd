@@ -10,6 +10,9 @@ An object of class \code{list} of length 10.
 \usage{
 graf_palettes
 }
+\value{
+This function returns a list of palettes in grafify with names and hexcodes of colours in those  palettes.
+}
 \description{
 To visualise these colours use \code{plot_grafify_palette}.
 }

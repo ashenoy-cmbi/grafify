@@ -16,7 +16,7 @@ plot_dotviolin_sc(
   b_alpha = 1,
   d_alpha = 1,
   v_alpha = 1,
-  trim = T,
+  trim = TRUE,
   scale = "width",
   TextXAngle = 0,
   fontsize = 20,
@@ -24,7 +24,7 @@ plot_dotviolin_sc(
 )
 }
 \arguments{
-\item{data}{a data table object, e.g. data.frame or tibble}
+\item{data}{a data table object, e.g. data.frame or tibble.}
 
 \item{xcol}{name of the column to plot on X axis. This should be a categorical variable.}
 
@@ -34,15 +34,15 @@ plot_dotviolin_sc(
 
 \item{dotsize}{size of dots relative to \code{binwidth} used by \code{geom_dotplot}. Default set to 1.5, increase/decrease as needed.}
 
-\item{dotthick}{thickness of dot border (\code{stroke} parameter of \code{geom_dotplot}), default set to 1}
+\item{dotthick}{thickness of dot border (\code{stroke} parameter of \code{geom_dotplot}), default set to 1.}
 
-\item{bvthick}{thickness of violin an boxplot lines; default 1}
+\item{bvthick}{thickness of violin an boxplot lines; default 1.}
 
 \item{bwid}{width of boxplots; default 0.2}
 
 \item{b_alpha}{fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency). For white boxplots inside violins, set \code{b_alpha = 0}.}
 
-\item{d_alpha}{fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency)}
+\item{d_alpha}{fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency).}
 
 \item{v_alpha}{fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency)}
 
@@ -50,14 +50,14 @@ plot_dotviolin_sc(
 
 \item{scale}{set to "area" by default, can be changed to "count" or "width".}
 
-\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
+\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
 \item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_boxplot}, \code{ggplot2}\link{geom_dotplot} or \code{ggplot2}\link{geom_violin}.}
 }
 \value{
-This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
+This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
 This function is related to \code{plot_dotviolin}, but this one maps a single or same colour, therefore \verb{_sc}.

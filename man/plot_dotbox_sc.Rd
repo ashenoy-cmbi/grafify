@@ -29,20 +29,20 @@ plot_dotbox_sc(
 
 \item{dotsize}{size of dots relative to binwidth used by \code{geom_dotplot}. Default set to 1.5, increase/decrease as needed.}
 
-\item{dotthick}{thickness of dot border (\code{stroke} parameter of \code{geom_dotplot}), default set to 1}
+\item{dotthick}{thickness of dot border (\code{stroke} parameter of \code{geom_dotplot}), default set to 1.}
 
-\item{b_alpha}{fractional opacity of boxes, default set to 1 (i.e. maximum opacity & zero transparency)}
+\item{b_alpha}{fractional opacity of boxes, default set to 1 (i.e. maximum opacity & zero transparency).}
 
-\item{d_alpha}{fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency)}
+\item{d_alpha}{fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency).}
 
-\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
+\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
 \item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_boxplot} or \code{ggplot2}\link{geom_dotplot}.}
 }
 \value{
-This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
+This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
 This function is related to \code{plot_dotbox} which maps the X variable to different fill colours, but this one maps a single or same colour, therefore \verb{_sc}. The only new argument is \code{colour}, which can be any hexcode or name of colours in the \code{all_grafify} \href{https://grafify-vignettes.netlify.app/colour_palettes.html#full-list-of-hexcodes}{palette}.

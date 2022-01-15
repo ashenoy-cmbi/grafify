@@ -27,7 +27,7 @@ plot_scatterviolin(
 )
 }
 \arguments{
-\item{data}{a data table object, e.g. data.frame or tibble}
+\item{data}{a data table object, e.g. data.frame or tibble.}
 
 \item{xcol}{name of the column to plot on X axis. This should be a categorical variable.}
 
@@ -35,23 +35,23 @@ plot_scatterviolin(
 
 \item{symsize}{size of dots relative to \code{binwidth} used by \code{geom_point}. Default set to 2.5, increase/decrease as needed.}
 
-\item{symthick}{thickness of dot border (\code{stroke} parameter of \code{geom_point}), default set to 1}
+\item{symthick}{thickness of dot border (\code{stroke} parameter of \code{geom_point}), default set to 1.}
 
 \item{bwid}{width of boxplots; default 0.2}
 
-\item{bvthick}{thickness of both violin and boxplot lines; default 1}
+\item{bvthick}{thickness of both violin and boxplot lines; default 1.}
 
 \item{b_alpha}{fractional opacity of boxplots, default set to 1 (i.e. maximum opacity & zero transparency). For white boxplots inside violins, set \code{b_alpha = 0}.}
 
 \item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency). Set \code{s_alpha = 0} to not show scatter plot.}
 
-\item{v_alpha}{fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency)}
+\item{v_alpha}{fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency).}
 
 \item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 
-\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)}
+\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE).}
 
 \item{jitter}{extent of jitter (scatter) of symbols, default is 0 (i.e. aligned symbols). To reduce symbol overlap, try 0.1-0.3 or higher.}
 
@@ -59,14 +59,14 @@ plot_scatterviolin(
 
 \item{scale}{set to "area" by default, can be changed to "count" or "width".}
 
-\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
+\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
 \item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_boxplot}, \code{ggplot2}\link{geom_point} or \code{ggplot2}\link{geom_violin}.}
 }
 \value{
-This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
+This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
 This function takes a data table, X and Y variables, and plots a graph with a scatter plot and violinplot using \code{ggplot}.

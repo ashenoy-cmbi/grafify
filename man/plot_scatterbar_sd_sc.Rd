@@ -29,26 +29,26 @@ plot_scatterbar_sd_sc(
 
 \item{colour}{colour of boxes and dots; a number between 1-64, any hexcode or names from \code{grafify} colour palettes. Default is \code{ok_orange}.}
 
-\item{symsize}{size of point symbols, default set to 2}
+\item{symsize}{size of point symbols, default set to 2.}
 
-\item{symthick}{thickness of symbol border, default set to 1}
+\item{symthick}{thickness of symbol border, default set to 1.}
 
 \item{bwid}{width of bars, default set to 0.7}
 
-\item{ewid}{width of error bars, default set to 0.3}
+\item{ewid}{width of error bars, default set to 0.3.}
 
 \item{jitter}{extent of jitter (scatter) of symbols, default is 0 (i.e. aligned symbols). To reduce symbol overlap, try 0.1-0.3 or higher.}
 
-\item{b_alpha}{fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency)}
+\item{b_alpha}{fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency).}
 
-\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)}
+\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).}
 
-\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
+\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 }
 \value{
-This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
+This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
 This function is related to \code{plot_scatterbar_sd}, but this one maps a single or same colour, therefore \verb{_sc}.

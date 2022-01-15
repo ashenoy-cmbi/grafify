@@ -10,20 +10,20 @@
 #' `ColSeq` decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
 #'
 #' @param data a data table e.g. data.frame or tibble.
-#' @param ycol name of the column containing the quantitative variable whose distribution is to be plotted
-#' @param group name of the column containing a categorical grouping variable
-#' @param symsize size of symbols, default set to 3
-#' @param symthick thickness of symbol border, default set to 1
-#' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)
+#' @param ycol name of the column containing the quantitative variable whose distribution is to be plotted.
+#' @param group name of the column containing a categorical grouping variable.
+#' @param symsize size of symbols, default set to 3.
+#' @param symthick thickness of symbol border, default set to 1.
+#' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).
 #' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
-#' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)
-#' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
+#' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE).
+#' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param Group deprecated old argument for `group`; retained for backward compatibility.
 #' @param ... any additional arguments to pass to \code{ggplot2}[stat_qq] or \code{ggplot2}[stat_qq_line].
 #'
-#' @return This function returns a \code{ggplot2} object.
+#' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 #' @export plot_qqline
 #' @import ggplot2
 #'

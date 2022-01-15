@@ -9,6 +9,9 @@ get_graf_colours(...)
 \arguments{
 \item{...}{internal}
 }
+\value{
+This function returns names and hexcodes of colours in grafify as a character vector.
+}
 \description{
 Function to make grafify colour scheme. \href{https://drsimonj.svbtle.com/creating-corporate-colour-palettes-for-ggplot2}{Thank you Dr Simon}.
 }

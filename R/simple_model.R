@@ -11,7 +11,7 @@
 #' @param Fixed_Factor name(s) of categorical fixed factors (independent variables) provided as a vector if more than one or within "quotes".
 #' @param ... any additional arguments to pass on to \code{\link{lm}} if required.
 #'
-#' @return This function returns the output of \code{lm()}.
+#' @return This function returns an object of class "lm".
 #' @export simple_model
 #' @importFrom stats as.formula lm
 #'

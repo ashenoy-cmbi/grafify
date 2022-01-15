@@ -1,6 +1,7 @@
 #' List of palettes available in grafify package
 #' 
 #' To visualise these colours use \code{plot_grafify_palette}.
+#' @return This function returns a list of palettes in grafify with names and hexcodes of colours in those  palettes.
 #'  
 #' @export
 #' 

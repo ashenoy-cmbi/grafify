@@ -21,7 +21,7 @@
 #' @param SS_method type of sum of square, default is type II, can be changed to "I", "III", "1" or "2", or others.
 #' @param ... any additional arguments to pass on to \code{\link[lme4]{lmer}} if required.
 #'
-#' @return This function returns the output of \code{anova}.
+#' @return ANOVA table of class "anova" and "data.frame".
 #' @export mixed_anova_slopes
 #' @importFrom lmerTest as_lmerModLmerTest
 #' @importFrom stats as.formula anova

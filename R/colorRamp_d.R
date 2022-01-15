@@ -1,6 +1,6 @@
 #' colourRamp_d
 #'
-#' Variant of \code{colorRamp} for sequential use of colours for discrete scales. [Thank you linog](https://stackoverflow.com/questions/61674217/custom-discrete-color-scale-in-ggplot-does-not-respect-order).
+#' Variant of \code{colorRamp} for sequential use of colours for discrete scales. [Thank you linog](https://stackoverflow.com/questions/61674217/custom-discrete-color-scale-in-ggplot-does-not-respect-order). Called by other functions in grafify and not generally meant to be called by user. 
 #'
 #' @param colors internal
 #' @param n internal
@@ -10,6 +10,7 @@
 #' @param alpha internal
 #' @importFrom grDevices convertColor
 #' @importFrom stats approxfun splinefun
+#' @return It generates the required number of sequential colours from chosen grafify palettes when called by \code{colorRampPalette_d}.
 #' @export colorRamp_d
 
 colorRamp_d <- function (colors, n,

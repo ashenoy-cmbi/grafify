@@ -23,23 +23,23 @@ plot_qqline(
 \arguments{
 \item{data}{a data table e.g. data.frame or tibble.}
 
-\item{ycol}{name of the column containing the quantitative variable whose distribution is to be plotted}
+\item{ycol}{name of the column containing the quantitative variable whose distribution is to be plotted.}
 
-\item{group}{name of the column containing a categorical grouping variable}
+\item{group}{name of the column containing a categorical grouping variable.}
 
-\item{symsize}{size of symbols, default set to 3}
+\item{symsize}{size of symbols, default set to 3.}
 
-\item{symthick}{thickness of symbol border, default set to 1}
+\item{symthick}{thickness of symbol border, default set to 1.}
 
-\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)}
+\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).}
 
 \item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 
-\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)}
+\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE).}
 
-\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
+\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
@@ -48,7 +48,7 @@ plot_qqline(
 \item{...}{any additional arguments to pass to \code{ggplot2}\link{stat_qq} or \code{ggplot2}\link{stat_qq_line}.}
 }
 \value{
-This function returns a \code{ggplot2} object.
+This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
 This function takes a data table, a quantitative variable (\code{ycol}), and a categorical grouping variable (\code{group}), if available, and plots a QQ graph using \code{stat_qq} and \code{stat_qq_line}.

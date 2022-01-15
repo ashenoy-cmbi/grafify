@@ -25,24 +25,24 @@ plot_bar_sd_sc(
 
 \item{ycol}{name of the column to plot on the Y axis. This should be a quantitative variable.}
 
-\item{colour}{colour of boxes and dots; a number between 1-64, any hexcode or names from \code{grafify} colour palettes. Default is \code{ok_orange}.}
+\item{colour}{colour of boxes and dots; a number between 1-64, any hexcode or names from. \code{grafify} colour palettes. Default is \code{ok_orange}.}
 
-\item{b_alpha}{fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency)}
+\item{b_alpha}{fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency).}
 
-\item{bwid}{width of bars, default 0.7}
+\item{bwid}{width of bars (default 0.7).}
 
-\item{bthick}{thickness of bar borders; default 1}
+\item{bthick}{thickness of bar borders; default 1.}
 
-\item{ewid}{width of error bars, default 0.3}
+\item{ewid}{width of error bars, default 0.3.}
 
-\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
+\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
 \item{...}{any additional arguments to pass to \code{stat_summary}.}
 }
 \value{
-This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
+This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
 This function is related to \code{\link{plot_bar_sd}}, but this one maps a single or same colour, therefore \verb{_sc}.

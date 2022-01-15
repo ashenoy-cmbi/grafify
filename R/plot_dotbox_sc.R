@@ -9,14 +9,14 @@
 #' @param ycol name of the column to plot on quantitative Y axis. This should be a quantitative variable.
 #' @param colour colour of boxes and dots; a number between 1-64, any hexcode or names from `grafify` colour palettes. Default is `ok_orange`.
 #' @param dotsize size of dots relative to binwidth used by \code{geom_dotplot}. Default set to 1.5, increase/decrease as needed.
-#' @param dotthick thickness of dot border (`stroke` parameter of `geom_dotplot`), default set to 1
+#' @param dotthick thickness of dot border (`stroke` parameter of `geom_dotplot`), default set to 1.
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
-#' @param b_alpha fractional opacity of boxes, default set to 1 (i.e. maximum opacity & zero transparency)
-#' @param d_alpha fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency)
-#' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
+#' @param b_alpha fractional opacity of boxes, default set to 1 (i.e. maximum opacity & zero transparency).
+#' @param d_alpha fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency).
+#' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
 #' @param ... any additional arguments to pass to \code{ggplot2}[geom_boxplot] or \code{ggplot2}[geom_dotplot].
 #'
-#' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
+#' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 #' @export plot_dotbox_sc
 #' @import ggplot2
 #'

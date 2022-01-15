@@ -3,6 +3,7 @@
 #' @param palette internal
 #' @param reverse internal
 #' @param ... additional parameters
+#' @return This generates required number of sequential colours from the chosen grafify palette when called by scale functions of  ggplot2.
 #' @import grDevices
 #' @export graf_col_palette
 #'

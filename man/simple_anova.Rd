@@ -16,7 +16,7 @@ simple_anova(data, Y_value, Fixed_Factor, ...)
 \item{...}{any additional argument to pass on to \code{\link{lm}} if required.}
 }
 \value{
-ANOVA table output by \code{anova}.
+ANOVA table of class "anova" and "data.frame".
 }
 \description{
 Update in v0.2.1: This function uses \code{\link{lm}} to fit a linear model to data, passes it on to \code{\link[car]{Anova}}, and outputs the ANOVA table with type II sum of squares with F statistics and \emph{P} values.

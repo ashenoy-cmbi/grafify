@@ -16,7 +16,7 @@ simple_model(data, Y_value, Fixed_Factor, ...)
 \item{...}{any additional arguments to pass on to \code{\link{lm}} if required.}
 }
 \value{
-This function returns the output of \code{lm()}.
+This function returns an object of class "lm".
 }
 \description{
 This function uses \code{\link{lm}} to fit a linear model to data and outputs the model object. It requires a data table, one quantitative dependent variable and one or more independent variables.

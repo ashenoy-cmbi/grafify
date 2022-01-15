@@ -33,7 +33,7 @@ mixed_anova_slopes(
 \item{...}{any additional arguments to pass on to \code{\link[lme4]{lmer}} if required.}
 }
 \value{
-This function returns the output of \code{anova}.
+ANOVA table of class "anova" and "data.frame".
 }
 \description{
 There are four related functions for mixed effects analyses: \code{mixed_model}, \code{mixed_anova}, \code{mixed_model_slopes}, and \code{mixed_anova_slopes}.

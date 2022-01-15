@@ -7,16 +7,16 @@
 plot_grafify_palette(palette = "okabe_ito", bthick = 0, fontsize = 14, ...)
 }
 \arguments{
-\item{palette}{name of grafify palettes: "okabe_ito", "vibrant, "bright", "pale", "muted", "dark", "light", "contrast" or "all_grafify"}
+\item{palette}{name of grafify palettes: "okabe_ito", "vibrant, "bright", "pale", "muted", "dark", "light", "contrast" or "all_grafify".}
 
-\item{bthick}{thickness of bars; passed on \code{plot_bar_sd}}
+\item{bthick}{thickness of bars; passed on \code{plot_bar_sd}.}
 
-\item{fontsize}{font size}
+\item{fontsize}{font size.}
 
 \item{...}{any additional parameters to pass to \code{plot_bar_sd}}
 }
 \value{
-This function returns a \code{ggplot2} object.
+This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
 This simple function allows quick visualisation of colours in grafify palettes and their hex codes. It uses \code{plot_bar_sd} and some arguments are similar and can be adjusted.

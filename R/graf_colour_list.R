@@ -1,6 +1,7 @@
 #' List of hexcodes of colours in grafify palettes
 #' 
 #' To visualise these colours use \code{plot_grafify_palette}.
+#' @return This is a character vector with names and hexcodes of colours used by palette functions. It is used by \code{get_graf_colours} to generate palettes.
 #' 
 #' @export
 graf_colours <- c(

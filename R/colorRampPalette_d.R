@@ -1,9 +1,10 @@
 #' colorRamPalette_d
 #'
-#' Variant of \code{colorRampPalette} for sequential use of colours for discrete scales. [Thank you linog](https://stackoverflow.com/questions/61674217/custom-discrete-color-scale-in-ggplot-does-not-respect-order).
+#' Variant of \code{colorRampPalette} for sequential use of colours for discrete scales. [Thank you linog](https://stackoverflow.com/questions/61674217/custom-discrete-color-scale-in-ggplot-does-not-respect-order). Called by other functions in grafify and not generally meant to be called by user. 
 #'
 #' @param colors internal
 #' @param ... internal
+#' @return This is a variant of \code{colourRampPalette} that generates sequential colours from chosen grafify palettes when called by \code{graf_col_palette_d}.
 #' @export colorRampPalette_d
 
 colorRampPalette_d <- function (colors, ...){

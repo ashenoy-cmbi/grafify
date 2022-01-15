@@ -22,31 +22,30 @@ plot_xy_CatGroup(
 \arguments{
 \item{data}{a data table object, e.g. data.frame or tibble.}
 
-\item{xcol}{name of the column with quantitative X variable}
+\item{xcol}{name of the column with quantitative X variable.}
 
-\item{ycol}{name of the column with quantitative Y variable}
+\item{ycol}{name of the column with quantitative Y variable.}
 
-\item{CatGroup}{a categorical variable as grouping factor for colour of data points, should be a categorical variable for default colours to work.
-Will be converted to \code{factor} if your column is numeric}
+\item{CatGroup}{a categorical variable as grouping factor for colour of data points, should be a categorical variable for default colours to work. Will be converted to \code{factor} if your column is numeric}
 
 \item{symsize}{size of symbols used by \code{geom_point}. Default set to 2.5, increase/decrease as needed.}
 
-\item{symthick}{thickness of symbol border, default set to 1}
+\item{symthick}{thickness of symbol border, default set to 1.}
 
-\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency)}
+\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).}
 
 \item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 
-\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE)}
+\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE).}
 
-\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text}
+\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 }
 \value{
-This function returns a \code{ggplot2} object.
+This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
 This function takes a data table, quantitative X and Y variables along with a categorical grouping variable, and a and plots a graph with using \code{\link[ggplot2]{geom_point}}. The categorical \code{CatGroup} variable is mapped to the \code{fill} aesthetic of symbols.

@@ -10,6 +10,9 @@ An object of class \code{character} of length 64.
 \usage{
 graf_colours
 }
+\value{
+This is a character vector with names and hexcodes of colours used by palette functions. It is used by \code{get_graf_colours} to generate palettes.
+}
 \description{
 To visualise these colours use \code{plot_grafify_palette}.
 }

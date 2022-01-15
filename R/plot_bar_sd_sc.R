@@ -9,16 +9,16 @@
 #' @param data a data table object, e.g. a data.frame or tibble.
 #' @param xcol name of the column to plot on X axis. This should be a categorical variable.
 #' @param ycol name of the column to plot on the Y axis. This should be a quantitative variable.
-#' @param colour colour of boxes and dots; a number between 1-64, any hexcode or names from `grafify` colour palettes. Default is `ok_orange`.
-#' @param b_alpha fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency)
-#' @param bwid width of bars, default 0.7
-#' @param bthick thickness of bar borders; default 1
-#' @param ewid width of error bars, default 0.3
-#' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text
+#' @param colour colour of boxes and dots; a number between 1-64, any hexcode or names from. `grafify` colour palettes. Default is `ok_orange`.
+#' @param b_alpha fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency).
+#' @param bwid width of bars (default 0.7).
+#' @param bthick thickness of bar borders; default 1.
+#' @param ewid width of error bars, default 0.3.
+#' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param ... any additional arguments to pass to \code{stat_summary}.
 #'
-#' @return This function returns a \code{ggplot2} object on which additional geometries etc. can be added.
+#' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 #' @export plot_bar_sd_sc
 #' @import ggplot2 Hmisc
 #'
