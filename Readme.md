@@ -9,13 +9,12 @@ Latest DOI for all versions:
 
 ### Installation
 
-`grafify` is now on CRAN, can be installed by typing
+`grafify` is now on CRAN and can be installed by typing
 `install.packages("grafify")`.
 
-Any updates not yet on can will be made available on here first for
-which you’ll need the `remotes` package. Type
-`remotes::install_github("ashenoy-cmbi/grafify@*release")` to get the
-version on GitHub instead.
+Any updates not yet on CRAN will be made available here first. To
+install from GitHub you also need to install the `remotes` package. Then
+type `remotes::install_github("ashenoy-cmbi/grafify@*release")`.
 
 `grafify` requires the following packages to be installed:
 `broom.mixed`, `car`, `emmeans`, `ggplot2`, `Hmisc`, `lme4`, `lmerTest`,

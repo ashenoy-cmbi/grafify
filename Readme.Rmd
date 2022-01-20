@@ -12,7 +12,7 @@ Latest DOI for all versions: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo
 
 `grafify` is now on CRAN and can be installed by typing `install.packages("grafify")`.
 
-Any updates not yet on can will be made available here first. To install from GitHub you also need to install the `remotes` package. Then type `remotes::install_github("ashenoy-cmbi/grafify@*release")`.
+Any updates not yet on CRAN will be made available here first. To install from GitHub you also need to install the `remotes` package. Then type `remotes::install_github("ashenoy-cmbi/grafify@*release")`.
 
 `grafify` requires the following packages to be installed: `broom.mixed`, `car`, `emmeans`, `ggplot2`, `Hmisc`, `lme4`, `lmerTest`, `magrittr`, `pbkrtest`, `purrr`, `stats`, `tidyr`.
  
