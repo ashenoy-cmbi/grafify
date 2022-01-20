@@ -9,8 +9,8 @@ Latest DOI for all versions:
 
 ### Installation
 
-`grafify` is now on CRAN and can be installed by typing
-`install.packages("grafify")`.
+`grafify` is now on [CRAN](https://CRAN.R-project.org/package=grafify)
+and can be installed by typing `install.packages("grafify")`.
 
 Any updates not yet on CRAN will be made available here first. To
 install from GitHub you also need to install the `remotes` package. Then
