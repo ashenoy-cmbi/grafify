@@ -9,13 +9,13 @@ Latest DOI for all versions:
 
 ### Installation
 
-You’ll need the `remotes` package to install `grafify` from GitHub (skip
-to the second step if you already have it).
+`grafify` is now on CRAN, can be installed by typing
+`install.packages("grafify")`.
 
-``` r
-install.packages("remotes") #install remotes
-remotes::install_github("ashenoy-cmbi/grafify@*release") #install latest release 
-```
+Any updates not yet on can will be made available on here first for
+which you’ll need the `remotes` package. Type
+`remotes::install_github("ashenoy-cmbi/grafify@*release")` to get the
+version on GitHub instead.
 
 `grafify` requires the following packages to be installed:
 `broom.mixed`, `car`, `emmeans`, `ggplot2`, `Hmisc`, `lme4`, `lmerTest`,
@@ -30,7 +30,7 @@ theory and code for statistics written for biologists, also visit
 Statistics for [Micro/Immuno
 Biologists](https://microimmunostats.netlify.app).
 
-### **Latest release version: v1.5.1**
+### **Latest version: v2.0.0 on CRAN**
 
 ### Features
 
