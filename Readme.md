@@ -66,7 +66,7 @@ simulations):
         `plot_point_sd` **New since v1.5.0**: *single colour* versions
         of these available as names ending with `_sc`
 
-<img src="man/figures/all_graphsv1.4.1.jpg" width="90%" />
+<img src="man/figures/all_graphsv2.0.0.jpg" width="90%" />
 
 #### Colourblind-friendly colour schemes
 

@@ -42,7 +42,7 @@ I made this package mainly to plot great-looking graphs quickly while exploring 
   
   
 ```{r, all-graphs, echo = F, out.width="90%"}
-knitr::include_graphics("man/figures/all_graphsv1.4.1.jpg")
+knitr::include_graphics("man/figures/all_graphsv2.0.0.jpg")
 ```
 
 #### Colourblind-friendly colour schemes
