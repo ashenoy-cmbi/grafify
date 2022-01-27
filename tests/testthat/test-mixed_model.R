@@ -23,6 +23,4 @@ test_that("plot model residuals qqmodel", {
   p <- plot_qqmodel(mmod7)
   #test key layers and data file
   expect_s3_class(p, "gg")
-  expect_equal(p$theme$text$size, 20)
-  #match aesthetics in labels
-  expect_match(as.character(p$labels$y), "sample")})
+  })

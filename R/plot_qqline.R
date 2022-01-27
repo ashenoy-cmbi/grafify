@@ -42,6 +42,21 @@ plot_qqline <- function(data, ycol, group, symsize = 3, symthick = 1, s_alpha = 
   if (!missing("Group")) {
     warning("Use `group` argument instead, as `Group` is deprecated.")
     group <- substitute(Group)}
+  if(missing(group)){
+    P <- ggplot2::ggplot(data, aes(sample = {{ ycol }}))+
+      stat_qq_line(na.rm = T,
+                   size = 1,
+                   ...)+
+      stat_qq(geom = "point", na.rm = T, 
+              shape = 21, fill = "#E69F00",
+              size = {{ symsize }}, 
+              stroke = {{ symthick }},
+              alpha = {{ s_alpha }},
+              ...)+
+      theme_classic(base_size = {{ fontsize }})+
+      theme(strip.background = element_blank())+
+      guides(x = guide_axis(angle = {{ TextXAngle }}))  
+  } else {
   P <- ggplot2::ggplot(data, aes(sample = {{ ycol }}))+
     stat_qq_line(aes(colour = {{ group }}),
                  na.rm = T,
@@ -58,7 +73,7 @@ plot_qqline <- function(data, ycol, group, symsize = 3, symthick = 1, s_alpha = 
          colour = enquo(group))+
     theme_classic(base_size = {{ fontsize }})+
     theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = {{ TextXAngle }}))
+    guides(x = guide_axis(angle = {{ TextXAngle }}))}
   if (ColSeq) {
     P <- P + scale_fill_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }}) + scale_colour_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})
   } else {
