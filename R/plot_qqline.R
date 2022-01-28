@@ -28,9 +28,7 @@
 #' @import ggplot2
 #'
 #' @examples
-#' #Basic usage
-#' plot_qqline(data_t_pdiff, Mass)
-#' #with groups
+#' plot_qqline(data_1w_death, Death)
 #' plot_qqline(data = data_cholesterol, 
 #' ycol = Cholesterol, group = Treatment)
 #' 
@@ -45,8 +43,7 @@ plot_qqline <- function(data, ycol, group, symsize = 3, symthick = 1, s_alpha = 
     warning("Use `group` argument instead, as `Group` is deprecated.")
     group <- substitute(Group)}
   if(missing(group)){
-    P <- ggplot2::ggplot(data, aes(sample = {{ ycol }},
-                                   group = {{ group }}))+
+    P <- ggplot2::ggplot(data, aes(sample = {{ ycol }}))+
       geom_qq_line(na.rm = T,
                 size = 1,
                 ...)+

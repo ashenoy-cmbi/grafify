@@ -62,9 +62,6 @@ Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} argum
 \code{ColSeq} decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
 }
 \examples{
-#Basic usage
-plot_qqline(data_t_pdiff, Mass)
-#with groups
 plot_qqline(data = data_cholesterol, 
 ycol = Cholesterol, group = Treatment)
 
