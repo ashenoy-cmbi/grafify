@@ -7,11 +7,11 @@ output:
 
 Full reference to all functions available at [`grafify` GitHub pages](https://ashenoy-cmbi.github.io/grafify/index.html).
 
-# grafify v2.0.0.9999
+# grafify v2.1.0
 
 ## New features
 
-New experimental functions to compare slopes of linear regression through via `posthoc_Trends_Pairwise`, `posthoc_Trends_Levelwise` and `posthoc_Trends_vsRef`.
+New experimental functions to compare slopes of linear regression via `posthoc_Trends_Pairwise`, `posthoc_Trends_Levelwise` and `posthoc_Trends_vsRef`.
 
 ## Minor fixes
 
