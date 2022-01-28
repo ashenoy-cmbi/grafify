@@ -11,7 +11,7 @@ Full reference to all functions available at [`grafify` GitHub pages](https://as
 
 ## Minor fixes
 
-This is a minor fix for `plot_qqmodel` and `plot_qqline`.
+This is a minor change to `plot_qqmodel` (and `plot_qqline`) to fix some OS-specific errors.
 
 # grafify v2.0.0
 
