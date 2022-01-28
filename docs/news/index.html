@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.0.9999</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.1.0</span>
       </span>
     </div>
 
@@ -54,17 +54,21 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="2.0.0.9999" id="grafify-v2009999">grafify v2.0.0.9999<a class="anchor" aria-label="anchor" href="#grafify-v2009999"></a></h2>
+<h2 class="page-header" data-toc-text="2.1.0" id="grafify-v210">grafify v2.1.0<a class="anchor" aria-label="anchor" href="#grafify-v210"></a></h2>
 <div class="section level3">
-<h3 id="minor-fixes-2-0-0-9999">Minor fixes<a class="anchor" aria-label="anchor" href="#minor-fixes-2-0-0-9999"></a></h3>
-<p>This is a minor fix for <code>plot_qqmodel</code> and <code>plot_qqline</code>.</p>
+<h3 id="new-features-2-1-0">New features<a class="anchor" aria-label="anchor" href="#new-features-2-1-0"></a></h3>
+<p>New experimental functions to compare slopes of linear regression via <code>posthoc_Trends_Pairwise</code>, <code>posthoc_Trends_Levelwise</code> and <code>posthoc_Trends_vsRef</code>.</p>
+</div>
+<div class="section level3">
+<h3 id="minor-fixes-2-1-0">Minor fixes<a class="anchor" aria-label="anchor" href="#minor-fixes-2-1-0"></a></h3>
+<p>Minor changes to <code>plot_qqmodel</code> and <code>plot_qqline</code> to fix some OS-specific errors. QQ plots by default will have <code>ok_orange</code> colour within symbols when only one level is present within <code>group</code>. Both functions now use <code>geom_qq</code> and <code>geom_qq_line</code> (instead of <code>stat_qq</code> and <code>stat_qq_line</code>) internally.</p>
 </div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="2.0.0" id="grafify-v200">grafify v2.0.0<small>2022-01-20</small><a class="anchor" aria-label="anchor" href="#grafify-v200"></a></h2>
 <p>This is a major update with some new features, bugfixes, and further cleaning up of code with consistent names of arguments in preparation for CRAN submission. Some previous code may not work because of renaming of some arguments for grouping variables in <code>plot_</code> functions. But older arguments are retained with deprecation warnings in most cases, so old code should largely work.</p>
 <div class="section level3">
-<h3 id="new-features-2-0-0">New features:<a class="anchor" aria-label="anchor" href="#new-features-2-0-0"></a></h3>
+<h3 id="new-features-2-0-0">New features<a class="anchor" aria-label="anchor" href="#new-features-2-0-0"></a></h3>
 <ol style="list-style-type: lower-alpha"><li>
 <code>plot_</code> functions have a new argument <code>ColSeq</code> (logical TRUE/FALSE) that picks colours sequentially from palette chosen by <code>ColPal</code> when <code>TRUE</code> (default). If set to <code>FALSE</code>, the most distant colours are chosen, as already implemented in <code>scale_..._grafify2</code> functions.</li>
 <li>Violin plots get a major face-lift with a box-whiskers plot on top of the violin. This gives a clearer picture of data and dispersion than the default quantile lines in <code>geom_violin</code>. They also get new arguments to set thickness of lines (<code>bvthick</code>) and transparency of boxplots (<code>b_alpha</code>).</li>

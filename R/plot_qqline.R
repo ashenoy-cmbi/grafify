@@ -29,6 +29,8 @@
 #'
 #' @examples
 #' #Basic usage
+#' plot_qqline(data_t_pdiff, Mass)
+#' #with groups
 #' plot_qqline(data = data_cholesterol, 
 #' ycol = Cholesterol, group = Treatment)
 #' 

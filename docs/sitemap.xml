@@ -187,6 +187,15 @@
     <loc>/reference/posthoc_Trends.html</loc>
   </url>
   <url>
+    <loc>/reference/posthoc_Trends_Levelwise.html</loc>
+  </url>
+  <url>
+    <loc>/reference/posthoc_Trends_Pairwise.html</loc>
+  </url>
+  <url>
+    <loc>/reference/posthoc_Trends_vsRef.html</loc>
+  </url>
+  <url>
     <loc>/reference/posthoc_vsRef.html</loc>
   </url>
   <url>
