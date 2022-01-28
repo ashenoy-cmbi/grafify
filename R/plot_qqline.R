@@ -28,7 +28,6 @@
 #' @import ggplot2
 #'
 #' @examples
-#' plot_qqline(data_1w_death, Death)
 #' plot_qqline(data = data_cholesterol, 
 #' ycol = Cholesterol, group = Treatment)
 #' 
