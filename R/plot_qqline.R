@@ -1,10 +1,10 @@
 #' Plot quantile-quantile (QQ) graphs from data.
 #'
-#' This function takes a data table, a quantitative variable (`ycol`), and a categorical grouping variable (`group`), if available, and plots a QQ graph using \code{stat_qq} and \code{stat_qq_line}.
+#' This function takes a data table, a quantitative variable (`ycol`), and a categorical grouping variable (`group`), if available, and plots a QQ graph using \code{\link{ggplot2}[geom_qq]} and \code{\link{ggplot2}[geom_qq_line]}.
 #' 
 #' Note that the function requires the quantitative Y variable first, and can be passed on a grouping variable as `group` if required. The graph plots sample quantiles on Y axis & theoretical quantiles on X axis. The X variable is mapped to the \code{fill} aesthetic in\code{stat_qq} and \code{colour} aesthetic for the \code{stat_qq_line}.
 #' 
-#' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
+#' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}. When only one level is present within `group`, symbols will receive "ok_orange" colour. 
 #' `ColPal` can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
 #' `ColRev` (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette. 
 #' `ColSeq` decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
@@ -21,7 +21,7 @@
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param Group deprecated old argument for `group`; retained for backward compatibility.
-#' @param ... any additional arguments to pass to \code{ggplot2}[stat_qq] or \code{ggplot2}[stat_qq_line].
+#' @param ... any additional arguments to pass to \code{\link{ggplot2}[geom_qq]} or \code{\link{ggplot2}[geom_qq_line]}.
 #'
 #' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 #' @export plot_qqline
@@ -43,12 +43,14 @@ plot_qqline <- function(data, ycol, group, symsize = 3, symthick = 1, s_alpha = 
     warning("Use `group` argument instead, as `Group` is deprecated.")
     group <- substitute(Group)}
   if(missing(group)){
-    P <- ggplot2::ggplot(data, aes(sample = {{ ycol }}))+
-      stat_qq_line(na.rm = T,
-                   size = 1,
-                   ...)+
-      stat_qq(geom = "point", na.rm = T, 
-              shape = 21, fill = "#E69F00",
+    P <- ggplot2::ggplot(data, aes(sample = {{ ycol }},
+                                   group = {{ group }}))+
+      geom_qq_line(na.rm = T,
+                size = 1,
+                ...)+
+      geom_qq(na.rm = T, 
+              shape = 21, 
+              fill = "#E69F00",
               size = {{ symsize }}, 
               stroke = {{ symthick }},
               alpha = {{ s_alpha }},
@@ -57,26 +59,25 @@ plot_qqline <- function(data, ycol, group, symsize = 3, symthick = 1, s_alpha = 
       theme(strip.background = element_blank())+
       guides(x = guide_axis(angle = {{ TextXAngle }}))  
   } else {
-  P <- ggplot2::ggplot(data, aes(sample = {{ ycol }}))+
-    stat_qq_line(aes(colour = {{ group }}),
-                 na.rm = T,
+  P <- ggplot2::ggplot(data, aes(sample = {{ ycol }},
+                                 group = {{ group }}))+
+    geom_qq_line(na.rm = T,
                  size = 1,
                  ...)+
-    stat_qq(geom = "point", na.rm = T, 
-            shape = 21,
+    geom_qq(na.rm = T, 
+            shape = 21, 
+            aes(fill = {{ group }}),
             size = {{ symsize }}, 
             stroke = {{ symthick }},
             alpha = {{ s_alpha }},
-            aes(fill = {{ group }}),
             ...)+
-    labs(fill = enquo(group),
-         colour = enquo(group))+
+    labs(fill = enquo(group))+
     theme_classic(base_size = {{ fontsize }})+
     theme(strip.background = element_blank())+
     guides(x = guide_axis(angle = {{ TextXAngle }}))}
   if (ColSeq) {
-    P <- P + scale_fill_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }}) + scale_colour_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})
+    P <- P + scale_fill_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})
   } else {
-    P <- P + scale_fill_grafify2(palette = {{ ColPal }}, reverse = {{ ColRev }})} + scale_colour_grafify2(palette = {{ ColPal }}, reverse = {{ ColRev }})
+    P <- P + scale_fill_grafify2(palette = {{ ColPal }}, reverse = {{ ColRev }})}
   P
 }

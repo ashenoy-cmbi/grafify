@@ -11,7 +11,9 @@ Full reference to all functions available at [`grafify` GitHub pages](https://as
 
 ## Minor fixes
 
-This is a minor change to `plot_qqmodel` (and `plot_qqline`) to fix some OS-specific errors. QQ plots now by default have 'ok_orange' colour when there is only one `group`. 
+This is a minor change to `plot_qqmodel` (and `plot_qqline`) to fix some OS-specific errors. QQ plots now by default have `ok_orange` colour when there is only one `group`. Both functions now use `geom_qq` and `geom_qq_line` (instead of `stat_qq` and `stat_qq_line` internally).
+
+New experimental `posthoc_Trends` functions for Pairwise, Levelwise and vsRef comparisons.
 
 # grafify v2.0.0
 

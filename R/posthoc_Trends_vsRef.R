@@ -1,4 +1,4 @@
-#' Use emtrends to get slopes for an independent quantitative variable from a linear model.
+#' Use emtrends to get level-wise comparison of slopes from a linear model.
 #'
 #' This function is a wrapper based on \code{\link[emmeans]{emmeans}}, and needs a ordinary linear model produced by \code{\link{simple_model}} or a mixed effects model produced by \code{\link{mixed_model}} or \code{\link{mixed_model_slopes}} (or generated directly with `lm`,  `lme4` or `lmerTest` calls). At least one of the factors should be a numeric covariate whose slopes you wish to find. It also needs to know the fixed factor(s), which should match those in the model and data table. 
 #' 
@@ -8,10 +8,11 @@
 #' @param Fixed_Factor one or  more categorical variables, provided as a vector (see Examples), whose levels you wish to compare pairwise. Names of Fixed_Factor should match Fixed_Factor used to fit the model. When more than one factor is provided e.g. \code{Fixed_factor = c("A", "B")}, this function passes this on as \code{specs = A:B} (note the colon between the two Fixed_Factor) to \code{\link[emmeans]{emmeans}} to produce pairwise comparisons.
 #' @param Trend_Factor a quantitative variable that interacts with a factor and whose slope (trend) is to be compared 
 #' @param P_Adj method for correcting P values for multiple comparisons. Default is "sidak", can be changed to "bonferroni". See Interaction analysis in emmeans in the [manual](https://CRAN.R-project.org/package=emmeans) for \code{emmeans}.
+#' @param Ref_Level the level within that factor to be considered the reference or control to compare other levels to (to be provided as a number - by default R orders levels alphabetically); default \code{Ref_Level = 1}.
 #' @param ... additional arguments for \code{\link[emmeans]{emmeans}} such as \code{lmer.df} or others. See help for sophisticated models in [emmeans](https://CRAN.R-project.org/package=emmeans).
 #'
-#' @return returns an "emm_list" object containing contrasts and emmeans through  \code{\link[emmeans]{emmeans}}.
-#' @export posthoc_Trends
+#' @return returns an "emm_list" object containing slopes and their contrasts calculated through  \code{\link[emmeans]{emtrends}}.
+#' @export posthoc_Trends_vsRef
 #' @importFrom emmeans emtrends
 #' @importFrom stats as.formula
 #'
@@ -20,28 +21,29 @@
 #' #Time2 is numeric (time points)
 #' m1 <- simple_model(data = data_2w_Tdeath, 
 #' Y_value = "PI", Fixed_Factor = c("Genotype", "Time2"))
-#' posthoc_Trends(Model = m1, 
+#' posthoc_Trends_vsRef(Model = m1, 
 #' Fixed_Factor = "Genotype", 
-#' Trend_Factor = "Time2")
+#' Trend_Factor = "Time2", 
+#' Ref_Level = 2)
 #'
 
-posthoc_Trends <- function(Model, Fixed_Factor, Trend_Factor, P_Adj = "sidak", ...){
-  warning("Use `posthoc_TrendsPairwise` instead, as `posthoc_Trends` is deprecated.")
+posthoc_Trends_vsRef <- function(Model, Fixed_Factor, Trend_Factor, Ref_Level = 1, P_Adj = "sidak", ...){
   if (class(Model) == "lmerModLmerTest") {
     t1 <- Model@frame} else {
       t1 <- Model$model
     }
   if (!is.numeric(t1[, Trend_Factor])) stop("Trend_Factor should be numeric.")
   ifelse(length(Fixed_Factor) > 1,
-         comp <- paste0(Fixed_Factor, collapse = ":"),
+         comp <- paste0(Fixed_Factor, collapse = "|"),
          comp <- paste0(Fixed_Factor))
-  sp <- as.formula(paste("~",
+  sp <- as.formula(paste("trt.vs.ctrl ~ ",
                          comp,
                          collapse = ""))
   pc <- emmeans::emtrends(object = Model,
                 specs = sp,
                 var = Trend_Factor,
                 type = "response",
+                ref = Ref_Level,
                 adjust = P_Adj,
                 ...)
   pc

@@ -1,4 +1,4 @@
-#' Use emtrends to get slopes for an independent quantitative variable from a linear model.
+#' Use emtrends to get pairwise comparison of slopes from a linear model.
 #'
 #' This function is a wrapper based on \code{\link[emmeans]{emmeans}}, and needs a ordinary linear model produced by \code{\link{simple_model}} or a mixed effects model produced by \code{\link{mixed_model}} or \code{\link{mixed_model_slopes}} (or generated directly with `lm`,  `lme4` or `lmerTest` calls). At least one of the factors should be a numeric covariate whose slopes you wish to find. It also needs to know the fixed factor(s), which should match those in the model and data table. 
 #' 
@@ -10,8 +10,8 @@
 #' @param P_Adj method for correcting P values for multiple comparisons. Default is "sidak", can be changed to "bonferroni". See Interaction analysis in emmeans in the [manual](https://CRAN.R-project.org/package=emmeans) for \code{emmeans}.
 #' @param ... additional arguments for \code{\link[emmeans]{emmeans}} such as \code{lmer.df} or others. See help for sophisticated models in [emmeans](https://CRAN.R-project.org/package=emmeans).
 #'
-#' @return returns an "emm_list" object containing contrasts and emmeans through  \code{\link[emmeans]{emmeans}}.
-#' @export posthoc_Trends
+#' @return returns an "emm_list" object containing slopes and their contrasts calculated through  \code{\link[emmeans]{emtrends}}.
+#' @export posthoc_Trends_Pairwise
 #' @importFrom emmeans emtrends
 #' @importFrom stats as.formula
 #'
@@ -20,13 +20,12 @@
 #' #Time2 is numeric (time points)
 #' m1 <- simple_model(data = data_2w_Tdeath, 
 #' Y_value = "PI", Fixed_Factor = c("Genotype", "Time2"))
-#' posthoc_Trends(Model = m1, 
+#' posthoc_Trends_Pairwise(Model = m1, 
 #' Fixed_Factor = "Genotype", 
 #' Trend_Factor = "Time2")
 #'
 
-posthoc_Trends <- function(Model, Fixed_Factor, Trend_Factor, P_Adj = "sidak", ...){
-  warning("Use `posthoc_TrendsPairwise` instead, as `posthoc_Trends` is deprecated.")
+posthoc_Trends_Pairwise <- function(Model, Fixed_Factor, Trend_Factor, P_Adj = "sidak", ...){
   if (class(Model) == "lmerModLmerTest") {
     t1 <- Model@frame} else {
       t1 <- Model$model
@@ -35,7 +34,7 @@ posthoc_Trends <- function(Model, Fixed_Factor, Trend_Factor, P_Adj = "sidak", .
   ifelse(length(Fixed_Factor) > 1,
          comp <- paste0(Fixed_Factor, collapse = ":"),
          comp <- paste0(Fixed_Factor))
-  sp <- as.formula(paste("~",
+  sp <- as.formula(paste("pairwise ~",
                          comp,
                          collapse = ""))
   pc <- emmeans::emtrends(object = Model,
