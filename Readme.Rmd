@@ -67,12 +67,10 @@ Fitting linear models and linear mixed models and obtaining ANOVA tables
    b. linear mixed effects for repeated-measures and randomised-block design ANOVAs: `mixed_anova`, `mixed_model`, `mixed_anova_slopes` & `mixed_model_slopes`.
 
 #### Post-hoc comparisons
-Perform post-hoc comparisons based on fitted models
+Perform post-hoc comparisons based on fitted models for response variables and slopes
   
-  a. `posthoc_Pariwise`
-  b. `posthoc_Levelwise`
-  c. `posthoc_vsRef`
-  d. `posthoc_Trends`
+  a. `posthoc_Pariwise`, `posthoc_Levelwise` & `posthoc_vsRef`
+  b. `posthoc_Trends_Pairwise`, `posthoc_Trends_Levelwise` & `posthoc_Trends_vsRef`
   
 #### Data simulation
 

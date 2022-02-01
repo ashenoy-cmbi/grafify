@@ -102,12 +102,12 @@ Fitting linear models and linear mixed models and obtaining ANOVA tables
 
 #### Post-hoc comparisons
 
-Perform post-hoc comparisons based on fitted models
+Perform post-hoc comparisons based on fitted models for response
+variables and slopes
 
-1.  `posthoc_Pariwise`
-2.  `posthoc_Levelwise`
-3.  `posthoc_vsRef`
-4.  `posthoc_Trends`
+1.  `posthoc_Pariwise`, `posthoc_Levelwise` & `posthoc_vsRef`
+2.  `posthoc_Trends_Pairwise`, `posthoc_Trends_Levelwise` &
+    `posthoc_Trends_vsRef`
 
 #### Data simulation
 
