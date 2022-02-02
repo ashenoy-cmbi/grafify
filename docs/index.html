@@ -94,8 +94,8 @@
 <p>I made this package mainly to plot great-looking graphs quickly while exploring data, and for linear regressions for ANOVA. I also use it to introduce linear models in my teaching. If you’re interested in basic theory and code for statistics written for biologists, also visit Statistics for <a href="https://microimmunostats.netlify.app" class="external-link">Micro/Immuno Biologists</a>.</p>
 </div>
 <div class="section level3">
-<h3 id="latest-version-v200-on-cran">
-<strong>Latest version: v2.0.0 on CRAN</strong><a class="anchor" aria-label="anchor" href="#latest-version-v200-on-cran"></a>
+<h3 id="latest-version-v210-on-cran-or-github">
+<strong>Latest version: v2.1.0 on CRAN or GitHub</strong><a class="anchor" aria-label="anchor" href="#latest-version-v210-on-cran-or-github"></a>
 </h3>
 </div>
 <div class="section level3">
@@ -104,13 +104,13 @@
 <div class="section level4">
 <h4 id="graphs">Graphs<a class="anchor" aria-label="anchor" href="#graphs"></a>
 </h4>
-<p><code>grafify</code> has five main features (graphs, colour blind-friendly colour schemes, ANOVAs &amp; post-hoc comparisons, practice datasets and data simulations):</p>
+<p><code>grafify</code> has five main features (graphs, colour blind-friendly colour schemes, ANOVA &amp; post-hoc comparisons, practice datasets and data simulations):</p>
 <ol style="list-style-type: decimal">
 <li>
 <p>There are 19 <code>plot_</code> functions of 6 broad types in <code>grafify</code>. The <code>plot_scatter..</code> versions are preferred when there are many data points, <code>plot_dot..</code> versions have a “cleaner” layout for smaller datasets.</p>
 <ol style="list-style-type: decimal">
-<li>Two categorical variables: these graphs either use scatter (or also called jitter) or dot plot geometries: <code>plot_scatterbar_sd</code>, <code>plot_scatterbox</code>, <code>plot_scatterviolin</code> and <code>plot_dotbar_sd</code>, <code>plot_dotbox</code>, <code>plot_dotviolin</code> <strong>New since v1.5.0</strong>: new <code>plot_</code> functions like the above but ending in <code>_sc</code> for <em>same colour</em> or <em>single colour</em>. See vignettes for details.</li>
-<li>Three or four categorical variables (one-way or two-way ANOVA designs): <code>plot_3d_scatterbar</code>, <code>plot_3d_scatterbox</code>, <code>plot_4d_scatterbar</code>, <code>plot_4d_scatterbox</code>
+<li>Two variables (one categorical &amp; one numeric): these graphs either use scatter (or also called jitter) or dot plot geometries: <code>plot_scatterbar_sd</code>, <code>plot_scatterbox</code>, <code>plot_scatterviolin</code> and <code>plot_dotbar_sd</code>, <code>plot_dotbox</code>, <code>plot_dotviolin</code> <strong>New since v1.5.0</strong>: new <code>plot_</code> functions like the above but ending in <code>_sc</code> for <em>same colour</em> or <em>single colour</em>. See vignettes for details.</li>
+<li>Three or four variables (one-way or two-way ANOVA designs; one or two categorical variable &amp; one numeric variable): <code>plot_3d_scatterbar</code>, <code>plot_3d_scatterbox</code>, <code>plot_4d_scatterbar</code>, <code>plot_4d_scatterbox</code>
 </li>
 <li>Quantitative X &amp; Y, plus a third variable: <code>plot_xy_NumGroup</code>, <code>plot_xy_CatGroup</code>
 </li>
@@ -138,19 +138,21 @@
 </h4>
 <p>Fitting linear models and linear mixed models and obtaining ANOVA tables</p>
 <ol style="list-style-type: decimal">
-<li>linear models for ordinary ANOVAs: <code>simple_anova</code>, <code>simple_model</code>,</li>
-<li>linear mixed effects for repeated-measures and randomised-block design ANOVAs: <code>mixed_anova</code>, <code>mixed_model</code>, <code>mixed_anova_slopes</code> &amp; <code>mixed_model_slopes</code>.</li>
+<li>linear models for ordinary ANOVA: <code>simple_anova</code>, <code>simple_model</code>,</li>
+<li>linear mixed effects for repeated-measures and randomised-block design ANOVA: <code>mixed_anova</code>, <code>mixed_model</code>, <code>mixed_anova_slopes</code> &amp; <code>mixed_model_slopes</code>.</li>
 </ol>
 </div>
 <div class="section level4">
 <h4 id="post-hoc-comparisons">Post-hoc comparisons<a class="anchor" aria-label="anchor" href="#post-hoc-comparisons"></a>
 </h4>
-<p>Perform post-hoc comparisons based on fitted models</p>
+<p>Perform post-hoc comparisons based on fitted models for response variables and slopes</p>
 <ol style="list-style-type: decimal">
-<li><code>posthoc_Pariwise</code></li>
-<li><code>posthoc_Levelwise</code></li>
-<li><code>posthoc_vsRef</code></li>
-<li><code>posthoc_Trends</code></li>
+<li>
+<code>posthoc_Pariwise</code>, <code>posthoc_Levelwise</code> &amp; <code>posthoc_vsRef</code>
+</li>
+<li>
+<code>posthoc_Trends_Pairwise</code>, <code>posthoc_Trends_Levelwise</code> &amp; <code>posthoc_Trends_vsRef</code>
+</li>
 </ol>
 </div>
 <div class="section level4">
