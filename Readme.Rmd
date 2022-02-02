@@ -26,13 +26,13 @@ I made this package mainly to plot great-looking graphs quickly while exploring 
 
 #### Graphs
 
-`grafify` has five main features (graphs, colour blind-friendly colour schemes, ANOVAs & post-hoc comparisons, practice datasets and data simulations):
+`grafify` has five main features (graphs, colour blind-friendly colour schemes, ANOVA & post-hoc comparisons, practice datasets and data simulations):
 
 1. There are 19 `plot_` functions of 6 broad types in `grafify`. The `plot_scatter..` versions are preferred when there are many data points, `plot_dot..` versions have a "cleaner" layout for smaller datasets. 
 
-     a. Two categorical variables: these graphs either use scatter (or also called jitter) or dot plot geometries: `plot_scatterbar_sd`, `plot_scatterbox`, `plot_scatterviolin` and `plot_dotbar_sd`, `plot_dotbox`, `plot_dotviolin`
+     a. Two variables (one categorical & one numeric): these graphs either use scatter (or also called jitter) or dot plot geometries: `plot_scatterbar_sd`, `plot_scatterbox`, `plot_scatterviolin` and `plot_dotbar_sd`, `plot_dotbox`, `plot_dotviolin`
      **New since v1.5.0**: new `plot_` functions like the above but ending in `_sc` for *same colour* or *single colour*. See vignettes for details. 
-     b. Three or four categorical variables (one-way or two-way ANOVA designs): `plot_3d_scatterbar`, `plot_3d_scatterbox`, `plot_4d_scatterbar`, `plot_4d_scatterbox` 
+     b. Three or four variables (one-way or two-way ANOVA designs; one or two categorical variable & one numeric variable): `plot_3d_scatterbar`, `plot_3d_scatterbox`, `plot_4d_scatterbar`, `plot_4d_scatterbox` 
      c. Quantitative X & Y, plus a third variable: `plot_xy_NumGroup`, `plot_xy_CatGroup` 
      d. Matched before-after graphs: `plot_befafter_colours`, `plot_befafter_shapes`
      e. Data distributions: `plot_qqline`, `plot_density` `plot_histogram`, and residuals of linear models with `plot_qqmodel`
@@ -63,8 +63,8 @@ Apply the `yellow_conti` continuous colour scheme using `scale_fill_grafify_c` a
 
 Fitting linear models and linear mixed models and obtaining ANOVA tables
 
-  a. linear models for ordinary ANOVAs: `simple_anova`, `simple_model`, 
-   b. linear mixed effects for repeated-measures and randomised-block design ANOVAs: `mixed_anova`, `mixed_model`, `mixed_anova_slopes` & `mixed_model_slopes`.
+  a. linear models for ordinary ANOVA: `simple_anova`, `simple_model`, 
+   b. linear mixed effects for repeated-measures and randomised-block design ANOVA: `mixed_anova`, `mixed_model`, `mixed_anova_slopes` & `mixed_model_slopes`.
 
 #### Post-hoc comparisons
 Perform post-hoc comparisons based on fitted models for response variables and slopes

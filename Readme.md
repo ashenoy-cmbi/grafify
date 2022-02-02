@@ -36,7 +36,7 @@ Biologists](https://microimmunostats.netlify.app).
 #### Graphs
 
 `grafify` has five main features (graphs, colour blind-friendly colour
-schemes, ANOVAs & post-hoc comparisons, practice datasets and data
+schemes, ANOVA & post-hoc comparisons, practice datasets and data
 simulations):
 
 1.  There are 19 `plot_` functions of 6 broad types in `grafify`. The
@@ -44,15 +44,16 @@ simulations):
     points, `plot_dot..` versions have a “cleaner” layout for smaller
     datasets.
 
-    1.  Two categorical variables: these graphs either use scatter (or
-        also called jitter) or dot plot geometries:
-        `plot_scatterbar_sd`, `plot_scatterbox`, `plot_scatterviolin`
-        and `plot_dotbar_sd`, `plot_dotbox`, `plot_dotviolin` **New
-        since v1.5.0**: new `plot_` functions like the above but ending
-        in `_sc` for *same colour* or *single colour*. See vignettes for
-        details.
-    2.  Three or four categorical variables (one-way or two-way ANOVA
-        designs): `plot_3d_scatterbar`, `plot_3d_scatterbox`,
+    1.  Two variables (one categorical & one numeric): these graphs
+        either use scatter (or also called jitter) or dot plot
+        geometries: `plot_scatterbar_sd`, `plot_scatterbox`,
+        `plot_scatterviolin` and `plot_dotbar_sd`, `plot_dotbox`,
+        `plot_dotviolin` **New since v1.5.0**: new `plot_` functions
+        like the above but ending in `_sc` for *same colour* or *single
+        colour*. See vignettes for details.
+    2.  Three or four variables (one-way or two-way ANOVA designs; one
+        or two categorical variable & one numeric variable):
+        `plot_3d_scatterbar`, `plot_3d_scatterbox`,
         `plot_4d_scatterbar`, `plot_4d_scatterbox`
     3.  Quantitative X & Y, plus a third variable: `plot_xy_NumGroup`,
         `plot_xy_CatGroup`
@@ -95,9 +96,9 @@ Apply the `yellow_conti` continuous colour scheme using
 
 Fitting linear models and linear mixed models and obtaining ANOVA tables
 
-1.  linear models for ordinary ANOVAs: `simple_anova`, `simple_model`,
+1.  linear models for ordinary ANOVA: `simple_anova`, `simple_model`,
 2.  linear mixed effects for repeated-measures and randomised-block
-    design ANOVAs: `mixed_anova`, `mixed_model`, `mixed_anova_slopes` &
+    design ANOVA: `mixed_anova`, `mixed_model`, `mixed_anova_slopes` &
     `mixed_model_slopes`.
 
 #### Post-hoc comparisons
