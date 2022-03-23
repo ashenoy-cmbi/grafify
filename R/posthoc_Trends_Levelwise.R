@@ -26,7 +26,7 @@
 #'
 
 posthoc_Trends_Levelwise <- function(Model, Fixed_Factor, Trend_Factor, P_Adj = "sidak", ...){
-  if (class(Model) == "lmerModLmerTest") {
+  if (inherits(Model, c("lmerMod", "lmerModLmerTest")))  {
     t1 <- Model@frame} else {
       t1 <- Model$model
     }

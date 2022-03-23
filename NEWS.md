@@ -15,7 +15,7 @@ Full reference to all functions available at [`grafify` GitHub pages](https://as
 
 ## Minor fixes
 
-`plot_qqmodel` no longer relies on `broom.mixed`; instead uses `rstudent` from the base `stats` package to generate Studentized residuals from a model.
+`plot_qqmodel` no longer relies on `broom.mixed`; instead uses `rstudent` from the base `stats` package to generate studentized residuals from a model.
 
 # grafify v2.1.0
 

@@ -28,7 +28,7 @@
 #'
 
 posthoc_Trends_vsRef <- function(Model, Fixed_Factor, Trend_Factor, Ref_Level = 1, P_Adj = "sidak", ...){
-  if (class(Model) == "lmerModLmerTest") {
+  if (inherits(Model, c("lmerMod", "lmerModLmerTest")))  {
     t1 <- Model@frame} else {
       t1 <- Model$model
     }

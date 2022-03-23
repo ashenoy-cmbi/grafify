@@ -1,6 +1,6 @@
 #' Plot quantile-quantile (QQ) graphs from residuals of linear models.
 #'
-#' This function takes a linear model (simple or mixed effects) and plots a QQ graph after running `rstudent` from \code{\link[stats]{rstudent}} to generate a table of Studentized model residuals on an ordinary (\code{\link{simple_model}}),  mixed model (\code{\link{mixed_model}} or \code{\link{mixed_model_slopes}}. The graph plots Studentized residuals from the model (sample) on Y axis & Theoretical quantiles on X axis.
+#' This function takes a linear model (simple or mixed effects) and plots a QQ graph after running `rstudent` from \code{\link[stats]{rstudent}} to generate a table of studentized model residuals on an ordinary (\code{\link{simple_model}}),  mixed model (\code{\link{mixed_model}} or \code{\link{mixed_model_slopes}}. The graph plots studentized residuals from the model (sample) on Y axis & Theoretical quantiles on X axis.
 #'
 #' The function uses \code{\link{ggplot2}[geom_qq]} and \code{\link{ggplot2}[geom_qq_line]} geometries. Symbols receive "ok_orange" colour by default.
 #'
