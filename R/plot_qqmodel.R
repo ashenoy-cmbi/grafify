@@ -1,6 +1,6 @@
 #' Plot quantile-quantile (QQ) graphs from residuals of linear models.
 #'
-#' This function takes a linear model (simple or mixed effects) and plots a QQ graph after running `augment` from \code{\link[broom.mixed]{augment}} to generate a table of model residuals on a saved ordinary (\code{\link{simple_model}}) or mixed model (\code{\link{mixed_model}} or \code{\link{mixed_model_slopes}}. The graph plots residuals from the model (sample) on Y axis & theoretical quantiles on X axis.
+#' This function takes a linear model (simple or mixed effects) and plots a QQ graph after running `rstudent` from \code{\link[stats]{rstudent}} to generate a table of Studentized model residuals on an ordinary (\code{\link{simple_model}}),  mixed model (\code{\link{mixed_model}} or \code{\link{mixed_model_slopes}}. The graph plots Studentized residuals from the model (sample) on Y axis & Theoretical quantiles on X axis.
 #'
 #' The function uses \code{\link{ggplot2}[geom_qq]} and \code{\link{ggplot2}[geom_qq_line]} geometries. Symbols receive "ok_orange" colour by default.
 #'
@@ -13,7 +13,7 @@
 #' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 #' @export plot_qqmodel
 #' @import ggplot2
-#' @importFrom broom.mixed augment
+#' @importFrom stats rstudent
 #'
 #' @examples
 #' #Basic usage
@@ -24,17 +24,20 @@
 #'
 
 plot_qqmodel <- function(Model, symsize = 2.5, symthick = 1, s_alpha = 1, fontsize = 20){
-mod <- broom.mixed::augment(Model)
-P <- ggplot2::ggplot(mod,
-                     aes(sample = mod$`.resid`))+
-  geom_qq_line(na.rm = T,
-                   size = 1)+
-  geom_qq(na.rm = T,
+  mod <- rstu <- NULL
+  mod <- data.frame(rstu = stats::rstudent(Model))
+  P <- ggplot2::ggplot(mod,
+                       aes(sample = rstu))+
+  geom_qq_line(na.rm = TRUE,
+               size = 1)+
+  geom_qq(na.rm = TRUE,
           shape = 21, fill = "#E69F00",
           size = {{ symsize }},
           stroke = {{ symthick }},
           alpha = {{ s_alpha }})+
+  labs(y = "Studentized residual",
+       x = "Theoretical quantile")+
   theme_classic(base_size = {{ fontsize }})+
   theme(strip.background = element_blank())
-suppressWarnings(P)
+  suppressWarnings(P)
 }

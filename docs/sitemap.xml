@@ -94,10 +94,16 @@
     <loc>/reference/plot_3d_scatterbox.html</loc>
   </url>
   <url>
+    <loc>/reference/plot_3d_scatterviolin.html</loc>
+  </url>
+  <url>
     <loc>/reference/plot_4d_scatterbar.html</loc>
   </url>
   <url>
     <loc>/reference/plot_4d_scatterbox.html</loc>
+  </url>
+  <url>
+    <loc>/reference/plot_4d_scatterviolin.html</loc>
   </url>
   <url>
     <loc>/reference/plot_bar_sd.html</loc>

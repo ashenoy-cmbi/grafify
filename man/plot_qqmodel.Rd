@@ -21,7 +21,7 @@ plot_qqmodel(Model, symsize = 2.5, symthick = 1, s_alpha = 1, fontsize = 20)
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
-This function takes a linear model (simple or mixed effects) and plots a QQ graph after running \code{augment} from \code{\link[broom.mixed]{augment}} to generate a table of model residuals on a saved ordinary (\code{\link{simple_model}}) or mixed model (\code{\link{mixed_model}} or \code{\link{mixed_model_slopes}}. The graph plots residuals from the model (sample) on Y axis & theoretical quantiles on X axis.
+This function takes a linear model (simple or mixed effects) and plots a QQ graph after running \code{rstudent} from \code{\link[stats]{rstudent}} to generate a table of Studentized model residuals on an ordinary (\code{\link{simple_model}}),  mixed model (\code{\link{mixed_model}} or \code{\link{mixed_model_slopes}}. The graph plots Studentized residuals from the model (sample) on Y axis & Theoretical quantiles on X axis.
 }
 \details{
 The function uses \code{\link{ggplot2}[geom_qq]} and \code{\link{ggplot2}[geom_qq_line]} geometries. Symbols receive "ok_orange" colour by default.

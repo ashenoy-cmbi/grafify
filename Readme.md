@@ -29,7 +29,7 @@ theory and code for statistics written for biologists, also visit
 Statistics for [Micro/Immuno
 Biologists](https://microimmunostats.netlify.app).
 
-### **Latest version: v2.1.0 on CRAN or GitHub**
+### **Latest version: v2.1.2 on CRAN or GitHub**
 
 ### Features
 

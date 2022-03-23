@@ -20,7 +20,7 @@ Any updates not yet on CRAN will be made available here first. To install from G
 
 I made this package mainly to plot great-looking graphs quickly while exploring data, and for linear regressions for ANOVA. I also use it to introduce linear models in my teaching. If you're interested in basic theory and code for statistics written for biologists, also visit Statistics for [Micro/Immuno Biologists](https://microimmunostats.netlify.app). 
 
-### **Latest version: v2.1.0 on CRAN or GitHub** 
+### **Latest version: v2.1.2 on CRAN or GitHub** 
 
 ### Features
 

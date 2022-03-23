@@ -7,6 +7,16 @@ output:
 
 Full reference to all functions available at [`grafify` GitHub pages](https://ashenoy-cmbi.github.io/grafify/index.html).
 
+# grafify v2.2.0
+
+## New features
+
+`plot_3d_scatterviolin` and `plot_4d_scatterviolin` for one-way or two-way ANOVA design data to plot scatter plots with violins with box and whiskers. 
+
+## Minor fixes
+
+`plot_qqmodel` no longer relies on `broom.mixed`; instead uses `rstudent` from the base `stats` package to generate Studentized residuals from a model.
+
 # grafify v2.1.0
 
 ## New features
