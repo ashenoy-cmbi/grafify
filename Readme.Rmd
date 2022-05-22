@@ -2,8 +2,6 @@
 output: github_document
 ---
 
-### **Latest version: v2.3.0 on CRAN or GitHub** 
-
 ### Features
 
 `grafify` has five main features: 
@@ -41,7 +39,6 @@ knitr::include_graphics("man/figures/grafify_palettesv230.jpg")
 
 All palettes are colourblind-friendly. (See Mike Mol's [blog](https://mikemol.github.io/technique/colorblind/2018/02/11/color-safe-palette.html) and Paul Tol's [blog](https://personal.sron.nl/~pault/#sec:qualitative). Additional colour schemes were chosen/adapted from [`cols4all` package](https://github.com/mtennekes/cols4all)).
     
-
 #### Linear models 
 
 Fitting linear models or linear mixed effects models, and obtaining ANOVA tables with easy wrappers around `lme4`.
@@ -66,6 +63,8 @@ Generating random one-way and two-way data based on mean and SD and residual err
 ### Vignettes
 
 The best place to see `grafify`  in action is the [vignettes](https://grafify-vignettes.netlify.app) website, which has detailed description of all functions.
+
+### **Latest version: v2.3.0 on CRAN or GitHub** 
 
 ### Citing `grafify`
 

@@ -1,6 +1,4 @@
 
-### **Latest version: v2.3.0 on CRAN or GitHub**
-
 ### Features
 
 `grafify` has five main features:
@@ -89,6 +87,8 @@ residual error.
 The best place to see `grafify` in action is the
 [vignettes](https://grafify-vignettes.netlify.app) website, which has
 detailed description of all functions.
+
+### **Latest version: v2.3.0 on CRAN or GitHub**
 
 ### Citing `grafify`
 
