@@ -12,7 +12,7 @@
 #' @param symthick thickness of dot border (`stroke` parameter of `geom_point`), default set to 1.
 #' @param bvthick thickness of both violin and box plot lines; default 1.
 #' @param bwid width of boxplots; default 0.2
-#' @param b_alpha fractional opacity of boxplots, default set to 1 (i.e. maximum opacity & zero transparency). For white boxplots inside violins, set `b_alpha = 0`.
+#' @param b_alpha fractional opacity of boxplots.  Default is set to 0, which results in white boxes inside violins. Change to any value >0 up to 1 for different levels of transparency. 
 #' @param v_alpha fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency).  Set `s_alpha = 0` to not show scatter plot.
 #' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).
 #' @param jitter extent of jitter (scatter) of symbols, default is 0 (i.e. aligned symbols). To reduce symbol overlap, try 0.1-0.3 or higher.  
@@ -32,14 +32,14 @@
 #' colour = "ok_grey", 
 #' symsize = 2, trim = FALSE, scale = "width")
 #' 
-#' #white boxplots and no symbols
+#' #no symbols
 #' plot_scatterviolin_sc(data = data_1w_death, 
 #' xcol = Genotype, ycol = Death, 
-#' colour = "pale_blue", b_alpha = 0, s_alpha = 0,
+#' colour = "pale_blue", s_alpha = 0,
 #' symsize = 2, trim = FALSE, scale = "width")
 
 
-plot_scatterviolin_sc <- function(data, xcol, ycol, colour = "ok_orange", symsize = 2.5, symthick = 1, bwid = 0.2, bvthick = 1, b_alpha = 1, v_alpha = 1, s_alpha = 1, jitter = 0, trim = TRUE, scale = "width", TextXAngle = 0, fontsize = 20, ...){
+plot_scatterviolin_sc <- function(data, xcol, ycol, colour = "ok_orange", symsize = 2.5, symthick = 1, bwid = 0.2, bvthick = 1, b_alpha = 0, v_alpha = 1, s_alpha = 1, jitter = 0.2, trim = TRUE, scale = "width", TextXAngle = 0, fontsize = 20, ...){
   ifelse(grepl("#", colour), 
          a <- colour,
          a <- get_graf_colours({{ colour }}))

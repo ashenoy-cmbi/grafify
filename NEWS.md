@@ -1,11 +1,34 @@
 ---
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 # Release notes:
 
 Full reference to all functions available at [`grafify` GitHub pages](https://ashenoy-cmbi.github.io/grafify/index.html).
+
+# grafify v2.3.0
+
+## Major additions
+
+1. Four new colourblind-friendly categorical colour schemes: 
+- `fishy`, `kelly`, `r4`, `safe`
+
+2. Four new quantitative schemes for continuous or divergent colours.
+
+- sequential/continuous: `blue_conti`, `grey_conti` 
+- divergent: `OrBl_div`, `PrGn_div`
+
+All these schemes are available through `scale_fill..` and `scale_colour_...` calls to be used on any `ggplot2` object.
+
+## Minor changes & bug fixes
+
+1. Fixed the error in legend title in one-way ANOVA plots with `plot_3d_`. The title now correctly refers to `xcol` and `shapes` arguments. 
+2. `posthoc_Trends...` functions rewritten with `stats::model.frame()` to get model data frame as this is a more flexible method.
+3. Order of colours in `light`, `bright` and `muted` schemes changed slightly for better separation of colours when next to each other.
+4. The `jitter` setting in `plot_scaltter_` is set to `0.2` so the graph as plotted with jitter by default.  
+5. The default colour scheme for all graphs is now `okabe_ito` (the `all_grafify` palette is  was just a concatenation of all palettes without real basis in good visualisation). Use one of the other palettes (e.g. `kelly`, which has 20 discreet colours).
+6. `scale_fill_grafify2` and `scale_colour_grafify2` deprecated, and the same function offered with `ColSeq` argument to `scale_fill_grafify` and `scale_colour_grafify` to select sequential or distant colours from a palette.
 
 # grafify v2.2.0
 

@@ -24,13 +24,14 @@
 #' @examples
 #' #with jitter
 #' plot_scatterbox_sc(data = data_cholesterol, 
-#' xcol = Treatment, ycol = Cholesterol, jitter = 0.1)
+#' xcol = Treatment, ycol = Cholesterol)
+#' 
 #' #with "ok_grey" colour
 #' plot_scatterbox_sc(data = data_cholesterol, 
 #' xcol = Treatment, ycol = Cholesterol, 
-#' colour = "ok_grey", jitter = 0.1)
+#' colour = "ok_grey")
 
-plot_scatterbox_sc <- function(data, xcol, ycol, colour = "ok_orange", symsize = 2.5, symthick = 1, jitter = 0, b_alpha = 1, s_alpha = 1, TextXAngle = 0, fontsize = 20, ...){
+plot_scatterbox_sc <- function(data, xcol, ycol, colour = "ok_orange", symsize = 2.5, symthick = 1, jitter = 0.2, b_alpha = 1, s_alpha = 1, TextXAngle = 0, fontsize = 20, ...){
 ifelse(grepl("#", colour), 
          a <- colour,
          a <- get_graf_colours({{ colour }}))

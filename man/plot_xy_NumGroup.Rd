@@ -12,6 +12,7 @@ plot_xy_NumGroup(
   symsize = 2.5,
   symthick = 1,
   s_alpha = 1,
+  ColPal = c("blue_conti", "yellow_conti", "grey_conti", "PrGn_div", "OrBl_div"),
   TextXAngle = 0,
   fontsize = 20
 )
@@ -30,6 +31,8 @@ plot_xy_NumGroup(
 \item{symthick}{thickness of symbol border, default set to 1.}
 
 \item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).}
+
+\item{ColPal}{= One of five quantitative colour schemes in \code{grafify}: \code{blue_conti}, \code{yellow_conti}, \code{grey_conti}, \code{PrGn_div}, \code{OrBl_div}.}
 
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 

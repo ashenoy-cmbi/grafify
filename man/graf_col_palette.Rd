@@ -4,7 +4,7 @@
 \alias{graf_col_palette}
 \title{Call palettes for scale & fill}
 \usage{
-graf_col_palette(palette = "all_grafify", reverse = FALSE, ...)
+graf_col_palette(palette = "okabe_ito", reverse = FALSE, ...)
 }
 \arguments{
 \item{palette}{internal}

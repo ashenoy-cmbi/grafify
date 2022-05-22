@@ -4,7 +4,7 @@
 \alias{graf_col_palette_default}
 \title{Call palettes for scale & fill with default colorRampPalette}
 \usage{
-graf_col_palette_default(palette = "all_grafify", reverse = FALSE, ...)
+graf_col_palette_default(palette = "okabe_ito", reverse = FALSE, ...)
 }
 \arguments{
 \item{palette}{internal}

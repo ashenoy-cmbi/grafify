@@ -20,8 +20,8 @@
 #' @param ewid width of error bars, default 0.3
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
-#' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
-#' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE).
+#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..
+#' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
 #' @param ... any additional arguments to pass to \code{stat_summary}.
 #'
@@ -41,7 +41,8 @@
 #' ColSeq = FALSE)
 #'
 
-plot_bar_sd <- function(data, xcol, ycol, b_alpha = 1, bwid = 0.7, bthick = 1, ewid = 0.3, ColPal = "all_grafify", ColSeq = TRUE, ColRev = FALSE, TextXAngle = 0, fontsize = 20, ...){
+plot_bar_sd <- function(data, xcol, ycol, b_alpha = 1, bwid = 0.7, bthick = 1, ewid = 0.3, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, TextXAngle = 0, fontsize = 20, ...){
+  ColPal <- match.arg(ColPal)
   P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                  y = {{ ycol }}))+
     stat_summary(geom = "bar", 

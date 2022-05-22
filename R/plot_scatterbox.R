@@ -22,9 +22,9 @@
 #' @param jitter extent of jitter (scatter) of symbols, default is 0 (i.e. aligned symbols). To reduce symbol overlap, try 0.1-0.3 or higher.  
 #' @param b_alpha fractional opacity of boxplot, default set to 1 (i.e. maximum opacity & zero transparency).
 #' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).
-#' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
+#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
-#' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE).
+#' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param ... any additional arguments to pass to \code{ggplot2}[geom_boxplot].
@@ -37,12 +37,9 @@
 #' plot_scatterbox(data = data_cholesterol, 
 #' xcol = Treatment, ycol = Cholesterol)
 #' 
-#' #with jitter
-#' plot_scatterbox(data = data_cholesterol, 
-#' xcol = Treatment, ycol = Cholesterol, jitter = 0.1)
-#'
 
-plot_scatterbox <- function(data, xcol, ycol, symsize = 2.5, symthick = 1, jitter = 0, b_alpha = 1, s_alpha = 1, ColPal = "all_grafify", ColSeq = TRUE, ColRev = FALSE, TextXAngle = 0, fontsize = 20, ...){
+plot_scatterbox <- function(data, xcol, ycol, symsize = 2.5, symthick = 1, jitter = 0.2, b_alpha = 1, s_alpha = 1, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, TextXAngle = 0, fontsize = 20, ...){
+  ColPal <- match.arg(ColPal)
   P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
     geom_boxplot(aes(fill = factor({{ xcol }})), size = 1,

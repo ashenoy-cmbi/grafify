@@ -17,9 +17,9 @@
 #' @param symsize size of symbols, default set to 3.
 #' @param symthick size of outline of symbol lines (\code{stroke = 1}), default set to 1.
 #' @param s_alpha fractional opacity of symbols, default set to 0.8 (i.e. 80% opacity).
-#' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
+#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
-#' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE).
+#' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param groups old argument name for `match`; retained for backward compatibility.
@@ -41,10 +41,11 @@
 #' xcol = Genotype, ycol = PI, 
 #' match = Experiment) + facet_wrap("Time")
 
-plot_befafter_shapes <- function(data, xcol, ycol, match, symsize = 3, symthick = 1, s_alpha = 0.8, ColPal = "all_grafify", ColSeq = TRUE, ColRev = FALSE, TextXAngle = 0, fontsize = 20, groups, ...){
+plot_befafter_shapes <- function(data, xcol, ycol, match, symsize = 3, symthick = 1, s_alpha = 0.8, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, TextXAngle = 0, fontsize = 20, groups, ...){
   if (!missing("groups")) {
     warning("Use `match` argument instead, as `groups` is deprecated.")
     match <- substitute(groups)}
+  ColPal <- match.arg(ColPal)
   P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }},
                             group = factor({{ match }})))+

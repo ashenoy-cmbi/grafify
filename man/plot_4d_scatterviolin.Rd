@@ -13,13 +13,14 @@ plot_4d_scatterviolin(
   symsize = 2.5,
   s_alpha = 1,
   symthick = 1,
-  jitter = 0.1,
+  jitter = 0.2,
   v_alpha = 1,
-  b_alpha = 1,
+  b_alpha = 0,
   bvthick = 1,
   bwid = 0.2,
   ColSeq = TRUE,
-  ColPal = "all_grafify",
+  ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy",
+    "kelly", "light", "muted", "pale", "r4", "safe", "vibrant"),
   ColRev = FALSE,
   TextXAngle = 0,
   scale = "width",
@@ -49,7 +50,7 @@ plot_4d_scatterviolin(
 
 \item{v_alpha}{fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency).}
 
-\item{b_alpha}{fractional opacity of boxplots, default set to 1 (i.e. maximum opacity & zero transparency). For white boxplots inside violins, set \code{b_alpha = 0}.}
+\item{b_alpha}{fractional opacity of boxplots.  Default is set to 0, which results in white boxes inside violins. Change to any value >0 up to 1 for different levels of transparency.}
 
 \item{bvthick}{thickness of both violin and boxplot lines; default 1.}
 
@@ -57,9 +58,9 @@ plot_4d_scatterviolin(
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 
-\item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
+\item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..}
 
-\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE).}
+\item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
 
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
@@ -100,8 +101,7 @@ All four functions can be expanded further, for example with \code{\link[ggplot2
 \examples{
 #3d version for 1-way data with blocking
 plot_3d_scatterviolin(data = data_1w_death, 
-xcol = Genotype, ycol = Death, shapes = Experiment,
-b_alpha = 0)
+xcol = Genotype, ycol = Death, shapes = Experiment)
 #compare above graph to
 plot_scatterviolin(data = data_1w_death, 
 xcol = Genotype, ycol = Death)
@@ -111,7 +111,6 @@ plot_4d_scatterviolin(data = data_2w_Tdeath,
 xcol = Genotype, 
 ycol = PI, 
 boxes = Time, 
-shapes = Experiment, b_alpha = 0)
-
+shapes = Experiment)
 
 }

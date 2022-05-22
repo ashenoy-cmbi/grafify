@@ -26,11 +26,12 @@
 #'
 #' plot_scatterbar_sd_sc(data = data_doubling_time, 
 #' xcol = Student, ycol = Doubling_time)
+#' 
 #' plot_scatterbar_sd_sc(data = data_doubling_time, 
 #' xcol = Student, ycol = Doubling_time, 
 #' colour = "ok_grey")
 
-plot_scatterbar_sd_sc <- function(data, xcol, ycol, colour = "ok_orange", symsize = 2.5, symthick = 1, bwid = 0.7, ewid = 0.3, jitter = 0, b_alpha = 1, s_alpha = 1, TextXAngle = 0, fontsize = 20){
+plot_scatterbar_sd_sc <- function(data, xcol, ycol, colour = "ok_orange", symsize = 2.5, symthick = 1, bwid = 0.7, ewid = 0.3, jitter = 0.2, b_alpha = 1, s_alpha = 1, TextXAngle = 0, fontsize = 20){
 
   ifelse(grepl("#", colour), 
          a <- colour,

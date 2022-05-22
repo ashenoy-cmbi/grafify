@@ -4,7 +4,12 @@
 \alias{scale_colour_grafify2}
 \title{Scale_colour colour scheme}
 \usage{
-scale_colour_grafify2(palette = "all_grafify", reverse = FALSE, ...)
+scale_colour_grafify2(
+  palette = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy",
+    "kelly", "light", "muted", "pale", "r4", "safe", "vibrant"),
+  reverse = FALSE,
+  ...
+)
 }
 \arguments{
 \item{palette}{Name of the colour scheme. Default set to \code{palette = "all_grafify"}. Provide names as above in quotes.}

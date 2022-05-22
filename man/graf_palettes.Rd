@@ -5,13 +5,42 @@
 \alias{graf_palettes}
 \title{List of palettes available in grafify package}
 \format{
-An object of class \code{list} of length 10.
+An object of class \code{list} of length 18.
 }
 \usage{
 graf_palettes
 }
 \value{
 This function returns a list of palettes in grafify with names and hexcodes of colours in those  palettes.
+Names of palettes available are as follows:
+
+Categorical/discreet palettes:
+\itemize{
+\item \code{okabe_ito}
+\item \code{bright}
+\item \code{contrast}
+\item \code{dark}
+\item \code{kelly}
+\item \code{light}
+\item \code{muted}
+\item \code{pale}
+\item \code{r4}
+\item \code{safe}
+\item \code{vibrant}
+}
+
+Sequential quantitative palettes:
+\itemize{
+\item \code{grey_conti}
+\item \code{blue_conti}
+\item \code{yellow_conti}
+}
+
+Divergent quantitative palettes:
+\itemize{
+\item \code{OrBl_div}
+\item \code{PrGn_div}
+}
 }
 \description{
 To visualise these colours use \code{plot_grafify_palette}.

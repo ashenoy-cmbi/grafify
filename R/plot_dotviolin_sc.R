@@ -9,7 +9,7 @@
 #' @param ycol name of the column to plot on quantitative Y axis. This should be a quantitative variable.
 #' @param colour colour of boxes and dots; a number between 1-64, any hexcode or names from `grafify` colour palettes. Default is `ok_orange`.
 #' @param dotsize size of dots relative to \code{binwidth} used by \code{geom_dotplot}. Default set to 1.5, increase/decrease as needed.
-#' @param b_alpha fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency). For white boxplots inside violins, set `b_alpha = 0`.
+#' @param b_alpha fractional opacity of boxplots.  Default is set to 0, which results in white boxes inside violins. Change to any value >0 up to 1 for different levels of transparency. 
 #' @param d_alpha fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency).
 #' @param v_alpha fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency)
 #' @param bvthick thickness of violin an boxplot lines; default 1.
@@ -31,13 +31,13 @@
 #' plot_dotviolin_sc(data = data_1w_death, 
 #' xcol = Genotype, ycol = Death, 
 #' scale = "width", trim = FALSE)
-#' #white boxplots
+#' 
 #' plot_dotviolin_sc(data = data_1w_death, 
 #' xcol = Genotype, ycol = Death, colour = "light_orange", 
-#' scale = "width", trim = FALSE, b_alpha = 0)
+#' scale = "width", trim = FALSE, b_alpha = 0.5)
 #' 
 
-plot_dotviolin_sc <- function(data, xcol, ycol, colour = "ok_orange", dotsize = 1.5,  dotthick = 1, bvthick = 1, bwid = 0.2, b_alpha = 1, d_alpha = 1, v_alpha = 1,  trim = TRUE, scale = "width", TextXAngle = 0, fontsize = 20, ...){
+plot_dotviolin_sc <- function(data, xcol, ycol, colour = "ok_orange", dotsize = 1.5,  dotthick = 1, bvthick = 1, bwid = 0.2, b_alpha = 0, d_alpha = 1, v_alpha = 1,  trim = TRUE, scale = "width", TextXAngle = 0, fontsize = 20, ...){
   
 ifelse(grepl("#", colour), 
          a <- colour,

@@ -32,7 +32,8 @@
 #' position = position_jitter(0.1)  )+
 #' scale_color_grafify2(palette = "bright", reverse = TRUE)+facet_wrap("Sex")
 
-scale_colour_grafify2 <- function(palette = "all_grafify", reverse = FALSE, ...){
+scale_colour_grafify2 <- function(palette = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), reverse = FALSE, ...){
+  palette <- match.arg(palette)
   pal <- graf_col_palette_default(palette = palette, reverse = reverse)
   discrete_scale("colour", paste0("graf_", palette), palette = pal, ...)
 }

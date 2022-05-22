@@ -14,7 +14,8 @@ plot_dotbar_sd(
   ewid = 0.2,
   b_alpha = 1,
   d_alpha = 1,
-  ColPal = "all_grafify",
+  ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy",
+    "kelly", "light", "muted", "pale", "r4", "safe", "vibrant"),
   ColRev = FALSE,
   ColSeq = TRUE,
   TextXAngle = 0,
@@ -41,9 +42,9 @@ plot_dotbar_sd(
 
 \item{d_alpha}{fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency).}
 
-\item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
+\item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..}
 
-\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE).}
+\item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 

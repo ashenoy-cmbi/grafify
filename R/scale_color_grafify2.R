@@ -20,21 +20,55 @@
 #' @import ggplot2
 #'
 #' @examples
-#' #add a colour scheme to a ggplot object
-#' ggplot(emmeans::neuralgia, aes(x = Treatment, y = Duration))+
-#' geom_point(aes(colour = Treatment, shape = Sex), size = 3, alpha = 0.9, 
-#' position = position_jitter(0.15)  )+
-#' scale_color_grafify2(palette = "bright")+facet_wrap("Sex")
-#' 
+#' #add a grafify fill scheme to ggplot
+#' ggplot(emmeans::neuralgia, aes(x = Treatment, 
+#'                                y = Duration))+
+#'   geom_boxplot(aes(fill = Treatment), 
+#'                alpha = .4)+
+#'   geom_point(aes(colour = Treatment), 
+#'              size = 3,
+#'              position = position_jitter(0.15), 
+#'              alpha = 0.8)+
+#'   scale_fill_grafify(palette = "vibrant")+
+#'   scale_colour_grafify(palette = "vibrant")+
+#'   facet_wrap("Sex")+
+#'   theme_classic()
+#' #distant colours   
+#' ggplot(emmeans::neuralgia, aes(x = Treatment, 
+#'                                y = Duration))+
+#'   geom_boxplot(aes(fill = Treatment), 
+#'                alpha = .4)+
+#'   geom_point(aes(colour = Treatment), 
+#'              size = 3,
+#'              position = position_jitter(0.15), 
+#'              alpha = 0.8)+
+#'   scale_fill_grafify(palette = "vibrant", 
+#'                      ColSeq = FALSE)+
+#'   scale_colour_grafify(palette = "vibrant", 
+#'                        ColSeq = FALSE)+
+#'                        facet_wrap("Sex")+
+#'                        theme_classic()
 #' #reverse colour order
-#' ggplot(emmeans::neuralgia, aes(x = Treatment, y = Duration))+
-#' geom_point(aes(colour = Treatment, shape = Sex), size = 3, alpha = 0.9, 
-#' position = position_jitter(0.1)  )+
-#' scale_color_grafify2(palette = "bright", reverse = TRUE)+facet_wrap("Sex")
+#' ggplot(emmeans::neuralgia, aes(x = Treatment, 
+#'                                y = Duration))+
+#'   geom_boxplot(aes(fill = Treatment), 
+#'                alpha = .4)+
+#'   geom_point(aes(colour = Treatment), 
+#'              size = 3,
+#'              position = position_jitter(0.15), 
+#'              alpha = 0.8)+
+#'   scale_fill_grafify(palette = "vibrant", 
+#'                      reverse = TRUE)+
+#'   scale_colour_grafify(palette = "vibrant", 
+#'                        reverse = TRUE)+
+#'                        facet_wrap("Sex")+
+#'                        theme_classic()
 
-scale_color_grafify2 <- function(palette = "all_grafify", reverse = FALSE, ...){
+scale_color_grafify2 <- function(palette = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), reverse = FALSE, ...){
+  warning("Use `scale_color_grafify` with `ColSeq` argument instead, as `scale_color_grafify2` is deprecated.")
+  palette <- match.arg(palette)
   pal <- graf_col_palette_default(palette = palette, reverse = reverse)
-    discrete_scale("colour", paste0("graf_", palette), palette = pal, ...)
+  discrete_scale("colour", paste0("graf_", palette), palette = pal, ...)
 }
 
 

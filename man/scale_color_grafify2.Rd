@@ -4,7 +4,12 @@
 \alias{scale_color_grafify2}
 \title{Scale_colour colour scheme}
 \usage{
-scale_color_grafify2(palette = "all_grafify", reverse = FALSE, ...)
+scale_color_grafify2(
+  palette = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy",
+    "kelly", "light", "muted", "pale", "r4", "safe", "vibrant"),
+  reverse = FALSE,
+  ...
+)
 }
 \arguments{
 \item{palette}{Name of the colour scheme. Default set to \code{palette = "all_grafify"}. Provide names as above in quotes.}
@@ -30,15 +35,47 @@ Additional options include "okabe_ito", "vibrant, "bright", "pale", "muted", "da
 \code{scale_fill_grafify2} and \code{scale_colour_grafify2} are identical except that when the number of categorical variables is fewer than the total number of colour shades in the palette (e.g. if you have 3 groups and the "okabe_ito" palette has 7 colours), these functions will pick the most 'distant' colours from the scheme than going sequentially. If you want colours assigned sequentially use \code{scale_fill_grafify} or \code{scale_colour_grafify}.
 }
 \examples{
-#add a colour scheme to a ggplot object
-ggplot(emmeans::neuralgia, aes(x = Treatment, y = Duration))+
-geom_point(aes(colour = Treatment, shape = Sex), size = 3, alpha = 0.9, 
-position = position_jitter(0.15)  )+
-scale_color_grafify2(palette = "bright")+facet_wrap("Sex")
-
+#add a grafify fill scheme to ggplot
+ggplot(emmeans::neuralgia, aes(x = Treatment, 
+                               y = Duration))+
+  geom_boxplot(aes(fill = Treatment), 
+               alpha = .4)+
+  geom_point(aes(colour = Treatment), 
+             size = 3,
+             position = position_jitter(0.15), 
+             alpha = 0.8)+
+  scale_fill_grafify(palette = "vibrant")+
+  scale_colour_grafify(palette = "vibrant")+
+  facet_wrap("Sex")+
+  theme_classic()
+#distant colours   
+ggplot(emmeans::neuralgia, aes(x = Treatment, 
+                               y = Duration))+
+  geom_boxplot(aes(fill = Treatment), 
+               alpha = .4)+
+  geom_point(aes(colour = Treatment), 
+             size = 3,
+             position = position_jitter(0.15), 
+             alpha = 0.8)+
+  scale_fill_grafify(palette = "vibrant", 
+                     ColSeq = FALSE)+
+  scale_colour_grafify(palette = "vibrant", 
+                       ColSeq = FALSE)+
+                       facet_wrap("Sex")+
+                       theme_classic()
 #reverse colour order
-ggplot(emmeans::neuralgia, aes(x = Treatment, y = Duration))+
-geom_point(aes(colour = Treatment, shape = Sex), size = 3, alpha = 0.9, 
-position = position_jitter(0.1)  )+
-scale_color_grafify2(palette = "bright", reverse = TRUE)+facet_wrap("Sex")
+ggplot(emmeans::neuralgia, aes(x = Treatment, 
+                               y = Duration))+
+  geom_boxplot(aes(fill = Treatment), 
+               alpha = .4)+
+  geom_point(aes(colour = Treatment), 
+             size = 3,
+             position = position_jitter(0.15), 
+             alpha = 0.8)+
+  scale_fill_grafify(palette = "vibrant", 
+                     reverse = TRUE)+
+  scale_colour_grafify(palette = "vibrant", 
+                       reverse = TRUE)+
+                       facet_wrap("Sex")+
+                       theme_classic()
 }

@@ -16,11 +16,12 @@
 #' plot_grafify_palette("pale")
 #' plot_grafify_palette("contrast")
 #' 
-plot_grafify_palette <- function(palette = "okabe_ito", bthick = 0, fontsize = 14, ...) {
+plot_grafify_palette <- function(palette = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), bthick = 0, fontsize = 14, ...) {
   t1 <- data.frame(graf_palettes[palette])
   t1$colour_name <- rownames(t1)
   t1$number <- -1*seq(from = 1, to = nrow(t1))
   t1$names <- paste0(t1[,2], "_", t1[,1])
+  palette <- match.arg(palette)
   suppressWarnings(P <- plot_bar_sd(data = t1, xcol = reorder(t1$names, t1$number),
                      ycol = .1, ColPal = {{ palette }},
                      TextXAngle = 45, ColRev = T, ColSeq = T,

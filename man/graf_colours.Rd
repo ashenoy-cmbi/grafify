@@ -5,7 +5,7 @@
 \alias{graf_colours}
 \title{List of hexcodes of colours in grafify palettes}
 \format{
-An object of class \code{character} of length 64.
+An object of class \code{character} of length 154.
 }
 \usage{
 graf_colours
@@ -14,6 +14,6 @@ graf_colours
 This is a character vector with names and hexcodes of colours used by palette functions. It is used by \code{get_graf_colours} to generate palettes.
 }
 \description{
-To visualise these colours use \code{plot_grafify_palette}.
+To visualise these colours use \code{plot_grafify_palette}. \code{okabe_ito}, \code{bright}, \code{contrast}, \code{dark}, \code{light}, \code{muted}, \code{pale}, \code{vibrant}, \code{yello_conti} from Paul Tol's \href{https://personal.sron.nl/~pault/}{post}. Zesty, Pastel, Elegant from this \href{https://venngage.com/blog/color-blind-friendly-palette/}{link}. Colour hexcodes for \code{fishy}, \code{kelly}, \code{r4}, \code{safe}, \code{OrBl_div}, \code{PrGn_div}, \code{blue_conti}, \code{grey_conti} taken from \href{https://github.com/mtennekes/cols4all}{cols4all:c4a_gui} package. All schemes are colourblind-friendly.
 }
 \keyword{datasets}

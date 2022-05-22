@@ -4,9 +4,15 @@
 \alias{scale_colour_grafify_c}
 \title{Scale_colour continuous scheme}
 \usage{
-scale_colour_grafify_c(reverse = FALSE, ...)
+scale_colour_grafify_c(
+  palette = c("blue_conti", "yellow_conti", "grey_conti", "PrGn_div", "OrBl_div"),
+  reverse = FALSE,
+  ...
+)
 }
 \arguments{
+\item{palette}{One of five \code{grafify} palettes for quantiative data \code{blue_conti}, \code{yellow_conti}, \code{grey_conti}, \code{PrGn_div}, \code{OrBl_div}}
+
 \item{reverse}{Whether the colour order should be reversed.}
 
 \item{...}{Additional parameters for \code{scale_fill} or \code{scale_colour}.}
@@ -16,9 +22,8 @@ ggplot scale_fill function for discrete colours.
 }
 \description{
 \code{grafify} internally includes colour-blind compatible schemes for fill and colour/color aesthetics.
-Note that this scheme is \strong{only} for continuous variables and has one palette (\code{yellow_conti}) \href{http://personal.sron.nl/~pault/#sec:sequential}{modified from} the YlOrBr scheme from RColorBrewer.
-}
-\details{
+Note that this scheme is \strong{only} for continuous variables and take four options, which include (\code{yellow_conti}) \href{http://personal.sron.nl/~pault/#sec:sequential}{modified from} the YlOrBr scheme from RColorBrewer, \code{blue_conti}, \code{PrGn_div} and \code{OrBl_div}.
+
 Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
 }
 \examples{

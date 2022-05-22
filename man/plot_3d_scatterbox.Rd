@@ -11,12 +11,13 @@ plot_3d_scatterbox(
   shapes,
   symsize = 2.5,
   symthick = 1,
-  jitter = 0.1,
+  jitter = 0.2,
   fontsize = 20,
   b_alpha = 1,
   s_alpha = 1,
   ColSeq = TRUE,
-  ColPal = "all_grafify",
+  ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy",
+    "kelly", "light", "muted", "pale", "r4", "safe", "vibrant"),
   ColRev = FALSE,
   TextXAngle = 0,
   ...
@@ -35,7 +36,7 @@ plot_3d_scatterbox(
 
 \item{symthick}{size of outline of symbol lines (\code{stroke = 1.0}), default set to 1.0.}
 
-\item{jitter}{extent of jitter (scatter) of symbols, default is 0.1. Increase to reduce symbol overlap, set to 0 for aligned symbols.}
+\item{jitter}{extent of jitter (scatter) of symbols, default is 0.2. Increase to reduce symbol overlap, set to 0 for aligned symbols.}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
@@ -45,9 +46,9 @@ plot_3d_scatterbox(
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 
-\item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
+\item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..}
 
-\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE).}
+\item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
 
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 

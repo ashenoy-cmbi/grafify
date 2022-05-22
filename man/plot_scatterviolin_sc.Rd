@@ -13,10 +13,10 @@ plot_scatterviolin_sc(
   symthick = 1,
   bwid = 0.2,
   bvthick = 1,
-  b_alpha = 1,
+  b_alpha = 0,
   v_alpha = 1,
   s_alpha = 1,
-  jitter = 0,
+  jitter = 0.2,
   trim = TRUE,
   scale = "width",
   TextXAngle = 0,
@@ -41,7 +41,7 @@ plot_scatterviolin_sc(
 
 \item{bvthick}{thickness of both violin and box plot lines; default 1.}
 
-\item{b_alpha}{fractional opacity of boxplots, default set to 1 (i.e. maximum opacity & zero transparency). For white boxplots inside violins, set \code{b_alpha = 0}.}
+\item{b_alpha}{fractional opacity of boxplots.  Default is set to 0, which results in white boxes inside violins. Change to any value >0 up to 1 for different levels of transparency.}
 
 \item{v_alpha}{fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency).  Set \code{s_alpha = 0} to not show scatter plot.}
 
@@ -73,9 +73,9 @@ xcol = Student, ycol = Doubling_time,
 colour = "ok_grey", 
 symsize = 2, trim = FALSE, scale = "width")
 
-#white boxplots and no symbols
+#no symbols
 plot_scatterviolin_sc(data = data_1w_death, 
 xcol = Genotype, ycol = Death, 
-colour = "pale_blue", b_alpha = 0, s_alpha = 0,
+colour = "pale_blue", s_alpha = 0,
 symsize = 2, trim = FALSE, scale = "width")
 }

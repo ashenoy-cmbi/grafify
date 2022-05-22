@@ -22,11 +22,11 @@
 #' @param dotthick thickness of dot border (`stroke` parameter of `geom_dotplot`), default set to 1.
 #' @param bvthick thickness of violin and boxplot lines; default 1.
 #' @param bwid width of boxplots; default 0.2
-#' @param b_alpha fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency). For white boxplots inside violins, set `b_alpha = 0`.
+#' @param b_alpha fractional opacity of boxplots.  Default is set to 0, which results in white boxes inside violins. Change to any value >0 up to 1 for different levels of transparency. 
 #' @param v_alpha fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency).
 #' @param d_alpha fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency).
-#' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
-#' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE).
+#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..
+#' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param trim set whether tips of violin plot should be trimmed at high/low data. Default \code{trim = T}, can be changed to F.
 #' @param scale set to "area" by default, can be changed to "count" or "width".
@@ -45,14 +45,14 @@
 #' xcol = Condition, ycol = Mass, 
 #' dotsize = 2, trim = FALSE)
 #' 
-#' #white boxplots
 #' plot_dotviolin(data = data_t_pdiff, 
 #' xcol = Condition, ycol = Mass,
-#' trim = FALSE, b_alpha = 0, 
+#' trim = FALSE, b_alpha = 0.5, 
 #' ColPal = "pale", ColSeq = FALSE)
 
-plot_dotviolin <- function(data, xcol, ycol, dotsize = 1.5, dotthick = 1, bvthick = 1, bwid = 0.2, trim = TRUE, scale = "width", b_alpha =1, v_alpha = 1, d_alpha = 1, ColPal = "all_grafify", ColRev = FALSE, ColSeq = TRUE, TextXAngle = 0, fontsize = 20, ...){
+plot_dotviolin <- function(data, xcol, ycol, dotsize = 1.5, dotthick = 1, bvthick = 1, bwid = 0.2, trim = TRUE, scale = "width", b_alpha = 0, v_alpha = 1, d_alpha = 1, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColRev = FALSE, ColSeq = TRUE, TextXAngle = 0, fontsize = 20, ...){
   if (b_alpha == 0) {
+    ColPal <- match.arg(ColPal)
   suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
     geom_violin(aes(fill = factor({{ xcol }})),

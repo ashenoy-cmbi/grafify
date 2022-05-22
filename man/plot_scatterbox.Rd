@@ -10,10 +10,11 @@ plot_scatterbox(
   ycol,
   symsize = 2.5,
   symthick = 1,
-  jitter = 0,
+  jitter = 0.2,
   b_alpha = 1,
   s_alpha = 1,
-  ColPal = "all_grafify",
+  ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy",
+    "kelly", "light", "muted", "pale", "r4", "safe", "vibrant"),
   ColSeq = TRUE,
   ColRev = FALSE,
   TextXAngle = 0,
@@ -38,11 +39,11 @@ plot_scatterbox(
 
 \item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).}
 
-\item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
+\item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..}
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 
-\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE).}
+\item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
 
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
@@ -72,9 +73,5 @@ These are related to the three "dot" versions that use a different geometry for 
 \examples{
 plot_scatterbox(data = data_cholesterol, 
 xcol = Treatment, ycol = Cholesterol)
-
-#with jitter
-plot_scatterbox(data = data_cholesterol, 
-xcol = Treatment, ycol = Cholesterol, jitter = 0.1)
 
 }

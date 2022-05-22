@@ -51,7 +51,7 @@ test_that("Check 3d scatter bars", {
   expect_match(as.character(rlang::quo_get_expr(sb1$labels$shape)), 
                "Time")
   expect_match(as.character(rlang::quo_get_expr(sb1$labels$fill)), 
-               "Time")
+               "Genotype")
   #check text angle is passed on
   expect_equal(sb1$guides$x$angle, 45)
 })

@@ -8,7 +8,7 @@
 #' @export graf_col_palette_default
 #'
 #'
-graf_col_palette_default <- function(palette = "all_grafify",
+graf_col_palette_default <- function(palette = "okabe_ito",
                              reverse = FALSE, ...){
   pal <- graf_palettes[[palette]]
   if(reverse) pal <- rev(pal)

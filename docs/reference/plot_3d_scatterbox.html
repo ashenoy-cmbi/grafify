@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.3.0.9999</span>
       </span>
     </div>
 
@@ -66,12 +66,13 @@
   <span class="va">shapes</span>,
   symsize <span class="op">=</span> <span class="fl">2.5</span>,
   symthick <span class="op">=</span> <span class="fl">1</span>,
-  jitter <span class="op">=</span> <span class="fl">0.1</span>,
+  jitter <span class="op">=</span> <span class="fl">0.2</span>,
   fontsize <span class="op">=</span> <span class="fl">20</span>,
   b_alpha <span class="op">=</span> <span class="fl">1</span>,
   s_alpha <span class="op">=</span> <span class="fl">1</span>,
   ColSeq <span class="op">=</span> <span class="cn">TRUE</span>,
-  ColPal <span class="op">=</span> <span class="st">"all_grafify"</span>,
+  ColPal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"okabe_ito"</span>, <span class="st">"all_grafify"</span>, <span class="st">"bright"</span>, <span class="st">"contrast"</span>, <span class="st">"dark"</span>, <span class="st">"fishy"</span>,
+    <span class="st">"kelly"</span>, <span class="st">"light"</span>, <span class="st">"muted"</span>, <span class="st">"pale"</span>, <span class="st">"r4"</span>, <span class="st">"safe"</span>, <span class="st">"vibrant"</span><span class="op">)</span>,
   ColRev <span class="op">=</span> <span class="cn">FALSE</span>,
   TextXAngle <span class="op">=</span> <span class="fl">0</span>,
   <span class="va">...</span>
@@ -93,7 +94,7 @@
 <dt>symthick</dt>
 <dd><p>size of outline of symbol lines (<code>stroke = 1.0</code>), default set to 1.0.</p></dd>
 <dt>jitter</dt>
-<dd><p>extent of jitter (scatter) of symbols, default is 0.1. Increase to reduce symbol overlap, set to 0 for aligned symbols.</p></dd>
+<dd><p>extent of jitter (scatter) of symbols, default is 0.2. Increase to reduce symbol overlap, set to 0 for aligned symbols.</p></dd>
 <dt>fontsize</dt>
 <dd><p>parameter of <code>base_size</code> of fonts in <code>theme_classic</code>, default set to size 20.</p></dd>
 <dt>b_alpha</dt>
@@ -103,9 +104,9 @@
 <dt>ColSeq</dt>
 <dd><p>logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  <code>scale_fill_grafify2</code>.</p></dd>
 <dt>ColPal</dt>
-<dd><p>grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".</p></dd>
+<dd><p>grafify colour palette to apply, default "okabe_ito"; see <code><a href="graf_palettes.html">graf_palettes</a></code> for available palettes..</p></dd>
 <dt>ColRev</dt>
-<dd><p>whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE).</p></dd>
+<dd><p>whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).</p></dd>
 <dt>TextXAngle</dt>
 <dd><p>orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.</p></dd>
 <dt>...</dt>
@@ -169,7 +170,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer></div>

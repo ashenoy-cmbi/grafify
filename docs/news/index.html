@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.3.0.9999</span>
       </span>
     </div>
 
@@ -54,7 +54,34 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="2.2.0" id="grafify-v220">grafify v2.2.0<a class="anchor" aria-label="anchor" href="#grafify-v220"></a></h2>
+<h2 class="page-header" data-toc-text="2.3.0" id="grafify-v230">grafify v2.3.0<a class="anchor" aria-label="anchor" href="#grafify-v230"></a></h2>
+<div class="section level3">
+<h3 id="major-additions-2-3-0">Major additions<a class="anchor" aria-label="anchor" href="#major-additions-2-3-0"></a></h3>
+<ol style="list-style-type: decimal"><li>Four new colourblind-friendly categorical colour schemes:</li>
+</ol><ul><li>
+<code>fishy</code>, <code>kelly</code>, <code>r4</code>, <code>safe</code>
+</li>
+</ul><ol start="2" style="list-style-type: decimal"><li>Four new quantitative schemes for continuous or divergent colours.</li>
+</ol><ul><li>sequential/continuous: <code>blue_conti</code>, <code>grey_conti</code>
+</li>
+<li>divergent: <code>OrBl_div</code>, <code>PrGn_div</code>
+</li>
+</ul><p>All these schemes are available through <code>scale_fill..</code> and <code>scale_colour_...</code> calls to be used on any <code>ggplot2</code> object.</p>
+</div>
+<div class="section level3">
+<h3 id="minor-changes--bug-fixes-2-3-0">Minor changes &amp; bug fixes<a class="anchor" aria-label="anchor" href="#minor-changes--bug-fixes-2-3-0"></a></h3>
+<ol style="list-style-type: decimal"><li>Fixed the error in legend title in one-way ANOVA plots with <code>plot_3d_</code>. The title now correctly refers to <code>xcol</code> and <code>shapes</code> arguments.</li>
+<li>
+<code>posthoc_Trends...</code> functions rewritten with <code><a href="https://rdrr.io/r/stats/model.frame.html" class="external-link">stats::model.frame()</a></code> to get model data frame as this is a more flexible method.</li>
+<li>Order of colours in <code>light</code>, <code>bright</code> and <code>muted</code> schemes changed slightly for better separation of colours when next to each other.</li>
+<li>The <code>jitter</code> setting in <code>plot_scaltter_</code> is set to <code>0.2</code> so the graph as plotted with jitter by default.<br></li>
+<li>The default colour scheme for all graphs is now <code>okabe_ito</code> (the <code>all_grafify</code> palette is was just a concatenation of all palettes without real basis in good visualisation). Use one of the other palettes (e.g. <code>kelly</code>, which has 20 discreet colours).</li>
+<li>
+<code>scale_fill_grafify2</code> and <code>scale_colour_grafify2</code> deprecated, and the same function offered with <code>ColSeq</code> argument to <code>scale_fill_grafify</code> and <code>scale_colour_grafify</code> to select sequential or distant colours from a palette.</li>
+</ol></div>
+</div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="2.2.0" id="grafify-v220">grafify v2.2.0<small>2022-03-24</small><a class="anchor" aria-label="anchor" href="#grafify-v220"></a></h2>
 <div class="section level3">
 <h3 id="new-features-2-2-0">New features<a class="anchor" aria-label="anchor" href="#new-features-2-2-0"></a></h3>
 <p><code>plot_3d_scatterviolin</code> and <code>plot_4d_scatterviolin</code> for one-way or two-way ANOVA design data to plot scatter plots with violins with box and whiskers.</p>
@@ -193,7 +220,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer></div>

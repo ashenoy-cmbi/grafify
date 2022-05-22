@@ -14,10 +14,11 @@ plot_dotviolin(
   bwid = 0.2,
   trim = TRUE,
   scale = "width",
-  b_alpha = 1,
+  b_alpha = 0,
   v_alpha = 1,
   d_alpha = 1,
-  ColPal = "all_grafify",
+  ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy",
+    "kelly", "light", "muted", "pale", "r4", "safe", "vibrant"),
   ColRev = FALSE,
   ColSeq = TRUE,
   TextXAngle = 0,
@@ -44,15 +45,15 @@ plot_dotviolin(
 
 \item{scale}{set to "area" by default, can be changed to "count" or "width".}
 
-\item{b_alpha}{fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency). For white boxplots inside violins, set \code{b_alpha = 0}.}
+\item{b_alpha}{fractional opacity of boxplots.  Default is set to 0, which results in white boxes inside violins. Change to any value >0 up to 1 for different levels of transparency.}
 
 \item{v_alpha}{fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency).}
 
 \item{d_alpha}{fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency).}
 
-\item{ColPal}{grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".}
+\item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..}
 
-\item{ColRev}{whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE).}
+\item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 
@@ -89,9 +90,8 @@ plot_dotviolin(data = data_t_pdiff,
 xcol = Condition, ycol = Mass, 
 dotsize = 2, trim = FALSE)
 
-#white boxplots
 plot_dotviolin(data = data_t_pdiff, 
 xcol = Condition, ycol = Mass,
-trim = FALSE, b_alpha = 0, 
+trim = FALSE, b_alpha = 0.5, 
 ColPal = "pale", ColSeq = FALSE)
 }

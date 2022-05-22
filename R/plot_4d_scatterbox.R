@@ -28,13 +28,13 @@
 #' @param shapes name of the column that contains matched observations, e.g. subject IDs, experiment number etc.
 #' @param symsize size of symbols, default set to 3.
 #' @param symthick size of outline of symbol lines (\code{stroke = 1.0}), default set to 1.0.
-#' @param jitter extent of jitter (scatter) of symbols, default is 0.1. Increase to reduce symbol overlap, set to 0 for aligned symbols.  
+#' @param jitter extent of jitter (scatter) of symbols, default is 0.2. Increase to reduce symbol overlap, set to 0 for aligned symbols.  
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param b_alpha fractional opacity of boxes, default set to 1 (i.e. maximum opacity & zero transparency).
 #' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
-#' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
-#' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE).
+#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..
+#' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
 #' @param ... any additional arguments to pass to \code{ggplot2}[geom_boxplot].
 #'
@@ -62,7 +62,8 @@
 #' bars = Treatment, 
 #' shapes = Block)
 
-plot_4d_scatterbox <- function(data, xcol, ycol, boxes, shapes, symsize = 2.5, symthick = 1.0, jitter = 0.1, fontsize = 20, b_alpha = 1, s_alpha = 1, ColSeq = TRUE, ColPal = "all_grafify", ColRev = FALSE, TextXAngle = 0, ...){
+plot_4d_scatterbox <- function(data, xcol, ycol, boxes, shapes, symsize = 2.5, symthick = 1.0, jitter = 0.2, fontsize = 20, b_alpha = 1, s_alpha = 1, ColSeq = TRUE, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColRev = FALSE, TextXAngle = 0, ...){
+  ColPal <- match.arg(ColPal)
   P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }},
                             group = interaction(factor({{ boxes }}),

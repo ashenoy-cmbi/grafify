@@ -13,7 +13,7 @@ plot_scatterbar_sd_sc(
   symthick = 1,
   bwid = 0.7,
   ewid = 0.3,
-  jitter = 0,
+  jitter = 0.2,
   b_alpha = 1,
   s_alpha = 1,
   TextXAngle = 0,
@@ -59,6 +59,7 @@ The default colour is \code{ok_orange}. \code{ColPal} and \code{ColRev} argument
 
 plot_scatterbar_sd_sc(data = data_doubling_time, 
 xcol = Student, ycol = Doubling_time)
+
 plot_scatterbar_sd_sc(data = data_doubling_time, 
 xcol = Student, ycol = Doubling_time, 
 colour = "ok_grey")

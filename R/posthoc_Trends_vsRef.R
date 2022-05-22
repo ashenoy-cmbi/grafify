@@ -14,7 +14,7 @@
 #' @return returns an "emm_list" object containing slopes and their contrasts calculated through  \code{\link[emmeans]{emtrends}}.
 #' @export posthoc_Trends_vsRef
 #' @importFrom emmeans emtrends
-#' @importFrom stats as.formula
+#' @importFrom stats as.formula model.frame
 #'
 #' @examples
 #' #create an lm model 
@@ -28,10 +28,7 @@
 #'
 
 posthoc_Trends_vsRef <- function(Model, Fixed_Factor, Trend_Factor, Ref_Level = 1, P_Adj = "sidak", ...){
-  if (inherits(Model, c("lmerMod", "lmerModLmerTest")))  {
-    t1 <- Model@frame} else {
-      t1 <- Model$model
-    }
+  t1 <- stats::model.frame(Model)
   if (!is.numeric(t1[, Trend_Factor])) stop("Trend_Factor should be numeric.")
   ifelse(length(Fixed_Factor) > 1,
          comp <- paste0(Fixed_Factor, collapse = "|"),

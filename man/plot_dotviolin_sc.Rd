@@ -13,7 +13,7 @@ plot_dotviolin_sc(
   dotthick = 1,
   bvthick = 1,
   bwid = 0.2,
-  b_alpha = 1,
+  b_alpha = 0,
   d_alpha = 1,
   v_alpha = 1,
   trim = TRUE,
@@ -40,7 +40,7 @@ plot_dotviolin_sc(
 
 \item{bwid}{width of boxplots; default 0.2}
 
-\item{b_alpha}{fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency). For white boxplots inside violins, set \code{b_alpha = 0}.}
+\item{b_alpha}{fractional opacity of boxplots.  Default is set to 0, which results in white boxes inside violins. Change to any value >0 up to 1 for different levels of transparency.}
 
 \item{d_alpha}{fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency).}
 
@@ -70,9 +70,9 @@ The default colour is \code{ok_orange}. \code{ColPal} and \code{ColRev} argument
 plot_dotviolin_sc(data = data_1w_death, 
 xcol = Genotype, ycol = Death, 
 scale = "width", trim = FALSE)
-#white boxplots
+
 plot_dotviolin_sc(data = data_1w_death, 
 xcol = Genotype, ycol = Death, colour = "light_orange", 
-scale = "width", trim = FALSE, b_alpha = 0)
+scale = "width", trim = FALSE, b_alpha = 0.5)
 
 }

@@ -21,9 +21,9 @@
 #' @param ewid width of error bars, default set to 0.2.
 #' @param b_alpha fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency).
 #' @param d_alpha fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency).
-#' @param ColPal grafify colour palette to apply, default "all_grafify"; alternatives: "okabe_ito", "bright", "pale", "vibrant", "contrast", "muted" "dark", "light".
+#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
-#' @param ColRev whether to reverse order of colour choice, default F (FALSE); can be set to T (TRUE).
+#' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param ... any additional arguments to pass to \code{ggplot2}[geom_dotplot].
@@ -41,7 +41,8 @@
 #' xcol = Genotype, ycol = Death, 
 #' ColPal = "pale", ColSeq = FALSE, ColRev = TRUE)
 
-plot_dotbar_sd <- function(data, xcol, ycol, dotsize = 1.5, dotthick = 1, bwid = 0.7, ewid = 0.2, b_alpha = 1, d_alpha = 1, ColPal = "all_grafify", ColRev = FALSE, ColSeq = TRUE, TextXAngle = 0, fontsize = 20, ...){
+plot_dotbar_sd <- function(data, xcol, ycol, dotsize = 1.5, dotthick = 1, bwid = 0.7, ewid = 0.2, b_alpha = 1, d_alpha = 1, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColRev = FALSE, ColSeq = TRUE, TextXAngle = 0, fontsize = 20, ...){
+  ColPal <- match.arg(ColPal)
   P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
     stat_summary(geom = "bar", colour = "black", 
