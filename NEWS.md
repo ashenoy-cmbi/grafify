@@ -12,6 +12,7 @@ Full reference to all functions available at [`grafify` GitHub pages](https://as
 ## Major additions
 
 1. Four new colourblind-friendly categorical colour schemes: 
+
 - `fishy`, `kelly`, `r4`, `safe`
 
 2. Four new quantitative schemes for continuous or divergent colours.
@@ -20,6 +21,8 @@ Full reference to all functions available at [`grafify` GitHub pages](https://as
 - divergent: `OrBl_div`, `PrGn_div`
 
 All these schemes are available through `scale_fill..` and `scale_colour_...` calls to be used on any `ggplot2` object.
+
+3. `scale_fill_grafify` and `scale_colour_grafify` (or `scale_color_grafify`) have been rewritten. All have two arguments that offer the functionalities previously offered via `scale_fill_grafify2`/`scale_colour_grafify2` (or `scale_color_grafify_c`) and `scale_fill_grafify_c`/`scale_colour_grafify_c` (or `scale_color_grafify_C`) groups of scale functions. These functions are now deprecated to reduce the exported namespace. The new arguments are `discrete` (logical T/F) to select discrete or continuous palettes, and `ColSeq` (logical T/F) to pick sequential or distant colours from a chosen palette.
 
 ## Minor changes & bug fixes
 

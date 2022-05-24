@@ -16,6 +16,7 @@ plot_dotbox(
     "kelly", "light", "muted", "pale", "r4", "safe", "vibrant"),
   ColRev = FALSE,
   ColSeq = TRUE,
+  SingleColour = "NULL",
   TextXAngle = 0,
   fontsize = 20,
   ...
@@ -42,6 +43,8 @@ plot_dotbox(
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 
+\item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} colour palettes to fill along X-axis aesthetic.}
+
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
@@ -61,9 +64,11 @@ Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} argum
 \code{ColRev} (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette.
 \code{ColSeq} decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
 
+If there are many groups along the X axis and you prefer a single colour for the graph,use the \code{SingleColour} argument.
+
 The size of dots can be adjusted using the parameter, which is \code{dotsize = 1} by default.
 
-This function is related to \code{\link{plot_scatterbar_sd}}, \code{\link{plot_dotbar_sd}} and \code{\link{plot_dotviolin}}.
+This function is related to \code{\link{plot_dotbar_sd}} and \code{\link{plot_dotviolin}}.
 }
 \examples{
 plot_dotbox(data = data_1w_death, 
@@ -72,4 +77,7 @@ xcol = Genotype, ycol = Death)
 plot_dotbox(data = data_1w_death, 
 xcol = Genotype, ycol = Death, 
 ColPal = "vibrant", b_alpha = 0.5)
+plot_dotbox(data = data_1w_death, 
+xcol = Genotype, ycol = Death, 
+SingleColour = "safe_bluegreen", b_alpha = 0.5) 
 }

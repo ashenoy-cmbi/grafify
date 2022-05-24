@@ -55,10 +55,12 @@ plot_density <- function(data, ycol, group, linethick = 1, c_alpha = 0.2, ColPal
          y = "Density")+
     theme_classic(base_size = {{ fontsize }})+
     theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = {{ TextXAngle }}))
-  if (ColSeq) {
-    P <- P + scale_fill_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }}) + scale_colour_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})
-  } else {
-    P <- P + scale_fill_grafify2(palette = {{ ColPal }}, reverse = {{ ColRev }})} + scale_colour_grafify2(palette = {{ ColPal }}, reverse = {{ ColRev }})
+    guides(x = guide_axis(angle = {{ TextXAngle }}))+
+    scale_fill_grafify(palette = {{ ColPal }}, 
+                       reverse = {{ ColRev }}, 
+                       ColSeq = {{ ColSeq }})+
+    scale_colour_grafify(palette = {{ ColPal }}, 
+                       reverse = {{ ColRev }}, 
+                       ColSeq = {{ ColSeq }})
   P
 }

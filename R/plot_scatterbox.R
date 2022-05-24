@@ -8,6 +8,8 @@
 #' `ColRev` (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette. 
 #' `ColSeq` (logical TRUE/FALSE) decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
 #' 
+#' If there are many groups along the X axis and you prefer a single colour for the graph,use the `SingleColour` argument.
+#' 
 #' The size of symbols can be adjusted using \code{symsize} set to 1 by default.
 #' Transparency of boxplot and symbols can be set independently with `b_alpha` and `s_alpha`, respectively.
 #'
@@ -25,6 +27,7 @@
 #' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
+#' @param SingleColour a colour hexcode (starting with #), a number between 1-154, or names of colours from `grafify` colour palettes to fill along X-axis aesthetic.
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param ... any additional arguments to pass to \code{ggplot2}[geom_boxplot].
@@ -37,30 +40,57 @@
 #' plot_scatterbox(data = data_cholesterol, 
 #' xcol = Treatment, ycol = Cholesterol)
 #' 
+#' plot_scatterbox(data = data_doubling_time, 
+#' xcol = Student, ycol = Doubling_time,
+#' SingleColour = "ok_grey")
+#' 
 
-plot_scatterbox <- function(data, xcol, ycol, symsize = 2.5, symthick = 1, jitter = 0.2, b_alpha = 1, s_alpha = 1, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, TextXAngle = 0, fontsize = 20, ...){
+plot_scatterbox <- function(data, xcol, ycol, symsize = 2.5, symthick = 1, jitter = 0.2, b_alpha = 1, s_alpha = 1, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, SingleColour = "NULL", TextXAngle = 0, fontsize = 20, ...){
   ColPal <- match.arg(ColPal)
-  P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
-                            y = {{ ycol }}))+
-    geom_boxplot(aes(fill = factor({{ xcol }})), size = 1,
-                 alpha = {{ b_alpha }},
-                 outlier.alpha = 0,
-                 width = 0.7,
-                 ...)+
-    geom_point(shape = 21,
-               position = position_jitter(width = {{ jitter }}),
-               alpha = {{ s_alpha }},
-               stroke = {{ symthick }},
-               size = {{ symsize }},
-               aes(fill = factor({{ xcol }})))+
-    labs(x = enquo(xcol),
-         fill = enquo(xcol))+
-    theme_classic(base_size = {{ fontsize }})+
-    theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = {{ TextXAngle }}))
-  if (ColSeq) {
-    P <- P + scale_fill_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})
+  if (missing(SingleColour)) {
+    P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+                                   y = {{ ycol }}))+
+      geom_boxplot(aes(fill = factor({{ xcol }})), size = 1,
+                   alpha = {{ b_alpha }},
+                   outlier.alpha = 0,
+                   width = 0.7,
+                   ...)+
+      geom_point(shape = 21,
+                 position = position_jitter(width = {{ jitter }}),
+                 alpha = {{ s_alpha }},
+                 stroke = {{ symthick }},
+                 size = {{ symsize }},
+                 aes(fill = factor({{ xcol }})))+
+      labs(x = enquo(xcol),
+           fill = enquo(xcol))+
+      theme_classic(base_size = {{ fontsize }})+
+      theme(strip.background = element_blank())+
+      guides(x = guide_axis(angle = {{ TextXAngle }}))+
+      scale_fill_grafify(palette = {{ ColPal }}, 
+                         reverse = {{ ColRev }}, 
+                         ColSeq = {{ ColSeq }})
   } else {
-    P <- P + scale_fill_grafify2(palette = {{ ColPal }}, reverse = {{ ColRev }})}
+    ifelse(grepl("#", SingleColour), 
+           a <- SingleColour,
+           a <- get_graf_colours({{ SingleColour }}))
+    
+    P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+                              y = {{ ycol }}))+
+      geom_boxplot(fill = a, size = 1,
+                   alpha = {{ b_alpha }},
+                   outlier.alpha = 0,
+                   width = 0.7, 
+                   ...)+
+      geom_point(shape = 21,
+                 position = position_jitter(width = {{ jitter }}),
+                 alpha = {{ s_alpha }},
+                 stroke = {{ symthick }},
+                 size = {{ symsize }},
+                 fill = a)+
+      labs(x = enquo(xcol))+
+      theme_classic(base_size = {{ fontsize }})+
+      theme(strip.background = element_blank())+
+      guides(x = guide_axis(angle = {{ TextXAngle }}))
+  }
   P
 }

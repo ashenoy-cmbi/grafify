@@ -5,15 +5,17 @@
 \title{\code{scale_colour_} and \code{scale_fill_} functions}
 \usage{
 scale_colour_grafify(
-  palette = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy",
-    "kelly", "light", "muted", "pale", "r4", "safe", "vibrant"),
+  palette = "okabe_ito",
+  discrete = TRUE,
   ColSeq = TRUE,
   reverse = FALSE,
   ...
 )
 }
 \arguments{
-\item{palette}{Name of the colour scheme. Default set to \code{palette = "all_grafify"}. Provide names as above in quotes.}
+\item{palette}{Name of the \code{grafify} palettes from above, provide within quotes. Default discrete palette is \code{okabe_ito}. For quantitative palette, set \code{discrete = FALSE} (which will apply \code{blue_conti} unless another paltte is chosen).}
+
+\item{discrete}{logical TRUE or FALSE. Default is TRUE for discrete colour palettes. Set to FALSE when plotting quantitative data to use quantitative palettes from above.}
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours.}
 
@@ -25,14 +27,12 @@ scale_colour_grafify(
 ggplot scale_fill function for discrete colours.
 }
 \description{
-\code{grafify} palettes for fill and colour/color aesthetics can be applied to any \code{ggplot2} object using \code{scale_colour_} and \code{scale_fill_} functions. \code{scale_color_} spelling is also accepted.
+These let you apply \code{grafify} discrete or continuous palettes as fill or colour/color aesthetics to any \code{ggplot2} (\code{scale_color_} spelling is also accepted).
 }
 \details{
-Note that \code{scale_fill_grafify} and \code{scale_colour_grafify} \strong{only} work for categorical variables. Use \code{scale_fill_grafify_c} or \code{scale_colour_grafify_c} for continuous or divergent palettes in \code{grafify}.
+The default is \code{palette = "okabe_ito"} and \code{discrete = TRUE}. To apply quantitative colour/fill schemes set \code{discrete = FALSE} (if a palette is not chosen, \code{blue_conti} palette will be applied by default).
 
-Names of palettes available are as follows:
-
-Categorical/discreet palettes:
+Categorical/discreet palettes (only allowed with \code{discrete = TRUE})
 \itemize{
 \item \code{okabe_ito}
 \item \code{bright}
@@ -47,65 +47,58 @@ Categorical/discreet palettes:
 \item \code{vibrant}
 }
 
-Sequential quantitative palettes:
+By default, sequential colours from above palettes will be chosen. To choose the most distant colours set \code{ColSeq = TRUE}.
+
+Sequential quantitative palettes (only allowed with \code{discrete = FALSE}):
 \itemize{
 \item \code{grey_conti}
 \item \code{blue_conti}
 \item \code{yellow_conti}
 }
 
-Divergent quantitative palettes:
+Divergent quantitative palettes (only allowed with \code{discrete = FALSE}):
 \itemize{
 \item \code{OrBl_div}
 \item \code{PrGn_div}
-\code{scale_fill_grafify2} and \code{scale_colour_grafify2} will choose the most distant colours from selected palettes instead of choosing colours sequentially from the palette (e.g. if you have 3 groups and the "okabe_ito" palette has 7 colours), these functions will pick the most 'distant' colours from the scheme than going sequentially.
 }
-
-Both these will be deprecated soon. Instead use \code{ColSeq = FALSE} to implement distant colours. Default is \code{ColSeq = TRUE}.
 }
 \examples{
 #add a grafify fill scheme to ggplot
 ggplot(emmeans::neuralgia, aes(x = Treatment, 
                                y = Duration))+
   geom_boxplot(aes(fill = Treatment), 
-               alpha = .4)+
-  geom_point(aes(colour = Treatment), 
-             size = 3,
-             position = position_jitter(0.15), 
-             alpha = 0.8)+
-  scale_fill_grafify(palette = "vibrant")+
-  scale_colour_grafify(palette = "vibrant")+
+               alpha = .6)+
+  geom_point(aes(colour = Treatment,
+                 shape = Treatment), 
+             size = 3)+
+  scale_fill_grafify(palette = "bright")+
+  scale_colour_grafify(palette = "bright")+
   facet_wrap("Sex")+
   theme_classic()
-#distant colours   
+#distant colours `ColSeq = FALSE`   
 ggplot(emmeans::neuralgia, aes(x = Treatment, 
                                y = Duration))+
   geom_boxplot(aes(fill = Treatment), 
-               alpha = .4)+
-  geom_point(aes(colour = Treatment), 
-             size = 3,
-             position = position_jitter(0.15), 
-             alpha = 0.8)+
-  scale_fill_grafify(palette = "vibrant", 
+               alpha = .6)+
+  geom_point(aes(colour = Treatment,
+                 shape = Treatment), 
+             size = 3)+
+  scale_fill_grafify(palette = "bright",
                      ColSeq = FALSE)+
-  scale_colour_grafify(palette = "vibrant", 
+  scale_colour_grafify(palette = "bright",
                        ColSeq = FALSE)+
-                       facet_wrap("Sex")+
-                       theme_classic()
-#reverse colour order
-ggplot(emmeans::neuralgia, aes(x = Treatment, 
-                               y = Duration))+
-  geom_boxplot(aes(fill = Treatment), 
-               alpha = .4)+
-  geom_point(aes(colour = Treatment), 
-             size = 3,
-             position = position_jitter(0.15), 
-             alpha = 0.8)+
-  scale_fill_grafify(palette = "vibrant", 
-                     reverse = TRUE)+
-  scale_colour_grafify(palette = "vibrant", 
-                       reverse = TRUE)+
-                       facet_wrap("Sex")+
-                       theme_classic()
-                       
+  facet_wrap("Sex")+
+  theme_classic()
+#quantiative colour schemes with `discrete = FALSE`
+ggplot(mtcars, aes(x = disp,
+                   y = mpg))+
+  geom_point(aes(colour = cyl), 
+             size = 3)+
+  scale_colour_grafify(discrete = FALSE)
+#quantiative colour scheme
+ggplot(mtcars, aes(x = disp,
+                   y = mpg))+
+  geom_point(aes(colour = cyl), 
+             size = 3)+
+  scale_colour_grafify(palette = "yellow_conti")
 }

@@ -89,10 +89,9 @@ plot_3d_scatterbar <- function(data, xcol, ycol, shapes, ewid = 0.2, symsize = 2
          shape = enquo(shapes))+
     theme_classic(base_size = {{ fontsize }})+
     theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = {{ TextXAngle }}))
-    if (ColSeq) {
-      P <- P + scale_fill_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})
-    } else {
-      P <- P + scale_fill_grafify2(palette = {{ ColPal }}, reverse = {{ ColRev }})}
+    guides(x = guide_axis(angle = {{ TextXAngle }}))+
+    scale_fill_grafify(palette = {{ ColPal }},
+                       reverse = {{ ColRev }},
+                       ColSeq = {{ ColSeq }})
     P
 }

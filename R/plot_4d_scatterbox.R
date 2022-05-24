@@ -86,13 +86,9 @@ plot_4d_scatterbox <- function(data, xcol, ycol, boxes, shapes, symsize = 2.5, s
          x = enquo(xcol))+
     theme_classic(base_size = {{ fontsize }})+
     theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = {{ TextXAngle }}))
-  if (ColSeq) {
-    P <- P + scale_fill_grafify(palette = {{ ColPal }}, 
-                                    reverse = {{ ColRev }})
-  } else {
-    P <- P + scale_fill_grafify2(palette = {{ ColPal }}, 
-                                    reverse = {{ ColRev }})
-  }
+    guides(x = guide_axis(angle = {{ TextXAngle }}))+
+    scale_fill_grafify(palette = {{ ColPal }}, 
+                       reverse = {{ ColRev }}, 
+                       ColSeq = {{ ColSeq }})
   P
 }

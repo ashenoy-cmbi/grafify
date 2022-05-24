@@ -23,7 +23,7 @@
 #' @param ... any additional arguments to pass to \code{ggplot2}[geom_boxplot], \code{ggplot2}[geom_point] or \code{ggplot2}[geom_violin].
 #'
 #' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
-#' @export plot_scatterviolin_sc
+#' @noRd
 #' @import ggplot2
 #'
 #' @examples
@@ -40,6 +40,8 @@
 
 
 plot_scatterviolin_sc <- function(data, xcol, ycol, colour = "ok_orange", symsize = 2.5, symthick = 1, bwid = 0.2, bvthick = 1, b_alpha = 0, v_alpha = 1, s_alpha = 1, jitter = 0.2, trim = TRUE, scale = "width", TextXAngle = 0, fontsize = 20, ...){
+  warning("Use `SingleColour` argument in `plot_` functions, as `plot_..._sc` functions have been deprecated.")
+  
   ifelse(grepl("#", colour), 
          a <- colour,
          a <- get_graf_colours({{ colour }}))
@@ -70,7 +72,7 @@ plot_scatterviolin_sc <- function(data, xcol, ycol, colour = "ok_orange", symsiz
       theme_classic(base_size = {{ fontsize }})+
       theme(strip.background = element_blank())+
       guides(x = guide_axis(angle = {{ TextXAngle }})))
-  } else {
+  
   suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }}))+
     geom_violin(fill = a,

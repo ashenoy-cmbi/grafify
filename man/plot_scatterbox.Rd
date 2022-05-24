@@ -17,6 +17,7 @@ plot_scatterbox(
     "kelly", "light", "muted", "pale", "r4", "safe", "vibrant"),
   ColSeq = TRUE,
   ColRev = FALSE,
+  SingleColour = "NULL",
   TextXAngle = 0,
   fontsize = 20,
   ...
@@ -45,6 +46,8 @@ plot_scatterbox(
 
 \item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
 
+\item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} colour palettes to fill along X-axis aesthetic.}
+
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
@@ -64,6 +67,8 @@ Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} argum
 \code{ColSeq} (logical TRUE/FALSE) decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
 }
 \details{
+If there are many groups along the X axis and you prefer a single colour for the graph,use the \code{SingleColour} argument.
+
 The size of symbols can be adjusted using \code{symsize} set to 1 by default.
 Transparency of boxplot and symbols can be set independently with \code{b_alpha} and \code{s_alpha}, respectively.
 
@@ -73,5 +78,9 @@ These are related to the three "dot" versions that use a different geometry for 
 \examples{
 plot_scatterbox(data = data_cholesterol, 
 xcol = Treatment, ycol = Cholesterol)
+
+plot_scatterbox(data = data_doubling_time, 
+xcol = Student, ycol = Doubling_time,
+SingleColour = "ok_grey")
 
 }

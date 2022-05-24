@@ -8,9 +8,11 @@
 #' `ColRev` (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette. 
 #' `ColSeq` decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
 #' 
+#' If there are many groups along the X axis and you prefer a single colour for the graph,use the `SingleColour` argument.
+#' 
 #' The size of dots can be adjusted using the parameter, which is \code{dotsize = 1} by default.
 #'
-#' This function is related to \code{\link{plot_scatterbar_sd}}, \code{\link{plot_dotbar_sd}} and \code{\link{plot_dotviolin}}.
+#' This function is related to \code{\link{plot_dotbar_sd}} and \code{\link{plot_dotviolin}}.
 #'
 #' @param data a data table object, e.g. data.frame or tibble.
 #' @param xcol name of the column to plot on X axis. This should be a categorical variable.
@@ -23,6 +25,7 @@
 #' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
+#' @param SingleColour a colour hexcode (starting with #), a number between 1-154, or names of colours from `grafify` colour palettes to fill along X-axis aesthetic.
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
 #' @param ... any additional arguments to pass to \code{ggplot2}[geom_boxplot] or \code{ggplot2}[geom_dotplot].
 #'
@@ -37,31 +40,58 @@
 #' plot_dotbox(data = data_1w_death, 
 #' xcol = Genotype, ycol = Death, 
 #' ColPal = "vibrant", b_alpha = 0.5)
+#' plot_dotbox(data = data_1w_death, 
+#' xcol = Genotype, ycol = Death, 
+#' SingleColour = "safe_bluegreen", b_alpha = 0.5) 
 
-plot_dotbox <- function(data, xcol, ycol, dotsize = 1.5, dotthick = 1, b_alpha = 1, d_alpha = 1, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColRev = FALSE, ColSeq = TRUE, TextXAngle = 0, fontsize = 20,  ...){
+plot_dotbox <- function(data, xcol, ycol, dotsize = 1.5, dotthick = 1, b_alpha = 1, d_alpha = 1, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColRev = FALSE, ColSeq = TRUE, SingleColour = "NULL", TextXAngle = 0, fontsize = 20,  ...){
   ColPal <- match.arg(ColPal)
-  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
-                            y = {{ ycol }}))+
-    geom_boxplot(aes(fill = factor({{ xcol }})), size = 1,
-                 alpha = {{ b_alpha }},
-                 outlier.alpha = 0,
-                 width = 0.7,
-                 ...)+
-    geom_dotplot(stackdir = "center", 
-                 stroke = {{ dotthick }},
-                 alpha = {{ d_alpha }},
-                 binaxis = 'y', 
-                 dotsize = {{ dotsize }},
-                 aes(fill = factor({{ xcol }})),
-                 ...)+
-    labs(x = enquo(xcol),
-         fill = enquo(xcol))+
-    theme_classic(base_size = {{ fontsize }})+
-    theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = {{ TextXAngle }})))
-  if (ColSeq) {
-    P <- P + scale_fill_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})
+  if (missing(SingleColour)) {
+    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+                                                    y = {{ ycol }}))+
+                       geom_boxplot(aes(fill = factor({{ xcol }})), size = 1,
+                                    alpha = {{ b_alpha }},
+                                    outlier.alpha = 0,
+                                    width = 0.7,
+                                    ...)+
+                       geom_dotplot(stackdir = "center", 
+                                    stroke = {{ dotthick }},
+                                    alpha = {{ d_alpha }},
+                                    binaxis = 'y', 
+                                    dotsize = {{ dotsize }},
+                                    aes(fill = factor({{ xcol }})),
+                                    ...)+
+                       labs(x = enquo(xcol),
+                            fill = enquo(xcol))+
+                       theme_classic(base_size = {{ fontsize }})+
+                       theme(strip.background = element_blank())+
+                       guides(x = guide_axis(angle = {{ TextXAngle }})))+
+      scale_fill_grafify(palette = {{ ColPal }}, 
+                         reverse = {{ ColRev }}, 
+                         ColSeq = {{ ColSeq }})
   } else {
-    P <- P + scale_fill_grafify2(palette = {{ ColPal }}, reverse = {{ ColRev }})}
+    ifelse(grepl("#", SingleColour), 
+           a <- SingleColour,
+           a <- get_graf_colours({{ SingleColour }}))
+    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+                                                    y = {{ ycol }}))+
+                       geom_boxplot(size = 1,
+                                    alpha = {{ b_alpha }},
+                                    outlier.alpha = 0,
+                                    width = 0.7,
+                                    fill = a,
+                                    ...)+
+                       geom_dotplot(stackdir = "center", 
+                                    stroke = {{ dotthick }},
+                                    alpha = {{ d_alpha }},
+                                    binaxis = 'y', 
+                                    dotsize = {{ dotsize }},
+                                    fill = a,
+                                    ...)+
+                       labs(x = enquo(xcol))+
+                       theme_classic(base_size = {{ fontsize }})+
+                       theme(strip.background = element_blank())+
+                       guides(x = guide_axis(angle = {{ TextXAngle }})))
+  }
   P
 }

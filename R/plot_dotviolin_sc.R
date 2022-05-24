@@ -22,7 +22,7 @@
 #' @param ... any additional arguments to pass to \code{ggplot2}[geom_boxplot], \code{ggplot2}[geom_dotplot] or \code{ggplot2}[geom_violin].
 #'
 #' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
-#' @export plot_dotviolin_sc
+#' @noRd
 #' @import ggplot2
 #'
 #' @examples
@@ -38,6 +38,7 @@
 #' 
 
 plot_dotviolin_sc <- function(data, xcol, ycol, colour = "ok_orange", dotsize = 1.5,  dotthick = 1, bvthick = 1, bwid = 0.2, b_alpha = 0, d_alpha = 1, v_alpha = 1,  trim = TRUE, scale = "width", TextXAngle = 0, fontsize = 20, ...){
+  warning("Use `SingleColour` argument in `plot_` functions, as `plot_..._sc` functions have been deprecated.")
   
 ifelse(grepl("#", colour), 
          a <- colour,

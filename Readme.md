@@ -42,9 +42,8 @@ The following categorical (qualitative/discreet) and quantitative
 (sequential or divergent) palettes are implemented natively in `grafify`
 (i.e. can be applied to `plot_` objects from within the function call.
 
-`grafify` also offers `scale_fill_grafify`, `scale_fill_grafify_c` and
-`scale_colour_grafify`, `scale_colour_grafify_c` to apply all `grafify`
-palettes to any `ggplot2` object.
+`grafify` also offers `scale_fill_grafify` and `scale_colour_grafify` to
+apply all `grafify` palettes to any `ggplot2` object.
 
 <img src="man/figures/grafify_palettesv230.jpg" width="90%" />
 

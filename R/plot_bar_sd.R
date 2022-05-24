@@ -8,6 +8,8 @@
 #' `ColPal` can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
 #' `ColRev` (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette. 
 #' `ColSeq` decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
+#' 
+#' If there are many groups along the X axis and you prefer a single colour for the graph,use the `SingleColour` argument.
 #'
 #' You are instead encouraged to show all data using the following functions: \code{\link{plot_scatterbar_sd}}, \code{\link{plot_scatterbox}}, \code{\link{plot_dotbox}}, \code{\link{plot_dotbar_sd}}, \code{\link{plot_scatterviolin}} or \code{\link{plot_dotviolin}}.
 #' 
@@ -22,6 +24,7 @@
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
+#' @param SingleColour a colour hexcode (starting with #), a number between 1-154, or names of colours from `grafify` colour palettes to fill along X-axis aesthetic.
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
 #' @param ... any additional arguments to pass to \code{stat_summary}.
 #'
@@ -39,29 +42,62 @@
 #' plot_bar_sd(data = data_doubling_time, 
 #' xcol = Student, ycol = Doubling_time, 
 #' ColSeq = FALSE)
-#'
-
-plot_bar_sd <- function(data, xcol, ycol, b_alpha = 1, bwid = 0.7, bthick = 1, ewid = 0.3, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, TextXAngle = 0, fontsize = 20, ...){
+#' 
+#' #single colour along X axis aesthetic
+#' plot_bar_sd(data = data_doubling_time, 
+#' xcol = Student, ycol = Doubling_time, 
+#' SingleColour = "pale_cyan")
+#' 
+plot_bar_sd <- function(data, xcol, ycol, b_alpha = 1, bwid = 0.7, bthick = 1, ewid = 0.3, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, SingleColour = "NULL", TextXAngle = 0, fontsize = 20, ...){
   ColPal <- match.arg(ColPal)
-  P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
-                                 y = {{ ycol }}))+
-    stat_summary(geom = "bar", 
-                 width = {{ bwid }}, size = {{ bthick }},
-                 fun = "mean", colour = "black",
-                 alpha = {{ b_alpha }},
-                 aes(fill = factor({{ xcol }})), ...)+
-    stat_summary(geom = "errorbar", size = 1,
-                 fun.data = "mean_sdl",
-                 fun.args = list(mult = 1),
-                 width = {{ ewid }})+
-    labs(x = enquo(xcol),
-         fill = enquo(xcol))+
-    theme_classic(base_size = {{ fontsize }})+
-    theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = {{ TextXAngle }}))
-  if (ColSeq) {
-    P <- P + scale_fill_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})
+  if (missing(SingleColour)) {
+    P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+                                   y = {{ ycol }}))+
+      stat_summary(geom = "bar", 
+                   width = {{ bwid }}, 
+                   size = {{ bthick }},
+                   fun = "mean", 
+                   colour = "black",
+                   alpha = {{ b_alpha }},
+                   aes(fill = factor({{ xcol }})), 
+                   ...)+
+      stat_summary(geom = "errorbar", 
+                   size = 1,
+                   fun.data = "mean_sdl",
+                   fun.args = list(mult = 1),
+                   width = {{ ewid }})+
+      labs(x = enquo(xcol),
+           fill = enquo(xcol))+
+      theme_classic(base_size = {{ fontsize }})+
+      theme(strip.background = element_blank())+
+      guides(x = guide_axis(angle = {{ TextXAngle }}))+
+      scale_fill_grafify(palette = {{ ColPal }}, 
+                         reverse = {{ ColRev }}, 
+                         ColSeq = {{ ColSeq }})
   } else {
-    P <- P + scale_fill_grafify2(palette = {{ ColPal }}, reverse = {{ ColRev }})}
+    ifelse(grepl("#", SingleColour),
+           a <- SingleColour,
+           a <- get_graf_colours({{ SingleColour }}))
+    
+    P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+                                   y = {{ ycol }}))+
+      stat_summary(geom = "bar", 
+                   width = {{ bwid }}, 
+                   size = {{ bthick }},
+                   fun = "mean", 
+                   colour = "black",
+                   alpha = {{ b_alpha }},
+                   fill = a, 
+                   ...)+
+      stat_summary(geom = "errorbar", 
+                   size = 1,
+                   fun.data = "mean_sdl",
+                   fun.args = list(mult = 1),
+                   width = {{ ewid }})+
+      labs(x = enquo(xcol))+
+      theme_classic(base_size = {{ fontsize }})+
+      theme(strip.background = element_blank())+
+      guides(x = guide_axis(angle = {{ TextXAngle }}))
+  }
   P
 }

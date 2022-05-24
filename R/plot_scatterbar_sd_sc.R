@@ -19,7 +19,7 @@
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #'
 #' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
-#' @export plot_scatterbar_sd_sc
+#' @noRd
 #' @import ggplot2 Hmisc
 #'
 #' @examples
@@ -32,7 +32,8 @@
 #' colour = "ok_grey")
 
 plot_scatterbar_sd_sc <- function(data, xcol, ycol, colour = "ok_orange", symsize = 2.5, symthick = 1, bwid = 0.7, ewid = 0.3, jitter = 0.2, b_alpha = 1, s_alpha = 1, TextXAngle = 0, fontsize = 20){
-
+  warning("Use `SingleColour` argument in `plot_` functions, as `plot_..._sc` functions have been deprecated.")
+  
   ifelse(grepl("#", colour), 
          a <- colour,
          a <- get_graf_colours({{ colour }}))

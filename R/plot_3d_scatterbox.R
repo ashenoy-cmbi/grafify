@@ -64,9 +64,10 @@
 
 plot_3d_scatterbox <- function(data, xcol, ycol, shapes, symsize = 2.5, symthick = 1.0, jitter = 0.2, fontsize = 20, b_alpha = 1, s_alpha = 1, ColSeq = TRUE, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColRev = FALSE, TextXAngle = 0, ...){
   ColPal <- match.arg(ColPal)
-  P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
-                            y = {{ ycol }},
-                            group = factor({{ xcol }})))+
+  P <- ggplot2::ggplot(data, 
+                       aes(x = factor({{ xcol }}),
+                                 y = {{ ycol }},
+                                 group = factor({{ xcol }})))+
     geom_boxplot(aes(fill = factor({{ xcol }})), size = 1,
                  alpha = {{ b_alpha }},
                  position = position_dodge(width = 0.8),
@@ -85,10 +86,9 @@ plot_3d_scatterbox <- function(data, xcol, ycol, shapes, symsize = 2.5, symthick
          x = enquo(xcol))+
     theme_classic(base_size = {{ fontsize }})+
     theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = {{ TextXAngle }}))
-  if (ColSeq) {
-    P <- P + scale_fill_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})
-  } else {
-    P <- P + scale_fill_grafify2(palette = {{ ColPal }}, reverse = {{ ColRev }})}
+    guides(x = guide_axis(angle = {{ TextXAngle }}))+
+    scale_fill_grafify(palette = {{ ColPal }}, 
+                       reverse = {{ ColRev }}, 
+                       ColSeq = {{ ColSeq }})
   P
 }

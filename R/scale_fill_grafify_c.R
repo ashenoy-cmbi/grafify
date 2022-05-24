@@ -10,7 +10,7 @@
 #' @param ... Additional parameters for `scale_fill` or `scale_colour`.
 #'
 #' @return ggplot scale_fill function for continuous colours.
-#' @export scale_fill_grafify_c
+#' @noRd
 #' @import ggplot2
 #'
 #' @examples

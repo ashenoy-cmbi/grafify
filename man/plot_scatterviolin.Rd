@@ -19,6 +19,7 @@ plot_scatterviolin(
     "kelly", "light", "muted", "pale", "r4", "safe", "vibrant"),
   ColSeq = TRUE,
   ColRev = FALSE,
+  SingleColour = "NULL",
   jitter = 0.2,
   trim = TRUE,
   scale = "width",
@@ -54,6 +55,8 @@ plot_scatterviolin(
 
 \item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
 
+\item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} colour palettes to fill along X-axis aesthetic.}
+
 \item{jitter}{extent of jitter (scatter) of symbols, default is 0 (i.e. aligned symbols). To reduce symbol overlap, try 0.1-0.3 or higher.}
 
 \item{trim}{set whether tips of violin plot should be trimmed at high/low data. Default \code{trim = T}, can be changed to F.}
@@ -82,6 +85,8 @@ Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} argum
 \code{ColRev} (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette.
 \code{ColSeq} (logical TRUE/FALSE) decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
 
+If there are many groups along the X axis and you prefer a single colour for the graph,use the \code{SingleColour} argument.
+
 The size of symbols can be adjusted using \code{symsize} set to 1 by default.
 Transparency of violins and symbols can be set independently with \code{v_alpha} and \code{s_alpha}, respectively.
 
@@ -101,5 +106,10 @@ xcol = Condition, ycol = Mass,
 s_alpha = 0,
 symsize = 2, trim = FALSE)
 
-
+#single colour along X
+plot_scatterviolin(data = data_t_pdiff, 
+xcol = Condition, ycol = Mass, 
+SingleColour = "pale_blue",
+s_alpha = 0,
+symsize = 2, trim = FALSE)
 }

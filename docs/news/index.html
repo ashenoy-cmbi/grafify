@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.3.0.9999</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.3.0</span>
       </span>
     </div>
 
@@ -67,7 +67,9 @@
 <li>divergent: <code>OrBl_div</code>, <code>PrGn_div</code>
 </li>
 </ul><p>All these schemes are available through <code>scale_fill..</code> and <code>scale_colour_...</code> calls to be used on any <code>ggplot2</code> object.</p>
-</div>
+<ol start="3" style="list-style-type: decimal"><li>
+<code>scale_fill_grafify</code> and <code>scale_colour_grafify</code> (or <code>scale_color_grafify</code>) have been rewritten. All have two arguments that offer the functionalities previously offered via <code>scale_fill_grafify2</code>/<code>scale_colour_grafify2</code> (or <code>scale_color_grafify_c</code>) and <code>scale_fill_grafify_c</code>/<code>scale_colour_grafify_c</code> (or <code>scale_color_grafify_C</code>) groups of scale functions. These functions are now deprecated to reduce the exported namespace. The new arguments are <code>discrete</code> (logical T/F) to select discrete or continuous palettes, and <code>ColSeq</code> (logical T/F) to pick sequential or distant colours from a chosen palette.</li>
+</ol></div>
 <div class="section level3">
 <h3 id="minor-changes--bug-fixes-2-3-0">Minor changes &amp; bug fixes<a class="anchor" aria-label="anchor" href="#minor-changes--bug-fixes-2-3-0"></a></h3>
 <ol style="list-style-type: decimal"><li>Fixed the error in legend title in one-way ANOVA plots with <code>plot_3d_</code>. The title now correctly refers to <code>xcol</code> and <code>shapes</code> arguments.</li>

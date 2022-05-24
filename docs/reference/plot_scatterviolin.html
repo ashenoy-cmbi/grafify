@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.3.0.9999</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.3.0</span>
       </span>
     </div>
 
@@ -74,6 +74,7 @@
     <span class="st">"kelly"</span>, <span class="st">"light"</span>, <span class="st">"muted"</span>, <span class="st">"pale"</span>, <span class="st">"r4"</span>, <span class="st">"safe"</span>, <span class="st">"vibrant"</span><span class="op">)</span>,
   ColSeq <span class="op">=</span> <span class="cn">TRUE</span>,
   ColRev <span class="op">=</span> <span class="cn">FALSE</span>,
+  SingleColour <span class="op">=</span> <span class="st">"NULL"</span>,
   jitter <span class="op">=</span> <span class="fl">0.2</span>,
   trim <span class="op">=</span> <span class="cn">TRUE</span>,
   scale <span class="op">=</span> <span class="st">"width"</span>,
@@ -111,6 +112,8 @@
 <dd><p>logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  <code>scale_fill_grafify2</code>.</p></dd>
 <dt>ColRev</dt>
 <dd><p>whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).</p></dd>
+<dt>SingleColour</dt>
+<dd><p>a colour hexcode (starting with #), a number between 1-154, or names of colours from <code>grafify</code> colour palettes to fill along X-axis aesthetic.</p></dd>
 <dt>jitter</dt>
 <dd><p>extent of jitter (scatter) of symbols, default is 0 (i.e. aligned symbols). To reduce symbol overlap, try 0.1-0.3 or higher.</p></dd>
 <dt>trim</dt>
@@ -138,6 +141,7 @@ Colours can be changed using <code>ColPal</code>, <code>ColRev</code> or <code>C
 <code>ColPal</code> can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
 <code>ColRev</code> (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette.
 <code>ColSeq</code> (logical TRUE/FALSE) decides whether colours are picked by respecting the order in the palette or the most distant ones using <code><a href="https://rdrr.io/r/grDevices/colorRamp.html" class="external-link">colorRampPalette</a></code>.</p>
+<p>If there are many groups along the X axis and you prefer a single colour for the graph,use the <code>SingleColour</code> argument.</p>
 <p>The size of symbols can be adjusted using <code>symsize</code> set to 1 by default.
 Transparency of violins and symbols can be set independently with <code>v_alpha</code> and <code>s_alpha</code>, respectively.</p>
 <p>Three types of plots are available for scatter/jitter symbols and either bars+SD, boxplot or violin plots: <code><a href="plot_scatterbar_sd.html">plot_scatterbar_sd</a></code>, <code><a href="plot_scatterbox.html">plot_scatterbox</a></code> and <code>plot_scatterviolin</code>.
@@ -160,7 +164,13 @@ These are related to the three "dot" versions that use a different geometry for 
 <span class="r-in">symsize <span class="op">=</span> <span class="fl">2</span>, trim <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="plot_scatterviolin-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"></span>
-<span class="r-in"></span>
+<span class="r-in"><span class="co">#single colour along X</span></span>
+<span class="r-in"><span class="fu">plot_scatterviolin</span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_t_pdiff</span>, </span>
+<span class="r-in">xcol <span class="op">=</span> <span class="va">Condition</span>, ycol <span class="op">=</span> <span class="va">Mass</span>, </span>
+<span class="r-in">SingleColour <span class="op">=</span> <span class="st">"pale_blue"</span>,</span>
+<span class="r-in">s_alpha <span class="op">=</span> <span class="fl">0</span>,</span>
+<span class="r-in">symsize <span class="op">=</span> <span class="fl">2</span>, trim <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span class="r-plt img"><img src="plot_scatterviolin-3.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
   </div>

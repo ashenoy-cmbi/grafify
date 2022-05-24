@@ -11,6 +11,8 @@
 #' `ColRev` (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette. 
 #' `ColSeq` (logical TRUE/FALSE) decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
 #' 
+#' If there are many groups along the X axis and you prefer a single colour for the graph,use the `SingleColour` argument.
+#' 
 #' The size of dots can be adjusted using the parameter, which is \code{dotsize = 1} by default.
 #'
 #' This function is related to \code{\link{plot_scatterbar_sd}}, \code{\link{plot_dotbar_sd}} and \code{\link{plot_dotviolin}}.
@@ -28,6 +30,7 @@
 #' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
+#' @param SingleColour a colour hexcode (starting with #), a number between 1-154, or names of colours from `grafify` colour palettes to fill along X-axis aesthetic.
 #' @param trim set whether tips of violin plot should be trimmed at high/low data. Default \code{trim = T}, can be changed to F.
 #' @param scale set to "area" by default, can be changed to "count" or "width".
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
@@ -49,70 +52,139 @@
 #' xcol = Condition, ycol = Mass,
 #' trim = FALSE, b_alpha = 0.5, 
 #' ColPal = "pale", ColSeq = FALSE)
+#' 
+#' #single colour along X
+#' plot_dotviolin(data = data_t_pdiff, 
+#' xcol = Condition, ycol = Mass,
+#' trim = FALSE, b_alpha = 0.5, 
+#' SingleColour = "pale_cyan")
 
-plot_dotviolin <- function(data, xcol, ycol, dotsize = 1.5, dotthick = 1, bvthick = 1, bwid = 0.2, trim = TRUE, scale = "width", b_alpha = 0, v_alpha = 1, d_alpha = 1, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColRev = FALSE, ColSeq = TRUE, TextXAngle = 0, fontsize = 20, ...){
-  if (b_alpha == 0) {
-    ColPal <- match.arg(ColPal)
-  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
-                            y = {{ ycol }}))+
-    geom_violin(aes(fill = factor({{ xcol }})),
-                alpha = {{ v_alpha }},
-                trim = {{ trim }},
-                scale = {{ scale }},
-                colour = "black", 
-                size = {{ bvthick }},
-                ...)+
-    geom_boxplot(fill = "white",
-                 colour = "black", 
-                 size = {{ bvthick }},
-                 outlier.alpha = 0,
-                 width = {{ bwid }},
-                 ...)+
-    geom_dotplot(stackdir = "center", 
-                 stroke = {{ dotthick }}, 
-                 alpha = {{ d_alpha }},
-                 dotsize = {{ dotsize }},
-                 binaxis = 'y',
-                 aes(fill = factor({{ xcol }})),
-                 ...)+
-    labs(x = enquo(xcol),
-         fill = enquo(xcol))+
-    theme_classic(base_size = {{ fontsize }})+
-    theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = {{ TextXAngle }})))
+
+plot_dotviolin <- function(data, xcol, ycol, dotsize = 1.5, dotthick = 1, bvthick = 1, bwid = 0.2, trim = TRUE, scale = "width", b_alpha = 0, v_alpha = 1, d_alpha = 1, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColRev = FALSE, ColSeq = TRUE, SingleColour = "NULL", TextXAngle = 0, fontsize = 20, ...){
+  if (missing(SingleColour)){
+    if (b_alpha == 0) {
+      ColPal <- match.arg(ColPal)
+      suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+                                                      y = {{ ycol }}))+
+                         geom_violin(aes(fill = factor({{ xcol }})),
+                                     alpha = {{ v_alpha }},
+                                     trim = {{ trim }},
+                                     scale = {{ scale }},
+                                     colour = "black", 
+                                     size = {{ bvthick }},
+                                     ...)+
+                         geom_boxplot(fill = "white",
+                                      colour = "black", 
+                                      size = {{ bvthick }},
+                                      outlier.alpha = 0,
+                                      width = {{ bwid }},
+                                      ...)+
+                         geom_dotplot(stackdir = "center", 
+                                      stroke = {{ dotthick }}, 
+                                      alpha = {{ d_alpha }},
+                                      dotsize = {{ dotsize }},
+                                      binaxis = 'y',
+                                      aes(fill = factor({{ xcol }})),
+                                      ...)+
+                         labs(x = enquo(xcol),
+                              fill = enquo(xcol))+
+                         theme_classic(base_size = {{ fontsize }})+
+                         theme(strip.background = element_blank())+
+                         guides(x = guide_axis(angle = {{ TextXAngle }})))
+    } else {
+      suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+                                                      y = {{ ycol }}))+
+                         geom_violin(aes(fill = factor({{ xcol }})),
+                                     alpha = {{ v_alpha }},
+                                     trim = {{ trim }},
+                                     scale = {{ scale }},
+                                     colour = "black", 
+                                     size = {{ bvthick }},
+                                     ...)+
+                         geom_boxplot(aes(fill = factor({{ xcol }})),
+                                      alpha = {{ b_alpha }},
+                                      colour = "black", 
+                                      size = {{ bvthick }},
+                                      outlier.alpha = 0,
+                                      width = {{ bwid }},
+                                      ...)+
+                         geom_dotplot(stackdir = "center", 
+                                      stroke = {{ dotthick }}, 
+                                      alpha = {{ d_alpha }},
+                                      dotsize = {{ dotsize }},
+                                      binaxis = 'y',
+                                      aes(fill = factor({{ xcol }})),
+                                      ...)+
+                         labs(x = enquo(xcol),
+                              fill = enquo(xcol))+
+                         theme_classic(base_size = {{ fontsize }})+
+                         theme(strip.background = element_blank())+
+                         guides(x = guide_axis(angle = {{ TextXAngle }}))) 
+    }
+    P <- P +
+      scale_fill_grafify(palette = {{ ColPal }}, 
+                         reverse = {{ ColRev }}, 
+                         ColSeq = {{ ColSeq }})
   } else {
-    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
-                                   y = {{ ycol }}))+
-      geom_violin(aes(fill = factor({{ xcol }})),
-                  alpha = {{ v_alpha }},
-                  trim = {{ trim }},
-                  scale = {{ scale }},
-                  colour = "black", 
-                  size = {{ bvthick }},
-                  ...)+
-      geom_boxplot(aes(fill = factor({{ xcol }})),
-                   alpha = {{ b_alpha }},
-                   colour = "black", 
-                   size = {{ bvthick }},
-                   outlier.alpha = 0,
-                   width = {{ bwid }},
-                   ...)+
-      geom_dotplot(stackdir = "center", 
-                   stroke = {{ dotthick }}, 
-                   alpha = {{ d_alpha }},
-                   dotsize = {{ dotsize }},
-                   binaxis = 'y',
-                   aes(fill = factor({{ xcol }})),
-                   ...)+
-      labs(x = enquo(xcol),
-           fill = enquo(xcol))+
-      theme_classic(base_size = {{ fontsize }})+
-      theme(strip.background = element_blank())+
-      guides(x = guide_axis(angle = {{ TextXAngle }}))) 
+    ifelse(grepl("#", SingleColour), 
+           a <- SingleColour,
+           a <- get_graf_colours({{ SingleColour }}))
+    if (b_alpha == 0){
+      suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+                                                      y = {{ ycol }}))+
+                         geom_violin(fill = a,
+                                     alpha = {{ v_alpha }},
+                                     trim = {{ trim }},
+                                     scale = {{ scale }},
+                                     colour = "black", 
+                                     size = {{ bvthick }},
+                                     ...)+
+                         geom_boxplot(fill = "white",
+                                      colour = "black", 
+                                      size = {{ bvthick }},
+                                      outlier.alpha = 0,
+                                      width = {{ bwid }},
+                                      ...)+
+                         geom_dotplot(stackdir = "center", 
+                                      stroke = {{ dotthick }}, 
+                                      alpha = {{ d_alpha }},
+                                      dotsize = {{ dotsize }},
+                                      binaxis = 'y',
+                                      fill = a,
+                                      ...)+
+                         labs(x = enquo(xcol))+
+                         theme_classic(base_size = {{ fontsize }})+
+                         theme(strip.background = element_blank())+
+                         guides(x = guide_axis(angle = {{ TextXAngle }})))
+    } else {
+      suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+                                                      y = {{ ycol }}))+
+                         geom_violin(fill = a,
+                                     alpha = {{ v_alpha }},
+                                     trim = {{ trim }},
+                                     scale = {{ scale }},
+                                     colour = "black", 
+                                     size = {{ bvthick }},
+                                     ...)+
+                         geom_boxplot(fill = a,
+                                      alpha = {{ b_alpha }},
+                                      colour = "black", 
+                                      size = {{ bvthick }},
+                                      outlier.alpha = 0,
+                                      width = {{ bwid }},
+                                      ...)+
+                         geom_dotplot(stackdir = "center", 
+                                      stroke = {{ dotthick }}, 
+                                      alpha = {{ d_alpha }},
+                                      dotsize = {{ dotsize }},
+                                      binaxis = 'y',
+                                      fill = a,
+                                      ...)+
+                         labs(x = enquo(xcol))+
+                         theme_classic(base_size = {{ fontsize }})+
+                         theme(strip.background = element_blank())+
+                         guides(x = guide_axis(angle = {{ TextXAngle }})))
+    }
   }
-  if (ColSeq) {
-    P <- P + scale_fill_grafify(palette = {{ ColPal }}, reverse = {{ ColRev }})
-  } else {
-    P <- P + scale_fill_grafify2(palette = {{ ColPal }}, reverse = {{ ColRev }})}
   P
 }
