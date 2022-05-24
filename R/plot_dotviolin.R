@@ -61,9 +61,9 @@
 
 
 plot_dotviolin <- function(data, xcol, ycol, dotsize = 1.5, dotthick = 1, bvthick = 1, bwid = 0.2, trim = TRUE, scale = "width", b_alpha = 0, v_alpha = 1, d_alpha = 1, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColRev = FALSE, ColSeq = TRUE, SingleColour = "NULL", TextXAngle = 0, fontsize = 20, ...){
+  ColPal <- match.arg(ColPal)
   if (missing(SingleColour)){
     if (b_alpha == 0) {
-      ColPal <- match.arg(ColPal)
       suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                                       y = {{ ycol }}))+
                          geom_violin(aes(fill = factor({{ xcol }})),
@@ -121,10 +121,9 @@ plot_dotviolin <- function(data, xcol, ycol, dotsize = 1.5, dotthick = 1, bvthic
                          theme(strip.background = element_blank())+
                          guides(x = guide_axis(angle = {{ TextXAngle }}))) 
     }
-    P <- P +
-      scale_fill_grafify(palette = {{ ColPal }}, 
-                         reverse = {{ ColRev }}, 
-                         ColSeq = {{ ColSeq }})
+    P <- P + scale_fill_grafify(palette = {{ ColPal }}, 
+                                reverse = {{ ColRev }}, 
+                                ColSeq = {{ ColSeq }})
   } else {
     ifelse(grepl("#", SingleColour), 
            a <- SingleColour,

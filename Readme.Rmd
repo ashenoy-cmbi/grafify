@@ -29,7 +29,7 @@ knitr::include_graphics("man/figures/all_graphsv2.0.0.jpg")
 
 #### Colourblind-friendly colour schemes
 
-The following categorical (qualitative/discreet) and quantitative (sequential or divergent) palettes are implemented natively in `grafify` (i.e. can be applied to `plot_` objects from within the function call. 
+The following 12 categorical (qualitative/discreet) and 5 quantitative (sequential or divergent) palettes are implemented natively in `grafify` (i.e. can be applied to `plot_` objects from within the function call. 
 
 `grafify` also offers `scale_fill_grafify` and `scale_colour_grafify` to apply all `grafify` palettes to any `ggplot2` object.
 
@@ -78,8 +78,8 @@ Latest DOI for all versions: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo
 
 Any updates not yet on CRAN will be made available here first. To install from GitHub you also need to install the `remotes` package. Then type `remotes::install_github("ashenoy-cmbi/grafify@*release")`.
 
-`grafify` requires the following packages to be installed: `broom.mixed`, `car`, `emmeans`, `ggplot2`, `Hmisc`, `lme4`, `lmerTest`, `magrittr`, `pbkrtest`, `purrr`, `stats`, `tidyr`.
- 
+`grafify` requires the following packages to be installed: `car`, `emmeans`, `ggplot2`, `Hmisc`, `lme4`, `lmerTest`, `magrittr`, `pbkrtest`, `purrr`, `stats`, `tidyr`.
+
 ### Motivation behind `grafify`
 
 I made this package mainly for exploring data by quickly making graphs of different types. Secondly, to implement linear regressions for ANOVA. I also use it to introduce linear models in my teaching, including the analyses of randomised block designs to new users. 

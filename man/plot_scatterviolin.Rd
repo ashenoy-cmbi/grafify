@@ -10,7 +10,7 @@ plot_scatterviolin(
   ycol,
   symsize = 2.5,
   symthick = 1,
-  bwid = 0.1,
+  bwid = 0.2,
   bvthick = 1,
   b_alpha = 0,
   s_alpha = 1,

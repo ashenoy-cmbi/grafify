@@ -20,6 +20,7 @@ plot_3d_scatterbar(
   ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy",
     "kelly", "light", "muted", "pale", "r4", "safe", "vibrant"),
   ColRev = FALSE,
+  SingleColour = "NULL",
   TextXAngle = 0
 )
 }
@@ -51,6 +52,8 @@ plot_3d_scatterbar(
 \item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..}
 
 \item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
+
+\item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} colour palettes to fill along X-axis aesthetic.}
 
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 }

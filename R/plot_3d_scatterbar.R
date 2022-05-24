@@ -35,6 +35,7 @@
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
+#' @param SingleColour a colour hexcode (starting with #), a number between 1-154, or names of colours from `grafify` colour palettes to fill along X-axis aesthetic.
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
 #'
 #' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
@@ -61,37 +62,67 @@
 #' bars = Treatment, 
 #' shapes = Block)
 #' 
-
-plot_3d_scatterbar <- function(data, xcol, ycol, shapes, ewid = 0.2, symsize = 2.5, symthick = 1, jitter = 0.2, fontsize = 20, b_alpha = 1.0, s_alpha = 1, ColSeq = TRUE, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColRev = FALSE, TextXAngle = 0){
+plot_3d_scatterbar <- function(data, xcol, ycol, shapes, ewid = 0.2, symsize = 2.5, symthick = 1, jitter = 0.2, fontsize = 20, b_alpha = 1.0, s_alpha = 1, ColSeq = TRUE, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColRev = FALSE, SingleColour = "NULL", TextXAngle = 0){
   ColPal <- match.arg(ColPal)
-  P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
-                            y = {{ ycol }},
-                            group = factor({{ xcol }})))+
-    stat_summary(geom = "bar", width = .7, colour = "black",
-                 fun = "mean", size = 1,
-                 aes(fill = factor({{ xcol }})),
-                 alpha = {{ b_alpha }},
-                 position = position_dodge(width = 0.8))+
-    geom_point(size = {{ symsize }}, 
-               stroke = {{ symthick }},
-               alpha = {{ s_alpha }}, 
-               colour = "black",
-               position = position_jitterdodge(dodge.width = 0.8,
-                                               jitter.width = {{ jitter }}),
-               aes(shape = factor({{ shapes }})))+
-    stat_summary(geom = "errorbar", width = {{ ewid }},
-                 fun.data = "mean_sdl", size = 1,
-                 fun.args = list(mult = 1),
-                 position = position_dodge(width = 0.8))+
-    scale_shape_manual(values = 0:25)+
-    labs(x = enquo(xcol),
-         fill = enquo(xcol),
-         shape = enquo(shapes))+
-    theme_classic(base_size = {{ fontsize }})+
-    theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = {{ TextXAngle }}))+
-    scale_fill_grafify(palette = {{ ColPal }},
-                       reverse = {{ ColRev }},
-                       ColSeq = {{ ColSeq }})
-    P
+  if (missing(SingleColour)) {
+    P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+                                   y = {{ ycol }},
+                                   group = factor({{ xcol }})))+
+      stat_summary(geom = "bar", width = .7, colour = "black",
+                   fun = "mean", size = 1,
+                   aes(fill = factor({{ xcol }})),
+                   alpha = {{ b_alpha }},
+                   position = position_dodge(width = 0.8))+
+      geom_point(size = {{ symsize }}, 
+                 stroke = {{ symthick }},
+                 alpha = {{ s_alpha }}, 
+                 colour = "black",
+                 position = position_jitterdodge(dodge.width = 0.8,
+                                                 jitter.width = {{ jitter }}),
+                 aes(shape = factor({{ shapes }})))+
+      stat_summary(geom = "errorbar", width = {{ ewid }},
+                   fun.data = "mean_sdl", size = 1,
+                   fun.args = list(mult = 1),
+                   position = position_dodge(width = 0.8))+
+      scale_shape_manual(values = 0:25)+
+      labs(x = enquo(xcol),
+           fill = enquo(xcol),
+           shape = enquo(shapes))+
+      theme_classic(base_size = {{ fontsize }})+
+      theme(strip.background = element_blank())+
+      guides(x = guide_axis(angle = {{ TextXAngle }}))+
+      scale_fill_grafify(palette = {{ ColPal }},
+                         reverse = {{ ColRev }},
+                         ColSeq = {{ ColSeq }})
+  } else {
+    ifelse(grepl("#", SingleColour), 
+           a <- SingleColour,
+           a <- get_graf_colours({{ SingleColour }}))
+    P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+                                   y = {{ ycol }},
+                                   group = factor({{ xcol }})))+
+      stat_summary(geom = "bar", width = .7, colour = "black",
+                   fun = "mean", size = 1,
+                   fill = a,
+                   alpha = {{ b_alpha }},
+                   position = position_dodge(width = 0.8))+
+      geom_point(size = {{ symsize }}, 
+                 stroke = {{ symthick }},
+                 alpha = {{ s_alpha }}, 
+                 colour = "black",
+                 position = position_jitterdodge(dodge.width = 0.8,
+                                                 jitter.width = {{ jitter }}),
+                 aes(shape = factor({{ shapes }})))+
+      stat_summary(geom = "errorbar", width = {{ ewid }},
+                   fun.data = "mean_sdl", size = 1,
+                   fun.args = list(mult = 1),
+                   position = position_dodge(width = 0.8))+
+      scale_shape_manual(values = 0:25)+
+      labs(x = enquo(xcol),
+           shape = enquo(shapes))+
+      theme_classic(base_size = {{ fontsize }})+
+      theme(strip.background = element_blank())+
+      guides(x = guide_axis(angle = {{ TextXAngle }}))
+  }
+  P
 }

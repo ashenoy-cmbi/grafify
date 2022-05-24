@@ -65,7 +65,7 @@
 #' symsize = 2, trim = FALSE)
 
 
-plot_scatterviolin <- function(data, xcol, ycol, symsize = 2.5, symthick = 1, bwid = 0.1, bvthick = 1, b_alpha = 0, s_alpha = 1, v_alpha = 1, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, SingleColour = "NULL", jitter = 0.2, trim = TRUE, scale = "width", TextXAngle = 0, fontsize = 20, ...){
+plot_scatterviolin <- function(data, xcol, ycol, symsize = 2.5, symthick = 1, bwid = 0.2, bvthick = 1, b_alpha = 0, s_alpha = 1, v_alpha = 1, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, SingleColour = "NULL", jitter = 0.2, trim = TRUE, scale = "width", TextXAngle = 0, fontsize = 20, ...){
   ColPal <- match.arg(ColPal)
   if (missing(SingleColour)) {
     if (b_alpha == 0){
@@ -126,10 +126,9 @@ plot_scatterviolin <- function(data, xcol, ycol, symsize = 2.5, symthick = 1, bw
                          theme(strip.background = element_blank())+
                          guides(x = guide_axis(angle = {{ TextXAngle }})))
     }
-    P <- P +
-      scale_fill_grafify(palette = {{ ColPal }}, 
-                         reverse = {{ ColRev }}, 
-                         ColSeq = {{ ColSeq }})
+    P <- P + scale_fill_grafify(palette = {{ ColPal }}, 
+                                reverse = {{ ColRev }}, 
+                                ColSeq = {{ ColSeq }})
   } else {
     ifelse(grepl("#", SingleColour), 
            a <- SingleColour,
@@ -161,7 +160,7 @@ plot_scatterviolin <- function(data, xcol, ycol, symsize = 2.5, symthick = 1, bw
                          theme_classic(base_size = {{ fontsize }})+
                          theme(strip.background = element_blank())+
                          guides(x = guide_axis(angle = {{ TextXAngle }})))
-      
+    } else {
       suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                                       y = {{ ycol }}))+
                          geom_violin(fill = a,

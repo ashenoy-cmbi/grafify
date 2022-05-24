@@ -106,9 +106,9 @@ Any updates not yet on CRAN will be made available here first. To
 install from GitHub you also need to install the `remotes` package. Then
 type `remotes::install_github("ashenoy-cmbi/grafify@*release")`.
 
-`grafify` requires the following packages to be installed:
-`broom.mixed`, `car`, `emmeans`, `ggplot2`, `Hmisc`, `lme4`, `lmerTest`,
-`magrittr`, `pbkrtest`, `purrr`, `stats`, `tidyr`.
+`grafify` requires the following packages to be installed: `car`,
+`emmeans`, `ggplot2`, `Hmisc`, `lme4`, `lmerTest`, `magrittr`,
+`pbkrtest`, `purrr`, `stats`, `tidyr`.
 
 ### Motivation behind `grafify`
 
