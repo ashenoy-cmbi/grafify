@@ -75,6 +75,7 @@
   ColPal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"okabe_ito"</span>, <span class="st">"all_grafify"</span>, <span class="st">"bright"</span>, <span class="st">"contrast"</span>, <span class="st">"dark"</span>, <span class="st">"fishy"</span>,
     <span class="st">"kelly"</span>, <span class="st">"light"</span>, <span class="st">"muted"</span>, <span class="st">"pale"</span>, <span class="st">"r4"</span>, <span class="st">"safe"</span>, <span class="st">"vibrant"</span><span class="op">)</span>,
   ColRev <span class="op">=</span> <span class="cn">FALSE</span>,
+  SingleColour <span class="op">=</span> <span class="st">"NULL"</span>,
   TextXAngle <span class="op">=</span> <span class="fl">0</span>
 <span class="op">)</span></code></pre></div>
     </div>
@@ -109,6 +110,8 @@
 <dd><p>grafify colour palette to apply, default "okabe_ito"; see <code><a href="graf_palettes.html">graf_palettes</a></code> for available palettes..</p></dd>
 <dt>ColRev</dt>
 <dd><p>whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).</p></dd>
+<dt>SingleColour</dt>
+<dd><p>a colour hexcode (starting with #), a number between 1-154, or names of colours from <code>grafify</code> colour palettes to fill along X-axis aesthetic.</p></dd>
 <dt>TextXAngle</dt>
 <dd><p>orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.</p></dd>
 </dl></div>
