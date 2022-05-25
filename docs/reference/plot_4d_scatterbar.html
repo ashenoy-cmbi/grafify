@@ -76,7 +76,8 @@
     <span class="st">"kelly"</span>, <span class="st">"light"</span>, <span class="st">"muted"</span>, <span class="st">"pale"</span>, <span class="st">"r4"</span>, <span class="st">"safe"</span>, <span class="st">"vibrant"</span><span class="op">)</span>,
   ColRev <span class="op">=</span> <span class="cn">FALSE</span>,
   ColSeq <span class="op">=</span> <span class="cn">TRUE</span>,
-  TextXAngle <span class="op">=</span> <span class="fl">0</span>
+  TextXAngle <span class="op">=</span> <span class="fl">0</span>,
+  <span class="va">...</span>
 <span class="op">)</span></code></pre></div>
     </div>
 
@@ -107,13 +108,15 @@
 <dt>s_alpha</dt>
 <dd><p>fractional opacity of symbols, default set to 1 (i.e. maximum opacity &amp; zero transparency).</p></dd>
 <dt>ColPal</dt>
-<dd><p>grafify colour palette to apply, default "okabe_ito"; see <code><a href="graf_palettes.html">graf_palettes</a></code> for available palettes..</p></dd>
+<dd><p>grafify colour palette to apply, default "okabe_ito"; see <code><a href="graf_palettes.html">graf_palettes</a></code> for available palettes.</p></dd>
 <dt>ColRev</dt>
 <dd><p>whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).</p></dd>
 <dt>ColSeq</dt>
 <dd><p>logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  <code>scale_fill_grafify2</code>.</p></dd>
 <dt>TextXAngle</dt>
 <dd><p>orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.</p></dd>
+<dt>...</dt>
+<dd><p>any additional arguments to pass to <code>ggplot2</code>stat_summary or <code>ggplot2</code>geom_point.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>

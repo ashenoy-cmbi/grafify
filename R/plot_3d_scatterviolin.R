@@ -58,6 +58,10 @@
 #' #compare above graph to
 #' plot_scatterviolin(data = data_1w_death, 
 #' xcol = Genotype, ycol = Death)
+#' #single colour
+#' plot_scatterviolin(data = data_1w_death, 
+#' xcol = Genotype, ycol = Death,
+#' SingleColour = "pale_grey")
 #' 
 #' #4d version for 2-way data with blocking
 #' plot_4d_scatterviolin(data = data_2w_Tdeath, 
@@ -165,6 +169,7 @@ plot_3d_scatterviolin <- function(data, xcol, ycol, shapes, symsize = 2.5, s_alp
                                     size = {{ symsize }},
                                     fill = a,
                                     ...)+
+                         scale_shape_manual(values = 0:25)+
                          labs(x = enquo(xcol),
                               shape = enquo(shapes))+
                          theme_classic(base_size = {{ fontsize }})+
@@ -194,6 +199,7 @@ plot_3d_scatterviolin <- function(data, xcol, ycol, shapes, symsize = 2.5, s_alp
                                     size = {{ symsize }},
                                     fill = a,
                                     ...)+
+                         scale_shape_manual(values = 0:25)+
                          labs(x = enquo(xcol),
                               shape = enquo(shapes))+
                          theme_classic(base_size = {{ fontsize }})+

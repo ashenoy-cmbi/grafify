@@ -88,7 +88,12 @@ All four functions can be expanded further, for example with \code{\link[ggplot2
 plot_3d_scatterbox(data = data_1w_death, 
 xcol = Genotype, ycol = Death, shapes = Experiment)
 #compare above graph to
-plot_scatterbox(data = data_1w_death, xcol = Genotype, ycol = Death)
+plot_scatterbox(data = data_1w_death, 
+xcol = Genotype, ycol = Death)
+#single colour
+plot_scatterbox(data = data_1w_death, 
+xcol = Genotype, ycol = Death,
+SingleColour = "pale_grey")
 
 #4d version for 2-way data with blocking
 plot_4d_scatterbox(data = data_2w_Tdeath, 

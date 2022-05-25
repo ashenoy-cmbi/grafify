@@ -21,7 +21,8 @@ plot_4d_scatterbar(
     "kelly", "light", "muted", "pale", "r4", "safe", "vibrant"),
   ColRev = FALSE,
   ColSeq = TRUE,
-  TextXAngle = 0
+  TextXAngle = 0,
+  ...
 )
 }
 \arguments{
@@ -49,13 +50,15 @@ plot_4d_scatterbar(
 
 \item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).}
 
-\item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..}
+\item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
 
 \item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
+
+\item{...}{any additional arguments to pass to \code{ggplot2}\link{stat_summary} or \code{ggplot2}\link{geom_point}.}
 }
 \value{
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".

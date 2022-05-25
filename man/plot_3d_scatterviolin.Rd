@@ -105,6 +105,10 @@ xcol = Genotype, ycol = Death, shapes = Experiment)
 #compare above graph to
 plot_scatterviolin(data = data_1w_death, 
 xcol = Genotype, ycol = Death)
+#single colour
+plot_scatterviolin(data = data_1w_death, 
+xcol = Genotype, ycol = Death,
+SingleColour = "pale_grey")
 
 #4d version for 2-way data with blocking
 plot_4d_scatterviolin(data = data_2w_Tdeath, 

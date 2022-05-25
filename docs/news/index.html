@@ -71,18 +71,19 @@
 <ol start="3" style="list-style-type: decimal"><li>
 <code>scale_fill_grafify</code> and <code>scale_colour_grafify</code> (or <code>scale_color_grafify</code>) have been rewritten. These have two new arguments that offer features previously in <code>scale_fill_grafify2</code>/<code>scale_colour_grafify2</code>/ <code>scale_color_grafify_c</code> and <code>scale_fill_grafify_c</code>/<code>scale_colour_grafify_c</code>/ <code>scale_color_grafify_C</code> scale functions. These 6 functions are now deprecated to reduce the exported namespace.</li>
 </ol><p>The new arguments are <code>discrete</code> (logical T/F) to select discrete or continuous palettes, and <code>ColSeq</code> (logical T/F) to pick sequential or distant colours from a chosen palette.</p>
-<ol start="4" style="list-style-type: decimal"><li>A new <code>SingleColour</code> argument has been added to two-variables <code>plot_</code> functions to generate graphs with a single colour along the X-axis aesthetic. This means the 8 <code>plot_..._sc</code> functions introduced in v1.5.0 are deprecated, but this feature is still retained in existing <code>plot_</code> functions.</li>
+<ol start="4" style="list-style-type: decimal"><li>A new <code>SingleColour</code> argument has been added to two-variables <code>plot_</code> functions to generate graphs with a single colour along the X-axis aesthetic. This means the 8 <code>plot_..._sc</code> functions introduced in v1.5.0 are deprecated, but this feature is still retained in existing <code>plot_</code> functions. This option also added to <code>plot_3d_</code> functions for plots of one-way ANOVA data.</li>
 </ol></div>
 <div class="section level3">
 <h3 id="minor-changes--bug-fixes-2-3-0">Minor changes &amp; bug fixes<a class="anchor" aria-label="anchor" href="#minor-changes--bug-fixes-2-3-0"></a></h3>
 <ol style="list-style-type: decimal"><li>Fixed the error in legend title in one-way ANOVA plots with <code>plot_3d_</code>. The title now correctly refers to <code>xcol</code> and <code>shapes</code> arguments.</li>
+<li>Fixed the error that led to depiction of different shapes in <code>plot_3d_scatterviolin</code> as compared to the other two <code>plot_3d_</code> functions.</li>
 <li>
 <code>posthoc_Trends...</code> functions rewritten with <code><a href="https://rdrr.io/r/stats/model.frame.html" class="external-link">stats::model.frame()</a></code> to get model data frame as this is a more flexible method.</li>
 <li>Order of colours in <code>light</code>, <code>bright</code> and <code>muted</code> schemes changed slightly for better separation of colours when next to each other.</li>
 <li>The <code>jitter</code> setting in <code>plot_scaltter_</code> is set to <code>0.2</code> so the graph as plotted with jitter by default.<br></li>
 <li>The default colour scheme for all graphs is now <code>okabe_ito</code> (the <code>all_grafify</code> palette is was just a concatenation of all palettes without real basis in good visualisation). Use one of the other palettes (e.g. <code>kelly</code>, which has 20 discreet colours).</li>
 <li>
-<code>scale_fill_grafify2</code> and <code>scale_colour_grafify2</code> deprecated, and the same function offered with <code>ColSeq</code> argument to <code>scale_fill_grafify</code> and <code>scale_colour_grafify</code> to select sequential or distant colours from a palette.</li>
+<code>scale_fill_grafify2</code>, <code>scale_colour_grafify2</code>, <code>scale_colour_grafify_c</code> and <code>scale_fill_grafify_c</code> deprecated, and the same function offered with <code>ColSeq</code> and <code>discrete</code> arguments in <code>scale_fill_grafify</code> and <code>scale_colour_grafify</code>.</li>
 </ol></div>
 </div>
     <div class="section level2">

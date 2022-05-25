@@ -28,16 +28,17 @@ All these schemes are available through `scale_fill..` and `scale_colour_...` ca
 
 The new arguments are `discrete` (logical T/F) to select discrete or continuous palettes, and `ColSeq` (logical T/F) to pick sequential or distant colours from a chosen palette.
 
-4. A new `SingleColour` argument has been added to two-variables `plot_` functions to generate graphs with a single colour along the X-axis aesthetic. This means the 8 `plot_..._sc` functions introduced in v1.5.0 are deprecated, but this feature is still retained in existing `plot_` functions.
+4. A new `SingleColour` argument has been added to two-variables `plot_` functions to generate graphs with a single colour along the X-axis aesthetic. This means the 8 `plot_..._sc` functions introduced in v1.5.0 are deprecated, but this feature is still retained in existing `plot_` functions. This option also added to `plot_3d_` functions for plots of one-way ANOVA data.
 
 ## Minor changes & bug fixes
 
 1. Fixed the error in legend title in one-way ANOVA plots with `plot_3d_`. The title now correctly refers to `xcol` and `shapes` arguments. 
+2. Fixed the error that led to depiction of different shapes in `plot_3d_scatterviolin` as compared to the other two `plot_3d_` functions.
 2. `posthoc_Trends...` functions rewritten with `stats::model.frame()` to get model data frame as this is a more flexible method.
 3. Order of colours in `light`, `bright` and `muted` schemes changed slightly for better separation of colours when next to each other.
 4. The `jitter` setting in `plot_scaltter_` is set to `0.2` so the graph as plotted with jitter by default.  
 5. The default colour scheme for all graphs is now `okabe_ito` (the `all_grafify` palette is  was just a concatenation of all palettes without real basis in good visualisation). Use one of the other palettes (e.g. `kelly`, which has 20 discreet colours).
-6. `scale_fill_grafify2` and `scale_colour_grafify2` deprecated, and the same function offered with `ColSeq` argument to `scale_fill_grafify` and `scale_colour_grafify` to select sequential or distant colours from a palette.
+6. `scale_fill_grafify2`, `scale_colour_grafify2`, `scale_colour_grafify_c` and `scale_fill_grafify_c` deprecated, and the same function offered with `ColSeq` and `discrete` arguments in `scale_fill_grafify` and `scale_colour_grafify`.
 
 # grafify v2.2.0
 

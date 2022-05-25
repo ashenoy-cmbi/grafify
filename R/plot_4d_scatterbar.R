@@ -34,9 +34,10 @@
 #' @param b_alpha fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency).
 #' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
-#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..
+#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
+#' @param ... any additional arguments to pass to \code{ggplot2}[stat_summary] or \code{ggplot2}[geom_point].
 #'
 #' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 #' @export plot_4d_scatterbar
@@ -63,7 +64,7 @@
 #' shapes = Block)
 #'
 
-plot_4d_scatterbar <- function(data, xcol, ycol, bars, shapes, symsize = 2.5, symthick = 1.0, jitter = 0.2, ewid = 0.2, fontsize = 20, b_alpha = 1, s_alpha = 1, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColRev = FALSE, ColSeq = TRUE, TextXAngle = 0){
+plot_4d_scatterbar <- function(data, xcol, ycol, bars, shapes, symsize = 2.5, symthick = 1.0, jitter = 0.2, ewid = 0.2, fontsize = 20, b_alpha = 1, s_alpha = 1, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColRev = FALSE, ColSeq = TRUE, TextXAngle = 0, ...){
   ColPal <- match.arg(ColPal)
   P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                             y = {{ ycol }},
@@ -75,19 +76,19 @@ plot_4d_scatterbar <- function(data, xcol, ycol, bars, shapes, symsize = 2.5, sy
                  alpha = {{ b_alpha }}, size = 1,
                  aes(fill = factor({{ bars }})),
                  position = position_dodge(width = 0.8),
-                 fun = "mean")+
+                 fun = "mean", ...)+
     geom_point(size = {{ symsize }}, 
                alpha = {{ s_alpha }}, 
                stroke = {{ symthick }}, 
                colour = "black",
                position = position_jitterdodge(jitter.width = {{ jitter }},
                                                dodge.width = 0.8),
-               aes(shape = factor({{ shapes }})))+
+               aes(shape = factor({{ shapes }})), ...)+
     stat_summary(geom = "errorbar", colour = "black", size = 1, 
                  width = {{ ewid }},
                  fun.data = "mean_sdl",
                  fun.args = list(mult = 1),
-                 position = position_dodge(width = 0.8))+
+                 position = position_dodge(width = 0.8), ...)+
     scale_shape_manual(values = 0:25)+
     labs(fill = enquo(bars),
          shape = enquo(shapes),
