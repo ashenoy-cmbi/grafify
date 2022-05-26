@@ -35,7 +35,7 @@ plot_histogram(
 
 \item{c_alpha}{fractional opacity of colour filled within histograms, default set to 0.2 (i.e. 20\% opacity).}
 
-\item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..}
+\item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
 
 \item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
 

@@ -21,12 +21,13 @@
 #' @param symsize size of point symbols, default set to 3.5.
 #' @param symthick thickness of symbol border, default set to 1.
 #' @param ewid width of error bars, default set to 0.2.
-#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..
+#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param SingleColour a colour hexcode (starting with #), a number between 1-154, or names of colours from `grafify` colour palettes to fill along X-axis aesthetic.
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
+#' @param ... any additional arguments to pass to \code{ggplot2}[stat_summary].
 #'
 #' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 #' @export plot_point_sd
@@ -38,7 +39,7 @@
 #' xcol = Student, ycol = Doubling_time)
 #'
 
-plot_point_sd <- function(data, xcol, ycol, s_alpha = 1, symsize = 3.5, symthick = 1, ewid = 0.2, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, SingleColour = "NULL", TextXAngle = 0, fontsize = 20){
+plot_point_sd <- function(data, xcol, ycol, s_alpha = 1, symsize = 3.5, symthick = 1, ewid = 0.2, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, SingleColour = "NULL", TextXAngle = 0, fontsize = 20, ...){
   ColPal <- match.arg(ColPal)
   if (missing(SingleColour)) {
     P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
@@ -46,13 +47,13 @@ plot_point_sd <- function(data, xcol, ycol, s_alpha = 1, symsize = 3.5, symthick
       stat_summary(geom = "errorbar",
                    fun.data = "mean_sdl", size = 1,
                    fun.args = list(mult = 1),
-                   width = {{ ewid }})+
+                   width = {{ ewid }}, ...)+
       stat_summary(geom = "point", shape = 21,
                    size = {{ symsize }}, 
                    stroke = {{ symthick }},
                    alpha = {{ s_alpha }},
                    fun = "mean",
-                   aes(fill = factor({{ xcol }})))+
+                   aes(fill = factor({{ xcol }})), ...)+
       labs(x = enquo(xcol),
            fill = enquo(xcol))+
       theme_classic(base_size = {{ fontsize }})+
@@ -66,18 +67,18 @@ plot_point_sd <- function(data, xcol, ycol, s_alpha = 1, symsize = 3.5, symthick
            a <- SingleColour,
            a <- get_graf_colours({{ SingleColour }}))
     
-    ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+    P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                               y = {{ ycol }}))+
       stat_summary(geom = "errorbar",
                    fun.data = "mean_sdl", size = 1,
                    fun.args = list(mult = 1),
                    alpha = {{ s_alpha }},
-                   width = {{ ewid }})+
+                   width = {{ ewid }}, ...)+
       stat_summary(geom = "point", shape = 21,
                    size = {{ symsize }}, 
                    stroke = {{ symthick }},
                    fun = "mean",
-                   fill = a)+
+                   fill = a, ...)+
       labs(x = enquo(xcol))+
       theme_classic(base_size = {{ fontsize }})+
       theme(strip.background = element_blank())+

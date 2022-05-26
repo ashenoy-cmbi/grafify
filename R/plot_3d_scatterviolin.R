@@ -33,14 +33,14 @@
 #' @param b_alpha fractional opacity of boxplots.  Default is set to 0, which results in white boxes inside violins. Change to any value >0 up to 1 for different levels of transparency. 
 #' @param v_alpha fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency).
 #' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency). Set `s_alpha = 0` to not show scatter plot.
-#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..
+#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param jitter extent of jitter (scatter) of symbols, default is 0 (i.e. aligned symbols). To reduce symbol overlap, try 0.1-0.3 or higher.  
 #' @param trim set whether tips of violin plot should be trimmed at high/low data. Default \code{trim = T}, can be changed to F.
 #' @param scale set to "area" by default, can be changed to "count" or "width".
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
-#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..
+#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param SingleColour a colour hexcode (starting with #), a number between 1-154, or names of colours from `grafify` colour palettes to fill along X-axis aesthetic.
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
@@ -54,13 +54,15 @@
 #' @examples
 #' #3d version for 1-way data with blocking
 #' plot_3d_scatterviolin(data = data_1w_death, 
-#' xcol = Genotype, ycol = Death, shapes = Experiment)
+#' xcol = Genotype, ycol = Death, 
+#' shapes = Experiment)
 #' #compare above graph to
 #' plot_scatterviolin(data = data_1w_death, 
 #' xcol = Genotype, ycol = Death)
 #' #single colour
-#' plot_scatterviolin(data = data_1w_death, 
+#' plot_3d_scatterviolin(data = data_1w_death, 
 #' xcol = Genotype, ycol = Death,
+#' shapes = Experiment,
 #' SingleColour = "pale_grey")
 #' 
 #' #4d version for 2-way data with blocking
@@ -73,80 +75,84 @@
 plot_3d_scatterviolin <- function(data, xcol, ycol, shapes, symsize = 2.5, s_alpha = 1, symthick = 1.0, v_alpha = 1, b_alpha = 0, bwid = 0.2, bvthick = 1, jitter = 0.2, fontsize = 20, ColSeq = TRUE, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColRev = FALSE, SingleColour = "NULL", TextXAngle = 0, scale = "width", trim = TRUE, ...){
   ColPal <- match.arg(ColPal)
   if (missing(SingleColour)) {
-  if (b_alpha == 0){
-    P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
-                                   y = {{ ycol }},
-                                   group = factor({{ xcol }})))+
-      geom_violin(aes(fill = factor({{ xcol }})),
-                  size = {{ bvthick }},
-                  alpha = {{ v_alpha }},
-                  scale = {{ scale }},
-                  position = position_dodge(width = 0.8),
-                  colour = "black",
-                  trim = {{ trim }}, ...)+
-      geom_boxplot(aes(fill = factor({{ xcol }})), 
-                   fill = "white",
-                   size = {{ bvthick }},
-                   position = position_dodge(width = 0.8),
-                   width = {{ bwid }},
-                   outlier.alpha = 0, 
+    if (b_alpha == 0){
+      P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+                                     y = {{ ycol }},
+                                     group = factor({{ xcol }})))+
+        geom_violin(aes(fill = factor({{ xcol }})),
+                    size = {{ bvthick }},
+                    alpha = {{ v_alpha }},
+                    scale = {{ scale }},
+                    position = position_dodge(width = 0.8),
+                    colour = "black",
+                    trim = {{ trim }}, ...)+
+        geom_boxplot(aes(fill = factor({{ xcol }})), 
+                     fill = "white",
+                     size = {{ bvthick }},
+                     position = position_dodge(width = 0.8),
+                     width = {{ bwid }},
+                     outlier.alpha = 0, 
+                     colour = "black",
+                     ...)+
+        geom_point(size = {{ symsize }}, 
+                   stroke = {{ symthick }},
+                   alpha = {{ s_alpha }}, 
                    colour = "black",
-                   ...)+
-      geom_point(size = {{ symsize }}, 
-                 stroke = {{ symthick }},
-                 alpha = {{ s_alpha }}, 
-                 colour = "black",
-                 position = position_jitterdodge(jitter.width = {{ jitter }},
-                                                 dodge.width = 0.8),
-                 aes(shape = factor({{ shapes }})))+
-      scale_shape_manual(values = 0:25)+
-      labs(x = enquo(xcol),
-           fill = enquo(xcol),
-           shape = enquo(shapes))+
-      theme_classic(base_size = {{ fontsize }})+
-      theme(strip.background = element_blank())+
-      guides(x = guide_axis(angle = {{ TextXAngle }}))
-  } else {
-    P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
-                            y = {{ ycol }},
-                            group = factor({{ xcol }})))+
-    geom_violin(aes(fill = factor({{ xcol }})),
-                size = {{ bvthick }},
-                alpha = {{ v_alpha }},
-                scale = {{ scale }},
-                position = position_dodge(width = 0.8),
-                colour = "black", 
-                trim = {{ trim }}, ...)+
-    geom_boxplot(aes(fill = factor({{ xcol }})), 
-                 size = {{ bvthick }},
-                 alpha = {{ b_alpha }},
-                 position = position_dodge(width = 0.8),
-                 width = {{ bwid }},
-                 outlier.alpha = 0, 
-                 colour = "black",
-                 ...)+
-    geom_point(size = {{ symsize }}, 
-               stroke = {{ symthick }},
-               alpha = {{ s_alpha }}, colour = "black",
-               position = position_jitterdodge(jitter.width = {{ jitter }},
-                                               dodge.width = 0.8),
-               aes(shape = factor({{ shapes }})))+
-    scale_shape_manual(values = 0:25)+
-    labs(x = enquo(xcol),
-         fill = enquo(xcol),
-         shape = enquo(shapes))+
-    theme_classic(base_size = {{ fontsize }})+
-    theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = {{ TextXAngle }}))
-  }
-  P <- P + scale_fill_grafify(palette = {{ ColPal }}, 
-                              reverse = {{ ColRev }}, 
-                              ColSeq = {{ ColSeq }})
+                   position = position_jitterdodge(jitter.width = {{ jitter }},
+                                                   dodge.width = 0.8),
+                   aes(shape = factor({{ shapes }})))+
+        scale_shape_manual(values = 0:25)+
+        labs(x = enquo(xcol),
+             fill = enquo(xcol),
+             shape = enquo(shapes))+
+        theme_classic(base_size = {{ fontsize }})+
+        theme(strip.background = element_blank())+
+        guides(x = guide_axis(angle = {{ TextXAngle }}),
+               fill = guide_legend(order = 1),
+               shape = guide_legend(order = 2))
+    } else {
+      P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+                                     y = {{ ycol }},
+                                     group = factor({{ xcol }})))+
+        geom_violin(aes(fill = factor({{ xcol }})),
+                    size = {{ bvthick }},
+                    alpha = {{ v_alpha }},
+                    scale = {{ scale }},
+                    position = position_dodge(width = 0.8),
+                    colour = "black", 
+                    trim = {{ trim }}, ...)+
+        geom_boxplot(aes(fill = factor({{ xcol }})), 
+                     size = {{ bvthick }},
+                     alpha = {{ b_alpha }},
+                     position = position_dodge(width = 0.8),
+                     width = {{ bwid }},
+                     outlier.alpha = 0, 
+                     colour = "black",
+                     ...)+
+        geom_point(size = {{ symsize }}, 
+                   stroke = {{ symthick }},
+                   alpha = {{ s_alpha }}, colour = "black",
+                   position = position_jitterdodge(jitter.width = {{ jitter }},
+                                                   dodge.width = 0.8),
+                   aes(shape = factor({{ shapes }})))+
+        scale_shape_manual(values = 0:25)+
+        labs(x = enquo(xcol),
+             fill = enquo(xcol),
+             shape = enquo(shapes))+
+        theme_classic(base_size = {{ fontsize }})+
+        theme(strip.background = element_blank())+
+        guides(x = guide_axis(angle = {{ TextXAngle }}),
+               fill = guide_legend(order = 1),
+               shape = guide_legend(order = 2))
+    }
+    P <- P + scale_fill_grafify(palette = {{ ColPal }}, 
+                                reverse = {{ ColRev }}, 
+                                ColSeq = {{ ColSeq }})
   } else {
     ifelse(grepl("#", SingleColour), 
            a <- SingleColour,
            a <- get_graf_colours({{ SingleColour }}))
-    if (b_alpha == 0){
+    if (b_alpha == 0) {
       suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                                       y = {{ ycol }}))+
                          geom_violin(fill = a,
@@ -174,38 +180,43 @@ plot_3d_scatterviolin <- function(data, xcol, ycol, shapes, symsize = 2.5, s_alp
                               shape = enquo(shapes))+
                          theme_classic(base_size = {{ fontsize }})+
                          theme(strip.background = element_blank())+
-                         guides(x = guide_axis(angle = {{ TextXAngle }})))
-    } else {
-      suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
-                                                      y = {{ ycol }}))+
-                         geom_violin(fill = a,
-                                     alpha = {{ v_alpha }},
-                                     trim = {{ trim }},
-                                     scale = {{ scale }},
-                                     colour = "black", 
-                                     size = {{ bvthick }},
-                                     ...)+
-                         geom_boxplot(fill = a,
-                                      alpha = {{ b_alpha }},
-                                      colour = "black", 
-                                      size = {{ bvthick }},
-                                      outlier.alpha = 0,
-                                      width = {{ bwid }},
-                                      ...)+
-                         geom_point(aes(shape = factor({{ shapes }})),
-                                    position = position_jitter(width = {{ jitter }}),
-                                    alpha = {{ s_alpha }},
-                                    stroke = {{ symthick }},
-                                    size = {{ symsize }},
-                                    fill = a,
-                                    ...)+
-                         scale_shape_manual(values = 0:25)+
-                         labs(x = enquo(xcol),
-                              shape = enquo(shapes))+
-                         theme_classic(base_size = {{ fontsize }})+
-                         theme(strip.background = element_blank())+
-                         guides(x = guide_axis(angle = {{ TextXAngle }})))
-    }
-  }
+                         guides(x = guide_axis(angle = {{ TextXAngle }}),
+                                fill = guide_legend(order = 1),
+                                shape = guide_legend(order = 2)))
+                       } else {
+                         suppressWarnings(P <- ggplot2::ggplot(data, 
+                                                               aes(x = factor({{ xcol }}),
+                                                                   y = {{ ycol }}))+
+                                            geom_violin(fill = a,
+                                                        alpha = {{ v_alpha }},
+                                                        trim = {{ trim }},
+                                                        scale = {{ scale }},
+                                                        colour = "black", 
+                                                        size = {{ bvthick }},
+                                                        ...)+
+                                            geom_boxplot(fill = a,
+                                                         alpha = {{ b_alpha }},
+                                                         colour = "black", 
+                                                         size = {{ bvthick }},
+                                                         outlier.alpha = 0,
+                                                         width = {{ bwid }},
+                                                         ...)+
+                                            geom_point(aes(shape = factor({{ shapes }})),
+                                                       position = position_jitter(width = {{ jitter }}),
+                                                       alpha = {{ s_alpha }},
+                                                       stroke = {{ symthick }},
+                                                       size = {{ symsize }},
+                                                       fill = a,
+                                                       ...)+
+                                            scale_shape_manual(values = 0:25)+
+                                            labs(x = enquo(xcol),
+                                                 shape = enquo(shapes))+
+                                            theme_classic(base_size = {{ fontsize }})+
+                                            theme(strip.background = element_blank())+
+                                            guides(x = guide_axis(angle = {{ TextXAngle }}),
+                                                   fill = guide_legend(order = 1),
+                                                   shape = guide_legend(order = 2)))
+                                          }
+                       }
   P
-}
+    }

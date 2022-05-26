@@ -34,11 +34,11 @@
     5.  Summary graphs with SD error bars: `plot_bar_sd`,
         `plot_point_sd`
 
-<img src="man/figures/all_graphsv2.0.0.jpg" width="90%" />
+<img src="man/figures/all_graphsv2.3.0.jpg" width="90%" />
 
 #### Colourblind-friendly colour schemes
 
-The following categorical (qualitative/discreet) and quantitative
+The following 12 categorical (qualitative/discreet) and 5 quantitative
 (sequential or divergent) palettes are implemented natively in `grafify`
 (i.e. can be applied to `plot_` objects from within the function call.
 

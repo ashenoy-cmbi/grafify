@@ -24,7 +24,7 @@
 #' @param ewid width of error bars, default set to 0.2.
 #' @param b_alpha fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency).
 #' @param d_alpha fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency).
-#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..
+#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param SingleColour a colour hexcode (starting with #), a number between 1-154, or names of colours from `grafify` colour palettes to fill along X-axis aesthetic.

@@ -14,7 +14,8 @@ plot_xy_NumGroup(
   s_alpha = 1,
   ColPal = c("blue_conti", "yellow_conti", "grey_conti", "PrGn_div", "OrBl_div"),
   TextXAngle = 0,
-  fontsize = 20
+  fontsize = 20,
+  ...
 )
 }
 \arguments{
@@ -37,12 +38,14 @@ plot_xy_NumGroup(
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_violin}.}
 }
 \value{
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
-This function takes a data table, quantitative X and Y variables, and a numeric grouping variable, and a and plots a graph with using \code{\link[ggplot2]{geom_point}}. The numerical \code{NumGroup} variable is mapped to the \code{fill} aesthetic of symbols, which receives the \code{scale_fill_grafify_c} default palette.
+This function takes a data table, quantitative X and Y variables, and a numeric grouping variable, and a and plots a graph with using \code{\link[ggplot2]{geom_point}}. The numerical \code{NumGroup} variable is mapped to the \code{fill} aesthetic of symbols, which receives the \code{scale_fill_grafify} default quantitative palette (\code{blue_conti}).
 }
 \details{
 This plot is related to \code{\link{plot_xy_CatGroup}} which requires a categorical grouping factor.

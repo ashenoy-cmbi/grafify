@@ -34,14 +34,14 @@
 #' @param b_alpha fractional opacity of boxplots.  Default is set to 0, which results in white boxes inside violins. Change to any value >0 up to 1 for different levels of transparency. 
 #' @param v_alpha fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency).
 #' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency). Set `s_alpha = 0` to not show scatter plot.
-#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..
+#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param jitter extent of jitter (scatter) of symbols, default is 0 (i.e. aligned symbols). To reduce symbol overlap, try 0.1-0.3 or higher.  
 #' @param trim set whether tips of violin plot should be trimmed at high/low data. Default \code{trim = T}, can be changed to F.
 #' @param scale set to "area" by default, can be changed to "count" or "width".
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
-#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..
+#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
@@ -96,12 +96,14 @@ plot_4d_scatterviolin <- function(data, xcol, ycol, boxes, shapes, symsize = 2.5
                                                  dodge.width = 0.8),
                  aes(shape = factor({{ shapes }})))+
       scale_shape_manual(values = 0:25)+
-      labs(shape = enquo(shapes),
-           fill = enquo(boxes),
-           x = enquo(xcol))+
+      labs(fill = enquo(boxes),
+           x = enquo(xcol),
+           shape = enquo(shapes))+
       theme_classic(base_size = {{ fontsize }})+
       theme(strip.background = element_blank())+
-      guides(x = guide_axis(angle = {{ TextXAngle }}))
+      guides(x = guide_axis(angle = {{ TextXAngle }}),
+             fill = guide_legend(order = 1),
+             shape = guide_legend(order = 2))
   } else {
     P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                    y = {{ ycol }},
@@ -130,12 +132,14 @@ plot_4d_scatterviolin <- function(data, xcol, ycol, boxes, shapes, symsize = 2.5
                                                  dodge.width = 0.8),
                  aes(shape = factor({{ shapes }})))+
       scale_shape_manual(values = 0:25)+
-      labs(shape = enquo(shapes),
-           fill = enquo(boxes),
-           x = enquo(xcol))+
+      labs(fill = enquo(boxes),
+           x = enquo(xcol),
+           shape = enquo(shapes))+
       theme_classic(base_size = {{ fontsize }})+
       theme(strip.background = element_blank())+
-      guides(x = guide_axis(angle = {{ TextXAngle }}))    
+      guides(x = guide_axis(angle = {{ TextXAngle }}),
+             fill = guide_legend(order = 1),
+             shape = guide_legend(order = 2))    
   }
   P <- P +
       scale_fill_grafify(palette = {{ ColPal }}, 

@@ -33,25 +33,28 @@
 #' @param b_alpha fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency).
 #' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
-#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..
+#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param SingleColour a colour hexcode (starting with #), a number between 1-154, or names of colours from `grafify` colour palettes to fill along X-axis aesthetic.
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
 #'
+#' @param ... any additional arguments to pass to \code{ggplot2}[geom_boxplot] or \code{ggplot2}[geom_point].
 #' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 #' @export plot_3d_scatterbar
 #' @import ggplot2 Hmisc
 #'
 #' @examples
 #' #3d version for 1-way data with blocking
-#' plot_3d_scatterbox(data = data_1w_death, 
-#' xcol = Genotype, ycol = Death, shapes = Experiment)
+#' plot_3d_scatterbar(data = data_1w_death, 
+#' xcol = Genotype, ycol = Death, 
+#' shapes = Experiment)
 #' #compare above graph to
-#' plot_scatterbox(data = data_1w_death, 
+#' plot_scatterbar_sd(data = data_1w_death, 
 #' xcol = Genotype, ycol = Death)
 #' #single colour
-#' plot_scatterbox(data = data_1w_death, 
+#' plot_3d_scatterbar(data = data_1w_death, 
 #' xcol = Genotype, ycol = Death,
+#' shapes = Experiment,
 #' SingleColour = "pale_grey")
 #' 
 #' #4d version for 2-way data with blocking
@@ -67,7 +70,7 @@
 #' bars = Treatment, 
 #' shapes = Block)
 #' 
-plot_3d_scatterbar <- function(data, xcol, ycol, shapes, ewid = 0.2, symsize = 2.5, symthick = 1, jitter = 0.2, fontsize = 20, b_alpha = 1.0, s_alpha = 1, ColSeq = TRUE, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColRev = FALSE, SingleColour = "NULL", TextXAngle = 0){
+plot_3d_scatterbar <- function(data, xcol, ycol, shapes, ewid = 0.2, symsize = 2.5, symthick = 1, jitter = 0.2, fontsize = 20, b_alpha = 1.0, s_alpha = 1, ColSeq = TRUE, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColRev = FALSE, SingleColour = "NULL", TextXAngle = 0, ...){
   ColPal <- match.arg(ColPal)
   if (missing(SingleColour)) {
     P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
@@ -88,14 +91,17 @@ plot_3d_scatterbar <- function(data, xcol, ycol, shapes, ewid = 0.2, symsize = 2
       stat_summary(geom = "errorbar", width = {{ ewid }},
                    fun.data = "mean_sdl", size = 1,
                    fun.args = list(mult = 1),
-                   position = position_dodge(width = 0.8))+
+                   position = position_dodge(width = 0.8),
+                   ...)+
       scale_shape_manual(values = 0:25)+
       labs(x = enquo(xcol),
            fill = enquo(xcol),
            shape = enquo(shapes))+
       theme_classic(base_size = {{ fontsize }})+
       theme(strip.background = element_blank())+
-      guides(x = guide_axis(angle = {{ TextXAngle }}))+
+      guides(x = guide_axis(angle = {{ TextXAngle }}),
+             fill = guide_legend(order = 1),
+             shape = guide_legend(order = 2))+
       scale_fill_grafify(palette = {{ ColPal }},
                          reverse = {{ ColRev }},
                          ColSeq = {{ ColSeq }})
@@ -110,7 +116,8 @@ plot_3d_scatterbar <- function(data, xcol, ycol, shapes, ewid = 0.2, symsize = 2
                    fun = "mean", size = 1,
                    fill = a,
                    alpha = {{ b_alpha }},
-                   position = position_dodge(width = 0.8))+
+                   position = position_dodge(width = 0.8),
+                   ...)+
       geom_point(size = {{ symsize }}, 
                  stroke = {{ symthick }},
                  alpha = {{ s_alpha }}, 
@@ -121,13 +128,16 @@ plot_3d_scatterbar <- function(data, xcol, ycol, shapes, ewid = 0.2, symsize = 2
       stat_summary(geom = "errorbar", width = {{ ewid }},
                    fun.data = "mean_sdl", size = 1,
                    fun.args = list(mult = 1),
-                   position = position_dodge(width = 0.8))+
+                   position = position_dodge(width = 0.8),
+                   ...)+
       scale_shape_manual(values = 0:25)+
       labs(x = enquo(xcol),
            shape = enquo(shapes))+
       theme_classic(base_size = {{ fontsize }})+
       theme(strip.background = element_blank())+
-      guides(x = guide_axis(angle = {{ TextXAngle }}))
+      guides(x = guide_axis(angle = {{ TextXAngle }}),
+             fill = guide_legend(order = 1),
+             shape = guide_legend(order = 2))
   }
   P
 }

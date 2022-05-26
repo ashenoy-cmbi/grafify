@@ -24,7 +24,7 @@ output: github_document
   
   
 ```{r, all-graphs, echo = F, out.width="90%"}
-knitr::include_graphics("man/figures/all_graphsv2.0.0.jpg")
+knitr::include_graphics("man/figures/all_graphsv2.3.0.jpg")
 ```
 
 #### Colourblind-friendly colour schemes

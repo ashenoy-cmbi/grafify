@@ -8,6 +8,8 @@
 #' `ColPal` can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
 #' `ColRev` (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette. 
 #' `ColSeq` decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
+#' 
+#' To plot a graph with a single colour along the X axis variable, use the `SingleColour` argument.
 #'
 #' More complex designs can also be plotted when used with \code{\link[ggplot2]{facet_wrap}} or \code{\link[ggplot2]{facet_grid}}.
 #' @param data a data table object, e.g. data.frame or tibble.
@@ -17,13 +19,14 @@
 #' @param symsize size of symbols, default set to 3.
 #' @param symthick size of outline of symbol lines (\code{stroke = 1}), default set to 1.
 #' @param s_alpha fractional opacity of symbols, default set to 0.8 (i.e. 80% opacity).
-#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..
+#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
+#' @param SingleColour a colour hexcode (starting with #), a number between 1-154, or names of colours from `grafify` colour palettes to fill along X-axis aesthetic.
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param groups old argument name for `match`; retained for backward compatibility.
-#' @param ... any additional arguments to pass to \code{ggplot2}[geom_line].
+#' @param ... any additional arguments to pass to \code{ggplot2}[geom_line] or \code{ggplot2}[geom_point].
 #'
 #' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 #' @export plot_befafter_shapes
@@ -41,31 +44,54 @@
 #' xcol = Genotype, ycol = PI, 
 #' match = Experiment) + facet_wrap("Time")
 
-plot_befafter_shapes <- function(data, xcol, ycol, match, symsize = 3, symthick = 1, s_alpha = 0.8, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, TextXAngle = 0, fontsize = 20, groups, ...){
+plot_befafter_shapes <- function(data, xcol, ycol, match, symsize = 3, symthick = 1, s_alpha = 0.8, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, SingleColour = "NULL", TextXAngle = 0, fontsize = 20, groups, ...){
   if (!missing("groups")) {
     warning("Use `match` argument instead, as `groups` is deprecated.")
     match <- substitute(groups)}
   ColPal <- match.arg(ColPal)
-  P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
-                            y = {{ ycol }},
-                            group = factor({{ match }})))+
-    geom_line(aes(group = factor({{ match }})),
-              colour = "grey35", alpha = 0.8, 
-              ...)+
-    geom_point(alpha = {{ s_alpha }}, 
-               stroke = {{ symthick }},
-               size = {{ symsize }},
-               aes(colour = factor({{ xcol }}),
-                   shape = factor({{ match }})))+
-    scale_shape_manual(values = 0:25)+
-    labs(x = enquo(xcol),
-         colour = enquo(xcol),
-         shape = enquo(match))+
-    theme_classic(base_size = {{ fontsize }})+
-    theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = {{ TextXAngle }}))+
-    scale_colour_grafify(palette = {{ ColPal }}, 
-                       reverse = {{ ColRev }}, 
-                       ColSeq = {{ ColSeq }})
+  if (missing(SingleColour)) {
+    P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+                                   y = {{ ycol }},
+                                   group = factor({{ match }})))+
+      geom_line(aes(group = factor({{ match }})),
+                colour = "grey35", alpha = 0.8, 
+                ...)+
+      geom_point(alpha = {{ s_alpha }}, 
+                 stroke = {{ symthick }},
+                 size = {{ symsize }},
+                 aes(colour = factor({{ xcol }}),
+                     shape = factor({{ match }})), ...)+
+      scale_shape_manual(values = 0:25)+
+      labs(x = enquo(xcol),
+           colour = enquo(xcol),
+           shape = enquo(match))+
+      theme_classic(base_size = {{ fontsize }})+
+      theme(strip.background = element_blank())+
+      guides(x = guide_axis(angle = {{ TextXAngle }}))+
+      scale_colour_grafify(palette = {{ ColPal }}, 
+                           reverse = {{ ColRev }}, 
+                           ColSeq = {{ ColSeq }})
+  } else {
+    ifelse(grepl("#", SingleColour),
+           a <- SingleColour,
+           a <- get_graf_colours({{ SingleColour }}))
+    P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+                                   y = {{ ycol }},
+                                   group = factor({{ match }})))+
+      geom_line(aes(group = factor({{ match }})),
+                colour = "grey35", alpha = 0.8, 
+                ...)+
+      geom_point(alpha = {{ s_alpha }}, 
+                 stroke = {{ symthick }},
+                 size = {{ symsize }},
+                 colour = a,
+                 aes(shape = factor({{ match }})), ...)+
+      scale_shape_manual(values = 0:25)+
+      labs(x = enquo(xcol),
+           shape = enquo(match))+
+      theme_classic(base_size = {{ fontsize }})+
+      theme(strip.background = element_blank())+
+      guides(x = guide_axis(angle = {{ TextXAngle }}))
+  }
   P
 }

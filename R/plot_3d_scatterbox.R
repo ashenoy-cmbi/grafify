@@ -32,7 +32,7 @@
 #' @param b_alpha fractional opacity of boxes, default set to 1 (i.e. maximum opacity & zero transparency).
 #' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
-#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..
+#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param SingleColour a colour hexcode (starting with #), a number between 1-154, or names of colours from `grafify` colour palettes to fill along X-axis aesthetic.
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
@@ -45,13 +45,15 @@
 #' @examples
 #' #3d version for 1-way data with blocking
 #' plot_3d_scatterbox(data = data_1w_death, 
-#' xcol = Genotype, ycol = Death, shapes = Experiment)
+#' xcol = Genotype, ycol = Death, 
+#' shapes = Experiment)
 #' #compare above graph to
 #' plot_scatterbox(data = data_1w_death, 
 #' xcol = Genotype, ycol = Death)
 #' #single colour graph
-#' plot_scatterbox(data = data_1w_death, 
+#' plot_3d_scatterbox(data = data_1w_death, 
 #' xcol = Genotype, ycol = Death,
+#' shapes = Experiment,
 #' SingleColour = "pale_grey")
 #' 
 #' #4d version for 2-way data with blocking
@@ -93,7 +95,9 @@ plot_3d_scatterbox <- function(data, xcol, ycol, shapes, symsize = 2.5, symthick
            shape = enquo(shapes))+
       theme_classic(base_size = {{ fontsize }})+
       theme(strip.background = element_blank())+
-      guides(x = guide_axis(angle = {{ TextXAngle }}))+
+      guides(x = guide_axis(angle = {{ TextXAngle }}),
+             fill = guide_legend(order = 1),
+             shape = guide_legend(order = 2))+
       scale_fill_grafify(palette = {{ ColPal }}, 
                          reverse = {{ ColRev }}, 
                          ColSeq = {{ ColSeq }})
@@ -123,7 +127,9 @@ plot_3d_scatterbox <- function(data, xcol, ycol, shapes, symsize = 2.5, symthick
            shape = enquo(shapes))+
       theme_classic(base_size = {{ fontsize }})+
       theme(strip.background = element_blank())+
-      guides(x = guide_axis(angle = {{ TextXAngle }}))    
+      guides(x = guide_axis(angle = {{ TextXAngle }}),
+             fill = guide_legend(order = 1),
+             shape = guide_legend(order = 2))    
   }
   P
 }

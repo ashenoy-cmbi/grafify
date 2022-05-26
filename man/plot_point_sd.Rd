@@ -18,7 +18,8 @@ plot_point_sd(
   ColRev = FALSE,
   SingleColour = "NULL",
   TextXAngle = 0,
-  fontsize = 20
+  fontsize = 20,
+  ...
 )
 }
 \arguments{
@@ -36,7 +37,7 @@ plot_point_sd(
 
 \item{ewid}{width of error bars, default set to 0.2.}
 
-\item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..}
+\item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 
@@ -47,6 +48,8 @@ plot_point_sd(
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{...}{any additional arguments to pass to \code{ggplot2}\link{stat_summary}.}
 }
 \value{
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".

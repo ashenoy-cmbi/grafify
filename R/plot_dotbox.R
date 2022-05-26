@@ -22,7 +22,7 @@
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param b_alpha fractional opacity of boxes, default set to 1 (i.e. maximum opacity & zero transparency).
 #' @param d_alpha fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency).
-#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..
+#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param SingleColour a colour hexcode (starting with #), a number between 1-154, or names of colours from `grafify` colour palettes to fill along X-axis aesthetic.
@@ -49,7 +49,8 @@ plot_dotbox <- function(data, xcol, ycol, dotsize = 1.5, dotthick = 1, b_alpha =
   if (missing(SingleColour)) {
     suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                                     y = {{ ycol }}))+
-                       geom_boxplot(aes(fill = factor({{ xcol }})), size = 1,
+                       geom_boxplot(aes(fill = factor({{ xcol }})), 
+                                    size = 1,
                                     alpha = {{ b_alpha }},
                                     outlier.alpha = 0,
                                     width = 0.7,
@@ -65,10 +66,10 @@ plot_dotbox <- function(data, xcol, ycol, dotsize = 1.5, dotthick = 1, b_alpha =
                             fill = enquo(xcol))+
                        theme_classic(base_size = {{ fontsize }})+
                        theme(strip.background = element_blank())+
-                       guides(x = guide_axis(angle = {{ TextXAngle }})))+
-      scale_fill_grafify(palette = {{ ColPal }}, 
-                         reverse = {{ ColRev }}, 
-                         ColSeq = {{ ColSeq }})
+                       guides(x = guide_axis(angle = {{ TextXAngle }}))+
+                       scale_fill_grafify(palette = {{ ColPal }}, 
+                                          reverse = {{ ColRev }}, 
+                                          ColSeq = {{ ColSeq }}))
   } else {
     ifelse(grepl("#", SingleColour), 
            a <- SingleColour,

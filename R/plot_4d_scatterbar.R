@@ -91,11 +91,13 @@ plot_4d_scatterbar <- function(data, xcol, ycol, bars, shapes, symsize = 2.5, sy
                  position = position_dodge(width = 0.8), ...)+
     scale_shape_manual(values = 0:25)+
     labs(fill = enquo(bars),
-         shape = enquo(shapes),
-         x = enquo(xcol))+
+         x = enquo(xcol),
+         shape = enquo(shapes))+
     theme_classic(base_size = {{ fontsize }})+
     theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = {{ TextXAngle }}))+
+    guides(x = guide_axis(angle = {{ TextXAngle }}),
+           fill = guide_legend(order = 1),
+           shape = guide_legend(order = 2))+
     scale_fill_grafify(palette = {{ ColPal }}, 
                        reverse = {{ ColRev }}, 
                        ColSeq = {{ ColSeq }})

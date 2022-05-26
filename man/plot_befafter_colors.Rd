@@ -16,6 +16,7 @@ plot_befafter_colors(
     "kelly", "light", "muted", "pale", "r4", "safe", "vibrant"),
   ColSeq = TRUE,
   ColRev = FALSE,
+  SingleColour = "NULL",
   TextXAngle = 0,
   fontsize = 20,
   groups,
@@ -37,11 +38,13 @@ plot_befafter_colors(
 
 \item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).}
 
-\item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..}
+\item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 
 \item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
+
+\item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} colour palettes to fill along X-axis aesthetic.}
 
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
@@ -49,7 +52,7 @@ plot_befafter_colors(
 
 \item{groups}{old argument name for \code{match}; retained for backward compatibility.}
 
-\item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_line}.}
+\item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_line} or \code{ggplot2}\link{geom_point}.}
 }
 \value{
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
@@ -64,6 +67,8 @@ Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} argum
 \code{ColPal} can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
 \code{ColRev} (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette.
 \code{ColSeq} decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
+
+To plot a graph with a single colour along the X axis variable, use the \code{SingleColour} argument.
 
 More complex designs can also be plotted when used with \code{\link[ggplot2]{facet_wrap}} or \code{\link[ggplot2]{facet_grid}}.
 }

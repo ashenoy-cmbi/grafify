@@ -21,7 +21,8 @@ plot_3d_scatterbar(
     "kelly", "light", "muted", "pale", "r4", "safe", "vibrant"),
   ColRev = FALSE,
   SingleColour = "NULL",
-  TextXAngle = 0
+  TextXAngle = 0,
+  ...
 )
 }
 \arguments{
@@ -49,13 +50,15 @@ plot_3d_scatterbar(
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 
-\item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes..}
+\item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
 
 \item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
 
 \item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} colour palettes to fill along X-axis aesthetic.}
 
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
+
+\item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_boxplot} or \code{ggplot2}\link{geom_point}.}
 }
 \value{
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
@@ -85,14 +88,16 @@ All four functions can be expanded further, for example with \code{\link[ggplot2
 }
 \examples{
 #3d version for 1-way data with blocking
-plot_3d_scatterbox(data = data_1w_death, 
-xcol = Genotype, ycol = Death, shapes = Experiment)
+plot_3d_scatterbar(data = data_1w_death, 
+xcol = Genotype, ycol = Death, 
+shapes = Experiment)
 #compare above graph to
-plot_scatterbox(data = data_1w_death, 
+plot_scatterbar_sd(data = data_1w_death, 
 xcol = Genotype, ycol = Death)
 #single colour
-plot_scatterbox(data = data_1w_death, 
+plot_3d_scatterbar(data = data_1w_death, 
 xcol = Genotype, ycol = Death,
+shapes = Experiment,
 SingleColour = "pale_grey")
 
 #4d version for 2-way data with blocking

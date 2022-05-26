@@ -73,7 +73,8 @@
   ColRev <span class="op">=</span> <span class="cn">FALSE</span>,
   SingleColour <span class="op">=</span> <span class="st">"NULL"</span>,
   TextXAngle <span class="op">=</span> <span class="fl">0</span>,
-  fontsize <span class="op">=</span> <span class="fl">20</span>
+  fontsize <span class="op">=</span> <span class="fl">20</span>,
+  <span class="va">...</span>
 <span class="op">)</span></code></pre></div>
     </div>
 
@@ -94,7 +95,7 @@
 <dt>ewid</dt>
 <dd><p>width of error bars, default set to 0.2.</p></dd>
 <dt>ColPal</dt>
-<dd><p>grafify colour palette to apply, default "okabe_ito"; see <code><a href="graf_palettes.html">graf_palettes</a></code> for available palettes..</p></dd>
+<dd><p>grafify colour palette to apply, default "okabe_ito"; see <code><a href="graf_palettes.html">graf_palettes</a></code> for available palettes.</p></dd>
 <dt>ColSeq</dt>
 <dd><p>logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  <code>scale_fill_grafify2</code>.</p></dd>
 <dt>ColRev</dt>
@@ -105,6 +106,8 @@
 <dd><p>orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.</p></dd>
 <dt>fontsize</dt>
 <dd><p>parameter of <code>base_size</code> of fonts in <code>theme_classic</code>, default set to size 20.</p></dd>
+<dt>...</dt>
+<dd><p>any additional arguments to pass to <code>ggplot2</code>stat_summary.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
