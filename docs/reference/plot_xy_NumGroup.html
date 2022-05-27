@@ -91,7 +91,7 @@
 <dt>s_alpha</dt>
 <dd><p>fractional opacity of symbols, default set to 1 (i.e. maximum opacity &amp; zero transparency).</p></dd>
 <dt>ColPal</dt>
-<dd><p>= One of five quantitative colour schemes in <code>grafify</code>: <code>blue_conti</code>, <code>yellow_conti</code>, <code>grey_conti</code>, <code>PrGn_div</code>, <code>OrBl_div</code>.</p></dd>
+<dd><p>One of five quantitative colour schemes in <code>grafify</code>: <code>blue_conti</code>, <code>yellow_conti</code>, <code>grey_conti</code>, <code>PrGn_div</code>, <code>OrBl_div</code>.</p></dd>
 <dt>TextXAngle</dt>
 <dd><p>orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.</p></dd>
 <dt>fontsize</dt>
@@ -116,6 +116,12 @@ When summary statistics (mean/median) are required, use <code><a href="plot_3d_s
 <span class="r-in">xcol <span class="op">=</span> <span class="va">mpg</span>, ycol <span class="op">=</span> <span class="va">disp</span>, NumGroup <span class="op">=</span> <span class="va">cyl</span>,</span>
 <span class="r-in">s_alpha <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="plot_xy_NumGroup-1.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span class="co">#change colour palette</span></span>
+<span class="r-in"><span class="fu">plot_xy_NumGroup</span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtcars</span>,</span>
+<span class="r-in">xcol <span class="op">=</span> <span class="va">mpg</span>, ycol <span class="op">=</span> <span class="va">disp</span>, NumGroup <span class="op">=</span> <span class="va">cyl</span>,</span>
+<span class="r-in">s_alpha <span class="op">=</span> <span class="fl">0.8</span>, </span>
+<span class="r-in">ColPal <span class="op">=</span> <span class="st">"grey_conti"</span><span class="op">)</span></span>
+<span class="r-plt img"><img src="plot_xy_NumGroup-2.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
   </div>

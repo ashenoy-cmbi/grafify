@@ -12,7 +12,7 @@
 #' @param symsize size of symbols used by \code{geom_point}. Default set to 2.5, increase/decrease as needed.
 #' @param symthick thickness of symbol border, default set to 1.
 #' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).
-#' @param ColPal = One of five quantitative colour schemes in `grafify`: `blue_conti`, `yellow_conti`, `grey_conti`, `PrGn_div`, `OrBl_div`.
+#' @param ColPal One of five quantitative colour schemes in `grafify`: `blue_conti`, `yellow_conti`, `grey_conti`, `PrGn_div`, `OrBl_div`.
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param ... any additional arguments to pass to \code{ggplot2}[geom_violin].
@@ -26,6 +26,11 @@
 #' plot_xy_NumGroup(data = mtcars,
 #' xcol = mpg, ycol = disp, NumGroup = cyl,
 #' s_alpha = 0.8)
+#' #change colour palette
+#' plot_xy_NumGroup(data = mtcars,
+#' xcol = mpg, ycol = disp, NumGroup = cyl,
+#' s_alpha = 0.8, 
+#' ColPal = "grey_conti")
 
 plot_xy_NumGroup <- function(data, xcol, ycol, NumGroup, symsize = 2.5, symthick = 1, s_alpha = 1, ColPal = c("blue_conti", "yellow_conti", "grey_conti", "PrGn_div", "OrBl_div"), TextXAngle = 0, fontsize = 20,...){
   ColPal <- match.arg(ColPal)
@@ -40,6 +45,5 @@ plot_xy_NumGroup <- function(data, xcol, ycol, NumGroup, symsize = 2.5, symthick
     theme_classic(base_size = {{ fontsize }})+
     theme(strip.background = element_blank())+
     guides(x = guide_axis(angle = {{ TextXAngle }}))+
-    scale_fill_grafify(palette = {{ ColPal }}, 
-                       discrete = FALSE)
+    scale_fill_grafify(palette = {{ ColPal }})
 }

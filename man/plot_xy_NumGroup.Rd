@@ -33,7 +33,7 @@ plot_xy_NumGroup(
 
 \item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).}
 
-\item{ColPal}{= One of five quantitative colour schemes in \code{grafify}: \code{blue_conti}, \code{yellow_conti}, \code{grey_conti}, \code{PrGn_div}, \code{OrBl_div}.}
+\item{ColPal}{One of five quantitative colour schemes in \code{grafify}: \code{blue_conti}, \code{yellow_conti}, \code{grey_conti}, \code{PrGn_div}, \code{OrBl_div}.}
 
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
@@ -56,4 +56,9 @@ When summary statistics (mean/median) are required, use \code{\link{plot_3d_scat
 plot_xy_NumGroup(data = mtcars,
 xcol = mpg, ycol = disp, NumGroup = cyl,
 s_alpha = 0.8)
+#change colour palette
+plot_xy_NumGroup(data = mtcars,
+xcol = mpg, ycol = disp, NumGroup = cyl,
+s_alpha = 0.8, 
+ColPal = "grey_conti")
 }
