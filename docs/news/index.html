@@ -55,35 +55,33 @@
 
     <div class="section level2">
 <h2 class="page-header" data-toc-text="2.3.0" id="grafify-v230">grafify v2.3.0<a class="anchor" aria-label="anchor" href="#grafify-v230"></a></h2>
-<p>The main motivation behind this update was to simplify the package by reducing the number of exported functions. So several functions that provided unique functionalities (see list below) have been removed but a new argument added to existing functions. This has uncluttered the namespace of <code>grafify</code>. Most of the other additions are related to colour schemes.</p>
+<p>The main motivation behind this update was to simplify the package by reducing the number of exported functions. So some features that were previously in separate functions have been made available more easily via an additional argument to existing functions (e.g. single colour function (<code>plot_..._sc</code>) now offered in respective <code>plot_</code> function with a new argument (see below). This has uncluttered the namespace of <code>grafify</code>. Most of the other additions are related to colour schemes.</p>
 <div class="section level3">
 <h3 id="major-additions-2-3-0">Major additions<a class="anchor" aria-label="anchor" href="#major-additions-2-3-0"></a></h3>
-<ol style="list-style-type: decimal"><li>Four new colourblind-friendly categorical colour schemes:</li>
+<ol style="list-style-type: decimal"><li><p>A new <code>SingleColour</code> argument has been added to two-variables <code>plot_</code> functions to generate graphs with a single colour along the X-axis aesthetic. This means the 8 <code>plot_..._sc</code> functions introduced in v1.5.0 are deprecated, but this feature is still retained in existing <code>plot_</code> functions. This option also added to <code>plot_3d_</code> functions for plots of one-way ANOVA data.</p></li>
+<li><p>Four new colourblind-friendly categorical colour schemes (chosen from <a href="https://github.com/mtennekes/cols4all" class="external-link">cols4all</a> package):</p></li>
 </ol><ul><li>
 <code>fishy</code>, <code>kelly</code>, <code>r4</code>, <code>safe</code>
 </li>
-</ul><ol start="2" style="list-style-type: decimal"><li>Four new quantitative schemes for continuous or divergent colours.</li>
+</ul><ol start="3" style="list-style-type: decimal"><li>Four new quantitative schemes for continuous or divergent colours.</li>
 </ol><ul><li>sequential/continuous: <code>blue_conti</code>, <code>grey_conti</code>
 </li>
 <li>divergent: <code>OrBl_div</code>, <code>PrGn_div</code>
 </li>
-</ul><p>All these schemes are available through <code>scale_fill..</code> and <code>scale_colour_...</code> calls to be used on any <code>ggplot2</code> object.</p>
-<ol start="3" style="list-style-type: decimal"><li>
-<code>scale_fill_grafify</code> and <code>scale_colour_grafify</code> (or <code>scale_color_grafify</code>) have been rewritten. These have two new arguments that offer features previously in <code>scale_fill_grafify2</code>/<code>scale_colour_grafify2</code>/ <code>scale_color_grafify_c</code> and <code>scale_fill_grafify_c</code>/<code>scale_colour_grafify_c</code>/ <code>scale_color_grafify_C</code> scale functions. These 6 functions are now deprecated to reduce the exported namespace.</li>
+</ul><p>All schemes also available through <code>scale_fill..</code> and <code>scale_colour_...</code> calls to be used on any <code>ggplot2</code> object.</p>
+<ol start="4" style="list-style-type: decimal"><li>
+<code>scale_fill_grafify</code> and <code>scale_colour_grafify</code> (or <code>scale_color_grafify</code>) have been rewritten. These have two new arguments that offer features previously in <code>scale_fill_grafify2</code>/<code>scale_colour_grafify2</code>/ <code>scale_color_grafify_c</code> and <code>scale_fill_grafify_c</code>/<code>scale_colour_grafify_c</code>/ <code>scale_color_grafify_C</code> scale functions. These 6 functions are now deprecated to reduce exported namespace.</li>
 </ol><p>The new arguments are <code>discrete</code> (logical T/F) to select discrete or continuous palettes, and <code>ColSeq</code> (logical T/F) to pick sequential or distant colours from a chosen palette.</p>
-<ol start="4" style="list-style-type: decimal"><li>A new <code>SingleColour</code> argument has been added to two-variables <code>plot_</code> functions to generate graphs with a single colour along the X-axis aesthetic. This means the 8 <code>plot_..._sc</code> functions introduced in v1.5.0 are deprecated, but this feature is still retained in existing <code>plot_</code> functions. This option also added to <code>plot_3d_</code> functions for plots of one-way ANOVA data.</li>
-</ol></div>
+</div>
 <div class="section level3">
 <h3 id="minor-changes--bug-fixes-2-3-0">Minor changes &amp; bug fixes<a class="anchor" aria-label="anchor" href="#minor-changes--bug-fixes-2-3-0"></a></h3>
-<ol style="list-style-type: decimal"><li>Fixed the error in legend title in one-way ANOVA plots with <code>plot_3d_</code>. The title now correctly refers to <code>xcol</code> and <code>shapes</code> arguments.</li>
+<ol style="list-style-type: decimal"><li>Fixed the error in legend title in one-way ANOVA plots with <code>plot_3d_</code> that incorrectly referred to <code>xcol</code> and <code>shapes</code> arguments.</li>
 <li>Fixed the error that led to depiction of different shapes in <code>plot_3d_scatterviolin</code> as compared to the other two <code>plot_3d_</code> functions.</li>
 <li>
 <code>posthoc_Trends...</code> functions rewritten with <code><a href="https://rdrr.io/r/stats/model.frame.html" class="external-link">stats::model.frame()</a></code> to get model data frame as this is a more flexible method.</li>
 <li>Order of colours in <code>light</code>, <code>bright</code> and <code>muted</code> schemes changed slightly for better separation of colours when next to each other.</li>
 <li>The <code>jitter</code> setting in <code>plot_scaltter_</code> is set to <code>0.2</code> so the graph as plotted with jitter by default.<br></li>
-<li>The default colour scheme for all graphs is now <code>okabe_ito</code> (the <code>all_grafify</code> palette is was just a concatenation of all palettes without real basis in good visualisation). Use one of the other palettes (e.g. <code>kelly</code>, which has 20 discreet colours).</li>
-<li>
-<code>scale_fill_grafify2</code>, <code>scale_colour_grafify2</code>, <code>scale_colour_grafify_c</code> and <code>scale_fill_grafify_c</code> deprecated, and the same function offered with <code>ColSeq</code> and <code>discrete</code> arguments in <code>scale_fill_grafify</code> and <code>scale_colour_grafify</code>.</li>
+<li>The default colour scheme for all graphs is now <code>okabe_ito</code> (the <code>all_grafify</code> palette is was just a concatenation of all palettes without real basis in good visualisation). Use one of the other palettes if more than 8 colours are needed (e.g. <code>kelly</code>, which has 20 discreet colours).</li>
 </ol></div>
 </div>
     <div class="section level2">

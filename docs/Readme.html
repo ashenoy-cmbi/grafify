@@ -55,22 +55,22 @@
 
 <div class="section level3">
 <h3 id="features">Features<a class="anchor" aria-label="anchor" href="#features"></a></h3>
-<p><code>grafify</code> has five main features:</p>
+<p><code>grafify</code> has three main features:</p>
 <ol style="list-style-type: decimal"><li>plotting great-looking graphs for quick-n-easy data exploration</li>
 <li>apply colourblind-friendly palettes to graphs plotted with <code>grafify</code> or <code>ggplot2</code>
 </li>
-<li>use linear models for ANOVA &amp; post-hoc comparisons (estimated marginal means, confidence intervals and <em>P</em> values)</li>
-<li>practice datasets (with randomised blocks)</li>
-<li>simulating data for power analysis</li>
-</ol><div class="section level4">
+<li>use linear models for ANOVA (including those with randomised block designs and repeated-measures) &amp; post-hoc comparisons (estimated marginal means, confidence intervals and <em>P</em> values)</li>
+</ol><p>Two other features including practice datasets (with randomised blocks), and data simulation for power analyses. The first three features are better documented at present.</p>
+<div class="section level4">
 <h4 id="graphs">Graphs<a class="anchor" aria-label="anchor" href="#graphs"></a></h4>
 <ol style="list-style-type: decimal"><li>
 <p>Easily plot data as scatter/dot plots with boxes, violins or bars with <code>plot_</code> functions of 6 broad types.</p>
 <ol style="list-style-type: decimal"><li>Two variables (one categorical &amp; one numeric): these graphs either use scatter (or also called jitter) or dot plot geometries: <code>plot_scatterbar_sd</code>, <code>plot_scatterbox</code>, <code>plot_scatterviolin</code> or <code>plot_dotbar_sd</code>, <code>plot_dotbox</code>, <code>plot_dotviolin</code>
 </li>
-<li>One-way or two-way ANOVA designs with or without randomised blocks (3 or 4 dimensions or variables): <code>plot_3d_scatterbar</code>, <code>plot_3d_scatterbox</code> or <code>plot_4d_scatterbar</code>, <code>plot_4d_scatterbox</code>
+<li>One-way or two-way ANOVA designs with or without randomised blocks (3 or 4 dimensions or variables): <code>plot_3d_scatterbar</code>, <code>plot_3d_scatterbox</code>, <code>plot_3d_scatterviolin</code> or <code>plot_4d_scatterbar</code>, <code>plot_4d_scatterbox</code>, <code>plot_4d_scatterviolin</code>
 </li>
-<li>Matched before-after graphs: <code>plot_befafter_colours</code>, <code>plot_befafter_shapes</code> c. Quantitative X &amp; Y, plus a third variable: <code>plot_xy_NumGroup</code>, <code>plot_xy_CatGroup</code>
+<li>Matched before-after graphs: <code>plot_befafter_colours</code>, <code>plot_befafter_shapes</code><br></li>
+<li>Quantitative X &amp; Y, plus a third variable: <code>plot_xy_NumGroup</code>, <code>plot_xy_CatGroup</code>
 </li>
 <li>Data distributions: <code>plot_qqline</code>, <code>plot_density</code> <code>plot_histogram</code>, and residuals of linear models with <code>plot_qqmodel</code>
 </li>
@@ -81,20 +81,21 @@
 </div>
 <div class="section level4">
 <h4 id="colourblind-friendly-colour-schemes">Colourblind-friendly colour schemes<a class="anchor" aria-label="anchor" href="#colourblind-friendly-colour-schemes"></a></h4>
-<p>The following 12 categorical (qualitative/discreet) and 5 quantitative (sequential or divergent) palettes are implemented natively in <code>grafify</code> (i.e. can be applied to <code>plot_</code> objects from within the function call.</p>
-<p><code>grafify</code> also offers <code>scale_fill_grafify</code> and <code>scale_colour_grafify</code> to apply all <code>grafify</code> palettes to any <code>ggplot2</code> object.</p>
+<p>The following 12 categorical (qualitative/discreet) and 5 quantitative (3 sequential and 2 divergent) palettes are implemented in <code>grafify</code> for making graphs with <code>plot_</code> functions.</p>
+<p>In addition, <code>scale_fill_grafify</code> and <code>scale_colour_grafify</code> functions can be used to apply all <code>grafify</code> palettes to any <code>ggplot2</code> object.</p>
 <p><img src="reference/figures/grafify_palettesv230.jpg" width="90%"></p>
-<p>All palettes are colourblind-friendly. (See Mike Mol’s <a href="https://mikemol.github.io/technique/colorblind/2018/02/11/color-safe-palette.html" class="external-link">blog</a> and Paul Tol’s <a href="https://personal.sron.nl/~pault/#sec:qualitative" class="external-link">blog</a>. Additional colour schemes were chosen/adapted from <a href="https://github.com/mtennekes/cols4all" class="external-link"><code>cols4all</code> package</a>).</p>
+<p>All palettes are colourblind-friendly. (See Mike Mol’s <a href="https://mikemol.github.io/technique/colorblind/2018/02/11/color-safe-palette.html" class="external-link">blog</a> and Paul Tol’s <a href="https://personal.sron.nl/~pault/#sec:qualitative" class="external-link">blog</a>. Additional colour schemes were chosen from <a href="https://github.com/mtennekes/cols4all" class="external-link"><code>cols4all</code> package</a>).</p>
 </div>
 <div class="section level4">
 <h4 id="linear-models">Linear models<a class="anchor" aria-label="anchor" href="#linear-models"></a></h4>
-<p>Fitting linear models or linear mixed effects models, and obtaining ANOVA tables with easy wrappers around <code>lme4</code>.</p>
+<p>Get ANOVA tables and linear models with these easy wrappers.</p>
 <ol style="list-style-type: decimal"><li>linear models for ordinary ANOVA: <code>simple_anova</code>, <code>simple_model</code>,</li>
 <li>linear mixed effects for repeated-measures and randomised-block design ANOVA: <code>mixed_anova</code>, <code>mixed_model</code>, <code>mixed_anova_slopes</code> &amp; <code>mixed_model_slopes</code>.</li>
+<li>plot model residuals with <code>plot_qqmodel</code>.</li>
 </ol></div>
 <div class="section level4">
 <h4 id="post-hoc-comparisons--estimated-marginal-means-easy-wrappers-for-emmeans">Post-hoc comparisons &amp; Estimated Marginal Means (easy wrappers for <code>emmeans</code>)<a class="anchor" aria-label="anchor" href="#post-hoc-comparisons--estimated-marginal-means-easy-wrappers-for-emmeans"></a></h4>
-<p>Perform post-hoc comparisons based on fitted models for response variables and slopes. Also get Estimated Marginal Means with these wrappers.</p>
+<p>Perform post-hoc comparisons based on fitted models for response variables and slopes. Get Estimated Marginal Means, <em>P</em> values, parameter estimates with CI95 with these wrappers.</p>
 <ol style="list-style-type: decimal"><li>
 <code>posthoc_Pariwise</code>, <code>posthoc_Levelwise</code> &amp; <code>posthoc_vsRef</code>
 </li>

@@ -1,15 +1,18 @@
 
 ### Features
 
-`grafify` has five main features:
+`grafify` has three main features:
 
 1.  plotting great-looking graphs for quick-n-easy data exploration
 2.  apply colourblind-friendly palettes to graphs plotted with `grafify`
     or `ggplot2`
-3.  use linear models for ANOVA & post-hoc comparisons (estimated
+3.  use linear models for ANOVA (including those with randomised block
+    designs and repeated-measures) & post-hoc comparisons (estimated
     marginal means, confidence intervals and *P* values)
-4.  practice datasets (with randomised blocks)
-5.  simulating data for power analysis
+
+Two other features including practice datasets (with randomised blocks),
+and data simulation for power analyses. The first three features are
+better documented at present.
 
 #### Graphs
 
@@ -23,15 +26,17 @@
         `plot_dotviolin`
     2.  One-way or two-way ANOVA designs with or without randomised
         blocks (3 or 4 dimensions or variables): `plot_3d_scatterbar`,
-        `plot_3d_scatterbox` or `plot_4d_scatterbar`,
-        `plot_4d_scatterbox`
+        `plot_3d_scatterbox`, `plot_3d_scatterviolin` or
+        `plot_4d_scatterbar`, `plot_4d_scatterbox`,
+        `plot_4d_scatterviolin`
     3.  Matched before-after graphs: `plot_befafter_colours`,
-        `plot_befafter_shapes` c. Quantitative X & Y, plus a third
-        variable: `plot_xy_NumGroup`, `plot_xy_CatGroup`
-    4.  Data distributions: `plot_qqline`, `plot_density`
+        `plot_befafter_shapes`  
+    4.  Quantitative X & Y, plus a third variable: `plot_xy_NumGroup`,
+        `plot_xy_CatGroup`
+    5.  Data distributions: `plot_qqline`, `plot_density`
         `plot_histogram`, and residuals of linear models with
         `plot_qqmodel`
-    5.  Summary graphs with SD error bars: `plot_bar_sd`,
+    6.  Summary graphs with SD error bars: `plot_bar_sd`,
         `plot_point_sd`
 
 <img src="man/figures/all_graphsv2.3.0.jpg" width="90%" />
@@ -39,35 +44,35 @@
 #### Colourblind-friendly colour schemes
 
 The following 12 categorical (qualitative/discreet) and 5 quantitative
-(sequential or divergent) palettes are implemented natively in `grafify`
-(i.e. can be applied to `plot_` objects from within the function call.
+(3 sequential and 2 divergent) palettes are implemented in `grafify` for
+making graphs with `plot_` functions.
 
-`grafify` also offers `scale_fill_grafify` and `scale_colour_grafify` to
-apply all `grafify` palettes to any `ggplot2` object.
+In addition, `scale_fill_grafify` and `scale_colour_grafify` functions
+can be used to apply all `grafify` palettes to any `ggplot2` object.
 
 <img src="man/figures/grafify_palettesv230.jpg" width="90%" />
 
 All palettes are colourblind-friendly. (See Mike Mol’s
 [blog](https://mikemol.github.io/technique/colorblind/2018/02/11/color-safe-palette.html)
 and Paul Tol’s [blog](https://personal.sron.nl/~pault/#sec:qualitative).
-Additional colour schemes were chosen/adapted from [`cols4all`
+Additional colour schemes were chosen from [`cols4all`
 package](https://github.com/mtennekes/cols4all)).
 
 #### Linear models
 
-Fitting linear models or linear mixed effects models, and obtaining
-ANOVA tables with easy wrappers around `lme4`.
+Get ANOVA tables and linear models with these easy wrappers.
 
 1.  linear models for ordinary ANOVA: `simple_anova`, `simple_model`,
 2.  linear mixed effects for repeated-measures and randomised-block
     design ANOVA: `mixed_anova`, `mixed_model`, `mixed_anova_slopes` &
     `mixed_model_slopes`.
+3.  plot model residuals with `plot_qqmodel`.
 
 #### Post-hoc comparisons & Estimated Marginal Means (easy wrappers for `emmeans`)
 
 Perform post-hoc comparisons based on fitted models for response
-variables and slopes. Also get Estimated Marginal Means with these
-wrappers.
+variables and slopes. Get Estimated Marginal Means, *P* values,
+parameter estimates with CI95 with these wrappers.
 
 1.  `posthoc_Pariwise`, `posthoc_Levelwise` & `posthoc_vsRef`
 2.  `posthoc_Trends_Pairwise`, `posthoc_Trends_Levelwise` &
