@@ -28,7 +28,7 @@
 #' - `OrBl_div`
 #' - `PrGn_div`
 #' 
-#' @param palette Name of the `grafify` palettes from above, provide within quotes. Default discrete palette is `okabe_ito`. For quantitative palette, set `discrete = FALSE` (which will apply `blue_conti` unless another paltte is chosen).
+#' @param palette Name of the `grafify` palettes from above, provide within quotes. Default discrete palette is `okabe_ito`. For quantitative palette, set `discrete = FALSE` (which will apply `blue_conti` unless another palette is chosen).
 #' @param reverse Whether the colour order should be reversed.
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours.
 #' @param discrete logical TRUE or FALSE. Default is TRUE for discrete colour palettes. Set to FALSE when plotting quantitative data to use quantitative palettes from above.

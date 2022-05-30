@@ -13,7 +13,7 @@ scale_colour_grafify(
 )
 }
 \arguments{
-\item{palette}{Name of the \code{grafify} palettes from above, provide within quotes. Default discrete palette is \code{okabe_ito}. For quantitative palette, set \code{discrete = FALSE} (which will apply \code{blue_conti} unless another paltte is chosen).}
+\item{palette}{Name of the \code{grafify} palettes from above, provide within quotes. Default discrete palette is \code{okabe_ito}. For quantitative palette, set \code{discrete = FALSE} (which will apply \code{blue_conti} unless another palette is chosen).}
 
 \item{discrete}{logical TRUE or FALSE. Default is TRUE for discrete colour palettes. Set to FALSE when plotting quantitative data to use quantitative palettes from above.}
 
