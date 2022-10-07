@@ -5,17 +5,14 @@
 \title{See grafify colour palettes}
 \usage{
 plot_grafify_palette(
-  palette = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy",
-    "kelly", "light", "muted", "pale", "r4", "safe", "vibrant"),
-  bthick = 0,
+  palette = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy", "kelly",
+    "light", "muted", "pale", "r4", "safe", "vibrant"),
   fontsize = 14,
   ...
 )
 }
 \arguments{
 \item{palette}{name of grafify palettes: "okabe_ito", "vibrant, "bright", "pale", "muted", "dark", "light", "contrast" or "all_grafify".}
-
-\item{bthick}{thickness of bars; passed on \code{plot_bar_sd}.}
 
 \item{fontsize}{font size.}
 

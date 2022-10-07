@@ -10,22 +10,29 @@ plot_4d_scatterviolin(
   ycol,
   boxes,
   shapes,
-  symsize = 2.5,
-  s_alpha = 1,
-  symthick = 1,
-  jitter = 0.2,
+  facet,
+  symsize = 3,
+  s_alpha = 0.8,
   v_alpha = 1,
   b_alpha = 0,
-  bvthick = 1,
-  bwid = 0.2,
-  ColSeq = TRUE,
-  ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy",
-    "kelly", "light", "muted", "pale", "r4", "safe", "vibrant"),
-  ColRev = FALSE,
+  bwid = 0.3,
+  vadjust = 1,
+  jitter = 0.1,
   TextXAngle = 0,
   scale = "width",
   trim = TRUE,
+  LogYTrans,
+  LogYBreaks = waiver(),
+  LogYLabels = waiver(),
+  LogYLimits = NULL,
+  facet_scales = "fixed",
   fontsize = 20,
+  symthick,
+  bvthick,
+  ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy", "kelly",
+    "light", "muted", "pale", "r4", "safe", "vibrant"),
+  ColSeq = TRUE,
+  ColRev = FALSE,
   ...
 )
 }
@@ -40,27 +47,21 @@ plot_4d_scatterviolin(
 
 \item{shapes}{name of the column that contains matched observations, e.g. subject IDs, experiment number etc.}
 
+\item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
+
 \item{symsize}{size of symbols, default set to 3.}
 
-\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency). Set \code{s_alpha = 0} to not show scatter plot.}
+\item{s_alpha}{fractional opacity of symbols, default set to 0.8 (i.e. 80\% opacity). Set \code{s_alpha = 0} to not show scatter plot.}
 
-\item{symthick}{size of outline of symbol lines (\code{stroke = 1.0}), default set to 1.0.}
+\item{v_alpha}{fractional opacity of violins, default set to 1.}
 
-\item{jitter}{extent of jitter (scatter) of symbols, default is 0 (i.e. aligned symbols). To reduce symbol overlap, try 0.1-0.3 or higher.}
+\item{b_alpha}{fractional opacity of boxes.  Default is set to 0, which results in white boxes inside violins. Change to any value >0 up to 1 for different levels of transparency.}
 
-\item{v_alpha}{fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency).}
+\item{bwid}{width of boxes; default 0.3.}
 
-\item{b_alpha}{fractional opacity of boxplots.  Default is set to 0, which results in white boxes inside violins. Change to any value >0 up to 1 for different levels of transparency.}
+\item{vadjust}{number to adjust the smooth/wigglyness of violin plot (default set to 1).}
 
-\item{bvthick}{thickness of both violin and boxplot lines; default 1.}
-
-\item{bwid}{width of boxplots; default 0.2}
-
-\item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
-
-\item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
-
-\item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
+\item{jitter}{extent of jitter (scatter) of symbols, default is 0.1. Increase to reduce symbol overlap, set to 0 for aligned symbols.}
 
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
@@ -68,7 +69,27 @@ plot_4d_scatterviolin(
 
 \item{trim}{set whether tips of violin plot should be trimmed at high/low data. Default \code{trim = T}, can be changed to F.}
 
+\item{LogYTrans}{transform Y axis into "log10" or "log2"}
+
+\item{LogYBreaks}{argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is \code{waiver()}, or provide a vector of desired breaks.}
+
+\item{LogYLabels}{argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is \code{waiver()}, or provide a vector of desired labels.}
+
+\item{LogYLimits}{a vector of length two specifying the range (minimum and maximum) of the Y axis.}
+
+\item{facet_scales}{whether orcet graphs not to fix scales on X & Y axes for all facet facet graphs. Can be \code{fixed} (default), \code{free}, \code{free_y} or \code{free_x} (for Y and X axis one at a time, respectively).}
+
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{symthick}{size (in 'pt' units) of outline of symbol lines (\code{stroke}), default = \code{fontsize}/22.}
+
+\item{bvthick}{thickness (in 'pt' units) of both violin and boxplot lines; default = \code{fontsize}/22.}
+
+\item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
+
+\item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
+
+\item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
 
 \item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_boxplot} or \code{ggplot2}\link{geom_violin}.}
 }

@@ -8,18 +8,26 @@ plot_scatterbox(
   data,
   xcol,
   ycol,
-  symsize = 2.5,
-  symthick = 1,
-  jitter = 0.2,
+  facet,
+  symsize = 3,
+  s_alpha = 0.8,
   b_alpha = 1,
-  s_alpha = 1,
-  ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy",
-    "kelly", "light", "muted", "pale", "r4", "safe", "vibrant"),
+  bwid = 0.5,
+  jitter = 0.1,
+  TextXAngle = 0,
+  LogYTrans,
+  LogYBreaks = waiver(),
+  Ylabels = waiver(),
+  LogYLimits = NULL,
+  facet_scales = "fixed",
+  fontsize = 20,
+  symthick,
+  bthick,
+  ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy", "kelly",
+    "light", "muted", "pale", "r4", "safe", "vibrant"),
   ColSeq = TRUE,
   ColRev = FALSE,
   SingleColour = "NULL",
-  TextXAngle = 0,
-  fontsize = 20,
   ...
 )
 }
@@ -30,15 +38,35 @@ plot_scatterbox(
 
 \item{ycol}{name of the column to plot on quantitative Y axis. This should be a quantitative variable.}
 
-\item{symsize}{size of symbols used by \code{geom_point}. Default set to 2.5, increase/decrease as needed.}
+\item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
 
-\item{symthick}{thickness of symbol border (\code{stroke} parameter of \code{geom_point}), default set to 1.}
+\item{symsize}{size of symbols, default set to 3.}
 
-\item{jitter}{extent of jitter (scatter) of symbols, default is 0 (i.e. aligned symbols). To reduce symbol overlap, try 0.1-0.3 or higher.}
+\item{s_alpha}{fractional opacity of symbols, default set to 0.8 (i.e, 80\% opacity).}
 
-\item{b_alpha}{fractional opacity of boxplot, default set to 1 (i.e. maximum opacity & zero transparency).}
+\item{b_alpha}{fractional opacity of boxes, default set to 1.}
 
-\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).}
+\item{bwid}{width of boxplots; default 0.5.}
+
+\item{jitter}{extent of jitter (scatter) of symbols, default is 0.1.}
+
+\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
+
+\item{LogYTrans}{transform Y axis into "log10" or "log2"}
+
+\item{LogYBreaks}{argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is \code{waiver()}, or provide a vector of desired breaks.}
+
+\item{Ylabels}{argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is \code{waiver()}, or provide a vector of desired labels.}
+
+\item{LogYLimits}{a vector of length two specifying the range (minimum and maximum) of the Y axis.}
+
+\item{facet_scales}{whether or not to fix scales on X & Y axes for all graphs. Can be \code{fixed} (default), \code{free}, \code{free_y} or \code{free_x} (for Y and X axis one at a time, respectively).}
+
+\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{symthick}{size (in 'pt' units) of outline of symbol lines (\code{stroke}), default = \code{fontsize}/22.}
+
+\item{bthick}{thickness (in 'pt' units) of boxplot lines; default = \code{fontsize}/22.}
 
 \item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
 
@@ -48,32 +76,25 @@ plot_scatterbox(
 
 \item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} colour palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
 
-\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
-
-\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
-
 \item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_boxplot}.}
 }
 \value{
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
-This function takes a data table, X and Y variables, and plots a graph with a scatter plot and box and whiskers using \code{\link[ggplot2]{geom_boxplot}} and \code{\link[ggplot2]{geom_point}} geometries. The boxplot shows IQR and whiskers depict 1.5*IQR.
-Note that \code{\link{geom_boxplot}} option for outliers is set to \code{outlier.alpha = 0}.
-The X variable is mapped to the \code{fill} aesthetic in both boxplot and symbols, and its colour can be changed using \code{ColPal} option.
+There are three types of \code{plot_dot_} functions that plot "dots" as data symbols plotted with \code{\link[ggplot2]{geom_dotplot}} geometry. Variants can show summary and data distributions as bar and SD errors (\link{plot_dotbar_sd}), box and whisker plots (\link{plot_dotbox}) or violin and box & whiskers plots (\link{plot_dotviolin}). They all take a data table, a categorical X variable and a numeric Y variable.
+}
+\details{
+Related \code{plot_scatter} variants show data symbols using the \code{\link[ggplot2]{geom_point}} geometry. These are \link{plot_scatterbar_sd}, \link{plot_scatterbox} and \link{plot_scatterviolin}. Overplotting in \code{plot_scatter} variants can be reduced with the \code{jitter} argument.
+
+The X variable is mapped to the \code{fill} aesthetic of dots, symbols, bars, boxes and violins.
+
 Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} arguments. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
 \code{ColPal} can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
 \code{ColRev} (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette.
-\code{ColSeq} (logical TRUE/FALSE) decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
-}
-\details{
-If there are many groups along the X axis and you prefer a single colour for the graph,use the \code{SingleColour} argument.
+\code{ColSeq} decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
 
-The size of symbols can be adjusted using \code{symsize} set to 1 by default.
-Transparency of boxplot and symbols can be set independently with \code{b_alpha} and \code{s_alpha}, respectively.
-
-Three types of plots are available for scatter/jitter symbols and either bars+SD, boxplot or violin plots: \code{\link{plot_scatterbar_sd}}, \code{\link{plot_scatterbox}} and \code{\link{plot_scatterviolin}}.
-These are related to the three "dot" versions that use a different geometry for symbols: \code{\link{plot_scatterbox}}, \code{\link{plot_dotbar_sd}} and \code{\link{plot_dotviolin}}.
+If you prefer a single colour for the graph, use the \code{SingleColour} argument.
 }
 \examples{
 plot_scatterbox(data = data_cholesterol, 

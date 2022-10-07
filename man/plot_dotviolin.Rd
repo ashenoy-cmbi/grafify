@@ -8,22 +8,29 @@ plot_dotviolin(
   data,
   xcol,
   ycol,
+  facet,
   dotsize = 1.5,
-  dotthick = 1,
-  bvthick = 1,
-  bwid = 0.2,
-  trim = TRUE,
-  scale = "width",
+  d_alpha = 0.8,
   b_alpha = 0,
   v_alpha = 1,
-  d_alpha = 1,
-  ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy",
-    "kelly", "light", "muted", "pale", "r4", "safe", "vibrant"),
-  ColRev = FALSE,
-  ColSeq = TRUE,
-  SingleColour = "NULL",
+  bwid = 0.3,
+  vadjust = 1,
+  trim = TRUE,
+  scale = "width",
   TextXAngle = 0,
+  LogYTrans,
+  LogYBreaks = waiver(),
+  LogYLabels = waiver(),
+  LogYLimits = NULL,
+  facet_scales = "fixed",
   fontsize = 20,
+  dotthick,
+  bvthick,
+  ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy", "kelly",
+    "light", "muted", "pale", "r4", "safe", "vibrant"),
+  ColSeq = TRUE,
+  ColRev = FALSE,
+  SingleColour = "NULL",
   ...
 )
 }
@@ -34,35 +41,49 @@ plot_dotviolin(
 
 \item{ycol}{name of the column to plot on quantitative Y axis. This should be a quantitative variable.}
 
+\item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
+
 \item{dotsize}{size of dots relative to \code{binwidth} used by \code{geom_dotplot}. Default set to 1.5, increase/decrease as needed.}
 
-\item{dotthick}{thickness of dot border (\code{stroke} parameter of \code{geom_dotplot}), default set to 1.}
-
-\item{bvthick}{thickness of violin and boxplot lines; default 1.}
-
-\item{bwid}{width of boxplots; default 0.2}
-
-\item{trim}{set whether tips of violin plot should be trimmed at high/low data. Default \code{trim = T}, can be changed to F.}
-
-\item{scale}{set to "area" by default, can be changed to "count" or "width".}
+\item{d_alpha}{fractional opacity of dots, default set to 0.8 (i.e., 80\% opacity).}
 
 \item{b_alpha}{fractional opacity of boxplots.  Default is set to 0, which results in white boxes inside violins. Change to any value >0 up to 1 for different levels of transparency.}
 
-\item{v_alpha}{fractional opacity of violins, default set to 1 (i.e. maximum opacity & zero transparency).}
+\item{v_alpha}{fractional opacity of violins, default set to 1.}
 
-\item{d_alpha}{fractional opacity of dots, default set to 1 (i.e. maximum opacity & zero transparency).}
+\item{bwid}{width of boxplots; default 0.3.}
 
-\item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
+\item{vadjust}{number to adjust the smooth/wigglyness of violin plot (default set to 1).}
 
-\item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
+\item{trim}{set whether tips of violin plot should be trimmed at high/low data. Default \code{trim = TRUE}, can be changed to FALSE.}
 
-\item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
-
-\item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} colour palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
+\item{scale}{set to "area" by default, can be changed to "count" or "width".}
 
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
+\item{LogYTrans}{transform Y axis into "log10" or "log2"}
+
+\item{LogYBreaks}{argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is \code{waiver()}, or provide a vector of desired breaks.}
+
+\item{LogYLabels}{argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is \code{waiver()}, or provide a vector of desired labels.}
+
+\item{LogYLimits}{a vector of length two specifying the range (minimum and maximum) of the Y axis.}
+
+\item{facet_scales}{whether orcet graphs not to fix scales on X & Y axes for all facet facet graphs. Can be \code{fixed} (default), \code{free}, \code{free_y} or \code{free_x} (for Y and X axis one at a time, respectively).}
+
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{dotthick}{thickness of dot border (\code{stroke} parameter of \code{geom_dotplot}), default set to \code{fontsize}/22.}
+
+\item{bvthick}{thickness (in 'pt' units) of both violin and boxplot lines; default = \code{fontsize}/22.}
+
+\item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
+
+\item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
+
+\item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
+
+\item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} colour palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
 
 \item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_boxplot}, \code{ggplot2}\link{geom_dotplot} or \code{ggplot2}\link{geom_violin}.}
 }
@@ -70,23 +91,19 @@ plot_dotviolin(
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
-This function takes a data table, X and Y variables, and plots a graph with a dotplot, box-whiskers and violinplot using \code{\link[ggplot2]{geom_violin}}, \code{\link[ggplot2]{geom_boxplot}}  \code{\link[ggplot2]{geom_dotplot}} geometries.
+There are three types of \code{plot_dot_} functions that plot "dots" as data symbols plotted with \code{\link[ggplot2]{geom_dotplot}} geometry. Variants can show summary and data distributions as bar and SD errors (\link{plot_dotbar_sd}), box and whisker plots (\link{plot_dotbox}) or violin and box & whiskers plots (\link{plot_dotviolin}). They all take a data table, a categorical X variable and a numeric Y variable.
 }
 \details{
-Note that the \code{\link{geom_violin}} options are set as follows: \code{scale = "width"}. The \code{trim = T} set by default can be changed when calling the function.
-The boxplot shows IQR, and whiskers show 1.5*IQR; the median is marked with a thicker horizontal line.
+Related \code{plot_scatter} variants show data symbols using the \code{\link[ggplot2]{geom_point}} geometry. These are \link{plot_scatterbar_sd}, \link{plot_scatterbox} and \link{plot_scatterviolin}. Overplotting in \code{plot_scatter} variants can be reduced with the \code{jitter} argument.
 
-The X variable is mapped to the \code{fill} aesthetic in both violinplot and dotplot.
+The X variable is mapped to the \code{fill} aesthetic of dots, symbols, bars, boxes and violins.
+
 Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} arguments. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
 \code{ColPal} can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
 \code{ColRev} (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette.
-\code{ColSeq} (logical TRUE/FALSE) decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
+\code{ColSeq} decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
 
-If there are many groups along the X axis and you prefer a single colour for the graph,use the \code{SingleColour} argument.
-
-The size of dots can be adjusted using the parameter, which is \code{dotsize = 1} by default.
-
-This function is related to \code{\link{plot_scatterbar_sd}}, \code{\link{plot_dotbar_sd}} and \code{\link{plot_dotviolin}}.
+If you prefer a single colour for the graph, use the \code{SingleColour} argument.
 }
 \examples{
 

@@ -8,16 +8,19 @@ plot_qqline(
   data,
   ycol,
   group,
+  facet,
   symsize = 3,
-  symthick = 1,
-  s_alpha = 1,
-  ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy",
-    "kelly", "light", "muted", "pale", "r4", "safe", "vibrant"),
+  s_alpha = 0.8,
+  TextXAngle = 0,
+  facet_scales = "fixed",
+  fontsize = 20,
+  symthick,
+  linethick,
+  Group,
+  ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy", "kelly",
+    "light", "muted", "pale", "r4", "safe", "vibrant"),
   ColSeq = TRUE,
   ColRev = FALSE,
-  TextXAngle = 0,
-  fontsize = 20,
-  Group,
   ...
 )
 }
@@ -28,23 +31,29 @@ plot_qqline(
 
 \item{group}{name of the column containing a categorical grouping variable.}
 
+\item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
+
 \item{symsize}{size of symbols, default set to 3.}
 
-\item{symthick}{thickness of symbol border, default set to 1.}
-
 \item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).}
+
+\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
+
+\item{facet_scales}{whether orcet graphs not to fix scales on X & Y axes for all facet facet graphs. Can be \code{fixed} (default), \code{free}, \code{free_y} or \code{free_x} (for Y and X axis one at a time, respectively).}
+
+\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{symthick}{thickness of symbol border, default set to \code{fontsize}/22.}
+
+\item{linethick}{thickness of lines, default set to \code{fontsize}/22.}
+
+\item{Group}{deprecated old argument for \code{group}; retained for backward compatibility.}
 
 \item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 
 \item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
-
-\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
-
-\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
-
-\item{Group}{deprecated old argument for \code{group}; retained for backward compatibility.}
 
 \item{...}{any additional arguments to pass to \code{\link{ggplot2}[geom_qq]} or \code{\link{ggplot2}[geom_qq_line]}.}
 }

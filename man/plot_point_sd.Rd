@@ -8,17 +8,24 @@ plot_point_sd(
   data,
   xcol,
   ycol,
-  s_alpha = 1,
+  facet,
   symsize = 3.5,
-  symthick = 1,
+  s_alpha = 1,
   ewid = 0.2,
-  ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy",
-    "kelly", "light", "muted", "pale", "r4", "safe", "vibrant"),
+  TextXAngle = 0,
+  LogYTrans,
+  LogYBreaks = waiver(),
+  LogYLabels = waiver(),
+  LogYLimits = NULL,
+  facet_scales = "fixed",
+  fontsize = 20,
+  symthick,
+  ethick,
+  ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy", "kelly",
+    "light", "muted", "pale", "r4", "safe", "vibrant"),
   ColSeq = TRUE,
   ColRev = FALSE,
   SingleColour = "NULL",
-  TextXAngle = 0,
-  fontsize = 20,
   ...
 )
 }
@@ -29,13 +36,31 @@ plot_point_sd(
 
 \item{ycol}{name of the column with quantitative Y variable.}
 
-\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).}
+\item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
 
 \item{symsize}{size of point symbols, default set to 3.5.}
 
-\item{symthick}{thickness of symbol border, default set to 1.}
+\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).}
 
 \item{ewid}{width of error bars, default set to 0.2.}
+
+\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
+
+\item{LogYTrans}{transform Y axis into "log10" or "log2"}
+
+\item{LogYBreaks}{argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is \code{waiver()}, or provide a vector of desired breaks.}
+
+\item{LogYLabels}{argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is \code{waiver()}, or provide a vector of desired labels.}
+
+\item{LogYLimits}{a vector of length two specifying the range (minimum and maximum) of the Y axis.}
+
+\item{facet_scales}{whether orcet graphs not to fix scales on X & Y axes for all facet facet graphs. Can be \code{fixed} (default), \code{free}, \code{free_y} or \code{free_x} (for Y and X axis one at a time, respectively).}
+
+\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{symthick}{thickness of symbol border, default set to \code{fontsize1}/22.}
+
+\item{ethick}{thickness of error bar lines; default \code{fontsize}/22.}
 
 \item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
 
@@ -45,17 +70,13 @@ plot_point_sd(
 
 \item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} colour palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
 
-\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
-
-\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
-
 \item{...}{any additional arguments to pass to \code{ggplot2}\link{stat_summary}.}
 }
 \value{
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
-This function takes a data table, categorical X and numeric Y variables, and plots a point showing the mean with SD error bars. The X variable is mapped to the \code{fill} aesthetic of symbols. The related \code{plot_point_sd_sc} plots bars with a single colour.
+This function takes a data table, categorical X and numeric Y variables, and plots a point showing the mean with SD error bars. The X variable is mapped to the \code{fill} aesthetic of symbols.
 }
 \details{
 The function uses \code{\link[ggplot2]{stat_summary}} with \code{geom = "point"} with \code{size = 3}.

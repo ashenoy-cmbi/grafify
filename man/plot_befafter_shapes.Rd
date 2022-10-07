@@ -9,17 +9,27 @@ plot_befafter_shapes(
   xcol,
   ycol,
   match,
+  facet,
+  Boxplot = FALSE,
   symsize = 3,
-  symthick = 1,
-  s_alpha = 0.8,
-  ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy",
-    "kelly", "light", "muted", "pale", "r4", "safe", "vibrant"),
+  s_alpha = 1,
+  bwid = 0.4,
+  jitter = 0.1,
+  TextXAngle = 0,
+  LogYTrans,
+  LogYBreaks = waiver(),
+  LogYLabels = waiver(),
+  LogYLimits = NULL,
+  facet_scales = "fixed",
+  fontsize = 20,
+  symthick,
+  bthick,
+  groups,
+  ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy", "kelly",
+    "light", "muted", "pale", "r4", "safe", "vibrant"),
   ColSeq = TRUE,
   ColRev = FALSE,
   SingleColour = "NULL",
-  TextXAngle = 0,
-  fontsize = 20,
-  groups,
   ...
 )
 }
@@ -32,11 +42,37 @@ plot_befafter_shapes(
 
 \item{match}{name of the column with the matching variable to pass on to \code{geom_line}.}
 
+\item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
+
+\item{Boxplot}{logical TRUE/FALSE, whether to show box and whisker plot or not (default is FALSE)}
+
 \item{symsize}{size of symbols, default set to 3.}
 
-\item{symthick}{size of outline of symbol lines (\code{stroke = 1}), default set to 1.}
+\item{s_alpha}{fractional opacity of symbols, default set to 1.}
 
-\item{s_alpha}{fractional opacity of symbols, default set to 0.8 (i.e. 80\% opacity).}
+\item{bwid}{width of boxplots; default 0.4.}
+
+\item{jitter}{extent of jitter (scatter) of symbols, default is 0.1. Increase to reduce symbol overlap, set to 0 for aligned symbols.}
+
+\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
+
+\item{LogYTrans}{transform Y axis into "log10" or "log2"}
+
+\item{LogYBreaks}{argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is \code{waiver()}, or provide a vector of desired breaks.}
+
+\item{LogYLabels}{argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is \code{waiver()}, or provide a vector of desired labels.}
+
+\item{LogYLimits}{a vector of length two specifying the range (minimum and maximum) of the Y axis.}
+
+\item{facet_scales}{whether orcet graphs not to fix scales on X & Y axes for all facet facet graphs. Can be \code{fixed} (default), \code{free}, \code{free_y} or \code{free_x} (for Y and X axis one at a time, respectively).}
+
+\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{symthick}{size (in 'pt' units) of outline of symbol lines (\code{stroke}), default = \code{fontsize}/22.}
+
+\item{bthick}{thickness (in 'pt' units) of lines and boxes; default = \code{fontsize}/22.}
+
+\item{groups}{old argument name for \code{match}; retained for backward compatibility.}
 
 \item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
 
@@ -45,12 +81,6 @@ plot_befafter_shapes(
 \item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
 
 \item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} colour palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
-
-\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
-
-\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
-
-\item{groups}{old argument name for \code{match}; retained for backward compatibility.}
 
 \item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_line} or \code{ggplot2}\link{geom_point}.}
 }
@@ -61,6 +91,8 @@ This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 The \code{\link{plot_befafter_colours}}, \code{\link{plot_befafter_colors}} and \code{\link{plot_befafter_shapes}} are for plotting matched data joined by lines. These functions take X and Y variables along with a data column with matching information (e.g. matched subjects or experiments etc.) and plot symbols matched by colour or shape.
 }
 \details{
+Setting \code{Boxplot = TRUE} will also plot a box and whiskers plot.
+
 Note that only 25 shapes are available, and there will be errors with \code{\link{plot_befafter_shapes}} when there are fewer than 25 matched observations; instead use \code{\link{plot_befafter_colours}} instead.
 
 Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} arguments.
@@ -77,6 +109,13 @@ More complex designs can also be plotted when used with \code{\link[ggplot2]{fac
 plot_befafter_colors(data = data_t_pdiff, 
 xcol = Condition, ycol = Mass, 
 match = Subject, s_alpha = .9, ColSeq = FALSE)+
+guides(fill = "none", 
+colour = "none") #remove guides
+#plot with boxplot
+plot_befafter_colors(data = data_t_pdiff, 
+xcol = Condition, ycol = Mass, 
+match = Subject, s_alpha = .9, ColSeq = FALSE,
+Boxplot = TRUE)+
 guides(fill = "none", 
 colour = "none") #remove guides
 #2way ANOVA design with randomised blocks

@@ -2,24 +2,33 @@
 % Please edit documentation in R/scale_colour_grafify.R
 \name{scale_colour_grafify}
 \alias{scale_colour_grafify}
+\alias{scale_color_grafify}
 \title{\code{scale_colour_} and \code{scale_fill_} functions}
 \usage{
 scale_colour_grafify(
   palette = "okabe_ito",
-  discrete = TRUE,
   ColSeq = TRUE,
   reverse = FALSE,
+  discrete = TRUE,
+  ...
+)
+
+scale_color_grafify(
+  palette = "okabe_ito",
+  ColSeq = TRUE,
+  reverse = FALSE,
+  discrete = TRUE,
   ...
 )
 }
 \arguments{
 \item{palette}{Name of the \code{grafify} palettes from above, provide within quotes. Default discrete palette is \code{okabe_ito}. For quantitative palette, set \code{discrete = FALSE} (which will apply \code{blue_conti} unless another palette is chosen).}
 
-\item{discrete}{logical TRUE or FALSE. Default is TRUE for discrete colour palettes. Set to FALSE when plotting quantitative data to use quantitative palettes from above.}
-
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours.}
 
 \item{reverse}{Whether the colour order should be reversed.}
+
+\item{discrete}{not used.}
 
 \item{...}{Additional parameters for \code{scale_fill} or \code{scale_colour}.}
 }
@@ -27,14 +36,14 @@ scale_colour_grafify(
 ggplot scale_fill function for discrete colours.
 }
 \description{
-These let you apply \code{grafify} discrete or continuous palettes as fill or colour/color aesthetics to any \code{ggplot2} (\code{scale_color_} spelling is also accepted).
+These let you apply \code{grafify} discrete or continuous palettes as \code{fill} or \code{colour} aesthetics to any \code{ggplot2} (\code{scale_color_} spelling is also accepted).
 }
 \details{
-The default is \code{palette = "okabe_ito"} and \code{discrete = TRUE}. To apply quantitative colour/fill schemes set \code{discrete = FALSE} (if a palette is not chosen, \code{blue_conti} palette will be applied by default).
+The default is \code{palette = "okabe_ito"}. The \code{discrete} argument is not used at present. The following discrete and quantitative palettes can be used.
 
-Categorical/discreet palettes (only allowed with \code{discrete = TRUE})
+Categorical/discreet palettes:
 \itemize{
-\item \code{okabe_ito}
+\item \code{okabe_ito} (default)
 \item \code{bright}
 \item \code{contrast}
 \item \code{dark}
@@ -49,14 +58,14 @@ Categorical/discreet palettes (only allowed with \code{discrete = TRUE})
 
 By default, sequential colours from above palettes will be chosen. To choose the most distant colours set \code{ColSeq = TRUE}.
 
-Sequential quantitative palettes (only allowed with \code{discrete = FALSE}):
+Sequential quantitative palettes:
 \itemize{
 \item \code{grey_conti}
 \item \code{blue_conti}
 \item \code{yellow_conti}
 }
 
-Divergent quantitative palettes (only allowed with \code{discrete = FALSE}):
+Divergent quantitative palettes:
 \itemize{
 \item \code{OrBl_div}
 \item \code{PrGn_div}
@@ -89,16 +98,10 @@ ggplot(emmeans::neuralgia, aes(x = Treatment,
                        ColSeq = FALSE)+
   facet_wrap("Sex")+
   theme_classic()
-#quantiative colour schemes with `discrete = FALSE`
+#quantitative colour scheme
 ggplot(mtcars, aes(x = disp,
                    y = mpg))+
   geom_point(aes(colour = cyl), 
              size = 3)+
-  scale_colour_grafify(discrete = FALSE)
-#quantiative colour scheme
-ggplot(mtcars, aes(x = disp,
-                   y = mpg))+
-  geom_point(aes(colour = cyl), 
-             size = 3)+
-  scale_colour_grafify(palette = "yellow_conti")
+  scale_colour_grafify(palette = "blue_conti")
 }

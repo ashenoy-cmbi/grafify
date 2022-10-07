@@ -9,12 +9,28 @@ plot_xy_NumGroup(
   xcol,
   ycol,
   NumGroup,
-  symsize = 2.5,
-  symthick = 1,
-  s_alpha = 1,
-  ColPal = c("blue_conti", "yellow_conti", "grey_conti", "PrGn_div", "OrBl_div"),
+  facet,
+  Boxplot = FALSE,
+  symsize = 3,
+  s_alpha = 0.8,
   TextXAngle = 0,
+  LogYTrans,
+  LogXTrans,
+  LogYBreaks = waiver(),
+  LogXBreaks = waiver(),
+  LogYLabels = waiver(),
+  LogXLabels = waiver(),
+  LogYLimits = NULL,
+  LogXLimits = NULL,
+  facet_scales = "fixed",
   fontsize = 20,
+  bwid = 0.3,
+  b_alpha = 0.3,
+  l_alpha = 0.8,
+  symthick,
+  bthick,
+  ColPal = c("blue_conti", "yellow_conti", "grey_conti", "PrGn_div", "OrBl_div"),
+  ColRev = FALSE,
   ...
 )
 }
@@ -27,25 +43,57 @@ plot_xy_NumGroup(
 
 \item{NumGroup}{a numeric factor for \code{fill} aesthetic of data points.}
 
-\item{symsize}{size of symbols used by \code{geom_point}. Default set to 2.5, increase/decrease as needed.}
+\item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
 
-\item{symthick}{thickness of symbol border, default set to 1.}
+\item{Boxplot}{logical TRUE/FALSE to plot box and whiskers plot (default = FALSE).}
 
-\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).}
+\item{symsize}{size of symbols used by \code{geom_point}. Default set to 3.}
 
-\item{ColPal}{One of five quantitative colour schemes in \code{grafify}: \code{blue_conti}, \code{yellow_conti}, \code{grey_conti}, \code{PrGn_div}, \code{OrBl_div}.}
+\item{s_alpha}{fractional opacity of symbols, default set to 0.8 (i.e, 80\% opacity).}
 
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
+\item{LogYTrans}{transform Y axis into "log10" or "log2"}
+
+\item{LogXTrans}{transform X axis into "log10" or "log2"}
+
+\item{LogYBreaks}{argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is \code{waiver()}, or provide a vector of desired breaks.}
+
+\item{LogXBreaks}{argument for \code{ggplot2[scale_x_continuous]} for Y axis breaks on log scales, default is \code{waiver()}, or provide a vector of desired breaks.}
+
+\item{LogYLabels}{argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is \code{waiver()}, or provide a vector of desired labels.}
+
+\item{LogXLabels}{argument for \code{ggplot2[scale_x_continuous]} for Y axis labels on log scales, default is \code{waiver()}, or provide a vector of desired labels.}
+
+\item{LogYLimits}{a vector of length two specifying the range (minimum and maximum) of the Y axis.}
+
+\item{LogXLimits}{a vector of length two specifying the range (minimum and maximum) of the X axis.}
+
+\item{facet_scales}{whether or not to fix scales on X & Y axes for all graphs. Can be \code{fixed} (default), \code{free}, \code{free_y} or \code{free_x} (for Y and X axis one at a time, respectively).}
+
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
-\item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_violin}.}
+\item{bwid}{width of boxplot (default = 0.3).}
+
+\item{b_alpha}{fractional opacity of boxes, (default = 0.3).}
+
+\item{l_alpha}{fractional opacity of lines joining boxes, (default = 0.8).}
+
+\item{symthick}{size (in 'pt' units) of outline of symbol lines (\code{stroke}), default = \code{fontsize}/22.}
+
+\item{bthick}{size (in 'pt' units) of outline of boxes, whisker and joining lines (\code{stroke}), default = \code{fontsize}/22.}
+
+\item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
+
+\item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
+
+\item{...}{any additional arguments to pass on.}
 }
 \value{
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
-This function takes a data table, quantitative X and Y variables, and a numeric grouping variable, and a and plots a graph with using \code{\link[ggplot2]{geom_point}}. The numerical \code{NumGroup} variable is mapped to the \code{fill} aesthetic of symbols, which receives the \code{scale_fill_grafify} default quantitative palette (\code{blue_conti}).
+This function takes a data table, quantitative X and Y variables, and a numeric grouping variable, and a and plots a graph with using \code{\link[ggplot2]{geom_point}}. The numerical \code{NumGroup} variable is mapped to the \code{fill} aesthetic of symbols, which receives the \code{scale_fill_grafify} default quantitative palette (\code{blue_conti}). Alternatives are \code{yellow_conti}, \code{grey_conti}, \code{OrBl_div} and \code{PrGn_div}. Colour order can be reversed with \code{ColRev = TRUE} (default is \code{FALSE}).
 }
 \details{
 This plot is related to \code{\link{plot_xy_CatGroup}} which requires a categorical grouping factor.

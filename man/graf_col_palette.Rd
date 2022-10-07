@@ -2,7 +2,7 @@
 % Please edit documentation in R/graf_colour_palettes_fun.R
 \name{graf_col_palette}
 \alias{graf_col_palette}
-\title{Call palettes for scale & fill}
+\title{Call \code{grafify} palettes for scale & fill functions}
 \usage{
 graf_col_palette(palette = "okabe_ito", reverse = FALSE, ...)
 }
@@ -17,5 +17,13 @@ graf_col_palette(palette = "okabe_ito", reverse = FALSE, ...)
 This generates required number of sequential colours from the chosen grafify palette when called by scale functions of  ggplot2.
 }
 \description{
-Call palettes for scale & fill
+\code{graf_col_palette} and \code{graf_col_palette_default} functions generate colours for \code{grafify} scale functions.
+\code{graf_col_palette} picks sequential colours when the number of discrete colours needed is less than that in the palette. This is the default for \code{grafify} with \code{ColoSeq = TRUE}. If the number of colours required is more than that in the discrete palette, it fills intervening colours using the \code{\link{colorRampPalette}[grDevices]} function.
+}
+\details{
+\code{graf_col_palette_default} picks the most distant colours within the palette, rather than in the sequence they are in the palette, when the number of colours required is less than that in the palette.
+
+Colour order can be reversed in both functions.
+
+When only one colour discreet is required, and you want to \code{reverse} the colour palette, \code{ColSeq} should be set to \code{FALSE}.
 }

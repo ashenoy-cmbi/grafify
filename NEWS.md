@@ -7,6 +7,25 @@ output:
 
 Full reference to all functions available at [`grafify` GitHub pages](https://ashenoy-cmbi.github.io/grafify/index.html).
 
+# grafify v2.4.0###
+
+## Major additions
+
+1. This is a major update for `grafify`, which now allowed basic generalised additive models through the [`mgcv` package](https://CRAN.R-project.org/package=mgcv) and diagnostics for `gam` models with a couple of functions from the [`gratia` package](https://CRAN.R-project.org/package=gratia). This is mainly for time-series analyses where an assumption of linear relationship between predictor and outcomes is often absent and linear models are not appropriate for modelling. Factor-wise smooths are fit with the `by` argument in `mgcv`, without or with a random factor. The random factor smooth is fit with `re` smooth. See documentation for `mgcv` [smooths](https://noamross.github.io/gams-in-r-course/). Model diagnostics can be done with `plot_gam_smooth` and `plot_gam_qq`.
+
+2. All `plot_` functions now have two major updates
+
+a. Log-transformation of Y or X axes: `LogYTrans` or `LogXTrans` argument to convert Y or X axis, respectively, into `log10` or `log2` scale. With `log10` transformation, log-ticks will also appear. Default axes limits and labels should work in most cases, but if needed, three additional arguments are available: `LogYBreaks`, `LogYLimits` and `LogYLabels` (and respective ones for the X axis). X axis transformations are only for `plot_xy_CatGroup` and `plot_xy_NumGroup`.
+b. `facet` argument to add another variable to created faceted plots with the `facet_wrap` layer in `ggplot2`. A related argument `facet_scales` can be used to set Y or X axis scales on faceted panels.
+
+3. `plot_befafter_box` is a new before-after plot function that includes a box and whisker plot to show data distribution in addition to lines joining matched data.
+
+4. `reorder_xcol` is a function to reorder levels within a categorical variable. This uses `factor` from base R `stats` package to convert a column into a factor and reorders it based on a user-provided vector of group names.
+
+5. `theme_grafify` is a modification of `theme_classic` for making publication-ready graphs easily.
+
+6. `plot_logscales` is a function to easily perform "log10" or "log2" transformation on X or Y axes of any `ggplot2` object along with log-ticks.
+
 # grafify v2.3.0
 
 The main motivation behind this update was to simplify the package by reducing the number of exported functions. So some features that were previously in separate functions have been made available more easily via an additional argument to existing functions (e.g. single colour function (`plot_..._sc`) now offered in respective `plot_` function with a new argument (see below). This has uncluttered the namespace of `grafify`. Most of the other additions are related to colour schemes.
@@ -151,6 +170,11 @@ Bug fixes in `mixed_model` and `simple_model` which now correctly lists the data
 1. the main difference from v0.1.0 is that all `plot_` functions apply the `all_grafify` colour scheme by default (see `plot_` vignettes on how to change colours)
 2. two new types of graphs are possible with two quantitative X-Y plots with a third variable that is either numeric (`plot_xy_NumGroup`) or categorical (`plot_xy_CatGroup`).
 3. there are two new continuous colour schemes (`scale_fill_grafify_c` and `scale_colour_grafify_c`), based on [Paul Tol's variant](https://personal.sron.nl/~pault/#sec:sequential) of YlOrBl scheme.
+
+### Minor changes
+
+1. `plot_befafter...` functions have a new logical TRUE/FALSE argument called `boxplot` to additionally show a box and whisker plot to show data distribution.
+
 
 # grafify v0.1.0
 

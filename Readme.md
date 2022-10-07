@@ -3,12 +3,51 @@
 
 `grafify` has three main features:
 
-1.  plotting great-looking graphs for quick-n-easy data exploration
+1.  plotting great-looking graphs for quick-n-easy data exploration with
+    few lines of code
 2.  apply colourblind-friendly palettes to graphs plotted with `grafify`
     or `ggplot2`
 3.  use linear models for ANOVA (including those with randomised block
     designs and repeated-measures) & post-hoc comparisons (estimated
     marginal means, confidence intervals and *P* values)
+
+As an example, you could write this to plot bar/SD graph from a 2-way
+ANOVA data with randomised blocks:
+
+``` r
+plot_4d_scatterbar(data = data_2w_Festing, 
+                   xcol = Strain,
+                   ycol = GST,
+                   bars = Treatment,
+                   shapes = Block)
+```
+
+<img src="man/figures/fig1.jpg" width="90%" /> instead of all this!
+
+``` r
+ggplot2::ggplot(data = data_2w_Festing,
+       aes(x = Strain,
+           y = GST,
+           group = interaction(Strain,
+                               Treatment)))+
+  stat_summary(geom = "bar",
+               aes(fill = Treatment),
+               position = position_dodge(width = 0.8), 
+               fun = "mean")+
+  geom_point(aes(shape = Block),
+             size = 3, stroke = 1,
+             position = position_jitterdodge(jitter.width = .2,
+                                            dodge.width = .8))+
+  stat_summary(geom = "errorbar",
+               width = .2, size = 1,
+               fun.data = "mean_sdl",
+               fun.args = list(mult = 1),
+               position = position_dodge(width = 0.8))+
+  scale_shape_manual(values = 21:22)+
+  theme_classic(base_size = 21)+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  scale_fill_manual(values = c(as.vector(graf_palettes$okabe_ito[1:2])))
+```
 
 Two other features including practice datasets (with randomised blocks),
 and data simulation for power analyses. The first three features are

@@ -8,16 +8,18 @@ plot_density(
   data,
   ycol,
   group,
-  linethick = 1,
+  facet,
   c_alpha = 0.2,
-  ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy",
-    "kelly", "light", "muted", "pale", "r4", "safe", "vibrant"),
-  ColSeq = TRUE,
-  ColRev = FALSE,
   TextXAngle = 0,
+  facet_scales = "fixed",
   fontsize = 20,
+  linethick,
   Group,
   alpha,
+  ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy", "kelly",
+    "light", "muted", "pale", "r4", "safe", "vibrant"),
+  ColSeq = TRUE,
+  ColRev = FALSE,
   ...
 )
 }
@@ -28,23 +30,27 @@ plot_density(
 
 \item{group}{name of the column containing a categorical grouping variable}
 
-\item{linethick}{thickness of symbol border, default set to 1.}
+\item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
 
 \item{c_alpha}{fractional opacity of filled colours under the curve, default set to 0.2 (i.e. 20\% opacity).}
+
+\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
+
+\item{facet_scales}{whether orcet graphs not to fix scales on X & Y axes for all facet facet graphs. Can be \code{fixed} (default), \code{free}, \code{free_y} or \code{free_x} (for Y and X axis one at a time, respectively).}
+
+\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{linethick}{thickness of symbol border, default set to \code{fontsize}/22.}
+
+\item{Group}{deprecated old argument for \code{group}; retained for backward compatibility.}
+
+\item{alpha}{deprecated old argument for \code{c_alpha}; retained for backward compatibility.}
 
 \item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 
 \item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
-
-\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
-
-\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
-
-\item{Group}{deprecated old argument for \code{group}; retained for backward compatibility.}
-
-\item{alpha}{deprecated old argument for \code{c_alpha}; retained for backward compatibility.}
 
 \item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_density}.}
 }

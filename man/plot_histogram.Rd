@@ -8,17 +8,19 @@ plot_histogram(
   data,
   ycol,
   group,
+  facet,
   BinSize = 30,
-  linethick = 1,
   c_alpha = 0.2,
-  ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy",
-    "kelly", "light", "muted", "pale", "r4", "safe", "vibrant"),
-  ColRev = FALSE,
-  ColSeq = TRUE,
   TextXAngle = 0,
+  facet_scales = "fixed",
   fontsize = 20,
+  linethick,
   Group,
   alpha,
+  ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy", "kelly",
+    "light", "muted", "pale", "r4", "safe", "vibrant"),
+  ColSeq = TRUE,
+  ColRev = FALSE,
   ...
 )
 }
@@ -29,25 +31,29 @@ plot_histogram(
 
 \item{group}{name of the column containing a categorical grouping variable.}
 
-\item{BinSize}{bins to use on X-axis, default set to 30.}
+\item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
 
-\item{linethick}{thickness of symbol border, default set to 1.}
+\item{BinSize}{bins to use on X-axis, default set to 30.}
 
 \item{c_alpha}{fractional opacity of colour filled within histograms, default set to 0.2 (i.e. 20\% opacity).}
 
-\item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
-
-\item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
-
-\item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
-
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
+\item{facet_scales}{whether orcet graphs not to fix scales on X & Y axes for all facet facet graphs. Can be \code{fixed} (default), \code{free}, \code{free_y} or \code{free_x} (for Y and X axis one at a time, respectively).}
+
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{linethick}{thickness of symbol border, default set to \code{fontsize}/22.}
 
 \item{Group}{deprecated old argument for \code{group}; retained for backward compatibility.}
 
 \item{alpha}{deprecated old argument for \code{c_alpha}; retained for backward compatibility.}
+
+\item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
+
+\item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
+
+\item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
 
 \item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_histogram}.}
 }

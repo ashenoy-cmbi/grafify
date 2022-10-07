@@ -8,20 +8,28 @@ plot_scatterbar_sd(
   data,
   xcol,
   ycol,
-  symsize = 2.5,
-  symthick = 1,
-  bwid = 0.7,
-  ewid = 0.3,
-  jitter = 0.2,
+  facet,
+  symsize = 3,
+  s_alpha = 0.8,
   b_alpha = 1,
-  s_alpha = 1,
-  ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy",
-    "kelly", "light", "muted", "pale", "r4", "safe", "vibrant"),
+  bwid = 0.5,
+  ewid = 0.3,
+  jitter = 0.1,
+  TextXAngle = 0,
+  LogYTrans,
+  LogYBreaks = waiver(),
+  LogYLabels = waiver(),
+  LogYLimits = NULL,
+  facet_scales = "fixed",
+  fontsize = 20,
+  symthick,
+  bthick,
+  ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy", "kelly",
+    "light", "muted", "pale", "r4", "safe", "vibrant"),
   ColSeq = TRUE,
   ColRev = FALSE,
   SingleColour = "NULL",
-  TextXAngle = 0,
-  fontsize = 20
+  ...
 )
 }
 \arguments{
@@ -31,19 +39,37 @@ plot_scatterbar_sd(
 
 \item{ycol}{name of the column to plot on quantitative Y axis. This should be a quantitative variable.}
 
-\item{symsize}{size of point symbols, default set to 2.}
+\item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
 
-\item{symthick}{thickness of symbol border, default set to 1.}
+\item{symsize}{size of point symbols, default set to 3.}
 
-\item{bwid}{width of bars, default set to 0.7.}
+\item{s_alpha}{fractional opacity of symbols, default set to 0.8 (i.e, 80\% opacity).}
+
+\item{b_alpha}{fractional opacity of boxes, default set to .5 (i.e. 50\% transparent).}
+
+\item{bwid}{width of bars, default set to 0.5.}
 
 \item{ewid}{width of error bars, default set to 0.3.}
 
-\item{jitter}{extent of jitter (scatter) of symbols, default is 0 (i.e. aligned symbols). To reduce symbol overlap, try 0.1-0.3 or higher.}
+\item{jitter}{extent of jitter (scatter) of symbols, default is 0.1.}
 
-\item{b_alpha}{fractional opacity of bars, default set to 1 (i.e. maximum opacity & zero transparency).}
+\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
-\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).}
+\item{LogYTrans}{transform Y axis into "log10" or "log2"}
+
+\item{LogYBreaks}{argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is \code{waiver()}, or provide a vector of desired breaks.}
+
+\item{LogYLabels}{argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is \code{waiver()}, or provide a vector of desired labels.}
+
+\item{LogYLimits}{a vector of length two specifying the range (minimum and maximum) of the Y axis.}
+
+\item{facet_scales}{whether orcet graphs not to fix scales on X & Y axes for all facet facet graphs. Can be \code{fixed} (default), \code{free}, \code{free_y} or \code{free_x} (for Y and X axis one at a time, respectively).}
+
+\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{symthick}{size (in 'pt' units) of outline of symbol lines (\code{stroke}), default = \code{fontsize}/22.}
+
+\item{bthick}{thickness (in 'pt' units) of both bar and error bar lines; default = \code{fontsize}/22.}
 
 \item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
 
@@ -53,30 +79,25 @@ plot_scatterbar_sd(
 
 \item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} colour palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
 
-\item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
-
-\item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+\item{...}{any additional arguments to pass to \code{ggplot2}\link{facet_wrap}.}
 }
 \value{
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
-This function takes a data table, categorical X and numeric Y variables, and plots a graph with a jitterplot or scatterplot and bars showing means with SD error bars. It uses \code{\link[ggplot2]{stat_summary}} with \code{geom = "bar"}, and \code{\link[ggplot2]{geom_point}} with \code{position = position_jitter(width = 0.05)}.
+There are three types of \code{plot_dot_} functions that plot "dots" as data symbols plotted with \code{\link[ggplot2]{geom_dotplot}} geometry. Variants can show summary and data distributions as bar and SD errors (\link{plot_dotbar_sd}), box and whisker plots (\link{plot_dotbox}) or violin and box & whiskers plots (\link{plot_dotviolin}). They all take a data table, a categorical X variable and a numeric Y variable.
 }
 \details{
-Standard deviation (SD) is plotted through \code{\link[ggplot2]{stat_summary}} calculated using \code{mean_sdl} from the \code{ggplot2} package (get help with \code{?mean_sdl}), and 1x SD is plotted (\code{fun.arg = list(mult = 1)}.
-The X variable is mapped to the \code{fill} aesthetic in the bar geometry and \code{colour} aesthetic in \code{geom_point}.
+Related \code{plot_scatter} variants show data symbols using the \code{\link[ggplot2]{geom_point}} geometry. These are \link{plot_scatterbar_sd}, \link{plot_scatterbox} and \link{plot_scatterviolin}. Overplotting in \code{plot_scatter} variants can be reduced with the \code{jitter} argument.
+
+The X variable is mapped to the \code{fill} aesthetic of dots, symbols, bars, boxes and violins.
 
 Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} arguments. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
 \code{ColPal} can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
 \code{ColRev} (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette.
-\code{ColSeq} (logical TRUE/FALSE) decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
+\code{ColSeq} decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
 
-If there are many groups along the X axis and you prefer a single colour for the graph,use the \code{SingleColour} argument.
-
-Three types of plots are available for scatter/jitter symbols and either bars+SD, boxplot or violin plots: \code{\link{plot_scatterbar_sd}}, \code{\link{plot_scatterbox}} and \code{\link{plot_scatterviolin}}.
-
-These are related to the three "dot" versions that use a different geometry for symbols: \code{\link{plot_dotbox}}, \code{\link{plot_dotbar_sd}} and \code{\link{plot_dotviolin}}.
+If you prefer a single colour for the graph, use the \code{SingleColour} argument.
 }
 \examples{
 #with jitter
