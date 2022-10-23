@@ -25,8 +25,8 @@
 #' @param facet add another variable from the data table to create faceted graphs using \code{ggplot2}[facet_wrap].
 #' @param PlotShapes logical TRUE or FALSE (default = FALSE) if the shape of the symbol is to be mapped to the `match` variable. Note that only 25 shapes allowed.
 #' @param symsize size of symbols, default set to 3.
-#' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).
-#' @param b_alpha fractional opacity of boxes, default set to 0.2.
+#' @param s_alpha fractional opacity of symbols, default set to 0.8 (i.e., 80% opacity).
+#' @param b_alpha fractional opacity of boxes, default set to 1.
 #' @param bwid width of boxplots; default 0.4.
 #' @param jitter extent of jitter (scatter) of symbols, default is 0.1. Increase to reduce symbol overlap, set to 0 for aligned symbols.  
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
@@ -34,7 +34,7 @@
 #' @param LogYLabels argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
 #' @param LogYBreaks argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is `waiver()`, or provide a vector of desired breaks.
 #' @param LogYLimits a vector of length two specifying the range (minimum and maximum) of the Y axis.
-#' @param facet_scales whether orcet graphs not to fix scales on X & Y axes for all facet facet graphs. Can be `fixed` (default), `free`, `free_y` or `free_x` (for Y and X axis one at a time, respectively).
+#' @param facet_scales whether or not to fix scales on X & Y axes for all facet facet graphs. Can be `fixed` (default), `free`, `free_y` or `free_x` (for Y and X axis one at a time, respectively).
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param symthick size (in 'pt' units) of outline of symbol lines (\code{stroke}), default = `fontsize`/22.
 #' @param bthick thickness (in 'pt' units) of lines and boxes lines; default = `fontsize`/22.
@@ -64,7 +64,7 @@
 #' match = Experiment, facet = Genotype)
 #'
 
-plot_befafter_box <- function(data, xcol, ycol, match, facet, PlotShapes = FALSE, symsize = 3,  s_alpha = 1, b_alpha = 0.2, bwid = 0.4, jitter = 0.1, TextXAngle = 0, LogYTrans, LogYBreaks = waiver(), LogYLabels = waiver(), LogYLimits = NULL, facet_scales = "fixed", fontsize = 20, symthick, bthick, groups, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, SingleColour = "NULL", ...){
+plot_befafter_box <- function(data, xcol, ycol, match, facet, PlotShapes = FALSE, symsize = 3,  s_alpha = 0.8, b_alpha = 1, bwid = 0.4, jitter = 0.1, TextXAngle = 0, LogYTrans, LogYBreaks = waiver(), LogYLabels = waiver(), LogYLimits = NULL, facet_scales = "fixed", fontsize = 20, symthick, bthick, groups, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, SingleColour = "NULL", ...){
   ColPal <- match.arg(ColPal)
   if (missing(bthick)) {bthick = (fontsize/1.5)/22}
   if (missing(symthick)) {symthick = (fontsize)/22}
@@ -73,83 +73,83 @@ plot_befafter_box <- function(data, xcol, ycol, match, facet, PlotShapes = FALSE
     match <- substitute(groups)}
   if (!PlotShapes) {
     if (missing(SingleColour)) {
-      P <- ggplot2::ggplot({{ data }}, 
+      P <- ggplot2::ggplot(data, 
                            aes(x = factor({{ xcol }}),
                                y = {{ ycol }},
                                group = factor({{ match }})))+
         geom_boxplot(aes(group = factor({{ xcol }}),
                          fill = factor({{ xcol }})),
-                     alpha = {{ b_alpha }},
+                     alpha = b_alpha,
                      outlier.alpha = 0,
-                     width = {{ bwid }},
-                     size = {{ bthick }},
+                     width = bwid,
+                     size = bthick,
                      ...)+
         geom_line(aes(group = factor({{ match }})),
                   colour = "grey35", alpha = 0.8, 
-                  size = {{ bthick }}, 
-                  position = position_dodge(width = {{ jitter }}),
+                  size = bthick, 
+                  position = position_dodge(width = jitter),
                   ...)+
-        geom_point(size = {{ symsize }}, 
-                   stroke = {{ symthick }},
-                   alpha = {{ s_alpha }}, 
+        geom_point(size = symsize, 
+                   stroke = symthick,
+                   alpha = s_alpha, 
                    shape = 21, 
-                   position = position_dodge(width = {{ jitter }}),
+                   position = position_dodge(width = jitter),
                    aes(fill = factor({{ xcol }})), ...)+
         labs(fill = enquo(xcol),
              x = enquo(xcol))
     } else {
       ifelse(grepl("#", SingleColour),
              a <- SingleColour,
-             a <- get_graf_colours({{ SingleColour }}))
-      P <- ggplot2::ggplot({{ data }}, 
+             a <- get_graf_colours(SingleColour))
+      P <- ggplot2::ggplot(data, 
                            aes(x = factor({{ xcol }}),
                                y = {{ ycol }},
                                group = factor({{ match }})))+
         geom_boxplot(aes(group = factor({{ xcol }})),
                      fill = a,
-                     alpha = {{ b_alpha }},
+                     alpha = b_alpha,
                      outlier.alpha = 0,
-                     width = {{ bwid }},
-                     size = {{ bthick }},
+                     width = bwid,
+                     size = bthick,
                      ...)+
         geom_line(aes(group = factor({{ match }})),
                   colour = "grey35", 
-                  size = {{ bthick }}, 
-                  position = position_dodge(width = {{ jitter }}),
+                  size = bthick, 
+                  position = position_dodge(width = jitter),
                   alpha = 0.8,
                   ...)+
-        geom_point(size = {{ symsize }}, 
-                   stroke = {{ symthick }},
-                   alpha = {{ s_alpha }}, 
-                   position = position_dodge(width = {{ jitter }}),
+        geom_point(size = symsize, 
+                   stroke = symthick,
+                   alpha = s_alpha, 
+                   position = position_dodge(width = jitter),
                    shape = 21,
                    fill = a, ...)+
         labs(x = enquo(xcol))
     }
   } else {
     if (missing(SingleColour)) {
-      P <- ggplot2::ggplot({{ data }}, 
+      P <- ggplot2::ggplot(data, 
                            aes(x = factor({{ xcol }}),
                                y = {{ ycol }},
                                group = factor({{ match }})))+
         geom_boxplot(aes(group = factor({{ xcol }}),
                          fill = factor({{ xcol }})),
-                     alpha = {{ b_alpha }},
+                     alpha = b_alpha,
                      outlier.alpha = 0,
-                     width = {{ bwid }},
-                     size = {{ bthick }},
+                     width = bwid,
+                     size = bthick,
                      ...)+
         geom_line(aes(group = factor({{ match }})),
                   colour = "grey35", 
                   alpha = 0.8, 
-                  size = {{ bthick }}, 
-                  position = position_dodge(width = {{ jitter }}),
+                  size = bthick, 
+                  position = position_dodge(width = jitter),
                   ...)+
-        geom_point(size = {{ symsize }}, 
-                   stroke = {{ symthick }},
-                   alpha = {{ s_alpha }},
+        geom_point(size = symsize, 
+                   stroke = symthick,
+                   alpha = s_alpha,
                    colour = "black",
-                   position = position_dodge(width = {{ jitter }}),
+                   position = position_dodge(width = jitter),
                    aes(shape = factor({{ match }})),
                    ...)+
         scale_shape_manual(values = 0:25)+
@@ -159,28 +159,28 @@ plot_befafter_box <- function(data, xcol, ycol, match, facet, PlotShapes = FALSE
     } else {
       ifelse(grepl("#", SingleColour),
              a <- SingleColour,
-             a <- get_graf_colours({{ SingleColour }}))
-      P <- ggplot2::ggplot({{ data }}, 
+             a <- get_graf_colours(SingleColour))
+      P <- ggplot2::ggplot(data, 
                            aes(x = factor({{ xcol }}),
                                y = {{ ycol }},
                                group = factor({{ match }})))+
         geom_boxplot(aes(group = factor({{ xcol }})),
                      fill = a,
-                     alpha = {{ b_alpha }},
+                     alpha = b_alpha,
                      outlier.alpha = 0,
-                     width = {{ bwid }},
-                     size = {{ bthick }},
+                     width = bwid,
+                     size = bthick,
                      ...)+
         geom_line(aes(group = factor({{ match }})),
                   colour = "grey35", 
-                  position = position_dodge(width = {{ jitter }}),
+                  position = position_dodge(width = jitter),
                   alpha = 0.8, 
-                  size = {{ bthick }},
+                  size = bthick,
                   ...)+
-        geom_point(size = {{ symsize }}, 
-                   stroke = {{ symthick }},
-                   alpha = {{ s_alpha }}, 
-                   position = position_dodge(width = {{ jitter }}),
+        geom_point(size = symsize, 
+                   stroke = symthick,
+                   alpha = s_alpha, 
+                   position = position_dodge(width = jitter),
                    aes(shape = factor({{ match }})),
                    color = "black", ...)+
         scale_shape_manual(values = 0:25)+
@@ -190,7 +190,7 @@ plot_befafter_box <- function(data, xcol, ycol, match, facet, PlotShapes = FALSE
   }
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
-                        scales = {{ facet_scales }}, 
+                        scales = facet_scales, 
                         ...)
   }
   if (!missing(LogYTrans)) {
@@ -200,9 +200,9 @@ plot_befafter_box <- function(data, xcol, ycol, match, facet, PlotShapes = FALSE
     if (LogYTrans == "log10") {
       P <- P + 
         scale_y_continuous(trans = "log10", 
-                           breaks = {{ LogYBreaks }}, 
-                           labels = {{ LogYLabels }}, 
-                           limits = {{ LogYLimits }},
+                           breaks = LogYBreaks, 
+                           labels = LogYLabels, 
+                           limits = LogYLimits,
                            ...)+
         annotation_logticks(sides = "l", 
                             outside = TRUE,
@@ -215,17 +215,17 @@ plot_befafter_box <- function(data, xcol, ycol, match, facet, PlotShapes = FALSE
     if (LogYTrans == "log2") {
       P <- P + 
         scale_y_continuous(trans = "log2", 
-                           breaks = {{ LogYBreaks }}, 
-                           labels = {{ LogYLabels }}, 
-                           limits = {{ LogYLimits }},
+                           breaks = LogYBreaks, 
+                           labels = LogYLabels, 
+                           limits = LogYLimits,
                            ...)}
   }
   P <- P +
-    theme_classic(base_size = {{ fontsize }})+
+    theme_classic(base_size = fontsize)+
     theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = {{ TextXAngle }}))+
-    scale_fill_grafify(palette = {{ ColPal }}, 
-                       reverse = {{ ColRev }}, 
-                       ColSeq = {{ ColSeq }})
+    guides(x = guide_axis(angle = TextXAngle))+
+    scale_fill_grafify(palette = ColPal, 
+                       reverse = ColRev, 
+                       ColSeq = ColSeq)
   P
 }

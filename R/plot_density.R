@@ -14,7 +14,7 @@
 #' @param facet add another variable from the data table to create faceted graphs using \code{ggplot2}[facet_wrap].
 #' @param c_alpha fractional opacity of filled colours under the curve, default set to 0.2 (i.e. 20% opacity).
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
-#' @param facet_scales whether orcet graphs not to fix scales on X & Y axes for all facet facet graphs. Can be `fixed` (default), `free`, `free_y` or `free_x` (for Y and X axis one at a time, respectively).
+#' @param facet_scales whether or not to fix scales on X & Y axes for all facet facet graphs. Can be `fixed` (default), `free`, `free_y` or `free_x` (for Y and X axis one at a time, respectively).
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param linethick thickness of symbol border, default set to `fontsize`/22.
 #' @param Group deprecated old argument for `group`; retained for backward compatibility.
@@ -46,9 +46,10 @@ plot_density <- function(data, ycol, group, facet,  c_alpha = 0.2, TextXAngle = 
     warning("Use `c_alpha` argument instead, as `alpha` is deprecated.")
     c_alpha <- substitute(alpha)}
   ColPal <- match.arg(ColPal)
-  P <- ggplot2::ggplot(data, aes(sample = {{ ycol }}))+
-    geom_density(size = {{ linethick }},
-                 alpha = {{ c_alpha }},
+  P <- ggplot2::ggplot(data, 
+                       aes(sample = {{ ycol }}))+
+    geom_density(size = linethick,
+                 alpha = c_alpha,
                  aes(x = {{ ycol }},
                      fill = {{ group }}, 
                      colour = {{ group }}),
@@ -56,18 +57,18 @@ plot_density <- function(data, ycol, group, facet,  c_alpha = 0.2, TextXAngle = 
     labs(fill = enquo(group),
          colour = enquo(group),
          y = "Density")+
-    theme_classic(base_size = {{ fontsize }})+
+    theme_classic(base_size = fontsize)+
     theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = {{ TextXAngle }}))+
-    scale_fill_grafify(palette = {{ ColPal }}, 
-                       reverse = {{ ColRev }}, 
-                       ColSeq = {{ ColSeq }})+
-    scale_colour_grafify(palette = {{ ColPal }}, 
-                         reverse = {{ ColRev }}, 
-                         ColSeq = {{ ColSeq }})
+    guides(x = guide_axis(angle = TextXAngle))+
+    scale_fill_grafify(palette = ColPal, 
+                       reverse = ColRev, 
+                       ColSeq = ColSeq)+
+    scale_colour_grafify(palette = ColPal, 
+                         reverse = ColRev, 
+                         ColSeq = ColSeq)
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
-                        scales = {{ facet_scales }}, 
+                        scales = facet_scales, 
                         ...)
   }
   P

@@ -58,43 +58,43 @@ plot_scatterbox <- function(data, xcol, ycol, facet, symsize = 3, s_alpha = 0.8,
     P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                    y = {{ ycol }}))+
       geom_boxplot(aes(fill = factor({{ xcol }})), 
-                   size = {{ bthick }},
-                   alpha = {{ b_alpha }},
+                   size = bthick,
+                   alpha = b_alpha,
                    outlier.alpha = 0,
-                   width = {{ bwid }},
+                   width = bwid,
                    ...)+
       geom_point(shape = 21,
-                 position = position_jitter(width = {{ jitter }}),
-                 alpha = {{ s_alpha }},
-                 stroke = {{ symthick }},
-                 size = {{ symsize }},
+                 position = position_jitter(width = jitter),
+                 alpha = s_alpha,
+                 stroke = symthick,
+                 size = symsize,
                  aes(fill = factor({{ xcol }})))+
       labs(x = enquo(xcol),
            fill = enquo(xcol))
   } else {
     ifelse(grepl("#", SingleColour), 
            a <- SingleColour,
-           a <- get_graf_colours({{ SingleColour }}))
+           a <- get_graf_colours(SingleColour))
     
     P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                    y = {{ ycol }}))+
       geom_boxplot(fill = a, 
-                   size = {{ bthick }},
-                   alpha = {{ b_alpha }},
+                   size = bthick,
+                   alpha = b_alpha,
                    outlier.alpha = 0,
-                   width = {{ bwid }}, 
+                   width = bwid, 
                    ...)+
       geom_point(shape = 21,
-                 position = position_jitter(width = {{ jitter }}),
-                 alpha = {{ s_alpha }},
-                 stroke = {{ symthick }},
-                 size = {{ symsize }},
+                 position = position_jitter(width = jitter),
+                 alpha = s_alpha,
+                 stroke = symthick,
+                 size = symsize,
                  fill = a)+
       labs(x = enquo(xcol))
   }
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
-                        scales = {{ facet_scales }}, 
+                        scales = facet_scales, 
                         ...)
   }
   if (!missing(LogYTrans)) {
@@ -104,9 +104,9 @@ plot_scatterbox <- function(data, xcol, ycol, facet, symsize = 3, s_alpha = 0.8,
     if (LogYTrans == "log10") {
       P <- P + 
         scale_y_continuous(trans = "log10", 
-                           breaks = {{ LogYBreaks }}, 
-                           labels = {{ Ylabels }}, 
-                           limits = {{ LogYLimits }}, 
+                           breaks = LogYBreaks, 
+                           labels = Ylabels, 
+                           limits = LogYLimits, 
                            ...)+
         annotation_logticks(sides = "l", 
                             outside = TRUE,
@@ -119,17 +119,17 @@ plot_scatterbox <- function(data, xcol, ycol, facet, symsize = 3, s_alpha = 0.8,
     if (LogYTrans == "log2") {
       P <- P + 
         scale_y_continuous(trans = "log2", 
-                           breaks = {{ LogYBreaks }}, 
-                           labels = {{ Ylabels }}, 
-                           limits = {{ LogYLimits }}, 
+                           breaks = LogYBreaks, 
+                           labels = Ylabels, 
+                           limits = LogYLimits, 
                            ...)}
   }
   P <- P+
-    theme_classic(base_size = {{ fontsize }})+
+    theme_classic(base_size = fontsize)+
     theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = {{ TextXAngle }}))+
-    scale_fill_grafify(palette = {{ ColPal }}, 
-                       reverse = {{ ColRev }}, 
-                       ColSeq = {{ ColSeq }})
+    guides(x = guide_axis(angle = TextXAngle))+
+    scale_fill_grafify(palette = ColPal, 
+                       reverse = ColRev, 
+                       ColSeq = ColSeq)
   P
 }

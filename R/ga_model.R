@@ -16,6 +16,13 @@
 #' @export ga_model
 #' @importFrom stats as.formula
 #' @importFrom mgcv gam
+#' 
+#' @examples 
+#' #fit a model with zooplankton data
+#' z1 <- ga_model(data = data_zooplankton,
+#' Y_value = "log(density_adj)",
+#' Fixed_Factor = "taxon",
+#' Smooth_Factor = "day")
 #'
 ga_model <- function(data, Y_value, Fixed_Factor, Smooth_Factor, Random_Factor = NULL, Nodes = "NULL", ...){
   #confirm only one smooth factor

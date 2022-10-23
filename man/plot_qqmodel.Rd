@@ -6,11 +6,12 @@
 \usage{
 plot_qqmodel(
   Model,
-  symsize = 2.5,
-  s_alpha = 1,
+  symsize = 3,
+  s_alpha = 0.8,
   fontsize = 20,
   symthick,
-  linethick
+  linethick,
+  SingleColour = "#E69F00"
 )
 }
 \arguments{
@@ -18,13 +19,15 @@ plot_qqmodel(
 
 \item{symsize}{size of symbols, default set to 3.}
 
-\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).}
+\item{s_alpha}{fractional opacity of symbols, default set to 0.8 (i.e., 80\% opacity).}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
 \item{symthick}{thickness of symbol border, default set to \code{fontsize}/22.}
 
 \item{linethick}{thickness of line, default set to \code{fontsize}/22.}
+
+\item{SingleColour}{colour of symbols (default = \verb{#E69F00}, which is \code{ok_orange})}
 }
 \value{
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".

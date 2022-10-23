@@ -30,7 +30,7 @@
 #' @param LogYBreaks argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is `waiver()`, or provide a vector of desired breaks.
 #' @param LogYLabels argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
 #' @param LogYLimits a vector of length two specifying the range (minimum and maximum) of the Y axis.
-#' @param facet_scales whether orcet graphs not to fix scales on X & Y axes for all facet facet graphs. Can be `fixed` (default), `free`, `free_y` or `free_x` (for Y and X axis one at a time, respectively).
+#' @param facet_scales whether or not to fix scales on X & Y axes for all facet facet graphs. Can be `fixed` (default), `free`, `free_y` or `free_x` (for Y and X axis one at a time, respectively).
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param dotthick thickness of dot border (`stroke` parameter of `geom_dotplot`), default set to `fontsize`/22.
 #' @param bvthick thickness (in 'pt' units) of both violin and boxplot lines; default = `fontsize`/22.
@@ -72,23 +72,23 @@ plot_dotviolin <- function(data, xcol, ycol, facet, dotsize = 1.5, d_alpha = 0.8
       suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                                       y = {{ ycol }}))+
                          geom_violin(aes(fill = factor({{ xcol }})),
-                                     alpha = {{ v_alpha }},
-                                     trim = {{ trim }},
-                                     scale = {{ scale }},
+                                     alpha = v_alpha,
+                                     trim = trim,
+                                     scale = scale,
                                      colour = "black", 
-                                     size = {{ bvthick }},
-                                     adjust = {{ vadjust }},
+                                     size = bvthick,
+                                     adjust = vadjust,
                                      ...)+
                          geom_boxplot(fill = "white",
                                       colour = "black", 
-                                      size = {{ bvthick }},
+                                      size = bvthick,
                                       outlier.alpha = 0,
-                                      width = {{ bwid }},
+                                      width = bwid,
                                       ...)+
                          geom_dotplot(stackdir = "center", 
-                                      stroke = {{ dotthick }}, 
-                                      alpha = {{ d_alpha }},
-                                      dotsize = {{ dotsize }},
+                                      stroke = dotthick, 
+                                      alpha = d_alpha,
+                                      dotsize = dotsize,
                                       binaxis = 'y',
                                       aes(fill = factor({{ xcol }})),
                                       ...)+
@@ -98,58 +98,58 @@ plot_dotviolin <- function(data, xcol, ycol, facet, dotsize = 1.5, d_alpha = 0.8
       suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                                       y = {{ ycol }}))+
                          geom_violin(aes(fill = factor({{ xcol }})),
-                                     alpha = {{ v_alpha }},
-                                     trim = {{ trim }},
-                                     scale = {{ scale }},
+                                     alpha = v_alpha,
+                                     trim = trim,
+                                     scale = scale,
                                      colour = "black", 
-                                     size = {{ bvthick }},
-                                     adjust = {{ vadjust }},
+                                     size = bvthick,
+                                     adjust = vadjust,
                                      ...)+
                          geom_boxplot(aes(fill = factor({{ xcol }})),
-                                      alpha = {{ b_alpha }},
+                                      alpha = b_alpha,
                                       colour = "black", 
-                                      size = {{ bvthick }},
+                                      size = bvthick,
                                       outlier.alpha = 0,
-                                      width = {{ bwid }},
+                                      width = bwid,
                                       ...)+
                          geom_dotplot(stackdir = "center", 
-                                      stroke = {{ dotthick }}, 
-                                      alpha = {{ d_alpha }},
-                                      dotsize = {{ dotsize }},
+                                      stroke = dotthick, 
+                                      alpha = d_alpha,
+                                      dotsize = dotsize,
                                       binaxis = 'y',
                                       aes(fill = factor({{ xcol }})),
                                       ...)+
                          labs(x = enquo(xcol),
                               fill = enquo(xcol))) 
     }
-    P <- P + scale_fill_grafify(palette = {{ ColPal }}, 
-                                reverse = {{ ColRev }}, 
-                                ColSeq = {{ ColSeq }})
+    P <- P + scale_fill_grafify(palette = ColPal, 
+                                reverse = ColRev, 
+                                ColSeq = ColSeq)
   } else {
     ifelse(grepl("#", SingleColour), 
            a <- SingleColour,
-           a <- get_graf_colours({{ SingleColour }}))
+           a <- get_graf_colours(SingleColour))
     if (b_alpha == 0){
       suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                                       y = {{ ycol }}))+
                          geom_violin(fill = a,
-                                     alpha = {{ v_alpha }},
-                                     trim = {{ trim }},
-                                     scale = {{ scale }},
+                                     alpha = v_alpha,
+                                     trim = trim,
+                                     scale = scale,
                                      colour = "black", 
-                                     size = {{ bvthick }},
-                                     adjust = {{ vadjust }},
+                                     size = bvthick,
+                                     adjust = vadjust,
                                      ...)+
                          geom_boxplot(fill = "white",
                                       colour = "black", 
-                                      size = {{ bvthick }},
+                                      size = bvthick,
                                       outlier.alpha = 0,
-                                      width = {{ bwid }},
+                                      width = bwid,
                                       ...)+
                          geom_dotplot(stackdir = "center", 
-                                      stroke = {{ dotthick }}, 
-                                      alpha = {{ d_alpha }},
-                                      dotsize = {{ dotsize }},
+                                      stroke = dotthick, 
+                                      alpha = d_alpha,
+                                      dotsize = dotsize,
                                       binaxis = 'y',
                                       fill = a,
                                       ...)+
@@ -158,24 +158,24 @@ plot_dotviolin <- function(data, xcol, ycol, facet, dotsize = 1.5, d_alpha = 0.8
       suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                                       y = {{ ycol }}))+
                          geom_violin(fill = a,
-                                     alpha = {{ v_alpha }},
-                                     trim = {{ trim }},
-                                     scale = {{ scale }},
+                                     alpha = v_alpha,
+                                     trim = trim,
+                                     scale = scale,
                                      colour = "black", 
-                                     size = {{ bvthick }},
-                                     adjust = {{ vadjust }},
+                                     size = bvthick,
+                                     adjust = vadjust,
                                      ...)+
                          geom_boxplot(fill = a,
-                                      alpha = {{ b_alpha }},
+                                      alpha = b_alpha,
                                       colour = "black", 
-                                      size = {{ bvthick }},
+                                      size = bvthick,
                                       outlier.alpha = 0,
-                                      width = {{ bwid }},
+                                      width = bwid,
                                       ...)+
                          geom_dotplot(stackdir = "center", 
-                                      stroke = {{ dotthick }}, 
-                                      alpha = {{ d_alpha }},
-                                      dotsize = {{ dotsize }},
+                                      stroke = dotthick, 
+                                      alpha = d_alpha,
+                                      dotsize = dotsize,
                                       binaxis = 'y',
                                       fill = a,
                                       ...)+
@@ -184,7 +184,7 @@ plot_dotviolin <- function(data, xcol, ycol, facet, dotsize = 1.5, d_alpha = 0.8
   }
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
-                        scales = {{ facet_scales }}, 
+                        scales = facet_scales, 
                         ...)
   }
   if (!missing(LogYTrans)) {
@@ -194,9 +194,9 @@ plot_dotviolin <- function(data, xcol, ycol, facet, dotsize = 1.5, d_alpha = 0.8
     if (LogYTrans == "log10") {
       P <- P + 
         scale_y_continuous(trans = "log10", 
-                           breaks = {{ LogYBreaks }}, 
-                           labels = {{ LogYLabels }}, 
-                           limits = {{ LogYLimits }}, 
+                           breaks = LogYBreaks, 
+                           labels = LogYLabels, 
+                           limits = LogYLimits, 
                            ...)+
         annotation_logticks(sides = "l", 
                             outside = TRUE,
@@ -209,14 +209,14 @@ plot_dotviolin <- function(data, xcol, ycol, facet, dotsize = 1.5, d_alpha = 0.8
     if (LogYTrans == "log2") {
       P <- P + 
         scale_y_continuous(trans = "log2", 
-                           breaks = {{ LogYBreaks }}, 
-                           labels = {{ LogYLabels }}, 
-                           limits = {{ LogYLimits }}, 
+                           breaks = LogYBreaks, 
+                           labels = LogYLabels, 
+                           limits = LogYLimits, 
                            ...)}
   }
   P <- P +
-    theme_classic(base_size = {{ fontsize }})+
+    theme_classic(base_size = fontsize)+
     theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = {{ TextXAngle }}))
+    guides(x = guide_axis(angle = TextXAngle))
   P
 }

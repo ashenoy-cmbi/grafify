@@ -40,7 +40,7 @@
 #' @param LogYBreaks argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is `waiver()`, or provide a vector of desired breaks.
 #' @param LogYLabels argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
 #' @param LogYLimits a vector of length two specifying the range (minimum and maximum) of the Y axis.
-#' @param facet_scales whether orcet graphs not to fix scales on X & Y axes for all facet facet graphs. Can be `fixed` (default), `free`, `free_y` or `free_x` (for Y and X axis one at a time, respectively).
+#' @param facet_scales whether or not to fix scales on X & Y axes for all facet facet graphs. Can be `fixed` (default), `free`, `free_y` or `free_x` (for Y and X axis one at a time, respectively).
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param symthick size (in 'pt' units) of outline of symbol lines (\code{stroke}), default = `fontsize`/22.
 #' @param bvthick thickness (in 'pt' units) of both violin and boxplot lines; default = `fontsize`/22.
@@ -85,26 +85,26 @@ plot_3d_scatterviolin <- function(data, xcol, ycol, shapes, facet, symsize = 3, 
                                      y = {{ ycol }},
                                      group = factor({{ xcol }})))+
         geom_violin(aes(fill = factor({{ xcol }})),
-                    size = {{ bvthick }},
-                    alpha = {{ v_alpha }},
-                    scale = {{ scale }},
+                    size = bvthick,
+                    alpha = v_alpha,
+                    scale = scale,
                     position = position_dodge(width = 0.8),
                     colour = "black",
-                    adjust = {{ vadjust }},
-                    trim = {{ trim }}, ...)+
+                    adjust = vadjust,
+                    trim = trim, ...)+
         geom_boxplot(aes(fill = factor({{ xcol }})), 
                      fill = "white",
-                     size = {{ bvthick }},
+                     size = bvthick,
                      position = position_dodge(width = 0.8),
-                     width = {{ bwid }},
+                     width = bwid,
                      outlier.alpha = 0, 
                      colour = "black",
                      ...)+
-        geom_point(size = {{ symsize }}, 
-                   stroke = {{ symthick }},
-                   alpha = {{ s_alpha }}, 
+        geom_point(size = symsize, 
+                   stroke = symthick,
+                   alpha = s_alpha, 
                    colour = "black",
-                   position = position_jitterdodge(jitter.width = {{ jitter }},
+                   position = position_jitterdodge(jitter.width = jitter,
                                                    dodge.width = 0.8),
                    aes(shape = factor({{ shapes }})))+
         scale_shape_manual(values = 0:25)+
@@ -116,25 +116,25 @@ plot_3d_scatterviolin <- function(data, xcol, ycol, shapes, facet, symsize = 3, 
                                      y = {{ ycol }},
                                      group = factor({{ xcol }})))+
         geom_violin(aes(fill = factor({{ xcol }})),
-                    size = {{ bvthick }},
-                    alpha = {{ v_alpha }},
-                    scale = {{ scale }},
+                    size = bvthick,
+                    alpha = v_alpha,
+                    scale = scale,
                     position = position_dodge(width = 0.8),
                     colour = "black", 
-                    adjust = {{ vadjust }},
-                    trim = {{ trim }}, ...)+
+                    adjust = vadjust,
+                    trim = trim, ...)+
         geom_boxplot(aes(fill = factor({{ xcol }})), 
-                     size = {{ bvthick }},
-                     alpha = {{ b_alpha }},
+                     size = bvthick,
+                     alpha = b_alpha,
                      position = position_dodge(width = 0.8),
-                     width = {{ bwid }},
+                     width = bwid,
                      outlier.alpha = 0, 
                      colour = "black",
                      ...)+
-        geom_point(size = {{ symsize }}, 
-                   stroke = {{ symthick }},
-                   alpha = {{ s_alpha }}, colour = "black",
-                   position = position_jitterdodge(jitter.width = {{ jitter }},
+        geom_point(size = symsize, 
+                   stroke = symthick,
+                   alpha = s_alpha, colour = "black",
+                   position = position_jitterdodge(jitter.width = jitter,
                                                    dodge.width = 0.8),
                    aes(shape = factor({{ shapes }})))+
         scale_shape_manual(values = 0:25)+
@@ -142,35 +142,35 @@ plot_3d_scatterviolin <- function(data, xcol, ycol, shapes, facet, symsize = 3, 
              fill = enquo(xcol),
              shape = enquo(shapes))
     }
-    P <- P + scale_fill_grafify(palette = {{ ColPal }}, 
-                                reverse = {{ ColRev }}, 
-                                ColSeq = {{ ColSeq }})
+    P <- P + scale_fill_grafify(palette = ColPal, 
+                                reverse = ColRev, 
+                                ColSeq = ColSeq)
   } else {
     ifelse(grepl("#", SingleColour), 
            a <- SingleColour,
-           a <- get_graf_colours({{ SingleColour }}))
+           a <- get_graf_colours(SingleColour))
     if (b_alpha == 0) {
       suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                                       y = {{ ycol }}))+
                          geom_violin(fill = a,
-                                     alpha = {{ v_alpha }},
-                                     trim = {{ trim }},
-                                     scale = {{ scale }},
+                                     alpha = v_alpha,
+                                     trim = trim,
+                                     scale = scale,
                                      colour = "black", 
-                                     size = {{ bvthick }},
-                                     adjust = {{ vadjust }},
+                                     size = bvthick,
+                                     adjust = vadjust,
                                      ...)+
                          geom_boxplot(fill = "white",
                                       colour = "black", 
-                                      size = {{ bvthick }},
+                                      size = bvthick,
                                       outlier.alpha = 0,
-                                      width = {{ bwid }},
+                                      width = bwid,
                                       ...)+
                          geom_point(aes(shape = factor({{ shapes }})),
-                                    position = position_jitter(width = {{ jitter }}),
-                                    alpha = {{ s_alpha }},
-                                    stroke = {{ symthick }},
-                                    size = {{ symsize }},
+                                    position = position_jitter(width = jitter),
+                                    alpha = s_alpha,
+                                    stroke = symthick,
+                                    size = symsize,
                                     fill = a,
                                     ...)+
                          scale_shape_manual(values = 0:25)+
@@ -181,69 +181,69 @@ plot_3d_scatterviolin <- function(data, xcol, ycol, shapes, facet, symsize = 3, 
                                             aes(x = factor({{ xcol }}),
                                                 y = {{ ycol }}))+
                          geom_violin(fill = a,
-                                     alpha = {{ v_alpha }},
-                                     trim = {{ trim }},
-                                     scale = {{ scale }},
+                                     alpha = v_alpha,
+                                     trim = trim,
+                                     scale = scale,
                                      colour = "black", 
-                                     size = {{ bvthick }},
-                                     adjust = {{ vadjust }},
+                                     size = bvthick,
+                                     adjust = vadjust,
                                      ...)+
                          geom_boxplot(fill = a,
-                                      alpha = {{ b_alpha }},
+                                      alpha = b_alpha,
                                       colour = "black", 
-                                      size = {{ bvthick }},
+                                      size = bvthick,
                                       outlier.alpha = 0,
-                                      width = {{ bwid }},
+                                      width = bwid,
                                       ...)+
                          geom_point(aes(shape = factor({{ shapes }})),
-                                    position = position_jitter(width = {{ jitter }}),
-                                    alpha = {{ s_alpha }},
-                                    stroke = {{ symthick }},
-                                    size = {{ symsize }},
+                                    position = position_jitter(width = jitter),
+                                    alpha = s_alpha,
+                                    stroke = symthick,
+                                    size = symsize,
                                     fill = a,
                                     ...)+
                          scale_shape_manual(values = 0:25)+
                          labs(x = enquo(xcol),
                               shape = enquo(shapes)))
     }
+  }
+  if(!missing(facet)) {
+    P <- P + facet_wrap(vars({{ facet }}), 
+                        scales = facet_scales, 
+                        ...)
+  }
+  if (!missing(LogYTrans)) {
+    if (!(LogYTrans %in% c("log2", "log10"))) {
+      stop("LogYTrans only allows 'log2' or 'log10' transformation.")
     }
-    if(!missing(facet)) {
-      P <- P + facet_wrap(vars({{ facet }}), 
-                          scales = {{ facet_scales }}, 
-                          ...)
+    if (LogYTrans == "log10") {
+      P <- P + 
+        scale_y_continuous(trans = "log10", 
+                           breaks = LogYBreaks, 
+                           labels = LogYLabels,
+                           limits = LogYLimits, 
+                           ...)+
+        annotation_logticks(sides = "l", 
+                            outside = TRUE,
+                            base = 10,
+                            long = unit(0.2, "cm"), 
+                            mid = unit(0.1, "cm"),
+                            ...)+ 
+        coord_cartesian(clip = "off", ...)
     }
-    if (!missing(LogYTrans)) {
-      if (!(LogYTrans %in% c("log2", "log10"))) {
-        stop("LogYTrans only allows 'log2' or 'log10' transformation.")
-      }
-      if (LogYTrans == "log10") {
-        P <- P + 
-          scale_y_continuous(trans = "log10", 
-                             breaks = {{ LogYBreaks }}, 
-                             labels = {{ LogYLabels }},
-                             limits = {{ LogYLimits }}, 
-                             ...)+
-          annotation_logticks(sides = "l", 
-                              outside = TRUE,
-                              base = 10,
-                              long = unit(0.2, "cm"), 
-                              mid = unit(0.1, "cm"),
-                              ...)+ 
-          coord_cartesian(clip = "off", ...)
-      }
-      if (LogYTrans == "log2") {
-        P <- P + 
-          scale_y_continuous(trans = "log2", 
-                             breaks = {{ LogYBreaks }}, 
-                             labels = {{ LogYLabels }}, 
-                             limits = {{ LogYLimits }},
-                             ...)}
-    }
-    P <- P +
-      theme_classic(base_size = {{ fontsize }})+
-      theme(strip.background = element_blank())+
-      guides(x = guide_axis(angle = {{ TextXAngle }}),
-             fill = guide_legend(order = 1),
-             shape = guide_legend(order = 2))
+    if (LogYTrans == "log2") {
+      P <- P + 
+        scale_y_continuous(trans = "log2", 
+                           breaks = LogYBreaks, 
+                           labels = LogYLabels, 
+                           limits = LogYLimits,
+                           ...)}
+  }
+  P <- P +
+    theme_classic(base_size = fontsize)+
+    theme(strip.background = element_blank())+
+    guides(x = guide_axis(angle = TextXAngle),
+           fill = guide_legend(order = 1),
+           shape = guide_legend(order = 2))
   P
 }

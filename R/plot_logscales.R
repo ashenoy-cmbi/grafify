@@ -46,9 +46,9 @@ plot_logscale <- function(Plot, LogYTrans = "log10", LogXTrans, LogYBreaks = wai
   if (LogYTrans == "log10") {
     P <- P + 
       scale_y_continuous(trans = "log10", 
-                         breaks = {{ LogYBreaks }}, 
-                         labels = {{ LogYLabels }}, 
-                         limits = {{ LogYLimits }},
+                         breaks = LogYBreaks, 
+                         labels = LogYLabels, 
+                         limits = LogYLimits,
                          ...)+
       annotation_logticks(sides = "l", 
                           outside = TRUE,
@@ -61,9 +61,9 @@ plot_logscale <- function(Plot, LogYTrans = "log10", LogXTrans, LogYBreaks = wai
   if (LogYTrans == "log2") {
     P <- P + 
       scale_y_continuous(trans = "log2", 
-                         breaks = {{ LogYBreaks }}, 
-                         labels = {{ LogYLabels }}, 
-                         limits = {{ LogYLimits }},
+                         breaks = LogYBreaks, 
+                         labels = LogYLabels, 
+                         limits = LogYLimits,
                          ...)}
   if(!missing(LogXTrans)){
     if (!(LogXTrans %in% c("log2", "log10"))) {
@@ -72,9 +72,9 @@ plot_logscale <- function(Plot, LogYTrans = "log10", LogXTrans, LogYBreaks = wai
     if (LogXTrans == "log10") {
       P <- P + 
         scale_x_continuous(trans = "log10", 
-                           breaks = {{ LogXBreaks }}, 
-                           labels = {{ LogXLabels }}, 
-                           limits = {{ LogXLimits }},
+                           breaks = LogXBreaks, 
+                           labels = LogXLabels, 
+                           limits = LogXLimits,
                            ...)+
         annotation_logticks(sides = "b", 
                             outside = TRUE,
@@ -87,9 +87,9 @@ plot_logscale <- function(Plot, LogYTrans = "log10", LogXTrans, LogYBreaks = wai
     if (LogXTrans == "log2") {
       P <- P + 
         scale_x_continuous(trans = "log2", 
-                           breaks = {{ LogXBreaks }}, 
-                           labels = {{ LogXLabels }}, 
-                           limits = {{ LogXLimits }},
+                           breaks = LogXBreaks, 
+                           labels = LogXLabels, 
+                           limits = LogXLimits,
                            ...)}}
   P
 }

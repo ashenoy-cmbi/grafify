@@ -1,6 +1,6 @@
 #' @title In vitro experiments measuring percentage cell death in three genotypes of cells.
 #'
-#' @description These data are from in vitro measurements of death of host cells (measured as percentage of total cells) after infection with three different strains of a pathogenic bacterium, from five independent experiments. The three strains are three levels within the fixed factor Genotype. The five independent experiments are levels within the random variable Experiment. These data can be analysed using linear mixed effects modeling. These data are from [Goddard _et al_, Cell Rep, 2019, doi.org/10.1016/j.celrep.2019.03.100](https://www.sciencedirect.com/science/article/pii/S2211124719304474)
+#' @description These data are from in vitro measurements of death of host cells (measured as percentage of total cells) after infection with three different strains of a pathogenic bacterium, from five independent experiments. The three strains are three levels within the fixed factor Genotype. The five independent experiments are levels within the random variable Experiment. These data can be analysed using linear mixed effects modelling. These data are from [Goddard _et al_, Cell Rep, 2019, doi.org/10.1016/j.celrep.2019.03.100](https://www.sciencedirect.com/science/article/pii/S2211124719304474)
 #'
 #' @format data.frame: 15 obs. of  3 variables.
 #'
@@ -54,7 +54,7 @@
 
 #' @title In vitro measurement of percentage cell death - two-way ANOVA design with repeated measures, and randomised blocks.
 #'
-#' @description These are measurements of death of infected host cells (as percentage of total cells) upon infection with two strains of bacteria, measured at two time points, in 6 independent experiments.  These data repeated-measures data suitable for two-way linear mixed effects modeling with experiment and subjects as random factors.
+#' @description These are measurements of death of infected host cells (as percentage of total cells) upon infection with two strains of bacteria, measured at two time points, in 6 independent experiments.  These data repeated-measures data suitable for two-way linear mixed effects modelling with experiment and subjects as random factors.
 #'
 #' @format data.frame:	24 obs. of  6 variables:
 #'
@@ -95,3 +95,21 @@
 #'}
 "data_cholesterol"
 
+
+#' @title Time-series data on zooplankton in lake Menon.
+#'
+#' @description A subset of data from [Lathro RC, 2000](http://dx.doi.org/10.6073/pasta/ec3d0186753985147d4f283252388e05) provided by the Wisconsin Department of Natural Resources
+#'
+#' @format tibble:	1127 obs. of  8 variables:
+#'
+#' \describe{
+#' \item{day}{Numeric integer variable.}
+#' \item{year}{Numeric integer variable of years during which data were collected.}
+#' \item{lake}{This data is for lake Menona; data for other others not included in this subset.}
+#' \item{taxon}{Names of zooplankton taxa as factor of 8 levels.}
+#' \item{density}{Numeric values of density of measurements.}
+#' \item{density_adj}{Numeric values of adjusted density .}
+#' \item{min_density}{Numeric values of minimum densities.}
+#' \item{desnsity_scaled}{Numeric value of scaled density.}
+#'}
+"data_zooplankton"

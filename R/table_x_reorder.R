@@ -10,11 +10,11 @@
 #' @param ... any additional arguments for `factor` call.
 #'
 #' @return This function returns a data frame with a selected column converted into factor with reordered levels.
-#' @export reorder_xcol
+#' @export table_x_reorder
 #'
 #' @examples
 #' #reorder levels within Genotype
-#' new_data <- reorder_xcol(data_t_pratio, 
+#' new_data <- table_x_reorder(data_t_pratio, 
 #' xcol = "Genotype", 
 #' OrderX = c("KO", "WT"))
 #' #compare 
@@ -26,13 +26,13 @@
 #' Genotype, 
 #' Cytokine)
 #' #also works within the plot call
-#' plot_scatterbox(data = reorder_xcol(data_t_pratio, 
+#' plot_scatterbox(data = table_x_reorder(data_t_pratio, 
 #' xcol = "Genotype", 
 #' OrderX = c("KO", "WT")), 
 #' xcol = Genotype, 
 #' ycol = Cytokine)
 #' 
-reorder_xcol <- function(data, xcol, OrderX, ...) {
+table_x_reorder <- function(data, xcol, OrderX, ...) {
   data[[xcol]] <- sapply(data[[xcol]], as.factor)
   data[[xcol]] <- factor(data[[xcol]], levels = OrderX, ...)
   data

@@ -66,51 +66,51 @@ plot_scatterbar_sd <- function(data, xcol, ycol, facet, symsize = 3, s_alpha = 0
                                    y = {{ ycol }}))+
       stat_summary(geom = "bar", 
                    colour = "black", 
-                   width = {{ bwid }},
+                   width = bwid,
                    fun = "mean", 
-                   alpha = {{ b_alpha }}, 
-                   size = {{ bthick }},
+                   alpha = b_alpha, 
+                   size = bthick,
                    aes(fill = factor({{ xcol }})))+
-      geom_point(size = {{ symsize }}, 
-                 alpha = {{ s_alpha }}, shape = 21,
-                 position = position_jitter(width = {{ jitter }}), 
-                 stroke = {{ symthick }},
+      geom_point(size = symsize, 
+                 alpha = s_alpha, shape = 21,
+                 position = position_jitter(width = jitter), 
+                 stroke = symthick,
                  aes(fill = factor({{ xcol }})))+
       stat_summary(geom = "errorbar", 
-                   size = {{ bthick }},
+                   size = bthick,
                    fun.data = "mean_sdl",
                    fun.args = list(mult = 1),
-                   width = {{ ewid }} )+
+                   width = ewid )+
       labs(x = enquo(xcol),
            fill = enquo(xcol))
   } else {
     ifelse(grepl("#", SingleColour), 
            a <- SingleColour,
-           a <- get_graf_colours({{ SingleColour }}))
+           a <- get_graf_colours(SingleColour))
     P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                    y = {{ ycol }}))+
       stat_summary(geom = "bar", 
                    colour = "black", 
-                   width = {{ bwid }},
+                   width = bwid,
                    fun = "mean", 
-                   alpha = {{ b_alpha }}, 
-                   size = {{ bthick }},
+                   alpha = b_alpha, 
+                   size = bthick,
                    fill = a)+
-      geom_point(size = {{ symsize }}, 
-                 alpha = {{ s_alpha }}, shape = 21,
-                 position = position_jitter(width = {{ jitter }}), 
-                 stroke = {{ symthick }},
+      geom_point(size = symsize, 
+                 alpha = s_alpha, shape = 21,
+                 position = position_jitter(width = jitter), 
+                 stroke = symthick,
                  fill = a)+
       stat_summary(geom = "errorbar", 
-                   size = {{ bthick }},
+                   size = bthick,
                    fun.data = "mean_sdl",
                    fun.args = list(mult = 1),
-                   width = {{ ewid }} )+
+                   width = ewid )+
       labs(x = enquo(xcol))
   }
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
-                        scales = {{ facet_scales }}, 
+                        scales = facet_scales, 
                         ...)
   }
   if (!missing(LogYTrans)) {
@@ -120,9 +120,9 @@ plot_scatterbar_sd <- function(data, xcol, ycol, facet, symsize = 3, s_alpha = 0
     if (LogYTrans == "log10") {
       P <- P + 
         scale_y_continuous(trans = "log10", 
-                           breaks = {{ LogYBreaks }}, 
-                           labels = {{ LogYLabels }}, 
-                           limits = {{ LogYLimits }}, 
+                           breaks = LogYBreaks, 
+                           labels = LogYLabels, 
+                           limits = LogYLimits, 
                            ...)+
         annotation_logticks(sides = "l", 
                             outside = TRUE,
@@ -135,17 +135,17 @@ plot_scatterbar_sd <- function(data, xcol, ycol, facet, symsize = 3, s_alpha = 0
     if (LogYTrans == "log2") {
       P <- P + 
         scale_y_continuous(trans = "log2", 
-                           breaks = {{ LogYBreaks }}, 
-                           labels = {{ LogYLabels }}, 
-                           limits = {{ LogYLimits }}, 
+                           breaks = LogYBreaks, 
+                           labels = LogYLabels, 
+                           limits = LogYLimits, 
                            ...)}
   }
   P <- P+
-    theme_classic(base_size = {{ fontsize }})+
+    theme_classic(base_size = fontsize)+
     theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = {{ TextXAngle }}))+
-    scale_fill_grafify(palette = {{ ColPal }}, 
-                       reverse = {{ ColRev }}, 
-                       ColSeq = {{ ColSeq }})
+    guides(x = guide_axis(angle = TextXAngle))+
+    scale_fill_grafify(palette = ColPal, 
+                       reverse = ColRev, 
+                       ColSeq = ColSeq)
   P
 }

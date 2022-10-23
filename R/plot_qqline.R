@@ -50,43 +50,43 @@ plot_qqline <- function(data, ycol, group, facet, symsize = 3, s_alpha = 0.8, Te
   if(missing(group)){
     P <- ggplot2::ggplot(data, aes(sample = {{ ycol }}))+
       geom_qq_line(na.rm = T,
-                   size = {{ linethick }},
+                   size = linethick,
                    ...)+
       geom_qq(na.rm = T, 
               shape = 21, 
               fill = "#E69F00",
-              size = {{ symsize }}, 
-              stroke = {{ symthick }},
-              alpha = {{ s_alpha }},
+              size = symsize, 
+              stroke = symthick,
+              alpha = s_alpha,
               ...)+
-      theme_classic(base_size = {{ fontsize }})+
+      theme_classic(base_size = fontsize)+
       theme(strip.background = element_blank())+
-      guides(x = guide_axis(angle = {{ TextXAngle }}))  
+      guides(x = guide_axis(angle = TextXAngle))  
   } else {
     P <- ggplot2::ggplot(data, aes(sample = {{ ycol }},
                                    group = {{ group }}))+
       geom_qq_line(na.rm = T,
-                   size = {{ linethick }},
+                   size = linethick,
                    ...)+
       geom_qq(na.rm = T, 
               shape = 21, 
               aes(fill = {{ group }}),
-              size = {{ symsize }}, 
-              stroke = {{ symthick }},
-              alpha = {{ s_alpha }},
+              size = symsize, 
+              stroke = symthick,
+              alpha = s_alpha,
               ...)+
       labs(fill = enquo(group))+
-      theme_classic(base_size = {{ fontsize }})+
+      theme_classic(base_size = fontsize)+
       theme(strip.background = element_blank())+
-      guides(x = guide_axis(angle = {{ TextXAngle }}))}
+      guides(x = guide_axis(angle = TextXAngle))}
   
   P <- P+
-    scale_fill_grafify(palette = {{ ColPal }}, 
-                       reverse = {{ ColRev }}, 
-                       ColSeq = {{ ColSeq }})
+    scale_fill_grafify(palette = ColPal, 
+                       reverse = ColRev, 
+                       ColSeq = ColSeq)
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
-                        scales = {{ facet_scales }}, 
+                        scales = facet_scales, 
                         ...)
   }
   P

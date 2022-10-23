@@ -29,7 +29,7 @@
 #' @param LogYBreaks argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is `waiver()`, or provide a vector of desired breaks.
 #' @param LogYLabels argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
 #' @param LogYLimits a vector of length two specifying the range (minimum and maximum) of the Y axis.
-#' @param facet_scales whether orcet graphs not to fix scales on X & Y axes for all facet facet graphs. Can be `fixed` (default), `free`, `free_y` or `free_x` (for Y and X axis one at a time, respectively).
+#' @param facet_scales whether or not to fix scales on X & Y axes for all facet facet graphs. Can be `fixed` (default), `free`, `free_y` or `free_x` (for Y and X axis one at a time, respectively).
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param symthick size (in 'pt' units) of outline of symbol lines (\code{stroke}), default = `fontsize`/22.
 #' @param bthick thickness (in 'pt' units) of lines and boxes; default = `fontsize`/22.
@@ -79,21 +79,21 @@ plot_befafter_shapes <- function(data, xcol, ycol, match, facet, Boxplot = FALSE
                                    y = {{ ycol }},
                                    group = factor({{ match }})))+
       geom_boxplot(aes(group = factor({{ xcol }})),
-                   width = {{ bwid }},
+                   width = bwid,
                    outlier.alpha = 0,
                    colour = "grey25",
-                   size = {{ bthick }})
-    }
+                   size = bthick)
+  }
   if (missing(SingleColour)) {
     P <- P + geom_line(aes(group = factor({{ match }})),
-                colour = "grey35", alpha = 0.8, 
-                size = {{ bthick }},
-                position = position_dodge(width = {{ jitter }}),
-                ...)+
-      geom_point(alpha = {{ s_alpha }}, 
-                 stroke = {{ symthick }},
-                 size = {{ symsize }},
-                 position = position_dodge(width = {{ jitter }}),
+                       colour = "grey35", alpha = 0.8, 
+                       size = bthick,
+                       position = position_dodge(width = jitter),
+                       ...)+
+      geom_point(alpha = s_alpha, 
+                 stroke = symthick,
+                 size = symsize,
+                 position = position_dodge(width = jitter),
                  aes(colour = factor({{ xcol }}),
                      shape = factor({{ match }})), ...)+
       scale_shape_manual(values = 0:25)+
@@ -103,18 +103,18 @@ plot_befafter_shapes <- function(data, xcol, ycol, match, facet, Boxplot = FALSE
   } else {
     ifelse(grepl("#", SingleColour),
            a <- SingleColour,
-           a <- get_graf_colours({{ SingleColour }}))
+           a <- get_graf_colours(SingleColour))
     P <- P +
       geom_line(aes(group = factor({{ match }})),
                 colour = "grey35", alpha = 0.8, , 
-                size = {{ bthick }},
-                position = position_dodge(width = {{ jitter }}),
+                size = bthick,
+                position = position_dodge(width = jitter),
                 ...)+
-      geom_point(alpha = {{ s_alpha }}, 
-                 stroke = {{ symthick }},
-                 size = {{ symsize }},
+      geom_point(alpha = s_alpha, 
+                 stroke = symthick,
+                 size = symsize,
                  colour = a,
-                 position = position_dodge(width = {{ jitter }}),
+                 position = position_dodge(width = jitter),
                  aes(shape = factor({{ match }})), ...)+
       scale_shape_manual(values = 0:25)+
       labs(x = enquo(xcol),
@@ -122,7 +122,7 @@ plot_befafter_shapes <- function(data, xcol, ycol, match, facet, Boxplot = FALSE
   }
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
-                        scales = {{ facet_scales }}, 
+                        scales = facet_scales, 
                         ...)
   }
   if (!missing(LogYTrans)) {
@@ -132,9 +132,9 @@ plot_befafter_shapes <- function(data, xcol, ycol, match, facet, Boxplot = FALSE
     if (LogYTrans == "log10") {
       P <- P + 
         scale_y_continuous(trans = "log10", 
-                           breaks = {{ LogYBreaks }}, 
-                           labels = {{ LogYLabels }}, 
-                           limits = {{ LogYLimits }},
+                           breaks = LogYBreaks, 
+                           labels = LogYLabels, 
+                           limits = LogYLimits,
                            ...)+
         annotation_logticks(sides = "l", 
                             outside = TRUE,
@@ -147,17 +147,17 @@ plot_befafter_shapes <- function(data, xcol, ycol, match, facet, Boxplot = FALSE
     if (LogYTrans == "log2") {
       P <- P + 
         scale_y_continuous(trans = "log2", 
-                           breaks = {{ LogYBreaks }}, 
-                           labels = {{ LogYLabels }}, 
-                           limits = {{ LogYLimits }},
+                           breaks = LogYBreaks, 
+                           labels = LogYLabels, 
+                           limits = LogYLimits,
                            ...)}
   }
   P <- P +
-    theme_classic(base_size = {{ fontsize }})+
+    theme_classic(base_size = fontsize)+
     theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = {{ TextXAngle }}))+
-    scale_colour_grafify(palette = {{ ColPal }}, 
-                         reverse = {{ ColRev }}, 
-                         ColSeq = {{ ColSeq }})
+    guides(x = guide_axis(angle = TextXAngle))+
+    scale_colour_grafify(palette = ColPal, 
+                         reverse = ColRev, 
+                         ColSeq = ColSeq)
   P
 }

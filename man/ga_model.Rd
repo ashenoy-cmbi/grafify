@@ -38,3 +38,11 @@ The two functions \code{\link{ga_model}} and \code{\link{ga_anova}} are for fitt
 \details{
 If a \code{Random_Factor} is also provided, it is fitted using \code{bs = "re"} smooth.
 }
+\examples{
+#fit a model with zooplankton data
+z1 <- ga_model(data = data_zooplankton,
+Y_value = "log(density_adj)",
+Fixed_Factor = "taxon",
+Smooth_Factor = "day")
+
+}

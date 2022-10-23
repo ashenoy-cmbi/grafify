@@ -71,11 +71,11 @@ plot_xy_CatGroup <- function(data, xcol, ycol, CatGroup, facet, Boxplot = FALSE,
   if (!(Boxplot)) {
     P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
                                    y = {{ ycol }}))+
-      geom_point(size = {{ symsize }}, 
-                 alpha = {{ s_alpha }},
+      geom_point(size = symsize, 
+                 alpha = s_alpha,
                  aes(fill = factor({{ CatGroup }})),
                  shape = 21, 
-                 stroke = {{ symthick }}, 
+                 stroke = symthick, 
                  ...)+
       labs(fill = enquo(CatGroup))
   } else {
@@ -84,32 +84,32 @@ plot_xy_CatGroup <- function(data, xcol, ycol, CatGroup, facet, Boxplot = FALSE,
       geom_boxplot(aes(group = interaction({{ xcol }},
                                            {{ CatGroup }}),
                        fill = {{ CatGroup }}),
-                   size = {{ bthick }},
+                   size = bthick,
                    outlier.alpha = 0,
-                   width = {{ bwid }},
-                   alpha = {{ b_alpha }},
+                   width = bwid,
+                   alpha = b_alpha,
                    position = position_identity(),
                    show.legend = FALSE)+
       stat_summary(geom = "line",
-                   size = {{ bthick }},
-                   alpha = {{ l_alpha }},
+                   size = bthick,
+                   alpha = l_alpha,
                    aes(colour = {{ CatGroup }}),
                    fun = "median")+
-      scale_colour_grafify(palette = {{ ColPal }},
-                           reverse = {{ ColRev }},
-                           ColSeq = {{ ColSeq }})+
-      geom_point(size = {{ symsize }}, 
-                 alpha = {{ s_alpha }},
+      scale_colour_grafify(palette = ColPal,
+                           reverse = ColRev,
+                           ColSeq = ColSeq)+
+      geom_point(size = symsize, 
+                 alpha = s_alpha,
                  aes(fill = factor({{ CatGroup }})),
                  shape = 21, 
-                 stroke = {{ symthick }},
+                 stroke = symthick,
                  ...)+
       labs(fill = enquo(CatGroup),
            colour = enquo(CatGroup))
   } 
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
-                        scales = {{ facet_scales }}, 
+                        scales = facet_scales, 
                         ...)
   }
   if (!missing(LogYTrans)) {
@@ -119,9 +119,9 @@ plot_xy_CatGroup <- function(data, xcol, ycol, CatGroup, facet, Boxplot = FALSE,
     if (LogYTrans == "log10") {
       P <- P + 
         scale_y_continuous(trans = "log10", 
-                           breaks = {{ LogYBreaks }}, 
-                           labels = {{ LogYLabels }}, 
-                           limits = {{ LogYLimits }}, 
+                           breaks = LogYBreaks, 
+                           labels = LogYLabels, 
+                           limits = LogYLimits, 
                            ...)+
         annotation_logticks(sides = "l", 
                             outside = TRUE,
@@ -134,9 +134,9 @@ plot_xy_CatGroup <- function(data, xcol, ycol, CatGroup, facet, Boxplot = FALSE,
     if (LogYTrans == "log2") {
       P <- P + 
         scale_y_continuous(trans = "log2", 
-                           breaks = {{ LogYBreaks }}, 
-                           labels = {{ LogYLabels }},  
-                           limits = {{ LogYLimits }},
+                           breaks = LogYBreaks, 
+                           labels = LogYLabels,  
+                           limits = LogYLimits,
                            ...)
     }
   }
@@ -147,9 +147,9 @@ plot_xy_CatGroup <- function(data, xcol, ycol, CatGroup, facet, Boxplot = FALSE,
     if (LogXTrans == "log10") {
       P <- P + 
         scale_x_continuous(trans = "log10", 
-                           breaks = {{ LogXBreaks }}, 
-                           labels = {{ LogXLabels }}, 
-                           limits = {{ LogXLimits }}, 
+                           breaks = LogXBreaks, 
+                           labels = LogXLabels, 
+                           limits = LogXLimits, 
                            ...)+
         annotation_logticks(sides = "b", 
                             outside = TRUE,
@@ -162,18 +162,18 @@ plot_xy_CatGroup <- function(data, xcol, ycol, CatGroup, facet, Boxplot = FALSE,
     if (LogXTrans == "log2") {
       P <- P + 
         scale_x_continuous(trans = "log2", 
-                           breaks = {{ LogXBreaks }}, 
-                           labels = {{ LogXLabels }}, 
-                           limits = {{ LogXLimits }},  
+                           breaks = LogXBreaks, 
+                           labels = LogXLabels, 
+                           limits = LogXLimits,  
                            ...)
     }
   }
   P <- P +
-    theme_classic(base_size = {{ fontsize }})+
+    theme_classic(base_size = fontsize)+
     theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = {{ TextXAngle }}))+
-    scale_fill_grafify(palette = {{ ColPal }}, 
-                       reverse = {{ ColRev }}, 
-                       ColSeq = {{ ColSeq }})
+    guides(x = guide_axis(angle = TextXAngle))+
+    scale_fill_grafify(palette = ColPal, 
+                       reverse = ColRev, 
+                       ColSeq = ColSeq)
   P
 }

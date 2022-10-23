@@ -12,8 +12,8 @@ plot_befafter_box(
   facet,
   PlotShapes = FALSE,
   symsize = 3,
-  s_alpha = 1,
-  b_alpha = 0.2,
+  s_alpha = 0.8,
+  b_alpha = 1,
   bwid = 0.4,
   jitter = 0.1,
   TextXAngle = 0,
@@ -49,9 +49,9 @@ plot_befafter_box(
 
 \item{symsize}{size of symbols, default set to 3.}
 
-\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).}
+\item{s_alpha}{fractional opacity of symbols, default set to 0.8 (i.e., 80\% opacity).}
 
-\item{b_alpha}{fractional opacity of boxes, default set to 0.2.}
+\item{b_alpha}{fractional opacity of boxes, default set to 1.}
 
 \item{bwid}{width of boxplots; default 0.4.}
 
@@ -67,7 +67,7 @@ plot_befafter_box(
 
 \item{LogYLimits}{a vector of length two specifying the range (minimum and maximum) of the Y axis.}
 
-\item{facet_scales}{whether orcet graphs not to fix scales on X & Y axes for all facet facet graphs. Can be \code{fixed} (default), \code{free}, \code{free_y} or \code{free_x} (for Y and X axis one at a time, respectively).}
+\item{facet_scales}{whether or not to fix scales on X & Y axes for all facet facet graphs. Can be \code{fixed} (default), \code{free}, \code{free_y} or \code{free_x} (for Y and X axis one at a time, respectively).}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 

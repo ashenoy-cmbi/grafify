@@ -16,6 +16,14 @@
 #' @export ga_anova
 #' @importFrom stats as.formula
 #' @importFrom mgcv anova.gam gam
+#' 
+#' @examples 
+#' #with zooplankton data
+#' ga_anova(data = data_zooplankton,
+#' Y_value = "log(density_adj)",
+#' Fixed_Factor = "taxon",
+#' Smooth_Factor = "day")
+#' 
 #'
 
 ga_anova <- function(data, Y_value, Fixed_Factor, Smooth_Factor, Random_Factor = NULL, Nodes = NULL, ...){

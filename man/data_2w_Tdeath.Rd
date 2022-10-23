@@ -20,6 +20,6 @@ data.frame:	24 obs. of  6 variables:
 data_2w_Tdeath
 }
 \description{
-These are measurements of death of infected host cells (as percentage of total cells) upon infection with two strains of bacteria, measured at two time points, in 6 independent experiments.  These data repeated-measures data suitable for two-way linear mixed effects modeling with experiment and subjects as random factors.
+These are measurements of death of infected host cells (as percentage of total cells) upon infection with two strains of bacteria, measured at two time points, in 6 independent experiments.  These data repeated-measures data suitable for two-way linear mixed effects modelling with experiment and subjects as random factors.
 }
 \keyword{datasets}

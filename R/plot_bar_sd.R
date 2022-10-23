@@ -25,7 +25,7 @@
 #' @param LogYBreaks argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is `waiver()`, or provide a vector of desired breaks.
 #' @param LogYLabels argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
 #' @param LogYLimits a vector of length two specifying the range (minimum and maximum) of the Y axis.
-#' @param facet_scales whether orcet graphs not to fix scales on X & Y axes for all facet facet graphs. Can be `fixed` (default), `free`, `free_y` or `free_x` (for Y and X axis one at a time, respectively).
+#' @param facet_scales whether or not to fix scales on X & Y axes for all facet facet graphs. Can be `fixed` (default), `free`, `free_y` or `free_x` (for Y and X axis one at a time, respectively).
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param bthick thickness (in 'pt' units) of bar and error bar lines; default = `fontsize`/
 #' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
@@ -61,45 +61,45 @@ plot_bar_sd <- function(data, xcol, ycol, facet, b_alpha = 1, bwid = 0.7, ewid =
     P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                    y = {{ ycol }}))+
       stat_summary(geom = "bar", 
-                   width = {{ bwid }}, 
-                   size = {{ bthick }},
+                   width = bwid, 
+                   size = bthick,
                    fun = "mean", 
                    colour = "black",
-                   alpha = {{ b_alpha }},
+                   alpha = b_alpha,
                    aes(fill = factor({{ xcol }})), 
                    ...)+
       stat_summary(geom = "errorbar", 
-                   size = {{ bthick }},
+                   size = bthick,
                    fun.data = "mean_sdl",
                    fun.args = list(mult = 1),
-                   width = {{ ewid }})+
+                   width = ewid)+
       labs(x = enquo(xcol),
            fill = enquo(xcol))
   } else {
     ifelse(grepl("#", SingleColour),
            a <- SingleColour,
-           a <- get_graf_colours({{ SingleColour }}))
+           a <- get_graf_colours(SingleColour))
     
     P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                    y = {{ ycol }}))+
       stat_summary(geom = "bar", 
-                   width = {{ bwid }}, 
-                   size = {{ bthick }},
+                   width = bwid, 
+                   size = bthick,
                    fun = "mean", 
                    colour = "black",
-                   alpha = {{ b_alpha }},
+                   alpha = b_alpha,
                    fill = a, 
                    ...)+
       stat_summary(geom = "errorbar", 
                    size = 1,
                    fun.data = "mean_sdl",
                    fun.args = list(mult = 1),
-                   width = {{ ewid }})+
+                   width = ewid)+
       labs(x = enquo(xcol))
   }
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
-                        scales = {{ facet_scales }}, 
+                        scales = facet_scales, 
                         ...)
   }
   if (!missing(LogYTrans)) {
@@ -109,9 +109,9 @@ plot_bar_sd <- function(data, xcol, ycol, facet, b_alpha = 1, bwid = 0.7, ewid =
     if (LogYTrans == "log10") {
       P <- P + 
         scale_y_continuous(trans = "log10", 
-                           breaks = {{ LogYBreaks }}, 
-                           labels = {{ LogYLabels }}, 
-                           limits = {{ LogYLimits }},
+                           breaks = LogYBreaks, 
+                           labels = LogYLabels, 
+                           limits = LogYLimits,
                            ...)+
         annotation_logticks(sides = "l", 
                             outside = TRUE,
@@ -124,17 +124,17 @@ plot_bar_sd <- function(data, xcol, ycol, facet, b_alpha = 1, bwid = 0.7, ewid =
     if (LogYTrans == "log2") {
       P <- P + 
         scale_y_continuous(trans = "log2", 
-                           breaks = {{ LogYBreaks }}, 
-                           labels = {{ LogYLabels }}, 
-                           limits = {{ LogYLimits }},
+                           breaks = LogYBreaks, 
+                           labels = LogYLabels, 
+                           limits = LogYLimits,
                            ...)}
   }
   P <- P +
-    theme_classic(base_size = {{ fontsize }})+
+    theme_classic(base_size = fontsize)+
     theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = {{ TextXAngle }}))+
-    scale_fill_grafify(palette = {{ ColPal }}, 
-                       reverse = {{ ColRev }}, 
-                       ColSeq = {{ ColSeq }})
+    guides(x = guide_axis(angle = TextXAngle))+
+    scale_fill_grafify(palette = ColPal, 
+                       reverse = ColRev, 
+                       ColSeq = ColSeq)
   P
 }

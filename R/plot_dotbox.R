@@ -26,7 +26,7 @@
 #' @param LogYBreaks argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is `waiver()`, or provide a vector of desired breaks.
 #' @param LogYLabels argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
 #' @param LogYLimits a vector of length two specifying the range (minimum and maximum) of the Y axis.
-#' @param facet_scales whether orcet graphs not to fix scales on X & Y axes for all facet facet graphs. Can be `fixed` (default), `free`, `free_y` or `free_x` (for Y and X axis one at a time, respectively).
+#' @param facet_scales whether or not to fix scales on X & Y axes for all facet facet graphs. Can be `fixed` (default), `free`, `free_y` or `free_x` (for Y and X axis one at a time, respectively).
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param dotthick thickness of dot border (`stroke` parameter of `geom_dotplot`), default set to `fontsize`/22.
 #' @param bthick thickness (in 'pt' units) of boxplot lines; default = `fontsize`/22.
@@ -59,16 +59,16 @@ plot_dotbox <- function(data, xcol, ycol, facet, dotsize = 1.5, d_alpha = 0.8, b
     suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                                     y = {{ ycol }}))+
                        geom_boxplot(aes(fill = factor({{ xcol }})), 
-                                    size = {{ bthick }},
-                                    alpha = {{ b_alpha }},
+                                    size = bthick,
+                                    alpha = b_alpha,
                                     outlier.alpha = 0,
-                                    width = {{ bwid }},
+                                    width = bwid,
                                     ...)+
                        geom_dotplot(stackdir = "center", 
-                                    stroke = {{ dotthick }},
-                                    alpha = {{ d_alpha }},
+                                    stroke = dotthick,
+                                    alpha = d_alpha,
                                     binaxis = 'y', 
-                                    dotsize = {{ dotsize }},
+                                    dotsize = dotsize,
                                     aes(fill = factor({{ xcol }})),
                                     ...)+
                        labs(x = enquo(xcol),
@@ -76,27 +76,27 @@ plot_dotbox <- function(data, xcol, ycol, facet, dotsize = 1.5, d_alpha = 0.8, b
   } else {
     ifelse(grepl("#", SingleColour), 
            a <- SingleColour,
-           a <- get_graf_colours({{ SingleColour }}))
+           a <- get_graf_colours(SingleColour))
     suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                                     y = {{ ycol }}))+
-                       geom_boxplot(size = {{ bthick }},
-                                    alpha = {{ b_alpha }},
+                       geom_boxplot(size = bthick,
+                                    alpha = b_alpha,
                                     outlier.alpha = 0,
-                                    width = {{ bwid }},
+                                    width = bwid,
                                     fill = a,
                                     ...)+
                        geom_dotplot(stackdir = "center", 
-                                    stroke = {{ dotthick }},
-                                    alpha = {{ d_alpha }},
+                                    stroke = dotthick,
+                                    alpha = d_alpha,
                                     binaxis = 'y', 
-                                    dotsize = {{ dotsize }},
+                                    dotsize = dotsize,
                                     fill = a,
                                     ...)+
                        labs(x = enquo(xcol)))
   }
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
-                        scales = {{ facet_scales }}, 
+                        scales = facet_scales, 
                         ...)
   }
   if (!missing(LogYTrans)) {
@@ -106,9 +106,9 @@ plot_dotbox <- function(data, xcol, ycol, facet, dotsize = 1.5, d_alpha = 0.8, b
     if (LogYTrans == "log10") {
       P <- P + 
         scale_y_continuous(trans = "log10", 
-                           breaks = {{ LogYBreaks }}, 
-                           labels = {{ LogYLabels }}, 
-                           limits = {{ LogYLimits }}, 
+                           breaks = LogYBreaks, 
+                           labels = LogYLabels, 
+                           limits = LogYLimits, 
                            ...)+
         annotation_logticks(sides = "l", 
                             outside = TRUE,
@@ -121,17 +121,17 @@ plot_dotbox <- function(data, xcol, ycol, facet, dotsize = 1.5, d_alpha = 0.8, b
     if (LogYTrans == "log2") {
       P <- P + 
         scale_y_continuous(trans = "log2", 
-                           breaks = {{ LogYBreaks }}, 
-                           labels = {{ LogYLabels }}, 
-                           limits = {{ LogYLimits }}, 
+                           breaks = LogYBreaks, 
+                           labels = LogYLabels, 
+                           limits = LogYLimits, 
                            ...)}
   }
   P <- P + 
-    theme_classic(base_size = {{ fontsize }})+
+    theme_classic(base_size = fontsize)+
     theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = {{ TextXAngle }}))+
-    scale_fill_grafify(palette = {{ ColPal }}, 
-                       reverse = {{ ColRev }}, 
-                       ColSeq = {{ ColSeq }})
+    guides(x = guide_axis(angle = TextXAngle))+
+    scale_fill_grafify(palette = ColPal, 
+                       reverse = ColRev, 
+                       ColSeq = ColSeq)
   P
 }
