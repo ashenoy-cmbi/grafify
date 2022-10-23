@@ -9,6 +9,8 @@ Full reference to all functions available at [`grafify` GitHub pages](https://as
 
 # grafify v3.0.0.9999
 
+## Major updates 
+
 This is a major update for `grafify`, which now provides wrappers for basic generalised additive models (`gam`) through the [`mgcv` package](https://CRAN.R-project.org/package=mgcv). There are a more `plot_` functions, a `grafify` theme for `ggplot` objects, and simple data wrangling before plotting.  
 
 ## Major additions
@@ -36,6 +38,9 @@ b. `table_summary` is a wrapper around `aggregate` (base R) function, which give
 
 5. A `grafify` theme for `ggplot2`: `theme_grafify` is a modification of `theme_classic` for making publication-ready `grafify`-like graphs easily when using `ggplot2`.
 
+## Minor changes
+
+Much of the code has been edited and cleaned up. Among the main change is dropping unnecessary double curly brackets `{{ }}` within `plot_` wrappers.
 
 # grafify v2.3.0
 
