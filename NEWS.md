@@ -9,11 +9,11 @@ Full reference to all functions available at [`grafify` GitHub pages](https://as
 
 # grafify v3.0.0.9999
 
-This is a major update for `grafify`, which now allowed basic generalised additive models through the [`mgcv` package](https://CRAN.R-project.org/package=mgcv). There are a more `plot_` functions, a `grafify` theme for `ggplot` objects, and wrappers for data wrangling before plotting.  
+This is a major update for `grafify`, which now provides wrappers for basic generalised additive models (`gam`) through the [`mgcv` package](https://CRAN.R-project.org/package=mgcv). There are a more `plot_` functions, a `grafify` theme for `ggplot` objects, and simple data wrangling before plotting.  
 
 ## Major additions
 
-1. Fit generalised additive models (gams) and get ANOVA tables with two new functions: `ga_model` and `ga_anova`. These are mainly for time-series analyses or where an assumption of linear relationship between predictor and outcomes is absent straight lines are not appropriate. Factor-wise smooths are fit with the `by` argument in `mgcv`, without or with a random factor. Random factors are also allowed with smooth  `re` smooth. See documentation for `mgcv` [smooths](https://noamross.github.io/gams-in-r-course/). Model diagnostics can be done with `plot_qq_gam` and `plot_qq_model`. Example data included as  `data_zooplankton` is from [Lathro RC, 2000](http://dx.doi.org/10.6073/pasta/ec3d0186753985147d4f283252388e05). 
+1. Fit generalised additive models (gam) and get ANOVA tables with two new functions: `ga_model` and `ga_anova`. These are mainly for time-series analyses or where an assumption of linear relationship between predictor and outcomes is absent straight lines are not appropriate. Factor-wise smooths are fit with the `by` argument in `mgcv`, without or with a random factor. Random factors are also allowed with smooth  `re` smooth. See documentation for `mgcv` [smooths](https://noamross.github.io/gams-in-r-course/). Model diagnostics can be done with `plot_qq_gam` and `plot_qq_model`. Example data included as  `data_zooplankton` is from [Lathro RC, 2000](http://dx.doi.org/10.6073/pasta/ec3d0186753985147d4f283252388e05). 
 
 2. All `plot_` functions now have two major updates:
 

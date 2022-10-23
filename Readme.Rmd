@@ -69,7 +69,7 @@ Two other features including practice datasets (with randomised blocks), and dat
      b. One-way or two-way ANOVA designs with or without randomised blocks (3 or 4 dimensions or variables): `plot_3d_scatterbar`, `plot_3d_scatterbox`, `plot_3d_scatterviolin` or `plot_4d_scatterbar`, `plot_4d_scatterbox`, `plot_4d_scatterviolin`
      c. Matched before-after graphs: `plot_befafter_colours`, `plot_befafter_shapes`, `plot_befafter_box`     
      c. Quantitative X & Y, plus a third variable: `plot_xy_NumGroup`, `plot_xy_CatGroup` 
-     d. Data distributions: `plot_qqline`, `plot_density` `plot_histogram`, and residuals of linear models with `plot_qqmodel`
+     d. Data distributions: `plot_qqline`, `plot_density` `plot_histogram`, and model diagnostics with `plot_qqmodel`, `plot_qq_gam`, `plot_lm_predict` and `plot_gam_predict`
      f. Summary graphs with SD error bars: `plot_bar_sd`, `plot_point_sd`
   
   
@@ -93,15 +93,15 @@ All palettes are colourblind-friendly. (See Mike Mol's [blog](https://mikemol.gi
 
 The `theme_grafify` function is a modification of `theme_classic` and enables graphs plotted with `ggplot2` to have a `grafify`-like appearance. 
 
-`plot_logscales` lets you transform Y, X or both axes into `log2` or `log10` values, and latter will also show log10 tick marks. 
+`plot_logscales` lets you take any `ggplot2` object and transform Y, X or both axes into `log2` or `log10` values, and latter will also show log10 tick marks. 
     
-#### Linear models 
+#### Linear models for ANOVA
 
 Get ANOVA tables and linear models with these easy wrappers.
 
-  a. linear models for ordinary ANOVA: `simple_anova`, `simple_model`, 
-  b. linear mixed effects for repeated-measures and randomised-block design ANOVA: `mixed_anova`, `mixed_model`, `mixed_anova_slopes` & `mixed_model_slopes`.
-  c. plot model residuals with `plot_qqmodel`.
+  a. linear models for ordinary ANOVA: `simple_anova`, `simple_model`, `ga_model`, `ga_anova`.
+  b. linear mixed effects for repeated-measures and randomised-block design ANOVA: `mixed_anova`, `mixed_model`, `mixed_anova_slopes`, `mixed_model_slopes`, `ga_model`, `ga_anova`.
+  c. plot model residuals with `plot_qqmodel` and `plot_qq_gam`.
   d. plot model predictions with `plot_lm_predict` and `plot_gam_predict`.
 
 #### Post-hoc comparisons & Estimated Marginal Means (easy wrappers for `emmeans`)
@@ -136,7 +136,7 @@ Latest DOI for all versions: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo
 
 Any updates not yet on CRAN will be made available here first. To install from GitHub you also need to install the `remotes` package. Then type `remotes::install_github("ashenoy-cmbi/grafify@*release")`.
 
-`grafify` requires the following packages to be installed: `car`, `emmeans`, `ggplot2`, `Hmisc`, `lme4`, `lmerTest`, `magrittr`, `pbkrtest`, `purrr`, `stats`, `tidyr`.
+`grafify` requires the following packages to be installed: `car`, `emmeans`, `ggplot2`, `Hmisc`, `lme4`, `lmerTest`, `magrittr`, `mgcv`, `patchwork`, `purrr`, `stats`, `tidyr`.
 
 ### Motivation behind `grafify`
 

@@ -69,12 +69,12 @@ better documented at present.
         `plot_4d_scatterbar`, `plot_4d_scatterbox`,
         `plot_4d_scatterviolin`
     3.  Matched before-after graphs: `plot_befafter_colours`,
-        `plot_befafter_shapes`  
+        `plot_befafter_shapes`, `plot_befafter_box`  
     4.  Quantitative X & Y, plus a third variable: `plot_xy_NumGroup`,
         `plot_xy_CatGroup`
     5.  Data distributions: `plot_qqline`, `plot_density`
-        `plot_histogram`, and residuals of linear models with
-        `plot_qqmodel`
+        `plot_histogram`, and model diagnostics with `plot_qqmodel`,
+        `plot_qq_gam`, `plot_lm_predict` and `plot_gam_predict`
     6.  Summary graphs with SD error bars: `plot_bar_sd`,
         `plot_point_sd`
 
@@ -97,15 +97,28 @@ and Paul Tol’s [blog](https://personal.sron.nl/~pault/#sec:qualitative).
 Additional colour schemes were chosen from [`cols4all`
 package](https://github.com/mtennekes/cols4all)).
 
-#### Linear models
+#### `grafify` theme & adding log-scales
+
+The `theme_grafify` function is a modification of `theme_classic` and
+enables graphs plotted with `ggplot2` to have a `grafify`-like
+appearance.
+
+`plot_logscales` lets you take any `ggplot2` object and transform Y, X
+or both axes into `log2` or `log10` values, and latter will also show
+log10 tick marks.
+
+#### Linear models for ANOVA
 
 Get ANOVA tables and linear models with these easy wrappers.
 
 1.  linear models for ordinary ANOVA: `simple_anova`, `simple_model`,
+    `ga_model`, `ga_anova`.
 2.  linear mixed effects for repeated-measures and randomised-block
-    design ANOVA: `mixed_anova`, `mixed_model`, `mixed_anova_slopes` &
-    `mixed_model_slopes`.
-3.  plot model residuals with `plot_qqmodel`.
+    design ANOVA: `mixed_anova`, `mixed_model`, `mixed_anova_slopes`,
+    `mixed_model_slopes`, `ga_model`, `ga_anova`.
+3.  plot model residuals with `plot_qqmodel` and `plot_qq_gam`.
+4.  plot model predictions with `plot_lm_predict` and
+    `plot_gam_predict`.
 
 #### Post-hoc comparisons & Estimated Marginal Means (easy wrappers for `emmeans`)
 
@@ -151,8 +164,8 @@ install from GitHub you also need to install the `remotes` package. Then
 type `remotes::install_github("ashenoy-cmbi/grafify@*release")`.
 
 `grafify` requires the following packages to be installed: `car`,
-`emmeans`, `ggplot2`, `Hmisc`, `lme4`, `lmerTest`, `magrittr`,
-`pbkrtest`, `purrr`, `stats`, `tidyr`.
+`emmeans`, `ggplot2`, `Hmisc`, `lme4`, `lmerTest`, `magrittr`, `mgcv`,
+`patchwork`, `purrr`, `stats`, `tidyr`.
 
 ### Motivation behind `grafify`
 
