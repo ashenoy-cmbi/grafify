@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.0.0</span>
       </span>
     </div>
 
@@ -59,25 +59,36 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">mixed_model</span><span class="op">(</span><span class="va">data</span>, <span class="va">Y_value</span>, <span class="va">Fixed_Factor</span>, <span class="va">Random_Factor</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">mixed_model</span><span class="op">(</span><span class="va">data</span>, <span class="va">Y_value</span>, <span class="va">Fixed_Factor</span>, <span class="va">Random_Factor</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>data</dt>
 <dd><p>a data table object, e.g. data.frame or tibble.</p></dd>
+
+
 <dt>Y_value</dt>
 <dd><p>name of column containing quantitative (dependent) variable, provided within "quotes".</p></dd>
+
+
 <dt>Fixed_Factor</dt>
 <dd><p>name(s) of categorical fixed factors (independent variables) provided as a vector if more than one or within "quotes".</p></dd>
+
+
 <dt>Random_Factor</dt>
 <dd><p>name(s) of random factors to allow random intercepts; to be provided as a vector when more than one or within "quotes".</p></dd>
+
+
 <dt>...</dt>
 <dd><p>any additional arguments to pass on to <code><a href="https://rdrr.io/pkg/lme4/man/lmer.html" class="external-link">lmer</a></code> if required.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>This function returns an S4 object of class "lmerModLmerTest".</p>
+    
+
+<p>This function returns an S4 object of class "lmerModLmerTest".</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -93,11 +104,11 @@ For simplicity, only random intercepts are fitted (<code>(1|R)</code>).</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">#one fixed factor and random factor</span></span>
-<span class="r-in"><span class="fu">mixed_model</span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_doubling_time</span>, </span>
-<span class="r-in">Y_value <span class="op">=</span> <span class="st">"Doubling_time"</span>, </span>
-<span class="r-in">Fixed_Factor <span class="op">=</span> <span class="st">"Student"</span>, </span>
-<span class="r-in">Random_Factor <span class="op">=</span> <span class="st">"Experiment"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">#one fixed factor and random factor</span></span></span>
+<span class="r-in"><span><span class="fu">mixed_model</span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_doubling_time</span>, </span></span>
+<span class="r-in"><span>Y_value <span class="op">=</span> <span class="st">"Doubling_time"</span>, </span></span>
+<span class="r-in"><span>Fixed_Factor <span class="op">=</span> <span class="st">"Student"</span>, </span></span>
+<span class="r-in"><span>Random_Factor <span class="op">=</span> <span class="st">"Experiment"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> boundary (singular) fit: see help('isSingular')</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Linear mixed model fit by REML ['lmerModLmerTest']</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Formula: Doubling_time ~ Student + (1 | Experiment)</span>
@@ -114,12 +125,12 @@ For simplicity, only random intercepts are fitted (<code>(1|R)</code>).</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    StudentG     StudentH     StudentI     StudentJ  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      0.4885      -0.8083       0.6775       1.2115  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> optimizer (nloptwrap) convergence code: 0 (OK) ; 0 optimizer warnings; 1 lme4 warnings </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">#two fixed factors as a vector, one random factor</span></span>
-<span class="r-in"><span class="fu">mixed_model</span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_cholesterol</span>, </span>
-<span class="r-in">Y_value <span class="op">=</span> <span class="st">"Cholesterol"</span>, </span>
-<span class="r-in">Fixed_Factor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Treatment"</span>, <span class="st">"Hospital"</span><span class="op">)</span>, </span>
-<span class="r-in">Random_Factor <span class="op">=</span> <span class="st">"Subject"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#two fixed factors as a vector, one random factor</span></span></span>
+<span class="r-in"><span><span class="fu">mixed_model</span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_cholesterol</span>, </span></span>
+<span class="r-in"><span>Y_value <span class="op">=</span> <span class="st">"Cholesterol"</span>, </span></span>
+<span class="r-in"><span>Fixed_Factor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Treatment"</span>, <span class="st">"Hospital"</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>Random_Factor <span class="op">=</span> <span class="st">"Subject"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Linear mixed model fit by REML ['lmerModLmerTest']</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Formula: Cholesterol ~ Treatment * Hospital + (1 | Subject)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Data: data_cholesterol</span>
@@ -140,16 +151,16 @@ For simplicity, only random intercepts are fitted (<code>(1|R)</code>).</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                              -8.075                               -7.001  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> TreatmentBefore_drug:HospitalHosp_d  TreatmentBefore_drug:HospitalHosp_e  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                             -27.202                              -25.803  </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">#save model</span></span>
-<span class="r-in"><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu">mixed_model</span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_doubling_time</span>, </span>
-<span class="r-in">Y_value <span class="op">=</span>  <span class="st">"Doubling_time"</span>, </span>
-<span class="r-in">Fixed_Factor <span class="op">=</span> <span class="st">"Student"</span>, </span>
-<span class="r-in">Random_Factor <span class="op">=</span> <span class="st">"Experiment"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#save model</span></span></span>
+<span class="r-in"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu">mixed_model</span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_doubling_time</span>, </span></span>
+<span class="r-in"><span>Y_value <span class="op">=</span>  <span class="st">"Doubling_time"</span>, </span></span>
+<span class="r-in"><span>Fixed_Factor <span class="op">=</span> <span class="st">"Student"</span>, </span></span>
+<span class="r-in"><span>Random_Factor <span class="op">=</span> <span class="st">"Experiment"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> boundary (singular) fit: see help('isSingular')</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">#get model summary</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#get model summary</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Linear mixed model fit by REML. t-tests use Satterthwaite's method [</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> lmerModLmerTest]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Formula: Doubling_time ~ Student + (1 | Experiment)</span>
@@ -210,7 +221,7 @@ For simplicity, only random intercepts are fitted (<code>(1|R)</code>).</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

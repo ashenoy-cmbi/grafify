@@ -15,8 +15,9 @@
 #'
 #' @examples
 #' 
-#' plot(mpg, aes(drv, cty ))+
-#' geom_jitter(width = 0.2)+
+#' ggplot(mpg, aes(drv, cty, colour = fl))+
+#' geom_jitter(width = 0.2, 
+#' size = 3, alpha = .7)+
 #' theme_grafify()
 #' 
 theme_grafify <- function (base_size = 20, base_family = "", base_line_size = base_size/22, base_rect_size = base_size/22, TextXAngle = 0, ...) {

@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.0.0</span>
       </span>
     </div>
 
@@ -59,25 +59,36 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">posthoc_Levelwise</span><span class="op">(</span><span class="va">Model</span>, <span class="va">Fixed_Factor</span>, P_Adj <span class="op">=</span> <span class="st">"fdr"</span>, <span class="va">Factor</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">posthoc_Levelwise</span><span class="op">(</span><span class="va">Model</span>, <span class="va">Fixed_Factor</span>, P_Adj <span class="op">=</span> <span class="st">"fdr"</span>, <span class="va">Factor</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>Model</dt>
 <dd><p>a model object fit using <code><a href="simple_model.html">simple_model</a></code> or <code><a href="mixed_model.html">mixed_model</a></code> or related.</p></dd>
+
+
 <dt>Fixed_Factor</dt>
 <dd><p>one or  more categorical variables, provided as a vector (see Examples), whose levels you wish to compare pairwise. Names of Fixed_Factor should match Fixed_Factor used to fit the model. When more than one factor is provided e.g. <code>Fixed_factor = c("A", "B")</code>, this function passes this on as <code>specs = A|B</code> (note the vertical | between the two Fixed_Factor) to <code><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></code> to produce comparisons between each level A with each other listed separately at each level of B.</p></dd>
+
+
 <dt>P_Adj</dt>
 <dd><p>method for correcting P values for multiple comparisons. Default is set to false discovery rate ("fdr"), can be changed to "none", "tukey", "bonferroni", "sidak". See Interaction analysis in emmeans in the <a href="https://CRAN.R-project.org/package=emmeans" class="external-link">manual</a> for <code>emmeans</code>.</p></dd>
+
+
 <dt>Factor</dt>
 <dd><p>old argument name for <code>Fixed_Factor</code>; retained for backward compatibility.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>additional arguments for <code><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></code> such as <code>lmer.df</code> or others. See help for sophisticated models in <a href="https://CRAN.R-project.org/package=emmeans" class="external-link">emmeans</a>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>returns an "emm_list" object containing contrasts and emmeans through <code><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></code>.</p>
+    
+
+<p>returns an "emm_list" object containing contrasts and emmeans through <code><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></code>.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -88,16 +99,16 @@ The first part of the <code>emmeans</code> results has the estimated marginal me
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">#make a linear model first</span></span>
-<span class="r-in"><span class="va">CholMod</span> <span class="op">&lt;-</span> <span class="fu"><a href="mixed_model.html">mixed_model</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_cholesterol</span>, </span>
-<span class="r-in">Y_value <span class="op">=</span>  <span class="st">"Cholesterol"</span>, </span>
-<span class="r-in">Fixed_Factor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Hospital"</span>, <span class="st">"Treatment"</span><span class="op">)</span>,</span>
-<span class="r-in">Random_Factor <span class="op">=</span>  <span class="st">"Subject"</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">#note quotes used only for fixed Fixed_Factor</span></span>
-<span class="r-in"><span class="co">#to get comparisons between different hospitals separately for each level of Treatment</span></span>
-<span class="r-in"><span class="fu">posthoc_Levelwise</span><span class="op">(</span>Model <span class="op">=</span> <span class="va">CholMod</span>, </span>
-<span class="r-in">Fixed_Factor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Hospital"</span>, <span class="st">"Treatment"</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">#make a linear model first</span></span></span>
+<span class="r-in"><span><span class="va">CholMod</span> <span class="op">&lt;-</span> <span class="fu"><a href="mixed_model.html">mixed_model</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_cholesterol</span>, </span></span>
+<span class="r-in"><span>Y_value <span class="op">=</span>  <span class="st">"Cholesterol"</span>, </span></span>
+<span class="r-in"><span>Fixed_Factor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Hospital"</span>, <span class="st">"Treatment"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>Random_Factor <span class="op">=</span>  <span class="st">"Subject"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#note quotes used only for fixed Fixed_Factor</span></span></span>
+<span class="r-in"><span><span class="co">#to get comparisons between different hospitals separately for each level of Treatment</span></span></span>
+<span class="r-in"><span><span class="fu">posthoc_Levelwise</span><span class="op">(</span>Model <span class="op">=</span> <span class="va">CholMod</span>, </span></span>
+<span class="r-in"><span>Fixed_Factor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Hospital"</span>, <span class="st">"Treatment"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $emmeans</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Treatment = After_drug:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Hospital emmean   SE   df lower.CL upper.CL</span>
@@ -148,10 +159,10 @@ The first part of the <code>emmeans</code> results has the estimated marginal me
 <span class="r-out co"><span class="r-pr">#&gt;</span> Degrees-of-freedom method: kenward-roger </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> P value adjustment: fdr method for 10 tests </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">#get comparisons between treatments separately at each hospital</span></span>
-<span class="r-in"><span class="fu">posthoc_Levelwise</span><span class="op">(</span>Model <span class="op">=</span> <span class="va">CholMod</span>, </span>
-<span class="r-in">Fixed_Factor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Treatment"</span>, <span class="st">"Hospital"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#get comparisons between treatments separately at each hospital</span></span></span>
+<span class="r-in"><span><span class="fu">posthoc_Levelwise</span><span class="op">(</span>Model <span class="op">=</span> <span class="va">CholMod</span>, </span></span>
+<span class="r-in"><span>Fixed_Factor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Treatment"</span>, <span class="st">"Hospital"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $emmeans</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Hospital = Hosp_a:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Treatment   emmean   SE   df lower.CL upper.CL</span>
@@ -204,7 +215,7 @@ The first part of the <code>emmeans</code> results has the estimated marginal me
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Degrees-of-freedom method: kenward-roger </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -219,7 +230,7 @@ The first part of the <code>emmeans</code> results has the estimated marginal me
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

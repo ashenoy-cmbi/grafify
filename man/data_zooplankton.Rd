@@ -22,6 +22,6 @@ tibble:	1127 obs. of  8 variables:
 data_zooplankton
 }
 \description{
-A subset of data from \href{http://dx.doi.org/10.6073/pasta/ec3d0186753985147d4f283252388e05}{Lathro RC, 2000} provided by the Wisconsin Department of Natural Resources
+A subset of data from (Lathro RC, 2000) (\doi{10.6073/pasta/ec3d0186753985147d4f283252388e05}) provided by the Wisconsin Department of Natural Resources
 }
 \keyword{datasets}

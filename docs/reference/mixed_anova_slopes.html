@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.0.0</span>
       </span>
     </div>
 
@@ -59,40 +59,57 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">mixed_anova_slopes</span><span class="op">(</span>
-  <span class="va">data</span>,
-  <span class="va">Y_value</span>,
-  <span class="va">Fixed_Factor</span>,
-  <span class="va">Slopes_Factor</span>,
-  <span class="va">Random_Factor</span>,
-  Df_method <span class="op">=</span> <span class="st">"Kenward-Roger"</span>,
-  SS_method <span class="op">=</span> <span class="st">"II"</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">mixed_anova_slopes</span><span class="op">(</span></span>
+<span>  <span class="va">data</span>,</span>
+<span>  <span class="va">Y_value</span>,</span>
+<span>  <span class="va">Fixed_Factor</span>,</span>
+<span>  <span class="va">Slopes_Factor</span>,</span>
+<span>  <span class="va">Random_Factor</span>,</span>
+<span>  Df_method <span class="op">=</span> <span class="st">"Kenward-Roger"</span>,</span>
+<span>  SS_method <span class="op">=</span> <span class="st">"II"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>data</dt>
 <dd><p>a data table object, e.g. data.frame or tibble.</p></dd>
+
+
 <dt>Y_value</dt>
 <dd><p>name of column containing quantitative (dependent) variable, provided within "quotes".</p></dd>
+
+
 <dt>Fixed_Factor</dt>
 <dd><p>name(s) of categorical fixed factors (independent variables) provided as a vector if more than one or within "quotes".</p></dd>
+
+
 <dt>Slopes_Factor</dt>
 <dd><p>name of factor to allow varying slopes on.</p></dd>
+
+
 <dt>Random_Factor</dt>
 <dd><p>name(s) of random factors to allow random intercepts; to be provided as a vector when more than one or within "quotes".</p></dd>
+
+
 <dt>Df_method</dt>
 <dd><p>method for calculating degrees of freedom. Default is Kenward-Roger, can be changed to "Satterthwaite".</p></dd>
+
+
 <dt>SS_method</dt>
 <dd><p>type of sum of square, default is type II, can be changed to "I", "III", "1" or "2", or others.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>any additional arguments to pass on to <code><a href="https://rdrr.io/pkg/lme4/man/lmer.html" class="external-link">lmer</a></code> if required.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>ANOVA table of class "anova" and "data.frame".</p>
+    
+
+<p>ANOVA table of class "anova" and "data.frame".</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -107,11 +124,11 @@ In this experimental implementation, random slopes and intercepts are fitted (<c
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">mixed_anova_slopes</span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_2w_Tdeath</span>,</span>
-<span class="r-in">Y_value <span class="op">=</span> <span class="st">"PI"</span>,</span>
-<span class="r-in">Fixed_Factor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Genotype"</span>, <span class="st">"Time"</span><span class="op">)</span>,</span>
-<span class="r-in">Slopes_Factor <span class="op">=</span> <span class="st">"Time"</span>,</span>
-<span class="r-in">Random_Factor <span class="op">=</span> <span class="st">"Experiment"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">mixed_anova_slopes</span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_2w_Tdeath</span>,</span></span>
+<span class="r-in"><span>Y_value <span class="op">=</span> <span class="st">"PI"</span>,</span></span>
+<span class="r-in"><span>Fixed_Factor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Genotype"</span>, <span class="st">"Time"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>Slopes_Factor <span class="op">=</span> <span class="st">"Time"</span>,</span></span>
+<span class="r-in"><span>Random_Factor <span class="op">=</span> <span class="st">"Experiment"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> boundary (singular) fit: see help('isSingular')</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Type II Analysis of Variance Table with Kenward-Roger's method</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                Sum Sq Mean Sq NumDF DenDF  F value    Pr(&gt;F)    </span>
@@ -120,7 +137,7 @@ In this experimental implementation, random slopes and intercepts are fitted (<c
 <span class="r-out co"><span class="r-pr">#&gt;</span> Genotype:Time  158.93  158.93     1    10   6.5329  0.028571 *  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -135,7 +152,7 @@ In this experimental implementation, random slopes and intercepts are fitted (<c
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

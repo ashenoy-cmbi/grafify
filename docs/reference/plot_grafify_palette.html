@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.0.0</span>
       </span>
     </div>
 
@@ -59,38 +59,42 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">plot_grafify_palette</span><span class="op">(</span>
-  palette <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"okabe_ito"</span>, <span class="st">"all_grafify"</span>, <span class="st">"bright"</span>, <span class="st">"contrast"</span>, <span class="st">"dark"</span>, <span class="st">"fishy"</span>,
-    <span class="st">"kelly"</span>, <span class="st">"light"</span>, <span class="st">"muted"</span>, <span class="st">"pale"</span>, <span class="st">"r4"</span>, <span class="st">"safe"</span>, <span class="st">"vibrant"</span><span class="op">)</span>,
-  bthick <span class="op">=</span> <span class="fl">0</span>,
-  fontsize <span class="op">=</span> <span class="fl">14</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plot_grafify_palette</span><span class="op">(</span></span>
+<span>  palette <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"okabe_ito"</span>, <span class="st">"all_grafify"</span>, <span class="st">"bright"</span>, <span class="st">"contrast"</span>, <span class="st">"dark"</span>, <span class="st">"fishy"</span>, <span class="st">"kelly"</span>,</span>
+<span>    <span class="st">"light"</span>, <span class="st">"muted"</span>, <span class="st">"pale"</span>, <span class="st">"r4"</span>, <span class="st">"safe"</span>, <span class="st">"vibrant"</span><span class="op">)</span>,</span>
+<span>  fontsize <span class="op">=</span> <span class="fl">14</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>palette</dt>
 <dd><p>name of grafify palettes: "okabe_ito", "vibrant, "bright", "pale", "muted", "dark", "light", "contrast" or "all_grafify".</p></dd>
-<dt>bthick</dt>
-<dd><p>thickness of bars; passed on <code>plot_bar_sd</code>.</p></dd>
+
+
 <dt>fontsize</dt>
 <dd><p>font size.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>any additional parameters to pass to <code>plot_bar_sd</code></p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>This function returns a <code>ggplot2</code> object of class "gg" and "ggplot".</p>
+    
+
+<p>This function returns a <code>ggplot2</code> object of class "gg" and "ggplot".</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">plot_grafify_palette</span><span class="op">(</span><span class="st">"pale"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">plot_grafify_palette</span><span class="op">(</span><span class="st">"pale"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot_grafify_palette-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="fu">plot_grafify_palette</span><span class="op">(</span><span class="st">"contrast"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">plot_grafify_palette</span><span class="op">(</span><span class="st">"contrast"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot_grafify_palette-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -105,7 +109,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

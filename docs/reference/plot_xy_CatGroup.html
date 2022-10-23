@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.0.0</span>
       </span>
     </div>
 
@@ -59,60 +59,163 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">plot_xy_CatGroup</span><span class="op">(</span>
-  <span class="va">data</span>,
-  <span class="va">xcol</span>,
-  <span class="va">ycol</span>,
-  <span class="va">CatGroup</span>,
-  symsize <span class="op">=</span> <span class="fl">2.5</span>,
-  symthick <span class="op">=</span> <span class="fl">1</span>,
-  s_alpha <span class="op">=</span> <span class="fl">1</span>,
-  ColPal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"okabe_ito"</span>, <span class="st">"all_grafify"</span>, <span class="st">"bright"</span>, <span class="st">"contrast"</span>, <span class="st">"dark"</span>, <span class="st">"fishy"</span>,
-    <span class="st">"kelly"</span>, <span class="st">"light"</span>, <span class="st">"muted"</span>, <span class="st">"pale"</span>, <span class="st">"r4"</span>, <span class="st">"safe"</span>, <span class="st">"vibrant"</span><span class="op">)</span>,
-  ColSeq <span class="op">=</span> <span class="cn">TRUE</span>,
-  ColRev <span class="op">=</span> <span class="cn">FALSE</span>,
-  TextXAngle <span class="op">=</span> <span class="fl">0</span>,
-  fontsize <span class="op">=</span> <span class="fl">20</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plot_xy_CatGroup</span><span class="op">(</span></span>
+<span>  <span class="va">data</span>,</span>
+<span>  <span class="va">xcol</span>,</span>
+<span>  <span class="va">ycol</span>,</span>
+<span>  <span class="va">CatGroup</span>,</span>
+<span>  <span class="va">facet</span>,</span>
+<span>  Boxplot <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  symsize <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  s_alpha <span class="op">=</span> <span class="fl">0.8</span>,</span>
+<span>  TextXAngle <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  <span class="va">LogYTrans</span>,</span>
+<span>  <span class="va">LogXTrans</span>,</span>
+<span>  LogYBreaks <span class="op">=</span> <span class="fu">waiver</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  LogXBreaks <span class="op">=</span> <span class="fu">waiver</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  LogYLabels <span class="op">=</span> <span class="fu">waiver</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  LogXLabels <span class="op">=</span> <span class="fu">waiver</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  LogYLimits <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  LogXLimits <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  facet_scales <span class="op">=</span> <span class="st">"fixed"</span>,</span>
+<span>  fontsize <span class="op">=</span> <span class="fl">20</span>,</span>
+<span>  bwid <span class="op">=</span> <span class="fl">0.3</span>,</span>
+<span>  b_alpha <span class="op">=</span> <span class="fl">0.3</span>,</span>
+<span>  l_alpha <span class="op">=</span> <span class="fl">0.8</span>,</span>
+<span>  <span class="va">symthick</span>,</span>
+<span>  <span class="va">bthick</span>,</span>
+<span>  ColPal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"okabe_ito"</span>, <span class="st">"all_grafify"</span>, <span class="st">"bright"</span>, <span class="st">"contrast"</span>, <span class="st">"dark"</span>, <span class="st">"fishy"</span>, <span class="st">"kelly"</span>,</span>
+<span>    <span class="st">"light"</span>, <span class="st">"muted"</span>, <span class="st">"pale"</span>, <span class="st">"r4"</span>, <span class="st">"safe"</span>, <span class="st">"vibrant"</span><span class="op">)</span>,</span>
+<span>  ColSeq <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  ColRev <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>data</dt>
 <dd><p>a data table object, e.g. data.frame or tibble.</p></dd>
+
+
 <dt>xcol</dt>
 <dd><p>name of the column with quantitative X variable.</p></dd>
+
+
 <dt>ycol</dt>
 <dd><p>name of the column with quantitative Y variable.</p></dd>
+
+
 <dt>CatGroup</dt>
 <dd><p>a categorical variable as grouping factor for colour of data points, should be a categorical variable for default colours to work. Will be converted to <code>factor</code> if your column is numeric</p></dd>
+
+
+<dt>facet</dt>
+<dd><p>add another variable from the data table to create faceted graphs using <code>ggplot2</code>facet_wrap.</p></dd>
+
+
+<dt>Boxplot</dt>
+<dd><p>logical TRUE/FALSE to plot box and whiskers plot (default = FALSE).</p></dd>
+
+
 <dt>symsize</dt>
-<dd><p>size of symbols used by <code>geom_point</code>. Default set to 2.5, increase/decrease as needed.</p></dd>
-<dt>symthick</dt>
-<dd><p>thickness of symbol border, default set to 1.</p></dd>
+<dd><p>size of symbols used by <code>geom_point</code>. Default set to 3.</p></dd>
+
+
 <dt>s_alpha</dt>
-<dd><p>fractional opacity of symbols, default set to 1 (i.e. maximum opacity &amp; zero transparency).</p></dd>
-<dt>ColPal</dt>
-<dd><p>grafify colour palette to apply, default "okabe_ito"; see <code><a href="graf_palettes.html">graf_palettes</a></code> for available palettes.</p></dd>
-<dt>ColSeq</dt>
-<dd><p>logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  <code>scale_fill_grafify2</code>.</p></dd>
-<dt>ColRev</dt>
-<dd><p>whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).</p></dd>
+<dd><p>fractional opacity of symbols, default set to to 0.8 (i.e, 80% opacity).</p></dd>
+
+
 <dt>TextXAngle</dt>
 <dd><p>orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.</p></dd>
+
+
+<dt>LogYTrans</dt>
+<dd><p>transform Y axis into "log10" or "log2"</p></dd>
+
+
+<dt>LogXTrans</dt>
+<dd><p>transform X axis into "log10" or "log2"</p></dd>
+
+
+<dt>LogYBreaks</dt>
+<dd><p>argument for <code>ggplot2[scale_y_continuous]</code> for Y axis breaks on log scales, default is <code>waiver()</code>, or provide a vector of desired breaks.</p></dd>
+
+
+<dt>LogXBreaks</dt>
+<dd><p>argument for <code>ggplot2[scale_x_continuous]</code> for Y axis breaks on log scales, default is <code>waiver()</code>, or provide a vector of desired breaks.</p></dd>
+
+
+<dt>LogYLabels</dt>
+<dd><p>argument for <code>ggplot2[scale_y_continuous]</code> for Y axis labels on log scales, default is <code>waiver()</code>, or provide a vector of desired labels.</p></dd>
+
+
+<dt>LogXLabels</dt>
+<dd><p>argument for <code>ggplot2[scale_x_continuous]</code> for Y axis labels on log scales, default is <code>waiver()</code>, or provide a vector of desired labels.</p></dd>
+
+
+<dt>LogYLimits</dt>
+<dd><p>a vector of length two specifying the range (minimum and maximum) of the Y axis.</p></dd>
+
+
+<dt>LogXLimits</dt>
+<dd><p>a vector of length two specifying the range (minimum and maximum) of the X axis.</p></dd>
+
+
+<dt>facet_scales</dt>
+<dd><p>whether or not to fix scales on X &amp; Y axes for all graphs. Can be <code>fixed</code> (default), <code>free</code>, <code>free_y</code> or <code>free_x</code> (for Y and X axis one at a time, respectively).</p></dd>
+
+
 <dt>fontsize</dt>
 <dd><p>parameter of <code>base_size</code> of fonts in <code>theme_classic</code>, default set to size 20.</p></dd>
+
+
+<dt>bwid</dt>
+<dd><p>width of boxplot (default = 0.3).</p></dd>
+
+
+<dt>b_alpha</dt>
+<dd><p>fractional opacity of boxes, (default = 0.3).</p></dd>
+
+
+<dt>l_alpha</dt>
+<dd><p>fractional opacity of lines joining boxes, (default = 0.8).</p></dd>
+
+
+<dt>symthick</dt>
+<dd><p>size (in 'pt' units) of outline of symbol lines (<code>stroke</code>), default = <code>fontsize</code>/22.</p></dd>
+
+
+<dt>bthick</dt>
+<dd><p>size (in 'pt' units) of outline of boxes, whisker and joining lines (<code>stroke</code>), default = <code>fontsize</code>/22.</p></dd>
+
+
+<dt>ColPal</dt>
+<dd><p>grafify colour palette to apply, default "okabe_ito"; see <code><a href="graf_palettes.html">graf_palettes</a></code> for available palettes.</p></dd>
+
+
+<dt>ColSeq</dt>
+<dd><p>logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  <code>scale_fill_grafify2</code>.</p></dd>
+
+
+<dt>ColRev</dt>
+<dd><p>whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).</p></dd>
+
+
 <dt>...</dt>
-<dd><p>any additional arguments to pass to <code>ggplot2</code>geom_point.</p></dd>
+<dd><p>any additional arguments to pass on.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>This function returns a <code>ggplot2</code> object of class "gg" and "ggplot".</p>
+    
+
+<p>This function returns a <code>ggplot2</code> object of class "gg" and "ggplot".</p>
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>Colours can be changed using <code>ColPal</code>, <code>ColRev</code> or <code>ColSeq</code> arguments. Colours available can be seen quickly with <code><a href="plot_grafify_palette.html">plot_grafify_palette</a></code>.
+    <p>A box and whisker plot with lines joining the medians can be plotted with <code>Boxplot = TRUE</code>. If only box plot is needed without the line, set the opacity of the line to 0 (i.e., l_alpha = 0).</p>
+<p>Colours can be changed using <code>ColPal</code>, <code>ColRev</code> or <code>ColSeq</code> arguments. Colours available can be seen quickly with <code><a href="plot_grafify_palette.html">plot_grafify_palette</a></code>.
 <code>ColPal</code> can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
 <code>ColRev</code> (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette.
 <code>ColSeq</code> (logical TRUE/FALSE) decides whether colours are picked by respecting the order in the palette or the most distant ones using <code><a href="https://rdrr.io/r/grDevices/colorRamp.html" class="external-link">colorRampPalette</a></code>.</p>
@@ -122,11 +225,26 @@ When summary statistics (mean/median) are required, use <code><a href="plot_3d_s
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">#The grouping factor cyl  is automatically converted to categorical variable</span></span>
-<span class="r-in"><span class="fu">plot_xy_CatGroup</span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtcars</span>,</span>
-<span class="r-in">xcol <span class="op">=</span> <span class="va">mpg</span>, ycol <span class="op">=</span> <span class="va">disp</span>, CatGroup <span class="op">=</span> <span class="va">cyl</span>, </span>
-<span class="r-in">ColPal <span class="op">=</span> <span class="st">"vibrant"</span>, ColSeq <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">#The grouping factor cyl  is automatically converted to categorical variable</span></span></span>
+<span class="r-in"><span><span class="fu">plot_xy_CatGroup</span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtcars</span>,</span></span>
+<span class="r-in"><span>xcol <span class="op">=</span> <span class="va">mpg</span>, ycol <span class="op">=</span> <span class="va">disp</span>, CatGroup <span class="op">=</span> <span class="va">cyl</span>, </span></span>
+<span class="r-in"><span>ColPal <span class="op">=</span> <span class="st">"vibrant"</span>, ColSeq <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot_xy_CatGroup-1.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#with boxplot</span></span></span>
+<span class="r-in"><span><span class="fu">plot_xy_CatGroup</span><span class="op">(</span>data <span class="op">=</span> <span class="va">mpg</span>, </span></span>
+<span class="r-in"><span>xcol <span class="op">=</span> <span class="va">cyl</span>, ycol <span class="op">=</span> <span class="va">cty</span>, </span></span>
+<span class="r-in"><span>CatGroup <span class="op">=</span> <span class="va">fl</span>, Boxplot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="plot_xy_CatGroup-2.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#add another variable</span></span></span>
+<span class="r-in"><span><span class="co">#with boxplot</span></span></span>
+<span class="r-in"><span><span class="fu">plot_xy_CatGroup</span><span class="op">(</span>data <span class="op">=</span> <span class="va">mpg</span>, </span></span>
+<span class="r-in"><span>xcol <span class="op">=</span> <span class="va">cyl</span>, ycol <span class="op">=</span> <span class="va">cty</span>, </span></span>
+<span class="r-in"><span>CatGroup <span class="op">=</span> <span class="va">fl</span>, facet <span class="op">=</span> <span class="va">drv</span>,</span></span>
+<span class="r-in"><span>Boxplot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="plot_xy_CatGroup-3.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -141,7 +259,7 @@ When summary statistics (mean/median) are required, use <code><a href="plot_3d_s
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

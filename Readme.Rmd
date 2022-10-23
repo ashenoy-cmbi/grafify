@@ -122,7 +122,7 @@ Generating random one-way and two-way data based on mean and SD and residual err
 
 The best place to see `grafify`  in action is the [vignettes](https://grafify-vignettes.netlify.app) website, which has detailed description of all functions.
 
-### **Latest version: v2.3.0 on CRAN or GitHub** 
+### **Latest version: v3.0.0 on CRAN or GitHub** 
 
 ### Citing `grafify`
 

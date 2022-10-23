@@ -5,8 +5,8 @@
 
 1.  plotting great-looking graphs for quick-n-easy data exploration with
     few lines of code
-2.  apply colourblind-friendly palettes to graphs plotted with `grafify`
-    or `ggplot2`
+2.  apply colour blind-friendly palettes to graphs plotted with
+    `grafify` or `ggplot2`
 3.  use linear models for ANOVA (including those with randomised block
     designs and repeated-measures) & post-hoc comparisons (estimated
     marginal means, confidence intervals and *P* values)
@@ -144,7 +144,7 @@ The best place to see `grafify` in action is the
 [vignettes](https://grafify-vignettes.netlify.app) website, which has
 detailed description of all functions.
 
-### **Latest version: v2.3.0 on CRAN or GitHub**
+### **Latest version: v3.0.0 on CRAN or GitHub**
 
 ### Citing `grafify`
 

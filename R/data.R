@@ -98,7 +98,7 @@
 
 #' @title Time-series data on zooplankton in lake Menon.
 #'
-#' @description A subset of data from [Lathro RC, 2000](http://dx.doi.org/10.6073/pasta/ec3d0186753985147d4f283252388e05) provided by the Wisconsin Department of Natural Resources
+#' @description A subset of data from (Lathro RC, 2000) (\doi{10.6073/pasta/ec3d0186753985147d4f283252388e05}) provided by the Wisconsin Department of Natural Resources
 #'
 #' @format tibble:	1127 obs. of  8 variables:
 #'

@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.0.0</span>
       </span>
     </div>
 
@@ -57,14 +57,6 @@
           <p class="section-desc"></p>
         </th>
       </tr></tbody><tbody><tr><td>
-          <p><code><a href="colorRampPalette_d.html">colorRampPalette_d()</a></code> </p>
-        </td>
-        <td><p>colorRamPalette_d</p></td>
-      </tr><tr><td>
-          <p><code><a href="colorRamp_d.html">colorRamp_d()</a></code> </p>
-        </td>
-        <td><p>colourRamp_d</p></td>
-      </tr><tr><td>
           <p><code><a href="data_1w_death.html">data_1w_death</a></code> </p>
         </td>
         <td><p>In vitro experiments measuring percentage cell death in three genotypes of cells.</p></td>
@@ -93,6 +85,18 @@
         </td>
         <td><p>Matched data from two groups where ratio between them is consistent.</p></td>
       </tr><tr><td>
+          <p><code><a href="data_zooplankton.html">data_zooplankton</a></code> </p>
+        </td>
+        <td><p>Time-series data on zooplankton in lake Menon.</p></td>
+      </tr><tr><td>
+          <p><code><a href="ga_anova.html">ga_anova()</a></code> </p>
+        </td>
+        <td><p>ANOVA table from a generalised additive model (<code>gam</code>)</p></td>
+      </tr><tr><td>
+          <p><code><a href="ga_model.html">ga_model()</a></code> </p>
+        </td>
+        <td><p>Fit a generalised additive model (<code>gam</code>)</p></td>
+      </tr><tr><td>
           <p><code><a href="get_graf_colours.html">get_graf_colours()</a></code> </p>
         </td>
         <td><p>Get graf internal</p></td>
@@ -103,11 +107,11 @@
       </tr><tr><td>
           <p><code><a href="graf_col_palette.html">graf_col_palette()</a></code> </p>
         </td>
-        <td><p>Call palettes for scale &amp; fill</p></td>
+        <td><p>Call <code>grafify</code> palettes for scale &amp; fill functions</p></td>
       </tr><tr><td>
           <p><code><a href="graf_col_palette_default.html">graf_col_palette_default()</a></code> </p>
         </td>
-        <td><p>Call palettes for scale &amp; fill with default colorRampPalette</p></td>
+        <td><p>Call <code>grafify</code> palettes for scale &amp; fill functions</p></td>
       </tr><tr><td>
           <p><code><a href="graf_palettes.html">graf_palettes</a></code> </p>
         </td>
@@ -173,11 +177,11 @@
         </td>
         <td><p>Plot a bar graph indicating mean with error bars (SD) using two variables.</p></td>
       </tr><tr><td>
-          <p><code><a href="plot_befafter_colors.html">plot_befafter_colors()</a></code> </p>
+          <p><code><a href="plot_befafter_box.html">plot_befafter_box()</a></code> </p>
         </td>
-        <td><p>Plot a before-after plot with lines joining colour-matched symbols.</p></td>
+        <td><p>Before-after style graph with a boxplot</p></td>
       </tr><tr><td>
-          <p><code><a href="plot_befafter_colours.html">plot_befafter_colours()</a></code> </p>
+          <p><code><a href="plot_befafter_colours.html">plot_befafter_colours()</a></code> <code><a href="plot_befafter_colours.html">plot_befafter_colors()</a></code> </p>
         </td>
         <td><p>Plot a before-after plot with lines joining colour-matched symbols.</p></td>
       </tr><tr><td>
@@ -201,6 +205,10 @@
         </td>
         <td><p>Plot a dotplot on a violin plot with two variables.</p></td>
       </tr><tr><td>
+          <p><code><a href="plot_gam_predict.html">plot_gam_predict()</a></code> </p>
+        </td>
+        <td><p>Plot prediction of <code>gam</code> model</p></td>
+      </tr><tr><td>
           <p><code><a href="plot_grafify_palette.html">plot_grafify_palette()</a></code> </p>
         </td>
         <td><p>See grafify colour palettes</p></td>
@@ -208,6 +216,14 @@
           <p><code><a href="plot_histogram.html">plot_histogram()</a></code> </p>
         </td>
         <td><p>Plot data distribution as histograms.</p></td>
+      </tr><tr><td>
+          <p><code><a href="plot_lm_predict.html">plot_lm_predict()</a></code> </p>
+        </td>
+        <td><p>Plot data and predictions from linear model</p></td>
+      </tr><tr><td>
+          <p><code><a href="plot_logscale.html">plot_logscale()</a></code> </p>
+        </td>
+        <td><p>Add log transformations to graphs</p></td>
       </tr><tr><td>
           <p><code><a href="plot_point_sd.html">plot_point_sd()</a></code> </p>
         </td>
@@ -220,6 +236,10 @@
           <p><code><a href="plot_qqmodel.html">plot_qqmodel()</a></code> </p>
         </td>
         <td><p>Plot quantile-quantile (QQ) graphs from residuals of linear models.</p></td>
+      </tr><tr><td>
+          <p><code><a href="plot_qq_gam.html">plot_qq_gam()</a></code> </p>
+        </td>
+        <td><p>Plot model diagnostics for generalised additive models</p></td>
       </tr><tr><td>
           <p><code><a href="plot_scatterbar_sd.html">plot_scatterbar_sd()</a></code> </p>
         </td>
@@ -265,11 +285,7 @@
         </td>
         <td><p>Post-hoc comparisons to a control or reference group.</p></td>
       </tr><tr><td>
-          <p><code><a href="scale_color_grafify.html">scale_color_grafify()</a></code> </p>
-        </td>
-        <td><p><code>scale_colour_</code> and <code>scale_fill_</code> functions</p></td>
-      </tr><tr><td>
-          <p><code><a href="scale_colour_grafify.html">scale_colour_grafify()</a></code> </p>
+          <p><code><a href="scale_colour_grafify.html">scale_colour_grafify()</a></code> <code><a href="scale_colour_grafify.html">scale_color_grafify()</a></code> </p>
         </td>
         <td><p><code>scale_colour_</code> and <code>scale_fill_</code> functions</p></td>
       </tr><tr><td>
@@ -284,6 +300,18 @@
           <p><code><a href="simple_model.html">simple_model()</a></code> </p>
         </td>
         <td><p>Model from a linear model fit to data.</p></td>
+      </tr><tr><td>
+          <p><code><a href="table_summary.html">table_summary()</a></code> </p>
+        </td>
+        <td><p>Get numeric summary grouped by factors</p></td>
+      </tr><tr><td>
+          <p><code><a href="table_x_reorder.html">table_x_reorder()</a></code> </p>
+        </td>
+        <td><p>Reordering groups along X-axis</p></td>
+      </tr><tr><td>
+          <p><code><a href="theme_grafify.html">theme_grafify()</a></code> </p>
+        </td>
+        <td><p>A modified <code>theme_classic()</code> for <code>grafify</code>-like graphs.</p></td>
       </tr></tbody></table></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -297,7 +325,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

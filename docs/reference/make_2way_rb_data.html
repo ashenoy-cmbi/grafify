@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.0.0</span>
       </span>
     </div>
 
@@ -59,25 +59,36 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">make_2way_rb_data</span><span class="op">(</span><span class="va">Group1_means</span>, <span class="va">Group2_means</span>, <span class="va">Num_exp</span>, <span class="va">Exp_SD</span>, <span class="va">Residual_SD</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">make_2way_rb_data</span><span class="op">(</span><span class="va">Group1_means</span>, <span class="va">Group2_means</span>, <span class="va">Num_exp</span>, <span class="va">Exp_SD</span>, <span class="va">Residual_SD</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>Group1_means</dt>
 <dd><p>a vector with means of each level of the first fixed factor (FixFac_X1) measured within Group 1.</p></dd>
+
+
 <dt>Group2_means</dt>
 <dd><p>only for <code>make_2way_data</code> and <code>make_2way_rb_data</code>: a vector with mean(s) of each level of FactorX2 measured within Group 2.</p></dd>
+
+
 <dt>Num_exp</dt>
 <dd><p>a single numeric value indicating the number of independent measurements, i.e. levels within the random factor RandFac.</p></dd>
+
+
 <dt>Exp_SD</dt>
 <dd><p>a single numeric value indicating the standard deviation (SD) between experiment, i.e. within RandFac.</p></dd>
+
+
 <dt>Residual_SD</dt>
 <dd><p>a single numeric value indicating residual SD in the model.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>This function produces a <code>data.frame</code> object containing simulated data.</p>
+    
+
+<p>This function produces a <code>data.frame</code> object containing simulated data.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -91,25 +102,25 @@ The quantitative response variables are in the numeric Values column.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">#Basic usage with two levels within FactorX2, </span></span>
-<span class="r-in"><span class="co">#20 experiments with inter-experiment SD 20, and residual SD 15</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">two_rb_tab</span> <span class="op">&lt;-</span> <span class="fu">make_2way_rb_data</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">20</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">200</span>, <span class="fl">300</span><span class="op">)</span>, <span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">15</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">two_rb_tab</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">#Basic usage with two levels within FactorX2, </span></span></span>
+<span class="r-in"><span><span class="co">#20 experiments with inter-experiment SD 20, and residual SD 15</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">two_rb_tab</span> <span class="op">&lt;-</span> <span class="fu">make_2way_rb_data</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">20</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">200</span>, <span class="fl">300</span><span class="op">)</span>, <span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">15</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">two_rb_tab</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 'data.frame':	80 obs. of  4 variables:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ RandFac : Factor w/ 20 levels "Exp_1","Exp_10",..: 1 1 1 1 12 12 12 12 14 14 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ FixFac_1: Factor w/ 2 levels "Fx1Lev_1","Fx1Lev_2": 1 1 2 2 1 1 2 2 1 1 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ FixFac_2: Factor w/ 2 levels "Fx2Lev_1","Fx2Lev_2": 1 2 1 2 1 2 1 2 1 2 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ Values  : num  120.7 51.6 192.6 321.9 136.4 ...</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">two_rb_tab</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ Values  : num  77.39 -4.39 173.02 279.75 100.35 ...</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">two_rb_tab</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   RandFac FixFac_1 FixFac_2    Values</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   Exp_1 Fx1Lev_1 Fx2Lev_1 120.74521</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   Exp_1 Fx1Lev_1 Fx2Lev_2  51.58539</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   Exp_1 Fx1Lev_2 Fx2Lev_1 192.60674</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   Exp_1 Fx1Lev_2 Fx2Lev_2 321.90895</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5   Exp_2 Fx1Lev_1 Fx2Lev_1 136.36415</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6   Exp_2 Fx1Lev_1 Fx2Lev_2  60.20840</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   Exp_1 Fx1Lev_1 Fx2Lev_1  77.39070</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   Exp_1 Fx1Lev_1 Fx2Lev_2  -4.38814</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   Exp_1 Fx1Lev_2 Fx2Lev_1 173.01748</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   Exp_1 Fx1Lev_2 Fx2Lev_2 279.75276</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   Exp_2 Fx1Lev_1 Fx2Lev_1 100.34518</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   Exp_2 Fx1Lev_1 Fx2Lev_2  31.70018</span>
 </code></pre></div>
     </div>
   </div>
@@ -124,7 +135,7 @@ The quantitative response variables are in the numeric Values column.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -7,7 +7,7 @@ output:
 
 Full reference to all functions available at [`grafify` GitHub pages](https://ashenoy-cmbi.github.io/grafify/index.html). There are also updates within all `plot_` functions, which are a `facet` argument, and log-transformations with axis tick marks.
 
-# grafify v3.0.0.9999
+# grafify v3.0.0
 
 ## Major updates 
 

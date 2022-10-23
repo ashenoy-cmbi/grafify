@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.0.0</span>
       </span>
     </div>
 
@@ -56,11 +56,42 @@
 <div class="section level3">
 <h3 id="features">Features<a class="anchor" aria-label="anchor" href="#features"></a></h3>
 <p><code>grafify</code> has three main features:</p>
-<ol style="list-style-type: decimal"><li>plotting great-looking graphs for quick-n-easy data exploration</li>
+<ol style="list-style-type: decimal"><li>plotting great-looking graphs for quick-n-easy data exploration with few lines of code</li>
 <li>apply colourblind-friendly palettes to graphs plotted with <code>grafify</code> or <code>ggplot2</code>
 </li>
 <li>use linear models for ANOVA (including those with randomised block designs and repeated-measures) &amp; post-hoc comparisons (estimated marginal means, confidence intervals and <em>P</em> values)</li>
-</ol><p>Two other features including practice datasets (with randomised blocks), and data simulation for power analyses. The first three features are better documented at present.</p>
+</ol><p>As an example, you could write this to plot bar/SD graph from a 2-way ANOVA data with randomised blocks:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/plot_4d_scatterbar.html">plot_4d_scatterbar</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_2w_Festing</span>, </span>
+<span>                   xcol <span class="op">=</span> <span class="va">Strain</span>,</span>
+<span>                   ycol <span class="op">=</span> <span class="va">GST</span>,</span>
+<span>                   bars <span class="op">=</span> <span class="va">Treatment</span>,</span>
+<span>                   shapes <span class="op">=</span> <span class="va">Block</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/fig1.jpg" width="90%"> instead of all this!</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_2w_Festing</span>,</span>
+<span>       <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Strain</span>,</span>
+<span>           y <span class="op">=</span> <span class="va">GST</span>,</span>
+<span>           group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/interaction.html" class="external-link">interaction</a></span><span class="op">(</span><span class="va">Strain</span>,</span>
+<span>                               <span class="va">Treatment</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu">stat_summary</span><span class="op">(</span>geom <span class="op">=</span> <span class="st">"bar"</span>,</span>
+<span>               <span class="fu">aes</span><span class="op">(</span>fill <span class="op">=</span> <span class="va">Treatment</span><span class="op">)</span>,</span>
+<span>               position <span class="op">=</span> <span class="fu">position_dodge</span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span>, </span>
+<span>               fun <span class="op">=</span> <span class="st">"mean"</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>shape <span class="op">=</span> <span class="va">Block</span><span class="op">)</span>,</span>
+<span>             size <span class="op">=</span> <span class="fl">3</span>, stroke <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>             position <span class="op">=</span> <span class="fu">position_jitterdodge</span><span class="op">(</span>jitter.width <span class="op">=</span> <span class="fl">.2</span>,</span>
+<span>                                            dodge.width <span class="op">=</span> <span class="fl">.8</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu">stat_summary</span><span class="op">(</span>geom <span class="op">=</span> <span class="st">"errorbar"</span>,</span>
+<span>               width <span class="op">=</span> <span class="fl">.2</span>, size <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>               fun.data <span class="op">=</span> <span class="st">"mean_sdl"</span>,</span>
+<span>               fun.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mult <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
+<span>               position <span class="op">=</span> <span class="fu">position_dodge</span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu">scale_shape_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="fl">21</span><span class="op">:</span><span class="fl">22</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu">theme_classic</span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">21</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu">theme</span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">45</span>, hjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu">scale_fill_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="va">graf_palettes</span><span class="op">$</span><span class="va">okabe_ito</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Two other features including practice datasets (with randomised blocks), and data simulation for power analyses. The first three features are better documented at present.</p>
 <div class="section level4">
 <h4 id="graphs">Graphs<a class="anchor" aria-label="anchor" href="#graphs"></a></h4>
 <ol style="list-style-type: decimal"><li>
@@ -69,10 +100,10 @@
 </li>
 <li>One-way or two-way ANOVA designs with or without randomised blocks (3 or 4 dimensions or variables): <code>plot_3d_scatterbar</code>, <code>plot_3d_scatterbox</code>, <code>plot_3d_scatterviolin</code> or <code>plot_4d_scatterbar</code>, <code>plot_4d_scatterbox</code>, <code>plot_4d_scatterviolin</code>
 </li>
-<li>Matched before-after graphs: <code>plot_befafter_colours</code>, <code>plot_befafter_shapes</code><br></li>
+<li>Matched before-after graphs: <code>plot_befafter_colours</code>, <code>plot_befafter_shapes</code>, <code>plot_befafter_box</code><br></li>
 <li>Quantitative X &amp; Y, plus a third variable: <code>plot_xy_NumGroup</code>, <code>plot_xy_CatGroup</code>
 </li>
-<li>Data distributions: <code>plot_qqline</code>, <code>plot_density</code> <code>plot_histogram</code>, and residuals of linear models with <code>plot_qqmodel</code>
+<li>Data distributions: <code>plot_qqline</code>, <code>plot_density</code> <code>plot_histogram</code>, and model diagnostics with <code>plot_qqmodel</code>, <code>plot_qq_gam</code>, <code>plot_lm_predict</code> and <code>plot_gam_predict</code>
 </li>
 <li>Summary graphs with SD error bars: <code>plot_bar_sd</code>, <code>plot_point_sd</code>
 </li>
@@ -87,11 +118,18 @@
 <p>All palettes are colourblind-friendly. (See Mike Mol’s <a href="https://mikemol.github.io/technique/colorblind/2018/02/11/color-safe-palette.html" class="external-link">blog</a> and Paul Tol’s <a href="https://personal.sron.nl/~pault/#sec:qualitative" class="external-link">blog</a>. Additional colour schemes were chosen from <a href="https://github.com/mtennekes/cols4all" class="external-link"><code>cols4all</code> package</a>).</p>
 </div>
 <div class="section level4">
-<h4 id="linear-models">Linear models<a class="anchor" aria-label="anchor" href="#linear-models"></a></h4>
+<h4 id="grafify-theme--adding-log-scales">
+<code>grafify</code> theme &amp; adding log-scales<a class="anchor" aria-label="anchor" href="#grafify-theme--adding-log-scales"></a></h4>
+<p>The <code>theme_grafify</code> function is a modification of <code>theme_classic</code> and enables graphs plotted with <code>ggplot2</code> to have a <code>grafify</code>-like appearance.</p>
+<p><code>plot_logscales</code> lets you take any <code>ggplot2</code> object and transform Y, X or both axes into <code>log2</code> or <code>log10</code> values, and latter will also show log10 tick marks.</p>
+</div>
+<div class="section level4">
+<h4 id="linear-models-for-anova">Linear models for ANOVA<a class="anchor" aria-label="anchor" href="#linear-models-for-anova"></a></h4>
 <p>Get ANOVA tables and linear models with these easy wrappers.</p>
-<ol style="list-style-type: decimal"><li>linear models for ordinary ANOVA: <code>simple_anova</code>, <code>simple_model</code>,</li>
-<li>linear mixed effects for repeated-measures and randomised-block design ANOVA: <code>mixed_anova</code>, <code>mixed_model</code>, <code>mixed_anova_slopes</code> &amp; <code>mixed_model_slopes</code>.</li>
-<li>plot model residuals with <code>plot_qqmodel</code>.</li>
+<ol style="list-style-type: decimal"><li>linear models for ordinary ANOVA: <code>simple_anova</code>, <code>simple_model</code>, <code>ga_model</code>, <code>ga_anova</code>.</li>
+<li>linear mixed effects for repeated-measures and randomised-block design ANOVA: <code>mixed_anova</code>, <code>mixed_model</code>, <code>mixed_anova_slopes</code>, <code>mixed_model_slopes</code>, <code>ga_model</code>, <code>ga_anova</code>.</li>
+<li>plot model residuals with <code>plot_qqmodel</code> and <code>plot_qq_gam</code>.</li>
+<li>plot model predictions with <code>plot_lm_predict</code> and <code>plot_gam_predict</code>.</li>
 </ol></div>
 <div class="section level4">
 <h4 id="post-hoc-comparisons--estimated-marginal-means-easy-wrappers-for-emmeans">Post-hoc comparisons &amp; Estimated Marginal Means (easy wrappers for <code>emmeans</code>)<a class="anchor" aria-label="anchor" href="#post-hoc-comparisons--estimated-marginal-means-easy-wrappers-for-emmeans"></a></h4>
@@ -129,7 +167,7 @@
 <h3 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a></h3>
 <p><code>grafify</code> is now on <a href="https://CRAN.R-project.org/package=grafify" class="external-link">CRAN</a> and can be installed by typing <code>install.packages("grafify")</code>.</p>
 <p>Any updates not yet on CRAN will be made available here first. To install from GitHub you also need to install the <code>remotes</code> package. Then type <code>remotes::install_github("ashenoy-cmbi/grafify@*release")</code>.</p>
-<p><code>grafify</code> requires the following packages to be installed: <code>car</code>, <code>emmeans</code>, <code>ggplot2</code>, <code>Hmisc</code>, <code>lme4</code>, <code>lmerTest</code>, <code>magrittr</code>, <code>pbkrtest</code>, <code>purrr</code>, <code>stats</code>, <code>tidyr</code>.</p>
+<p><code>grafify</code> requires the following packages to be installed: <code>car</code>, <code>emmeans</code>, <code>ggplot2</code>, <code>Hmisc</code>, <code>lme4</code>, <code>lmerTest</code>, <code>magrittr</code>, <code>mgcv</code>, <code>patchwork</code>, <code>purrr</code>, <code>stats</code>, <code>tidyr</code>.</p>
 </div>
 <div class="section level3">
 <h3 id="motivation-behind-grafify">Motivation behind <code>grafify</code>
@@ -170,7 +208,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

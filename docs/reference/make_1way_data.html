@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.0.0</span>
       </span>
     </div>
 
@@ -59,21 +59,28 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">make_1way_data</span><span class="op">(</span><span class="va">Group_means</span>, <span class="va">Num_obs</span>, <span class="va">Residual_SD</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">make_1way_data</span><span class="op">(</span><span class="va">Group_means</span>, <span class="va">Num_obs</span>, <span class="va">Residual_SD</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>Group_means</dt>
 <dd><p>a vector with means of each level of the first fixed factor (FixFac_X1) measured within Group 1.</p></dd>
+
+
 <dt>Num_obs</dt>
 <dd><p>a single numeric value indicating the number of independent measurements, i.e. levels within the random factor Experiment.</p></dd>
+
+
 <dt>Residual_SD</dt>
 <dd><p>a single numeric value indicating residual SD in the model.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>This function produces a <code>data.frame</code> object containing simulated data.</p>
+    
+
+<p>This function produces a <code>data.frame</code> object containing simulated data.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -87,23 +94,23 @@ The quantitative response variables are in the numeric Values column.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">#Basic usage with three levels within Factor_X, </span></span>
-<span class="r-in"><span class="co">#20 observations in each group, with residual SD 15</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">one_independent_tab</span> <span class="op">&lt;-</span> <span class="fu">make_1way_data</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">350</span>, <span class="fl">250</span>, <span class="fl">100</span><span class="op">)</span>, <span class="fl">15</span>, <span class="fl">20</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">one_independent_tab</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">#Basic usage with three levels within Factor_X, </span></span></span>
+<span class="r-in"><span><span class="co">#20 observations in each group, with residual SD 15</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">one_independent_tab</span> <span class="op">&lt;-</span> <span class="fu">make_1way_data</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">350</span>, <span class="fl">250</span>, <span class="fl">100</span><span class="op">)</span>, <span class="fl">15</span>, <span class="fl">20</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">one_independent_tab</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 'data.frame':	45 obs. of  2 variables:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ FixFac_1: Factor w/ 3 levels "Lev_1","Lev_2",..: 1 2 3 1 2 3 1 2 3 1 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ Values  : num  380 222 144 415 157 ...</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">one_independent_tab</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ Values  : num  399 237 120 380 241 ...</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">one_independent_tab</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   FixFac_1   Values</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    Lev_1 379.9749</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    Lev_2 222.1982</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    Lev_3 144.3105</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    Lev_1 415.4601</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    Lev_2 156.6903</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    Lev_3  64.5051</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    Lev_1 399.3196</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    Lev_2 236.7654</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    Lev_3 119.6423</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    Lev_1 379.5816</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    Lev_2 241.0052</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    Lev_3 120.7903</span>
 </code></pre></div>
     </div>
   </div>
@@ -118,7 +125,7 @@ The quantitative response variables are in the numeric Values column.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

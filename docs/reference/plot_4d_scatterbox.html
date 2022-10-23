@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.0.0</span>
       </span>
     </div>
 
@@ -59,65 +59,138 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">plot_4d_scatterbox</span><span class="op">(</span>
-  <span class="va">data</span>,
-  <span class="va">xcol</span>,
-  <span class="va">ycol</span>,
-  <span class="va">boxes</span>,
-  <span class="va">shapes</span>,
-  symsize <span class="op">=</span> <span class="fl">2.5</span>,
-  symthick <span class="op">=</span> <span class="fl">1</span>,
-  jitter <span class="op">=</span> <span class="fl">0.2</span>,
-  fontsize <span class="op">=</span> <span class="fl">20</span>,
-  b_alpha <span class="op">=</span> <span class="fl">1</span>,
-  s_alpha <span class="op">=</span> <span class="fl">1</span>,
-  ColSeq <span class="op">=</span> <span class="cn">TRUE</span>,
-  ColPal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"okabe_ito"</span>, <span class="st">"all_grafify"</span>, <span class="st">"bright"</span>, <span class="st">"contrast"</span>, <span class="st">"dark"</span>, <span class="st">"fishy"</span>,
-    <span class="st">"kelly"</span>, <span class="st">"light"</span>, <span class="st">"muted"</span>, <span class="st">"pale"</span>, <span class="st">"r4"</span>, <span class="st">"safe"</span>, <span class="st">"vibrant"</span><span class="op">)</span>,
-  ColRev <span class="op">=</span> <span class="cn">FALSE</span>,
-  TextXAngle <span class="op">=</span> <span class="fl">0</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plot_4d_scatterbox</span><span class="op">(</span></span>
+<span>  <span class="va">data</span>,</span>
+<span>  <span class="va">xcol</span>,</span>
+<span>  <span class="va">ycol</span>,</span>
+<span>  <span class="va">boxes</span>,</span>
+<span>  <span class="va">shapes</span>,</span>
+<span>  <span class="va">facet</span>,</span>
+<span>  symsize <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  s_alpha <span class="op">=</span> <span class="fl">0.8</span>,</span>
+<span>  b_alpha <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  bwid <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>  jitter <span class="op">=</span> <span class="fl">0.1</span>,</span>
+<span>  TextXAngle <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  <span class="va">LogYTrans</span>,</span>
+<span>  LogYBreaks <span class="op">=</span> <span class="fu">waiver</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  LogYLabels <span class="op">=</span> <span class="fu">waiver</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  LogYLimits <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  facet_scales <span class="op">=</span> <span class="st">"fixed"</span>,</span>
+<span>  fontsize <span class="op">=</span> <span class="fl">20</span>,</span>
+<span>  <span class="va">symthick</span>,</span>
+<span>  <span class="va">bthick</span>,</span>
+<span>  ColPal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"okabe_ito"</span>, <span class="st">"all_grafify"</span>, <span class="st">"bright"</span>, <span class="st">"contrast"</span>, <span class="st">"dark"</span>, <span class="st">"fishy"</span>, <span class="st">"kelly"</span>,</span>
+<span>    <span class="st">"light"</span>, <span class="st">"muted"</span>, <span class="st">"pale"</span>, <span class="st">"r4"</span>, <span class="st">"safe"</span>, <span class="st">"vibrant"</span><span class="op">)</span>,</span>
+<span>  ColSeq <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  ColRev <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>data</dt>
 <dd><p>a data table, e.g. data.frame or tibble.</p></dd>
+
+
 <dt>xcol</dt>
 <dd><p>name of the column with the categorical factor to plot on X axis. If column is numeric, enter as <code>factor(col)</code>.</p></dd>
+
+
 <dt>ycol</dt>
 <dd><p>name of the column to plot on quantitative variable on the Y axis.</p></dd>
+
+
 <dt>boxes</dt>
 <dd><p>name of the column containing grouping within the factor plotted on X axis. Can be categorical or numeric X. If your table has numeric X and you want to plot as factor, enter <code>xcol = factor(name of colum)</code>.</p></dd>
+
+
 <dt>shapes</dt>
 <dd><p>name of the column that contains matched observations, e.g. subject IDs, experiment number etc.</p></dd>
+
+
+<dt>facet</dt>
+<dd><p>add another variable from the data table to create faceted graphs using <code>ggplot2</code>facet_wrap.</p></dd>
+
+
 <dt>symsize</dt>
 <dd><p>size of symbols, default set to 3.</p></dd>
-<dt>symthick</dt>
-<dd><p>size of outline of symbol lines (<code>stroke = 1.0</code>), default set to 1.0.</p></dd>
-<dt>jitter</dt>
-<dd><p>extent of jitter (scatter) of symbols, default is 0.2. Increase to reduce symbol overlap, set to 0 for aligned symbols.</p></dd>
-<dt>fontsize</dt>
-<dd><p>parameter of <code>base_size</code> of fonts in <code>theme_classic</code>, default set to size 20.</p></dd>
-<dt>b_alpha</dt>
-<dd><p>fractional opacity of boxes, default set to 1 (i.e. maximum opacity &amp; zero transparency).</p></dd>
+
+
 <dt>s_alpha</dt>
-<dd><p>fractional opacity of symbols, default set to 1 (i.e. maximum opacity &amp; zero transparency).</p></dd>
-<dt>ColSeq</dt>
-<dd><p>logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  <code>scale_fill_grafify2</code>.</p></dd>
-<dt>ColPal</dt>
-<dd><p>grafify colour palette to apply, default "okabe_ito"; see <code><a href="graf_palettes.html">graf_palettes</a></code> for available palettes.</p></dd>
-<dt>ColRev</dt>
-<dd><p>whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).</p></dd>
+<dd><p>fractional opacity of symbols, default set to 0.8 (i.e. 80% opacity). Set <code>s_alpha = 0</code> to not show scatter plot.</p></dd>
+
+
+<dt>b_alpha</dt>
+<dd><p>fractional opacity of boxes.  Default is set to 0, which results in white boxes inside violins. Change to any value &gt;0 up to 1 for different levels of transparency.</p></dd>
+
+
+<dt>bwid</dt>
+<dd><p>width of boxes; default 0.5.</p></dd>
+
+
+<dt>jitter</dt>
+<dd><p>extent of jitter (scatter) of symbols, default is 0.1. Increase to reduce symbol overlap, set to 0 for aligned symbols.</p></dd>
+
+
 <dt>TextXAngle</dt>
 <dd><p>orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.</p></dd>
+
+
+<dt>LogYTrans</dt>
+<dd><p>transform Y axis into "log10" or "log2"</p></dd>
+
+
+<dt>LogYBreaks</dt>
+<dd><p>argument for <code>ggplot2[scale_y_continuous]</code> for Y axis breaks on log scales, default is <code>waiver()</code>, or provide a vector of desired breaks.</p></dd>
+
+
+<dt>LogYLabels</dt>
+<dd><p>argument for <code>ggplot2[scale_y_continuous]</code> for Y axis labels on log scales, default is <code>waiver()</code>, or provide a vector of desired labels.</p></dd>
+
+
+<dt>LogYLimits</dt>
+<dd><p>a vector of length two specifying the range (minimum and maximum) of the Y axis.</p></dd>
+
+
+<dt>facet_scales</dt>
+<dd><p>whether or not to fix scales on X &amp; Y axes for all facet facet graphs. Can be <code>fixed</code> (default), <code>free</code>, <code>free_y</code> or <code>free_x</code> (for Y and X axis one at a time, respectively).</p></dd>
+
+
+<dt>fontsize</dt>
+<dd><p>parameter of <code>base_size</code> of fonts in <code>theme_classic</code>, default set to size 20.</p></dd>
+
+
+<dt>symthick</dt>
+<dd><p>size (in 'pt' units) of outline of symbol lines (<code>stroke</code>), default = <code>fontsize</code>/22.</p></dd>
+
+
+<dt>bthick</dt>
+<dd><p>thickness (in 'pt' units) of boxplot lines; default = <code>fontsize</code>/22.</p></dd>
+
+
+<dt>ColPal</dt>
+<dd><p>grafify colour palette to apply, default "okabe_ito"; see <code><a href="graf_palettes.html">graf_palettes</a></code> for available palettes.</p></dd>
+
+
+<dt>ColSeq</dt>
+<dd><p>logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  <code>scale_fill_grafify2</code>.</p></dd>
+
+
+<dt>ColRev</dt>
+<dd><p>whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).</p></dd>
+
+
 <dt>...</dt>
 <dd><p>any additional arguments to pass to <code>ggplot2</code>geom_boxplot.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>This function returns a <code>ggplot2</code> object of class "gg" and "ggplot".</p>
+    
+
+<p>This function returns a <code>ggplot2</code> object of class "gg" and "ggplot".</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -136,27 +209,27 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">#3d version for 1-way data with blocking</span></span>
-<span class="r-in"><span class="fu"><a href="plot_3d_scatterbox.html">plot_3d_scatterbox</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_1w_death</span>, </span>
-<span class="r-in">xcol <span class="op">=</span> <span class="va">Genotype</span>, ycol <span class="op">=</span> <span class="va">Death</span>, shapes <span class="op">=</span> <span class="va">Experiment</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">#3d version for 1-way data with blocking</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="plot_3d_scatterbox.html">plot_3d_scatterbox</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_1w_death</span>, </span></span>
+<span class="r-in"><span>xcol <span class="op">=</span> <span class="va">Genotype</span>, ycol <span class="op">=</span> <span class="va">Death</span>, shapes <span class="op">=</span> <span class="va">Experiment</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot_4d_scatterbox-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="co">#compare above graph to</span></span>
-<span class="r-in"><span class="fu"><a href="plot_scatterbox.html">plot_scatterbox</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_1w_death</span>, xcol <span class="op">=</span> <span class="va">Genotype</span>, ycol <span class="op">=</span> <span class="va">Death</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co">#compare above graph to</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="plot_scatterbox.html">plot_scatterbox</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_1w_death</span>, xcol <span class="op">=</span> <span class="va">Genotype</span>, ycol <span class="op">=</span> <span class="va">Death</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot_4d_scatterbox-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">#4d version for 2-way data with blocking</span></span>
-<span class="r-in"><span class="fu">plot_4d_scatterbox</span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_2w_Tdeath</span>, </span>
-<span class="r-in">xcol <span class="op">=</span> <span class="va">Genotype</span>, </span>
-<span class="r-in">ycol <span class="op">=</span> <span class="va">PI</span>, </span>
-<span class="r-in">boxes <span class="op">=</span> <span class="va">Time</span>, </span>
-<span class="r-in">shapes <span class="op">=</span> <span class="va">Experiment</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#4d version for 2-way data with blocking</span></span></span>
+<span class="r-in"><span><span class="fu">plot_4d_scatterbox</span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_2w_Tdeath</span>, </span></span>
+<span class="r-in"><span>xcol <span class="op">=</span> <span class="va">Genotype</span>, </span></span>
+<span class="r-in"><span>ycol <span class="op">=</span> <span class="va">PI</span>, </span></span>
+<span class="r-in"><span>boxes <span class="op">=</span> <span class="va">Time</span>, </span></span>
+<span class="r-in"><span>shapes <span class="op">=</span> <span class="va">Experiment</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot_4d_scatterbox-3.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="plot_4d_scatterbar.html">plot_4d_scatterbar</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_2w_Festing</span>, </span>
-<span class="r-in">xcol <span class="op">=</span> <span class="va">Strain</span>, </span>
-<span class="r-in">ycol <span class="op">=</span> <span class="va">GST</span>, </span>
-<span class="r-in">bars <span class="op">=</span> <span class="va">Treatment</span>, </span>
-<span class="r-in">shapes <span class="op">=</span> <span class="va">Block</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="plot_4d_scatterbar.html">plot_4d_scatterbar</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_2w_Festing</span>, </span></span>
+<span class="r-in"><span>xcol <span class="op">=</span> <span class="va">Strain</span>, </span></span>
+<span class="r-in"><span>ycol <span class="op">=</span> <span class="va">GST</span>, </span></span>
+<span class="r-in"><span>bars <span class="op">=</span> <span class="va">Treatment</span>, </span></span>
+<span class="r-in"><span>shapes <span class="op">=</span> <span class="va">Block</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot_4d_scatterbox-4.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -172,7 +245,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
