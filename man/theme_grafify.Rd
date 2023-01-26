@@ -34,8 +34,9 @@ This is a slightly modified \code{\link{theme_classic}[ggplot2]} with two key di
 }
 \examples{
 
-plot(mpg, aes(drv, cty ))+
-geom_jitter(width = 0.2)+
+ggplot(mpg, aes(drv, cty, colour = fl))+
+geom_jitter(width = 0.2, 
+size = 3, alpha = .7)+
 theme_grafify()
 
 }
