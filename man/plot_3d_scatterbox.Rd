@@ -77,7 +77,7 @@ plot_3d_scatterbox(
 
 \item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
 
-\item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} colour palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
+\item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} or base R palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
 
 \item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_boxplot}.}
 }

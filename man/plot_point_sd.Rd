@@ -9,8 +9,14 @@ plot_point_sd(
   xcol,
   ycol,
   facet,
+  ErrorType = "SD",
   symsize = 3.5,
   s_alpha = 1,
+  symshape = 21,
+  all_alpha = 0,
+  all_size = 2.5,
+  all_shape = 1,
+  all_jitter = 0,
   ewid = 0.2,
   TextXAngle = 0,
   LogYTrans,
@@ -38,9 +44,21 @@ plot_point_sd(
 
 \item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
 
+\item{ErrorType}{select the type of error bars to display. Default is "SD" (standard deviation). Other options are "SEM" (standard error of the mean) and "CI95" (95\% confidence interval based on t distributions).}
+
 \item{symsize}{size of point symbols, default set to 3.5.}
 
 \item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).}
+
+\item{symshape}{The mean is shown with symbol of the shape number 21 (default, filled circle). Pick a number between 0-25 to pick a different type of symbol from ggplot2.}
+
+\item{all_alpha}{fractional opacity of all data points (default = 0; i.e., not shown). Set to non-zero value if you would like all data points plotted in addition to the mean.}
+
+\item{all_size}{size of symbols of all data points, if shown (default = 2.5).}
+
+\item{all_shape}{all data points are shown with symbols of the shape number 1 (default, transparent circle). Pick a number between 0-25 to pick a different type of symbol from ggplot2.}
+
+\item{all_jitter}{reduce overlap of all data points, if shown, by setting a value between 0-1 (default = 0).}
 
 \item{ewid}{width of error bars, default set to 0.2.}
 
@@ -58,7 +76,7 @@ plot_point_sd(
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
-\item{symthick}{thickness of symbol border, default set to \code{fontsize1}/22.}
+\item{symthick}{thickness of symbol border, default set to \code{fontsize}/22.}
 
 \item{ethick}{thickness of error bar lines; default \code{fontsize}/22.}
 
@@ -68,7 +86,7 @@ plot_point_sd(
 
 \item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
 
-\item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} colour palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
+\item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} or base R palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
 
 \item{...}{any additional arguments to pass to \code{ggplot2}\link{stat_summary}.}
 }
@@ -76,11 +94,11 @@ plot_point_sd(
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
-This function takes a data table, categorical X and numeric Y variables, and plots a point showing the mean with SD error bars. The X variable is mapped to the \code{fill} aesthetic of symbols.
+This function takes a data table, categorical X and numeric Y variables, and plots a point showing the mean with SD error bars as default (SEM & CI95 are other options). The X variable is mapped to the \code{fill} aesthetic of symbols.
 }
 \details{
 The function uses \code{\link[ggplot2]{stat_summary}} with \code{geom = "point"} with \code{size = 3}.
-Standard deviation (SD) is plotted through \code{\link[ggplot2]{stat_summary}} calculated using \code{mean_sdl} from the \code{ggplot2} package (get help with \code{?mean_sdl}), and 1x SD is plotted (\code{fun.arg = list(mult = 1)}.
+Standard deviation (SD) is plotted through \code{\link[ggplot2]{stat_summary}} calculated using \code{mean_sdl} from the \code{ggplot2} package (get help with \code{?mean_sdl}), and 1x SD is plotted (\code{fun.arg = list(mult = 1)}. \code{mean_se} and \code{mean_cl_normal} are used for SEM and CI95, respectively.
 
 Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} arguments. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
 \code{ColPal} can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
@@ -96,4 +114,8 @@ You are instead encouraged to show all data using the following functions: \code
 plot_point_sd(data = data_doubling_time, 
 xcol = Student, ycol = Doubling_time)
 
+#show all data points
+plot_point_sd(data = data_2w_Tdeath, 
+xcol = Genotype, ycol = PI, 
+facet = Time, all_alpha = 0.4)
 }

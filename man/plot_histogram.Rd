@@ -10,12 +10,11 @@ plot_histogram(
   group,
   facet,
   BinSize = 30,
-  c_alpha = 0.2,
+  c_alpha = 0.8,
   TextXAngle = 0,
   facet_scales = "fixed",
   fontsize = 20,
   linethick,
-  Group,
   alpha,
   ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy", "kelly",
     "light", "muted", "pale", "r4", "safe", "vibrant"),
@@ -33,9 +32,9 @@ plot_histogram(
 
 \item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
 
-\item{BinSize}{bins to use on X-axis, default set to 30.}
+\item{BinSize}{number of distinct bins to use on X-axis, default set to 30.}
 
-\item{c_alpha}{fractional opacity of colour filled within histograms, default set to 0.2 (i.e. 20\% opacity).}
+\item{c_alpha}{fractional opacity of colour filled within histograms, default set to 0.8 (i.e. 80\% opacity).}
 
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
@@ -44,8 +43,6 @@ plot_histogram(
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
 \item{linethick}{thickness of symbol border, default set to \code{fontsize}/22.}
-
-\item{Group}{deprecated old argument for \code{group}; retained for backward compatibility.}
 
 \item{alpha}{deprecated old argument for \code{c_alpha}; retained for backward compatibility.}
 
@@ -61,10 +58,10 @@ plot_histogram(
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
-This function takes a data table, a quantitative variable (\code{ycol}) and a Grouping variable (\code{group}), if available, and plots a histogram graph using \code{\link{geom_histogram}}).
+This function takes a data table, a quantitative variable (\code{ycol}) and a grouping variable (\code{group}), if available, and plots a histogram graph using \code{\link{geom_histogram}}).
 }
 \details{
-Note that the function requires the quantitative Y variable first, and groups them based on an X variable. The group variable is mapped to the \code{fill} and \code{colour} aesthetics in \code{geom_histogram}.
+Note that the function requires the quantitative Y variable first, and groups them based on a categorical variable passed on via the \code{group} argument. The grouping variable is mapped to the \code{fill} aesthetics in \code{geom_histogram}.
 
 ColPal & ColRev options are applied to both \code{fill} and \code{colour} scales. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
 Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} arguments.

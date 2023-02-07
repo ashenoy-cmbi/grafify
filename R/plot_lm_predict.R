@@ -66,6 +66,8 @@ plot_lm_predict <- function(Model, xcol, ycol, ByFactor, obs_size = 2, obs_alpha
                                                     order = 2))+
                        theme_grafify(base_size = base_size,
                                      ...)+
+                       labs(x = enquo(xcol),
+                            y = enquo(ycol))+
                        scale_fill_grafify()+
                        scale_colour_grafify())
   } else {
@@ -96,6 +98,8 @@ plot_lm_predict <- function(Model, xcol, ycol, ByFactor, obs_size = 2, obs_alpha
                                                     order = 2))+
                        theme_grafify(base_size = base_size,
                                      ...)+
+                       labs(x = enquo(xcol),
+                            y = enquo(ycol))+
                        scale_fill_grafify()+
                        scale_colour_grafify())
   }

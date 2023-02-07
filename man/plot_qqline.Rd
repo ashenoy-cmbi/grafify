@@ -16,7 +16,6 @@ plot_qqline(
   fontsize = 20,
   symthick,
   linethick,
-  Group,
   ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy", "kelly",
     "light", "muted", "pale", "r4", "safe", "vibrant"),
   ColSeq = TRUE,
@@ -47,8 +46,6 @@ plot_qqline(
 
 \item{linethick}{thickness of lines, default set to \code{fontsize}/22.}
 
-\item{Group}{deprecated old argument for \code{group}; retained for backward compatibility.}
-
 \item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
@@ -61,10 +58,10 @@ plot_qqline(
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
-This function takes a data table, a quantitative variable (\code{ycol}), and a categorical grouping variable (\code{group}), if available, and plots a QQ graph using \code{\link{ggplot2}[geom_qq]} and \code{\link{ggplot2}[geom_qq_line]}.
+This function takes a data table, a quantitative variable (\code{ycol}), and a categorical grouping variable (\code{group}), if available, and plots a QQ graph using \code{\link{ggplot2}[stat_qq]} and \code{\link{ggplot2}[stat_qq_line]}.
 }
 \details{
-Note that the function requires the quantitative Y variable first, and can be passed on a grouping variable as \code{group} if required. The graph plots sample quantiles on Y axis & theoretical quantiles on X axis. The X variable is mapped to the \code{fill} aesthetic in\code{stat_qq} and \code{colour} aesthetic for the \code{stat_qq_line}.
+Note that the function requires the quantitative Y variable first, and a grouping variable as \code{group} if required. The graph plots sample quantiles on Y axis & theoretical quantiles on X axis. The X variable is mapped to the \code{fill} aesthetic in\code{stat_qq} and \code{colour} aesthetic for the \code{stat_qq_line}.
 
 Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} arguments. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}. When only one level is present within \code{group}, symbols will receive "ok_orange" colour.
 \code{ColPal} can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".

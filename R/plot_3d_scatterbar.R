@@ -26,6 +26,7 @@
 #' @param ycol name of the column with quantitative variable to plot on the Y axis.
 #' @param shapes name of the column with the second categorical factor, for example from a two-way ANOVA design.
 #' @param facet add another variable from the data table to create faceted graphs using \code{ggplot2}[facet_wrap].
+#' @param ErrorType select the type of error bars to display. Default is "SD" (standard deviation). Other options are "SEM" (standard error of the mean) and "CI95" (95% confidence interval based on t distributions).
 #' @param symsize size of symbols, default set to 3.
 #' @param s_alpha fractional opacity of symbols, default set to 0.8 (i.e. 80% opacity). Set `s_alpha = 0` to not show scatter plot.
 #' @param b_alpha fractional opacity of boxes.  Default is set to 0, which results in white boxes inside violins. Change to any value >0 up to 1 for different levels of transparency. 
@@ -43,7 +44,7 @@
 #' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
-#' @param SingleColour a colour hexcode (starting with #), a number between 1-154, or names of colours from `grafify` colour palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use `grey_lin11`, which is almost black.
+#' @param SingleColour a colour hexcode (starting with #), a number between 1-154, or names of colours from `grafify` palettes or base R to fill along X-axis aesthetic. Accepts any colour other than "black"; use `grey_lin11`, which is almost black.
 #' @param ... any additional arguments to pass.
 #' 
 #' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
@@ -77,66 +78,47 @@
 #' bars = Treatment, 
 #' shapes = Block)
 #' 
-plot_3d_scatterbar <- function(data, xcol, ycol, shapes, facet, symsize = 3, s_alpha = 0.8, b_alpha = 1, jitter = 0.1, ewid = 0.2, TextXAngle = 0, LogYTrans, LogYBreaks = waiver(), LogYLabels = waiver(), LogYLimits = NULL, facet_scales = "fixed", fontsize = 20, symthick, bthick, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, SingleColour = "NULL", ...){
+plot_3d_scatterbar <- function(data, xcol, ycol, shapes, facet, ErrorType = "SD", symsize = 3, s_alpha = 0.8, b_alpha = 1, jitter = 0.1, ewid = 0.2, TextXAngle = 0, LogYTrans, LogYBreaks = waiver(), LogYLabels = waiver(), LogYLimits = NULL, facet_scales = "fixed", fontsize = 20, symthick, bthick, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, SingleColour = "NULL", ...){
   ColPal <- match.arg(ColPal)
+  if (!(ErrorType %in% c("SD", "SEM", "CI95"))) {
+    stop('ErrorType should be "SD", "SEM" or "CI95".')}
+  if(ErrorType == "SD") {ER <- "mean_sdl"}
+  if(ErrorType == "SEM") {ER <- "mean_se"}
+  if(ErrorType == "CI95") {ER <- "mean_cl_normal"}
   if (missing(bthick)) {bthick = fontsize/22}
   if (missing(symthick)) {symthick = fontsize/22}
-  if (missing(SingleColour)) {
-    P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
-                                   y = {{ ycol }},
-                                   group = factor({{ xcol }})))+
-      stat_summary(geom = "bar", width = .7, colour = "black",
-                   fun = "mean", size = bthick,
-                   aes(fill = factor({{ xcol }})),
-                   alpha = b_alpha,
-                   position = position_dodge(width = 0.8))+
-      geom_point(size = symsize, 
-                 stroke = symthick,
-                 alpha = s_alpha, 
+  P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+                                 y = {{ ycol }},
+                                 group = factor({{ xcol }})))+
+    stat_summary(geom = "bar", 
+                 width = .7, 
                  colour = "black",
-                 position = position_jitterdodge(dodge.width = 0.8,
-                                                 jitter.width = jitter),
-                 aes(shape = factor({{ shapes }})))+
-      stat_summary(geom = "errorbar", width = ewid,
-                   fun.data = "mean_sdl", size = bthick,
-                   fun.args = list(mult = 1),
-                   position = position_dodge(width = 0.8),
-                   ...)+
-      scale_shape_manual(values = 0:25)+
-      labs(x = enquo(xcol),
-           fill = enquo(xcol),
-           shape = enquo(shapes))+
-      scale_fill_grafify(palette = ColPal,
-                         reverse = ColRev,
-                         ColSeq = ColSeq)
+                 fun = "mean", 
+                 linewidth = bthick,
+                 aes(fill = factor({{ xcol }})),
+                 alpha = b_alpha,
+                 position = position_dodge(width = 0.8))+
+    geom_point(size = symsize, 
+               stroke = symthick,
+               alpha = s_alpha, 
+               colour = "black",
+               position = position_jitterdodge(dodge.width = 0.8,
+                                               jitter.width = jitter),
+               aes(shape = factor({{ shapes }})))+
+    scale_shape_manual(values = 0:25)
+  if (ER == "mean_cl_normal") {
+    P <- P + stat_summary(geom = "errorbar", 
+                 width = ewid,
+                 fun.data = "mean_cl_normal", 
+                 linewidth = bthick,
+                 position = position_dodge(width = 0.8))
   } else {
-    ifelse(grepl("#", SingleColour), 
-           a <- SingleColour,
-           a <- get_graf_colours(SingleColour))
-    P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
-                                   y = {{ ycol }},
-                                   group = factor({{ xcol }})))+
-      stat_summary(geom = "bar", width = .7, colour = "black",
-                   fun = "mean", size = bthick,
-                   fill = a,
-                   alpha = b_alpha,
-                   position = position_dodge(width = 0.8),
-                   ...)+
-      geom_point(size = symsize, 
-                 stroke = symthick,
-                 alpha = s_alpha, 
-                 colour = "black",
-                 position = position_jitterdodge(dodge.width = 0.8,
-                                                 jitter.width = jitter),
-                 aes(shape = factor({{ shapes }})))+
-      stat_summary(geom = "errorbar", width = ewid,
-                   fun.data = "mean_sdl", size = bthick,
+    P <- P + stat_summary(geom = "errorbar", 
+                   width = ewid,
+                   fun.data = ER, 
+                   linewidth = bthick,
                    fun.args = list(mult = 1),
-                   position = position_dodge(width = 0.8),
-                   ...)+
-      scale_shape_manual(values = 0:25)+
-      labs(x = enquo(xcol),
-           shape = enquo(shapes))
+                   position = position_dodge(width = 0.8))
   }
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
@@ -170,11 +152,33 @@ plot_3d_scatterbar <- function(data, xcol, ycol, shapes, facet, symsize = 3, s_a
                            limits = LogYLimits,
                            ...)}
   }
-  P <- P+
+  if (!missing(SingleColour)) {
+    ifelse(grepl("#", SingleColour), 
+           a <- SingleColour,
+           ifelse(isTRUE(get_graf_colours(SingleColour) != 0), 
+                  a <- unname(get_graf_colours(SingleColour)), 
+                  a <- SingleColour))
+    x1 <- deparse(substitute(xcol))
+    x <- length(levels(factor(data[[x1]])))
+    P <- P + 
+      scale_fill_manual(values = rep(a, 
+                                     times = x))+
+      guides(x = guide_axis(angle = TextXAngle),
+             fill = "none")
+  } else {
+    P <- P +
+      scale_fill_grafify(palette = ColPal,
+                         reverse = ColRev,
+                         ColSeq = ColSeq)+
+      guides(x = guide_axis(angle = TextXAngle),
+             fill = guide_legend(order = 1),
+             shape = guide_legend(order = 2))
+  }
+  P <- P +
+    labs(x = enquo(xcol),
+         fill = enquo(xcol),
+         shape = enquo(shapes))+
     theme_classic(base_size = fontsize)+
-    theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = TextXAngle),
-           fill = guide_legend(order = 1),
-           shape = guide_legend(order = 2))
+    theme(strip.background = element_blank())
   P
 }

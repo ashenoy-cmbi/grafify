@@ -25,7 +25,6 @@ plot_befafter_box(
   fontsize = 20,
   symthick,
   bthick,
-  groups,
   ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy", "kelly",
     "light", "muted", "pale", "r4", "safe", "vibrant"),
   ColSeq = TRUE,
@@ -75,15 +74,13 @@ plot_befafter_box(
 
 \item{bthick}{thickness (in 'pt' units) of lines and boxes lines; default = \code{fontsize}/22.}
 
-\item{groups}{old argument name for \code{match}; retained for backward compatibility.}
-
 \item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 
 \item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
 
-\item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} colour palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
+\item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} or base R palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
 
 \item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_line},  \code{ggplot2}\link{geom_point}, or \code{ggplot2}\link{facet_wrap}.}
 }

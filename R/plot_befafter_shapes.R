@@ -33,11 +33,10 @@
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param symthick size (in 'pt' units) of outline of symbol lines (\code{stroke}), default = `fontsize`/22.
 #' @param bthick thickness (in 'pt' units) of lines and boxes; default = `fontsize`/22.
-#' @param groups old argument name for `match`; retained for backward compatibility.
 #' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
-#' @param SingleColour a colour hexcode (starting with #), a number between 1-154, or names of colours from `grafify` colour palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use `grey_lin11`, which is almost black.
+#' @param SingleColour a colour hexcode (starting with #), a number between 1-154, or names of colours from `grafify` or base R palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use `grey_lin11`, which is almost black.
 #' @param ... any additional arguments to pass to \code{ggplot2}[geom_line] or \code{ggplot2}[geom_point].
 #'
 #' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
@@ -63,12 +62,9 @@
 #' xcol = Genotype, ycol = PI, 
 #' match = Experiment) + facet_wrap("Time")
 
-plot_befafter_shapes <- function(data, xcol, ycol, match, facet, Boxplot = FALSE, symsize = 3, s_alpha = 1, bwid = 0.4, jitter = 0.1, TextXAngle = 0, LogYTrans, LogYBreaks = waiver(), LogYLabels = waiver(), LogYLimits = NULL, facet_scales = "fixed", fontsize = 20, symthick, bthick, groups, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, SingleColour = "NULL", ...){
+plot_befafter_shapes <- function(data, xcol, ycol, match, facet, Boxplot = FALSE, symsize = 3, s_alpha = 1, bwid = 0.4, jitter = 0.1, TextXAngle = 0, LogYTrans, LogYBreaks = waiver(), LogYLabels = waiver(), LogYLimits = NULL, facet_scales = "fixed", fontsize = 20, symthick, bthick, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, SingleColour = "NULL", ...){
   if (missing(bthick)) {bthick = (fontsize/1.5)/22}
   if (missing(symthick)) {symthick = (fontsize)/22}
-  if (!missing("groups")) {
-    warning("Use `match` argument instead, as `groups` is deprecated.")
-    match <- substitute(groups)}
   ColPal <- match.arg(ColPal)
   if(!Boxplot){
     P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
@@ -84,42 +80,21 @@ plot_befafter_shapes <- function(data, xcol, ycol, match, facet, Boxplot = FALSE
                    colour = "grey25",
                    size = bthick)
   }
-  if (missing(SingleColour)) {
-    P <- P + geom_line(aes(group = factor({{ match }})),
-                       colour = "grey35", alpha = 0.8, 
-                       size = bthick,
-                       position = position_dodge(width = jitter),
-                       ...)+
-      geom_point(alpha = s_alpha, 
-                 stroke = symthick,
-                 size = symsize,
-                 position = position_dodge(width = jitter),
-                 aes(colour = factor({{ xcol }}),
-                     shape = factor({{ match }})), ...)+
-      scale_shape_manual(values = 0:25)+
-      labs(x = enquo(xcol),
-           colour = enquo(xcol),
-           shape = enquo(match))
-  } else {
-    ifelse(grepl("#", SingleColour),
-           a <- SingleColour,
-           a <- get_graf_colours(SingleColour))
-    P <- P +
-      geom_line(aes(group = factor({{ match }})),
-                colour = "grey35", alpha = 0.8, , 
-                size = bthick,
-                position = position_dodge(width = jitter),
-                ...)+
-      geom_point(alpha = s_alpha, 
-                 stroke = symthick,
-                 size = symsize,
-                 colour = a,
-                 position = position_dodge(width = jitter),
-                 aes(shape = factor({{ match }})), ...)+
-      scale_shape_manual(values = 0:25)+
-      labs(x = enquo(xcol),
-           shape = enquo(match))
-  }
+  P <- P + geom_line(aes(group = factor({{ match }})),
+                     colour = "grey35", alpha = 0.8, 
+                     size = bthick,
+                     position = position_dodge(width = jitter),
+                     ...)+
+    geom_point(alpha = s_alpha, 
+               stroke = symthick,
+               size = symsize,
+               position = position_dodge(width = jitter),
+               aes(colour = factor({{ xcol }}),
+                   shape = factor({{ match }})), ...)+
+    scale_shape_manual(values = 0:25)+
+    labs(x = enquo(xcol),
+         colour = enquo(xcol),
+         shape = enquo(match))
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
                         scales = facet_scales, 
@@ -152,12 +127,31 @@ plot_befafter_shapes <- function(data, xcol, ycol, match, facet, Boxplot = FALSE
                            limits = LogYLimits,
                            ...)}
   }
+  if (!missing(SingleColour)) {
+    ifelse(grepl("#", SingleColour), 
+           a <- SingleColour,
+           ifelse(isTRUE(get_graf_colours(SingleColour) != 0), 
+                  a <- unname(get_graf_colours(SingleColour)), 
+                  a <- SingleColour))
+    x1 <- deparse(substitute(xcol))
+    x <- length(levels(factor(data[[x1]])))
+    P <- P +
+      scale_colour_manual(values = rep(a, 
+                                       times = x))+
+      labs(x = enquo(xcol))+
+      guides(x = guide_axis(angle = TextXAngle),
+             colour = "none")
+  } else {
+    P <- P +
+      scale_colour_grafify(palette = ColPal, 
+                           reverse = ColRev, 
+                           ColSeq = ColSeq)+
+      guides(x = guide_axis(angle = TextXAngle),
+             colour = guide_legend(order = 1),
+             shape = guide_legend(order = 2))
+  }
   P <- P +
     theme_classic(base_size = fontsize)+
-    theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = TextXAngle))+
-    scale_colour_grafify(palette = ColPal, 
-                         reverse = ColRev, 
-                         ColSeq = ColSeq)
+    theme(strip.background = element_blank())
   P
 }

@@ -78,7 +78,7 @@ scale_colour_grafify <- function(palette = "okabe_ito", ColSeq = TRUE, reverse =
   if (palette %in% c("blue_conti", "yellow_conti", "grey_conti", "PrGn_div", "OrBl_div")) {
     pal <- graf_col_palette(palette = palette, 
                             reverse = reverse)
-    scale_fill_gradientn(colours = pal(255), ...)
+    scale_colour_gradientn(colours = pal(255), ...)
   } else {
     if (ColSeq) {
       pal <- graf_col_palette(palette = palette, 

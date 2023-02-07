@@ -10,6 +10,7 @@ plot_3d_scatterbar(
   ycol,
   shapes,
   facet,
+  ErrorType = "SD",
   symsize = 3,
   s_alpha = 0.8,
   b_alpha = 1,
@@ -42,6 +43,8 @@ plot_3d_scatterbar(
 \item{shapes}{name of the column with the second categorical factor, for example from a two-way ANOVA design.}
 
 \item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
+
+\item{ErrorType}{select the type of error bars to display. Default is "SD" (standard deviation). Other options are "SEM" (standard error of the mean) and "CI95" (95\% confidence interval based on t distributions).}
 
 \item{symsize}{size of symbols, default set to 3.}
 
@@ -77,7 +80,7 @@ plot_3d_scatterbar(
 
 \item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
 
-\item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} colour palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
+\item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} palettes or base R to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
 
 \item{...}{any additional arguments to pass.}
 }

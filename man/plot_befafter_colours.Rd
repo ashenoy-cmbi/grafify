@@ -17,7 +17,6 @@ plot_befafter_colours(
   jitter = 0.1,
   bwid = 0.4,
   TextXAngle = 0,
-  groups,
   LogYTrans,
   LogYBreaks = waiver(),
   LogYLabels = waiver(),
@@ -46,7 +45,6 @@ plot_befafter_colors(
   jitter = 0.1,
   bwid = 0.4,
   TextXAngle = 0,
-  groups,
   LogYTrans,
   LogYBreaks = waiver(),
   LogYLabels = waiver(),
@@ -86,8 +84,6 @@ plot_befafter_colors(
 
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
-\item{groups}{old argument name for \code{match}; retained for backward compatibility.}
-
 \item{LogYTrans}{transform Y axis into "log10" or "log2"}
 
 \item{LogYBreaks}{argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is \code{waiver()}, or provide a vector of desired breaks.}
@@ -110,7 +106,7 @@ plot_befafter_colors(
 
 \item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
 
-\item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} colour palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
+\item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} or base R palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
 
 \item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_line} or \code{ggplot2}\link{geom_point}.}
 }

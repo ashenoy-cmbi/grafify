@@ -11,6 +11,7 @@ plot_4d_scatterbar(
   bars,
   shapes,
   facet,
+  ErrorType = "SD",
   symsize = 3,
   s_alpha = 0.8,
   b_alpha = 1,
@@ -45,6 +46,8 @@ plot_4d_scatterbar(
 \item{shapes}{name of the column that contains matched observations, e.g. subject IDs, experiment ID.}
 
 \item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
+
+\item{ErrorType}{select the type of error bars to display. Default is "SD" (standard deviation). Other options are "SEM" (standard error of the mean) and "CI95" (95\% confidence interval based on t distributions).}
 
 \item{symsize}{size of symbols, default set to 3.}
 

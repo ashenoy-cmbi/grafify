@@ -9,6 +9,7 @@ plot_dotbar_sd(
   xcol,
   ycol,
   facet,
+  ErrorType = "SD",
   dotsize = 1.5,
   d_alpha = 0.8,
   b_alpha = 1,
@@ -39,6 +40,8 @@ plot_dotbar_sd(
 \item{ycol}{name of the column to plot on quantitative Y axis. This should be a quantitative variable.}
 
 \item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
+
+\item{ErrorType}{select the type of error bars to display. Default is "SD" (standard deviation). Other options are "SEM" (standard error of the mean) and "CI95" (95\% confidence interval based on t distributions).}
 
 \item{dotsize}{size of dots relative to binwidth used by \code{\link[ggplot2]{geom_dotplot}}. Default set to 1.5, increase/decrease as needed.}
 
@@ -74,7 +77,7 @@ plot_dotbar_sd(
 
 \item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
 
-\item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} colour palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
+\item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} or base R palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
 
 \item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_dotplot}.}
 }
@@ -82,10 +85,10 @@ plot_dotbar_sd(
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
-There are three types of \code{plot_dot_} functions that plot "dots" as data symbols plotted with \code{\link[ggplot2]{geom_dotplot}} geometry. Variants can show summary and data distributions as bar and SD errors (\link{plot_dotbar_sd}), box and whisker plots (\link{plot_dotbox}) or violin and box & whiskers plots (\link{plot_dotviolin}). They all take a data table, a categorical X variable and a numeric Y variable.
+There are three types of \code{plot_dot_} functions that plot "dots" as data symbols plotted with \code{\link[ggplot2]{geom_dotplot}} geometry. Variants can show summary and data distributions as bar and SD errors (\link{plot_dotbar_sd}; or SEM or CI95 error bars), box and whisker plots (\link{plot_dotbox}) or violin and box & whiskers plots (\link{plot_dotviolin}). They all take a data table, a categorical X variable and a numeric Y variable.
 }
 \details{
-Related \code{plot_scatter} variants show data symbols using the \code{\link[ggplot2]{geom_point}} geometry. These are \link{plot_scatterbar_sd}, \link{plot_scatterbox} and \link{plot_scatterviolin}. Overplotting in \code{plot_scatter} variants can be reduced with the \code{jitter} argument.
+Related \code{plot_scatter_} variants show data symbols using the \code{\link[ggplot2]{geom_point}} geometry. These are \link{plot_scatterbar_sd} (or SEM or CI95 error bars), \link{plot_scatterbox} and \link{plot_scatterviolin}. Overplotting in \code{plot_scatter} variants can be reduced with the \code{jitter} argument.
 
 The X variable is mapped to the \code{fill} aesthetic of dots, symbols, bars, boxes and violins.
 

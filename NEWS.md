@@ -5,13 +5,32 @@ output:
 ---
 # Release notes:
 
-Full reference to all functions available at [`grafify` GitHub pages](https://ashenoy-cmbi.github.io/grafify/index.html). There are also updates within all `plot_` functions, which are a `facet` argument, and log-transformations with axis tick marks.
+Full reference to all functions available at [`grafify` GitHub pages](https://ashenoy-cmbi.github.io/grafify/index.html). 
+
+# grafify v3.1.0
+
+## New functionality
+
+1. `plot_point_sd` now allows all data points to be shown. All points will be plotted with `geom_point` if the `all_alpha` setting (opacity for all symbols) is set >0 (it is set to 0 so default graphs will only show the mean of all values). There are also options for `all_size` and `all_jitter` to adjust size and overlap.
+2. SD, SEM or CI95 error bars are now possible through the `ErrorType` argument (default is "SD" error bars) in `plot_dotbar_sd`, `plot_scatterbar_sd`, `plot_point_sd`, `plot_3d_scatterbar` and `plot_4d_scatterbar`.
+
+## Minor updates
+
+1. Y-axis labels fixed for `plot_lm_predict` which used to label Y-axis as `pred` rather than the correct name of the plotted variable.
+2. Fixed the example for `theme_grafify`.
+3. Re-written `plog_qqline` based on `stat_qq` and `stat_qqline`. 
+4. Also re-written `plot_histogram` which was throwing up warning messages after `ggplot2` update. For uniformity with other `grafify` graphs, histograms now have a black border (like symbol borders in dot/scatter plots).
+5. `groups` argument, which was deprecated several versions before, has been removed from before-after functions. 
+6. `plot_bar_sd` deprecated as similar graphs can be plotted with `plot_scatterbar_sd` with `s_alpha = 0`.
+7. Fixed an error in `scale_colour_grafify`, which broke in v3.0.0.
+8. `SingleColour` argument can now take base R colour names (e.g., "grey25") in addition to previously available options. 
+9. `plot_grafify_palette` can now also plot the quantitative colour schemes. 
 
 # grafify v3.0.0
 
 ## Major updates 
 
-This is a major update for `grafify`, which now provides wrappers for basic generalised additive models (`gam`) through the [`mgcv` package](https://CRAN.R-project.org/package=mgcv). There are a more `plot_` functions, a `grafify` theme for `ggplot` objects, and simple data wrangling before plotting.  
+This is a major update for `grafify`, which now provides wrappers for basic generalised additive models (`gam`) through the [`mgcv` package](https://CRAN.R-project.org/package=mgcv). There are a more `plot_` functions, a `grafify` theme for `ggplot` objects, and simple data wrangling before plotting.  There are also updates within all `plot_` functions, which are a `facet` argument, and log-transformations with axis tick marks.
 
 ## Major additions
 

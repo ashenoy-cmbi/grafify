@@ -27,6 +27,7 @@
 #' @param bars name of the column containing grouping within the factor plotted on X axis. Can be categorical or numeric X. If your table has numeric X and you want to plot as factor, enter \code{xcol = factor(name of colum)}.
 #' @param shapes name of the column that contains matched observations, e.g. subject IDs, experiment ID.
 #' @param facet add another variable from the data table to create faceted graphs using \code{ggplot2}[facet_wrap].
+#' @param ErrorType select the type of error bars to display. Default is "SD" (standard deviation). Other options are "SEM" (standard error of the mean) and "CI95" (95% confidence interval based on t distributions).
 #' @param symsize size of symbols, default set to 3.
 #' @param s_alpha fractional opacity of symbols, default set to 0.8 (i.e. 80% opacity). Set `s_alpha = 0` to not show scatter plot.
 #' @param b_alpha fractional opacity of boxes.  Default is set to 0, which results in white boxes inside violins. Change to any value >0 up to 1 for different levels of transparency. 
@@ -72,8 +73,13 @@
 #' shapes = Block)
 #'
 
-plot_4d_scatterbar <- function(data, xcol, ycol, bars, shapes, facet, symsize = 3,  s_alpha = 0.8, b_alpha = 1, bwid = 0.5, jitter = 0.1, ewid = 0.2,  TextXAngle = 0, LogYTrans, LogYBreaks = waiver(), LogYLabels = waiver(), LogYLimits = NULL, facet_scales = "fixed", fontsize = 20, symthick, bthick, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColRev = FALSE, ColSeq = TRUE, ...){
+plot_4d_scatterbar <- function(data, xcol, ycol, bars, shapes, facet, ErrorType = "SD", symsize = 3,  s_alpha = 0.8, b_alpha = 1, bwid = 0.5, jitter = 0.1, ewid = 0.2,  TextXAngle = 0, LogYTrans, LogYBreaks = waiver(), LogYLabels = waiver(), LogYLimits = NULL, facet_scales = "fixed", fontsize = 20, symthick, bthick, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColRev = FALSE, ColSeq = TRUE, ...){
   ColPal <- match.arg(ColPal)
+  if (!(ErrorType %in% c("SD", "SEM", "CI95"))) {
+    stop('ErrorType should be "SD", "SEM" or "CI95".')}
+  if(ErrorType == "SD") {ER <- "mean_sdl"}
+  if(ErrorType == "SEM") {ER <- "mean_se"}
+  if(ErrorType == "CI95") {ER <- "mean_cl_normal"}
   if (missing(bthick)) {bthick = fontsize/22}
   if (missing(symthick)) {symthick = fontsize/22}
   P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
@@ -84,7 +90,7 @@ plot_4d_scatterbar <- function(data, xcol, ycol, bars, shapes, facet, symsize = 
                  colour = "black", 
                  width = bwid, 
                  alpha = b_alpha, 
-                 size = bthick,
+                 linewidth = bthick,
                  aes(fill = factor({{ bars }})),
                  position = position_dodge(width = 0.8),
                  fun = "mean", ...)+
@@ -95,17 +101,27 @@ plot_4d_scatterbar <- function(data, xcol, ycol, bars, shapes, facet, symsize = 
                position = position_jitterdodge(jitter.width = jitter,
                                                dodge.width = 0.8),
                aes(shape = factor({{ shapes }})), ...)+
-    stat_summary(geom = "errorbar", 
-                 colour = "black", 
-                 size = bthick, 
-                 width = ewid,
-                 fun.data = "mean_sdl",
-                 fun.args = list(mult = 1),
-                 position = position_dodge(width = 0.8), ...)+
     scale_shape_manual(values = 0:25)+
     labs(fill = enquo(bars),
          x = enquo(xcol),
          shape = enquo(shapes))
+  if(ER == "mean_cl_normal") {
+    P <- P + 
+      stat_summary(geom = "errorbar", 
+                   colour = "black", 
+                   linewidth = bthick, 
+                   width = ewid,
+                   fun.data = "mean_cl_normal",
+                   position = position_dodge(width = 0.8), ...)
+  } else {
+    P <- P + stat_summary(geom = "errorbar", 
+                 colour = "black", 
+                 size = bthick, 
+                 width = ewid,
+                 fun.data = ER,
+                 fun.args = list(mult = 1),
+                 position = position_dodge(width = 0.8), ...)
+  }
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
                         scales = facet_scales, 

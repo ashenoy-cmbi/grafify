@@ -6,7 +6,8 @@
 \usage{
 plot_grafify_palette(
   palette = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy", "kelly",
-    "light", "muted", "pale", "r4", "safe", "vibrant"),
+    "light", "muted", "pale", "r4", "safe", "vibrant", "OrBl_div", "PrGn_div",
+    "blue_conti", "grey_conti", "yellow_conti"),
   fontsize = 14,
   ...
 )
