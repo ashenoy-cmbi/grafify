@@ -9,7 +9,7 @@ Full reference to all functions available at [`grafify` GitHub pages](https://as
 
 # grafify v3.1.0
 
-## New functionality
+## New functionalities
 
 1. `plot_point_sd` now allows all data points to be shown. All points will be plotted with `geom_point` if the `all_alpha` setting (opacity for all symbols) is set >0 (it is set to 0 so default graphs will only show the mean of all values). There are also options for `all_size` and `all_jitter` to adjust size and overlap.
 2. SD, SEM or CI95 error bars are now possible through the `ErrorType` argument (default is "SD" error bars) in `plot_dotbar_sd`, `plot_scatterbar_sd`, `plot_point_sd`, `plot_3d_scatterbar` and `plot_4d_scatterbar`.
