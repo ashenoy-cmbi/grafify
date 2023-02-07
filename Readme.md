@@ -22,7 +22,9 @@ plot_4d_scatterbar(data = data_2w_Festing,
                    shapes = Block)
 ```
 
-<img src="man/figures/fig1.jpg" width="90%" /> instead of all this!
+<img src="man/figures/fig1.jpg" width="90%" />
+
+instead of all this!
 
 ``` r
 ggplot2::ggplot(data = data_2w_Festing,
@@ -75,8 +77,8 @@ better documented at present.
     5.  Data distributions: `plot_qqline`, `plot_density`
         `plot_histogram`, and model diagnostics with `plot_qqmodel`,
         `plot_qq_gam`, `plot_lm_predict` and `plot_gam_predict`
-    6.  Summary graphs with SD error bars: `plot_bar_sd`,
-        `plot_point_sd`
+    6.  Graphs with SD, SEM or CI95 error bars: `plot_point_sd`,
+        `plot_scatterbar_sd`, `plot_3d_scatterbar`
 
 <img src="man/figures/all_graphsv2.3.0.jpg" width="90%" />
 
@@ -144,7 +146,7 @@ The best place to see `grafify` in action is the
 [vignettes](https://grafify-vignettes.netlify.app) website, which has
 detailed description of all functions.
 
-### **Latest version: v3.0.0 on CRAN or GitHub**
+### **Latest version: v3.0.1 on CRAN or GitHub**
 
 ### Citing `grafify`
 

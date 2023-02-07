@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.0.1</span>
       </span>
     </div>
 
@@ -65,6 +65,7 @@
 <span>  <span class="va">ycol</span>,</span>
 <span>  <span class="va">shapes</span>,</span>
 <span>  <span class="va">facet</span>,</span>
+<span>  ErrorType <span class="op">=</span> <span class="st">"SD"</span>,</span>
 <span>  symsize <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>  s_alpha <span class="op">=</span> <span class="fl">0.8</span>,</span>
 <span>  b_alpha <span class="op">=</span> <span class="fl">1</span>,</span>
@@ -108,6 +109,10 @@
 
 <dt>facet</dt>
 <dd><p>add another variable from the data table to create faceted graphs using <code>ggplot2</code>facet_wrap.</p></dd>
+
+
+<dt>ErrorType</dt>
+<dd><p>select the type of error bars to display. Default is "SD" (standard deviation). Other options are "SEM" (standard error of the mean) and "CI95" (95% confidence interval based on t distributions).</p></dd>
 
 
 <dt>symsize</dt>
@@ -179,7 +184,7 @@
 
 
 <dt>SingleColour</dt>
-<dd><p>a colour hexcode (starting with #), a number between 1-154, or names of colours from <code>grafify</code> colour palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use <code>grey_lin11</code>, which is almost black.</p></dd>
+<dd><p>a colour hexcode (starting with #), a number between 1-154, or names of colours from <code>grafify</code> palettes or base R to fill along X-axis aesthetic. Accepts any colour other than "black"; use <code>grey_lin11</code>, which is almost black.</p></dd>
 
 
 <dt>...</dt>
@@ -254,7 +259,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

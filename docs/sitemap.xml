@@ -46,6 +46,15 @@
     <loc>/reference/data_t_pratio.html</loc>
   </url>
   <url>
+    <loc>/reference/data_zooplankton.html</loc>
+  </url>
+  <url>
+    <loc>/reference/ga_anova.html</loc>
+  </url>
+  <url>
+    <loc>/reference/ga_model.html</loc>
+  </url>
+  <url>
     <loc>/reference/get_graf_colours.html</loc>
   </url>
   <url>
@@ -112,6 +121,9 @@
     <loc>/reference/plot_bar_sd_sc.html</loc>
   </url>
   <url>
+    <loc>/reference/plot_befafter_box.html</loc>
+  </url>
+  <url>
     <loc>/reference/plot_befafter_colors.html</loc>
   </url>
   <url>
@@ -142,10 +154,19 @@
     <loc>/reference/plot_dotviolin_sc.html</loc>
   </url>
   <url>
+    <loc>/reference/plot_gam_predict.html</loc>
+  </url>
+  <url>
     <loc>/reference/plot_grafify_palette.html</loc>
   </url>
   <url>
     <loc>/reference/plot_histogram.html</loc>
+  </url>
+  <url>
+    <loc>/reference/plot_lm_predict.html</loc>
+  </url>
+  <url>
+    <loc>/reference/plot_logscale.html</loc>
   </url>
   <url>
     <loc>/reference/plot_point_sd.html</loc>
@@ -158,6 +179,9 @@
   </url>
   <url>
     <loc>/reference/plot_qqmodel.html</loc>
+  </url>
+  <url>
+    <loc>/reference/plot_qq_gam.html</loc>
   </url>
   <url>
     <loc>/reference/plot_scatterbar_sd.html</loc>
@@ -236,5 +260,14 @@
   </url>
   <url>
     <loc>/reference/simple_model.html</loc>
+  </url>
+  <url>
+    <loc>/reference/table_summary.html</loc>
+  </url>
+  <url>
+    <loc>/reference/table_x_reorder.html</loc>
+  </url>
+  <url>
+    <loc>/reference/theme_grafify.html</loc>
   </url>
 </urlset>

@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.0.1</span>
       </span>
     </div>
 
@@ -54,7 +54,59 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="2.3.0" id="grafify-v230">grafify v2.3.0<a class="anchor" aria-label="anchor" href="#grafify-v230"></a></h2>
+<h2 class="page-header" data-toc-text="3.1.0" id="grafify-v310">grafify v3.1.0<a class="anchor" aria-label="anchor" href="#grafify-v310"></a></h2>
+<div class="section level3">
+<h3 id="new-functionality-3-1-0">New functionality<a class="anchor" aria-label="anchor" href="#new-functionality-3-1-0"></a></h3>
+<ol style="list-style-type: decimal"><li>
+<code>plot_point_sd</code> now allows all data points to be shown. All points will be plotted with <code>geom_point</code> if the <code>all_alpha</code> setting (opacity for all symbols) is set &gt;0 (it is set to 0 so default graphs will only show the mean of all values). There are also options for <code>all_size</code> and <code>all_jitter</code> to adjust size and overlap.</li>
+<li>SD, SEM or CI95 error bars are now possible through the <code>ErrorType</code> argument (default is “SD” error bars) in <code>plot_dotbar_sd</code>, <code>plot_scatterbar_sd</code>, <code>plot_point_sd</code>, <code>plot_3d_scatterbar</code> and <code>plot_4d_scatterbar</code>.</li>
+</ol></div>
+<div class="section level3">
+<h3 id="minor-updates-3-1-0">Minor updates<a class="anchor" aria-label="anchor" href="#minor-updates-3-1-0"></a></h3>
+<ol style="list-style-type: decimal"><li>Y-axis labels fixed for <code>plot_lm_predict</code> which used to label Y-axis as <code>pred</code> rather than the correct name of the plotted variable.</li>
+<li>Fixed the example for <code>theme_grafify</code>.</li>
+<li>Re-written <code>plog_qqline</code> based on <code>stat_qq</code> and <code>stat_qqline</code>.</li>
+<li>Also re-written <code>plot_histogram</code> which was throwing up warning messages after <code>ggplot2</code> update. For uniformity with other <code>grafify</code> graphs, histograms now have a black border (like symbol borders in dot/scatter plots).</li>
+<li>
+<code>groups</code> argument, which was deprecated several versions before, has been removed from before-after functions.</li>
+<li>
+<code>plot_bar_sd</code> deprecated as similar graphs can be plotted with <code>plot_scatterbar_sd</code> with <code>s_alpha = 0</code>.</li>
+<li>Fixed an error in <code>scale_colour_grafify</code>, which broke in v3.0.0.</li>
+<li>
+<code>SingleColour</code> argument can now take base R colour names (e.g., “grey25”) in addition to previously available options.</li>
+<li>
+<code>plot_grafify_palette</code> can now also plot the quantitative colour schemes.</li>
+</ol></div>
+</div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="3.0.0" id="grafify-v300">grafify v3.0.0<small>2022-10-23</small><a class="anchor" aria-label="anchor" href="#grafify-v300"></a></h2>
+<div class="section level3">
+<h3 id="major-updates-3-0-0">Major updates<a class="anchor" aria-label="anchor" href="#major-updates-3-0-0"></a></h3>
+<p>This is a major update for <code>grafify</code>, which now provides wrappers for basic generalised additive models (<code>gam</code>) through the <a href="https://CRAN.R-project.org/package=mgcv" class="external-link"><code>mgcv</code> package</a>. There are a more <code>plot_</code> functions, a <code>grafify</code> theme for <code>ggplot</code> objects, and simple data wrangling before plotting. There are also updates within all <code>plot_</code> functions, which are a <code>facet</code> argument, and log-transformations with axis tick marks.</p>
+</div>
+<div class="section level3">
+<h3 id="major-additions-3-0-0">Major additions<a class="anchor" aria-label="anchor" href="#major-additions-3-0-0"></a></h3>
+<ol style="list-style-type: decimal"><li><p>Fit generalised additive models (gam) and get ANOVA tables with two new functions: <code>ga_model</code> and <code>ga_anova</code>. These are mainly for time-series analyses or where an assumption of linear relationship between predictor and outcomes is absent straight lines are not appropriate. Factor-wise smooths are fit with the <code>by</code> argument in <code>mgcv</code>, without or with a random factor. Random factors are also allowed with smooth <code>re</code> smooth. See documentation for <code>mgcv</code> <a href="https://noamross.github.io/gams-in-r-course/" class="external-link">smooths</a>. Model diagnostics can be done with <code>plot_qq_gam</code> and <code>plot_qq_model</code>. Example data included as <code>data_zooplankton</code> is from <a href="http://dx.doi.org/10.6073/pasta/ec3d0186753985147d4f283252388e05" class="external-link">Lathro RC, 2000</a>.</p></li>
+<li><p>All <code>plot_</code> functions now have two major updates:</p></li>
+</ol><ol style="list-style-type: lower-alpha"><li>Log-transformation of axes: Axes can be transformed with <code>log10</code> or <code>log2</code> with <code>LogYTrans</code> and <code>LogXTrans</code> arguments. X axis transformations are only available for <code>plot_xy_CatGroup</code> and <code>plot_xy_NumGroup</code>. With <code>log10</code> transformation, log-ticks will also appear. Default axes limits and labels should work in most cases, but if needed, three additional arguments are available: <code>LogYBreaks</code>, <code>LogYLimits</code> and <code>LogYLabels</code> (and respective ones for the X axis).</li>
+<li>
+<code>facet</code> argument to add another variable to created faceted plots with the <code>facet_wrap</code> layer in <code>ggplot2</code>. A related argument <code>facet_scales</code> can be used to set Y or X axis scales on faceted panels.</li>
+</ol><ol start="3" style="list-style-type: decimal"><li>New plot functions:</li>
+</ol><ol style="list-style-type: lower-alpha"><li><p><code>plot_befafter_box</code> is a new before-after plot function that includes a box and whisker plot to show data distribution in addition to lines joining matched data. In addition, both <code>plot_befafter_colour</code> and <code>plot_befafter_shapes</code> offer a box and whiskers summary of data.</p></li>
+<li><p><code>plot_lm_predict</code> and <code>plot_gam_predict</code> can be used to plot observed (raw) data and predicted data from fitted linear models.</p></li>
+<li><p><code>plot_logscales</code> is a function to easily perform “log10” or “log2” transformation on X or Y axes of any <code>ggplot2</code> object along with log-ticks.</p></li>
+</ol><ol start="4" style="list-style-type: decimal"><li>Table manipulations:</li>
+</ol><ol style="list-style-type: lower-alpha"><li><p><code>table_x_reorder</code> is a function to reorder levels within a categorical variable. This uses <code>factor</code> from base R <code>stats</code> package to convert a column into a factor and reorders it based on a user-provided vector of group names.</p></li>
+<li><p><code>table_summary</code> is a wrapper around <code>aggregate</code> (base R) function, which gives mean, median, SD, and counts grouped by one or more variables.</p></li>
+</ol><ol start="5" style="list-style-type: decimal"><li>A <code>grafify</code> theme for <code>ggplot2</code>: <code>theme_grafify</code> is a modification of <code>theme_classic</code> for making publication-ready <code>grafify</code>-like graphs easily when using <code>ggplot2</code>.</li>
+</ol></div>
+<div class="section level3">
+<h3 id="minor-changes-3-0-0">Minor changes<a class="anchor" aria-label="anchor" href="#minor-changes-3-0-0"></a></h3>
+<p>Much of the code has been edited and cleaned up. Among the main change is dropping unnecessary double curly brackets <code>{{ }}</code> within <code>plot_</code> wrappers.</p>
+</div>
+</div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="2.3.0" id="grafify-v230">grafify v2.3.0<small>2022-05-30</small><a class="anchor" aria-label="anchor" href="#grafify-v230"></a></h2>
 <p>The main motivation behind this update was to simplify the package by reducing the number of exported functions. So some features that were previously in separate functions have been made available more easily via an additional argument to existing functions (e.g. single colour function (<code>plot_..._sc</code>) now offered in respective <code>plot_</code> function with a new argument (see below). This has uncluttered the namespace of <code>grafify</code>. Most of the other additions are related to colour schemes.</p>
 <div class="section level3">
 <h3 id="major-additions-2-3-0">Major additions<a class="anchor" aria-label="anchor" href="#major-additions-2-3-0"></a></h3>
@@ -205,7 +257,12 @@
 <ol style="list-style-type: decimal"><li>the main difference from v0.1.0 is that all <code>plot_</code> functions apply the <code>all_grafify</code> colour scheme by default (see <code>plot_</code> vignettes on how to change colours)</li>
 <li>two new types of graphs are possible with two quantitative X-Y plots with a third variable that is either numeric (<code>plot_xy_NumGroup</code>) or categorical (<code>plot_xy_CatGroup</code>).</li>
 <li>there are two new continuous colour schemes (<code>scale_fill_grafify_c</code> and <code>scale_colour_grafify_c</code>), based on <a href="https://personal.sron.nl/~pault/#sec:sequential" class="external-link">Paul Tol’s variant</a> of YlOrBl scheme.</li>
+</ol><div class="section level4">
+<h4 id="minor-changes-0-2-0">Minor changes<a class="anchor" aria-label="anchor" href="#minor-changes-0-2-0"></a></h4>
+<ol style="list-style-type: decimal"><li>
+<code>plot_befafter...</code> functions have a new logical TRUE/FALSE argument called <code>boxplot</code> to additionally show a box and whisker plot to show data distribution.</li>
 </ol></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.1.0" id="grafify-v010">grafify v0.1.0<a class="anchor" aria-label="anchor" href="#grafify-v010"></a></h2>
 <p>First release.</p>
@@ -224,7 +281,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

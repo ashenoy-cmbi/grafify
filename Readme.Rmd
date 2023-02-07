@@ -16,6 +16,7 @@ As an example, you could write this to plot bar/SD graph from a 2-way ANOVA data
 library(grafify)
 ```
 
+
 ```{r plot1, eval = F, fig.height=4}
 plot_4d_scatterbar(data = data_2w_Festing, 
                    xcol = Strain,
@@ -24,13 +25,16 @@ plot_4d_scatterbar(data = data_2w_Festing,
                    shapes = Block)
 ```
 
+
 ```{r echo=FALSE, eval = F}
 ggsave("fig1.jpg", height = 4.5)
 ```
 
+
 ```{r, fig1, echo = F, out.width="90%"}
 knitr::include_graphics("man/figures/fig1.jpg")
 ```
+
 instead of all this! 
 
 ```{r, 2wanova, eval=FALSE}
@@ -70,7 +74,7 @@ Two other features including practice datasets (with randomised blocks), and dat
      c. Matched before-after graphs: `plot_befafter_colours`, `plot_befafter_shapes`, `plot_befafter_box`     
      c. Quantitative X & Y, plus a third variable: `plot_xy_NumGroup`, `plot_xy_CatGroup` 
      d. Data distributions: `plot_qqline`, `plot_density` `plot_histogram`, and model diagnostics with `plot_qqmodel`, `plot_qq_gam`, `plot_lm_predict` and `plot_gam_predict`
-     f. Summary graphs with SD error bars: `plot_bar_sd`, `plot_point_sd`
+     f. Graphs with SD, SEM or CI95 error bars: `plot_point_sd`, `plot_scatterbar_sd`, `plot_3d_scatterbar`
   
   
 ```{r, all-graphs, echo = F, out.width="90%"}
@@ -122,7 +126,7 @@ Generating random one-way and two-way data based on mean and SD and residual err
 
 The best place to see `grafify`  in action is the [vignettes](https://grafify-vignettes.netlify.app) website, which has detailed description of all functions.
 
-### **Latest version: v3.0.0 on CRAN or GitHub** 
+### **Latest version: v3.0.1 on CRAN or GitHub** 
 
 ### Citing `grafify`
 
