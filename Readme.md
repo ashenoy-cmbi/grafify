@@ -11,6 +11,10 @@
     designs and repeated-measures) & post-hoc comparisons (estimated
     marginal means, confidence intervals and *P* values)
 
+The [vignettes website](https://grafify-vignettes.netlify.app) has
+detailed help on usage and latest [release notes are
+here](https://grafify-vignettes.netlify.app/release_notes.html).
+
 As an example, you could write this to plot bar/SD graph from a 2-way
 ANOVA data with randomised blocks:
 
@@ -147,6 +151,9 @@ The best place to see `grafify` in action is the
 detailed description of all functions.
 
 ### **Latest version: v3.1.0 on CRAN or GitHub**
+
+Find out about [latest updates
+here](https://grafify-vignettes.netlify.app/release_notes.html).
 
 ### Citing `grafify`
 
