@@ -16,7 +16,7 @@
 #' @param symsize size of symbols, default set to 3.
 #' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
-#' @param facet_scales whether orcet graphs not to fix scales on X & Y axes for all facet facet graphs. Can be `fixed` (default), `free`, `free_y` or `free_x` (for Y and X axis one at a time, respectively).
+#' @param facet_scales whether or not to fix scales on X & Y axes for all facet facet graphs. Can be `fixed` (default), `free`, `free_y` or `free_x` (for Y and X axis one at a time, respectively).
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param symthick thickness of symbol border, default set to `fontsize`/22.
 #' @param linethick thickness of lines, default set to `fontsize`/22.
