@@ -7,7 +7,7 @@ output:
 
 Full reference to all functions available at [`grafify` GitHub pages](https://ashenoy-cmbi.github.io/grafify/index.html). 
 
-# grafify v3.1.0
+# grafify v3.0.1
 
 ## New functionalities
 

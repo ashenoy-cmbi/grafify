@@ -88,6 +88,7 @@
 </li>
 <li>use linear models for ANOVA (including those with randomised block designs and repeated-measures) &amp; post-hoc comparisons (estimated marginal means, confidence intervals and <em>P</em> values)</li>
 </ol>
+<p>The <a href="https://grafify-vignettes.netlify.app" class="external-link">vignettes website</a> has detailed help on usage and latest <a href="https://grafify-vignettes.netlify.app/release_notes.html" class="external-link">release notes are here</a>.</p>
 <p>As an example, you could write this to plot bar/SD graph from a 2-way ANOVA data with randomised blocks:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/plot_4d_scatterbar.html">plot_4d_scatterbar</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_2w_Festing</span>, </span>
@@ -95,7 +96,8 @@
 <span>                   ycol <span class="op">=</span> <span class="va">GST</span>,</span>
 <span>                   bars <span class="op">=</span> <span class="va">Treatment</span>,</span>
 <span>                   shapes <span class="op">=</span> <span class="va">Block</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/fig1.jpg" width="90%"> instead of all this!</p>
+<p><img src="reference/figures/fig1.jpg" width="90%"></p>
+<p>instead of all this!</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_2w_Festing</span>,</span>
 <span>       <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Strain</span>,</span>
@@ -194,6 +196,11 @@
 </li>
 </ol>
 </div>
+<div class="section level4">
+<h4 id="data-summaries">Data summaries<a class="anchor" aria-label="anchor" href="#data-summaries"></a>
+</h4>
+<p><code>table_summary</code> is simple function to obtain mean, median and SD by groups, and <code>table_x_reorder</code> is for working with factors.</p>
+</div>
 </div>
 <div class="section level3">
 <h3 id="vignettes">Vignettes<a class="anchor" aria-label="anchor" href="#vignettes"></a>
@@ -204,6 +211,7 @@
 <h3 id="latest-version-v301-on-cran-or-github">
 <strong>Latest version: v3.0.1 on CRAN or GitHub</strong><a class="anchor" aria-label="anchor" href="#latest-version-v301-on-cran-or-github"></a>
 </h3>
+<p>Find out about <a href="https://grafify-vignettes.netlify.app/release_notes.html" class="external-link">latest updates here</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="citing-grafify">Citing <code>grafify</code>

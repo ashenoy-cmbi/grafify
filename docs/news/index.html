@@ -54,15 +54,15 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="3.1.0" id="grafify-v310">grafify v3.1.0<a class="anchor" aria-label="anchor" href="#grafify-v310"></a></h2>
+<h2 class="page-header" data-toc-text="3.0.1" id="grafify-v301">grafify v3.0.1<small>2023-02-07</small><a class="anchor" aria-label="anchor" href="#grafify-v301"></a></h2>
 <div class="section level3">
-<h3 id="new-functionality-3-1-0">New functionality<a class="anchor" aria-label="anchor" href="#new-functionality-3-1-0"></a></h3>
+<h3 id="new-functionalities-3-0-1">New functionalities<a class="anchor" aria-label="anchor" href="#new-functionalities-3-0-1"></a></h3>
 <ol style="list-style-type: decimal"><li>
 <code>plot_point_sd</code> now allows all data points to be shown. All points will be plotted with <code>geom_point</code> if the <code>all_alpha</code> setting (opacity for all symbols) is set &gt;0 (it is set to 0 so default graphs will only show the mean of all values). There are also options for <code>all_size</code> and <code>all_jitter</code> to adjust size and overlap.</li>
 <li>SD, SEM or CI95 error bars are now possible through the <code>ErrorType</code> argument (default is “SD” error bars) in <code>plot_dotbar_sd</code>, <code>plot_scatterbar_sd</code>, <code>plot_point_sd</code>, <code>plot_3d_scatterbar</code> and <code>plot_4d_scatterbar</code>.</li>
 </ol></div>
 <div class="section level3">
-<h3 id="minor-updates-3-1-0">Minor updates<a class="anchor" aria-label="anchor" href="#minor-updates-3-1-0"></a></h3>
+<h3 id="minor-updates-3-0-1">Minor updates<a class="anchor" aria-label="anchor" href="#minor-updates-3-0-1"></a></h3>
 <ol style="list-style-type: decimal"><li>Y-axis labels fixed for <code>plot_lm_predict</code> which used to label Y-axis as <code>pred</code> rather than the correct name of the plotted variable.</li>
 <li>Fixed the example for <code>theme_grafify</code>.</li>
 <li>Re-written <code>plog_qqline</code> based on <code>stat_qq</code> and <code>stat_qqline</code>.</li>

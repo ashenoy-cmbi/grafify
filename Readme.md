@@ -144,13 +144,18 @@ residual error.
 1.  one-way designs: `make_1way_data`, `make_1way_rb_data`
 2.  two-way designs: `make_2way_data`, `make_2way_rb_data`
 
+#### Data summaries
+
+`table_summary` is simple function to obtain mean, median and SD by
+groups, and `table_x_reorder` is for working with factors.
+
 ### Vignettes
 
 The best place to see `grafify` in action is the
 [vignettes](https://grafify-vignettes.netlify.app) website, which has
 detailed description of all functions.
 
-### **Latest version: v3.1.0 on CRAN or GitHub**
+### **Latest version: v3.0.1 on CRAN or GitHub**
 
 Find out about [latest updates
 here](https://grafify-vignettes.netlify.app/release_notes.html).
