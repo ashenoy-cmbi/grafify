@@ -15,7 +15,7 @@ plot_4d_scatterbar(
   symsize = 3,
   s_alpha = 0.8,
   b_alpha = 1,
-  bwid = 0.5,
+  bwid = 0.7,
   jitter = 0.1,
   ewid = 0.2,
   TextXAngle = 0,
@@ -55,7 +55,7 @@ plot_4d_scatterbar(
 
 \item{b_alpha}{fractional opacity of boxes.  Default is set to 0, which results in white boxes inside violins. Change to any value >0 up to 1 for different levels of transparency.}
 
-\item{bwid}{width of boxes; default 0.5.}
+\item{bwid}{width of boxes; default 0.7.}
 
 \item{jitter}{extent of jitter (scatter) of symbols, default is 0.1. Increase to reduce symbol overlap, set to 0 for aligned symbols.}
 

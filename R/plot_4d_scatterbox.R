@@ -30,7 +30,7 @@
 #' @param symsize size of symbols, default set to 3.
 #' @param s_alpha fractional opacity of symbols, default set to 0.8 (i.e. 80% opacity). Set `s_alpha = 0` to not show scatter plot.
 #' @param b_alpha fractional opacity of boxes.  Default is set to 0, which results in white boxes inside violins. Change to any value >0 up to 1 for different levels of transparency. 
-#' @param bwid width of boxes; default 0.5.
+#' @param bwid width of boxes; default 0.7.
 #' @param jitter extent of jitter (scatter) of symbols, default is 0.1. Increase to reduce symbol overlap, set to 0 for aligned symbols.  
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
 #' @param LogYTrans transform Y axis into "log10" or "log2"
@@ -70,7 +70,7 @@
 #' bars = Treatment, 
 #' shapes = Block)
 
-plot_4d_scatterbox <- function(data, xcol, ycol, boxes, shapes, facet, symsize = 3, s_alpha = 0.8, b_alpha = 1, bwid = 0.5, jitter = 0.1, TextXAngle = 0, LogYTrans, LogYBreaks = waiver(), LogYLabels = waiver(), LogYLimits = NULL, facet_scales = "fixed", fontsize = 20,  symthick, bthick, ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy", "kelly",  "light", "muted", "pale", "r4", "safe", "vibrant"), ColSeq = TRUE, ColRev = FALSE, ...){
+plot_4d_scatterbox <- function(data, xcol, ycol, boxes, shapes, facet, symsize = 3, s_alpha = 0.8, b_alpha = 1, bwid = 0.7, jitter = 0.1, TextXAngle = 0, LogYTrans, LogYBreaks = waiver(), LogYLabels = waiver(), LogYLimits = NULL, facet_scales = "fixed", fontsize = 20,  symthick, bthick, ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy", "kelly",  "light", "muted", "pale", "r4", "safe", "vibrant"), ColSeq = TRUE, ColRev = FALSE, ...){
   ColPal <- match.arg(ColPal)
   if (missing(bthick)) {bthick = fontsize/22}
   if (missing(symthick)) {symthick = fontsize/22}

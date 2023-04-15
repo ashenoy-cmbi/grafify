@@ -26,6 +26,10 @@ theme_grafify <- function (base_size = 20, base_family = "", base_line_size = ba
                 base_line_size = base_line_size, 
                 base_rect_size = base_rect_size) %+replace% 
     theme(strip.background = element_blank(), 
+          line = element_line(lineend = "square",
+                              colour = "black", 
+                              linewidth = base_line_size,
+                              linetype = 1),
           complete = TRUE,
           axis.text = element_text(size = rel(.85),
                                    colour = "grey30"),

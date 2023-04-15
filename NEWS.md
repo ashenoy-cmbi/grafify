@@ -7,6 +7,15 @@ output:
 
 Full reference to all functions available at [`grafify` GitHub pages](https://ashenoy-cmbi.github.io/grafify/index.html). 
 
+# grafify v3.0.2
+
+## Minor update
+
+1. For consistency, the default width (`bwid` argument) of bars and boxes in `plot_4d_` functions is set as `0.7`.
+2. All violin plots (`plot_dotviolin`, `plot_scatterviolin`, `plot_3d_scatterviolin` and `plot_4d_scatterviolin`) now have two separate arguments `bthick` and `vthick` to set the linewidths of the boxes and violins, respectively. The previous `bvthick` will still work, so if a value is provided that will be used for linewidths of both boxes and violins.
+3. Rewritten code for many plot functions to make them shorter and simpler. 
+4. `theme_grafify` now has `lineend = square` as default.
+
 # grafify v3.0.1
 
 ## New functionalities

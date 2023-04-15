@@ -25,6 +25,8 @@ plot_dotviolin(
   facet_scales = "fixed",
   fontsize = 20,
   dotthick,
+  bthick,
+  vthick,
   bvthick,
   ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy", "kelly",
     "light", "muted", "pale", "r4", "safe", "vibrant"),
@@ -75,7 +77,11 @@ plot_dotviolin(
 
 \item{dotthick}{thickness of dot border (\code{stroke} parameter of \code{geom_dotplot}), default set to \code{fontsize}/22.}
 
-\item{bvthick}{thickness (in 'pt' units) of both violin and boxplot lines; default = \code{fontsize}/22.}
+\item{bthick}{thickness (in 'pt' units) of boxplots; default = \code{fontsize}/22.}
+
+\item{vthick}{thickness (in 'pt' units) of violins; default = \code{fontsize}/22.}
+
+\item{bvthick}{thickness (in 'pt' units) of both violins and boxplots; default = \code{fontsize}/22.}
 
 \item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
 

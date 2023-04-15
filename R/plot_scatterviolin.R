@@ -34,7 +34,9 @@
 #' @param facet_scales whether or not to fix scales on X & Y axes for all graphs. Can be `fixed` (default), `free`, `free_y` or `free_x` (for Y and X axis one at a time, respectively).
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param symthick size (in 'pt' units) of outline of symbol lines (\code{stroke}), default = `fontsize`/22.
-#' @param bvthick thickness (in 'pt' units) of both violin and boxplot lines; default = `fontsize`/22.
+#' @param bthick thickness (in 'pt' units) of boxplots; default = `fontsize`/22.
+#' @param vthick thickness (in 'pt' units) of violins; default = `fontsize`/22.
+#' @param bvthick thickness (in 'pt' units) of both violins and boxplots; default = `fontsize`/22.
 #' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
@@ -66,123 +68,57 @@
 #' symsize = 2, trim = FALSE)
 
 
-plot_scatterviolin <- function(data, xcol, ycol, facet, symsize = 3,  s_alpha = 0.8, b_alpha = 0, v_alpha = 1, bwid = 0.3, vadjust = 1, jitter = 0.1, trim = TRUE, scale = "width", TextXAngle = 0, LogYTrans, LogYBreaks = waiver(), Ylabels = waiver(), LogYLimits = NULL, facet_scales = "fixed", fontsize = 20, symthick, bvthick, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, SingleColour = "NULL", ...){
+plot_scatterviolin <- function(data, xcol, ycol, facet, symsize = 3,  s_alpha = 0.8, b_alpha = 0, v_alpha = 1, bwid = 0.3, vadjust = 1, jitter = 0.1, trim = TRUE, scale = "width", TextXAngle = 0, LogYTrans, LogYBreaks = waiver(), Ylabels = waiver(), LogYLimits = NULL, facet_scales = "fixed", fontsize = 20, symthick, bthick, vthick, bvthick, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, SingleColour = "NULL", ...){
   ColPal <- match.arg(ColPal)
-  if (missing(bvthick)) {bvthick = fontsize/22}
+  if (!missing(bvthick)) {
+    bthick = bvthick
+    vthick = bvthick}
+  if (missing(bthick)) {bthick = fontsize/22}
+  if (missing(vthick)) {vthick = fontsize/22}
   if (missing(symthick)) {symthick = fontsize/22}
-  if (missing(SingleColour)) {
-    if (b_alpha == 0){
-      suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
-                                                      y = {{ ycol }}))+
-                         geom_violin(aes(fill = factor({{ xcol }})),
-                                     alpha = v_alpha,
-                                     trim = trim,
-                                     scale = scale,
-                                     colour = "black", 
-                                     size = bvthick,
-                                     adjust = vadjust,
-                                     ...)+
-                         geom_boxplot(fill = "white",
-                                      colour = "black", 
-                                      size = bvthick,
-                                      outlier.alpha = 0,
-                                      width = bwid,
-                                      ...)+
-                         geom_point(shape = 21,
-                                    position = position_jitter(width = jitter),
-                                    alpha = s_alpha,
-                                    stroke = symthick,
-                                    size = symsize,
-                                    aes(fill = factor({{ xcol }})),
+  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+                                                  y = {{ ycol }}))+
+                     geom_violin(aes(fill = factor({{ xcol }})),
+                                 alpha = v_alpha,
+                                 trim = trim,
+                                 scale = scale,
+                                 colour = "black", 
+                                 size = vthick,
+                                 adjust = vadjust,
+                                 ...)+
+                     labs(x = enquo(xcol),
+                          fill = enquo(xcol)))
+  if (b_alpha == 0){
+    suppressWarnings(P <- P + 
+                       geom_boxplot(fill = "white",
+                                    colour = "black", 
+                                    size = bthick,
+                                    outlier.alpha = 0,
+                                    width = bwid,
                                     ...)+
-                         labs(x = enquo(xcol),
-                              fill = enquo(xcol)))
-    } else {
-      suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
-                                                      y = {{ ycol }}))+
-                         geom_violin(aes(fill = factor({{ xcol }})),
-                                     alpha = v_alpha,
-                                     trim = trim,
-                                     scale = scale,
-                                     colour = "black", 
-                                     size = bvthick,
-                                     adjust = vadjust,
-                                     ...)+
-                         geom_boxplot(aes(fill = factor({{ xcol }})),
-                                      alpha = b_alpha,
-                                      colour = "black", 
-                                      size = bvthick,
-                                      outlier.alpha = 0,
-                                      width = bwid,
-                                      ...)+
-                         geom_point(shape = 21,
-                                    position = position_jitter(width = jitter),
-                                    alpha = s_alpha,
-                                    stroke = symthick,
-                                    size = symsize,
-                                    aes(fill = factor({{ xcol }})),
-                                    ...)+
-                         labs(x = enquo(xcol),
-                              fill = enquo(xcol)))
-    }
+                       geom_point(shape = 21,
+                                  position = position_jitter(width = jitter),
+                                  alpha = s_alpha,
+                                  stroke = symthick,
+                                  size = symsize,
+                                  aes(fill = factor({{ xcol }})),
+                                  ...)) 
   } else {
-    ifelse(grepl("#", SingleColour), 
-           a <- SingleColour,
-           ifelse(isTRUE(get_graf_colours(SingleColour) != 0), 
-                  a <- unname(get_graf_colours(SingleColour)), 
-                  a <- SingleColour))
-    if (b_alpha == 0){
-      suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
-                                                      y = {{ ycol }}))+
-                         geom_violin(fill = a,
-                                     alpha = v_alpha,
-                                     trim = trim,
-                                     scale = scale,
-                                     colour = "black", 
-                                     size = bvthick,
-                                     adjust = vadjust,
-                                     ...)+
-                         geom_boxplot(fill = "white",
-                                      colour = "black", 
-                                      size = bvthick,
-                                      outlier.alpha = 0,
-                                      width = bwid,
-                                      ...)+
-                         geom_point(shape = 21,
-                                    position = position_jitter(width = jitter),
-                                    alpha = s_alpha,
-                                    stroke = symthick,
-                                    size = symsize,
-                                    fill = a,
+    suppressWarnings(P <- P +
+                       geom_boxplot(aes(fill = factor({{ xcol }})),
+                                    alpha = b_alpha,
+                                    colour = "black", 
+                                    size = bthick,
+                                    outlier.alpha = 0,
+                                    width = bwid,
                                     ...)+
-                         labs(x = enquo(xcol)))
-    } else {
-      suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
-                                                      y = {{ ycol }}))+
-                         geom_violin(fill = a,
-                                     alpha = v_alpha,
-                                     trim = trim,
-                                     scale = scale,
-                                     colour = "black", 
-                                     size = bvthick,
-                                     adjust = vadjust,
-                                     ...)+
-                         geom_boxplot(fill = a,
-                                      alpha = b_alpha,
-                                      colour = "black", 
-                                      size = bvthick,
-                                      outlier.alpha = 0,
-                                      width = bwid,
-                                      ...)+
-                         geom_point(shape = 21,
-                                    position = position_jitter(width = jitter),
-                                    alpha = s_alpha,
-                                    stroke = symthick,
-                                    size = symsize,
-                                    fill = a,
-                                    ...)+
-                         labs(x = enquo(xcol)))
-    }
+                       geom_point(shape = 21,
+                                  position = position_jitter(width = jitter),
+                                  alpha = s_alpha,
+                                  stroke = symthick,
+                                  size = symsize,
+                                  aes(fill = factor({{ xcol }})),
+                                  ...))
   }
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
@@ -216,12 +152,25 @@ plot_scatterviolin <- function(data, xcol, ycol, facet, symsize = 3,  s_alpha = 
                            limits = LogYLimits, 
                            ...)}
   }
+  if (!missing(SingleColour)) {
+    ifelse(grepl("#", SingleColour), 
+           a <- SingleColour,
+           ifelse(isTRUE(get_graf_colours(SingleColour) != 0), 
+                  a <- unname(get_graf_colours(SingleColour)), 
+                  a <- SingleColour))
+    col <- deparse(substitute(xcol))
+    len <- length(levels(factor(data[[col]])))
+    suppressWarnings(P <- P + 
+                       scale_fill_manual(values = rep(a, len)))
+  } else {
+    P <- P +
+      scale_fill_grafify(palette = ColPal, 
+                         reverse = ColRev, 
+                         ColSeq = ColSeq)
+  }
   P <- P +
     theme_classic(base_size = fontsize)+
     theme(strip.background = element_blank())+
-    guides(x = guide_axis(angle = TextXAngle))+ 
-    scale_fill_grafify(palette = ColPal, 
-                       reverse = ColRev, 
-                       ColSeq = ColSeq)
+    guides(x = guide_axis(angle = TextXAngle))
   P
 }

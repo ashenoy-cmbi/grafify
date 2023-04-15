@@ -44,7 +44,9 @@
 #' @param facet_scales whether or not to fix scales on X & Y axes for all facet facet graphs. Can be `fixed` (default), `free`, `free_y` or `free_x` (for Y and X axis one at a time, respectively).
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param symthick size (in 'pt' units) of outline of symbol lines (\code{stroke}), default = `fontsize`/22.
-#' @param bvthick thickness (in 'pt' units) of both violin and boxplot lines; default = `fontsize`/22.
+#' @param bthick thickness (in 'pt' units) of boxplots; default = `fontsize`/22.
+#' @param vthick thickness (in 'pt' units) of violins; default = `fontsize`/22.
+#' @param bvthick thickness (in 'pt' units) of both violins and boxplots; default = `fontsize`/22.
 #' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
@@ -69,27 +71,37 @@
 #' boxes = Time, 
 #' shapes = Experiment)
 #' 
-plot_4d_scatterviolin <- function(data, xcol, ycol, boxes, shapes, facet, symsize = 3, s_alpha = 0.8, v_alpha = 1, b_alpha = 0, bwid = 0.3, vadjust = 1, jitter = 0.1, TextXAngle = 0, scale = "width", trim = TRUE, LogYTrans, LogYBreaks = waiver(), LogYLabels = waiver(), LogYLimits = NULL, facet_scales = "fixed", fontsize = 20, symthick, bvthick, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, ...){
+
+plot_4d_scatterviolin <- function(data, xcol, ycol, boxes, shapes, facet, symsize = 3, s_alpha = 0.8, v_alpha = 1, b_alpha = 0, bwid = 0.3, vadjust = 1, jitter = 0.1, TextXAngle = 0, scale = "width", trim = TRUE, LogYTrans, LogYBreaks = waiver(), LogYLabels = waiver(), LogYLimits = NULL, facet_scales = "fixed", fontsize = 20, symthick, bthick, vthick, bvthick, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, ...){
   ColPal <- match.arg(ColPal)
-  if (missing(bvthick)) {bvthick = fontsize/22}
+  if (!missing(bvthick)) {
+    bthick = bvthick
+    vthick = bvthick}
+  if (missing(bthick)) {bthick = fontsize/22}
+  if (missing(vthick)) {vthick = fontsize/22}
   if (missing(symthick)) {symthick = fontsize/22}
+  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+                                                  y = {{ ycol }},
+                                                  group = interaction(factor({{ boxes }}),
+                                                                      factor({{ xcol }}))))+
+                     geom_violin(scale = scale, 
+                                 alpha = v_alpha, 
+                                 size = vthick,
+                                 colour = "black",
+                                 trim = trim,
+                                 aes(fill = factor({{ boxes }})), 
+                                 adjust = vadjust,
+                                 position = position_dodge(width = 0.8),
+                                 ...)+
+                     scale_shape_manual(values = 0:25)+
+                     labs(fill = enquo(boxes),
+                          x = enquo(xcol),
+                          shape = enquo(shapes)))
   if (b_alpha == 0){
-    P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
-                                   y = {{ ycol }},
-                                   group = interaction(factor({{ boxes }}),
-                                                       factor({{ xcol }}))))+
-      geom_violin(scale = scale, 
-                  alpha = v_alpha, 
-                  size = bvthick,
-                  colour = "black",
-                  trim = trim,
-                  aes(fill = factor({{ boxes }})), 
-                  adjust = vadjust,
-                  position = position_dodge(width = 0.8),
-                  ...)+
+    P <- P + 
       geom_boxplot(width = bwid,
                    fill = "white",
-                   size = bvthick,
+                   size = bthick,
                    aes(fill = factor({{ boxes }})),
                    outlier.alpha = 0,
                    position = position_dodge(width = 0.8),
@@ -100,28 +112,12 @@ plot_4d_scatterviolin <- function(data, xcol, ycol, boxes, shapes, facet, symsiz
                  colour = "black",
                  position = position_jitterdodge(jitter.width = jitter,
                                                  dodge.width = 0.8),
-                 aes(shape = factor({{ shapes }})))+
-      scale_shape_manual(values = 0:25)+
-      labs(fill = enquo(boxes),
-           x = enquo(xcol),
-           shape = enquo(shapes))
+                 aes(shape = factor({{ shapes }})))
   } else {
-    P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
-                                   y = {{ ycol }},
-                                   group = interaction(factor({{ boxes }}),
-                                                       factor({{ xcol }}))))+
-      geom_violin(scale = scale, 
-                  alpha = v_alpha, 
-                  size = bvthick,
-                  colour = "black",
-                  trim = trim,
-                  aes(fill = factor({{ boxes }})), 
-                  adjust = vadjust,
-                  position = position_dodge(width = 0.8),
-                  ...)+
+    P <- P +
       geom_boxplot(width = bwid, 
                    alpha = b_alpha, 
-                   size = bvthick,
+                   size = bthick,
                    aes(fill = factor({{ boxes }})), 
                    outlier.alpha = 0,
                    position = position_dodge(width = 0.8),
@@ -132,11 +128,7 @@ plot_4d_scatterviolin <- function(data, xcol, ycol, boxes, shapes, facet, symsiz
                  colour = "black",
                  position = position_jitterdodge(jitter.width = jitter,
                                                  dodge.width = 0.8),
-                 aes(shape = factor({{ shapes }})))+
-      scale_shape_manual(values = 0:25)+
-      labs(fill = enquo(boxes),
-           x = enquo(xcol),
-           shape = enquo(shapes))
+                 aes(shape = factor({{ shapes }})))
   }
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
@@ -181,3 +173,4 @@ plot_4d_scatterviolin <- function(data, xcol, ycol, boxes, shapes, facet, symsiz
                        ColSeq = ColSeq)
   P
 }
+
