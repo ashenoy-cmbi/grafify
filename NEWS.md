@@ -29,7 +29,7 @@ Full reference to all functions available at [`grafify` GitHub pages](https://as
 1. For consistency, the default width (`bwid` argument) of bars and boxes in `plot_4d_` functions is set as `0.7`.
 3. Rewritten code for many plot functions to make them shorter and simpler. 
 5. `log10` tick marks:
-    a. In all `plot_` functions: the tick marks now scale with the `fontsize` parameter. Previously, the sizes were set to "cm" units, which did not scale correctly. The long tick mark, middle and short ticks are sized: `7*fontsize/22`, `5.5*fontsize/22` and `3.5*fontsize/22`, respectively. The size (linewidth) equals `fontsize/22`, which is the same throughout `grafify`.
+    a. In all `plot_` functions: the tick marks now scale with the `fontsize` parameter. Previously, the sizes were set to "cm" units, which did not scale correctly. The long tick mark, middle and short ticks are sized: `7*fontsize/22`, `4*fontsize/22` and `4*fontsize/22`, respectively (note that the short and mid are the same size). The size (linewidth) equals `fontsize/22`, which is the same throughout `grafify`.
     b. For consistency and usefulness, the  `plot_logscales` function also has the above defaults and now has `fontsize = 20` as an additional argument and sizes scale accordingly.
     c. Colour of `log10` tick marks have the same colour as ticks on  non-transformed axis (`grey20`).
 

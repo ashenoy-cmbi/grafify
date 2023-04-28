@@ -127,7 +127,7 @@ plot_xy_CatGroup <- function(data, xcol, ycol, CatGroup, facet, Boxplot = FALSE,
                             outside = TRUE,
                             base = 10, color = "grey20",
                             long = unit(7*fontsize/22, "pt"), size = unit(fontsize/22, "pt"),# 
-                            short = unit(3.5*fontsize/22, "pt"), mid = unit(5.5*fontsize/22, "pt"),#
+                            short = unit(4*fontsize/22, "pt"), mid = unit(4*fontsize/22, "pt"),#
                             ...)+ 
         coord_cartesian(clip = "off", ...)
     }
@@ -155,7 +155,7 @@ plot_xy_CatGroup <- function(data, xcol, ycol, CatGroup, facet, Boxplot = FALSE,
                             outside = TRUE,
                             base = 10, color = "grey20",
                             long = unit(7*fontsize/22, "pt"), size = unit(fontsize/22, "pt"),# 
-                            short = unit(3.5*fontsize/22, "pt"), mid = unit(5.5*fontsize/22, "pt"),#
+                            short = unit(4*fontsize/22, "pt"), mid = unit(4*fontsize/22, "pt"),#
                             ...)+ 
         coord_cartesian(clip = "off", ...)
     }
