@@ -47,7 +47,7 @@ plot_histogram <- function(data, ycol, group, facet, BinSize = 30, c_alpha = 0.8
     c_alpha <- substitute(alpha)}
   ColPal <- match.arg(ColPal)
   if(missing(group)) {
-    P <- ggplot2::ggplot(data, 
+    suppressWarnings(P <- ggplot2::ggplot(data, 
                          aes({{ ycol }}))+
       geom_histogram(size = linethick,
                      alpha = c_alpha,
@@ -55,11 +55,11 @@ plot_histogram <- function(data, ycol, group, facet, BinSize = 30, c_alpha = 0.8
                      colour = "black",
                      linewidth = linethick,
                      fill = "#E69F00")+
-      theme_classic(base_size = fontsize)+
+      theme_grafify(base_size = fontsize)+
       theme(strip.background = element_blank())+
-      guides(x = guide_axis(angle = TextXAngle))
+      guides(x = guide_axis(angle = TextXAngle)))
   } else {
-    P <- ggplot2::ggplot(data, 
+    suppressWarnings(P <- ggplot2::ggplot(data, 
                          aes({{ ycol }}))+
       geom_histogram(size = linethick,
                      alpha = c_alpha,
@@ -68,12 +68,11 @@ plot_histogram <- function(data, ycol, group, facet, BinSize = 30, c_alpha = 0.8
                      bins = BinSize,
                      aes(fill = {{ group }}))+
       labs(fill = enquo(group))+
-      theme_classic(base_size = fontsize)+
-      theme(strip.background = element_blank())+
+      theme_grafify(base_size = fontsize)+
       guides(x = guide_axis(angle = TextXAngle))+
       scale_fill_grafify(palette = ColPal, 
                          reverse = ColRev, 
-                         ColSeq = ColSeq)
+                         ColSeq = ColSeq))
     }
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 

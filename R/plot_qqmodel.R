@@ -51,7 +51,7 @@ plot_qqmodel <- function(Model, symsize = 3, s_alpha = 0.8, fontsize = 20, symth
                                alpha = s_alpha)+
                        labs(x = "Theoretical quantile",
                             y = "Pearson residual")+
-                       theme_classic(base_size = fontsize)+
+                       theme_grafify(base_size = fontsize)+
                        theme(strip.background = element_blank()))
   } else {
     if (l == 1) {
@@ -75,8 +75,7 @@ plot_qqmodel <- function(Model, symsize = 3, s_alpha = 0.8, fontsize = 20, symth
                                alpha = s_alpha)+
                        labs(x = "Theoretical quantile",
                             y = "Studentised residual")+
-                       theme_classic(base_size = fontsize)+
-                       theme(strip.background = element_blank()))
+                       theme_grafify(base_size = fontsize))
   }
   P
 }

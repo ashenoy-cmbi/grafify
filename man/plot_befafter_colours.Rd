@@ -25,6 +25,7 @@ plot_befafter_colours(
   fontsize = 20,
   symthick,
   bthick,
+  lthick,
   ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy", "kelly",
     "light", "muted", "pale", "r4", "safe", "vibrant"),
   ColSeq = TRUE,
@@ -53,6 +54,7 @@ plot_befafter_colors(
   fontsize = 20,
   symthick,
   bthick,
+  lthick,
   ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy", "kelly",
     "light", "muted", "pale", "r4", "safe", "vibrant"),
   ColSeq = TRUE,
@@ -98,7 +100,9 @@ plot_befafter_colors(
 
 \item{symthick}{size (in 'pt' units) of outline of symbol lines (\code{stroke}), default = \code{fontsize}/22.}
 
-\item{bthick}{thickness (in 'pt' units) of lines and boxes; default = \code{fontsize}/22.}
+\item{bthick}{thickness (in 'pt' units) of boxes; default = \code{(fontsize)/22}.}
+
+\item{lthick}{thickness (in 'pt' units) of lines; default = \code{(fontsize/1.2)/22}.}
 
 \item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
 

@@ -114,9 +114,9 @@ plot_dotbox <- function(data, xcol, ycol, facet, dotsize = 1.5, d_alpha = 0.8, b
                            ...)+
         annotation_logticks(sides = "l", 
                             outside = TRUE,
-                            base = 10,
-                            long = unit(0.2, "cm"), 
-                            mid = unit(0.1, "cm"),
+                            base = 10, color = "grey20",
+                            long = unit(7*fontsize/22, "pt"), size = unit(fontsize/22, "pt"),# 
+                            short = unit(3.5*fontsize/22, "pt"), mid = unit(5.5*fontsize/22, "pt"),#
                             ...)+ 
         coord_cartesian(clip = "off", ...)
     }
@@ -129,8 +129,7 @@ plot_dotbox <- function(data, xcol, ycol, facet, dotsize = 1.5, d_alpha = 0.8, b
                            ...)}
   }
   P <- P + 
-    theme_classic(base_size = fontsize)+
-    theme(strip.background = element_blank())+
+    theme_grafify(base_size = fontsize)+
     guides(x = guide_axis(angle = TextXAngle))+
     scale_fill_grafify(palette = ColPal, 
                        reverse = ColRev, 

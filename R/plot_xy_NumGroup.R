@@ -53,7 +53,7 @@ plot_xy_NumGroup <- function(data, xcol, ycol, NumGroup, facet, Boxplot = FALSE,
   if (missing(symthick)) {symthick = fontsize/22}
   if (missing(bthick)) {bthick = fontsize/22}
   if (!(Boxplot)) {
-    P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
+    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
                                    y = {{ ycol }}))+
       geom_point(size = symsize, 
                  alpha = s_alpha,
@@ -61,9 +61,9 @@ plot_xy_NumGroup <- function(data, xcol, ycol, NumGroup, facet, Boxplot = FALSE,
                  shape = 21, 
                  stroke = symthick, 
                  ...)+
-      labs(fill = enquo(NumGroup))
+      labs(fill = enquo(NumGroup)))
   } else {
-    P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
+    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
                                    y = {{ ycol }}))+
       geom_boxplot(aes(group = interaction({{ xcol }},
                                            {{ NumGroup }}),
@@ -86,7 +86,7 @@ plot_xy_NumGroup <- function(data, xcol, ycol, NumGroup, facet, Boxplot = FALSE,
                  stroke = symthick,
                  ...)+
       labs(fill = enquo(NumGroup),
-           colour = enquo(NumGroup))}
+           colour = enquo(NumGroup)))}
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
                         scales = facet_scales, 
@@ -105,9 +105,9 @@ plot_xy_NumGroup <- function(data, xcol, ycol, NumGroup, facet, Boxplot = FALSE,
                            ...)+
         annotation_logticks(sides = "l", 
                             outside = TRUE,
-                            base = 10,
-                            long = unit(0.2, "cm"), 
-                            mid = unit(0.1, "cm"),
+                            base = 10, color = "grey20",
+                            long = unit(7*fontsize/22, "pt"), size = unit(fontsize/22, "pt"),# 
+                            short = unit(3.5*fontsize/22, "pt"), mid = unit(5.5*fontsize/22, "pt"),#
                             ...)+ 
         coord_cartesian(clip = "off", ...)
     }
@@ -133,9 +133,9 @@ plot_xy_NumGroup <- function(data, xcol, ycol, NumGroup, facet, Boxplot = FALSE,
                            ...)+
         annotation_logticks(sides = "b", 
                             outside = TRUE,
-                            base = 10,
-                            long = unit(0.2, "cm"), 
-                            mid = unit(0.1, "cm"),
+                            base = 10, color = "grey20",
+                            long = unit(7*fontsize/22, "pt"), size = unit(fontsize/22, "pt"),# 
+                            short = unit(3.5*fontsize/22, "pt"), mid = unit(5.5*fontsize/22, "pt"),#
                             ...)+ 
         coord_cartesian(clip = "off", ...)
     }
@@ -149,8 +149,7 @@ plot_xy_NumGroup <- function(data, xcol, ycol, NumGroup, facet, Boxplot = FALSE,
     }
   }
   P <- P +
-    theme_classic(base_size = fontsize)+
-    theme(strip.background = element_blank())+
+    theme_grafify(base_size = fontsize)+
     guides(x = guide_axis(angle = TextXAngle))+
     scale_fill_grafify(palette = ColPal, 
                        reverse = ColRev)

@@ -46,7 +46,7 @@ plot_density <- function(data, ycol, group, facet,  c_alpha = 0.2, TextXAngle = 
     warning("Use `c_alpha` argument instead, as `alpha` is deprecated.")
     c_alpha <- substitute(alpha)}
   ColPal <- match.arg(ColPal)
-  P <- ggplot2::ggplot(data, 
+  suppressWarnings(P <- ggplot2::ggplot(data, 
                        aes(sample = {{ ycol }}))+
     geom_density(size = linethick,
                  alpha = c_alpha,
@@ -57,15 +57,14 @@ plot_density <- function(data, ycol, group, facet,  c_alpha = 0.2, TextXAngle = 
     labs(fill = enquo(group),
          colour = enquo(group),
          y = "Density")+
-    theme_classic(base_size = fontsize)+
-    theme(strip.background = element_blank())+
+    theme_grafify(base_size = fontsize)+
     guides(x = guide_axis(angle = TextXAngle))+
     scale_fill_grafify(palette = ColPal, 
                        reverse = ColRev, 
                        ColSeq = ColSeq)+
     scale_colour_grafify(palette = ColPal, 
                          reverse = ColRev, 
-                         ColSeq = ColSeq)
+                         ColSeq = ColSeq))
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
                         scales = facet_scales, 

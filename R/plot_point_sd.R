@@ -65,8 +65,8 @@ plot_point_sd <- function(data, xcol, ycol, facet, ErrorType = "SD", symsize = 3
   if(ErrorType == "CI95") {ER <- "mean_cl_normal"}
   if (missing(ethick)) {ethick = fontsize/22}
   if (missing(symthick)) {symthick = fontsize/22}
-  if (ER == "mean_cl_normal")
-  {P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+  if (ER == "mean_cl_normal") {
+    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                   y = {{ ycol }}))+
     geom_point(aes(fill = factor({{ xcol }})),
                shape = all_shape, 
@@ -84,9 +84,9 @@ plot_point_sd <- function(data, xcol, ycol, facet, ErrorType = "SD", symsize = 3
                  alpha = s_alpha,
                  fun = "mean",
                  aes(fill = factor({{ xcol }})), 
-                 ...)
+                 ...))
   } else {
-    P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                    y = {{ ycol }}))+
       geom_point(aes(fill = factor({{ xcol }})),
                  shape = all_shape, 
@@ -105,12 +105,11 @@ plot_point_sd <- function(data, xcol, ycol, facet, ErrorType = "SD", symsize = 3
                    alpha = s_alpha,
                    fun = "mean",
                    aes(fill = factor({{ xcol }})), 
-                   ...)
+                   ...))
   }
   P <- P + labs(x = enquo(xcol),
                 fill = enquo(xcol))+
-    theme_classic(base_size = fontsize)+
-    theme(strip.background = element_blank())+
+    theme_grafify(base_size = fontsize)+
     guides(x = guide_axis(angle = TextXAngle))
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
@@ -130,9 +129,9 @@ plot_point_sd <- function(data, xcol, ycol, facet, ErrorType = "SD", symsize = 3
                            ...)+
         annotation_logticks(sides = "l", 
                             outside = TRUE,
-                            base = 10,
-                            long = unit(0.2, "cm"), 
-                            mid = unit(0.1, "cm"),
+                            base = 10, color = "grey20",
+                            long = unit(7*fontsize/22, "pt"), size = unit(fontsize/22, "pt"),# 
+                            short = unit(3.5*fontsize/22, "pt"), mid = unit(5.5*fontsize/22, "pt"),#
                             ...)+ 
         coord_cartesian(clip = "off", ...)
     }

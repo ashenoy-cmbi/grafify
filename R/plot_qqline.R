@@ -44,7 +44,7 @@ plot_qqline <- function(data, ycol, group, facet, symsize = 3, s_alpha = 0.8, Te
   if (missing(symthick)) {symthick = fontsize/22}
   if (missing(linethick)) {linethick = fontsize/22}
   if(missing(group)){
-    P <- ggplot2::ggplot(data, 
+    suppressWarnings(P <- ggplot2::ggplot(data, 
                          aes(sample = {{ ycol }}))+
       stat_qq_line(na.rm = T,
                    linewidth = linethick)+
@@ -54,11 +54,11 @@ plot_qqline <- function(data, ycol, group, facet, symsize = 3, s_alpha = 0.8, Te
               size = symsize, 
               stroke = symthick,
               alpha = s_alpha)+
-      theme_classic(base_size = fontsize)+
+      theme_grafify(base_size = fontsize)+
       theme(strip.background = element_blank())+
-      guides(x = guide_axis(angle = TextXAngle))
+      guides(x = guide_axis(angle = TextXAngle)))
   } else {
-    P <- ggplot2::ggplot(data, 
+    suppressWarnings(P <- ggplot2::ggplot(data, 
                          aes(sample = {{ ycol }},
                              group = {{ group }}))+
       stat_qq_line(na.rm = T,
@@ -71,10 +71,9 @@ plot_qqline <- function(data, ycol, group, facet, symsize = 3, s_alpha = 0.8, Te
               stroke = symthick,
               alpha = s_alpha)+
       labs(fill = enquo(group))+
-      theme_classic(base_size = fontsize)+
-      theme(strip.background = element_blank())+
-      guides(x = guide_axis(angle = TextXAngle))}
-  
+      theme_grafify(base_size = fontsize)+
+      guides(x = guide_axis(angle = TextXAngle)))
+    }
   P <- P+
     scale_fill_grafify(palette = ColPal, 
                        reverse = ColRev, 

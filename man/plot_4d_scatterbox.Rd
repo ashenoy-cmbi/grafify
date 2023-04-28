@@ -23,6 +23,7 @@ plot_4d_scatterbox(
   LogYLimits = NULL,
   facet_scales = "fixed",
   fontsize = 20,
+  group_wid = 0.8,
   symthick,
   bthick,
   ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy", "kelly",
@@ -68,6 +69,8 @@ plot_4d_scatterbox(
 \item{facet_scales}{whether or not to fix scales on X & Y axes for all facet facet graphs. Can be \code{fixed} (default), \code{free}, \code{free_y} or \code{free_x} (for Y and X axis one at a time, respectively).}
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
+
+\item{group_wid}{space between the factors along X-axis, i.e., dodge width. Default \code{group_wid = 0.8} (range 0-1), which can be set to 0 if you'd like the two plotted as \code{position = position_identity()}.}
 
 \item{symthick}{size (in 'pt' units) of outline of symbol lines (\code{stroke}), default = \code{fontsize}/22.}
 

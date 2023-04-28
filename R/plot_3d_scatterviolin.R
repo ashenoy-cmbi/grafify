@@ -153,9 +153,9 @@ plot_3d_scatterviolin <- function(data, xcol, ycol, shapes, facet, symsize = 3, 
                            ...)+
         annotation_logticks(sides = "l", 
                             outside = TRUE,
-                            base = 10,
-                            long = unit(0.2, "cm"), 
-                            mid = unit(0.1, "cm"),
+                            base = 10, color = "grey20",
+                            long = unit(7*fontsize/22, "pt"), size = unit(fontsize/22, "pt"),# 
+                            short = unit(3.5*fontsize/22, "pt"), mid = unit(5.5*fontsize/22, "pt"),#
                             ...)+ 
         coord_cartesian(clip = "off", ...)
     }
@@ -187,7 +187,6 @@ plot_3d_scatterviolin <- function(data, xcol, ycol, shapes, facet, symsize = 3, 
     guides(x = guide_axis(angle = TextXAngle),
            fill = guide_legend(order = 1),
            shape = guide_legend(order = 2))+
-    theme_classic(base_size = fontsize)+
-    theme(strip.background = element_blank())
+    theme_grafify(base_size = fontsize)
   P
 }

@@ -9,12 +9,29 @@ Full reference to all functions available at [`grafify` GitHub pages](https://as
 
 # grafify v3.0.2
 
-## Minor update
+## Major updates
+
+1. `theme_grafify` updates:
+
+    a. `lineend = square` as default for better-looking origin
+    b. transparent backgrounds throughout the plot
+    c. now applied to all `grafify` plots by default
+    d. all text size on the graph is now the same as the `basesize` (default 20) 
+  
+2. All violin plots (`plot_dotviolin`, `plot_scatterviolin`, `plot_3d_scatterviolin` and `plot_4d_scatterviolin`) now have two separate arguments `bthick` and `vthick` to set the linewidths of the boxes and violins, respectively. The previous `bvthick` will still work, so if a value is provided that will be used for linewidths of both boxes and violins.
+
+3. Two-way ANOVA graphs have a new argument (`group_wid`) to change the space between groups along the X-axis (i.e., dodge width). Default `group_wid = 0.8` will produce graphs that look similar to those in previous versions. If `group_wid` is set to 0, there will be no dodging of the factors along X-axis.
+4. Before-after plots have `bthick` and `lthick` arguments to change these independently.
+
+
+## Minor updates
 
 1. For consistency, the default width (`bwid` argument) of bars and boxes in `plot_4d_` functions is set as `0.7`.
-2. All violin plots (`plot_dotviolin`, `plot_scatterviolin`, `plot_3d_scatterviolin` and `plot_4d_scatterviolin`) now have two separate arguments `bthick` and `vthick` to set the linewidths of the boxes and violins, respectively. The previous `bvthick` will still work, so if a value is provided that will be used for linewidths of both boxes and violins.
 3. Rewritten code for many plot functions to make them shorter and simpler. 
-4. `theme_grafify` now has `lineend = square` as default.
+5. `log10` tick marks:
+    a. In all `plot_` functions: the tick marks now scale with the `fontsize` parameter. Previously, the sizes were set to "cm" units, which did not scale correctly. The long tick mark, middle and short ticks are sized: `7*fontsize/22`, `5.5*fontsize/22` and `3.5*fontsize/22`, respectively. The size (linewidth) equals `fontsize/22`, which is the same throughout `grafify`.
+    b. For consistency and usefulness, the  `plot_logscales` function also has the above defaults and now has `fontsize = 20` as an additional argument and sizes scale accordingly.
+    c. Colour of `log10` tick marks have the same colour as ticks on  non-transformed axis (`grey20`).
 
 # grafify v3.0.1
 
@@ -46,23 +63,17 @@ This is a major update for `grafify`, which now provides wrappers for basic gene
 1. Fit generalised additive models (gam) and get ANOVA tables with two new functions: `ga_model` and `ga_anova`. These are mainly for time-series analyses or where an assumption of linear relationship between predictor and outcomes is absent straight lines are not appropriate. Factor-wise smooths are fit with the `by` argument in `mgcv`, without or with a random factor. Random factors are also allowed with smooth  `re` smooth. See documentation for `mgcv` [smooths](https://noamross.github.io/gams-in-r-course/). Model diagnostics can be done with `plot_qq_gam` and `plot_qq_model`. Example data included as  `data_zooplankton` is from [Lathro RC, 2000](http://dx.doi.org/10.6073/pasta/ec3d0186753985147d4f283252388e05). 
 
 2. All `plot_` functions now have two major updates:
-
-a. Log-transformation of axes: Axes can be transformed with `log10` or `log2` with `LogYTrans` and `LogXTrans` arguments. X axis transformations are only available for `plot_xy_CatGroup` and `plot_xy_NumGroup`. With `log10` transformation, log-ticks will also appear. Default axes limits and labels should work in most cases, but if needed, three additional arguments are available: `LogYBreaks`, `LogYLimits` and `LogYLabels` (and respective ones for the X axis). 
-b. `facet` argument to add another variable to created faceted plots with the `facet_wrap` layer in `ggplot2`. A related argument `facet_scales` can be used to set Y or X axis scales on faceted panels.
+    a. Log-transformation of axes: Axes can be transformed with `log10` or `log2` with `LogYTrans` and `LogXTrans` arguments. X axis transformations are only available for `plot_xy_CatGroup` and `plot_xy_NumGroup`. With `log10` transformation, log-ticks will also appear. Default axes limits and labels should work in most cases, but if needed, three additional arguments are available: `LogYBreaks`, `LogYLimits` and `LogYLabels` (and respective ones for the X axis).
+    b. `facet` argument to add another variable to created faceted plots with the `facet_wrap` layer in `ggplot2`. A related argument `facet_scales` can be used to set Y or X axis scales on faceted panels.
 
 3. New plot functions:
-
-a. `plot_befafter_box` is a new before-after plot function that includes a box and whisker plot to show data distribution in addition to lines joining matched data. In addition, both `plot_befafter_colour` and `plot_befafter_shapes` offer a box and whiskers summary of data.
-
-b. `plot_lm_predict` and `plot_gam_predict` can be used to plot observed (raw) data and predicted data from fitted linear models.
-
-c. `plot_logscales` is a function to easily perform "log10" or "log2" transformation on X or Y axes of any `ggplot2` object along with log-ticks.
+    a. `plot_befafter_box` is a new before-after plot function that includes a box and whisker plot to show data distribution in addition to lines joining matched data. In addition, both `plot_befafter_colour` and `plot_befafter_shapes` offer a box and whiskers summary of data.
+    b. `plot_lm_predict` and `plot_gam_predict` can be used to plot observed (raw) data and predicted data from fitted linear models.
+    c. `plot_logscales` is a function to easily perform "log10" or "log2" transformation on X or Y axes of any `ggplot2` object along with log-ticks.
 
 4. Table manipulations:
-
-a. `table_x_reorder` is a function to reorder levels within a categorical variable. This uses `factor` from base R `stats` package to convert a column into a factor and reorders it based on a user-provided vector of group names.
-
-b. `table_summary` is a wrapper around `aggregate` (base R) function, which gives mean, median, SD, and counts grouped by one or more variables. 
+    a. `table_x_reorder` is a function to reorder levels within a categorical variable. This uses `factor` from base R `stats` package to convert a column into a factor and reorders it based on a user-provided vector of group names.
+    b. `table_summary` is a wrapper around `aggregate` (base R) function, which gives mean, median, SD, and counts grouped by one or more variables. 
 
 5. A `grafify` theme for `ggplot2`: `theme_grafify` is a modification of `theme_classic` for making publication-ready `grafify`-like graphs easily when using `ggplot2`.
 
@@ -84,8 +95,8 @@ The main motivation behind this update was to simplify the package by reducing t
 
 3. Four new quantitative schemes for continuous or divergent colours.
 
-- sequential/continuous: `blue_conti`, `grey_conti` 
-- divergent: `OrBl_div`, `PrGn_div`
+    a. sequential/continuous: `blue_conti`, `grey_conti`
+    b. divergent: `OrBl_div`, `PrGn_div`
 
 All schemes also available through `scale_fill..` and `scale_colour_...` calls to be used on any `ggplot2` object.
 
@@ -128,34 +139,34 @@ This is a major update with some new features, bugfixes, and further cleaning up
 
 ## New features
 
-  a. `plot_` functions have a new argument `ColSeq` (logical TRUE/FALSE) that picks colours sequentially from palette chosen by `ColPal` when `TRUE` (default). If set to `FALSE`, the most distant colours are chosen, as already implemented in `scale_..._grafify2` functions.
-  b. Violin plots get a major face-lift with a box-whiskers plot on top of the violin. This gives a clearer picture of data and dispersion than the default quantile lines in `geom_violin`. They also get new arguments to set thickness of lines (`bvthick`) and transparency of boxplots (`b_alpha`).
-  c. There are new functions for fitting linear models with varying slopes and intercepts. These are `mixed_model_slopes` and `mixed_anova_slopes`.
-  d. A function for comparing slopes of linear fits `posthoc_Trends` implements the `emmeans::emtrends` call.  
-  e. Most `plot_` functions now have the `...` argument forwarding dots for advanced users to add arguments to `ggplot` geometries where necessary.
-  f. New `plot_grafify_palette` function that helps quickly visualise colours in palettes along with their names and hexcodes.
-  g. `plot_bar_sd` and `plot_bar_sd_sc` have a new argument `bthick` to adjust the thickness of lines of the bars.
+1. `plot_` functions have a new argument `ColSeq` (logical TRUE/FALSE) that picks colours sequentially from palette chosen by `ColPal` when `TRUE` (default). If set to `FALSE`, the most distant colours are chosen, as already implemented in `scale_..._grafify2` functions.
+2. Violin plots get a major face-lift with a box-whiskers plot on top of the violin. This gives a clearer picture of data and dispersion than the default quantile lines in `geom_violin`. They also get new arguments to set thickness of lines (`bvthick`) and transparency of boxplots (`b_alpha`).
+3. There are new functions for fitting linear models with varying slopes and intercepts. These are `mixed_model_slopes` and `mixed_anova_slopes`.
+4. A function for comparing slopes of linear fits `posthoc_Trends` implements the `emmeans::emtrends` call.  
+5. Most `plot_` functions now have the `...` argument forwarding dots for advanced users to add arguments to `ggplot` geometries where necessary.
+6. New `plot_grafify_palette` function that helps quickly visualise colours in palettes along with their names and hexcodes.
+7. `plot_bar_sd` and `plot_bar_sd_sc` have a new argument `bthick` to adjust the thickness of lines of the bars.
 
 ## Bug fixes
 
-  a. Distribution plots: the The `Group` grouping argument in `plot_density`, `plot_histogram` and `plot_qqline` is now called `group` for consistency with other `plot_` functions.
-  c. The `Factor` argument in post-hoc comparisons functions (`posthoc_Pairwise`, `posthoc_vsRes`, and `posthoc_Levelwise`) renamed as `Fixed_Factor` to be consistent with `mixed_model`, `simple_model`, `mixed_anova` and `simple_anova` functions.
-  d. The `plot_3d_scatterbar` and `plot_3d_scatterbox` now correctly plot one-way ANOVA designs with randomised blocks with `shapes` mapped to levels of the random factor, and `xcol` as the grouping factor as originally intended but incorrectly implemented. This complements `plot_4d_scatterbar` and `plot_4d_scatterbox` which take two grouping factors and a random factor.
-  e. Examples in help files have arguments explicitly labelled to make them easier to follow.
-  f. `groups` in before-after plots is now called `match` as it is a bit more informative when showing matched data. 
-  g. For consistency, the argument for controlling opacity in distribution plots is renamed `c_alpha` in `plot_density` and `plot_histogram` (for colour opacity of colours under the density curve or histogram); opacity of symbols in `plot_qqline` is still called `s_alpha`.
+1. Distribution plots: the The `Group` grouping argument in `plot_density`, `plot_histogram` and `plot_qqline` is now called `group` for consistency with other `plot_` functions.
+2. The `Factor` argument in post-hoc comparisons functions (`posthoc_Pairwise`, `posthoc_vsRes`, and `posthoc_Levelwise`) renamed as `Fixed_Factor` to be consistent with `mixed_model`, `simple_model`, `mixed_anova` and `simple_anova` functions.
+3. The `plot_3d_scatterbar` and `plot_3d_scatterbox` now correctly plot one-way ANOVA designs with randomised blocks with `shapes` mapped to levels of the random factor, and `xcol` as the grouping factor as originally intended but incorrectly implemented. This complements `plot_4d_scatterbar` and `plot_4d_scatterbox` which take two grouping factors and a random factor.
+4. Examples in help files have arguments explicitly labelled to make them easier to follow.
+5. `groups` in before-after plots is now called `match` as it is a bit more informative when showing matched data. 
+6. For consistency, the argument for controlling opacity in distribution plots is renamed `c_alpha` in `plot_density` and `plot_histogram` (for colour opacity of colours under the density curve or histogram); opacity of symbols in `plot_qqline` is still called `s_alpha`.
 
 
 # grafify v1.5.1
 
 This update fixes and cleans up code to remove all errors, warnings and notes from `devtools::check()`. All previous code should still work. 
 
- a. The main update is that `broom.mixed::augment` is used to get model residuals than the `fortify` method as this will be deprecated soon. The `broom.mixed` package therefore required. 
- b. The way ANOVA table is generated no longer relies on an internal function from `lmerTest`, but instead forces a mixed model object as `lmerModLmerTest` object to get F and P values in ANOVA tables from the `stats::anova` call.
- c. The `magrittr` package is required for internal use of pipes (`%>%`).
+1. The main update is that `broom.mixed::augment` is used to get model residuals than the `fortify` method as this will be deprecated soon. The `broom.mixed` package therefore required. 
+2. The way ANOVA table is generated no longer relies on an internal function from `lmerTest`, but instead forces a mixed model object as `lmerModLmerTest` object to get F and P values in ANOVA tables from the `stats::anova` call.
+3. The `magrittr` package is required for internal use of pipes (`%>%`).
  d. Much of the code for `simple_model` and `mixed_model` was cleaned up so that model outputs are as close to objects generated by native calls to `lm` or `lmer`.
- e. Several internal functions related to the colour palettes have now been exported as this was easier.
- f. The `make_1w_rb_data` and `make_2w_rb_data` functions have been updated to have consistent factor and level names.
+4. Several internal functions related to the colour palettes have now been exported as this was easier.
+5. The `make_1w_rb_data` and `make_2w_rb_data` functions have been updated to have consistent factor and level names.
 
 # grafify v1.5.0
 

@@ -13,6 +13,7 @@
 #' @param LogXLimits a vector of length two specifying the range (minimum and maximum) of the X axis.
 #' @param LogYLabels argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
 #' @param LogXLabels argument for \code{ggplot2[scale_x_continuous]} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
+#' @param fontsize this parameter sets the linewidth of the `log10` tickmarks (`8*fontsize/22` for long ticks and `4*fontsize/22` for middle ticks). It is set to 20 as default to be consistent with rest of `grafify`. It will need to be changed to 12, which is the default fontsize for graphs produced natively with `ggplot2`.
 #' @param ... any other arguments to pass to \code{\link{scale_y_continuous}[ggplot2]} or \code{\link{scale_x_continuous}[ggplot2]}
 #'
 #' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
@@ -38,13 +39,13 @@
 #' aes(fill = Genotype), 
 #' alpha = .7))
 #' 
-plot_logscale <- function(Plot, LogYTrans = "log10", LogXTrans, LogYBreaks = waiver(), LogXBreaks = waiver(), LogYLimits = NULL, LogXLimits = NULL, LogYLabels = waiver(), LogXLabels = waiver(), ...){
+plot_logscale <- function(Plot, LogYTrans = "log10", LogXTrans, LogYBreaks = waiver(), LogXBreaks = waiver(), LogYLimits = NULL, LogXLimits = NULL, LogYLabels = waiver(), LogXLabels = waiver(), fontsize = 22, ...){
   P <- Plot
   if (!(LogYTrans %in% c("log2", "log10"))) {
     stop("LogYTrans only allows 'log2' or 'log10' transformation.")
   }
   if (LogYTrans == "log10") {
-    P <- P + 
+    suppressWarnings(P <- P + 
       scale_y_continuous(trans = "log10", 
                          breaks = LogYBreaks, 
                          labels = LogYLabels, 
@@ -52,25 +53,25 @@ plot_logscale <- function(Plot, LogYTrans = "log10", LogXTrans, LogYBreaks = wai
                          ...)+
       annotation_logticks(sides = "l", 
                           outside = TRUE,
-                          base = 10,
-                          long = unit(0.2, "cm"), 
-                          mid = unit(0.1, "cm"),
+                          base = 10, color = "grey20",
+                          long = unit(7*fontsize/22, "pt"), size = unit(fontsize/22, "pt"),# 
+                          short = unit(3.5*fontsize/22, "pt"), mid = unit(5.5*fontsize/22, "pt"),#
                           ...)+ 
-      coord_cartesian(clip = "off", ...)
+      coord_cartesian(clip = "off", ...))
   }
   if (LogYTrans == "log2") {
-    P <- P + 
+    suppressWarnings(P <- P + 
       scale_y_continuous(trans = "log2", 
                          breaks = LogYBreaks, 
                          labels = LogYLabels, 
                          limits = LogYLimits,
-                         ...)}
+                         ...))}
   if(!missing(LogXTrans)){
     if (!(LogXTrans %in% c("log2", "log10"))) {
       stop("LogXTrans only allows 'log2' or 'log10' transformation.")
     }
     if (LogXTrans == "log10") {
-      P <- P + 
+      suppressWarnings(P <- P + 
         scale_x_continuous(trans = "log10", 
                            breaks = LogXBreaks, 
                            labels = LogXLabels, 
@@ -78,18 +79,20 @@ plot_logscale <- function(Plot, LogYTrans = "log10", LogXTrans, LogYBreaks = wai
                            ...)+
         annotation_logticks(sides = "b", 
                             outside = TRUE,
-                            base = 10,
-                            long = unit(0.2, "cm"), 
-                            mid = unit(0.1, "cm"),
+                            base = 10, color = "grey20",
+                            long = unit(7*fontsize/22, "pt"), size = unit(fontsize/22, "pt"),# 
+                            short = unit(3.5*fontsize/22, "pt"), mid = unit(5.5*fontsize/22, "pt"),#
                             ...)+ 
-        coord_cartesian(clip = "off", ...)
+        coord_cartesian(clip = "off", ...))
     }
     if (LogXTrans == "log2") {
-      P <- P + 
+      suppressWarnings(P <- P + 
         scale_x_continuous(trans = "log2", 
                            breaks = LogXBreaks, 
                            labels = LogXLabels, 
                            limits = LogXLimits,
-                           ...)}}
+                           ...))
+    }
+    }
   P
 }

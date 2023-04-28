@@ -32,7 +32,8 @@
 #' @param facet_scales whether or not to fix scales on X & Y axes for all facet facet graphs. Can be `fixed` (default), `free`, `free_y` or `free_x` (for Y and X axis one at a time, respectively).
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param symthick size (in 'pt' units) of outline of symbol lines (\code{stroke}), default = `fontsize`/22.
-#' @param bthick thickness (in 'pt' units) of lines and boxes; default = `fontsize`/22.
+#' @param bthick thickness (in 'pt' units) of boxes; default = `(fontsize)/22`.
+#' @param lthick thickness (in 'pt' units) of lines; default = `(fontsize/1.2)/22`.
 #' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
@@ -62,27 +63,28 @@
 #' xcol = Genotype, ycol = PI, 
 #' match = Experiment) + facet_wrap("Time")
 
-plot_befafter_shapes <- function(data, xcol, ycol, match, facet, Boxplot = FALSE, symsize = 3, s_alpha = 1, bwid = 0.4, jitter = 0.1, TextXAngle = 0, LogYTrans, LogYBreaks = waiver(), LogYLabels = waiver(), LogYLimits = NULL, facet_scales = "fixed", fontsize = 20, symthick, bthick, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, SingleColour = "NULL", ...){
-  if (missing(bthick)) {bthick = (fontsize/1.5)/22}
+plot_befafter_shapes <- function(data, xcol, ycol, match, facet, Boxplot = FALSE, symsize = 3, s_alpha = 1, bwid = 0.4, jitter = 0.1, TextXAngle = 0, LogYTrans, LogYBreaks = waiver(), LogYLabels = waiver(), LogYLimits = NULL, facet_scales = "fixed", fontsize = 20, symthick, bthick, lthick, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, SingleColour = "NULL", ...){
+  if (missing(bthick)) {bthick = (fontsize)/22}
+  if (missing(lthick)) {lthick = (fontsize/1.5)/22}
   if (missing(symthick)) {symthick = (fontsize)/22}
   ColPal <- match.arg(ColPal)
   if(!Boxplot){
-    P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                    y = {{ ycol }},
-                                   group = factor({{ match }})))
+                                   group = factor({{ match }}))))
   } else {
-    P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                    y = {{ ycol }},
                                    group = factor({{ match }})))+
       geom_boxplot(aes(group = factor({{ xcol }})),
                    width = bwid,
                    outlier.alpha = 0,
                    colour = "grey25",
-                   size = bthick)
+                   size = bthick))
   }
-  P <- P + geom_line(aes(group = factor({{ match }})),
+  suppressWarnings(P <- P + geom_line(aes(group = factor({{ match }})),
                      colour = "grey35", alpha = 0.8, 
-                     size = bthick,
+                     size = lthick,
                      position = position_dodge(width = jitter),
                      ...)+
     geom_point(alpha = s_alpha, 
@@ -94,7 +96,7 @@ plot_befafter_shapes <- function(data, xcol, ycol, match, facet, Boxplot = FALSE
     scale_shape_manual(values = 0:25)+
     labs(x = enquo(xcol),
          colour = enquo(xcol),
-         shape = enquo(match))
+         shape = enquo(match)))
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
                         scales = facet_scales, 
@@ -113,9 +115,9 @@ plot_befafter_shapes <- function(data, xcol, ycol, match, facet, Boxplot = FALSE
                            ...)+
         annotation_logticks(sides = "l", 
                             outside = TRUE,
-                            base = 10,
-                            long = unit(0.2, "cm"), 
-                            mid = unit(0.1, "cm"),
+                            base = 10, color = "grey20",
+                            long = unit(7*fontsize/22, "pt"), size = unit(fontsize/22, "pt"),# 
+                            short = unit(3.5*fontsize/22, "pt"), mid = unit(5.5*fontsize/22, "pt"),#
                             ...)+ 
         coord_cartesian(clip = "off", ...)
     }
@@ -151,7 +153,6 @@ plot_befafter_shapes <- function(data, xcol, ycol, match, facet, Boxplot = FALSE
              shape = guide_legend(order = 2))
   }
   P <- P +
-    theme_classic(base_size = fontsize)+
-    theme(strip.background = element_blank())
+    theme_grafify(base_size = fontsize)
   P
 }

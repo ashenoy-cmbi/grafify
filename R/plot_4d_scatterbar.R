@@ -33,6 +33,7 @@
 #' @param b_alpha fractional opacity of boxes.  Default is set to 0, which results in white boxes inside violins. Change to any value >0 up to 1 for different levels of transparency. 
 #' @param bwid width of boxes; default 0.7.
 #' @param jitter extent of jitter (scatter) of symbols, default is 0.1. Increase to reduce symbol overlap, set to 0 for aligned symbols.  
+#' @param group_wid space between the factors along X-axis, i.e., dodge width. Default `group_wid = 0.8` (range 0-1), which can be set to 0 if you'd like the two plotted as `position = position_identity()`.
 #' @param ewid width of error bars, default set to 0.2.
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
 #' @param LogYTrans transform Y axis into "log10" or "log2"
@@ -73,7 +74,7 @@
 #' shapes = Block)
 #'
 
-plot_4d_scatterbar <- function(data, xcol, ycol, bars, shapes, facet, ErrorType = "SD", symsize = 3,  s_alpha = 0.8, b_alpha = 1, bwid = 0.7, jitter = 0.1, ewid = 0.2,  TextXAngle = 0, LogYTrans, LogYBreaks = waiver(), LogYLabels = waiver(), LogYLimits = NULL, facet_scales = "fixed", fontsize = 20, symthick, bthick, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColRev = FALSE, ColSeq = TRUE, ...){
+plot_4d_scatterbar <- function(data, xcol, ycol, bars, shapes, facet, ErrorType = "SD", symsize = 3,  s_alpha = 0.8, b_alpha = 1, bwid = 0.7, jitter = 0.1, ewid = 0.2,  TextXAngle = 0, LogYTrans, LogYBreaks = waiver(), LogYLabels = waiver(), LogYLimits = NULL, facet_scales = "fixed", fontsize = 20, group_wid = 0.8, symthick, bthick, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColRev = FALSE, ColSeq = TRUE, ...){
   ColPal <- match.arg(ColPal)
   if (!(ErrorType %in% c("SD", "SEM", "CI95"))) {
     stop('ErrorType should be "SD", "SEM" or "CI95".')}
@@ -82,7 +83,7 @@ plot_4d_scatterbar <- function(data, xcol, ycol, bars, shapes, facet, ErrorType 
   if(ErrorType == "CI95") {ER <- "mean_cl_normal"}
   if (missing(bthick)) {bthick = fontsize/22}
   if (missing(symthick)) {symthick = fontsize/22}
-  P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                  y = {{ ycol }},
                                  group = interaction(factor({{ bars }}),
                                                      factor({{ xcol }}))))+
@@ -92,19 +93,19 @@ plot_4d_scatterbar <- function(data, xcol, ycol, bars, shapes, facet, ErrorType 
                  alpha = b_alpha, 
                  linewidth = bthick,
                  aes(fill = factor({{ bars }})),
-                 position = position_dodge(width = 0.8),
+                 position = position_dodge(width = group_wid),
                  fun = "mean", ...)+
     geom_point(size = symsize, 
                alpha = s_alpha, 
                stroke = symthick, 
                colour = "black",
                position = position_jitterdodge(jitter.width = jitter,
-                                               dodge.width = 0.8),
+                                               dodge.width = group_wid),
                aes(shape = factor({{ shapes }})), ...)+
     scale_shape_manual(values = 0:25)+
     labs(fill = enquo(bars),
          x = enquo(xcol),
-         shape = enquo(shapes))
+         shape = enquo(shapes)))
   if(ER == "mean_cl_normal") {
     P <- P + 
       stat_summary(geom = "errorbar", 
@@ -112,7 +113,7 @@ plot_4d_scatterbar <- function(data, xcol, ycol, bars, shapes, facet, ErrorType 
                    linewidth = bthick, 
                    width = ewid,
                    fun.data = "mean_cl_normal",
-                   position = position_dodge(width = 0.8), ...)
+                   position = position_dodge(width = group_wid), ...)
   } else {
     P <- P + stat_summary(geom = "errorbar", 
                  colour = "black", 
@@ -120,7 +121,7 @@ plot_4d_scatterbar <- function(data, xcol, ycol, bars, shapes, facet, ErrorType 
                  width = ewid,
                  fun.data = ER,
                  fun.args = list(mult = 1),
-                 position = position_dodge(width = 0.8), ...)
+                 position = position_dodge(width = group_wid), ...)
   }
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
@@ -140,9 +141,9 @@ plot_4d_scatterbar <- function(data, xcol, ycol, bars, shapes, facet, ErrorType 
                            ...)+
         annotation_logticks(sides = "l", 
                             outside = TRUE,
-                            base = 10,
-                            long = unit(0.2, "cm"), 
-                            mid = unit(0.1, "cm"),
+                            base = 10, color = "grey20",
+                            long = unit(7*fontsize/22, "pt"), size = unit(fontsize/22, "pt"),# 
+                            short = unit(3.5*fontsize/22, "pt"), mid = unit(5.5*fontsize/22, "pt"),#
                             ...)+ 
         coord_cartesian(clip = "off", ...)
     }
@@ -155,8 +156,7 @@ plot_4d_scatterbar <- function(data, xcol, ycol, bars, shapes, facet, ErrorType 
                            ...)}
   }
   P <- P +
-    theme_classic(base_size = fontsize)+
-    theme(strip.background = element_blank())+
+    theme_grafify(base_size = fontsize)+
     guides(x = guide_axis(angle = TextXAngle),
            fill = guide_legend(order = 1),
            shape = guide_legend(order = 2))+

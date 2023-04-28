@@ -54,7 +54,7 @@ plot_scatterbox <- function(data, xcol, ycol, facet, symsize = 3, s_alpha = 0.8,
   ColPal <- match.arg(ColPal)
   if (missing(bthick)) {bthick = fontsize/22}
   if (missing(symthick)) {symthick = fontsize/22}
-  P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                  y = {{ ycol }}))+
     geom_boxplot(aes(fill = factor({{ xcol }})), 
                  size = bthick,
@@ -69,7 +69,7 @@ plot_scatterbox <- function(data, xcol, ycol, facet, symsize = 3, s_alpha = 0.8,
                size = symsize,
                aes(fill = factor({{ xcol }})))+
     labs(x = enquo(xcol),
-         fill = enquo(xcol))
+         fill = enquo(xcol)))
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
                         scales = facet_scales, 
@@ -88,9 +88,9 @@ plot_scatterbox <- function(data, xcol, ycol, facet, symsize = 3, s_alpha = 0.8,
                            ...)+
         annotation_logticks(sides = "l", 
                             outside = TRUE,
-                            base = 10,
-                            long = unit(0.2, "cm"), 
-                            mid = unit(0.1, "cm"),
+                            base = 10, color = "grey20",
+                            long = unit(7*fontsize/22, "pt"), size = unit(fontsize/22, "pt"),# 
+                            short = unit(3.5*fontsize/22, "pt"), mid = unit(5.5*fontsize/22, "pt"),#
                             ...)+ 
         coord_cartesian(clip = "off", ...)
     }
@@ -122,9 +122,8 @@ plot_scatterbox <- function(data, xcol, ycol, facet, symsize = 3, s_alpha = 0.8,
                          ColSeq = ColSeq)
     
   }
-  P <- P +
-    theme_classic(base_size = fontsize)+
-    theme(strip.background = element_blank())+
+  P <- P + 
+    theme_grafify(base_size = fontsize)+
     guides(x = guide_axis(angle = TextXAngle))
   P
 }
