@@ -10,7 +10,7 @@
 #'
 #' Bars depict means using \code{\link[ggplot2]{stat_summary}} with \code{geom = "bar", fun = "mean"} , and bar width is set to 0.7 (cannot be changed). Error bar width can be changed with the `ewid` argument.
 #' 
-#' Boxplot geometry uses \code{\link[ggplot2]{geom_boxplot}} with \code{position = position_dodge(width = 0.9), width = 0.6}. The thick line within the boxplot depicts the median, the box the IQR (interquantile range) and the whiskers show 1.5*IQR.
+#' Boxplot geometry uses \code{\link[ggplot2]{geom_boxplot}} with \code{position = position_dodge(width = 0.9), width = 0.6}. The thick line within the boxplot depicts the median, the box the IQR (interquartile range) and the whiskers show 1.5*IQR.
 #' 
 #' In 4d versions, the two grouping variables (i.e. `xcol` and either `boxes` or `bars`) are passed to ggplot aesthetics through \code{group = interaction{ xcol, shapes}}. 
 #'  
@@ -72,7 +72,7 @@
 #' boxes = Time, 
 #' shapes = Experiment)
 #' 
-
+#' 
 plot_4d_scatterviolin <- function(data, xcol, ycol, boxes, shapes, facet, symsize = 3, s_alpha = 0.8, v_alpha = 1, b_alpha = 0, bwid = 0.3, vadjust = 1, jitter = 0.1, TextXAngle = 0, scale = "width", trim = TRUE, LogYTrans, LogYBreaks = waiver(), LogYLabels = waiver(), LogYLimits = NULL, facet_scales = "fixed", fontsize = 20, group_wid = 0.8, symthick, bthick, vthick, bvthick, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, ...){
   ColPal <- match.arg(ColPal)
   if (!missing(bvthick)) {

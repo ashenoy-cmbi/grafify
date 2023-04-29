@@ -114,7 +114,7 @@ Shapes are always plotted in black colour, and their opacity can be changed with
 
 Bars depict means using \code{\link[ggplot2]{stat_summary}} with \code{geom = "bar", fun = "mean"} , and bar width is set to 0.7 (cannot be changed). Error bar width can be changed with the \code{ewid} argument.
 
-Boxplot geometry uses \code{\link[ggplot2]{geom_boxplot}} with \code{position = position_dodge(width = 0.9), width = 0.6}. The thick line within the boxplot depicts the median, the box the IQR (interquantile range) and the whiskers show 1.5*IQR.
+Boxplot geometry uses \code{\link[ggplot2]{geom_boxplot}} with \code{position = position_dodge(width = 0.9), width = 0.6}. The thick line within the boxplot depicts the median, the box the IQR (interquartile range) and the whiskers show 1.5*IQR.
 
 In 4d versions, the two grouping variables (i.e. \code{xcol} and either \code{boxes} or \code{bars}) are passed to ggplot aesthetics through \code{group = interaction{ xcol, shapes}}.
 

@@ -40,59 +40,63 @@
 #' alpha = .7))
 #' 
 plot_logscale <- function(Plot, LogYTrans = "log10", LogXTrans, LogYBreaks = waiver(), LogXBreaks = waiver(), LogYLimits = NULL, LogXLimits = NULL, LogYLabels = waiver(), LogXLabels = waiver(), fontsize = 22, ...){
-  P <- Plot
+  P <- Plot + #add margins
+    theme(axis.text.x.bottom = element_text(margin = margin(t = fontsize/4,
+                                                            unit = "pt")),
+          axis.text.y.left = element_text(margin = margin(r = fontsize/4,
+                                                          unit = "pt")))
   if (!(LogYTrans %in% c("log2", "log10"))) {
     stop("LogYTrans only allows 'log2' or 'log10' transformation.")
   }
   if (LogYTrans == "log10") {
     suppressWarnings(P <- P + 
-      scale_y_continuous(trans = "log10", 
-                         breaks = LogYBreaks, 
-                         labels = LogYLabels, 
-                         limits = LogYLimits,
-                         ...)+
-      annotation_logticks(sides = "l", 
-                          outside = TRUE,
-                          base = 10, color = "grey20",
-                          long = unit(7*fontsize/22, "pt"), size = unit(fontsize/22, "pt"),# 
-                          short = unit(4*fontsize/22, "pt"), mid = unit(4*fontsize/22, "pt"),#
-                          ...)+ 
-      coord_cartesian(clip = "off", ...))
+                       scale_y_continuous(trans = "log10", 
+                                          breaks = LogYBreaks, 
+                                          labels = LogYLabels, 
+                                          limits = LogYLimits,
+                                          ...)+
+                       annotation_logticks(sides = "l", 
+                                           outside = TRUE,
+                                           base = 10, color = "grey20",
+                                           long = unit(7*fontsize/22, "pt"), size = unit(fontsize/22, "pt"),# 
+                                           short = unit(4*fontsize/22, "pt"), mid = unit(4*fontsize/22, "pt"),#
+                                           ...)+ 
+                       coord_cartesian(clip = "off", ...))
   }
   if (LogYTrans == "log2") {
     suppressWarnings(P <- P + 
-      scale_y_continuous(trans = "log2", 
-                         breaks = LogYBreaks, 
-                         labels = LogYLabels, 
-                         limits = LogYLimits,
-                         ...))}
+                       scale_y_continuous(trans = "log2", 
+                                          breaks = LogYBreaks, 
+                                          labels = LogYLabels, 
+                                          limits = LogYLimits,
+                                          ...))}
   if(!missing(LogXTrans)){
     if (!(LogXTrans %in% c("log2", "log10"))) {
       stop("LogXTrans only allows 'log2' or 'log10' transformation.")
     }
     if (LogXTrans == "log10") {
       suppressWarnings(P <- P + 
-        scale_x_continuous(trans = "log10", 
-                           breaks = LogXBreaks, 
-                           labels = LogXLabels, 
-                           limits = LogXLimits,
-                           ...)+
-        annotation_logticks(sides = "b", 
-                            outside = TRUE,
-                            base = 10, color = "grey20",
-                            long = unit(7*fontsize/22, "pt"), size = unit(fontsize/22, "pt"),# 
-                            short = unit(4*fontsize/22, "pt"), mid = unit(4*fontsize/22, "pt"),#
-                            ...)+ 
-        coord_cartesian(clip = "off", ...))
+                         scale_x_continuous(trans = "log10", 
+                                            breaks = LogXBreaks, 
+                                            labels = LogXLabels, 
+                                            limits = LogXLimits,
+                                            ...)+
+                         annotation_logticks(sides = "b", 
+                                             outside = TRUE,
+                                             base = 10, color = "grey20",
+                                             long = unit(7*fontsize/22, "pt"), size = unit(fontsize/22, "pt"),# 
+                                             short = unit(4*fontsize/22, "pt"), mid = unit(4*fontsize/22, "pt"),#
+                                             ...)+ 
+                         coord_cartesian(clip = "off", ...))
     }
     if (LogXTrans == "log2") {
       suppressWarnings(P <- P + 
-        scale_x_continuous(trans = "log2", 
-                           breaks = LogXBreaks, 
-                           labels = LogXLabels, 
-                           limits = LogXLimits,
-                           ...))
+                         scale_x_continuous(trans = "log2", 
+                                            breaks = LogXBreaks, 
+                                            labels = LogXLabels, 
+                                            limits = LogXLimits,
+                                            ...))
     }
-    }
+  }
   P
 }

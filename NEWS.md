@@ -15,21 +15,22 @@ Full reference to all functions available at [`grafify` GitHub pages](https://as
 
     a. `lineend = square` as default for better-looking origin
     b. transparent backgrounds throughout the plot
-    c. now applied to all `grafify` plots by default
-    d. all text size on the graph is now the same as the `basesize` (default 20) 
+    c. this theme is now applied to all `grafify` plots by default
+    d. all text size on the graph is now the same as the `basesize` (default 20)
   
-2. All violin plots (`plot_dotviolin`, `plot_scatterviolin`, `plot_3d_scatterviolin` and `plot_4d_scatterviolin`) now have two separate arguments `bthick` and `vthick` to set the linewidths of the boxes and violins, respectively. The previous `bvthick` will still work, so if a value is provided that will be used for linewidths of both boxes and violins.
+2. New arguments in violin plots (`plot_dotviolin`, `plot_scatterviolin`, `plot_3d_scatterviolin` and `plot_4d_scatterviolin`): two separate arguments `bthick` and `vthick` to set the line widths of the boxes and violins, respectively. The previous `bvthick` will still work, so if a value is provided that will be used for line widths of both boxes and violins.
 
-3. Two-way ANOVA graphs have a new argument (`group_wid`) to change the space between groups along the X-axis (i.e., dodge width). Default `group_wid = 0.8` will produce graphs that look similar to those in previous versions. If `group_wid` is set to 0, there will be no dodging of the factors along X-axis.
-4. Before-after plots have `bthick` and `lthick` arguments to change these independently.
+3. New argument for two-way ANOVA graphs (`plot_4d_`):  the `group_wid` can be used to change the space between groups along the X-axis (i.e., dodge width). Default `group_wid = 0.8` will produce graphs that look similar to those in previous versions of `grafify`. If `group_wid` is set to 0, there will be no dodging of the factors along X-axis.
+
+4. New arguments in before-after plots (i.e., `plot_befafter_`): `bthick` and `lthick` arguments can change line and box line widths independently.
 
 
 ## Minor updates
 
 1. For consistency, the default width (`bwid` argument) of bars and boxes in `plot_4d_` functions is set as `0.7`.
-3. Rewritten code for many plot functions to make them shorter and simpler. 
+3. Parts of code rewritten for many plot functions to make them shorter and simpler. 
 5. `log10` tick marks:
-    a. In all `plot_` functions: the tick marks now scale with the `fontsize` parameter. Previously, the sizes were set to "cm" units, which did not scale correctly. The long tick mark, middle and short ticks are sized: `7*fontsize/22`, `4*fontsize/22` and `4*fontsize/22`, respectively (note that the short and mid are the same size). The size (linewidth) equals `fontsize/22`, which is the same throughout `grafify`.
+    a. In all `plot_` functions: the tick marks now scale with the `fontsize` parameter. Previously, the sizes were set to "cm" units, which did not scale correctly. The long tick mark, middle and short ticks are sized: `7*fontsize/22`, `4*fontsize/22` and `4*fontsize/22`, respectively (note that the short and mid are the same size). The size (line width) equals `fontsize/22`, which is the same throughout `grafify`.
     b. For consistency and usefulness, the  `plot_logscales` function also has the above defaults and now has `fontsize = 20` as an additional argument and sizes scale accordingly.
     c. Colour of `log10` tick marks have the same colour as ticks on  non-transformed axis (`grey20`).
 
