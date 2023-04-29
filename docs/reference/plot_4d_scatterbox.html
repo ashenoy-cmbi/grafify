@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.2.0.9999</span>
       </span>
     </div>
 
@@ -69,7 +69,7 @@
 <span>  symsize <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>  s_alpha <span class="op">=</span> <span class="fl">0.8</span>,</span>
 <span>  b_alpha <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  bwid <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>  bwid <span class="op">=</span> <span class="fl">0.7</span>,</span>
 <span>  jitter <span class="op">=</span> <span class="fl">0.1</span>,</span>
 <span>  TextXAngle <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  <span class="va">LogYTrans</span>,</span>
@@ -78,6 +78,7 @@
 <span>  LogYLimits <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  facet_scales <span class="op">=</span> <span class="st">"fixed"</span>,</span>
 <span>  fontsize <span class="op">=</span> <span class="fl">20</span>,</span>
+<span>  group_wid <span class="op">=</span> <span class="fl">0.8</span>,</span>
 <span>  <span class="va">symthick</span>,</span>
 <span>  <span class="va">bthick</span>,</span>
 <span>  ColPal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"okabe_ito"</span>, <span class="st">"all_grafify"</span>, <span class="st">"bright"</span>, <span class="st">"contrast"</span>, <span class="st">"dark"</span>, <span class="st">"fishy"</span>, <span class="st">"kelly"</span>,</span>
@@ -127,7 +128,7 @@
 
 
 <dt>bwid</dt>
-<dd><p>width of boxes; default 0.5.</p></dd>
+<dd><p>width of boxes; default 0.7.</p></dd>
 
 
 <dt>jitter</dt>
@@ -160,6 +161,10 @@
 
 <dt>fontsize</dt>
 <dd><p>parameter of <code>base_size</code> of fonts in <code>theme_classic</code>, default set to size 20.</p></dd>
+
+
+<dt>group_wid</dt>
+<dd><p>space between the factors along X-axis, i.e., dodge width. Default <code>group_wid = 0.8</code> (range 0-1), which can be set to 0 if you'd like the two plotted as <code>position = position_identity()</code>.</p></dd>
 
 
 <dt>symthick</dt>
@@ -198,7 +203,7 @@
 <p>Variables other than the quantitative variable (<code>ycol</code>) will be automatically converted to categorical variables even if they are numeric in the data table.</p>
 <p>Shapes are always plotted in black colour, and their opacity can be changed with the <code>s_alpha</code> argument and overlap can be reduced with the <code>jitter</code> argument. Other arguments are similar to other plot functions as briefly explained below.</p>
 <p>Bars depict means using <code><a href="https://ggplot2.tidyverse.org/reference/stat_summary.html" class="external-link">stat_summary</a></code> with <code>geom = "bar", fun = "mean"</code> , and bar width is set to 0.7 (cannot be changed). Error bar width can be changed with the <code>ewid</code> argument.</p>
-<p>Boxplot geometry uses <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></code> with <code>position = position_dodge(width = 0.9), width = 0.6</code>. The thick line within the boxplot depicts the median, the box the IQR (interquantile range) and the whiskers show 1.5*IQR.</p>
+<p>Boxplot geometry uses <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></code> with <code>position = position_dodge(width = 0.9), width = 0.6</code>. The thick line within the boxplot depicts the median, the box the IQR (interquartile range) and the whiskers show 1.5*IQR.</p>
 <p>In 4d versions, the two grouping variables (i.e. <code>xcol</code> and either <code>boxes</code> or <code>bars</code>) are passed to ggplot aesthetics through <code>group = interaction{ xcol, shapes}</code>.</p>
 <p>Colours can be changed using <code>ColPal</code>, <code>ColRev</code> or <code>ColSeq</code> arguments.
 <code>ColPal</code> can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
@@ -231,6 +236,14 @@
 <span class="r-in"><span>bars <span class="op">=</span> <span class="va">Treatment</span>, </span></span>
 <span class="r-in"><span>shapes <span class="op">=</span> <span class="va">Block</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot_4d_scatterbox-4.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="co">#without dodging groups on X</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="plot_4d_scatterviolin.html">plot_4d_scatterviolin</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data_2w_Tdeath</span>, </span></span>
+<span class="r-in"><span>xcol <span class="op">=</span> <span class="va">Genotype</span>, </span></span>
+<span class="r-in"><span>ycol <span class="op">=</span> <span class="va">PI</span>, </span></span>
+<span class="r-in"><span>boxes <span class="op">=</span> <span class="va">Time</span>, </span></span>
+<span class="r-in"><span>shapes <span class="op">=</span> <span class="va">Time</span>,</span></span>
+<span class="r-in"><span>group_wid <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="plot_4d_scatterbox-5.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
   </div>

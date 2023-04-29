@@ -84,7 +84,7 @@ better documented at present.
     6.  Graphs with SD, SEM or CI95 error bars: `plot_point_sd`,
         `plot_scatterbar_sd`, `plot_3d_scatterbar`
 
-<img src="man/figures/all_graphsv2.3.0.jpg" width="90%" />
+<img src="man/figures/all_graphsv3.2.0.png" width="90%" />
 
 #### Colourblind-friendly colour schemes
 
@@ -95,7 +95,7 @@ making graphs with `plot_` functions.
 In addition, `scale_fill_grafify` and `scale_colour_grafify` functions
 can be used to apply all `grafify` palettes to any `ggplot2` object.
 
-<img src="man/figures/grafify_palettesv230.jpg" width="90%" />
+<img src="man/figures/grafify_palettesv320.png" width="90%" />
 
 All palettes are colourblind-friendly. (See Mike Mol’s
 [blog](https://mikemol.github.io/technique/colorblind/2018/02/11/color-safe-palette.html)
@@ -155,7 +155,7 @@ The best place to see `grafify` in action is the
 [vignettes](https://grafify-vignettes.netlify.app) website, which has
 detailed description of all functions.
 
-### **Latest version: v3.0.1 on CRAN or GitHub**
+### **Latest version: v3.2.0 on CRAN or GitHub**
 
 Find out about [latest updates
 here](https://grafify-vignettes.netlify.app/release_notes.html).

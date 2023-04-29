@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.2.0.9999</span>
       </span>
     </div>
 
@@ -79,6 +79,7 @@
 <span>  fontsize <span class="op">=</span> <span class="fl">20</span>,</span>
 <span>  <span class="va">symthick</span>,</span>
 <span>  <span class="va">bthick</span>,</span>
+<span>  <span class="va">lthick</span>,</span>
 <span>  ColPal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"okabe_ito"</span>, <span class="st">"all_grafify"</span>, <span class="st">"bright"</span>, <span class="st">"contrast"</span>, <span class="st">"dark"</span>, <span class="st">"fishy"</span>, <span class="st">"kelly"</span>,</span>
 <span>    <span class="st">"light"</span>, <span class="st">"muted"</span>, <span class="st">"pale"</span>, <span class="st">"r4"</span>, <span class="st">"safe"</span>, <span class="st">"vibrant"</span><span class="op">)</span>,</span>
 <span>  ColSeq <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -163,7 +164,11 @@
 
 
 <dt>bthick</dt>
-<dd><p>thickness (in 'pt' units) of lines and boxes; default = <code>fontsize</code>/22.</p></dd>
+<dd><p>thickness (in 'pt' units) of boxes; default = <code>(fontsize)/22</code>.</p></dd>
+
+
+<dt>lthick</dt>
+<dd><p>thickness (in 'pt' units) of lines; default = <code>(fontsize/1.2)/22</code>.</p></dd>
 
 
 <dt>ColPal</dt>

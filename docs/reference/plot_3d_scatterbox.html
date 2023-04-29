@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.2.0.9999</span>
       </span>
     </div>
 
@@ -198,7 +198,7 @@
 <p>Variables other than the quantitative variable (<code>ycol</code>) will be automatically converted to categorical variables even if they are numeric in the data table.</p>
 <p>Shapes are always plotted in black colour, and their opacity can be changed with the <code>s_alpha</code> argument and overlap can be reduced with the <code>jitter</code> argument. Other arguments are similar to other plot functions as briefly explained below.</p>
 <p>Bars depict means using <code><a href="https://ggplot2.tidyverse.org/reference/stat_summary.html" class="external-link">stat_summary</a></code> with <code>geom = "bar", fun = "mean"</code> , and bar width is set to 0.7 (cannot be changed). Error bar width can be changed with the <code>ewid</code> argument.</p>
-<p>Boxplot geometry uses <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></code> with <code>position = position_dodge(width = 0.9), width = 0.6</code>. The thick line within the boxplot depicts the median, the box the IQR (interquantile range) and the whiskers show 1.5*IQR.</p>
+<p>Boxplot geometry uses <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></code> with <code>position = position_dodge(width = 0.9), width = 0.6</code>. The thick line within the boxplot depicts the median, the box the IQR (interquartile range) and the whiskers show 1.5*IQR.</p>
 <p>In 4d versions, the two grouping variables (i.e. <code>xcol</code> and either <code>boxes</code> or <code>bars</code>) are passed to ggplot aesthetics through <code>group = interaction{ xcol, shapes}</code>.</p>
 <p>Colours can be changed using <code>ColPal</code>, <code>ColRev</code> or <code>ColSeq</code> arguments.
 <code>ColPal</code> can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".

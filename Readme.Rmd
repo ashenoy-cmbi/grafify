@@ -80,7 +80,7 @@ Two other features including practice datasets (with randomised blocks), and dat
   
   
 ```{r, all-graphs, echo = F, out.width="90%"}
-knitr::include_graphics("man/figures/all_graphsv2.3.0.jpg")
+knitr::include_graphics("man/figures/all_graphsv3.2.0.png")
 ```
 
 #### Colourblind-friendly colour schemes
@@ -90,7 +90,7 @@ The following 12 categorical (qualitative/discreet) and 5 quantitative (3 sequen
 In addition, `scale_fill_grafify` and `scale_colour_grafify` functions can be used to apply all `grafify` palettes to any `ggplot2` object.
 
 ```{r, image-palettes, echo = F, out.width="90%"}
-knitr::include_graphics("man/figures/grafify_palettesv230.jpg")
+knitr::include_graphics("man/figures/grafify_palettesv320.png")
 ```
 
 All palettes are colourblind-friendly. (See Mike Mol's [blog](https://mikemol.github.io/technique/colorblind/2018/02/11/color-safe-palette.html) and Paul Tol's [blog](https://personal.sron.nl/~pault/#sec:qualitative). Additional colour schemes were chosen from [`cols4all` package](https://github.com/mtennekes/cols4all)).
@@ -133,7 +133,7 @@ Generating random one-way and two-way data based on mean and SD and residual err
 
 The best place to see `grafify`  in action is the [vignettes](https://grafify-vignettes.netlify.app) website, which has detailed description of all functions.
 
-### **Latest version: v3.0.1 on CRAN or GitHub** 
+### **Latest version: v3.2.0 on CRAN or GitHub** 
 
 Find out about [latest updates here](https://grafify-vignettes.netlify.app/release_notes.html).
 
