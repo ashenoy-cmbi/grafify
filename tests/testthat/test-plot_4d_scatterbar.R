@@ -22,5 +22,9 @@ test_that("Check 4d scatter bars", {
   expect_match(as.character(rlang::quo_get_expr(sb1$labels$fill)), 
                "Time")
   #check text angle is passed on
-  expect_equal(sb1$guides$x$angle, 45)
+  if (utils::packageVersion("ggplot2") <= "3.4.2") {
+    expect_equal(sb1$guides$x$angle, 45)
+  } else {
+    expect_equal(sb1$guides$guides$x$params$angle, 45)
+  }
 })

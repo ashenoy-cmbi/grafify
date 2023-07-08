@@ -17,7 +17,11 @@ test_that("Check before-after colors plots", {
   expect_match(as.character(db1$labels$y), 
                "PI")
   #check text angle is passed on
-  expect_equal(db1$guides$x$angle, 45)
+  if (utils::packageVersion("ggplot2") <= "3.4.2") {
+    expect_equal(db1$guides$x$angle, 45)
+  } else {
+    expect_equal(db1$guides$guides$x$params$angle, 45)
+  }
 })
 
 test_that("Check before-after colour plots", {
@@ -37,7 +41,11 @@ test_that("Check before-after colour plots", {
   expect_match(as.character(db2$labels$y), 
                "PI")
   #check text angle is passed on
-  expect_equal(db2$guides$x$angle, 45)
+  if (utils::packageVersion("ggplot2") <= "3.4.2") {
+    expect_equal(db2$guides$x$angle, 45)
+  } else {
+    expect_equal(db2$guides$guides$x$params$angle, 45)
+  }
 })
 
 test_that("Check before-after shapes plots", {
@@ -57,5 +65,11 @@ test_that("Check before-after shapes plots", {
   expect_match(as.character(db2$labels$y), 
                "PI")
   #check text angle is passed on
-  expect_equal(db2$guides$x$angle, 45)
+
+  if (utils::packageVersion("ggplot2") <= "3.4.2") {
+    expect_equal(db2$guides$x$angle, 45)
+  } else {
+    expect_equal(db2$guides$guides$x$params$angle, 45)
+  }
 })
+
