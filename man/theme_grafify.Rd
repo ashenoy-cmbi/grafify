@@ -10,6 +10,8 @@ theme_grafify(
   base_line_size = base_size/22,
   base_rect_size = base_size/22,
   TextXAngle = 0,
+  vjust = 0,
+  hjust = 0,
   ...
 )
 }
@@ -23,6 +25,10 @@ theme_grafify(
 \item{base_rect_size}{default size of rectangles (default is base font size/22)}
 
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
+
+\item{vjust}{vertical adjustment of X-axis text alignment (between 0 and 1). Set \code{hjust} and \code{vjust} to 1 if \code{TextXAngle = 45}. Try other options if using other angles.}
+
+\item{hjust}{horizontal adjustment of X-axis text alignment (between 0 and 1).  Set \code{hjust} and \code{vjust} to 1 if \code{TextXAngle = 45}. Try other options if using other angles.}
 
 \item{...}{for any other arguments to pass to \code{theme}. A useful one is \code{aspect.ratio = 1} for square plots.}
 }

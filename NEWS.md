@@ -7,6 +7,15 @@ output:
 
 Full reference to all functions available at [`grafify` GitHub pages](https://ashenoy-cmbi.github.io/grafify/index.html). 
 
+# grafify v3.2.1
+
+## Minor updates
+
+1. Fixed the double `{{` in `theme_grafify`.
+2. Added `hjust` and `just` arguments to `theme_grafify` to adjust text alignment when angles are changed.
+3. Merged a pull request from @teunbrand (guide_tests) to update tests after ggplot2 update. 
+
+
 # grafify v3.2.0
 
 ## Major updates

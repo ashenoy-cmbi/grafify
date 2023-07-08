@@ -9,6 +9,8 @@
 #' @param base_line_size default line size (default is base font size/22)
 #' @param base_rect_size default size of rectangles (default is base font size/22)
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text. 
+#' @param vjust vertical adjustment of X-axis text alignment (between 0 and 1). Set `hjust` and `vjust` to 1 if `TextXAngle = 45`. Try other options if using other angles.
+#' @param hjust horizontal adjustment of X-axis text alignment (between 0 and 1).  Set `hjust` and `vjust` to 1 if `TextXAngle = 45`. Try other options if using other angles.
 #' @param ... for any other arguments to pass to `theme`. A useful one is `aspect.ratio = 1` for square plots.
 #'
 #' @return this returns an output with class "theme" and "gg". 
@@ -22,7 +24,7 @@
 #' size = 3, alpha = .7)+
 #' theme_grafify()
 #' 
-theme_grafify <- function(base_size = 20, base_family = "", base_line_size = base_size/22, base_rect_size = base_size/22, TextXAngle = 0, ...) {
+theme_grafify <- function(base_size = 20, base_family = "", base_line_size = base_size/22, base_rect_size = base_size/22, TextXAngle = 0, vjust = 0, hjust = 0, ...) {
   theme_classic(base_size = base_size, 
                 base_family = base_family, 
                 base_line_size = base_line_size, 
@@ -43,7 +45,9 @@ theme_grafify <- function(base_size = 20, base_family = "", base_line_size = bas
           legend.text = element_text(size = rel(1)),
           legend.justification = "top",
           strip.text = element_text(size = rel(1)),
-          axis.text.x = element_text(angle = {{ TextXAngle }}),
+          axis.text.x = element_text(angle = TextXAngle,
+                                     vjust = vjust, 
+                                     hjust = hjust),
           rect = element_rect(fill = "transparent"),
           panel.background = element_rect(fill = 'transparent',
                                           color = NA_character_),
