@@ -1,18 +1,14 @@
-#' Plot a dot plot with matched shapes on a box plot using four variables.
+#' Plot a scatter plot with bars for 2-way ANOVAs without or with a blocking factor.
 #'
-#' The functions \code{\link{plot_3d_scatterbar}}, \code{\link{plot_3d_scatterbox}}, \code{\link{plot_4d_scatterbar}}  and \code{\link{plot_4d_scatterbox}} are useful for plotting one-way or two-way ANOVA designs with randomised blocks or repeated measures. The blocks or subjects can be mapped to the `shapes` argument in both functions (up to 25 levels can be mapped to `shapes`; there will be an error if this number is exceeded). The 3d versions use the categorical variable (`xcol`) for grouping (e.g. one-way ANOVA designs), and 4d versions take an additional grouping variable (e.g. two-way ANOVA designs) that is passed to either `boxes` or `bars` argument.
+#' The functions \code{\link{plot_3d_scatterbar}}, \code{\link{plot_3d_scatterbox}}, \code{\link{plot_3d_scatterviolin}}, \code{\link{plot_4d_scatterbar}}, \code{\link{plot_4d_scatterbox}} and \code{\link{plot_4d_scatterviolin}} are useful for plotting one-way or two-way ANOVA designs with randomised blocks or repeated measures.
 #' 
-#' These functions rely on \code{\link[ggplot2]{ggplot}} with \code{\link[ggplot2]{geom_point}} and \code{\link[ggplot2]{geom_bar}} (through \code{stat_summary}) or \code{\link[ggplot2]{geom_boxplot}} geometries.
-#'
+#' The `shapes` argument can be left blank to plot ordinary 2-way ANOVAs without blocking. 
+#' 
+#' A blocking factor or subjects can be mapped to the `shapes` argument in both types of functions (up to 25 levels can be mapped to `shapes`; there will be an error if this number is exceeded). The 3d versions use the categorical variable (`xcol`) for grouping (e.g. one-way ANOVA designs), and 4d versions take an additional grouping variable (e.g. two-way ANOVA designs) that is passed to either `boxes`, `bars`, `points` argument.
+#' 
 #' Variables other than the quantitative variable (`ycol`) will be automatically converted to categorical variables even if they are numeric in the data table.
 #' 
-#' Shapes are always plotted in black colour, and their opacity can be changed with the `s_alpha` argument and overlap can be reduced with the `jitter` argument. Other arguments are similar to other plot functions as briefly explained below.
-#'
-#' Bars depict means using \code{\link[ggplot2]{stat_summary}} with \code{geom = "bar", fun = "mean"} , and bar width is set to 0.7 (cannot be changed). Error bar width can be changed with the `ewid` argument.
-#' 
-#' Boxplot geometry uses \code{\link[ggplot2]{geom_boxplot}} with \code{position = position_dodge(width = 0.9), width = 0.6}. The thick line within the boxplot depicts the median, the box the IQR (interquartile range) and the whiskers show 1.5*IQR.
-#' 
-#' In 4d versions, the two grouping variables (i.e. `xcol` and either `boxes` or `bars`) are passed to ggplot aesthetics through \code{group = interaction{ xcol, shapes}}. 
+#' In `plot_4d_point_sd`, a large coloured symbol is plotted at the mean with SD error bars as default, which can be changed to SEM or CI95 error bars.
 #'  
 #' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. 
 #' `ColPal` can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
@@ -25,7 +21,7 @@
 #' @param xcol name of the column with the categorical factor to plot on X axis. If column is numeric, enter as \code{factor(col)}.
 #' @param ycol name of the column to plot on quantitative variable on the Y axis.
 #' @param bars name of the column containing grouping within the factor plotted on X axis. Can be categorical or numeric X. If your table has numeric X and you want to plot as factor, enter \code{xcol = factor(name of colum)}.
-#' @param shapes name of the column that contains matched observations, e.g. subject IDs, experiment ID.
+#' @param shapes name of the column that contains matched observations (e.g. subject IDs, experiment number) or another variable to pass on to symbol shapes. If not provided, the shapes for all groups is the same.
 #' @param facet add another variable from the data table to create faceted graphs using \code{ggplot2}[facet_wrap].
 #' @param ErrorType select the type of error bars to display. Default is "SD" (standard deviation). Other options are "SEM" (standard error of the mean) and "CI95" (95% confidence interval based on t distributions).
 #' @param symsize size of symbols, default set to 3.
@@ -83,29 +79,41 @@ plot_4d_scatterbar <- function(data, xcol, ycol, bars, shapes, facet, ErrorType 
   if(ErrorType == "CI95") {ER <- "mean_cl_normal"}
   if (missing(bthick)) {bthick = fontsize/22}
   if (missing(symthick)) {symthick = fontsize/22}
-  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+  data <- data.frame(data, stringsAsFactors = TRUE)
+  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
                                  y = {{ ycol }},
-                                 group = interaction(factor({{ bars }}),
-                                                     factor({{ xcol }}))))+
+                                 group = interaction({{ bars }},
+                                                     {{ xcol }})))+
     stat_summary(geom = "bar", 
                  colour = "black", 
                  width = bwid, 
                  alpha = b_alpha, 
                  linewidth = bthick,
-                 aes(fill = factor({{ bars }})),
+                 aes(fill = {{ bars }}),
                  position = position_dodge(width = group_wid),
-                 fun = "mean", ...)+
-    geom_point(size = symsize, 
-               alpha = s_alpha, 
-               stroke = symthick, 
-               colour = "black",
-               position = position_jitterdodge(jitter.width = jitter,
-                                               dodge.width = group_wid),
-               aes(shape = factor({{ shapes }})), ...)+
-    scale_shape_manual(values = 0:25)+
-    labs(fill = enquo(bars),
-         x = enquo(xcol),
-         shape = enquo(shapes)))
+                 fun = "mean", ...))
+  if(missing(shapes)){
+    suppressWarnings(P <- P +
+                       geom_point(size = symsize, 
+                                  alpha = s_alpha, 
+                                  stroke = symthick, 
+                                  colour = "black",
+                                  position = position_jitterdodge(jitter.width = jitter,
+                                                                  dodge.width = group_wid),
+                                  aes(fill = {{ bars }}), 
+                                  shape = 21, ...))
+  } else {
+    suppressWarnings(P <- P + 
+                       geom_point(size = symsize, 
+                                  alpha = s_alpha, 
+                                  stroke = symthick, 
+                                  colour = "black",
+                                  position = position_jitterdodge(jitter.width = jitter,
+                                                                  dodge.width = group_wid),
+                                  aes(shape = {{ shapes }}),
+                                  ...)+
+                       scale_shape_manual(values = 0:25))
+  }
   if(ER == "mean_cl_normal") {
     P <- P + 
       stat_summary(geom = "errorbar", 

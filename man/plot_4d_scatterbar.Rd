@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_4d_scatterbar.R
 \name{plot_4d_scatterbar}
 \alias{plot_4d_scatterbar}
-\title{Plot a dot plot with matched shapes on a box plot using four variables.}
+\title{Plot a scatter plot with bars for 2-way ANOVAs without or with a blocking factor.}
 \usage{
 plot_4d_scatterbar(
   data,
@@ -44,7 +44,7 @@ plot_4d_scatterbar(
 
 \item{bars}{name of the column containing grouping within the factor plotted on X axis. Can be categorical or numeric X. If your table has numeric X and you want to plot as factor, enter \code{xcol = factor(name of colum)}.}
 
-\item{shapes}{name of the column that contains matched observations, e.g. subject IDs, experiment ID.}
+\item{shapes}{name of the column that contains matched observations (e.g. subject IDs, experiment number) or another variable to pass on to symbol shapes. If not provided, the shapes for all groups is the same.}
 
 \item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
 
@@ -94,20 +94,16 @@ plot_4d_scatterbar(
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
-The functions \code{\link{plot_3d_scatterbar}}, \code{\link{plot_3d_scatterbox}}, \code{\link{plot_4d_scatterbar}}  and \code{\link{plot_4d_scatterbox}} are useful for plotting one-way or two-way ANOVA designs with randomised blocks or repeated measures. The blocks or subjects can be mapped to the \code{shapes} argument in both functions (up to 25 levels can be mapped to \code{shapes}; there will be an error if this number is exceeded). The 3d versions use the categorical variable (\code{xcol}) for grouping (e.g. one-way ANOVA designs), and 4d versions take an additional grouping variable (e.g. two-way ANOVA designs) that is passed to either \code{boxes} or \code{bars} argument.
+The functions \code{\link{plot_3d_scatterbar}}, \code{\link{plot_3d_scatterbox}}, \code{\link{plot_3d_scatterviolin}}, \code{\link{plot_4d_scatterbar}}, \code{\link{plot_4d_scatterbox}} and \code{\link{plot_4d_scatterviolin}} are useful for plotting one-way or two-way ANOVA designs with randomised blocks or repeated measures.
 }
 \details{
-These functions rely on \code{\link[ggplot2]{ggplot}} with \code{\link[ggplot2]{geom_point}} and \code{\link[ggplot2]{geom_bar}} (through \code{stat_summary}) or \code{\link[ggplot2]{geom_boxplot}} geometries.
+The \code{shapes} argument can be left blank to plot ordinary 2-way ANOVAs without blocking.
+
+A blocking factor or subjects can be mapped to the \code{shapes} argument in both types of functions (up to 25 levels can be mapped to \code{shapes}; there will be an error if this number is exceeded). The 3d versions use the categorical variable (\code{xcol}) for grouping (e.g. one-way ANOVA designs), and 4d versions take an additional grouping variable (e.g. two-way ANOVA designs) that is passed to either \code{boxes}, \code{bars}, \code{points} argument.
 
 Variables other than the quantitative variable (\code{ycol}) will be automatically converted to categorical variables even if they are numeric in the data table.
 
-Shapes are always plotted in black colour, and their opacity can be changed with the \code{s_alpha} argument and overlap can be reduced with the \code{jitter} argument. Other arguments are similar to other plot functions as briefly explained below.
-
-Bars depict means using \code{\link[ggplot2]{stat_summary}} with \code{geom = "bar", fun = "mean"} , and bar width is set to 0.7 (cannot be changed). Error bar width can be changed with the \code{ewid} argument.
-
-Boxplot geometry uses \code{\link[ggplot2]{geom_boxplot}} with \code{position = position_dodge(width = 0.9), width = 0.6}. The thick line within the boxplot depicts the median, the box the IQR (interquartile range) and the whiskers show 1.5*IQR.
-
-In 4d versions, the two grouping variables (i.e. \code{xcol} and either \code{boxes} or \code{bars}) are passed to ggplot aesthetics through \code{group = interaction{ xcol, shapes}}.
+In \code{plot_4d_point_sd}, a large coloured symbol is plotted at the mean with SD error bars as default, which can be changed to SEM or CI95 error bars.
 
 Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} arguments.
 \code{ColPal} can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".

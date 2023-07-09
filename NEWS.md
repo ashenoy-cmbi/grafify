@@ -9,6 +9,11 @@ Full reference to all functions available at [`grafify` GitHub pages](https://as
 
 # grafify v3.2.1
 
+## Major updates
+
+1. `plot_4d_point_sd` and `plot_3d_point_sd` functions for plotting 2-way and 1-way ANOVAs without or with blocking factors as mean and SD/SEM/CI95 error bars. 
+2. `plot_4d_` functions can now plot 2-way ANOVAs even if the `shapes` argument is not provided. Graph is plotted with `shape = 21` as default. 
+
 ## Minor updates
 
 1. Fixed the double `{{` in `theme_grafify`.
