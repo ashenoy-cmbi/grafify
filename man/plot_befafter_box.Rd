@@ -91,16 +91,17 @@ plot_befafter_box(
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
-The \code{\link{plot_befafter_box}}, \code{\link{plot_befafter_colours}}, \code{\link{plot_befafter_colors}} and \code{\link{plot_befafter_shapes}} are for plotting matched data joined by lines. These functions take X and Y variables along with a data column with matching information (e.g. matched subjects or experiments etc.) and plot symbols matched by colour or shape.
+One of 3 related functions to plot matching data joined by lines. The variable containing information for matching (e.g. matched subjects or experiments etc.) is passed to the \code{match} argument.
+\enumerate{
+\item \code{\link{plot_befafter_colours}} or \code{\link{plot_befafter_colors}},
+\item \code{\link{plot_befafter_shapes}}
+\item \code{\link{plot_befafter_box}}
+}
 }
 \details{
-Use \code{\link{plot_befafter_box}} to also get a boxplot with matched data. In this function, the categorical variable along X axis is mapped to the fill-colour aesthetic.
+In \code{plot_befafter_colours}/\code{plot_befafter_colors} and \code{plot_befafter_shapes} setting \code{Boxplot = TRUE} will also plot a box and whiskers plot.
 
-The default is a plot without matching shapes. Change the \code{PlotShapes} argument to \code{TRUE} for plot similar to \code{\link{plot_befafter_shapes}}. Note that with \code{PlotShapes = TRUE} the colour of symbols will always be black and the X-axis variable is mapped to the fill colour of boxplots.
-
-Note that only 25 shapes are available, and there will be errors with \code{\link{plot_befafter_shapes}} when there are fewer than 25 matched observations; instead use default (\code{PlotShapes = FALSE}).
-
-Add another variable to make faceted graphs with the \code{facet} argument.
+Note that only 25 shapes are available, and there will be errors with \code{\link{plot_befafter_shapes}} when there are fewer than 25 matched observations; instead use \code{\link{plot_befafter_colours}} instead.
 
 Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} arguments.
 \code{ColPal} can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
@@ -108,19 +109,16 @@ Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} argum
 \code{ColSeq} decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
 
 To plot a graph with a single colour along the X axis variable, use the \code{SingleColour} argument.
+
+The resulting \code{ggplot2} graph can take additional geometries or other layers.
 }
 \examples{
-#plot without legends if necessary
 plot_befafter_box(data = data_t_pdiff, 
 xcol = Condition, ycol = Mass, 
 match = Subject)
+
 #with PlotShapes = TRUE
 plot_befafter_box(data = data_t_pdiff, 
 xcol = Condition, ycol = Mass, 
 match = Subject, PlotShapes = TRUE)
-#2way ANOVA design with randomised blocks
-plot_befafter_box(data = data_2w_Tdeath, 
-xcol = Time2, ycol = PI, 
-match = Experiment, facet = Genotype)
-
 }

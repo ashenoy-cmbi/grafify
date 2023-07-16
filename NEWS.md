@@ -11,14 +11,17 @@ Full reference to all functions available at [`grafify` GitHub pages](https://as
 
 ## Major updates
 
-1. `plot_4d_point_sd` and `plot_3d_point_sd` functions for plotting 2-way and 1-way ANOVAs without or with blocking factors as mean and SD/SEM/CI95 error bars. 
-2. `plot_4d_` functions can now plot 2-way ANOVAs even if the `shapes` argument is not provided. Graph is plotted with `shape = 21` as default. 
+1. It is easier to plot 2-way ANOVA designs with or without blocking factors in this version with the following updates. There are two new `plot_..` functions for 1-way and 2-way designs.
 
+    a. `plot_4d_` functions can now plot 2-way ANOVAs even if the `shapes` argument is not provided. Graph is plotted with `shape = 21` as default. 
+
+    b. `plot_4d_point_sd` and `plot_3d_point_sd` functions for plotting 2-way and 1-way ANOVAs without or with blocking factors as mean and SD/SEM/CI95 error bars. 
 ## Minor updates
 
 1. Fixed the double `{{` in `theme_grafify`.
 2. Added `hjust` and `just` arguments to `theme_grafify` to adjust text alignment when angles are changed.
 3. Merged a pull request from @teunbrand (guide_tests) to update tests after ggplot2 update. 
+4. Re-written `plot_` functions where categorical variables are converted to factors before being passed to `ggplot2`.
 
 
 # grafify v3.2.0

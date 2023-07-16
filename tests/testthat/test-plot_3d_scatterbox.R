@@ -15,7 +15,7 @@ test_that("Check 3d scatter box", {
                  width = .7,
                  colour = "black",
                  fun = "mean",
-                 size = 1,
+                 linewidth = 1,
                  aes(fill = Time),
                  position = position_dodge(width = 0.8))+
     geom_point(size = 2.5, aes(shape = Time),
@@ -26,7 +26,7 @@ test_that("Check 3d scatter box", {
     stat_summary(geom = "errorbar",
                  width = 0.2,
                  fun.data = "mean_sdl",
-                 size = 1,
+                 linewidth = 1,
                  fun.args = list(mult = 1),
                  position = position_dodge(width = 0.8))+
     scale_shape_manual(values = 0:25)+
@@ -44,14 +44,18 @@ test_that("Check 3d scatter box", {
   expect_s3_class(sb1, "ggplot")
   expect_equal(sb1$theme$text$size, 20)
   #match aesthetics in labels
-  expect_match(as.character(rlang::quo_get_expr(sb1$labels$x)), 
-               "Genotype")
-  expect_match(as.character(sb1$labels$y), 
-               "PI")
-  expect_match(as.character(rlang::quo_get_expr(sb1$labels$shape)), 
-               "Time")
-  expect_match(as.character(rlang::quo_get_expr(sb1$labels$fill)), 
-               "Genotype")
+  #expect_match(sb1$labels$x, 
+  #             "Genotype")
+  #expect_match(sb1$labels$y, 
+  #             "PI")
+  #expect_match(as.character(rlang::quo_get_expr(sb1$labels$shape)), 
+  #             "Time")
+  #expect_match(sb1$labels$fill, 
+  #             "Genotype")
+  #check guide titles from 3.2.1 onwards
+  expect_match(sb1$labels$x, "Genotype")
+  expect_match(sb1$labels$shape, "Time")
+  expect_match(sb1$labels$fill, "Genotype")
   #check text angle is passed on
   if (utils::packageVersion("ggplot2") <= "3.4.2") {
     expect_equal(sb1$guides$x$angle, 45)

@@ -19,10 +19,20 @@ simple_model(data, Y_value, Fixed_Factor, ...)
 This function returns an object of class "lm".
 }
 \description{
-This function uses \code{\link{lm}} to fit a linear model to data and outputs the model object. It requires a data table, one quantitative dependent variable and one or more independent variables.
-The model output can be used to extract coefficients and other information, including post-hoc comparisons. If your experiment design has random factors, use the related function \code{\link{mixed_model}}.
+One of two functions for simple ANOVA tables and linear models without random effects, which use \code{\link{lm}} to fit a linear models.
+\enumerate{
+\item \code{link{simple_anova}}
+\item \code{link{simple_model}}
+}
 }
 \details{
+Update in v0.2.1: This function uses \code{\link{lm}} to fit a linear model to data, passes it on to \code{\link[car]{Anova}}, and outputs the ANOVA table with type II sum of squares with F statistics and \emph{P} values.
+
+(Previous versions produced type I sum of squares using \code{\link{anova}} call.)
+It requires a data table, one quantitative dependent variable and one or more independent variables.
+
+The model output can be used to extract coefficients and other information, including post-hoc comparisons. If your experiment design has random factors, use the related function \code{\link{mixed_model}}.
+
 This function is related to \code{link{simple_anova}}.
 Output of this function can be used with \code{\link{posthoc_Pairwise}}, \code{\link{posthoc_Levelwise}} and \code{\link{posthoc_vsRef}}, or with \code{\link[emmeans]{emmeans}}.
 }

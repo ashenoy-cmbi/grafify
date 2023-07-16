@@ -39,16 +39,27 @@ plot_gam_predict <- function(Model, xcol, ycol, ByFactor, symsize = 1, s_alpha =
   modeldf$high <- modeldf$pred+modeldf$pred.se*1.96
   modeldf$low <- modeldf$pred-modeldf$pred.se*1.96
   
-  plot_xy_CatGroup(modeldf, 
-                   xcol = {{ xcol }}, 
-                   ycol = {{ ycol }},
-                   CatGroup = {{ ByFactor }},
-                   facet = {{ ByFactor }},
-                   symsize = symsize,
-                   s_alpha = s_alpha,
-                   ...)+
-    geom_ribbon(aes(ymin = low,
-                    ymax = high,
-                    fill = {{ ByFactor }}),
-                alpha = smooth_alpha)
+  #plot_xy_CatGroup(modeldf, 
+  #                 xcol = {{ xcol }}, 
+  #                 ycol = {{ ycol }},
+  #                 CatGroup = {{ ByFactor }},
+  #                 facet = {{ ByFactor }},
+  #                 symsize = symsize,
+  #                 s_alpha = s_alpha,
+  #                 ...)
+  suppressWarnings(ggplot(modeldf,
+                          aes(x = {{ xcol }},
+                              y = {{ ycol }},
+                              fill = {{ ByFactor }}))+
+                     geom_point(size = symsize,
+                                alpha = s_alpha,
+                                shape = 21,
+                                stroke = fontsize/22)+
+                     facet_wrap(vars({{ ByFactor }}))+
+                     geom_ribbon(aes(ymin = low,
+                                     ymax = high,
+                                     fill = {{ ByFactor }}),
+                                 alpha = smooth_alpha)+
+    theme_grafify(base_size = fontsize)+
+    scale_fill_grafify())
 }

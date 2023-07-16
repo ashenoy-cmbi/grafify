@@ -58,7 +58,7 @@ plot_qqline(
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
-This function takes a data table, a quantitative variable (\code{ycol}), and a categorical grouping variable (\code{group}), if available, and plots a QQ graph using \code{\link{ggplot2}[stat_qq]} and \code{\link{ggplot2}[stat_qq_line]}.
+This function takes a data table, a quantitative variable (\code{ycol}), and a categorical grouping variable (\code{group}), if available, and plots a QQ graph using \code{\link{ggplot2}[stat_qq]} and \code{\link{ggplot2}[stat_qq_line]}.  Alternatives are \code{\link{plot_histogram}}, or \code{\link{plot_qqline}}.
 }
 \details{
 Note that the function requires the quantitative Y variable first, and a grouping variable as \code{group} if required. The graph plots sample quantiles on Y axis & theoretical quantiles on X axis. The X variable is mapped to the \code{fill} aesthetic in\code{stat_qq} and \code{colour} aesthetic for the \code{stat_qq_line}.
@@ -71,10 +71,5 @@ Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} argum
 \examples{
 plot_qqline(data = data_cholesterol, 
 ycol = Cholesterol, group = Treatment)
-
-#with faceting
-plot_qqline(data = data_cholesterol, 
-ycol = Cholesterol, group = Treatment, 
-fontsize = 10)+facet_wrap("Treatment")
 
 }

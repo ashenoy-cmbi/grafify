@@ -1,6 +1,14 @@
 #' Model from a linear model fit to data.
 #'
-#' This function uses \code{\link{lm}} to fit a linear model to data and outputs the model object. It requires a data table, one quantitative dependent variable and one or more independent variables. 
+#' One of two functions for simple ANOVA tables and linear models without random effects, which use \code{\link{lm}} to fit a linear models. 
+#' 1. \code{link{simple_anova}}
+#' 2. \code{link{simple_model}}
+#' 
+#' Update in v0.2.1: This function uses \code{\link{lm}} to fit a linear model to data, passes it on to \code{\link[car]{Anova}}, and outputs the ANOVA table with type II sum of squares with F statistics and _P_ values. 
+#' 
+#' (Previous versions produced type I sum of squares using \code{\link{anova}} call.)
+#' It requires a data table, one quantitative dependent variable and one or more independent variables. 
+#' 
 #' The model output can be used to extract coefficients and other information, including post-hoc comparisons. If your experiment design has random factors, use the related function \code{\link{mixed_model}}.
 #'
 #' This function is related to \code{link{simple_anova}}. 

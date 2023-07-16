@@ -1,8 +1,11 @@
 #' Plot a dotplot on a violin plot with two variables.
 #'
-#' There are three types of `plot_dot_` functions that plot "dots" as data symbols plotted with \code{\link[ggplot2]{geom_dotplot}} geometry. Variants can show summary and data distributions as bar and SD errors (\link{plot_dotbar_sd}; or SEM or CI95 error bars), box and whisker plots (\link{plot_dotbox}) or violin and box & whiskers plots (\link{plot_dotviolin}). They all take a data table, a categorical X variable and a numeric Y variable. 
+#' There are three types of `plot_dot_` functions that plot data as "dots" using the \code{\link[ggplot2]{geom_dotplot}} geometry. They all take a data table, a categorical X variable and a numeric Y variable. 
+#' 1. \link{plot_dotbar_sd} (bar & SD, SEM or CI95 error bars)
+#' 2. \link{plot_dotbox} (box & whiskers)
+#' 3. \link{plot_dotviolin} (box & whiskers, violin)
 #' 
-#' Related `plot_scatter_` variants show data symbols using the \code{\link[ggplot2]{geom_point}} geometry. These are \link{plot_scatterbar_sd} (or SEM or CI95 error bars), \link{plot_scatterbox} and \link{plot_scatterviolin}. Overplotting in `plot_scatter` variants can be reduced with the `jitter` argument.
+#' Related `plot_scatter_` variants show data symbols using the \code{\link[ggplot2]{geom_point}} geometry. These are \link{plot_scatterbar_sd} (or SEM or CI95 error bars), \link{plot_scatterbox} and \link{plot_scatterviolin}. Over plotting in `plot_scatter` variants can be reduced with the `jitter` argument.
 #' 
 #' The X variable is mapped to the \code{fill} aesthetic of dots, symbols, bars, boxes and violins.
 #' 
@@ -71,23 +74,22 @@ plot_dotviolin <- function(data, xcol, ycol, facet, dotsize = 1.5, d_alpha = 0.8
   if (missing(bthick)) {bthick = fontsize/22}
   if (missing(vthick)) {vthick = fontsize/22}
   if (missing(dotthick)) {dotthick = fontsize/22}
-  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+  data[[deparse(substitute(xcol))]] <- factor(data[[deparse(substitute(xcol))]])
+  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
                                                   y = {{ ycol }}))+
-                     geom_violin(aes(fill = factor({{ xcol }})),
+                     geom_violin(aes(fill = {{ xcol }}),
                                  alpha = v_alpha,
                                  trim = trim,
                                  scale = scale,
                                  colour = "black", 
                                  size = vthick,
                                  adjust = vadjust,
-                                 ...)+
-                     labs(x = enquo(xcol),
-                          fill = enquo(xcol)))
+                                 ...))
   if (b_alpha == 0) {
     suppressWarnings(P <- P +
                        geom_boxplot(fill = "white",
                                     colour = "black", 
-                                    size = bthick,
+                                    linewidth = bthick,
                                     outlier.alpha = 0,
                                     width = bwid,
                                     ...)+
@@ -96,14 +98,14 @@ plot_dotviolin <- function(data, xcol, ycol, facet, dotsize = 1.5, d_alpha = 0.8
                                     alpha = d_alpha,
                                     dotsize = dotsize,
                                     binaxis = 'y',
-                                    aes(fill = factor({{ xcol }})),
+                                    aes(fill = {{ xcol }}),
                                     ...))
   } else {
     suppressWarnings(P <- P +
-                       geom_boxplot(aes(fill = factor({{ xcol }})),
+                       geom_boxplot(aes(fill = {{ xcol }}),
                                     alpha = b_alpha,
                                     colour = "black", 
-                                    size = bthick,
+                                    linewidth = bthick,
                                     outlier.alpha = 0,
                                     width = bwid,
                                     ...)+
@@ -112,7 +114,7 @@ plot_dotviolin <- function(data, xcol, ycol, facet, dotsize = 1.5, d_alpha = 0.8
                                     alpha = d_alpha,
                                     dotsize = dotsize,
                                     binaxis = 'y',
-                                    aes(fill = factor({{ xcol }})),
+                                    aes(fill = {{ xcol }}),
                                     ...)) 
   }
   if(!missing(facet)) {

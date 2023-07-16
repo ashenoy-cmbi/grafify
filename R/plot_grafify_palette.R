@@ -17,18 +17,26 @@
 #' 
 plot_grafify_palette <- function(palette = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant", "OrBl_div", "PrGn_div", "blue_conti", "grey_conti", "yellow_conti"), fontsize = 14, ...) {
   palette <- match.arg(palette)
-  t1 <- data.frame(graf_palettes[palette])
-  t1$colour_name <- rownames(t1)
-  t1$number <- -1*seq(from = 1, to = nrow(t1))
-  t1$names <- paste0(t1[,2], "_", t1[,1])
+  names <- as.vector(names(as.list(graf_palettes[[palette]])))
+  names <- factor(names, 
+                  levels = rev(names))
+  colours <- as.vector(graf_palettes[[palette]])
+  t1 <- data.frame(names = names, 
+                   colours = colours)
+  names2 <- paste0(t1[,1], "_", t1[,2])
+  t1$names <- factor(t1$names,
+                     levels = names,
+                     labels = rev(names2))
+  #t1[order(t1$number),]
   suppressWarnings(P <- plot_scatterbar_sd(data = t1, 
-                                           xcol = reorder(t1$names, t1$number),
+                                           xcol = names,
                                            ycol = .1, s_alpha = 0,
-                                           ColPal = {{ palette }},
-                                           ColRev = T,
+                                           ColPal = palette,
+                                           ColRev = TRUE,
                                            fontsize = fontsize, 
                                            b_alpha = 1,
-                                           ...)+ guides(fill = "none")+
+                                           ...)+ 
+                     guides(fill = "none")+
                      theme(axis.line.x = element_blank(),
                            axis.line.y = element_blank(),
                            axis.text.x = element_blank(),
@@ -37,6 +45,6 @@ plot_grafify_palette <- function(palette = c("okabe_ito", "all_grafify", "bright
                            axis.title.x = element_blank(),
                            axis.title.y = element_blank())+
                      labs(title = paste0("grafify palette: ", palette))+
-                     coord_flip())+scale_y_reverse()
+                     coord_flip())
   P
 }

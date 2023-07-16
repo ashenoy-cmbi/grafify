@@ -1,6 +1,11 @@
 #' Fit a generalised additive model (`gam`)
 #' 
-#' The two functions \code{\link{ga_model}} and \code{\link{ga_anova}} are for fitting generalised additive models (`gam`) with the [`mgcv` package](https://CRAN.R-project.org/package=mgcv). It will use the `gam()` function in `mgcv` for ANOVA designs with **up to two categorical fixed factors** (with two or more levels; `Fixed_Factor`), and **exactly one factor is a continuous variable** (e.g. time), which is called `Smooth_Factor`. A smooth function is fitted with factor-wise smooth basis function (`by = `). A default value for number of nodes (the argument `k` in `gam`) may work, but a specific number can be provided using the `Nodes` argument. The model is fit using the `REML` method. When two categorical fixed factors are provided, an interaction term is included for main effects and smooth basis functions. 
+#' One of two functions for fitting generalised additive models (`gam`) with the [`mgcv` package](https://CRAN.R-project.org/package=mgcv). It will use the `gam()` function in `mgcv` for ANOVA designs with **up to two categorical fixed factors** (with two or more levels; `Fixed_Factor`), and **exactly one factor is a continuous variable** (e.g. time), which is called `Smooth_Factor`. 
+#'  1. \code{\link{ga_model}}
+#'  2. \code{\link{ga_anova}} 
+#'  
+#'  
+#' A smooth function is fitted with factor-wise smooth basis function (`by = `). A default value for number of nodes (the argument `k` in `gam`) may work, but a specific number can be provided using the `Nodes` argument. The model is fit using the `REML` method. When two categorical fixed factors are provided, an interaction term is included for main effects and smooth basis functions. 
 #' 
 #' If a `Random_Factor` is also provided, it is fitted using `bs = "re"` smooth. 
 #'

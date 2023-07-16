@@ -33,17 +33,24 @@ mixed_anova(
 ANOVA table of class "anova" and "data.frame".
 }
 \description{
-There are four related functions for mixed effects analyses: \code{mixed_model}, \code{mixed_anova}, \code{mixed_model_slopes}, and \code{mixed_anova_slopes}.
+One of four related functions for mixed effects analyses (based on \code{\link[lme4]{lmer}} and \code{\link[lmerTest]{as_lmerModLmerTest}}) to get a linear model for downstream steps, or an ANOVA table.
+\enumerate{
+\item \code{mixed_model}
+\item \code{mixed_anova}
+\item \code{mixed_model_slopes}
+\item \code{mixed_anova_slopes}.
+}
 }
 \details{
-This function uses \code{\link[lme4]{lmer}} to fit a linear mixed effect model and provides the model object, which could be used for post-hoc comparisons. The model object is converted to class \code{lmerModLmerTest} object by \code{\link[lmerTest]{as_lmerModLmerTest}}. This is then passes on the model to \code{\link{anova}} and provides the ANOVA table with F and P values.
-It produces a type II sum of squares ANOVA table with Kenward-Roger approximation for degrees of freedom (as implemented in \code{lmerTest}) package.
-It requires a data table, one dependent variable (Y_value), one or more independent variables (Fixed_Factor), and at least one random factor (Random_Factor). These should match names of variables in the long-format data table exactly.
-This function is related to \code{\link{mixed_model}}.
+These functions require a data table, one dependent variable (Y_value), one or more independent variables (Fixed_Factor), and at least one random factor (Random_Factor). These should match names of variables in the long-format data table exactly.
+
+Outputs of \code{mixed_model} and \code{mixed_model_slopes} can be used for post-hoc comparisons with \code{\link{posthoc_Pairwise}}, \code{\link{posthoc_Levelwise}}, \code{\link{posthoc_vsRef}}, \code{\link{posthoc_Trends_Pairwise}}, \code{\link{posthoc_Trends_Levelwise}} and \code{\link{posthoc_Trends_vsRef}}or with \code{\link[emmeans]{emmeans}}.
 
 More than one fixed factors can be provided as a vector (e.g. c("A", "B")). A full model with interaction term is fitted.
 This means when \code{Y_value = Y, Fixed_factor = c("A", "B"), Random_factor = "R"} are entered as arguments, these are passed on as \code{Y ~ A*B + (1|R)} (which is equivalent to \code{Y ~ A + B + A:B + (1|R)}).
-For simplicity, only random intercepts are fitted (\code{(1|R)}).
+
+In \code{mixed_model_slopes} and \code{mixed_anova_slopes}, the following kind of formula is used: \code{Y ~ A*B + (S|R)} (which is equivalent to \code{Y ~ A + B + A:B + (S|R)}).
+In this experimental implementation, random slopes and intercepts are fitted (\code{(Slopes_Factor|Random_Factor)}). Only one term each is allowed for \code{Slopes_Factor} and \code{Random_Factor}.
 }
 \examples{
 #Usage with one fixed (Student) and random factor (Experiment)

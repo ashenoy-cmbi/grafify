@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_4d_point_sd.R
 \name{plot_4d_point_sd}
 \alias{plot_4d_point_sd}
-\title{Plot a scatter plot with SD or other error bars for 2-way ANOVAs without or with a blocking factor.}
+\title{Plot mean & error bars for 2-way ANOVAs with or without a blocking factor.}
 \usage{
 plot_4d_point_sd(
   data,
@@ -17,7 +17,7 @@ plot_4d_point_sd(
   symshape = 22,
   all_alpha = 0.3,
   all_size = 2.5,
-  all_shape = 1,
+  all_shape = 0,
   all_jitter = 0,
   ewid = 0.2,
   group_wid = 0.8,
@@ -40,29 +40,29 @@ plot_4d_point_sd(
 \arguments{
 \item{data}{a data table, e.g. data.frame or tibble.}
 
-\item{xcol}{name of the column with the categorical factor to plot on X axis. If column is numeric, enter as \code{factor(col)}.}
+\item{xcol}{name of the column with the variable to plot on X axis (will be converted to a factor/categorical variable).}
 
 \item{ycol}{name of the column to plot on quantitative variable on the Y axis.}
 
-\item{points}{name of the column with grouping within the factor plotted on X axis. Can be categorical or numeric X. .}
+\item{points}{name of the column with grouping within the factor plotted on X-axis (will be converted to a factor/categorical variable).}
 
-\item{shapes}{name of the column that contains matched observations (e.g. subject IDs, experiment number) or another variable to pass on to symbol shapes. If not provided, the shapes for all groups is the same, and can be changed with \code{all_shapes}, \code{all_alpha}, \code{all_size} etc.}
+\item{shapes}{name of the column that contains matched observations (e.g. subject IDs, experiment number) or another variable to pass on to symbol shapes (will be converted to a factor/categorical variable). If not provided, the shapes for all groups is the same, and can be changed with \code{all_shapes}, \code{all_alpha}, \code{all_size} etc.}
 
 \item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
 
 \item{ErrorType}{select the type of error bars to display. Default is "SD" (standard deviation). Other options are "SEM" (standard error of the mean) and "CI95" (95\% confidence interval based on t distributions).}
 
-\item{symsize}{size of symbols, default set to 3.}
+\item{symsize}{size of symbols, default set to 3.5.}
 
-\item{s_alpha}{fractional opacity of symbols, default set to 0.8 (i.e. 80\% opacity).}
+\item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. fully opaque).}
 
 \item{symshape}{The mean is shown with symbol of the shape number 21 (default, filled circle). Pick a number between 0-25 to pick a different type of symbol from ggplot2.}
 
-\item{all_alpha}{fractional opacity of all data points (default = 0.3; i.e., not shown).}
+\item{all_alpha}{fractional opacity of all data points (default = 0.3).}
 
 \item{all_size}{size of symbols of all data points, if shown (default = 2.5).}
 
-\item{all_shape}{all data points are shown with symbols of the shape number 1 (default, transparent circle). Pick a number between 0-25 to pick a different type of symbol from ggplot2. This argument only has an effect is \code{shapes} arugment is not used.}
+\item{all_shape}{all data points are shown with symbols of the shape number 0 (default, open square). Pick a number between 0-25 to pick a different type of symbol from ggplot2. This argument only has an effect if \code{shapes} argument is used.}
 
 \item{all_jitter}{reduce overlap of all data points, if shown, by setting a value between 0-1 (default = 0).}
 
@@ -100,23 +100,25 @@ plot_4d_point_sd(
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
-The functions \code{\link{plot_3d_scatterbar}}, \code{\link{plot_3d_scatterbox}}, \code{\link{plot_3d_scatterviolin}}, \code{\link{plot_4d_scatterbar}}, \code{\link{plot_4d_scatterbox}} and \code{\link{plot_4d_scatterviolin}} are useful for plotting one-way or two-way ANOVA designs with randomised blocks or repeated measures.
+There are 4 related functions for 2-way ANOVA type plots. In addition to a categorical variable along the X-axis, a grouping factor is passed to either \code{points}, \code{bars} or \code{boxes} argument in these functions. A blocking factor (or any other categorical variable) can be optionally passed to the \code{shapes} argument.
+\enumerate{
+\item \code{\link{plot_4d_point_sd}} (mean & SD, SEM or CI95 error bars)
+\item \code{\link{plot_4d_scatterbar}} (bar & SD, SEM or CI95 error bars)
+\item \code{\link{plot_4d_scatterbox}} (box & whiskers)
+\item \code{\link{plot_4d_scatterviolin}} (box & whiskers, violin)
+}
 }
 \details{
-The \code{shapes} argument can be left blank to plot ordinary 2-way ANOVAs without blocking.
+These can be especially useful when the 4th variable \code{shapes} is a random factor or blocking factor (upto 25 levels are allowed; there will be an error with more levels). The \code{shapes} argument can be left blank to plot ordinary 2-way ANOVAs without blocking.
 
-A blocking factor or subjects can be mapped to the \code{shapes} argument in both types of functions (up to 25 levels can be mapped to \code{shapes}; there will be an error if this number is exceeded). The 3d versions use the categorical variable (\code{xcol}) for grouping (e.g. one-way ANOVA designs), and 4d versions take an additional grouping variable (e.g. two-way ANOVA designs) that is passed to either \code{boxes}, \code{bars}, \code{points} argument.
-
-Variables other than the quantitative variable (\code{ycol}) will be automatically converted to categorical variables even if they are numeric in the data table.
-
-In \code{plot_4d_point_sd}, a large coloured symbol is plotted at the mean with SD error bars as default, which can be changed to SEM or CI95 error bars.
+In \code{plot_4d_point_sd} and \code{plot_4d_scatterbar}, the default error bar is SD (can be changed to SEM or CI95). In \code{plot_4d_point_sd}, a large coloured symbol is plotted at the mean, all other data are shown as smaller symbols. Boxplot uses \code{\link[ggplot2]{geom_boxplot}} to depict median (thicker line), box (interquartile range (IQR)) and the whiskers (1.5*IQR).
 
 Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} arguments.
 \code{ColPal} can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
 \code{ColRev} (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette.
 \code{ColSeq} (logical TRUE/FALSE) decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
 
-All four functions can be expanded further, for example with \code{\link[ggplot2]{facet_grid}} or \code{\link[ggplot2]{facet_wrap}}.
+The resulting \code{ggplot2} graph can take additional geometries or other layers.
 }
 \examples{
 #4d version for 2-way data with blocking
@@ -127,6 +129,7 @@ points = Time,
 shapes = Experiment)
 
 #4d version without blocking factor
+#`shapes` can be left blank
 plot_4d_point_sd(data = data_2w_Festing, 
 xcol = Strain, 
 ycol = GST, 

@@ -12,7 +12,7 @@ plot_point_sd(
   ErrorType = "SD",
   symsize = 3.5,
   s_alpha = 1,
-  symshape = 21,
+  symshape = 22,
   all_alpha = 0.3,
   all_size = 2.5,
   all_shape = 1,
@@ -38,7 +38,7 @@ plot_point_sd(
 \arguments{
 \item{data}{a data table object, e.g. data.frame or tibble.}
 
-\item{xcol}{name of the column with a categorical X variable.}
+\item{xcol}{name of the column with a X variable (will be forced to be a factor/categorical variable).}
 
 \item{ycol}{name of the column with quantitative Y variable.}
 
@@ -50,7 +50,7 @@ plot_point_sd(
 
 \item{s_alpha}{fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).}
 
-\item{symshape}{The mean is shown with symbol of the shape number 21 (default, filled circle). Pick a number between 0-25 to pick a different type of symbol from ggplot2.}
+\item{symshape}{The mean is shown with symbol of the shape number 22 (default, filled square). Pick a number between 21-25 to pick a different type of symbol from ggplot2.}
 
 \item{all_alpha}{fractional opacity of all data points (default = 0.3). Set to non-zero value if you would like all data points plotted in addition to the mean.}
 
@@ -94,11 +94,18 @@ plot_point_sd(
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
-This function takes a data table, categorical X and numeric Y variables, and plots a point showing the mean with SD error bars as default (SEM & CI95 are other options). The X variable is mapped to the \code{fill} aesthetic of symbols.
+There are 4 related functions that use \code{\link[ggplot2]{geom_point}} to plot a categorical variable along the X axis.
+\enumerate{
+\item \link{plot_point_sd} (mean & SD, SEM or CI95 error bars)
+\item \link{plot_scatterbar_sd} (bar & SD, SEM or CI95 error bars)
+\item \link{plot_scatterbox} (box & whiskers)
+\item \link{plot_scatterviolin} (box & whiskers, violin)
+}
 }
 \details{
-The function uses \code{\link[ggplot2]{stat_summary}} with \code{geom = "point"} with \code{size = 3}.
-Standard deviation (SD) is plotted through \code{\link[ggplot2]{stat_summary}} calculated using \code{mean_sdl} from the \code{ggplot2} package (get help with \code{?mean_sdl}), and 1x SD is plotted (\code{fun.arg = list(mult = 1)}. \code{mean_se} and \code{mean_cl_normal} are used for SEM and CI95, respectively.
+These functions take a data table, categorical X and numeric Y variables, and plot various geometries. The X variable is mapped to the \code{fill} aesthetic of symbols.
+
+In \link{plot_point_sd} and \link{plot_scatterbar_sd}, default error bars are SD, which can be changed to SEM or CI95.
 
 Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} arguments. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
 \code{ColPal} can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
@@ -112,8 +119,4 @@ If there are many groups along the X axis and you prefer a single colour for the
 plot_point_sd(data = data_doubling_time, 
 xcol = Student, ycol = Doubling_time)
 
-#hide all data points
-plot_point_sd(data = data_2w_Tdeath, 
-xcol = Genotype, ycol = PI, 
-facet = Time, all_alpha = 0)
 }

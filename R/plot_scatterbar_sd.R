@@ -1,10 +1,14 @@
 #' Plot scatter dots on a bar graph with SD error bars with two variables.
 #'
-#' There are three types of `plot_dot_` functions that plot "dots" as data symbols plotted with \code{\link[ggplot2]{geom_dotplot}} geometry. Variants can show summary and data distributions as bar and SD errors (\link{plot_dotbar_sd}; or SEM or CI95 error bars), box and whisker plots (\link{plot_dotbox}) or violin and box & whiskers plots (\link{plot_dotviolin}). They all take a data table, a categorical X variable and a numeric Y variable. 
+#' There are 4 related functions that use \code{\link[ggplot2]{geom_point}} to plot a categorical variable along the X axis. 
+#' 1. \link{plot_point_sd} (mean & SD, SEM or CI95 error bars)
+#' 2. \link{plot_scatterbar_sd} (bar & SD, SEM or CI95 error bars)
+#' 3. \link{plot_scatterbox} (box & whiskers)
+#' 4. \link{plot_scatterviolin} (box & whiskers, violin)
 #' 
-#' Related `plot_scatter_` variants show data symbols using the \code{\link[ggplot2]{geom_point}} geometry. These are \link{plot_scatterbar_sd} (or SEM or CI95 error bars), \link{plot_scatterbox} and \link{plot_scatterviolin}. Overplotting in `plot_scatter` variants can be reduced with the `jitter` argument.
-#' 
-#' The X variable is mapped to the \code{fill} aesthetic of dots, symbols, bars, boxes and violins.
+#' These functions take a data table, categorical X and numeric Y variables, and plot various geometries. The X variable is mapped to the \code{fill} aesthetic of symbols. 
+#'
+#' In \link{plot_point_sd} and \link{plot_scatterbar_sd}, default error bars are SD, which can be changed to SEM or CI95. 
 #' 
 #' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}. 
 #' `ColPal` can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
@@ -48,16 +52,10 @@
 #' plot_scatterbar_sd(data = data_cholesterol, 
 #' xcol = Treatment, ycol = Cholesterol)
 #' 
-#' #white bars
-#' plot_scatterbar_sd(data = data_cholesterol, 
-#' xcol = Treatment, ycol = Cholesterol,
-#' b_alpha = 0) 
-#' 
 #' plot_scatterbar_sd(data = data_doubling_time, 
 #' xcol = Student, ycol = Doubling_time,
 #' SingleColour = "ok_grey")
 #' 
-
 plot_scatterbar_sd <- function(data, xcol, ycol, facet, ErrorType = "SD", symsize = 3, s_alpha = 0.8, b_alpha = 1, bwid = 0.5, ewid = 0.3, jitter = 0.1, TextXAngle = 0, LogYTrans, LogYBreaks = waiver(), LogYLabels = waiver(), LogYLimits = NULL, facet_scales = "fixed", fontsize = 20, symthick, bthick, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, SingleColour = "NULL", ...){
   ColPal <- match.arg(ColPal)
   if (!(ErrorType %in% c("SD", "SEM", "CI95"))) {
@@ -67,35 +65,34 @@ plot_scatterbar_sd <- function(data, xcol, ycol, facet, ErrorType = "SD", symsiz
   if(ErrorType == "CI95") {ER <- "mean_cl_normal"}
   if (missing(bthick)) {bthick = fontsize/22}
   if (missing(symthick)) {symthick = fontsize/22}
-  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+  data[[deparse(substitute(xcol))]] <- factor(data[[deparse(substitute(xcol))]])
+  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
                                  y = {{ ycol }}))+
     stat_summary(geom = "bar", 
                  colour = "black", 
                  width = bwid,
                  fun = "mean", 
                  alpha = b_alpha, 
-                 size = bthick,
-                 aes(fill = factor({{ xcol }})))+
+                 linewidth = bthick,
+                 aes(fill = {{ xcol }}))+
     geom_point(size = symsize, 
                alpha = s_alpha, shape = 21,
                position = position_jitter(width = jitter), 
                stroke = symthick,
-               aes(fill = factor({{ xcol }}))))
+               aes(fill = {{ xcol }})))
   if (ER == "mean_cl_normal") {
     P <- P + stat_summary(geom = "errorbar", 
-                          size = bthick,
+                          linewidth = bthick,
                           fun.data = "mean_cl_normal",
                           width = ewid )
   } else {
     P <- P + stat_summary(geom = "errorbar", 
-                          size = bthick,
+                          linewidth = bthick,
                           fun.data = ER,
                           fun.args = list(mult = 1),
                           width = ewid )
   }
   P <- P +
-    labs(x = enquo(xcol),
-         fill = enquo(xcol))+
     theme_grafify(base_size = fontsize)+
     guides(x = guide_axis(angle = TextXAngle))
   
@@ -145,7 +142,6 @@ plot_scatterbar_sd <- function(data, xcol, ycol, facet, ErrorType = "SD", symsiz
     P <- P +
       scale_fill_manual(values = rep(a, 
                                      times = x))+
-      labs(x = enquo(xcol))+
       guides(fill = "none")
   } else {
     P <- P +

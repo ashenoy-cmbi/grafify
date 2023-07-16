@@ -97,10 +97,15 @@ plot_dotviolin(
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
-There are three types of \code{plot_dot_} functions that plot "dots" as data symbols plotted with \code{\link[ggplot2]{geom_dotplot}} geometry. Variants can show summary and data distributions as bar and SD errors (\link{plot_dotbar_sd}; or SEM or CI95 error bars), box and whisker plots (\link{plot_dotbox}) or violin and box & whiskers plots (\link{plot_dotviolin}). They all take a data table, a categorical X variable and a numeric Y variable.
+There are three types of \code{plot_dot_} functions that plot data as "dots" using the \code{\link[ggplot2]{geom_dotplot}} geometry. They all take a data table, a categorical X variable and a numeric Y variable.
+\enumerate{
+\item \link{plot_dotbar_sd} (bar & SD, SEM or CI95 error bars)
+\item \link{plot_dotbox} (box & whiskers)
+\item \link{plot_dotviolin} (box & whiskers, violin)
+}
 }
 \details{
-Related \code{plot_scatter_} variants show data symbols using the \code{\link[ggplot2]{geom_point}} geometry. These are \link{plot_scatterbar_sd} (or SEM or CI95 error bars), \link{plot_scatterbox} and \link{plot_scatterviolin}. Overplotting in \code{plot_scatter} variants can be reduced with the \code{jitter} argument.
+Related \code{plot_scatter_} variants show data symbols using the \code{\link[ggplot2]{geom_point}} geometry. These are \link{plot_scatterbar_sd} (or SEM or CI95 error bars), \link{plot_scatterbox} and \link{plot_scatterviolin}. Over plotting in \code{plot_scatter} variants can be reduced with the \code{jitter} argument.
 
 The X variable is mapped to the \code{fill} aesthetic of dots, symbols, bars, boxes and violins.
 

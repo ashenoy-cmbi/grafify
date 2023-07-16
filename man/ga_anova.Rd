@@ -33,9 +33,15 @@ ga_anova(
 ANOVA table of class "anova" and "data.frame".
 }
 \description{
-The two functions \code{\link{ga_model}} and \code{\link{ga_anova}} are for fitting generalised additive models (\code{gam}) with the \href{https://CRAN.R-project.org/package=mgcv}{\code{mgcv} package}. It will use the \code{gam()} function in \code{mgcv} for ANOVA designs with \strong{up to two categorical fixed factors} (with two or more levels; \code{Fixed_Factor}), and \strong{exactly one factor is a continuous variable} (e.g. time), which is called \code{Smooth_Factor}. A smooth function is fitted with factor-wise smooth basis function (\verb{by = }). A default value for number of nodes (the argument \code{k} in \code{gam}) may work, but a specific number can be provided using the \code{Nodes} argument. The model is fit using the \code{REML} method. When two categorical fixed factors are provided, an interaction term is included for main effects and smooth basis functions.
+One of two functions for fitting generalised additive models (\code{gam}) with the \href{https://CRAN.R-project.org/package=mgcv}{\code{mgcv} package}. It will use the \code{gam()} function in \code{mgcv} for ANOVA designs with \strong{up to two categorical fixed factors} (with two or more levels; \code{Fixed_Factor}), and \strong{exactly one factor is a continuous variable} (e.g. time), which is called \code{Smooth_Factor}.
+\enumerate{
+\item \code{\link{ga_model}}
+\item \code{\link{ga_anova}}
+}
 }
 \details{
+A smooth function is fitted with factor-wise smooth basis function (\verb{by = }). A default value for number of nodes (the argument \code{k} in \code{gam}) may work, but a specific number can be provided using the \code{Nodes} argument. The model is fit using the \code{REML} method. When two categorical fixed factors are provided, an interaction term is included for main effects and smooth basis functions.
+
 If a \code{Random_Factor} is also provided, it is fitted using \code{bs = "re"} smooth.
 }
 \examples{

@@ -12,9 +12,9 @@ test_that("Check before-after colors plots", {
   expect_s3_class(db1, "gg")
   expect_equal(db1$theme$text$size, 20)
   #match aesthetics in labels
-  expect_match(as.character(rlang::quo_get_expr(db1$labels$x)), 
+  expect_match(db1$labels$x, 
                "Genotype")
-  expect_match(as.character(db1$labels$y), 
+  expect_match(db1$labels$y, 
                "PI")
   #check text angle is passed on
   if (utils::packageVersion("ggplot2") <= "3.4.2") {
@@ -36,9 +36,9 @@ test_that("Check before-after colour plots", {
   expect_s3_class(db2, "gg")
   expect_equal(db2$theme$text$size, 20)
   #match aesthetics in labels
-  expect_match(as.character(rlang::quo_get_expr(db2$labels$x)), 
+  expect_match(db2$labels$x, 
                "Genotype")
-  expect_match(as.character(db2$labels$y), 
+  expect_match(db2$labels$y, 
                "PI")
   #check text angle is passed on
   if (utils::packageVersion("ggplot2") <= "3.4.2") {
@@ -60,9 +60,9 @@ test_that("Check before-after shapes plots", {
   expect_s3_class(db2, "gg")
   expect_equal(db2$theme$text$size, 20)
   #match aesthetics in labels
-  expect_match(as.character(rlang::quo_get_expr(db2$labels$x)), 
+  expect_match(db2$labels$x, 
                "Genotype")
-  expect_match(as.character(db2$labels$y), 
+  expect_match(db2$labels$y, 
                "PI")
   #check text angle is passed on
 

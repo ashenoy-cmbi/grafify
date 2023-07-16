@@ -13,13 +13,13 @@ test_that("Check 4d scatter bars", {
   expect_s3_class(sb1, "ggplot")
   expect_equal(sb1$theme$text$size, 20)
   #match aesthetics in labels
-  #expect_match(as.character(rlang::quo_get_expr(sb1$labels$x)), 
+  #expect_match(sb1$labels$x, 
   #             "Genotype")
-  #expect_match(as.character(sb1$labels$y), 
+  #expect_match(sb1$labels$y, 
   #             "PI")
   #expect_match(as.character(rlang::quo_get_expr(sb1$labels$shape)), 
   #             "Experiment")
-  #expect_match(as.character(rlang::quo_get_expr(sb1$labels$fill)), 
+  #expect_match(sb1$labels$fill, 
   #             "Time")
   ##check text angle is passed on
   if (utils::packageVersion("ggplot2") <= "3.4.2") {

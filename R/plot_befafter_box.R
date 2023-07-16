@@ -1,23 +1,23 @@
 #' Before-after style graph with a boxplot
 #'
-#' The \code{\link{plot_befafter_box}}, \code{\link{plot_befafter_colours}}, \code{\link{plot_befafter_colors}} and \code{\link{plot_befafter_shapes}} are for plotting matched data joined by lines. These functions take X and Y variables along with a data column with matching information (e.g. matched subjects or experiments etc.) and plot symbols matched by colour or shape. 
+#' One of 3 related functions to plot matching data joined by lines. The variable containing information for matching (e.g. matched subjects or experiments etc.) is passed to the `match` argument. 
+#' 1.  \code{\link{plot_befafter_colours}} or \code{\link{plot_befafter_colors}},
+#' 2. \code{\link{plot_befafter_shapes}}  
+#' 3. \code{\link{plot_befafter_box}}
 #' 
-#' Use \code{\link{plot_befafter_box}} to also get a boxplot with matched data. In this function, the categorical variable along X axis is mapped to the fill-colour aesthetic.
-#' 
-#' The default is a plot without matching shapes. Change the `PlotShapes` argument to `TRUE` for plot similar to \code{\link{plot_befafter_shapes}}. Note that with `PlotShapes = TRUE` the colour of symbols will always be black and the X-axis variable is mapped to the fill colour of boxplots.
-#' 
-#' Note that only 25 shapes are available, and there will be errors with \code{\link{plot_befafter_shapes}} when there are fewer than 25 matched observations; instead use default (`PlotShapes = FALSE`).
-#' 
-#' Add another variable to make faceted graphs with the `facet` argument.
+#' In `plot_befafter_colours`/`plot_befafter_colors` and `plot_befafter_shapes` setting `Boxplot = TRUE` will also plot a box and whiskers plot.
+#'
+#' Note that only 25 shapes are available, and there will be errors with \code{\link{plot_befafter_shapes}} when there are fewer than 25 matched observations; instead use \code{\link{plot_befafter_colours}} instead.
 #' 
 #' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. 
 #' `ColPal` can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
 #' `ColRev` (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette. 
 #' `ColSeq` decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
-#' 
+#'
 #' To plot a graph with a single colour along the X axis variable, use the `SingleColour` argument.
-#'
-#'
+#' 
+#' The resulting `ggplot2` graph can take additional geometries or other layers. 
+#' 
 #' @param data a data table object, e.g. data.frame or tibble.
 #' @param xcol name of the column containing the categorical variable to be plotted on the X axis.
 #' @param ycol name of the column containing the quantitative Y values.
@@ -50,37 +50,34 @@
 #' @import ggplot2
 #'
 #' @examples
-#' #plot without legends if necessary
 #' plot_befafter_box(data = data_t_pdiff, 
 #' xcol = Condition, ycol = Mass, 
 #' match = Subject)
+#' 
 #' #with PlotShapes = TRUE
 #' plot_befafter_box(data = data_t_pdiff, 
 #' xcol = Condition, ycol = Mass, 
 #' match = Subject, PlotShapes = TRUE)
-#' #2way ANOVA design with randomised blocks
-#' plot_befafter_box(data = data_2w_Tdeath, 
-#' xcol = Time2, ycol = PI, 
-#' match = Experiment, facet = Genotype)
-#'
 
 plot_befafter_box <- function(data, xcol, ycol, match, facet, PlotShapes = FALSE, symsize = 3,  s_alpha = 0.8, b_alpha = 1, bwid = 0.4, jitter = 0.1, TextXAngle = 0, LogYTrans, LogYBreaks = waiver(), LogYLabels = waiver(), LogYLimits = NULL, facet_scales = "fixed", fontsize = 20, symthick, bthick, lthick, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, SingleColour = "NULL", ...){
   ColPal <- match.arg(ColPal)
   if (missing(bthick)) {bthick = (fontsize)/22}
   if (missing(lthick)) {lthick = (fontsize/1.5)/22}
   if (missing(symthick)) {symthick = (fontsize)/22}
+  data[[deparse(substitute(xcol))]] <- factor(data[[deparse(substitute(xcol))]])
+  data[[deparse(substitute(match))]] <- factor(data[[deparse(substitute(match))]])
   suppressWarnings(P <- ggplot2::ggplot(data, 
-                       aes(x = factor({{ xcol }}),
+                       aes(x = {{ xcol }},
                            y = {{ ycol }},
-                           group = factor({{ match }})))+
-    geom_boxplot(aes(group = factor({{ xcol }}),
-                     fill = factor({{ xcol }})),
+                           group = {{ match }}))+
+    geom_boxplot(aes(group = {{ xcol }},
+                     fill = {{ xcol }}),
                  alpha = b_alpha,
                  outlier.alpha = 0,
                  width = bwid,
-                 size = bthick,
+                 linewidth = bthick,
                  ...)+
-    geom_line(aes(group = factor({{ match }})),
+    geom_line(aes(group = {{ match }}),
               colour = "grey35", 
               alpha = 0.8, 
               size = lthick, 
@@ -93,9 +90,7 @@ plot_befafter_box <- function(data, xcol, ycol, match, facet, PlotShapes = FALSE
                  alpha = s_alpha, 
                  shape = 21, 
                  position = position_dodge(width = jitter),
-                 aes(fill = factor({{ xcol }})), ...)+
-      labs(fill = enquo(xcol),
-           x = enquo(xcol)))
+                 aes(fill = {{ xcol }}), ...))
   } else {
     suppressWarnings(P <- P + 
       geom_point(size = symsize, 
@@ -103,12 +98,9 @@ plot_befafter_box <- function(data, xcol, ycol, match, facet, PlotShapes = FALSE
                  alpha = s_alpha,
                  colour = "black",
                  position = position_dodge(width = jitter),
-                 aes(shape = factor({{ match }})),
+                 aes(shape = {{ match }}),
                  ...)+
-      scale_shape_manual(values = 0:25)+
-      labs(fill = enquo(xcol),
-           x = enquo(xcol),
-           shape = enquo(match)))
+      scale_shape_manual(values = 0:25))
   }
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
@@ -153,7 +145,6 @@ plot_befafter_box <- function(data, xcol, ycol, match, facet, PlotShapes = FALSE
     P <- P +
       scale_fill_manual(values = rep(a, 
                                      times = x))+
-      labs(x = enquo(xcol))+
       guides(x = guide_axis(angle = TextXAngle),
              fill = "none")
   } else {

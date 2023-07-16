@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_3d_point_sd.R
 \name{plot_3d_point_sd}
 \alias{plot_3d_point_sd}
-\title{Plot a scatter graph with matched shapes with mean and error bars using three variables.}
+\title{Plot of mean & error bars for 1-way ANOVAs with matched shapes mapped to blocking factor.}
 \usage{
 plot_3d_point_sd(
   data,
@@ -16,7 +16,7 @@ plot_3d_point_sd(
   symshape = 22,
   all_alpha = 0.3,
   all_size = 2.5,
-  all_shape = 1,
+  all_shape = 0,
   all_jitter = 0,
   ewid = 0.2,
   TextXAngle = 0,
@@ -59,7 +59,7 @@ plot_3d_point_sd(
 
 \item{all_size}{size of symbols of all data points, if shown (default = 2.5).}
 
-\item{all_shape}{all data points are shown with symbols of the shape number 1 (default, transparent circle). Pick a number between 0-25 to pick a different type of symbol from ggplot2.}
+\item{all_shape}{all data points are shown with symbols of the shape number 0 (default, open square). Pick a number between 0-25 to pick a different type of symbol from ggplot2.}
 
 \item{all_jitter}{reduce overlap of all data points, if shown, by setting a value between 0-1 (default = 0).}
 
@@ -97,30 +97,29 @@ plot_3d_point_sd(
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
-The functions \code{\link{plot_3d_scatterbar}}, \code{\link{plot_3d_scatterbox}}, \code{\link{plot_4d_scatterbar}}  and \code{\link{plot_4d_scatterbox}} are useful for plotting one-way or two-way ANOVA designs with randomised blocks or repeated measures. The blocks or subjects can be mapped to the \code{shapes} argument in both functions (up to 25 levels can be mapped to \code{shapes}; there will be an error if this number is exceeded). The 3d versions use the categorical variable (\code{xcol}) for grouping (e.g. one-way ANOVA designs), and 4d versions take an additional grouping variable (e.g. two-way ANOVA designs) that is passed to either \code{boxes} or \code{bars} argument.
+One of 4 related functions for plotting 1-way ANOVA designs with a blocking factor.
+\enumerate{
+\item \code{\link{plot_3d_point_sd}} (mean & SD, SEM or CI95 error bars)
+\item \code{\link{plot_3d_scatterbar}} (bar & SD, SEM or CI95 error bars)
+\item \code{\link{plot_3d_scatterbox}} (box & whiskers)
+\item \code{\link{plot_3d_scatterviolin}} (box & whiskers, violin)
+}
 }
 \details{
-These functions rely on \code{\link[ggplot2]{ggplot}} with \code{\link[ggplot2]{geom_point}} and \code{\link[ggplot2]{geom_bar}} (through \code{stat_summary}) or \code{\link[ggplot2]{geom_boxplot}} geometries.
+The blocking factor (or any other categorical variable) can be mapped to the \code{shapes} argument (up to 25 levels allowed). Variables passed to \code{xcol} and \code{shapes} are internally converted to factors even if they are numeric or other type of variables.
 
-Variables other than the quantitative variable (\code{ycol}) will be automatically converted to categorical variables even if they are numeric in the data table.
-
-Shapes are always plotted in black colour, and their opacity can be changed with the \code{s_alpha} argument and overlap can be reduced with the \code{jitter} argument. Other arguments are similar to other plot functions as briefly explained below.
-
-Bars depict means using \code{\link[ggplot2]{stat_summary}} with \code{geom = "bar", fun = "mean"} , and bar width is set to 0.7 (cannot be changed). Error bar width can be changed with the \code{ewid} argument.
-
-Boxplot geometry uses \code{\link[ggplot2]{geom_boxplot}} with \code{position = position_dodge(width = 0.9), width = 0.6}. The thick line within the boxplot depicts the median, the box the IQR (interquartile range) and the whiskers show 1.5*IQR.
-
-In 4d versions, the two grouping variables (i.e. \code{xcol} and either \code{boxes} or \code{bars}) are passed to ggplot aesthetics through \code{group = interaction{ xcol, shapes}}.
+In \code{plot_3d_point_sd} and \code{plot_3d_scatterbar}, the default error bar is SD (can be changed to SEM or CI95). In \code{plot_3d_point_sd}, a large coloured symbol is plotted at the mean, all other data are shown as smaller symbols. Boxplot uses \code{\link[ggplot2]{geom_boxplot}} to depict median (thicker line), box (interquartile range (IQR)) and the whiskers (1.5*IQR).
 
 Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} arguments.
 \code{ColPal} can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
 \code{ColRev} (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette.
 \code{ColSeq} (logical TRUE/FALSE) decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
 
-All four functions can be expanded further, for example with \code{\link[ggplot2]{facet_grid}} or \code{\link[ggplot2]{facet_wrap}}.
+The resulting \code{ggplot2} graph can take additional geometries or other layers.
 }
 \examples{
 #3d version for 1-way data with blocking
+#use plot_point_sd when no a blocking factor is not used
 plot_3d_point_sd(data = data_1w_death, 
 xcol = Genotype, ycol = Death, 
 shapes = Experiment)

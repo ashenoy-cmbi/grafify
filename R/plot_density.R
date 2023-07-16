@@ -1,6 +1,6 @@
 #' Plot density distribution of data.
 #'
-#' This function takes a data table, `ycol` of quantitative variable and a categorical grouping variable (`group`), if available, and plots a density graph using \code{\link{geom_density}}).
+#' This function takes a data table, `ycol` of quantitative variable and a categorical grouping variable (`group`), if available, and plots a density graph using \code{\link{geom_density}}). Alternatives are \code{\link{plot_histogram}}, or \code{\link{plot_qqline}}.
 #' 
 #' Note that the function requires the quantitative Y variable first, and groups them based on an X variable. The group variable is mapped to the \code{fill} and \code{colour} aesthetics in \code{geom_density}.
 #' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
@@ -17,8 +17,6 @@
 #' @param facet_scales whether or not to fix scales on X & Y axes for all facet facet graphs. Can be `fixed` (default), `free`, `free_y` or `free_x` (for Y and X axis one at a time, respectively).
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param linethick thickness of symbol border, default set to `fontsize`/22.
-#' @param Group deprecated old argument for `group`; retained for backward compatibility.
-#' @param alpha deprecated old argument for `c_alpha`; retained for backward compatibility.
 #' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
@@ -35,28 +33,19 @@
 #' #with faceting
 #' plot_density(data = data_cholesterol, 
 #' ycol = Cholesterol, group = Treatment, 
-#' fontsize = 10)+facet_wrap("Treatment")
+#' facet = Treatment, fontsize = 12)
 
-plot_density <- function(data, ycol, group, facet,  c_alpha = 0.2, TextXAngle = 0, facet_scales = "fixed", fontsize = 20, linethick, Group, alpha, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, ...){
+plot_density <- function(data, ycol, group, facet,  c_alpha = 0.2, TextXAngle = 0, facet_scales = "fixed", fontsize = 20, linethick, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, ...){
   if(missing(linethick)) {linethick = fontsize/22}
-  if (!missing("Group")) {
-    warning("Use `group` argument instead, as `Group` is deprecated.")
-    group <- substitute(Group)}
-  if (!missing("alpha")) {
-    warning("Use `c_alpha` argument instead, as `alpha` is deprecated.")
-    c_alpha <- substitute(alpha)}
+  data[[deparse(substitute(group))]] <- factor(data[[deparse(substitute(group))]])
   ColPal <- match.arg(ColPal)
   suppressWarnings(P <- ggplot2::ggplot(data, 
-                       aes(sample = {{ ycol }}))+
+                       aes(x = {{ ycol }},
+                           fill = {{ group }},
+                           colour = {{ group }}))+
     geom_density(size = linethick,
-                 alpha = c_alpha,
-                 aes(x = {{ ycol }},
-                     fill = {{ group }}, 
-                     colour = {{ group }}),
-                 ...)+
-    labs(fill = enquo(group),
-         colour = enquo(group),
-         y = "Density")+
+                 alpha = c_alpha)+
+    labs(y = "Density")+
     theme_grafify(base_size = fontsize)+
     guides(x = guide_axis(angle = TextXAngle))+
     scale_fill_grafify(palette = ColPal, 

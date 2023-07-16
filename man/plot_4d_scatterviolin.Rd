@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_4d_scatterviolin.R
 \name{plot_4d_scatterviolin}
 \alias{plot_4d_scatterviolin}
-\title{Plot a scatter plot with boxes and violins for 2-way ANOVAs without or with a blocking factor.}
+\title{Plot scatter, box & violin for 2-way ANOVAs with or without a blocking factor.}
 \usage{
 plot_4d_scatterviolin(
   data,
@@ -106,32 +106,27 @@ plot_4d_scatterviolin(
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
-The functions \code{\link{plot_3d_scatterbar}}, \code{\link{plot_3d_scatterbox}}, \code{\link{plot_3d_scatterviolin}}, \code{\link{plot_4d_scatterbar}}, \code{\link{plot_4d_scatterbox}} and \code{\link{plot_4d_scatterviolin}} are useful for plotting one-way or two-way ANOVA designs with randomised blocks or repeated measures.
+There are 4 related functions for 2-way ANOVA type plots. In addition to a categorical variable along the X-axis, a grouping factor is passed to either \code{points}, \code{bars} or \code{boxes} argument in these functions. A blocking factor (or any other categorical variable) can be optionally passed to the \code{shapes} argument.
+\enumerate{
+\item \code{\link{plot_4d_point_sd}} (mean & SD, SEM or CI95 error bars)
+\item \code{\link{plot_4d_scatterbar}} (bar & SD, SEM or CI95 error bars)
+\item \code{\link{plot_4d_scatterbox}} (box & whiskers)
+\item \code{\link{plot_4d_scatterviolin}} (box & whiskers, violin)
+}
 }
 \details{
-The \code{shapes} argument can be left blank to plot ordinary 2-way ANOVAs without blocking.
+These can be especially useful when the 4th variable \code{shapes} is a random factor or blocking factor (upto 25 levels are allowed; there will be an error with more levels). The \code{shapes} argument can be left blank to plot ordinary 2-way ANOVAs without blocking.
 
-A blocking factor or subjects can be mapped to the \code{shapes} argument in both types of functions (up to 25 levels can be mapped to \code{shapes}; there will be an error if this number is exceeded). The 3d versions use the categorical variable (\code{xcol}) for grouping (e.g. one-way ANOVA designs), and 4d versions take an additional grouping variable (e.g. two-way ANOVA designs) that is passed to either \code{boxes}, \code{bars}, \code{points} argument.
-
-Variables other than the quantitative variable (\code{ycol}) will be automatically converted to categorical variables even if they are numeric in the data table.
-
-In \code{plot_4d_point_sd}, a large coloured symbol is plotted at the mean with SD error bars as default, which can be changed to SEM or CI95 error bars.
+In \code{plot_4d_point_sd} and \code{plot_4d_scatterbar}, the default error bar is SD (can be changed to SEM or CI95). In \code{plot_4d_point_sd}, a large coloured symbol is plotted at the mean, all other data are shown as smaller symbols. Boxplot uses \code{\link[ggplot2]{geom_boxplot}} to depict median (thicker line), box (interquartile range (IQR)) and the whiskers (1.5*IQR).
 
 Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} arguments.
 \code{ColPal} can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
 \code{ColRev} (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette.
 \code{ColSeq} (logical TRUE/FALSE) decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
 
-All four functions can be expanded further, for example with \code{\link[ggplot2]{facet_grid}} or \code{\link[ggplot2]{facet_wrap}}.
+The resulting \code{ggplot2} graph can take additional geometries or other layers.
 }
 \examples{
-#3d version for 1-way data with blocking
-plot_3d_scatterviolin(data = data_1w_death, 
-xcol = Genotype, ycol = Death, shapes = Experiment)
-#compare above graph to
-plot_scatterviolin(data = data_1w_death, 
-xcol = Genotype, ycol = Death)
-
 #4d version for 2-way data with blocking
 plot_4d_scatterviolin(data = data_2w_Tdeath, 
 xcol = Genotype, 
@@ -139,5 +134,11 @@ ycol = PI,
 boxes = Time, 
 shapes = Experiment)
 
+#4d version without blocking factor
+#`shapes` can be left blank
+plot_4d_scatterviolin(data = data_2w_Tdeath, 
+xcol = Genotype, 
+ycol = PI, 
+boxes = Time)
 
 }

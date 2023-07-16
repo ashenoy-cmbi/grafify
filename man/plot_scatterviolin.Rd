@@ -100,12 +100,18 @@ plot_scatterviolin(
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
-There are three types of \code{plot_dot_} functions that plot "dots" as data symbols plotted with \code{\link[ggplot2]{geom_dotplot}} geometry. Variants can show summary and data distributions as bar and SD errors (\link{plot_dotbar_sd}; or SEM or CI95 error bars), box and whisker plots (\link{plot_dotbox}) or violin and box & whiskers plots (\link{plot_dotviolin}). They all take a data table, a categorical X variable and a numeric Y variable.
+There are 4 related functions that use \code{\link[ggplot2]{geom_point}} to plot a categorical variable along the X axis.
+\enumerate{
+\item \link{plot_point_sd} (mean & SD, SEM or CI95 error bars)
+\item \link{plot_scatterbar_sd} (bar & SD, SEM or CI95 error bars)
+\item \link{plot_scatterbox} (box & whiskers)
+\item \link{plot_scatterviolin} (box & whiskers, violin)
+}
 }
 \details{
-Related \code{plot_scatter_} variants show data symbols using the \code{\link[ggplot2]{geom_point}} geometry. These are \link{plot_scatterbar_sd} (or SEM or CI95 error bars), \link{plot_scatterbox} and \link{plot_scatterviolin}. Overplotting in \code{plot_scatter} variants can be reduced with the \code{jitter} argument.
+These functions take a data table, categorical X and numeric Y variables, and plot various geometries. The X variable is mapped to the \code{fill} aesthetic of symbols.
 
-The X variable is mapped to the \code{fill} aesthetic of dots, symbols, bars, boxes and violins.
+In \link{plot_point_sd} and \link{plot_scatterbar_sd}, default error bars are SD, which can be changed to SEM or CI95.
 
 Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} arguments. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
 \code{ColPal} can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
@@ -127,10 +133,4 @@ xcol = Condition, ycol = Mass,
 s_alpha = 0,
 symsize = 2, trim = FALSE)
 
-#single colour along X
-plot_scatterviolin(data = data_t_pdiff, 
-xcol = Condition, ycol = Mass, 
-SingleColour = "pale_blue",
-s_alpha = 0,
-symsize = 2, trim = FALSE)
 }

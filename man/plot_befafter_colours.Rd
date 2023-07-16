@@ -118,10 +118,15 @@ plot_befafter_colors(
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
-The \code{\link{plot_befafter_colours}}, \code{\link{plot_befafter_colors}} and \code{\link{plot_befafter_shapes}} are for plotting matched data joined by lines. These functions take X and Y variables along with a data column with matching information (e.g. matched subjects or experiments etc.) and plot symbols matched by colour or shape.
+One of 3 related functions to plot matching data joined by lines. The variable containing information for matching (e.g. matched subjects or experiments etc.) is passed to the \code{match} argument.
+\enumerate{
+\item \code{\link{plot_befafter_colours}} or \code{\link{plot_befafter_colors}},
+\item \code{\link{plot_befafter_shapes}}
+\item \code{\link{plot_befafter_box}}
+}
 }
 \details{
-Setting \code{Boxplot = TRUE} will also plot a box and whiskers plot.
+In \code{plot_befafter_colours}/\code{plot_befafter_colors} and \code{plot_befafter_shapes} setting \code{Boxplot = TRUE} will also plot a box and whiskers plot.
 
 Note that only 25 shapes are available, and there will be errors with \code{\link{plot_befafter_shapes}} when there are fewer than 25 matched observations; instead use \code{\link{plot_befafter_colours}} instead.
 
@@ -132,7 +137,7 @@ Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} argum
 
 To plot a graph with a single colour along the X axis variable, use the \code{SingleColour} argument.
 
-More complex designs can also be plotted when used with \code{\link[ggplot2]{facet_wrap}} or \code{\link[ggplot2]{facet_grid}}.
+The resulting \code{ggplot2} graph can take additional geometries or other layers.
 }
 \examples{
 #plot without legends if necessary
@@ -148,8 +153,5 @@ match = Subject, s_alpha = .9, ColSeq = FALSE,
 Boxplot = TRUE)+
 guides(fill = "none", 
 colour = "none") #remove guides
-#2way ANOVA design with randomised blocks
-plot_befafter_colours(data = data_2w_Tdeath, 
-xcol = Genotype, ycol = PI, 
-match = Experiment) + facet_wrap("Time")
+
 }

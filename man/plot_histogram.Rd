@@ -58,7 +58,7 @@ plot_histogram(
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
-This function takes a data table, a quantitative variable (\code{ycol}) and a grouping variable (\code{group}), if available, and plots a histogram graph using \code{\link{geom_histogram}}).
+This function takes a data table, a quantitative variable (\code{ycol}) and a grouping variable (\code{group}), if available, and plots a histogram graph using \code{\link{geom_histogram}}).  Alternatives are \code{\link{plot_histogram}}, or \code{\link{plot_qqline}}.
 }
 \details{
 Note that the function requires the quantitative Y variable first, and groups them based on a categorical variable passed on via the \code{group} argument. The grouping variable is mapped to the \code{fill} aesthetics in \code{geom_histogram}.

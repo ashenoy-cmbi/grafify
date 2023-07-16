@@ -68,44 +68,42 @@ plot_xy_CatGroup <- function(data, xcol, ycol, CatGroup, facet, Boxplot = FALSE,
   ColPal <- match.arg(ColPal)
   if (missing(symthick)) {symthick = fontsize/22}
   if (missing(bthick)) {bthick = fontsize/22}
+  data[[deparse(substitute(CatGroup))]] <- factor(data[[deparse(substitute(CatGroup))]])
   if (!(Boxplot)) {
     suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
-                                   y = {{ ycol }}))+
-      geom_point(size = symsize, 
-                 alpha = s_alpha,
-                 aes(fill = factor({{ CatGroup }})),
-                 shape = 21, 
-                 stroke = symthick, 
-                 ...)+
-      labs(fill = enquo(CatGroup)))
+                                                    y = {{ ycol }}))+
+                       geom_point(size = symsize, 
+                                  alpha = s_alpha,
+                                  aes(fill = {{ CatGroup }}),
+                                  shape = 21, 
+                                  stroke = symthick, 
+                                  ...))
   } else {
     suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
-                                   y = {{ ycol }}))+
-      geom_boxplot(aes(group = interaction({{ xcol }},
-                                           {{ CatGroup }}),
-                       fill = {{ CatGroup }}),
-                   size = bthick,
-                   outlier.alpha = 0,
-                   width = bwid,
-                   alpha = b_alpha,
-                   position = position_identity(),
-                   show.legend = FALSE)+
-      stat_summary(geom = "line",
-                   size = bthick,
-                   alpha = l_alpha,
-                   aes(colour = {{ CatGroup }}),
-                   fun = "median")+
-      scale_colour_grafify(palette = ColPal,
-                           reverse = ColRev,
-                           ColSeq = ColSeq)+
-      geom_point(size = symsize, 
-                 alpha = s_alpha,
-                 aes(fill = factor({{ CatGroup }})),
-                 shape = 21, 
-                 stroke = symthick,
-                 ...)+
-      labs(fill = enquo(CatGroup),
-           colour = enquo(CatGroup)))
+                                                    y = {{ ycol }}))+
+                       geom_boxplot(aes(group = interaction({{ xcol }},
+                                                            {{ CatGroup }}),
+                                        fill = {{ CatGroup }}),
+                                    linewidth = bthick,
+                                    outlier.alpha = 0,
+                                    width = bwid,
+                                    alpha = b_alpha,
+                                    position = position_identity(),
+                                    show.legend = FALSE)+
+                       stat_summary(geom = "line",
+                                    linewidth = bthick,
+                                    alpha = l_alpha,
+                                    aes(colour = {{ CatGroup }}),
+                                    fun = "median")+
+                       scale_colour_grafify(palette = ColPal,
+                                            reverse = ColRev,
+                                            ColSeq = ColSeq)+
+                       geom_point(size = symsize, 
+                                  alpha = s_alpha,
+                                  aes(fill = {{ CatGroup }}),
+                                  shape = 21, 
+                                  stroke = symthick,
+                                  ...))
   } 
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 

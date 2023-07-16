@@ -1,10 +1,14 @@
 #' Plot a scatter plot on a boxplot with two variables.
 #'
-#' There are three types of `plot_dot_` functions that plot "dots" as data symbols plotted with \code{\link[ggplot2]{geom_dotplot}} geometry. Variants can show summary and data distributions as bar and SD errors (\link{plot_dotbar_sd}; or SEM or CI95 error bars), box and whisker plots (\link{plot_dotbox}) or violin and box & whiskers plots (\link{plot_dotviolin}). They all take a data table, a categorical X variable and a numeric Y variable. 
+#' There are 4 related functions that use \code{\link[ggplot2]{geom_point}} to plot a categorical variable along the X axis. 
+#' 1. \link{plot_point_sd} (mean & SD, SEM or CI95 error bars)
+#' 2. \link{plot_scatterbar_sd} (bar & SD, SEM or CI95 error bars)
+#' 3. \link{plot_scatterbox} (box & whiskers)
+#' 4. \link{plot_scatterviolin} (box & whiskers, violin)
 #' 
-#' Related `plot_scatter_` variants show data symbols using the \code{\link[ggplot2]{geom_point}} geometry. These are \link{plot_scatterbar_sd} (or SEM or CI95 error bars), \link{plot_scatterbox} and \link{plot_scatterviolin}. Overplotting in `plot_scatter` variants can be reduced with the `jitter` argument.
-#' 
-#' The X variable is mapped to the \code{fill} aesthetic of dots, symbols, bars, boxes and violins.
+#' These functions take a data table, categorical X and numeric Y variables, and plot various geometries. The X variable is mapped to the \code{fill} aesthetic of symbols. 
+#'
+#' In \link{plot_point_sd} and \link{plot_scatterbar_sd}, default error bars are SD, which can be changed to SEM or CI95. 
 #' 
 #' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}. 
 #' `ColPal` can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
@@ -54,10 +58,11 @@ plot_scatterbox <- function(data, xcol, ycol, facet, symsize = 3, s_alpha = 0.8,
   ColPal <- match.arg(ColPal)
   if (missing(bthick)) {bthick = fontsize/22}
   if (missing(symthick)) {symthick = fontsize/22}
-  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
+  data[[deparse(substitute(xcol))]] <- factor(data[[deparse(substitute(xcol))]])
+  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
                                  y = {{ ycol }}))+
-    geom_boxplot(aes(fill = factor({{ xcol }})), 
-                 size = bthick,
+    geom_boxplot(aes(fill = {{ xcol }}), 
+                 linewidth = bthick,
                  alpha = b_alpha,
                  outlier.alpha = 0,
                  width = bwid,
@@ -67,9 +72,7 @@ plot_scatterbox <- function(data, xcol, ycol, facet, symsize = 3, s_alpha = 0.8,
                alpha = s_alpha,
                stroke = symthick,
                size = symsize,
-               aes(fill = factor({{ xcol }})))+
-    labs(x = enquo(xcol),
-         fill = enquo(xcol)))
+               aes(fill = {{ xcol }})))
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
                         scales = facet_scales, 
@@ -113,7 +116,6 @@ plot_scatterbox <- function(data, xcol, ycol, facet, symsize = 3, s_alpha = 0.8,
     P <- P + 
       scale_fill_manual(values = rep(a, 
                                      times = x))+
-      labs(x = enquo(xcol))+
       guides(fill = "none")
   } else {
     P <- P + 

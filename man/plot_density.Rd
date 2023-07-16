@@ -14,8 +14,6 @@ plot_density(
   facet_scales = "fixed",
   fontsize = 20,
   linethick,
-  Group,
-  alpha,
   ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy", "kelly",
     "light", "muted", "pale", "r4", "safe", "vibrant"),
   ColSeq = TRUE,
@@ -42,10 +40,6 @@ plot_density(
 
 \item{linethick}{thickness of symbol border, default set to \code{fontsize}/22.}
 
-\item{Group}{deprecated old argument for \code{group}; retained for backward compatibility.}
-
-\item{alpha}{deprecated old argument for \code{c_alpha}; retained for backward compatibility.}
-
 \item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
@@ -58,7 +52,7 @@ plot_density(
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
-This function takes a data table, \code{ycol} of quantitative variable and a categorical grouping variable (\code{group}), if available, and plots a density graph using \code{\link{geom_density}}).
+This function takes a data table, \code{ycol} of quantitative variable and a categorical grouping variable (\code{group}), if available, and plots a density graph using \code{\link{geom_density}}). Alternatives are \code{\link{plot_histogram}}, or \code{\link{plot_qqline}}.
 }
 \details{
 Note that the function requires the quantitative Y variable first, and groups them based on an X variable. The group variable is mapped to the \code{fill} and \code{colour} aesthetics in \code{geom_density}.
@@ -74,5 +68,5 @@ ycol = log(Cytokine), group = Genotype)
 #with faceting
 plot_density(data = data_cholesterol, 
 ycol = Cholesterol, group = Treatment, 
-fontsize = 10)+facet_wrap("Treatment")
+facet = Treatment, fontsize = 12)
 }

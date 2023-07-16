@@ -1,9 +1,14 @@
 #' Plot a point as mean with SD error bars using two variables.
 #'
-#' This function takes a data table, categorical X and numeric Y variables, and plots a point showing the mean with SD error bars as default (SEM & CI95 are other options). The X variable is mapped to the \code{fill} aesthetic of symbols.
+#' There are 4 related functions that use \code{\link[ggplot2]{geom_point}} to plot a categorical variable along the X axis. 
+#' 1. \link{plot_point_sd} (mean & SD, SEM or CI95 error bars)
+#' 2. \link{plot_scatterbar_sd} (bar & SD, SEM or CI95 error bars)
+#' 3. \link{plot_scatterbox} (box & whiskers)
+#' 4. \link{plot_scatterviolin} (box & whiskers, violin)
+#' 
+#' These functions take a data table, categorical X and numeric Y variables, and plot various geometries. The X variable is mapped to the \code{fill} aesthetic of symbols. 
 #'
-#' The function uses \code{\link[ggplot2]{stat_summary}} with \code{geom = "point"} with \code{size = 3}.
-#' Standard deviation (SD) is plotted through \code{\link[ggplot2]{stat_summary}} calculated using \code{mean_sdl} from the \code{ggplot2} package (get help with \code{?mean_sdl}), and 1x SD is plotted (\code{fun.arg = list(mult = 1)}. `mean_se` and `mean_cl_normal` are used for SEM and CI95, respectively.
+#' In \link{plot_point_sd} and \link{plot_scatterbar_sd}, default error bars are SD, which can be changed to SEM or CI95. 
 #' 
 #' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
 #' `ColPal` can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
@@ -13,13 +18,13 @@
 #' If there are many groups along the X axis and you prefer a single colour for the graph,use the `SingleColour` argument.
 #'
 #' @param data a data table object, e.g. data.frame or tibble.
-#' @param xcol name of the column with a categorical X variable.
+#' @param xcol name of the column with a X variable (will be forced to be a factor/categorical variable).
 #' @param ycol name of the column with quantitative Y variable.
 #' @param facet add another variable from the data table to create faceted graphs using \code{ggplot2}[facet_wrap].
 #' @param ErrorType select the type of error bars to display. Default is "SD" (standard deviation). Other options are "SEM" (standard error of the mean) and "CI95" (95% confidence interval based on t distributions).
 #' @param symsize size of point symbols, default set to 3.5.
 #' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).
-#' @param symshape The mean is shown with symbol of the shape number 21 (default, filled circle). Pick a number between 0-25 to pick a different type of symbol from ggplot2.  
+#' @param symshape The mean is shown with symbol of the shape number 22 (default, filled square). Pick a number between 21-25 to pick a different type of symbol from ggplot2.
 #' @param all_alpha fractional opacity of all data points (default = 0.3). Set to non-zero value if you would like all data points plotted in addition to the mean.
 #' @param all_size size of symbols of all data points, if shown (default = 2.5).
 #' @param all_jitter reduce overlap of all data points, if shown, by setting a value between 0-1 (default = 0).
@@ -49,12 +54,7 @@
 #' plot_point_sd(data = data_doubling_time, 
 #' xcol = Student, ycol = Doubling_time)
 #' 
-#' #hide all data points
-#' plot_point_sd(data = data_2w_Tdeath, 
-#' xcol = Genotype, ycol = PI, 
-#' facet = Time, all_alpha = 0)
-
-plot_point_sd <- function(data, xcol, ycol, facet, ErrorType = "SD", symsize = 3.5, s_alpha = 1, symshape = 21, all_alpha = 0.3, all_size = 2.5, all_shape = 1, all_jitter = 0, ewid = 0.2, TextXAngle = 0, LogYTrans, LogYBreaks = waiver(), LogYLabels = waiver(), LogYLimits = NULL, facet_scales = "fixed", fontsize = 20, symthick, ethick, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, SingleColour = "NULL", ...){
+plot_point_sd <- function(data, xcol, ycol, facet, ErrorType = "SD", symsize = 3.5, s_alpha = 1, symshape = 22, all_alpha = 0.3, all_size = 2.5, all_shape = 1, all_jitter = 0, ewid = 0.2, TextXAngle = 0, LogYTrans, LogYBreaks = waiver(), LogYLabels = waiver(), LogYLimits = NULL, facet_scales = "fixed", fontsize = 20, symthick, ethick, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, SingleColour = "NULL", ...){
   ColPal <- match.arg(ColPal)
   if (!(ErrorType %in% c("SD", "SEM", "CI95"))) {
     stop('ErrorType should be "SD", "SEM" or "CI95".')}
@@ -65,50 +65,50 @@ plot_point_sd <- function(data, xcol, ycol, facet, ErrorType = "SD", symsize = 3
   if (missing(symthick)) {symthick = fontsize/22}
   if(symshape < 21 | symshape > 25){
     stop("`symshape` should be betwee 21-25.")}
+  data[[deparse(substitute(xcol))]] <- factor(data[[deparse(substitute(xcol))]])
   if (ER == "mean_cl_normal") {
-    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
-                                  y = {{ ycol }}))+
-    geom_point(aes(fill = factor({{ xcol }})),
-               shape = all_shape, 
-               alpha = all_alpha,
-               size = all_size,
-               position = position_jitter(width = all_jitter))+
-    stat_summary(geom = "errorbar",
-                 fun.data = "mean_cl_normal", 
-                 size = ethick,
-                 width = ewid, ...)+
-    stat_summary(geom = "point", 
-                 shape = symshape,
-                 size = symsize, 
-                 stroke = symthick,
-                 alpha = s_alpha,
-                 fun = "mean",
-                 aes(fill = factor({{ xcol }})), 
-                 ...))
+    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
+                                                    y = {{ ycol }}))+
+                       geom_point(aes(fill = {{ xcol }}),
+                                  shape = all_shape, 
+                                  alpha = all_alpha,
+                                  size = all_size,
+                                  position = position_jitter(width = all_jitter))+
+                       stat_summary(geom = "errorbar",
+                                    fun.data = "mean_cl_normal", 
+                                    size = ethick,
+                                    width = ewid, ...)+
+                       stat_summary(geom = "point", 
+                                    shape = symshape,
+                                    size = symsize, 
+                                    stroke = symthick,
+                                    alpha = s_alpha,
+                                    fun = "mean",
+                                    aes(fill = {{ xcol }}), 
+                                    ...))
   } else {
-    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
-                                   y = {{ ycol }}))+
-      geom_point(aes(fill = factor({{ xcol }})),
-                 shape = all_shape, 
-                 alpha = all_alpha,
-                 size = all_size,
-                 position = position_jitter(width = all_jitter))+
-      stat_summary(geom = "errorbar",
-                   fun.data = ER, 
-                   size = ethick,
-                   fun.args = list(mult = 1),
-                   width = ewid, ...)+
-      stat_summary(geom = "point", 
-                   shape = symshape,
-                   size = symsize, 
-                   stroke = symthick,
-                   alpha = s_alpha,
-                   fun = "mean",
-                   aes(fill = factor({{ xcol }})), 
-                   ...))
+    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
+                                                    y = {{ ycol }}))+
+                       geom_point(aes(fill = {{ xcol }}),
+                                  shape = all_shape, 
+                                  alpha = all_alpha,
+                                  size = all_size,
+                                  position = position_jitter(width = all_jitter))+
+                       stat_summary(geom = "errorbar",
+                                    fun.data = ER, 
+                                    size = ethick,
+                                    fun.args = list(mult = 1),
+                                    width = ewid, ...)+
+                       stat_summary(geom = "point", 
+                                    shape = symshape,
+                                    size = symsize, 
+                                    stroke = symthick,
+                                    alpha = s_alpha,
+                                    fun = "mean",
+                                    aes(fill = {{ xcol }}), 
+                                    ...))
   }
-  P <- P + labs(x = enquo(xcol),
-                fill = enquo(xcol))+
+  P <- P + 
     theme_grafify(base_size = fontsize)+
     guides(x = guide_axis(angle = TextXAngle))
   if(!missing(facet)) {
@@ -154,7 +154,6 @@ plot_point_sd <- function(data, xcol, ycol, facet, ErrorType = "SD", symsize = 3
     P <- P +
       scale_fill_manual(values = rep(a, 
                                      times = x))+
-      labs(x = enquo(xcol))+
       guides(fill = "none")
   } else {
     P <- P +

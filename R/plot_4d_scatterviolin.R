@@ -1,21 +1,22 @@
-#' Plot a scatter plot with boxes and violins for 2-way ANOVAs without or with a blocking factor.
+#' Plot scatter, box & violin for 2-way ANOVAs with or without a blocking factor.
 #'
-#' The functions \code{\link{plot_3d_scatterbar}}, \code{\link{plot_3d_scatterbox}}, \code{\link{plot_3d_scatterviolin}}, \code{\link{plot_4d_scatterbar}}, \code{\link{plot_4d_scatterbox}} and \code{\link{plot_4d_scatterviolin}} are useful for plotting one-way or two-way ANOVA designs with randomised blocks or repeated measures.
+#' There are 4 related functions for 2-way ANOVA type plots. In addition to a categorical variable along the X-axis, a grouping factor is passed to either `points`, `bars` or `boxes` argument in these functions. A blocking factor (or any other categorical variable) can be optionally passed to the `shapes` argument.
+#' 1. \code{\link{plot_4d_point_sd}} (mean & SD, SEM or CI95 error bars)
+#' 2. \code{\link{plot_4d_scatterbar}} (bar & SD, SEM or CI95 error bars)
+#' 3. \code{\link{plot_4d_scatterbox}} (box & whiskers)
+#' 4. \code{\link{plot_4d_scatterviolin}} (box & whiskers, violin)
 #' 
-#' The `shapes` argument can be left blank to plot ordinary 2-way ANOVAs without blocking. 
 #' 
-#' A blocking factor or subjects can be mapped to the `shapes` argument in both types of functions (up to 25 levels can be mapped to `shapes`; there will be an error if this number is exceeded). The 3d versions use the categorical variable (`xcol`) for grouping (e.g. one-way ANOVA designs), and 4d versions take an additional grouping variable (e.g. two-way ANOVA designs) that is passed to either `boxes`, `bars`, `points` argument.
+#' These can be especially useful when the 4th variable `shapes` is a random factor or blocking factor (upto 25 levels are allowed; there will be an error with more levels). The `shapes` argument can be left blank to plot ordinary 2-way ANOVAs without blocking. 
 #' 
-#' Variables other than the quantitative variable (`ycol`) will be automatically converted to categorical variables even if they are numeric in the data table.
-#' 
-#' In `plot_4d_point_sd`, a large coloured symbol is plotted at the mean with SD error bars as default, which can be changed to SEM or CI95 error bars.
+#' In `plot_4d_point_sd` and `plot_4d_scatterbar`, the default error bar is SD (can be changed to SEM or CI95). In `plot_4d_point_sd`, a large coloured symbol is plotted at the mean, all other data are shown as smaller symbols. Boxplot uses \code{\link[ggplot2]{geom_boxplot}} to depict median (thicker line), box (interquartile range (IQR)) and the whiskers (1.5*IQR).
 #'  
 #' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. 
 #' `ColPal` can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
 #' `ColRev` (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette. 
 #' `ColSeq` (logical TRUE/FALSE) decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
 #' 
-#' All four functions can be expanded further, for example with \code{\link[ggplot2]{facet_grid}} or \code{\link[ggplot2]{facet_wrap}}.
+#' The resulting `ggplot2` graph can take additional geometries or other layers. 
 #'
 #' @param data a data table, e.g. data.frame or tibble.
 #' @param xcol name of the column with the categorical factor to plot on X axis. If column is numeric, enter as \code{factor(col)}.
@@ -54,13 +55,6 @@
 #' @import ggplot2
 #'
 #' @examples
-#' #3d version for 1-way data with blocking
-#' plot_3d_scatterviolin(data = data_1w_death, 
-#' xcol = Genotype, ycol = Death, shapes = Experiment)
-#' #compare above graph to
-#' plot_scatterviolin(data = data_1w_death, 
-#' xcol = Genotype, ycol = Death)
-#' 
 #' #4d version for 2-way data with blocking
 #' plot_4d_scatterviolin(data = data_2w_Tdeath, 
 #' xcol = Genotype, 
@@ -68,6 +62,12 @@
 #' boxes = Time, 
 #' shapes = Experiment)
 #' 
+#' #4d version without blocking factor
+#' #`shapes` can be left blank
+#' plot_4d_scatterviolin(data = data_2w_Tdeath, 
+#' xcol = Genotype, 
+#' ycol = PI, 
+#' boxes = Time)
 #' 
 plot_4d_scatterviolin <- function(data, xcol, ycol, boxes, shapes, facet, symsize = 3, s_alpha = 0.8, v_alpha = 1, b_alpha = 0, bwid = 0.3, vadjust = 1, jitter = 0.1, TextXAngle = 0, scale = "width", trim = TRUE, LogYTrans, LogYBreaks = waiver(), LogYLabels = waiver(), LogYLimits = NULL, facet_scales = "fixed", fontsize = 20, group_wid = 0.8, symthick, bthick, vthick, bvthick, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, ...){
   ColPal <- match.arg(ColPal)
@@ -77,7 +77,10 @@ plot_4d_scatterviolin <- function(data, xcol, ycol, boxes, shapes, facet, symsiz
   if (missing(bthick)) {bthick = fontsize/22}
   if (missing(vthick)) {vthick = fontsize/22}
   if (missing(symthick)) {symthick = fontsize/22}
-  data <- data.frame(data, stringsAsFactors = TRUE)
+  data[[deparse(substitute(xcol))]] <- factor(data[[deparse(substitute(xcol))]])
+  data[[deparse(substitute(boxes))]] <- factor(data[[deparse(substitute(boxes))]])
+  if(!missing(shapes)) {
+    data[[deparse(substitute(shapes))]] <- factor(data[[deparse(substitute(shapes))]])}
   suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
                                                   y = {{ ycol }},
                                                   group = interaction({{ boxes }},
@@ -96,7 +99,7 @@ plot_4d_scatterviolin <- function(data, xcol, ycol, boxes, shapes, facet, symsiz
     P <- P + 
       geom_boxplot(width = bwid,
                    fill = "white",
-                   size = bthick,
+                   linewidth = bthick,
                    aes(fill = {{ boxes }}),
                    outlier.alpha = 0,
                    position = position_dodge(width = group_wid),
@@ -124,7 +127,7 @@ plot_4d_scatterviolin <- function(data, xcol, ycol, boxes, shapes, facet, symsiz
     P <- P +
       geom_boxplot(width = bwid, 
                    alpha = b_alpha, 
-                   size = bthick,
+                   linewidth = bthick,
                    aes(fill = {{ boxes }}), 
                    outlier.alpha = 0,
                    position = position_dodge(width = group_wid),
@@ -147,7 +150,8 @@ plot_4d_scatterviolin <- function(data, xcol, ycol, boxes, shapes, facet, symsiz
                    colour = "black",
                    position = position_jitterdodge(jitter.width = jitter,
                                                    dodge.width = group_wid),
-                   aes(shape = {{ shapes }}))}
+                   aes(shape = {{ shapes }}))
+    }
   }
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
