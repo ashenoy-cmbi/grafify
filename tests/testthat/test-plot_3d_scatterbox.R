@@ -44,18 +44,18 @@ test_that("Check 3d scatter box", {
   expect_s3_class(sb1, "ggplot")
   expect_equal(sb1$theme$text$size, 20)
   #match aesthetics in labels
-  #expect_match(sb1$labels$x, 
-  #             "Genotype")
-  #expect_match(sb1$labels$y, 
-  #             "PI")
-  #expect_match(as.character(rlang::quo_get_expr(sb1$labels$shape)), 
-  #             "Time")
-  #expect_match(sb1$labels$fill, 
-  #             "Genotype")
+  expect_match(as.character(rlang::quo_get_expr(sb1$labels$x)), 
+               "Genotype")
+  expect_match(sb1$labels$y, 
+               "PI")
+  expect_match(as.character(rlang::quo_get_expr(sb1$labels$shape)), 
+               "Time")
+  expect_match(as.character(rlang::quo_get_expr(sb1$labels$fill)), 
+               "Genotype")
   #check guide titles from 3.2.1 onwards
-  expect_match(sb1$labels$x, "Genotype")
-  expect_match(sb1$labels$shape, "Time")
-  expect_match(sb1$labels$fill, "Genotype")
+  #expect_match(sb1$labels$x, "Genotype")
+  #expect_match(sb1$labels$shape, "Time")
+  #expect_match(sb1$labels$fill, "Genotype")
   #check text angle is passed on
   if (utils::packageVersion("ggplot2") <= "3.4.2") {
     expect_equal(sb1$guides$x$angle, 45)

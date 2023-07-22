@@ -63,9 +63,9 @@ plot_3d_scatterbar <- function(data, xcol, ycol, shapes, facet, ErrorType = "SD"
   if(ErrorType == "CI95") {ER <- "mean_cl_normal"}
   if (missing(bthick)) {bthick = fontsize/22}
   if (missing(symthick)) {symthick = fontsize/22}
-  data[[deparse(substitute(xcol))]] <- factor(data[[deparse(substitute(xcol))]])
-  data[[deparse(substitute(shapes))]] <- factor(data[[deparse(substitute(shapes))]])
-  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
+  #data[[deparse(substitute(xcol))]] <- factor(#data[[deparse(substitute(xcol))]])
+  #data[[deparse(substitute(shapes))]] <- factor(#data[[deparse(substitute(shapes))]])
+  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                                   y = {{ ycol }},
                                                   group = {{ xcol }}))+
                      stat_summary(geom = "bar", 
@@ -73,7 +73,7 @@ plot_3d_scatterbar <- function(data, xcol, ycol, shapes, facet, ErrorType = "SD"
                                   colour = "black",
                                   fun = "mean", 
                                   linewidth = bthick,
-                                  aes(fill = {{ xcol }}),
+                                  aes(fill = factor({{ xcol }})),
                                   alpha = b_alpha,
                                   position = position_dodge(width = 0.8))+
                      geom_point(size = symsize, 
@@ -82,7 +82,7 @@ plot_3d_scatterbar <- function(data, xcol, ycol, shapes, facet, ErrorType = "SD"
                                 colour = "black",
                                 position = position_jitterdodge(dodge.width = 0.8,
                                                                 jitter.width = jitter),
-                                aes(shape = {{ shapes }}))+
+                                aes(shape = factor({{ shapes }})))+
                      scale_shape_manual(values = 0:25))
   if (ER == "mean_cl_normal") {
     P <- P + stat_summary(geom = "errorbar", 
@@ -149,6 +149,9 @@ plot_3d_scatterbar <- function(data, xcol, ycol, shapes, facet, ErrorType = "SD"
                          ColSeq = ColSeq)
   }
   P <- P +
+    labs(x = enquo(xcol),
+         fill = enquo(xcol),
+         shape = enquo(shapes))+
     theme_grafify(base_size = fontsize)+
     guides(x = guide_axis(angle = TextXAngle),
            fill = guide_legend(order = 1),

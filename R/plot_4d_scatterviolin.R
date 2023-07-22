@@ -77,20 +77,16 @@ plot_4d_scatterviolin <- function(data, xcol, ycol, boxes, shapes, facet, symsiz
   if (missing(bthick)) {bthick = fontsize/22}
   if (missing(vthick)) {vthick = fontsize/22}
   if (missing(symthick)) {symthick = fontsize/22}
-  data[[deparse(substitute(xcol))]] <- factor(data[[deparse(substitute(xcol))]])
-  data[[deparse(substitute(boxes))]] <- factor(data[[deparse(substitute(boxes))]])
-  if(!missing(shapes)) {
-    data[[deparse(substitute(shapes))]] <- factor(data[[deparse(substitute(shapes))]])}
-  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
+  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                                   y = {{ ycol }},
-                                                  group = interaction({{ boxes }},
-                                                                      {{ xcol }})))+
+                                                  group = interaction(factor({{ boxes }}),
+                                                                      factor({{ xcol }}))))+
                      geom_violin(scale = scale, 
                                  alpha = v_alpha, 
                                  size = vthick,
                                  colour = "black",
                                  trim = trim,
-                                 aes(fill = {{ boxes }}), 
+                                 aes(fill = factor({{ boxes }})), 
                                  adjust = vadjust,
                                  position = position_dodge(width = group_wid),
                                  ...)+
@@ -100,7 +96,7 @@ plot_4d_scatterviolin <- function(data, xcol, ycol, boxes, shapes, facet, symsiz
       geom_boxplot(width = bwid,
                    fill = "white",
                    linewidth = bthick,
-                   aes(fill = {{ boxes }}),
+                   aes(fill = factor({{ boxes }})),
                    outlier.alpha = 0,
                    position = position_dodge(width = group_wid),
                    ...)
@@ -112,7 +108,7 @@ plot_4d_scatterviolin <- function(data, xcol, ycol, boxes, shapes, facet, symsiz
                      colour = "black",
                      position = position_jitterdodge(jitter.width = jitter,
                                                      dodge.width = group_wid),
-                     aes(fill = {{ boxes }}),
+                     aes(fill = factor({{ boxes }})),
                      shape = 21)
       } else {
         P <- P + 
@@ -122,13 +118,13 @@ plot_4d_scatterviolin <- function(data, xcol, ycol, boxes, shapes, facet, symsiz
                      colour = "black",
                      position = position_jitterdodge(jitter.width = jitter,
                                                      dodge.width = group_wid),
-                     aes(shape = {{ shapes }}))}
+                     aes(shape = factor({{ shapes }})))}
   } else {
     P <- P +
       geom_boxplot(width = bwid, 
                    alpha = b_alpha, 
                    linewidth = bthick,
-                   aes(fill = {{ boxes }}), 
+                   aes(fill = factor({{ boxes }})), 
                    outlier.alpha = 0,
                    position = position_dodge(width = group_wid),
                    ...)
@@ -140,7 +136,7 @@ plot_4d_scatterviolin <- function(data, xcol, ycol, boxes, shapes, facet, symsiz
                    colour = "black",
                    position = position_jitterdodge(jitter.width = jitter,
                                                    dodge.width = group_wid),
-                   aes(fill = {{ boxes }}),
+                   aes(fill = factor({{ boxes }})),
                    shape = 21)
     } else {
       P <- P + 
@@ -150,7 +146,7 @@ plot_4d_scatterviolin <- function(data, xcol, ycol, boxes, shapes, facet, symsiz
                    colour = "black",
                    position = position_jitterdodge(jitter.width = jitter,
                                                    dodge.width = group_wid),
-                   aes(shape = {{ shapes }}))
+                   aes(shape = factor({{ shapes }})))
     }
   }
   if(!missing(facet)) {
@@ -186,6 +182,9 @@ plot_4d_scatterviolin <- function(data, xcol, ycol, boxes, shapes, facet, symsiz
                            ...)}
   }
   P <- P +
+    labs(x = enquo(xcol),
+         fill = enquo(boxes),
+         shape = enquo(shapes))+
     theme_grafify(base_size = fontsize)+
     guides(x = guide_axis(angle = TextXAngle),
            fill = guide_legend(order = 1),

@@ -37,7 +37,6 @@ plot_qqline <- function(data, ycol, group, facet, symsize = 3, s_alpha = 0.8, Te
   ColPal <- match.arg(ColPal)
   if (missing(symthick)) {symthick = fontsize/22}
   if (missing(linethick)) {linethick = fontsize/22}
-  data[[deparse(substitute(group))]] <- factor(data[[deparse(substitute(group))]])
   if(missing(group)){
     suppressWarnings(P <- ggplot2::ggplot(data, 
                          aes(sample = {{ ycol }}))+
@@ -55,13 +54,13 @@ plot_qqline <- function(data, ycol, group, facet, symsize = 3, s_alpha = 0.8, Te
   } else {
     suppressWarnings(P <- ggplot2::ggplot(data, 
                          aes(sample = {{ ycol }},
-                             group = {{ group }}))+
+                             group = factor({{ group }})))+
       stat_qq_line(na.rm = T,
-                   aes(group = {{ group }}),
+                   aes(group = factor({{ group }})),
                    linewidth = linethick)+
       stat_qq(na.rm = T, 
               shape = 21, 
-              aes(fill = {{ group }}),
+              aes(fill = factor({{ group }})),
               size = symsize, 
               stroke = symthick,
               alpha = s_alpha)+
@@ -77,5 +76,7 @@ plot_qqline <- function(data, ycol, group, facet, symsize = 3, s_alpha = 0.8, Te
                         scales = facet_scales, 
                         ...)
   }
+  P <- P +
+    labs(fill = enquo(group))
   P
 }

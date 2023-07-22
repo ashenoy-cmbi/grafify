@@ -60,6 +60,6 @@ plot_gam_predict <- function(Model, xcol, ycol, ByFactor, symsize = 1, s_alpha =
                                      ymax = high,
                                      fill = {{ ByFactor }}),
                                  alpha = smooth_alpha)+
-    theme_grafify(base_size = fontsize)+
-    scale_fill_grafify())
+                     theme_grafify(base_size = fontsize)+
+                     scale_fill_grafify())
 }

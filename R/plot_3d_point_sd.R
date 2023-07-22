@@ -69,11 +69,11 @@ plot_3d_point_sd <- function(data, xcol, ycol, shapes, facet, ErrorType = "SD", 
   if(ErrorType == "CI95") {ER <- "mean_cl_normal"}
   if (missing(ethick)) {ethick = fontsize/22}
   if (missing(symthick)) {symthick = fontsize/22}
-  data[[deparse(substitute(xcol))]] <- factor(data[[deparse(substitute(xcol))]])
-  data[[deparse(substitute(shapes))]] <- factor(data[[deparse(substitute(shapes))]])
-  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
+  #data[[deparse(substitute(xcol))]] <- factor(#data[[deparse(substitute(xcol))]])
+  #data[[deparse(substitute(shapes))]] <- factor(#data[[deparse(substitute(shapes))]])
+  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                                   y = {{ ycol }}))+
-                     geom_point(aes(shape = {{ shapes }}),
+                     geom_point(aes(shape = factor({{ shapes }})),
                                 colour = "black",
                                 alpha = all_alpha, 
                                 size = all_size,
@@ -100,7 +100,7 @@ plot_3d_point_sd <- function(data, xcol, ycol, shapes, facet, ErrorType = "SD", 
                                   stroke = symthick,
                                   alpha = s_alpha,
                                   fun = "mean",
-                                  aes(fill = {{ xcol }})))
+                                  aes(fill = factor({{ xcol }}))))
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
                              scales = facet_scales,
@@ -153,6 +153,9 @@ plot_3d_point_sd <- function(data, xcol, ycol, shapes, facet, ErrorType = "SD", 
   }
   P <- P+
     theme_grafify(base_size = fontsize)+
+    labs(x = enquo(xcol),
+         fill = enquo(xcol),
+         shape = enquo(shapes))+
     guides(x = guide_axis(angle = TextXAngle),
            fill = guide_legend(order = 1),
            shape = guide_legend(order = 2))

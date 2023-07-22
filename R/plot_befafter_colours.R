@@ -68,16 +68,14 @@ plot_befafter_colours <- function(data, xcol, ycol, match, facet, Boxplot = FALS
   if (missing(bthick)) {bthick = (fontsize)/22}
   if (missing(lthick)) {lthick = (fontsize/1.5)/22}
   if (missing(symthick)) {symthick = fontsize/22}
-  data[[deparse(substitute(xcol))]] <- factor(data[[deparse(substitute(xcol))]])
-  data[[deparse(substitute(match))]] <- factor(data[[deparse(substitute(match))]])
   if(!Boxplot){
-    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
+    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                                     y = {{ ycol }},
-                                                    group = {{ match }})))
+                                                    group = factor({{ match }}))))
   } else {
-    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
+    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                                     y = {{ ycol }},
-                                                    group = {{ match }}))+
+                                                    group = factor({{ match }})))+
                        geom_boxplot(aes(group = {{ xcol }}),
                                     width = bwid,
                                     outlier.alpha = 0,
@@ -85,7 +83,7 @@ plot_befafter_colours <- function(data, xcol, ycol, match, facet, Boxplot = FALS
                                     colour = "grey25"))
   }
   suppressWarnings(P <- P +
-                     geom_line(aes(group = {{ match }}),
+                     geom_line(aes(group = factor({{ match }})),
                                colour = "grey35", alpha = 0.8, 
                                position = position_dodge(width = jitter),
                                size = lthick, 
@@ -95,7 +93,7 @@ plot_befafter_colours <- function(data, xcol, ycol, match, facet, Boxplot = FALS
                                 alpha = s_alpha, 
                                 position = position_dodge(width = jitter),
                                 shape = 21,
-                                aes(fill = {{ match }}), ...))
+                                aes(fill = factor({{ match }})), ...))
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
                         scales = facet_scales, 
@@ -149,6 +147,8 @@ plot_befafter_colours <- function(data, xcol, ycol, match, facet, Boxplot = FALS
       guides(x = guide_axis(angle = TextXAngle))
   }
   P <- P +
+    labs(x = enquo(xcol),
+         fill = enquo(match))+
     theme_grafify(base_size = fontsize)
   P
 }

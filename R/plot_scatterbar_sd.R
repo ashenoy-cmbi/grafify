@@ -65,8 +65,7 @@ plot_scatterbar_sd <- function(data, xcol, ycol, facet, ErrorType = "SD", symsiz
   if(ErrorType == "CI95") {ER <- "mean_cl_normal"}
   if (missing(bthick)) {bthick = fontsize/22}
   if (missing(symthick)) {symthick = fontsize/22}
-  data[[deparse(substitute(xcol))]] <- factor(data[[deparse(substitute(xcol))]])
-  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
+  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                  y = {{ ycol }}))+
     stat_summary(geom = "bar", 
                  colour = "black", 
@@ -74,12 +73,12 @@ plot_scatterbar_sd <- function(data, xcol, ycol, facet, ErrorType = "SD", symsiz
                  fun = "mean", 
                  alpha = b_alpha, 
                  linewidth = bthick,
-                 aes(fill = {{ xcol }}))+
+                 aes(fill = factor({{ xcol }})))+
     geom_point(size = symsize, 
                alpha = s_alpha, shape = 21,
                position = position_jitter(width = jitter), 
                stroke = symthick,
-               aes(fill = {{ xcol }})))
+               aes(fill = factor({{ xcol }}))))
   if (ER == "mean_cl_normal") {
     P <- P + stat_summary(geom = "errorbar", 
                           linewidth = bthick,
@@ -149,5 +148,8 @@ plot_scatterbar_sd <- function(data, xcol, ycol, facet, ErrorType = "SD", symsiz
                          reverse = ColRev, 
                          ColSeq = ColSeq)
   }
+  P <- P +
+    labs(x = enquo(xcol),
+         fill = enquo(xcol))
   P
 }

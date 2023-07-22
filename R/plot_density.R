@@ -37,12 +37,11 @@
 
 plot_density <- function(data, ycol, group, facet,  c_alpha = 0.2, TextXAngle = 0, facet_scales = "fixed", fontsize = 20, linethick, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, ...){
   if(missing(linethick)) {linethick = fontsize/22}
-  data[[deparse(substitute(group))]] <- factor(data[[deparse(substitute(group))]])
   ColPal <- match.arg(ColPal)
   suppressWarnings(P <- ggplot2::ggplot(data, 
                        aes(x = {{ ycol }},
-                           fill = {{ group }},
-                           colour = {{ group }}))+
+                           fill = factor({{ group }}),
+                           colour = factor({{ group }})))+
     geom_density(size = linethick,
                  alpha = c_alpha)+
     labs(y = "Density")+
@@ -59,5 +58,8 @@ plot_density <- function(data, ycol, group, facet,  c_alpha = 0.2, TextXAngle = 
                         scales = facet_scales, 
                         ...)
   }
+  P <- P +
+    labs(fill = enquo(group),
+         colour = enquo(group))
   P
 }

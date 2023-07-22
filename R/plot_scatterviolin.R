@@ -72,10 +72,9 @@ plot_scatterviolin <- function(data, xcol, ycol, facet, symsize = 3,  s_alpha = 
   if (missing(bthick)) {bthick = fontsize/22}
   if (missing(vthick)) {vthick = fontsize/22}
   if (missing(symthick)) {symthick = fontsize/22}
-  data[[deparse(substitute(xcol))]] <- factor(data[[deparse(substitute(xcol))]])
-  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
+  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                                   y = {{ ycol }}))+
-                     geom_violin(aes(fill = {{ xcol }}),
+                     geom_violin(aes(fill = factor({{ xcol }})),
                                  alpha = v_alpha,
                                  trim = trim,
                                  scale = scale,
@@ -96,11 +95,11 @@ plot_scatterviolin <- function(data, xcol, ycol, facet, symsize = 3,  s_alpha = 
                                   alpha = s_alpha,
                                   stroke = symthick,
                                   size = symsize,
-                                  aes(fill = {{ xcol }}),
+                                  aes(fill = factor({{ xcol }})),
                                   ...)) 
   } else {
     suppressWarnings(P <- P +
-                       geom_boxplot(aes(fill = {{ xcol }}),
+                       geom_boxplot(aes(fill = factor({{ xcol }})),
                                     alpha = b_alpha,
                                     colour = "black", 
                                     linewidth = bthick,
@@ -112,7 +111,7 @@ plot_scatterviolin <- function(data, xcol, ycol, facet, symsize = 3,  s_alpha = 
                                   alpha = s_alpha,
                                   stroke = symthick,
                                   size = symsize,
-                                  aes(fill = {{ xcol }}),
+                                  aes(fill = factor({{ xcol }})),
                                   ...))
   }
   if(!missing(facet)) {
@@ -164,6 +163,8 @@ plot_scatterviolin <- function(data, xcol, ycol, facet, symsize = 3,  s_alpha = 
                          ColSeq = ColSeq)
   }
   P <- P +
+    labs(x = enquo(xcol),
+         fill = enquo(xcol))+
     theme_grafify(base_size = fontsize)+
     guides(x = guide_axis(angle = TextXAngle))
   P

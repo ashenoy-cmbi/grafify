@@ -68,13 +68,13 @@ plot_xy_CatGroup <- function(data, xcol, ycol, CatGroup, facet, Boxplot = FALSE,
   ColPal <- match.arg(ColPal)
   if (missing(symthick)) {symthick = fontsize/22}
   if (missing(bthick)) {bthick = fontsize/22}
-  data[[deparse(substitute(CatGroup))]] <- factor(data[[deparse(substitute(CatGroup))]])
+  #data[[deparse(substitute(CatGroup))]] <- factor(#data[[deparse(substitute(CatGroup))]])
   if (!(Boxplot)) {
     suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
                                                     y = {{ ycol }}))+
                        geom_point(size = symsize, 
                                   alpha = s_alpha,
-                                  aes(fill = {{ CatGroup }}),
+                                  aes(fill = factor({{ CatGroup }})),
                                   shape = 21, 
                                   stroke = symthick, 
                                   ...))
@@ -82,8 +82,8 @@ plot_xy_CatGroup <- function(data, xcol, ycol, CatGroup, facet, Boxplot = FALSE,
     suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
                                                     y = {{ ycol }}))+
                        geom_boxplot(aes(group = interaction({{ xcol }},
-                                                            {{ CatGroup }}),
-                                        fill = {{ CatGroup }}),
+                                                            factor({{ CatGroup }})),
+                                        fill = factor({{ CatGroup }})),
                                     linewidth = bthick,
                                     outlier.alpha = 0,
                                     width = bwid,
@@ -93,14 +93,14 @@ plot_xy_CatGroup <- function(data, xcol, ycol, CatGroup, facet, Boxplot = FALSE,
                        stat_summary(geom = "line",
                                     linewidth = bthick,
                                     alpha = l_alpha,
-                                    aes(colour = {{ CatGroup }}),
+                                    aes(colour = factor({{ CatGroup }})),
                                     fun = "median")+
                        scale_colour_grafify(palette = ColPal,
                                             reverse = ColRev,
                                             ColSeq = ColSeq)+
                        geom_point(size = symsize, 
                                   alpha = s_alpha,
-                                  aes(fill = {{ CatGroup }}),
+                                  aes(fill = factor({{ CatGroup }})),
                                   shape = 21, 
                                   stroke = symthick,
                                   ...))
@@ -167,6 +167,7 @@ plot_xy_CatGroup <- function(data, xcol, ycol, CatGroup, facet, Boxplot = FALSE,
     }
   }
   P <- P +
+    labs(fill = enquo(CatGroup))+
     theme_grafify(base_size = fontsize)+
     guides(x = guide_axis(angle = TextXAngle))+
     scale_fill_grafify(palette = ColPal, 

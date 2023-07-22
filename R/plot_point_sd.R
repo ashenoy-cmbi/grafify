@@ -65,11 +65,10 @@ plot_point_sd <- function(data, xcol, ycol, facet, ErrorType = "SD", symsize = 3
   if (missing(symthick)) {symthick = fontsize/22}
   if(symshape < 21 | symshape > 25){
     stop("`symshape` should be betwee 21-25.")}
-  data[[deparse(substitute(xcol))]] <- factor(data[[deparse(substitute(xcol))]])
   if (ER == "mean_cl_normal") {
-    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
+    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                                     y = {{ ycol }}))+
-                       geom_point(aes(fill = {{ xcol }}),
+                       geom_point(aes(fill = factor({{ xcol }})),
                                   shape = all_shape, 
                                   alpha = all_alpha,
                                   size = all_size,
@@ -84,12 +83,12 @@ plot_point_sd <- function(data, xcol, ycol, facet, ErrorType = "SD", symsize = 3
                                     stroke = symthick,
                                     alpha = s_alpha,
                                     fun = "mean",
-                                    aes(fill = {{ xcol }}), 
+                                    aes(fill = factor({{ xcol }})), 
                                     ...))
   } else {
-    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
+    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                                     y = {{ ycol }}))+
-                       geom_point(aes(fill = {{ xcol }}),
+                       geom_point(aes(fill = factor({{ xcol }})),
                                   shape = all_shape, 
                                   alpha = all_alpha,
                                   size = all_size,
@@ -105,10 +104,12 @@ plot_point_sd <- function(data, xcol, ycol, facet, ErrorType = "SD", symsize = 3
                                     stroke = symthick,
                                     alpha = s_alpha,
                                     fun = "mean",
-                                    aes(fill = {{ xcol }}), 
+                                    aes(fill = factor({{ xcol }})), 
                                     ...))
   }
   P <- P + 
+    labs(x = enquo(xcol),
+         fill = enquo(xcol))+
     theme_grafify(base_size = fontsize)+
     guides(x = guide_axis(angle = TextXAngle))
   if(!missing(facet)) {

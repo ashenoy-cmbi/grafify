@@ -74,20 +74,16 @@ plot_4d_scatterbar <- function(data, xcol, ycol, bars, shapes, facet, ErrorType 
   if(ErrorType == "CI95") {ER <- "mean_cl_normal"}
   if (missing(bthick)) {bthick = fontsize/22}
   if (missing(symthick)) {symthick = fontsize/22}
-  data[[deparse(substitute(xcol))]] <- factor(data[[deparse(substitute(xcol))]])
-  data[[deparse(substitute(bars))]] <- factor(data[[deparse(substitute(bars))]])
-  if(!missing(shapes)) {
-    data[[deparse(substitute(shapes))]] <- factor(data[[deparse(substitute(shapes))]])}
-  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
+  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                                   y = {{ ycol }},
-                                                  group = interaction({{ bars }},
-                                                                      {{ xcol }})))+
+                                                  group = interaction(factor({{ bars }}),
+                                                                      factor({{ xcol }}))))+
                      stat_summary(geom = "bar", 
                                   colour = "black", 
                                   width = bwid, 
                                   alpha = b_alpha, 
                                   linewidth = bthick,
-                                  aes(fill = {{ bars }}),
+                                  aes(fill = factor({{ bars }})),
                                   position = position_dodge(width = group_wid),
                                   fun = "mean", ...))
   if(missing(shapes)){
@@ -98,7 +94,7 @@ plot_4d_scatterbar <- function(data, xcol, ycol, bars, shapes, facet, ErrorType 
                                   colour = "black",
                                   position = position_jitterdodge(jitter.width = jitter,
                                                                   dodge.width = group_wid),
-                                  aes(fill = {{ bars }}), 
+                                  aes(fill = factor({{ bars }})), 
                                   shape = 21, ...))
   } else {
     suppressWarnings(P <- P + 
@@ -108,7 +104,7 @@ plot_4d_scatterbar <- function(data, xcol, ycol, bars, shapes, facet, ErrorType 
                                   colour = "black",
                                   position = position_jitterdodge(jitter.width = jitter,
                                                                   dodge.width = group_wid),
-                                  aes(shape = {{ shapes }}),
+                                  aes(shape = factor({{ shapes }})),
                                   ...)+
                        scale_shape_manual(values = 0:25))
   }
@@ -162,6 +158,9 @@ plot_4d_scatterbar <- function(data, xcol, ycol, bars, shapes, facet, ErrorType 
                            ...)}
   }
   P <- P +
+    labs(x = enquo(xcol),
+         fill = enquo(bars),
+         shape = enquo(shapes))+
     theme_grafify(base_size = fontsize)+
     guides(x = guide_axis(angle = TextXAngle),
            fill = guide_legend(order = 1),

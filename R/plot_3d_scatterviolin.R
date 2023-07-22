@@ -68,12 +68,12 @@ plot_3d_scatterviolin <- function(data, xcol, ycol, shapes, facet, symsize = 3, 
   if(missing(bthick)) {bthick = fontsize/22}
   if(missing(vthick)) {vthick = fontsize/22}
   if (missing(symthick)) {symthick = fontsize/22}
-  data[[deparse(substitute(xcol))]] <- factor(data[[deparse(substitute(xcol))]])
-  data[[deparse(substitute(shapes))]] <- factor(data[[deparse(substitute(shapes))]])
-  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
+  #data[[deparse(substitute(xcol))]] <- factor(#data[[deparse(substitute(xcol))]])
+  #data[[deparse(substitute(shapes))]] <- factor(#data[[deparse(substitute(shapes))]])
+  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                                   y = {{ ycol }},
                                                   group = {{ xcol }}))+
-                     geom_violin(aes(fill = {{ xcol }}),
+                     geom_violin(aes(fill = factor({{ xcol }})),
                                  size = vthick,
                                  alpha = v_alpha,
                                  scale = scale,
@@ -84,7 +84,7 @@ plot_3d_scatterviolin <- function(data, xcol, ycol, shapes, facet, symsize = 3, 
                      scale_shape_manual(values = 0:25))
   if (b_alpha == 0){
     suppressWarnings(P <- P +
-                       geom_boxplot(aes(fill = {{ xcol }}), 
+                       geom_boxplot(aes(fill = factor({{ xcol }})), 
                                     fill = "white",
                                     linewidth = bthick,
                                     position = position_dodge(width = 0.8),
@@ -98,10 +98,10 @@ plot_3d_scatterviolin <- function(data, xcol, ycol, shapes, facet, symsize = 3, 
                                   colour = "black",
                                   position = position_jitterdodge(jitter.width = jitter,
                                                                   dodge.width = 0.8),
-                                  aes(shape = {{ shapes }})))
+                                  aes(shape = factor({{ shapes }}))))
   } else {
     suppressWarnings(P <- P +
-                       geom_boxplot(aes(fill = {{ xcol }}), 
+                       geom_boxplot(aes(fill = factor({{ xcol }})), 
                                     linewidth = bthick,
                                     alpha = b_alpha,
                                     position = position_dodge(width = 0.8),
@@ -114,7 +114,7 @@ plot_3d_scatterviolin <- function(data, xcol, ycol, shapes, facet, symsize = 3, 
                                   alpha = s_alpha, colour = "black",
                                   position = position_jitterdodge(jitter.width = jitter,
                                                                   dodge.width = 0.8),
-                                  aes(shape = {{ shapes }})))
+                                  aes(shape = factor({{ shapes }}))))
   }
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
@@ -166,6 +166,9 @@ plot_3d_scatterviolin <- function(data, xcol, ycol, shapes, facet, symsize = 3, 
                                           ColSeq = ColSeq))
   }
   P <- P +
+    labs(x = enquo(xcol),
+         fill = enquo(xcol),
+         shape = enquo(shapes))+
     guides(x = guide_axis(angle = TextXAngle),
            fill = guide_legend(order = 1),
            shape = guide_legend(order = 2))+

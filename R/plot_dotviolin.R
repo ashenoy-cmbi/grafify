@@ -74,10 +74,9 @@ plot_dotviolin <- function(data, xcol, ycol, facet, dotsize = 1.5, d_alpha = 0.8
   if (missing(bthick)) {bthick = fontsize/22}
   if (missing(vthick)) {vthick = fontsize/22}
   if (missing(dotthick)) {dotthick = fontsize/22}
-  data[[deparse(substitute(xcol))]] <- factor(data[[deparse(substitute(xcol))]])
-  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
+  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                                   y = {{ ycol }}))+
-                     geom_violin(aes(fill = {{ xcol }}),
+                     geom_violin(aes(fill = factor({{ xcol }})),
                                  alpha = v_alpha,
                                  trim = trim,
                                  scale = scale,
@@ -98,11 +97,11 @@ plot_dotviolin <- function(data, xcol, ycol, facet, dotsize = 1.5, d_alpha = 0.8
                                     alpha = d_alpha,
                                     dotsize = dotsize,
                                     binaxis = 'y',
-                                    aes(fill = {{ xcol }}),
+                                    aes(fill = factor({{ xcol }})),
                                     ...))
   } else {
     suppressWarnings(P <- P +
-                       geom_boxplot(aes(fill = {{ xcol }}),
+                       geom_boxplot(aes(fill = factor({{ xcol }})),
                                     alpha = b_alpha,
                                     colour = "black", 
                                     linewidth = bthick,
@@ -114,7 +113,7 @@ plot_dotviolin <- function(data, xcol, ycol, facet, dotsize = 1.5, d_alpha = 0.8
                                     alpha = d_alpha,
                                     dotsize = dotsize,
                                     binaxis = 'y',
-                                    aes(fill = {{ xcol }}),
+                                    aes(fill = factor({{ xcol }})),
                                     ...)) 
   }
   if(!missing(facet)) {
@@ -166,6 +165,8 @@ plot_dotviolin <- function(data, xcol, ycol, facet, dotsize = 1.5, d_alpha = 0.8
                          ColSeq = ColSeq)
   }
   P <- P +
+    labs(x = enquo(xcol),
+         fill = enquo(xcol))+
     theme_grafify(base_size = fontsize)+
     guides(x = guide_axis(angle = TextXAngle))
   P

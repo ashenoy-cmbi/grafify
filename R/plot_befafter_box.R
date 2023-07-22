@@ -64,20 +64,18 @@ plot_befafter_box <- function(data, xcol, ycol, match, facet, PlotShapes = FALSE
   if (missing(bthick)) {bthick = (fontsize)/22}
   if (missing(lthick)) {lthick = (fontsize/1.5)/22}
   if (missing(symthick)) {symthick = (fontsize)/22}
-  data[[deparse(substitute(xcol))]] <- factor(data[[deparse(substitute(xcol))]])
-  data[[deparse(substitute(match))]] <- factor(data[[deparse(substitute(match))]])
   suppressWarnings(P <- ggplot2::ggplot(data, 
-                       aes(x = {{ xcol }},
+                       aes(x = factor({{ xcol }}),
                            y = {{ ycol }},
-                           group = {{ match }}))+
+                           group = factor({{ match }})))+
     geom_boxplot(aes(group = {{ xcol }},
-                     fill = {{ xcol }}),
+                     fill = factor({{ xcol }})),
                  alpha = b_alpha,
                  outlier.alpha = 0,
                  width = bwid,
                  linewidth = bthick,
                  ...)+
-    geom_line(aes(group = {{ match }}),
+    geom_line(aes(group = factor({{ match }})),
               colour = "grey35", 
               alpha = 0.8, 
               size = lthick, 
@@ -90,7 +88,7 @@ plot_befafter_box <- function(data, xcol, ycol, match, facet, PlotShapes = FALSE
                  alpha = s_alpha, 
                  shape = 21, 
                  position = position_dodge(width = jitter),
-                 aes(fill = {{ xcol }}), ...))
+                 aes(fill = factor({{ xcol }})), ...))
   } else {
     suppressWarnings(P <- P + 
       geom_point(size = symsize, 
@@ -98,7 +96,7 @@ plot_befafter_box <- function(data, xcol, ycol, match, facet, PlotShapes = FALSE
                  alpha = s_alpha,
                  colour = "black",
                  position = position_dodge(width = jitter),
-                 aes(shape = {{ match }}),
+                 aes(shape = factor({{ match }})),
                  ...)+
       scale_shape_manual(values = 0:25))
   }
@@ -157,6 +155,9 @@ plot_befafter_box <- function(data, xcol, ycol, match, facet, PlotShapes = FALSE
              shape = guide_legend(order = 2))
   }
   P <- P +
+    labs(x = enquo(xcol),
+         fill = enquo(match),
+         shape = enquo(match))+
     theme_grafify(base_size = fontsize)
   P
 }

@@ -68,8 +68,7 @@ plot_dotbar_sd <- function(data, xcol, ycol, facet, ErrorType = "SD", dotsize = 
   if(ErrorType == "CI95") {ER <- "mean_cl_normal"}
   if (missing(bthick)) {bthick = fontsize/22}
   if (missing(dotthick)) {dotthick = fontsize/22}
-  data[[deparse(substitute(xcol))]] <- factor(data[[deparse(substitute(xcol))]])
-  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
+  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                                   y = {{ ycol }}))+
                      stat_summary(geom = "bar", 
                                   colour = "black", 
@@ -77,13 +76,13 @@ plot_dotbar_sd <- function(data, xcol, ycol, facet, ErrorType = "SD", dotsize = 
                                   fun = "mean", 
                                   alpha = b_alpha, 
                                   linewidth = bthick,
-                                  aes(fill = {{ xcol }}))+
+                                  aes(fill = factor({{ xcol }})))+
                      geom_dotplot(dotsize = dotsize, 
                                   stroke = dotthick,
                                   binaxis = 'y', 
                                   alpha = d_alpha,
                                   stackdir = 'center',
-                                  aes(fill = {{ xcol }}),
+                                  aes(fill = factor({{ xcol }})),
                                   ...))
   if (ER == "mean_cl_normal") {
     P <- P + stat_summary(geom = "errorbar", 
@@ -150,6 +149,8 @@ plot_dotbar_sd <- function(data, xcol, ycol, facet, ErrorType = "SD", dotsize = 
                          ColSeq = ColSeq)
   }
   P <- P  +
+    labs(x = enquo(xcol),
+         fill = enquo(xcol))+
     theme_grafify(base_size = fontsize)+
     guides(x = guide_axis(angle = TextXAngle))
   P

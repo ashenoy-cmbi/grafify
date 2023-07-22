@@ -47,7 +47,7 @@ plot_lm_predict <- function(Model, xcol, ycol, ByFactor, obs_size = 2, obs_alpha
   modeldf$pred <- predict(Model)
   if(isTRUE(is.numeric(modeldf[[deparse1(x)]]))){
     suppressMessages(P <- ggplot(modeldf, 
-                                 aes(x = {{ xcol }},
+                                 aes(x = factor({{ xcol }}),
                                      fill = {{ ByFactor }}))+
                        geom_point(aes(y = {{ ycol }},
                                       colour = {{ ByFactor }}),
@@ -66,14 +66,13 @@ plot_lm_predict <- function(Model, xcol, ycol, ByFactor, obs_size = 2, obs_alpha
                                                     order = 2))+
                        theme_grafify(base_size = base_size,
                                      ...)+
-                       labs(x = enquo(xcol),
-                            y = enquo(ycol))+
+                       labs(x = enquo(xcol))+
                        scale_fill_grafify()+
                        scale_colour_grafify())
   } else {
     suppressMessages(P <- ggplot(modeldf, 
-                                 aes(x = {{ xcol }},
-                                     fill = {{ xcol }}))+
+                                 aes(x = factor({{ xcol }}),
+                                     fill = factor({{ xcol }})))+
                        geom_boxplot(aes(colour = {{ xcol }},
                                         y = pred),
                                     alpha = 0,
@@ -87,7 +86,7 @@ plot_lm_predict <- function(Model, xcol, ycol, ByFactor, obs_size = 2, obs_alpha
                                   size = obs_size,
                                   stroke = linethick)+
                        geom_point(aes(y = .data$pred,
-                                      fill = {{ xcol }}),
+                                      fill = factor({{ xcol }})),
                                   alpha = pred_alpha,
                                   size = pred_size,
                                   stroke = linethick,
@@ -99,7 +98,8 @@ plot_lm_predict <- function(Model, xcol, ycol, ByFactor, obs_size = 2, obs_alpha
                        theme_grafify(base_size = base_size,
                                      ...)+
                        labs(x = enquo(xcol),
-                            y = enquo(ycol))+
+                            fill = enquo(xcol),
+                            colour = enquo(xcol))+
                        scale_fill_grafify()+
                        scale_colour_grafify())
   }

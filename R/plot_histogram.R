@@ -46,7 +46,6 @@ plot_histogram <- function(data, ycol, group, facet, BinSize = 30, c_alpha = 0.8
     warning("Use `c_alpha` argument instead, as `alpha` is deprecated.")
     c_alpha <- substitute(alpha)}
   ColPal <- match.arg(ColPal)
-  data[[deparse(substitute(group))]] <- factor(data[[deparse(substitute(group))]])
   if(missing(group)) {
     suppressWarnings(P <- ggplot2::ggplot(data, 
                          aes({{ ycol }}))+
@@ -67,7 +66,7 @@ plot_histogram <- function(data, ycol, group, facet, BinSize = 30, c_alpha = 0.8
                      colour = "black",
                      linewidth = linethick,
                      bins = BinSize,
-                     aes(fill = {{ group }}))+
+                     aes(fill = factor({{ group }})))+
       theme_grafify(base_size = fontsize)+
       guides(x = guide_axis(angle = TextXAngle))+
       scale_fill_grafify(palette = ColPal, 
@@ -79,5 +78,7 @@ plot_histogram <- function(data, ycol, group, facet, BinSize = 30, c_alpha = 0.8
                         scales = facet_scales, 
                         ...)
   }
+  P <- P +
+    labs(fill = enquo(group))
   P
 }

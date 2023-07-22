@@ -78,28 +78,24 @@ plot_4d_point_sd <- function(data, xcol, ycol, points, shapes, facet, ErrorType 
   if(ErrorType == "CI95") {ER <- "mean_cl_normal"}
   if (missing(ethick)) {ethick = fontsize/22}
   if (missing(symthick)) {symthick = fontsize/22}
-  data[[deparse(substitute(xcol))]] <- factor(data[[deparse(substitute(xcol))]])
-  data[[deparse(substitute(points))]] <- factor(data[[deparse(substitute(points))]])
-  if(!missing(shapes)) {
-    data[[deparse(substitute(shapes))]] <- factor(data[[deparse(substitute(shapes))]])}
   if (missing(shapes)){
-    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
+    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                                     y = {{ ycol }},
-                                                    group = interaction({{ points }}, 
-                                                                        {{ xcol }})))+
-                       geom_point(aes(fill = {{ points }}),
+                                                    group = interaction(factor({{ points }}), 
+                                                                        factor({{ xcol }}))))+
+                       geom_point(aes(fill = factor({{ points }})),
                                   shape = all_shape, 
                                   alpha = all_alpha,
                                   size = all_size,
                                   position = position_jitterdodge(jitter.width = all_jitter,
                                                                   dodge.width = group_wid)))
   } else {
-    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
+    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                                     y = {{ ycol }},
-                                                    group = interaction({{ points }}, 
-                                                                        {{ xcol }})))+
-                       geom_point(aes(fill = {{ points }},
-                                      shape = {{ shapes }}),
+                                                    group = interaction(factor({{ points }}), 
+                                                                        factor({{ xcol }}))))+
+                       geom_point(aes(fill = factor({{ points }}),
+                                      shape = factor({{ shapes }})),
                                   alpha = all_alpha,
                                   size = all_size,
                                   position = position_jitterdodge(jitter.width = all_jitter,
@@ -121,7 +117,7 @@ plot_4d_point_sd <- function(data, xcol, ycol, points, shapes, facet, ErrorType 
                                     alpha = s_alpha,
                                     fun = "mean",
                                     position = position_dodge(width = group_wid),
-                                    aes(fill = {{ points }}), 
+                                    aes(fill = factor({{ points }})), 
                                     ...))
   } else {
     suppressWarnings(P <- P +
@@ -139,7 +135,7 @@ plot_4d_point_sd <- function(data, xcol, ycol, points, shapes, facet, ErrorType 
                                     alpha = s_alpha,
                                     fun = "mean",
                                     position = position_dodge(width = group_wid),
-                                    aes(fill = {{ points }}), 
+                                    aes(fill = factor({{ points }})), 
                                     ...))
   }
   if(!missing(facet)) {
@@ -175,6 +171,9 @@ plot_4d_point_sd <- function(data, xcol, ycol, points, shapes, facet, ErrorType 
                            ...)}
   }
   P <- P + 
+    labs(x = enquo(xcol),
+         fill = enquo(points),
+         shape = enquo(shapes))+
     theme_grafify(base_size = fontsize)+
     guides(x = guide_axis(angle = TextXAngle),
            fill = guide_legend(order = 1),

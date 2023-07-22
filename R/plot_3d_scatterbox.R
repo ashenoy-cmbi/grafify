@@ -58,13 +58,13 @@ plot_3d_scatterbox <- function(data, xcol, ycol, shapes, facet, symsize = 3, s_a
   ColPal <- match.arg(ColPal)
   if (missing(bthick)) {bthick = fontsize/22}
   if (missing(symthick)) {symthick = fontsize/22}
-  data[[deparse(substitute(xcol))]] <- factor(data[[deparse(substitute(xcol))]])
-  data[[deparse(substitute(shapes))]] <- factor(data[[deparse(substitute(shapes))]])
+  #data[[deparse(substitute(xcol))]] <- factor(#data[[deparse(substitute(xcol))]])
+  #data[[deparse(substitute(shapes))]] <- factor(#data[[deparse(substitute(shapes))]])
   suppressWarnings(P <- ggplot2::ggplot(data, 
-                                        aes(x = {{ xcol }},
+                                        aes(x = factor({{ xcol }}),
                                             y = {{ ycol }},
                                             group = {{ xcol }}))+
-                     geom_boxplot(aes(fill = {{ xcol }}), 
+                     geom_boxplot(aes(fill = factor({{ xcol }})), 
                                   linewidth = bthick,
                                   alpha = b_alpha,
                                   position = position_dodge(width = 0.8),
@@ -76,7 +76,7 @@ plot_3d_scatterbox <- function(data, xcol, ycol, shapes, facet, symsize = 3, s_a
                                 alpha = s_alpha, colour = "black",
                                 position = position_jitterdodge(jitter.width = jitter,
                                                                 dodge.width = 0.8),
-                                aes(shape = {{ shapes }}))+
+                                aes(shape = factor({{ shapes }})))+
                      scale_shape_manual(values = 0:25))
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
@@ -129,6 +129,9 @@ plot_3d_scatterbox <- function(data, xcol, ycol, shapes, facet, symsize = 3, s_a
                          ColSeq = ColSeq)
   }
   P <- P +
+    labs(x = enquo(xcol),
+         fill = enquo(xcol),
+         shape = enquo(shapes))+
     theme_grafify(base_size = fontsize)+
     guides(x = guide_axis(angle = TextXAngle),
            fill = guide_legend(order = 1),

@@ -9,7 +9,7 @@ Full reference to all functions available at [`grafify` GitHub pages](https://as
 
 # grafify v4.0.0
 
-The reason this is a major update is that now `ggplot2` version 3.2.0 or higher is required to avoid errors with `grafify`. The main difference is that `size` argument for line widths has been updated to `linewidth`.
+The reason this is a major update is that now `ggplot2` version 3.4.0 or higher is required to avoid errors with `grafify`. The main difference is that `size` argument for line widths has been updated to `linewidth`.
 
 ## Major updates
 

@@ -58,10 +58,10 @@ plot_scatterbox <- function(data, xcol, ycol, facet, symsize = 3, s_alpha = 0.8,
   ColPal <- match.arg(ColPal)
   if (missing(bthick)) {bthick = fontsize/22}
   if (missing(symthick)) {symthick = fontsize/22}
-  data[[deparse(substitute(xcol))]] <- factor(data[[deparse(substitute(xcol))]])
-  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
+  #data[[deparse(substitute(xcol))]] <- factor(#data[[deparse(substitute(xcol))]])
+  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                  y = {{ ycol }}))+
-    geom_boxplot(aes(fill = {{ xcol }}), 
+    geom_boxplot(aes(fill = factor({{ xcol }})), 
                  linewidth = bthick,
                  alpha = b_alpha,
                  outlier.alpha = 0,
@@ -72,7 +72,7 @@ plot_scatterbox <- function(data, xcol, ycol, facet, symsize = 3, s_alpha = 0.8,
                alpha = s_alpha,
                stroke = symthick,
                size = symsize,
-               aes(fill = {{ xcol }})))
+               aes(fill = factor({{ xcol }}))))
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
                         scales = facet_scales, 
@@ -125,6 +125,8 @@ plot_scatterbox <- function(data, xcol, ycol, facet, symsize = 3, s_alpha = 0.8,
     
   }
   P <- P + 
+    labs(x = enquo(xcol),
+         fill = enquo(xcol))+
     theme_grafify(base_size = fontsize)+
     guides(x = guide_axis(angle = TextXAngle))
   P

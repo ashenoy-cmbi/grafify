@@ -58,11 +58,11 @@ plot_dotbox <- function(data, xcol, ycol, facet, dotsize = 1.5, d_alpha = 0.8, b
   ColPal <- match.arg(ColPal)
   if (missing(bthick)) {bthick = fontsize/22}
   if (missing(dotthick)) {dotthick = fontsize/22}
-  data[[deparse(substitute(xcol))]] <- factor(data[[deparse(substitute(xcol))]])
+  #data[[deparse(substitute(xcol))]] <- factor(#data[[deparse(substitute(xcol))]])
   if (missing(SingleColour)) {
-    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
+    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                                     y = {{ ycol }}))+
-                       geom_boxplot(aes(fill = {{ xcol }}), 
+                       geom_boxplot(aes(fill = factor({{ xcol }})), 
                                     linewidth = bthick,
                                     alpha = b_alpha,
                                     outlier.alpha = 0,
@@ -73,7 +73,7 @@ plot_dotbox <- function(data, xcol, ycol, facet, dotsize = 1.5, d_alpha = 0.8, b
                                     alpha = d_alpha,
                                     binaxis = 'y', 
                                     dotsize = dotsize,
-                                    aes(fill = {{ xcol }}),
+                                    aes(fill = factor({{ xcol }})),
                                     ...))
   } else {
     ifelse(grepl("#", SingleColour), 
@@ -81,7 +81,7 @@ plot_dotbox <- function(data, xcol, ycol, facet, dotsize = 1.5, d_alpha = 0.8, b
            ifelse(isTRUE(get_graf_colours(SingleColour) != 0), 
                   a <- unname(get_graf_colours(SingleColour)), 
                   a <- SingleColour))
-    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
+    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                                     y = {{ ycol }}))+
                        geom_boxplot(linewidth = bthick,
                                     alpha = b_alpha,
@@ -130,6 +130,8 @@ plot_dotbox <- function(data, xcol, ycol, facet, dotsize = 1.5, d_alpha = 0.8, b
                            ...)}
   }
   P <- P + 
+    labs(x = enquo(xcol),
+         fill = enquo(xcol))+
     theme_grafify(base_size = fontsize)+
     guides(x = guide_axis(angle = TextXAngle))+
     scale_fill_grafify(palette = ColPal, 

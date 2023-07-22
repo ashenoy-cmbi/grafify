@@ -67,18 +67,14 @@ plot_4d_scatterbox <- function(data, xcol, ycol, boxes, shapes, facet, symsize =
   ColPal <- match.arg(ColPal)
   if (missing(bthick)) {bthick = fontsize/22}
   if (missing(symthick)) {symthick = fontsize/22}
-  data[[deparse(substitute(xcol))]] <- factor(data[[deparse(substitute(xcol))]])
-  data[[deparse(substitute(boxes))]] <- factor(data[[deparse(substitute(boxes))]])
-  if(!missing(shapes)) {
-    data[[deparse(substitute(shapes))]] <- factor(data[[deparse(substitute(shapes))]])}
-  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
+  suppressWarnings(P <- ggplot2::ggplot(data, aes(x = factor({{ xcol }}),
                                                   y = {{ ycol }},
-                                                  group = interaction({{ boxes }},
-                                                                      {{ xcol }})))+
+                                                  group = interaction(factor({{ boxes }}),
+                                                                      factor({{ xcol }}))))+
                      geom_boxplot(width = bwid, 
                                   alpha = b_alpha, 
                                   linewidth = bthick,
-                                  aes(fill = {{ boxes }}), 
+                                  aes(fill = factor({{ boxes }})), 
                                   outlier.alpha = 0,
                                   position = position_dodge(width = group_wid),
                                   ...))
@@ -90,7 +86,7 @@ plot_4d_scatterbox <- function(data, xcol, ycol, boxes, shapes, facet, symsize =
                                   colour = "black",
                                   position = position_jitterdodge(jitter.width = jitter,
                                                                   dodge.width = group_wid),
-                                  aes(fill = {{ boxes }}),
+                                  aes(fill = factor({{ boxes }})),
                                   shape = 21))
   } else {
     suppressWarnings(P <- P + geom_point(size = symsize, 
@@ -99,7 +95,7 @@ plot_4d_scatterbox <- function(data, xcol, ycol, boxes, shapes, facet, symsize =
                                          colour = "black",
                                          position = position_jitterdodge(jitter.width = jitter,
                                                                          dodge.width = group_wid),
-                                         aes(shape = {{ shapes }}))+
+                                         aes(shape = factor({{ shapes }})))+
                        scale_shape_manual(values = 0:25))}
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
@@ -134,6 +130,9 @@ plot_4d_scatterbox <- function(data, xcol, ycol, boxes, shapes, facet, symsize =
                            ...)}
   }
   P <- P +
+    labs(x = enquo(xcol),
+         fill = enquo(boxes),
+         shape = enquo(shapes))+
     theme_grafify(base_size = fontsize)+
     guides(x = guide_axis(angle = TextXAngle),
            fill = guide_legend(order = 1),
