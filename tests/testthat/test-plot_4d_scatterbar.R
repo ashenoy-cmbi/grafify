@@ -25,6 +25,6 @@ test_that("Check 4d scatter bars", {
   if (utils::packageVersion("ggplot2") <= "3.4.2") {
     expect_equal(sb1$guides$x$angle, 45)
   } else {
-    expect_equal(sb1$guides$guides$x$params$angle, 45)
+    expect_equal(sb1$guides$x$angle, 45)
   }
 })

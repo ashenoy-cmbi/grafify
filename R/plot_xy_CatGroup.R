@@ -167,7 +167,8 @@ plot_xy_CatGroup <- function(data, xcol, ycol, CatGroup, facet, Boxplot = FALSE,
     }
   }
   P <- P +
-    labs(fill = enquo(CatGroup))+
+    labs(fill = enquo(CatGroup),
+         colour = enquo(CatGroup))+
     theme_grafify(base_size = fontsize)+
     guides(x = guide_axis(angle = TextXAngle))+
     scale_fill_grafify(palette = ColPal, 
