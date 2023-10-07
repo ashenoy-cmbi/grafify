@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0</span>
       </span>
     </div>
 
@@ -54,7 +54,25 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="3.2.0" id="grafify-v320">grafify v3.2.0<a class="anchor" aria-label="anchor" href="#grafify-v320"></a></h2>
+<h2 class="page-header" data-toc-text="4.0" id="grafify-v40">grafify v4.0<a class="anchor" aria-label="anchor" href="#grafify-v40"></a></h2>
+<p>The reason this is a major update is that now <code>ggplot2</code> version 3.4.0 or higher is required to avoid errors with <code>grafify</code>. The main difference is that <code>size</code> argument for line widths has been updated to <code>linewidth</code>.</p>
+<div class="section level3">
+<h3 id="major-updates-4-0">Major updates<a class="anchor" aria-label="anchor" href="#major-updates-4-0"></a></h3>
+<ol style="list-style-type: decimal"><li>
+<p>It is easier to plot 2-way ANOVA designs with or without blocking factors in this version with the following updates. There are two new <code>plot_...</code> functions for 1-way and 2-way designs.</p>
+<ol style="list-style-type: lower-alpha"><li><p><code>plot_4d_</code> functions can now plot 2-way ANOVAs even if the <code>shapes</code> argument is not provided. Graph is plotted with <code>shape = 21</code> as default.</p></li>
+<li><p><code>plot_4d_point_sd</code> and <code>plot_3d_point_sd</code> functions for plotting 2-way and 1-way ANOVAs without or with blocking factors as mean and SD/SEM/CI95 error bars.</p></li>
+</ol></li>
+</ol></div>
+<div class="section level3">
+<h3 id="minor-updates-4-0">Minor updates<a class="anchor" aria-label="anchor" href="#minor-updates-4-0"></a></h3>
+<ol style="list-style-type: decimal"><li>Fixed the double <code>{{</code> in <code>theme_grafify</code>.</li>
+<li>Added <code>hjust</code> and <code>vjust</code> arguments to <code>theme_grafify</code> to adjust text alignment when angles are changed.</li>
+<li>Several tests were rewritten to comply with <code>ggplot2</code> update.</li>
+</ol></div>
+</div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="3.2.0" id="grafify-v320">grafify v3.2.0<small>2023-04-29</small><a class="anchor" aria-label="anchor" href="#grafify-v320"></a></h2>
 <div class="section level3">
 <h3 id="major-updates-3-2-0">Major updates<a class="anchor" aria-label="anchor" href="#major-updates-3-2-0"></a></h3>
 <ol style="list-style-type: decimal"><li>

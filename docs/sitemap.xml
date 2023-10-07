@@ -97,6 +97,9 @@
     <loc>/reference/mixed_model_slopes.html</loc>
   </url>
   <url>
+    <loc>/reference/plot_3d_point_sd.html</loc>
+  </url>
+  <url>
     <loc>/reference/plot_3d_scatterbar.html</loc>
   </url>
   <url>
@@ -104,6 +107,9 @@
   </url>
   <url>
     <loc>/reference/plot_3d_scatterviolin.html</loc>
+  </url>
+  <url>
+    <loc>/reference/plot_4d_point_sd.html</loc>
   </url>
   <url>
     <loc>/reference/plot_4d_scatterbar.html</loc>

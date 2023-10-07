@@ -70,8 +70,9 @@ better documented at present.
         `plot_scatterviolin` or `plot_dotbar_sd`, `plot_dotbox`,
         `plot_dotviolin`
     2.  One-way or two-way ANOVA designs with or without randomised
-        blocks (3 or 4 dimensions or variables): `plot_3d_scatterbar`,
-        `plot_3d_scatterbox`, `plot_3d_scatterviolin` or
+        blocks (3 or 4 dimensions or variables): `plot_3d_point_sd`,
+        `plot_3d_scatterbar`, `plot_3d_scatterbox`,
+        `plot_3d_scatterviolin` or `plot_4d_point_sd`,
         `plot_4d_scatterbar`, `plot_4d_scatterbox`,
         `plot_4d_scatterviolin`
     3.  Matched before-after graphs: `plot_befafter_colours`,
@@ -155,7 +156,7 @@ The best place to see `grafify` in action is the
 [vignettes](https://grafify-vignettes.netlify.app) website, which has
 detailed description of all functions.
 
-### **Latest version: v3.2.0 on CRAN or GitHub**
+### **Latest version: v4.0 on CRAN or GitHub**
 
 Find out about [latest updates
 here](https://grafify-vignettes.netlify.app/release_notes.html).

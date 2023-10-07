@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">grafify</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0</span>
       </span>
     </div>
 
@@ -65,6 +65,8 @@
 <span>  base_line_size <span class="op">=</span> <span class="va">base_size</span><span class="op">/</span><span class="fl">22</span>,</span>
 <span>  base_rect_size <span class="op">=</span> <span class="va">base_size</span><span class="op">/</span><span class="fl">22</span>,</span>
 <span>  TextXAngle <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  vjust <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  hjust <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -89,6 +91,14 @@
 
 <dt>TextXAngle</dt>
 <dd><p>orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.</p></dd>
+
+
+<dt>vjust</dt>
+<dd><p>vertical adjustment of X-axis text alignment (between 0 and 1). Set <code>hjust</code> and <code>vjust</code> to 1 if <code>TextXAngle = 45</code>. Try other options if using other angles.</p></dd>
+
+
+<dt>hjust</dt>
+<dd><p>horizontal adjustment of X-axis text alignment (between 0 and 1).  Set <code>hjust</code> and <code>vjust</code> to 1 if <code>TextXAngle = 45</code>. Try other options if using other angles.</p></dd>
 
 
 <dt>...</dt>
