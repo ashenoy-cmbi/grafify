@@ -7,7 +7,7 @@
 #' 4. \code{\link{plot_4d_scatterviolin}} (box & whiskers, violin)
 #' 
 #' 
-#' These can be especially useful when the 4th variable `shapes` is a random factor or blocking factor (upto 25 levels are allowed; there will be an error with more levels). The `shapes` argument can be left blank to plot ordinary 2-way ANOVAs without blocking. 
+#' These can be especially useful when the fourth variable `shapes` is a random factor or blocking factor (up to 25 levels are allowed; there will be an error with more levels). The `shapes` argument can be left blank to plot ordinary 2-way ANOVAs without blocking. 
 #' 
 #' In `plot_4d_point_sd` and `plot_4d_scatterbar`, the default error bar is SD (can be changed to SEM or CI95). In `plot_4d_point_sd`, a large coloured symbol is plotted at the mean, all other data are shown as smaller symbols. Boxplot uses \code{\link[ggplot2]{geom_boxplot}} to depict median (thicker line), box (interquartile range (IQR)) and the whiskers (1.5*IQR).
 #'  
