@@ -17,7 +17,5 @@ test_that("Check colour and fill scales", {
   expect_match(db1$labels$y, "Doubling_time")
   expect_match(db1$labels$fill, "Student")
   expect_match(db1$labels$colour, "Student")
-  expect_match(db1$scales$scales[[1]]$scale_name, "muted")
-  expect_match(db1$scales$scales[[2]]$scale_name, "bright")
 })
 

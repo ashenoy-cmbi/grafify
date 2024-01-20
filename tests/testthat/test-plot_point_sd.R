@@ -19,10 +19,6 @@ test_that("Check point-sd plots", {
   expect_match(as.character(rlang::quo_get_expr(db1$labels$fill)), 
                "Genotype")
   #check text angle is passed on
-  if (utils::packageVersion("ggplot2") <= "3.4.2") {
-    expect_equal(db1$guides$x$angle, 45)
-  } else {
-    expect_equal(db1$guides$x$angle, 45)
-  }
+  expect_equal(get_guide_angle(db1, "x"), 45)
 })
 

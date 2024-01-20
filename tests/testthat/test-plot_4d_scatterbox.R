@@ -22,9 +22,5 @@ test_that("Check 4d scatter box", {
   #expect_match(sb1$labels$fill, 
   #             "Time")
   #check text angle is passed on
-  if (utils::packageVersion("ggplot2") <= "3.4.2") {
-    expect_equal(sb1$guides$x$angle, 45)
-  } else {
-    expect_equal(sb1$guides$x$angle, 45)
-  }
+  expect_equal(get_guide_angle(sb1, "x"), 45)
 })
