@@ -29,6 +29,7 @@ Roxygen: list(markdown = TRUE)
 Suggests: 
     dplyr,
     knitr,
+    Matrix,
     rlang,
     rmarkdown,
     pbkrtest,
