@@ -7,6 +7,10 @@ output:
 
 Full reference to all functions available at [`grafify` GitHub pages](https://ashenoy-cmbi.github.io/grafify/index.html). 
 
+# grafify v4.0.1
+
+This is a minor update to fix tests that were failing after an update to `ggplot2` to version 3.5.0.
+
 # grafify v4.0
 
 The reason this is a major update is that now `ggplot2` version 3.4.0 or higher is required to avoid errors with `grafify`. The main difference is that `size` argument for line widths has been updated to `linewidth`.
