@@ -10,8 +10,6 @@ Full reference to all functions available at [`grafify` GitHub pages](https://as
 # grafify v4.0.1
 
 This is a minor update to fix tests that were failing after an update to `ggplot2` to version 3.5.0. 
-Some tests were failing on GitHub because of an issue with the new Matrix binary (on which lme4 depends). Matrix has been added to "Suggests" so the tests don't fail on GitHub. They are working locally on Windows with Matrix built from source. All tests are passing locally.
-Even if the r-universe tests fail, the package itself is working fine and test results should be ignored. 
 
 # grafify v4.0
 
