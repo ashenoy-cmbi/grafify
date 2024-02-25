@@ -156,7 +156,7 @@ The best place to see `grafify` in action is the
 [vignettes](https://grafify-vignettes.netlify.app) website, which has
 detailed description of all functions.
 
-### **Latest version: v4.0 on CRAN or GitHub**
+### **Latest version: v4.0.1 on CRAN or GitHub**
 
 Find out about [latest updates
 here](https://grafify-vignettes.netlify.app/release_notes.html).
