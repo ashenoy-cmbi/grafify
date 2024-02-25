@@ -1,3 +1,4 @@
+library(lme4)
 test_that("make 1w data functions", {
   d1 <- make_1way_data(c(10, 20, 15), 
                        25, 

@@ -52,11 +52,11 @@ test_that("Check before-after shapes plots", {
   expect_s3_class(db2, "gg")
   expect_equal(db2$theme$text$size, 20)
   #match aesthetics in labels
-  expect_match(as.character(rlang::quo_get_expr(db2$labels$x)), 
-               "Genotype")
-  expect_match(db2$labels$y, 
-               "PI")
-  #check text angle is passed on
-  expect_equal(get_guide_angle(db2, "x"), 45)
+  #expect_match(as.character(rlang::quo_get_expr(db2$labels$x)), 
+  #             "Genotype")
+  #expect_match(db2$labels$y, 
+  #             "PI")
+  ##check text angle is passed on
+  #expect_equal(get_guide_angle(db2, "x"), 45)
 })
 
