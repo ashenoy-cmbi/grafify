@@ -29,7 +29,7 @@ Roxygen: list(markdown = TRUE)
 Suggests: 
     dplyr,
     knitr,
-    Matrix,
+    Matrix (>=1.6-5),
     rlang,
     rmarkdown,
     pbkrtest,
