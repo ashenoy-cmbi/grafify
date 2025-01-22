@@ -20,6 +20,10 @@
 #' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
+#' @param LogYTrans transform Y axis into "log10" or "log2"
+#' @param LogYBreaks argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is `waiver()`, or provide a vector of desired breaks.
+#' @param Ylabels argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
+#' @param LogYLimits a vector of length two specifying the range (minimum and maximum) of the Y axis.
 #' @param ... any additional arguments to pass to \code{ggplot2}[geom_density].
 #'
 #' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
@@ -35,14 +39,14 @@
 #' ycol = Cholesterol, group = Treatment, 
 #' facet = Treatment, fontsize = 12)
 
-plot_density <- function(data, ycol, group, facet,  c_alpha = 0.2, TextXAngle = 0, facet_scales = "fixed", fontsize = 20, linethick, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, ...){
+plot_density <- function(data, ycol, group, facet,  c_alpha = 0.2, TextXAngle = 0, facet_scales = "fixed", fontsize = 20, linethick, LogYTrans, LogYBreaks = waiver(), Ylabels = waiver(), LogYLimits = NULL, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, ...){
   if(missing(linethick)) {linethick = fontsize/22}
   ColPal <- match.arg(ColPal)
   suppressWarnings(P <- ggplot2::ggplot(data, 
                        aes(x = {{ ycol }},
                            fill = factor({{ group }}),
                            colour = factor({{ group }})))+
-    geom_density(size = linethick,
+    geom_density(linewidth = linethick,
                  alpha = c_alpha)+
     labs(y = "Density")+
     theme_grafify(base_size = fontsize)+
@@ -53,6 +57,33 @@ plot_density <- function(data, ycol, group, facet,  c_alpha = 0.2, TextXAngle = 
     scale_colour_grafify(palette = ColPal, 
                          reverse = ColRev, 
                          ColSeq = ColSeq))
+  if (!missing(LogYTrans)) {
+    if (!(LogYTrans %in% c("log2", "log10"))) {
+      stop("LogYTrans only allows 'log2' or 'log10' transformation.")
+    }
+    if (LogYTrans == "log10") {
+      P <- P + 
+        scale_x_continuous(trans = "log10", 
+                           breaks = LogYBreaks, 
+                           labels = Ylabels, 
+                           limits = LogYLimits, 
+                           ...)+
+        annotation_logticks(sides = "b", 
+                            outside = TRUE,
+                            base = 10, color = "grey20",
+                            long = unit(7*fontsize/22, "pt"), size = unit(fontsize/22, "pt"),# 
+                            short = unit(4*fontsize/22, "pt"), mid = unit(4*fontsize/22, "pt"),#
+                            ...)+ 
+        coord_cartesian(clip = "off", ...)
+    }
+    if (LogYTrans == "log2") {
+      P <- P + 
+        scale_x_continuous(trans = "log2", 
+                           breaks = LogYBreaks, 
+                           labels = Ylabels, 
+                           limits = LogYLimits, 
+                           ...)}
+  }
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
                         scales = facet_scales, 

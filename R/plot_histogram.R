@@ -24,6 +24,10 @@
 #' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
+#' @param LogYTrans transform Y axis into "log10" or "log2"
+#' @param LogYBreaks argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is `waiver()`, or provide a vector of desired breaks.
+#' @param Ylabels argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
+#' @param LogYLimits a vector of length two specifying the range (minimum and maximum) of the Y axis.
 #' @param ... any additional arguments to pass to \code{ggplot2}[geom_histogram].
 #'
 #' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
@@ -40,7 +44,7 @@
 #' ycol = log(Cytokine), group = Genotype, 
 #' BinSize = 10)
 
-plot_histogram <- function(data, ycol, group, facet, BinSize = 30, c_alpha = 0.8, TextXAngle = 0, facet_scales = "fixed", fontsize = 20, linethick, alpha, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, ...){
+plot_histogram <- function(data, ycol, group, facet, BinSize = 30, c_alpha = 0.8, TextXAngle = 0, facet_scales = "fixed", fontsize = 20, linethick, alpha, LogYTrans, LogYBreaks = waiver(), Ylabels = waiver(), LogYLimits = NULL, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, ...){
   if(missing(linethick)) {linethick = fontsize/22}
   if (!missing("alpha")) {
     warning("Use `c_alpha` argument instead, as `alpha` is deprecated.")
@@ -49,7 +53,7 @@ plot_histogram <- function(data, ycol, group, facet, BinSize = 30, c_alpha = 0.8
   if(missing(group)) {
     suppressWarnings(P <- ggplot2::ggplot(data, 
                          aes({{ ycol }}))+
-      geom_histogram(size = linethick,
+      geom_histogram(linewidth = linethick,
                      alpha = c_alpha,
                      bins = BinSize,
                      colour = "black",
@@ -61,7 +65,7 @@ plot_histogram <- function(data, ycol, group, facet, BinSize = 30, c_alpha = 0.8
   } else {
     suppressWarnings(P <- ggplot2::ggplot(data, 
                          aes({{ ycol }}))+
-      geom_histogram(size = linethick,
+      geom_histogram(linewidth = linethick,
                      alpha = c_alpha,
                      colour = "black",
                      linewidth = linethick,
@@ -73,6 +77,33 @@ plot_histogram <- function(data, ycol, group, facet, BinSize = 30, c_alpha = 0.8
                          reverse = ColRev, 
                          ColSeq = ColSeq))
     }
+  if (!missing(LogYTrans)) {
+    if (!(LogYTrans %in% c("log2", "log10"))) {
+      stop("LogYTrans only allows 'log2' or 'log10' transformation.")
+    }
+    if (LogYTrans == "log10") {
+      P <- P + 
+        scale_x_continuous(trans = "log10", 
+                           breaks = LogYBreaks, 
+                           labels = Ylabels, 
+                           limits = LogYLimits, 
+                           ...)+
+        annotation_logticks(sides = "b", 
+                            outside = TRUE,
+                            base = 10, color = "grey20",
+                            long = unit(7*fontsize/22, "pt"), size = unit(fontsize/22, "pt"),# 
+                            short = unit(4*fontsize/22, "pt"), mid = unit(4*fontsize/22, "pt"),#
+                            ...)+ 
+        coord_cartesian(clip = "off", ...)
+    }
+    if (LogYTrans == "log2") {
+      P <- P + 
+        scale_x_continuous(trans = "log2", 
+                           breaks = LogYBreaks, 
+                           labels = Ylabels, 
+                           limits = LogYLimits, 
+                           ...)}
+  }
   if(!missing(facet)) {
     P <- P + facet_wrap(vars({{ facet }}), 
                         scales = facet_scales, 

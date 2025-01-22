@@ -7,6 +7,10 @@ output:
 
 Full reference to all functions available at [`grafify` GitHub pages](https://ashenoy-cmbi.github.io/grafify/index.html). 
 
+# grafify v4.0.2
+
+This is a minor update that adds "log10" and "log2" transformations to `plot_density` and `plot_histogram` functions, for consistency with other `plot_` functions.
+
 # grafify v4.0.1
 
 This is a minor update to fix tests that were failing after an update to `ggplot2` to version 3.5.0. 

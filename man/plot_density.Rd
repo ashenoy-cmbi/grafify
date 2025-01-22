@@ -14,6 +14,10 @@ plot_density(
   facet_scales = "fixed",
   fontsize = 20,
   linethick,
+  LogYTrans,
+  LogYBreaks = waiver(),
+  Ylabels = waiver(),
+  LogYLimits = NULL,
   ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy", "kelly",
     "light", "muted", "pale", "r4", "safe", "vibrant"),
   ColSeq = TRUE,
@@ -39,6 +43,14 @@ plot_density(
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
 \item{linethick}{thickness of symbol border, default set to \code{fontsize}/22.}
+
+\item{LogYTrans}{transform Y axis into "log10" or "log2"}
+
+\item{LogYBreaks}{argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is \code{waiver()}, or provide a vector of desired breaks.}
+
+\item{Ylabels}{argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is \code{waiver()}, or provide a vector of desired labels.}
+
+\item{LogYLimits}{a vector of length two specifying the range (minimum and maximum) of the Y axis.}
 
 \item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
 
