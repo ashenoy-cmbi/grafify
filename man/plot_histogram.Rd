@@ -9,6 +9,7 @@ plot_histogram(
   ycol,
   group,
   facet,
+  PlotType = c("Counts", "Normalised counts"),
   BinSize = 30,
   c_alpha = 0.8,
   TextXAngle = 0,
@@ -24,6 +25,7 @@ plot_histogram(
     "light", "muted", "pale", "r4", "safe", "vibrant"),
   ColSeq = TRUE,
   ColRev = FALSE,
+  SingleColour = NULL,
   ...
 )
 }
@@ -35,6 +37,8 @@ plot_histogram(
 \item{group}{name of the column containing a categorical grouping variable.}
 
 \item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
+
+\item{PlotType}{the default (\code{Counts}) plot will plot counts in the bins, which can be changed to \verb{Normalised counts}.}
 
 \item{BinSize}{number of distinct bins to use on X-axis, default set to 30.}
 
@@ -64,13 +68,15 @@ plot_histogram(
 
 \item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
 
+\item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} palettes or base R to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
+
 \item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_histogram}.}
 }
 \value{
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
-This function takes a data table, a quantitative variable (\code{ycol}) and a grouping variable (\code{group}), if available, and plots a histogram graph using \code{\link{geom_histogram}}).  Alternatives are \code{\link{plot_histogram}}, or \code{\link{plot_qqline}}.
+This function takes a data table, a quantitative variable (\code{ycol}) and a grouping variable (\code{group}), if available, and plots a histogram graph using \code{\link{geom_histogram}}).  Alternatives are \code{\link{plot_density}}, or \code{\link{plot_qqline}}.
 }
 \details{
 Note that the function requires the quantitative Y variable first, and groups them based on a categorical variable passed on via the \code{group} argument. The grouping variable is mapped to the \code{fill} aesthetics in \code{geom_histogram}.
@@ -89,5 +95,10 @@ BinSize = 10)
 #with log transformation
 plot_histogram(data = data_t_pratio, 
 ycol = log(Cytokine), group = Genotype, 
+BinSize = 10)
+#Normalised counts
+plot_histogram(data = data_t_pratio, 
+ycol = log(Cytokine), group = Genotype, 
+PlotType = "Normalised counts", 
 BinSize = 10)
 }

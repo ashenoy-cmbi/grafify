@@ -9,6 +9,7 @@ plot_density(
   ycol,
   group,
   facet,
+  PlotType = c("Density", "Counts", "Normalised counts"),
   c_alpha = 0.2,
   TextXAngle = 0,
   facet_scales = "fixed",
@@ -22,6 +23,7 @@ plot_density(
     "light", "muted", "pale", "r4", "safe", "vibrant"),
   ColSeq = TRUE,
   ColRev = FALSE,
+  SingleColour = NULL,
   ...
 )
 }
@@ -30,9 +32,11 @@ plot_density(
 
 \item{ycol}{name of the column containing the quantitative variable whose density distribution is to be plotted.}
 
-\item{group}{name of the column containing a categorical grouping variable}
+\item{group}{name of the column containing a categorical grouping variable (optional since v4.1.0).}
 
 \item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
+
+\item{PlotType}{the default (\code{Density}) plot will be the probability density curve, which can be changed to \code{Counts} or \verb{Normalised counts}.}
 
 \item{c_alpha}{fractional opacity of filled colours under the curve, default set to 0.2 (i.e. 20\% opacity).}
 
@@ -58,6 +62,8 @@ plot_density(
 
 \item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
 
+\item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} palettes or base R to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
+
 \item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_density}.}
 }
 \value{
@@ -81,4 +87,11 @@ ycol = log(Cytokine), group = Genotype)
 plot_density(data = data_cholesterol, 
 ycol = Cholesterol, group = Treatment, 
 facet = Treatment, fontsize = 12)
+
+#Counts
+plot_density(data = data_cholesterol, 
+ycol = Cholesterol, group = Treatment,
+PlotType = "Counts", 
+facet = Treatment, fontsize = 12)
+
 }

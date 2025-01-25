@@ -10,8 +10,9 @@
 #'
 #' @param data a data table e.g. data.frame or tibble.
 #' @param ycol name of the column containing the quantitative variable whose density distribution is to be plotted.
-#' @param group name of the column containing a categorical grouping variable
+#' @param group name of the column containing a categorical grouping variable (optional since v4.1.0).
 #' @param facet add another variable from the data table to create faceted graphs using \code{ggplot2}[facet_wrap].
+#' @param PlotType the default (`Density`) plot will be the probability density curve, which can be changed to `Counts` or `Normalised counts`. 
 #' @param c_alpha fractional opacity of filled colours under the curve, default set to 0.2 (i.e. 20% opacity).
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
 #' @param facet_scales whether or not to fix scales on X & Y axes for all facet facet graphs. Can be `fixed` (default), `free`, `free_y` or `free_x` (for Y and X axis one at a time, respectively).
@@ -20,6 +21,7 @@
 #' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
+#' @param SingleColour a colour hexcode (starting with #), a number between 1-154, or names of colours from `grafify` palettes or base R to fill along X-axis aesthetic. Accepts any colour other than "black"; use `grey_lin11`, which is almost black.
 #' @param LogYTrans transform Y axis into "log10" or "log2"
 #' @param LogYBreaks argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is `waiver()`, or provide a vector of desired breaks.
 #' @param LogYLabels argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
@@ -29,6 +31,7 @@
 #' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 #' @export plot_density
 #' @import ggplot2
+#' @importFrom dplyr count
 #'
 #' @examples
 #' plot_density(data = data_t_pratio, 
@@ -38,25 +41,68 @@
 #' plot_density(data = data_cholesterol, 
 #' ycol = Cholesterol, group = Treatment, 
 #' facet = Treatment, fontsize = 12)
-
-plot_density <- function(data, ycol, group, facet,  c_alpha = 0.2, TextXAngle = 0, facet_scales = "fixed", fontsize = 20, linethick, LogYTrans, LogYBreaks = waiver(), LogYLabels = waiver(), LogYLimits = NULL, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, ...){
+#' 
+#' #Counts
+#' plot_density(data = data_cholesterol, 
+#' ycol = Cholesterol, group = Treatment,
+#' PlotType = "Counts", 
+#' facet = Treatment, fontsize = 12)
+#' 
+plot_density <- function(data, ycol, group, facet, PlotType = c("Density", "Counts", "Normalised counts"), c_alpha = 0.2, TextXAngle = 0, facet_scales = "fixed", fontsize = 20, linethick, LogYTrans, LogYBreaks = waiver(), LogYLabels = waiver(), LogYLimits = NULL, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, SingleColour = NULL, ...){
   if(missing(linethick)) {linethick = fontsize/22}
   ColPal <- match.arg(ColPal)
-  suppressWarnings(P <- ggplot2::ggplot(data, 
-                       aes(x = {{ ycol }},
-                           fill = factor({{ group }}),
-                           colour = factor({{ group }})))+
-    geom_density(linewidth = linethick,
-                 alpha = c_alpha)+
-    labs(y = "Density")+
-    theme_grafify(base_size = fontsize)+
-    guides(x = guide_axis(angle = TextXAngle))+
-    scale_fill_grafify(palette = ColPal, 
-                       reverse = ColRev, 
-                       ColSeq = ColSeq)+
-    scale_colour_grafify(palette = ColPal, 
-                         reverse = ColRev, 
-                         ColSeq = ColSeq))
+  PlotType <- match.arg(PlotType)
+  if (!(PlotType %in% c("Density", "Counts", "Normalised counts"))) {
+    stop("`PlotType` can only be NULL, count or max_counts")
+  }
+  if(missing(group) & missing(SingleColour)) {message("You did not provide a grouping variable, so grafify used the default colour. You can change this with the `SingleColour` argument.") }
+  if(missing(group) & missing(SingleColour)) SingleColour <- "#E69F00"
+  if(missing(group) & !missing(SingleColour)) {
+    ifelse(grepl("#", SingleColour), 
+           a <- SingleColour,
+           ifelse(isTRUE(get_graf_colours(SingleColour) != 0), 
+                  a <- unname(get_graf_colours(SingleColour)), 
+                  a <- SingleColour))
+  }
+  if(missing(group)) {
+    suppressWarnings(P <- ggplot2::ggplot(data, 
+                                          aes(x = {{ ycol }},
+                                              fill = "one",
+                                              colour = "one")) + 
+                       scale_fill_manual(values = a)+
+                       scale_colour_manual(values = a)+
+                       guides(fill = "none", colour = "none"))
+  } else {
+    suppressWarnings(P <- ggplot2::ggplot(data, 
+                                          aes(x = {{ ycol }},
+                                              fill = factor({{ group }}),
+                                              colour = factor({{ group }}))) +
+                       scale_fill_grafify(palette = ColPal, 
+                                          reverse = ColRev, 
+                                          ColSeq = ColSeq)+
+                       scale_colour_grafify(palette = ColPal, 
+                                            reverse = ColRev, 
+                                            ColSeq = ColSeq))
+  }
+  if(PlotType == "Density") {
+    suppressWarnings(P <- P +
+                       geom_density(linewidth = linethick,
+                                    alpha = c_alpha)+
+                       labs(y = "Density"))}
+  if(PlotType == "Counts") {
+    suppressWarnings(P <- P +
+                       geom_density(linewidth = linethick,
+                                    aes(y = after_stat(count)),
+                                    alpha = c_alpha)+
+                       labs(y = "Counts"))
+  }
+  if(PlotType == "Normalised counts") {
+    suppressWarnings(P <- P +
+                       geom_density(linewidth = linethick,
+                                    aes(y = after_stat(count/max(count))),
+                                    alpha = c_alpha)+
+                       labs(y = "Normalised counts"))
+  }
   if (!missing(LogYTrans)) {
     if (!(LogYTrans %in% c("log2", "log10"))) {
       stop("LogYTrans only allows 'log2' or 'log10' transformation.")
@@ -90,6 +136,8 @@ plot_density <- function(data, ycol, group, facet,  c_alpha = 0.2, TextXAngle = 
                         ...)
   }
   P <- P +
+    theme_grafify(base_size = fontsize) +
+    guides(x = guide_axis(angle = TextXAngle)) +
     labs(fill = enquo(group),
          colour = enquo(group))
   P

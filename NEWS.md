@@ -7,13 +7,18 @@ output:
 
 Full reference to all functions available at [`grafify` GitHub pages](https://ashenoy-cmbi.github.io/grafify/index.html). 
 
-# grafify v4.0.2
+# grafify v4.1.0
 
-This is a minor update with the following changes:
+This version has major updates to `plot_density` and `plot_histogram`, which can now plot probability density, counts or normalised counts (only latter two options for histograms). Most old code should still work, but care is needed if arguments are not explicitly called. Changes as follows:
 
-    a. `plot_density` and `plot_histogram` functions now have arguments for "log10" and "log2" (of the numeric variable axis). For consistency with other `plot_` functions, these are `LogYTrans`, `LogYBreaks`, `LogYLabels` and `LogYLimits`.
-    b. In a couple of `plot_..` functions, `LogYLabels` argument was called `Ylabels`, which has now been deprecated for consistency (old code will still work).
-    c. Since `ggplot2` v3.5 onwards, the `discrete_scale()` has been updated and an argument (`scale_name`) has been dropped. The `scale_fill_grafify` and `scale_colour_grafify` functions have been accordingly updated.
+1. Updates to arguments in `plot_density` and `plot_histogram`:
+  
+    a. both functions have a new argument `PlotType` to choose a type of data transformation, i.e., use `ggplot2` defaults or plot counts or normalised counts. For `plot_density`, this argument can be `Density` (default), which plots the smooth probability density curve, `Counts` or `Normalised counts`. For `plot_histogram`, the default for this argument is `Counts`, which can be changed to `Normalised counts`. This is achieved by passing `y = after_stat(count)` or `y = after_stat(count/max(count))` to `geom_density` or `geom_histogram`.
+    b. both functions also can do "log10" and "log2" along the X-axis (for plotting on semi-log plots). For consistency with other `plot_` functions in `grafify`, these arguments are `LogYTrans`, `LogYBreaks`, `LogYLabels` and `LogYLimits`.
+    c. a `SingleColour` argument has been added to change colours when a grouping variable is missing, i.e., when the argument `group` is not provided with a value. If a value is provided, however, `SingleColour` is ignored and the `ColPal` value is applied.
+      
+2. In a couple of `plot_..` functions, the `LogYLabels` argument was called `Ylabels`, which has now been deprecated for consistency (old code will still work).
+3. Since `ggplot2` v3.5, the `discrete_scale()` has been updated and an argument (`scale_name`) has been dropped. The `scale_fill_grafify` and `scale_colour_grafify` functions have been accordingly updated.
 
 # grafify v4.0.1
 
