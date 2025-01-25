@@ -19,7 +19,7 @@ This version has major updates to `plot_density` and `plot_histogram`, which can
       
 2. In a couple of `plot_..` functions, the `LogYLabels` argument was called `Ylabels`, which has now been deprecated for consistency (old code will still work).
 3. Since `ggplot2` v3.5, the `discrete_scale()` has been updated and an argument (`scale_name`) has been dropped. The `scale_fill_grafify` and `scale_colour_grafify` functions have been accordingly updated.
-4. Some documentation updated for correct links to other packages.
+4. Some documentation updated for correct links to other packages and DOIs.
 
 # grafify v4.0.1
 
