@@ -46,7 +46,7 @@ plot_4d_scatterbar(
 
 \item{shapes}{name of the column that contains matched observations (e.g. subject IDs, experiment number) or another variable to pass on to symbol shapes. If not provided, the shapes for all groups is the same.}
 
-\item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
+\item{facet}{add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
 
 \item{ErrorType}{select the type of error bars to display. Default is "SD" (standard deviation). Other options are "SEM" (standard error of the mean) and "CI95" (95\% confidence interval based on t distributions).}
 
@@ -88,7 +88,7 @@ plot_4d_scatterbar(
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 
-\item{...}{any additional arguments to pass to \code{ggplot2}\link{stat_summary} or \code{ggplot2}\link{geom_point}.}
+\item{...}{any additional arguments to pass to \code{\link[ggplot2]{stat_summary}} or \code{\link[ggplot2]{geom_point}}.}
 }
 \value{
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".

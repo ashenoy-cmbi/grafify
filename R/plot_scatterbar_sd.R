@@ -20,7 +20,7 @@
 #' @param data a data table object, e.g. data.frame or tibble.
 #' @param xcol name of the column to plot on X axis. This should be a categorical variable.
 #' @param ycol name of the column to plot on quantitative Y axis. This should be a quantitative variable.
-#' @param facet add another variable from the data table to create faceted graphs using \code{ggplot2}[facet_wrap].
+#' @param facet add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.
 #' @param ErrorType select the type of error bars to display. Default is "SD" (standard deviation). Other options are "SEM" (standard error of the mean) and "CI95" (95% confidence interval based on t distributions).
 #' @param symsize size of point symbols, default set to 3.
 #' @param s_alpha fractional opacity of symbols, default set to 0.8 (i.e, 80% opacity).
@@ -41,7 +41,7 @@
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param SingleColour a colour hexcode (starting with #), a number between 1-154, or names of colours from `grafify` palettes or base R to fill along X-axis aesthetic. Accepts any colour other than "black"; use `grey_lin11`, which is almost black.
-#' @param ... any additional arguments to pass to \code{ggplot2}[facet_wrap].
+#' @param ... any additional arguments to pass to \code{\link[ggplot2]{facet_wrap}}.
 #'
 #' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 #' @export plot_scatterbar_sd

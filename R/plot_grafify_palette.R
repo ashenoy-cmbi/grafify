@@ -1,10 +1,10 @@
 #' See grafify colour palettes
 #' 
-#' This simple function allows quick visualisation of colours in grafify palettes and their hex codes. It uses \code{plot_bar_sd} and some arguments are similar and can be adjusted.
+#' This simple function allows quick visualisation of colours in grafify palettes and their hex codes. It uses \code{plot_scatterbar_sd} and some arguments are similar and can be adjusted.
 #'
 #' @param palette name of grafify palettes: "okabe_ito", "vibrant, "bright", "pale", "muted", "dark", "light", "contrast" or "all_grafify".
 #' @param fontsize font size.
-#' @param ... any additional parameters to pass to \code{plot_bar_sd}
+#' @param ... any additional parameters to pass to \code{\link{plot_scatterbar_sd}}
 #'
 #' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 #' @export plot_grafify_palette

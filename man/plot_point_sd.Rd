@@ -42,7 +42,7 @@ plot_point_sd(
 
 \item{ycol}{name of the column with quantitative Y variable.}
 
-\item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
+\item{facet}{add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
 
 \item{ErrorType}{select the type of error bars to display. Default is "SD" (standard deviation). Other options are "SEM" (standard error of the mean) and "CI95" (95\% confidence interval based on t distributions).}
 

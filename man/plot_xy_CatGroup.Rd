@@ -45,7 +45,7 @@ plot_xy_CatGroup(
 
 \item{CatGroup}{a categorical variable as grouping factor for colour of data points, should be a categorical variable for default colours to work. Will be converted to \code{factor} if your column is numeric}
 
-\item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
+\item{facet}{add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
 
 \item{Boxplot}{logical TRUE/FALSE to plot box and whiskers plot (default = FALSE).}
 

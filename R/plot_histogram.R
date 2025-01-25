@@ -13,7 +13,7 @@
 #' @param data a data table e.g. data.frame or tibble.
 #' @param ycol name of the column containing the quantitative variable whose histogram distribution is to be plotted.
 #' @param group name of the column containing a categorical grouping variable.
-#' @param facet add another variable from the data table to create faceted graphs using \code{ggplot2}[facet_wrap].
+#' @param facet add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.
 #' @param PlotType the default (`Counts`) plot will plot counts in the bins, which can be changed to `Normalised counts`. 
 #' @param BinSize number of distinct bins to use on X-axis, default set to 30.
 #' @param c_alpha fractional opacity of colour filled within histograms, default set to 0.8 (i.e. 80% opacity).

@@ -48,7 +48,7 @@ plot_4d_point_sd(
 
 \item{shapes}{name of the column that contains matched observations (e.g. subject IDs, experiment number) or another variable to pass on to symbol shapes (will be converted to a factor/categorical variable). If not provided, the shapes for all groups is the same, and can be changed with \code{all_shapes}, \code{all_alpha}, \code{all_size} etc.}
 
-\item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
+\item{facet}{add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
 
 \item{ErrorType}{select the type of error bars to display. Default is "SD" (standard deviation). Other options are "SEM" (standard error of the mean) and "CI95" (95\% confidence interval based on t distributions).}
 
@@ -94,7 +94,7 @@ plot_4d_point_sd(
 
 \item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
 
-\item{...}{any additional arguments to pass to \code{ggplot2}\link{stat_summary} or \code{ggplot2}\link{geom_point}.}
+\item{...}{any additional arguments to pass to \code{\link[ggplot2]{stat_summary}} or \code{\link[ggplot2]{geom_point}}.}
 }
 \value{
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".

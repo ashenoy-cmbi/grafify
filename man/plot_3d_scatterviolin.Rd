@@ -47,7 +47,7 @@ plot_3d_scatterviolin(
 
 \item{shapes}{name of the column with the second categorical factor in a two-way ANOVA design.}
 
-\item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
+\item{facet}{add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
 
 \item{symsize}{size of symbols, default set to 3.}
 

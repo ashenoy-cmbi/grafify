@@ -36,7 +36,7 @@ plot_histogram(
 
 \item{group}{name of the column containing a categorical grouping variable.}
 
-\item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
+\item{facet}{add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
 
 \item{PlotType}{the default (\code{Counts}) plot will plot counts in the bins, which can be changed to \verb{Normalised counts}.}
 

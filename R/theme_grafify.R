@@ -1,6 +1,6 @@
 #' A modified `theme_classic()` for `grafify`-like graphs.
 #' 
-#' This is a slightly modified \code{\link{theme_classic}[ggplot2]} with two key differences: no border & background for facet panel labels, and font size of text on axes is the same as that of the axes titles (prior to v3.2.0, this was 0.85 times the base font size). The size of text legend title is also same as base font. 
+#' This is a slightly modified \code{\link[ggplot2]{theme_classic}} with two key differences: no border & background for facet panel labels, and font size of text on axes is the same as that of the axes titles (prior to v3.2.0, this was 0.85 times the base font size). The size of text legend title is also same as base font. 
 #' 
 #' Since v3.2.0, `theme_grafify` produces transparent backgrounds.
 #'

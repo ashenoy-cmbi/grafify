@@ -20,7 +20,7 @@
 #' @param data a data table object, e.g. data.frame or tibble.
 #' @param xcol name of the column with a X variable (will be forced to be a factor/categorical variable).
 #' @param ycol name of the column with quantitative Y variable.
-#' @param facet add another variable from the data table to create faceted graphs using \code{ggplot2}[facet_wrap].
+#' @param facet add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.
 #' @param ErrorType select the type of error bars to display. Default is "SD" (standard deviation). Other options are "SEM" (standard error of the mean) and "CI95" (95% confidence interval based on t distributions).
 #' @param symsize size of point symbols, default set to 3.5.
 #' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).

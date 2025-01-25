@@ -23,7 +23,7 @@
 #' @param ycol name of the column to plot on quantitative variable on the Y axis.
 #' @param boxes name of the column containing grouping within the factor plotted on X axis. Can be categorical or numeric X. If your table has numeric X and you want to plot as factor, enter \code{xcol = factor(name of colum)}.
 #' @param shapes name of the column that contains matched observations (e.g. subject IDs, experiment number) or another variable to pass on to symbol shapes. If not provided, the shapes for all groups is the same.
-#' @param facet add another variable from the data table to create faceted graphs using \code{ggplot2}[facet_wrap].
+#' @param facet add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.
 #' @param symsize size of symbols, default set to 3.
 #' @param s_alpha fractional opacity of symbols, default set to 0.8 (i.e. 80% opacity). Set `s_alpha = 0` to not show scatter plot.
 #' @param b_alpha fractional opacity of boxes.  Default is set to 0, which results in white boxes inside violins. Change to any value >0 up to 1 for different levels of transparency. 
@@ -42,7 +42,7 @@
 #' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
-#' @param ... any additional arguments to pass to \code{ggplot2}[geom_boxplot].
+#' @param ... any additional arguments to pass to \code{\link[ggplot2]{geom_boxplot}}.
 #'
 #' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 #' @export plot_4d_scatterbox

@@ -11,7 +11,7 @@
 #' @param data a data table e.g. data.frame or tibble.
 #' @param ycol name of the column containing the quantitative variable whose density distribution is to be plotted.
 #' @param group name of the column containing a categorical grouping variable (optional since v4.1.0).
-#' @param facet add another variable from the data table to create faceted graphs using \code{ggplot2}[facet_wrap].
+#' @param facet add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.
 #' @param PlotType the default (`Density`) plot will be the probability density curve, which can be changed to `Counts` or `Normalised counts`. 
 #' @param c_alpha fractional opacity of filled colours under the curve, default set to 0.2 (i.e. 20% opacity).
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
@@ -26,7 +26,7 @@
 #' @param LogYBreaks argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is `waiver()`, or provide a vector of desired breaks.
 #' @param LogYLabels argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
 #' @param LogYLimits a vector of length two specifying the range (minimum and maximum) of the Y axis.
-#' @param ... any additional arguments to pass to \code{ggplot2}[geom_density].
+#' @param ... any additional arguments to pass to \code{\link[ggplot2]{geom_density}}.
 #'
 #' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 #' @export plot_density

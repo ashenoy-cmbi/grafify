@@ -34,7 +34,7 @@ plot_density(
 
 \item{group}{name of the column containing a categorical grouping variable (optional since v4.1.0).}
 
-\item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
+\item{facet}{add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
 
 \item{PlotType}{the default (\code{Density}) plot will be the probability density curve, which can be changed to \code{Counts} or \verb{Normalised counts}.}
 
@@ -64,7 +64,7 @@ plot_density(
 
 \item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} palettes or base R to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
 
-\item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_density}.}
+\item{...}{any additional arguments to pass to \code{\link[ggplot2]{geom_density}}.}
 }
 \value{
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".

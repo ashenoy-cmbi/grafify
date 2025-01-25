@@ -12,7 +12,7 @@
 #' @param data a data table e.g. data.frame or tibble.
 #' @param ycol name of the column containing the quantitative variable whose distribution is to be plotted.
 #' @param group name of the column containing a categorical grouping variable.
-#' @param facet add another variable from the data table to create faceted graphs using \code{ggplot2}[facet_wrap].
+#' @param facet add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.
 #' @param symsize size of symbols, default set to 3.
 #' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.

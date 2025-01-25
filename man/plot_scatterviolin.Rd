@@ -45,7 +45,7 @@ plot_scatterviolin(
 
 \item{ycol}{name of the column to plot on quantitative Y axis. This should be a quantitative variable.}
 
-\item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
+\item{facet}{add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
 
 \item{symsize}{size of dots relative to \code{binwidth} used by \code{geom_point}. Default set to 3.}
 

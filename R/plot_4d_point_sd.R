@@ -23,7 +23,7 @@
 #' @param ycol name of the column to plot on quantitative variable on the Y axis.
 #' @param points name of the column with grouping within the factor plotted on X-axis (will be converted to a factor/categorical variable).
 #' @param shapes name of the column that contains matched observations (e.g. subject IDs, experiment number) or another variable to pass on to symbol shapes (will be converted to a factor/categorical variable). If not provided, the shapes for all groups is the same, and can be changed with `all_shapes`, `all_alpha`, `all_size` etc.
-#' @param facet add another variable from the data table to create faceted graphs using \code{ggplot2}[facet_wrap].
+#' @param facet add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.
 #' @param ErrorType select the type of error bars to display. Default is "SD" (standard deviation). Other options are "SEM" (standard error of the mean) and "CI95" (95% confidence interval based on t distributions).
 #' @param symsize size of symbols, default set to 3.5.
 #' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. fully opaque).
@@ -46,7 +46,7 @@
 #' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
-#' @param ... any additional arguments to pass to \code{ggplot2}[stat_summary] or \code{ggplot2}[geom_point].
+#' @param ... any additional arguments to pass to \code{\link[ggplot2]{stat_summary}} or \code{\link[ggplot2]{geom_point}}.
 #'
 #' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 #' @export plot_4d_point_sd

@@ -20,7 +20,7 @@
 #' @param data a data table object, e.g. data.frame or tibble.
 #' @param xcol name of the column to plot on X axis. This should be a categorical variable.
 #' @param ycol name of the column to plot on quantitative Y axis. This should be a quantitative variable.
-#' @param facet add another variable from the data table to create faceted graphs using \code{ggplot2}[facet_wrap].
+#' @param facet add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.
 #' @param symsize size of dots relative to \code{binwidth} used by \code{geom_point}. Default set to 3.
 #' @param s_alpha fractional opacity of symbols, default set to to 0.8 (i.e, 80% opacity). Set `s_alpha = 0` to not show scatter plot.
 #' @param b_alpha fractional opacity of boxplots.  Default is set to 0, which results in white boxes inside violins. Change to any value >0 up to 1 for different levels of transparency.

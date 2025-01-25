@@ -16,7 +16,7 @@
 #' @param xcol name of the column with quantitative X variable.
 #' @param ycol name of the column with quantitative Y variable.
 #' @param CatGroup a categorical variable as grouping factor for colour of data points, should be a categorical variable for default colours to work. Will be converted to `factor` if your column is numeric
-#' @param facet add another variable from the data table to create faceted graphs using \code{ggplot2}[facet_wrap].
+#' @param facet add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.
 #' @param Boxplot logical TRUE/FALSE to plot box and whiskers plot (default = FALSE).
 #' @param symsize size of symbols used by \code{geom_point}. Default set to 3.
 #' @param s_alpha fractional opacity of symbols, default set to to 0.8 (i.e, 80% opacity).

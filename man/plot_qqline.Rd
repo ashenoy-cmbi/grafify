@@ -30,7 +30,7 @@ plot_qqline(
 
 \item{group}{name of the column containing a categorical grouping variable.}
 
-\item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
+\item{facet}{add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
 
 \item{symsize}{size of symbols, default set to 3.}
 

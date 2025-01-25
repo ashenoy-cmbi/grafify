@@ -26,7 +26,7 @@ This function is a wrapper based on \code{\link[emmeans]{emmeans}}, and needs a 
 \details{
 The function will generate \href{https://CRAN.R-project.org/package=emmeans}{level-wise comparisons} (as described in Comparisons and contrasts in emmeans), i.e. comparison between of every level of one factor separately at each level of the other factor.
 By default, P values are corrected by the FDR method (which can be changed). If the model was fit by transforming the quantitative response variable using "log", "logit", "sqrt" etc., results will still be on the original scale, i.e. \code{type = "response"} is the default; data will be back-transformed (check results to confirm this), and for log or logit see Transformations and link functions in emmeans, \href{https://CRAN.R-project.org/package=emmeans}{ratios will be compared}.
-The first part of the \code{\link{emmeans}} results has the estimated marginal means, SE and CI (\code{$emmeans}), which are generated from the fitted model, and \strong{not} the original data table. The second part has the results of the comparisons (\code{$contrasts}).
+The first part of the \code{\link[emmeans]{emmeans}} results has the estimated marginal means, SE and CI (\code{$emmeans}), which are generated from the fitted model, and \strong{not} the original data table. The second part has the results of the comparisons (\code{$contrasts}).
 }
 \examples{
 #make a linear model first

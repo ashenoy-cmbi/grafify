@@ -72,7 +72,7 @@ plot_befafter_colors(
 
 \item{match}{name of the column with the matching variable to pass on to \code{geom_line}.}
 
-\item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
+\item{facet}{add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
 
 \item{Boxplot}{logical TRUE/FALSE, whether to show box and whisker plot or not (default is FALSE)}
 
@@ -112,7 +112,7 @@ plot_befafter_colors(
 
 \item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} or base R palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
 
-\item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_line} or \code{ggplot2}\link{geom_point}.}
+\item{...}{any additional arguments to pass to \code{\link[ggplot2]{geom_line}} or \code{\link[ggplot2]{geom_point}}.}
 }
 \value{
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".

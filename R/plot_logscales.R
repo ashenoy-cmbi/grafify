@@ -14,7 +14,7 @@
 #' @param LogYLabels argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
 #' @param LogXLabels argument for \code{ggplot2[scale_x_continuous]} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
 #' @param fontsize this parameter sets the linewidth of the `log10` tickmarks (`8*fontsize/22` for long ticks and `4*fontsize/22` for middle ticks). It is set to 20 as default to be consistent with rest of `grafify`. It will need to be changed to 12, which is the default fontsize for graphs produced natively with `ggplot2`.
-#' @param ... any other arguments to pass to \code{\link{scale_y_continuous}[ggplot2]} or \code{\link{scale_x_continuous}[ggplot2]}
+#' @param ... any other arguments to pass to \code{\link[ggplot2]{scale_y_continuous}} or \code{\link[ggplot2]{scale_x_continuous}}
 #'
 #' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 #' @importFrom ggplot2 scale_y_continuous scale_x_continuous annotation_logticks coord_cartesian

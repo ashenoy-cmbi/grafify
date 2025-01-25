@@ -39,7 +39,7 @@ plot_logscale(
 
 \item{fontsize}{this parameter sets the linewidth of the \code{log10} tickmarks (\code{8*fontsize/22} for long ticks and \code{4*fontsize/22} for middle ticks). It is set to 20 as default to be consistent with rest of \code{grafify}. It will need to be changed to 12, which is the default fontsize for graphs produced natively with \code{ggplot2}.}
 
-\item{...}{any other arguments to pass to \code{\link{scale_y_continuous}[ggplot2]} or \code{\link{scale_x_continuous}[ggplot2]}}
+\item{...}{any other arguments to pass to \code{\link[ggplot2]{scale_y_continuous}} or \code{\link[ggplot2]{scale_x_continuous}}}
 }
 \value{
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".

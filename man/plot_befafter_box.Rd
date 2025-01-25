@@ -43,7 +43,7 @@ plot_befafter_box(
 
 \item{match}{name of the column with the grouping variable to pass on to \code{geom_line}.}
 
-\item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
+\item{facet}{add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
 
 \item{PlotShapes}{logical TRUE or FALSE (default = FALSE) if the shape of the symbol is to be mapped to the \code{match} variable. Note that only 25 shapes allowed.}
 
@@ -85,7 +85,7 @@ plot_befafter_box(
 
 \item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} or base R palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
 
-\item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_line},  \code{ggplot2}\link{geom_point}, or \code{ggplot2}\link{facet_wrap}.}
+\item{...}{any additional arguments to pass to \code{\link[ggplot2]{geom_line}},  \code{\link[ggplot2]{geom_point}}, or \code{\link[ggplot2]{facet_wrap}}.}
 }
 \value{
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".

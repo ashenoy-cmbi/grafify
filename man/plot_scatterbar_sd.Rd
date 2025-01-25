@@ -40,7 +40,7 @@ plot_scatterbar_sd(
 
 \item{ycol}{name of the column to plot on quantitative Y axis. This should be a quantitative variable.}
 
-\item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
+\item{facet}{add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
 
 \item{ErrorType}{select the type of error bars to display. Default is "SD" (standard deviation). Other options are "SEM" (standard error of the mean) and "CI95" (95\% confidence interval based on t distributions).}
 
@@ -82,7 +82,7 @@ plot_scatterbar_sd(
 
 \item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} palettes or base R to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
 
-\item{...}{any additional arguments to pass to \code{ggplot2}\link{facet_wrap}.}
+\item{...}{any additional arguments to pass to \code{\link[ggplot2]{facet_wrap}}.}
 }
 \value{
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".

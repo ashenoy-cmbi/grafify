@@ -17,13 +17,13 @@ plot_grafify_palette(
 
 \item{fontsize}{font size.}
 
-\item{...}{any additional parameters to pass to \code{plot_bar_sd}}
+\item{...}{any additional parameters to pass to \code{\link{plot_scatterbar_sd}}}
 }
 \value{
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
-This simple function allows quick visualisation of colours in grafify palettes and their hex codes. It uses \code{plot_bar_sd} and some arguments are similar and can be adjusted.
+This simple function allows quick visualisation of colours in grafify palettes and their hex codes. It uses \code{plot_scatterbar_sd} and some arguments are similar and can be adjusted.
 }
 \examples{
 plot_grafify_palette("pale")

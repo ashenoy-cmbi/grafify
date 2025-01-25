@@ -22,7 +22,7 @@
 #' @param xcol name of the column with the categorical factor to be plotted on X axis.
 #' @param ycol name of the column with quantitative variable to plot on the Y axis.
 #' @param shapes name of the column with the second categorical factor, for example from a two-way ANOVA design.
-#' @param facet add another variable from the data table to create faceted graphs using \code{ggplot2}[facet_wrap].
+#' @param facet add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.
 #' @param ErrorType select the type of error bars to display. Default is "SD" (standard deviation). Other options are "SEM" (standard error of the mean) and "CI95" (95% confidence interval based on t distributions).
 #' @param symsize size of symbols, default set to 3.
 #' @param s_alpha fractional opacity of symbols, default set to 0.8 (i.e. 80% opacity). Set `s_alpha = 0` to not show scatter plot.

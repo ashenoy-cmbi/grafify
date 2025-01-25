@@ -22,7 +22,7 @@
 #' @param xcol name of the column containing the categorical variable to be plotted on the X axis.
 #' @param ycol name of the column containing the quantitative Y values.
 #' @param match name of the column with the grouping variable to pass on to \code{geom_line}.
-#' @param facet add another variable from the data table to create faceted graphs using \code{ggplot2}[facet_wrap].
+#' @param facet add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.
 #' @param PlotShapes logical TRUE or FALSE (default = FALSE) if the shape of the symbol is to be mapped to the `match` variable. Note that only 25 shapes allowed.
 #' @param symsize size of symbols, default set to 3.
 #' @param s_alpha fractional opacity of symbols, default set to 0.8 (i.e., 80% opacity).
@@ -43,7 +43,7 @@
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param SingleColour a colour hexcode (starting with #), a number between 1-154, or names of colours from `grafify` or base R palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use `grey_lin11`, which is almost black.
-#' @param ... any additional arguments to pass to \code{ggplot2}[geom_line],  \code{ggplot2}[geom_point], or \code{ggplot2}[facet_wrap].
+#' @param ... any additional arguments to pass to \code{\link[ggplot2]{geom_line}},  \code{\link[ggplot2]{geom_point}}, or \code{\link[ggplot2]{facet_wrap}}.
 #'
 #' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 #' @export plot_befafter_box

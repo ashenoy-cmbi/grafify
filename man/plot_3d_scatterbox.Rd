@@ -41,7 +41,7 @@ plot_3d_scatterbox(
 
 \item{shapes}{name of the column with the second categorical factor in a two-way ANOVA design.}
 
-\item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
+\item{facet}{add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
 
 \item{symsize}{size of symbols, default set to 3.}
 
@@ -79,7 +79,7 @@ plot_3d_scatterbox(
 
 \item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} or base R palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
 
-\item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_boxplot}.}
+\item{...}{any additional arguments to pass to \code{\link[ggplot2]{geom_boxplot}}.}
 }
 \value{
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".

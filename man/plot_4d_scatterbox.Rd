@@ -44,7 +44,7 @@ plot_4d_scatterbox(
 
 \item{shapes}{name of the column that contains matched observations (e.g. subject IDs, experiment number) or another variable to pass on to symbol shapes. If not provided, the shapes for all groups is the same.}
 
-\item{facet}{add another variable from the data table to create faceted graphs using \code{ggplot2}\link{facet_wrap}.}
+\item{facet}{add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
 
 \item{symsize}{size of symbols, default set to 3.}
 
@@ -82,7 +82,7 @@ plot_4d_scatterbox(
 
 \item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
 
-\item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_boxplot}.}
+\item{...}{any additional arguments to pass to \code{\link[ggplot2]{geom_boxplot}}.}
 }
 \value{
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
