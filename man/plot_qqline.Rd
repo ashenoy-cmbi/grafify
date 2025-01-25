@@ -52,13 +52,13 @@ plot_qqline(
 
 \item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
 
-\item{...}{any additional arguments to pass to \code{\link{ggplot2}[geom_qq]} or \code{\link{ggplot2}[geom_qq_line]}.}
+\item{...}{any additional arguments to pass to \code{\link[ggplot2]{geom_qq}} or \code{\link[ggplot2]{geom_qq_line}}.}
 }
 \value{
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
-This function takes a data table, a quantitative variable (\code{ycol}), and a categorical grouping variable (\code{group}), if available, and plots a QQ graph using \code{\link{ggplot2}[stat_qq]} and \code{\link{ggplot2}[stat_qq_line]}.  Alternatives are \code{\link{plot_histogram}}, or \code{\link{plot_qqline}}.
+This function takes a data table, a quantitative variable (\code{ycol}), and a categorical grouping variable (\code{group}), if available, and plots a QQ graph using \code{\link[ggplot2]{stat_qq}} and \code{\link[ggplot2]{stat_qq_line}}.  Alternatives are \code{\link{plot_histogram}}, or \code{\link{plot_qqline}}.
 }
 \details{
 Note that the function requires the quantitative Y variable first, and a grouping variable as \code{group} if required. The graph plots sample quantiles on Y axis & theoretical quantiles on X axis. The X variable is mapped to the \code{fill} aesthetic in\code{stat_qq} and \code{colour} aesthetic for the \code{stat_qq_line}.

@@ -38,7 +38,7 @@ This function takes a linear model (simple or mixed effects) and plots a QQ grap
 \details{
 For generalised additive models fit with \code{mgcv}, scaled Pearson residuals are plotted.
 
-The function uses \code{\link{ggplot2}[geom_qq]} and \code{\link{ggplot2}[geom_qq_line]} geometries. Symbols receive "ok_orange" colour by default.
+The function uses \code{\link[ggplot2]{geom_qq}} and \code{\link[ggplot2]{geom_qq_line}} geometries. Symbols receive "ok_orange" colour by default.
 }
 \examples{
 #Basic usage

@@ -45,7 +45,7 @@ plot_dotviolin(
 
 \item{facet}{add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
 
-\item{dotsize}{size of dots relative to \code{binwidth} used by \code{geom_dotplot}. Default set to 1.5, increase/decrease as needed.}
+\item{dotsize}{size of dots relative to \code{binwidth} used by \code{\link[ggplot2]{geom_dotplot}}. Default set to 1.5, increase/decrease as needed.}
 
 \item{d_alpha}{fractional opacity of dots, default set to 0.8 (i.e., 80\% opacity).}
 
@@ -65,9 +65,9 @@ plot_dotviolin(
 
 \item{LogYTrans}{transform Y axis into "log10" or "log2"}
 
-\item{LogYBreaks}{argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is \code{waiver()}, or provide a vector of desired breaks.}
+\item{LogYBreaks}{argument for \code{\link[ggplot2]{scale_y_continuous}} for Y axis breaks on log scales, default is \code{waiver()}, or provide a vector of desired breaks.}
 
-\item{LogYLabels}{argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is \code{waiver()}, or provide a vector of desired labels.}
+\item{LogYLabels}{argument for \code{\link[ggplot2]{scale_y_continuous}} for Y axis labels on log scales, default is \code{waiver()}, or provide a vector of desired labels.}
 
 \item{LogYLimits}{a vector of length two specifying the range (minimum and maximum) of the Y axis.}
 
@@ -91,7 +91,7 @@ plot_dotviolin(
 
 \item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} or base R palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
 
-\item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_boxplot}, \code{ggplot2}\link{geom_dotplot} or \code{ggplot2}\link{geom_violin}.}
+\item{...}{any additional arguments to pass to \code{\link[ggplot2]{geom_boxplot}}, \code{\link[ggplot2]{geom_dotplot}} or \code{\link[ggplot2]{geom_violin}}.}
 }
 \value{
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".

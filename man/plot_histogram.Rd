@@ -70,7 +70,7 @@ plot_histogram(
 
 \item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} palettes or base R to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
 
-\item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_histogram}.}
+\item{...}{any additional arguments to pass to \code{\link[ggplot2]{geom_histogram}}.}
 }
 \value{
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
@@ -79,7 +79,7 @@ This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 This function takes a data table, a quantitative variable (\code{ycol}) and a grouping variable (\code{group}), if available, and plots a histogram graph using \code{\link{geom_histogram}}).  Alternatives are \code{\link{plot_density}}, or \code{\link{plot_qqline}}.
 }
 \details{
-Note that the function requires the quantitative Y variable first, and groups them based on a categorical variable passed on via the \code{group} argument. The grouping variable is mapped to the \code{fill} aesthetics in \code{geom_histogram}.
+Note that the function requires the quantitative Y variable first, and groups them based on a categorical variable passed on via the \code{group} argument. The grouping variable is mapped to the \code{fill} aesthetics in \code{\link[ggplot2]{geom_histogram}}.
 
 ColPal & ColRev options are applied to both \code{fill} and \code{colour} scales. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
 Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} arguments.

@@ -1,6 +1,6 @@
 #' Plot quantile-quantile (QQ) graphs from data.
 #'
-#' This function takes a data table, a quantitative variable (`ycol`), and a categorical grouping variable (`group`), if available, and plots a QQ graph using \code{\link{ggplot2}[stat_qq]} and \code{\link{ggplot2}[stat_qq_line]}.  Alternatives are \code{\link{plot_histogram}}, or \code{\link{plot_qqline}}.
+#' This function takes a data table, a quantitative variable (`ycol`), and a categorical grouping variable (`group`), if available, and plots a QQ graph using \code{\link[ggplot2]{stat_qq}} and \code{\link[ggplot2]{stat_qq_line}}.  Alternatives are \code{\link{plot_histogram}}, or \code{\link{plot_qqline}}.
 #' 
 #' Note that the function requires the quantitative Y variable first, and a grouping variable as `group` if required. The graph plots sample quantiles on Y axis & theoretical quantiles on X axis. The X variable is mapped to the \code{fill} aesthetic in\code{stat_qq} and \code{colour} aesthetic for the \code{stat_qq_line}.
 #' 
@@ -23,7 +23,7 @@
 #' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
-#' @param ... any additional arguments to pass to \code{\link{ggplot2}[geom_qq]} or \code{\link{ggplot2}[geom_qq_line]}.
+#' @param ... any additional arguments to pass to \code{\link[ggplot2]{geom_qq}} or \code{\link[ggplot2]{geom_qq_line}}.
 #'
 #' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 #' @export plot_qqline

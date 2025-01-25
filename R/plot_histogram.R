@@ -2,7 +2,7 @@
 #'
 #' This function takes a data table, a quantitative variable (`ycol`) and a grouping variable (`group`), if available, and plots a histogram graph using \code{\link{geom_histogram}}).  Alternatives are \code{\link{plot_density}}, or \code{\link{plot_qqline}}. 
 #' 
-#' Note that the function requires the quantitative Y variable first, and groups them based on a categorical variable passed on via the `group` argument. The grouping variable is mapped to the \code{fill} aesthetics in \code{geom_histogram}.
+#' Note that the function requires the quantitative Y variable first, and groups them based on a categorical variable passed on via the `group` argument. The grouping variable is mapped to the \code{fill} aesthetics in \code{\link[ggplot2]{geom_histogram}}.
 #' 
 #' ColPal & ColRev options are applied to both `fill` and `colour` scales. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
 #' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. 
@@ -30,7 +30,7 @@
 #' @param LogYBreaks argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is `waiver()`, or provide a vector of desired breaks.
 #' @param LogYLabels argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
 #' @param LogYLimits a vector of length two specifying the range (minimum and maximum) of the Y axis.
-#' @param ... any additional arguments to pass to \code{ggplot2}[geom_histogram].
+#' @param ... any additional arguments to pass to \code{\link[ggplot2]{geom_histogram}}.
 #'
 #' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 #' @export plot_histogram

@@ -79,7 +79,7 @@ plot_dotbar_sd(
 
 \item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} or base R palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
 
-\item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_dotplot}.}
+\item{...}{any additional arguments to pass to \code{\link[ggplot2]{geom_dotplot}}.}
 }
 \value{
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".

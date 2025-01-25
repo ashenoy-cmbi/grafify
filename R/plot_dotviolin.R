@@ -20,7 +20,7 @@
 #' @param xcol name of the column to plot on X axis. This should be a categorical variable.
 #' @param ycol name of the column to plot on quantitative Y axis. This should be a quantitative variable.
 #' @param facet add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.
-#' @param dotsize size of dots relative to \code{binwidth} used by \code{geom_dotplot}. Default set to 1.5, increase/decrease as needed.
+#' @param dotsize size of dots relative to \code{binwidth} used by \code{\link[ggplot2]{geom_dotplot}}. Default set to 1.5, increase/decrease as needed.
 #' @param d_alpha fractional opacity of dots, default set to 0.8 (i.e., 80% opacity).
 #' @param b_alpha fractional opacity of boxplots.  Default is set to 0, which results in white boxes inside violins. Change to any value >0 up to 1 for different levels of transparency. 
 #' @param v_alpha fractional opacity of violins, default set to 1.
@@ -30,8 +30,8 @@
 #' @param scale set to "area" by default, can be changed to "count" or "width".
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
 #' @param LogYTrans transform Y axis into "log10" or "log2"
-#' @param LogYBreaks argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is `waiver()`, or provide a vector of desired breaks.
-#' @param LogYLabels argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
+#' @param LogYBreaks argument for \code{\link[ggplot2]{scale_y_continuous}} for Y axis breaks on log scales, default is `waiver()`, or provide a vector of desired breaks.
+#' @param LogYLabels argument for \code{\link[ggplot2]{scale_y_continuous}} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
 #' @param LogYLimits a vector of length two specifying the range (minimum and maximum) of the Y axis.
 #' @param facet_scales whether or not to fix scales on X & Y axes for all facet facet graphs. Can be `fixed` (default), `free`, `free_y` or `free_x` (for Y and X axis one at a time, respectively).
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
@@ -43,7 +43,7 @@
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param SingleColour a colour hexcode (starting with #), a number between 1-154, or names of colours from `grafify` or base R palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use `grey_lin11`, which is almost black.
-#' @param ... any additional arguments to pass to \code{ggplot2}[geom_boxplot], \code{ggplot2}[geom_dotplot] or \code{ggplot2}[geom_violin].
+#' @param ... any additional arguments to pass to \code{\link[ggplot2]{geom_boxplot}}, \code{\link[ggplot2]{geom_dotplot}} or \code{\link[ggplot2]{geom_violin}}.
 #'
 #' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 #' @export plot_dotviolin

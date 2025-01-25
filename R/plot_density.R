@@ -1,8 +1,8 @@
 #' Plot density distribution of data.
 #'
-#' This function takes a data table, `ycol` of quantitative variable and a categorical grouping variable (`group`), if available, and plots a density graph using \code{\link{geom_density}}). Alternatives are \code{\link{plot_histogram}}, or \code{\link{plot_qqline}}.
+#' This function takes a data table, `ycol` of quantitative variable and a categorical grouping variable (`group`), if available, and plots a density graph using \code{\link[ggplot2]{geom_density}}). Alternatives are \code{\link{plot_histogram}}, or \code{\link{plot_qqline}}.
 #' 
-#' Note that the function requires the quantitative Y variable first, and groups them based on an X variable. The group variable is mapped to the \code{fill} and \code{colour} aesthetics in \code{geom_density}.
+#' Note that the function requires the quantitative Y variable first, and groups them based on an X variable. The group variable is mapped to the \code{fill} and \code{colour} aesthetics in \code{\link[ggplot2]{geom_density}}.
 #' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
 #' `ColPal` can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
 #' `ColRev` (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette. 

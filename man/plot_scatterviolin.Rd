@@ -97,7 +97,7 @@ plot_scatterviolin(
 
 \item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} or base R palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
 
-\item{...}{any additional arguments to pass to \code{ggplot2}\link{geom_boxplot}, \code{ggplot2}\link{geom_point} or \code{ggplot2}\link{geom_violin}.}
+\item{...}{any additional arguments to pass to \code{\link[ggplot2]{geom_boxplot}}, \code{\link[ggplot2]{geom_point}} or \code{\link[ggplot2]{geom_violin}}.}
 }
 \value{
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
