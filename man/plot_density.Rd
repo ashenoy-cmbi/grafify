@@ -16,7 +16,7 @@ plot_density(
   linethick,
   LogYTrans,
   LogYBreaks = waiver(),
-  Ylabels = waiver(),
+  LogYLabels = waiver(),
   LogYLimits = NULL,
   ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy", "kelly",
     "light", "muted", "pale", "r4", "safe", "vibrant"),
@@ -48,7 +48,7 @@ plot_density(
 
 \item{LogYBreaks}{argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is \code{waiver()}, or provide a vector of desired breaks.}
 
-\item{Ylabels}{argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is \code{waiver()}, or provide a vector of desired labels.}
+\item{LogYLabels}{argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is \code{waiver()}, or provide a vector of desired labels.}
 
 \item{LogYLimits}{a vector of length two specifying the range (minimum and maximum) of the Y axis.}
 

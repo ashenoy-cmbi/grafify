@@ -9,7 +9,11 @@ Full reference to all functions available at [`grafify` GitHub pages](https://as
 
 # grafify v4.0.2
 
-This is a minor update that adds "log10" and "log2" transformations to `plot_density` and `plot_histogram` functions, for consistency with other `plot_` functions.
+This is a minor update with the following changes:
+
+    a. `plot_density` and `plot_histogram` functions now have arguments for "log10" and "log2" (of the numeric variable axis). For consistency with other `plot_` functions, these are `LogYTrans`, `LogYBreaks`, `LogYLabels` and `LogYLimits`.
+    b. In a couple of `plot_..` functions, `LogYLabels` argument was called `Ylabels`, which has now been deprecated for consistency (old code will still work).
+    c. Since `ggplot2` v3.5 onwards, the `discrete_scale()` has been updated and an argument (`scale_name`) has been dropped. The `scale_fill_grafify` and `scale_colour_grafify` functions have been accordingly updated.
 
 # grafify v4.0.1
 

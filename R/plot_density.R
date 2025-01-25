@@ -22,7 +22,7 @@
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param LogYTrans transform Y axis into "log10" or "log2"
 #' @param LogYBreaks argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is `waiver()`, or provide a vector of desired breaks.
-#' @param Ylabels argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
+#' @param LogYLabels argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
 #' @param LogYLimits a vector of length two specifying the range (minimum and maximum) of the Y axis.
 #' @param ... any additional arguments to pass to \code{ggplot2}[geom_density].
 #'
@@ -39,7 +39,7 @@
 #' ycol = Cholesterol, group = Treatment, 
 #' facet = Treatment, fontsize = 12)
 
-plot_density <- function(data, ycol, group, facet,  c_alpha = 0.2, TextXAngle = 0, facet_scales = "fixed", fontsize = 20, linethick, LogYTrans, LogYBreaks = waiver(), Ylabels = waiver(), LogYLimits = NULL, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, ...){
+plot_density <- function(data, ycol, group, facet,  c_alpha = 0.2, TextXAngle = 0, facet_scales = "fixed", fontsize = 20, linethick, LogYTrans, LogYBreaks = waiver(), LogYLabels = waiver(), LogYLimits = NULL, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, ...){
   if(missing(linethick)) {linethick = fontsize/22}
   ColPal <- match.arg(ColPal)
   suppressWarnings(P <- ggplot2::ggplot(data, 
@@ -65,7 +65,7 @@ plot_density <- function(data, ycol, group, facet,  c_alpha = 0.2, TextXAngle = 
       P <- P + 
         scale_x_continuous(trans = "log10", 
                            breaks = LogYBreaks, 
-                           labels = Ylabels, 
+                           labels = LogYLabels, 
                            limits = LogYLimits, 
                            ...)+
         annotation_logticks(sides = "b", 
@@ -80,7 +80,7 @@ plot_density <- function(data, ycol, group, facet,  c_alpha = 0.2, TextXAngle = 
       P <- P + 
         scale_x_continuous(trans = "log2", 
                            breaks = LogYBreaks, 
-                           labels = Ylabels, 
+                           labels = LogYLabels, 
                            limits = LogYLimits, 
                            ...)}
   }

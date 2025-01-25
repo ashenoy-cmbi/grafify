@@ -21,7 +21,7 @@ plot_scatterviolin(
   TextXAngle = 0,
   LogYTrans,
   LogYBreaks = waiver(),
-  Ylabels = waiver(),
+  LogYLabels = waiver(),
   LogYLimits = NULL,
   facet_scales = "fixed",
   fontsize = 20,
@@ -29,6 +29,7 @@ plot_scatterviolin(
   bthick,
   vthick,
   bvthick,
+  Ylabels = waiver(),
   ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy", "kelly",
     "light", "muted", "pale", "r4", "safe", "vibrant"),
   ColSeq = TRUE,
@@ -70,7 +71,7 @@ plot_scatterviolin(
 
 \item{LogYBreaks}{argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is \code{waiver()}, or provide a vector of desired breaks.}
 
-\item{Ylabels}{argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is \code{waiver()}, or provide a vector of desired labels.}
+\item{LogYLabels}{argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is \code{waiver()}, or provide a vector of desired labels.}
 
 \item{LogYLimits}{a vector of length two specifying the range (minimum and maximum) of the Y axis.}
 
@@ -85,6 +86,8 @@ plot_scatterviolin(
 \item{vthick}{thickness (in 'pt' units) of violins; default = \code{fontsize}/22.}
 
 \item{bvthick}{thickness (in 'pt' units) of both violins and boxplots; default = \code{fontsize}/22.}
+
+\item{Ylabels}{deprecated, use \code{LogYLabels} instead.}
 
 \item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
 

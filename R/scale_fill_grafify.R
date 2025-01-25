@@ -87,7 +87,7 @@ scale_fill_grafify <- function(palette = "okabe_ito", ColSeq = TRUE, reverse = F
       pal <- graf_col_palette_default(palette = palette, 
                                       reverse = reverse)
     }
-    discrete_scale("fill", paste0("graf_", palette), 
+    discrete_scale("fill", #paste0("graf_", palette), 
                    palette = pal, ...)}
   
   #  if (palette == "okabe_ito" & discrete == FALSE) {palette <- #"blue_conti"}

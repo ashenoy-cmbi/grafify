@@ -17,12 +17,13 @@ plot_scatterbox(
   TextXAngle = 0,
   LogYTrans,
   LogYBreaks = waiver(),
-  Ylabels = waiver(),
+  LogYLabels = waiver(),
   LogYLimits = NULL,
   facet_scales = "fixed",
   fontsize = 20,
   symthick,
   bthick,
+  Ylabels = waiver(),
   ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy", "kelly",
     "light", "muted", "pale", "r4", "safe", "vibrant"),
   ColSeq = TRUE,
@@ -56,7 +57,7 @@ plot_scatterbox(
 
 \item{LogYBreaks}{argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is \code{waiver()}, or provide a vector of desired breaks.}
 
-\item{Ylabels}{argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is \code{waiver()}, or provide a vector of desired labels.}
+\item{LogYLabels}{argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is \code{waiver()}, or provide a vector of desired labels.}
 
 \item{LogYLimits}{a vector of length two specifying the range (minimum and maximum) of the Y axis.}
 
@@ -67,6 +68,8 @@ plot_scatterbox(
 \item{symthick}{size (in 'pt' units) of outline of symbol lines (\code{stroke}), default = \code{fontsize}/22.}
 
 \item{bthick}{thickness (in 'pt' units) of boxplot lines; default = \code{fontsize}/22.}
+
+\item{Ylabels}{deprecated, use \code{LogYLabels} instead.}
 
 \item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
 

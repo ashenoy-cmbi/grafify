@@ -30,8 +30,9 @@
 #' @param facet_scales whether or not to fix scales on X & Y axes for all graphs. Can be `fixed` (default), `free`, `free_y` or `free_x` (for Y and X axis one at a time, respectively).
 #' @param LogYTrans transform Y axis into "log10" or "log2"
 #' @param LogYBreaks argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is `waiver()`, or provide a vector of desired breaks.
-#' @param Ylabels argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
+#' @param LogYLabels argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
 #' @param LogYLimits a vector of length two specifying the range (minimum and maximum) of the Y axis.
+#' @param Ylabels deprecated, use `LogYLabels` instead. 
 #' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
 #' @param symthick size (in 'pt' units) of outline of symbol lines (\code{stroke}), default = `fontsize`/22.
 #' @param bthick thickness (in 'pt' units) of boxplot lines; default = `fontsize`/22.
@@ -54,8 +55,11 @@
 #' SingleColour = "ok_grey")
 #' 
 
-plot_scatterbox <- function(data, xcol, ycol, facet, symsize = 3, s_alpha = 0.8, b_alpha = 1,  bwid = 0.5, jitter = 0.1, TextXAngle = 0, LogYTrans, LogYBreaks = waiver(), Ylabels = waiver(), LogYLimits = NULL, facet_scales = "fixed", fontsize = 20, symthick, bthick, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, SingleColour = "NULL", ...){
+plot_scatterbox <- function(data, xcol, ycol, facet, symsize = 3, s_alpha = 0.8, b_alpha = 1,  bwid = 0.5, jitter = 0.1, TextXAngle = 0, LogYTrans, LogYBreaks = waiver(), LogYLabels = waiver(), LogYLimits = NULL, facet_scales = "fixed", fontsize = 20, symthick, bthick, Ylabels = waiver(), ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, SingleColour = "NULL", ...){
   ColPal <- match.arg(ColPal)
+  if (!missing("Ylabels")) {
+    warning("Use `LogYLabels` argument instead, as `Ylabels` is deprecated.")
+    LogYLabels <- substitute(Ylabels)}
   if (missing(bthick)) {bthick = fontsize/22}
   if (missing(symthick)) {symthick = fontsize/22}
   #data[[deparse(substitute(xcol))]] <- factor(#data[[deparse(substitute(xcol))]])
@@ -86,7 +90,7 @@ plot_scatterbox <- function(data, xcol, ycol, facet, symsize = 3, s_alpha = 0.8,
       P <- P + 
         scale_y_continuous(trans = "log10", 
                            breaks = LogYBreaks, 
-                           labels = Ylabels, 
+                           labels = LogYLabels, 
                            limits = LogYLimits, 
                            ...)+
         annotation_logticks(sides = "l", 
@@ -101,7 +105,7 @@ plot_scatterbox <- function(data, xcol, ycol, facet, symsize = 3, s_alpha = 0.8,
       P <- P + 
         scale_y_continuous(trans = "log2", 
                            breaks = LogYBreaks, 
-                           labels = Ylabels, 
+                           labels = LogYLabels, 
                            limits = LogYLimits, 
                            ...)}
   }
