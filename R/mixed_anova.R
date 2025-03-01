@@ -18,7 +18,7 @@
 #' In this experimental implementation, random slopes and intercepts are fitted (\code{(Slopes_Factor|Random_Factor)}). Only one term each is allowed for `Slopes_Factor` and `Random_Factor`.
 #'
 #' @param data a data table object, e.g. data.frame or tibble.
-#' @param Y_value name of column containing quantitative (dependent) variable, provided within "quotes".
+#' @param Y_value name of column containing quantitative (dependent) variable, provided within "quotes". If you want to use log-transformation of variable x, you can enter "log(Y_value)", "log2(Y_value)" or "log10(Y_value)". Posthoc-comparisons functions will back-transform these to the original scale.
 #' @param Fixed_Factor name(s) of categorical fixed factors (independent variables) provided as a vector if more than one or within "quotes".
 #' @param Random_Factor name(s) of random factors to allow random intercepts; to be provided as a vector when more than one or within "quotes".
 #' @param Df_method method for calculating degrees of freedom. Default is Kenward-Roger, can be changed to "Satterthwaite".
@@ -50,14 +50,18 @@ mixed_anova <- function(data, Y_value, Fixed_Factor, Random_Factor, Df_method = 
   if(AvgRF == TRUE){
     message("The new argument `AvgRF` is set to TRUE by default in >=v4.1.0). See help for details.")}
   df <- data
+  var_name <- Y_value
   lx1r = length(Fixed_Factor)+length(Random_Factor)
+  if (grepl("^log(2|10)?\\((.*)\\)$", Y_value)) {
+    # Extract the variable name inside log(), log2(), or log10()
+    var_name <- sub("^log(2|10)?\\((.*)\\)$", "\\2", Y_value)}
   if(AvgRF == TRUE){
     avgdf <- table_summary(df,
-                           Y_value,
+                           var_name,
                            c(Fixed_Factor, 
                              Random_Factor))
     avgdf <- avgdf[, c(1:(lx1r + 1))]
-    colnames(avgdf) <- c(Fixed_Factor, Random_Factor, Y_value)
+    colnames(avgdf) <- c(Fixed_Factor, Random_Factor, var_name)
     df <- avgdf
   }
   if(AvgRF == FALSE){
