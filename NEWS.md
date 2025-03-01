@@ -126,7 +126,7 @@ The main motivation behind this update was to simplify the package by reducing t
 
 1. A new `SingleColour` argument has been added to two-variables `plot_` functions to generate graphs with a single colour along the X-axis aesthetic. This means the 8 `plot_..._sc` functions introduced in v1.5.0 are deprecated, but this feature is still retained in existing `plot_` functions. This option also added to `plot_3d_` functions for plots of one-way ANOVA data.
 
-2. Four new colourblind-friendly categorical colour schemes (chosen from [cols4all](https://github.com/mtennekes/cols4all) package):
+2. Four new colourblind-friendly categorical colour schemes (chosen from [cols4all](https://github.com/cols4all/cols4all-R) package):
 
 - `fishy`, `kelly`, `r4`, `safe` 
 

@@ -13,7 +13,7 @@
 
 The [vignettes website](https://grafify-vignettes.netlify.app) has
 detailed help on usage and latest [release notes are
-here](https://grafify-vignettes.netlify.app/release_notes.html).
+here](https://grafify.shenoylab.com/release_notes.html).
 
 As an example, you could write this to plot bar/SD graph from a 2-way
 ANOVA data with randomised blocks:
@@ -102,7 +102,7 @@ All palettes are colourblind-friendly. (See Mike Mol’s
 [blog](https://mikemol.github.io/technique/colorblind/2018/02/11/color-safe-palette.html)
 and Paul Tol’s [blog](https://personal.sron.nl/~pault/#sec:qualitative).
 Additional colour schemes were chosen from [`cols4all`
-package](https://github.com/mtennekes/cols4all)).
+package](https://github.com/cols4all/cols4all-R)).
 
 #### `grafify` theme & adding log-scales
 
@@ -159,7 +159,7 @@ detailed description of all functions.
 ### **Latest version: v4.0.1 on CRAN or GitHub**
 
 Find out about [latest updates
-here](https://grafify-vignettes.netlify.app/release_notes.html).
+here](https://grafify.shenoylab.com/release_notes.html).
 
 ### Citing `grafify`
 
@@ -192,7 +192,7 @@ analyses of randomised block designs to new users.
 ### Statistics for Micro/immuno biologists
 
 Also visit Statistics for [Micro/Immuno
-Biologists](https://microimmunostats.netlify.app) for basic statistics
+Biologists](https://biostats.shenoylab.com/) for basic statistics
 theory and data analyses in R.
 
 ### Function references

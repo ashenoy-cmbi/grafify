@@ -17,6 +17,6 @@ tibble:	30 obs. of  3 variables:
 data_doubling_time
 }
 \description{
-An example dataset showing measurements of \emph{E. coli} doubling times (in min) measured by 10 different students in 3 independent experiments each. Note that Experiments are just called Exp1-Exp3 even though Exp1 of any of the students are not connected in anyway - this will confuse R! Data are from \href{https://microimmunostats.netlify.app}{Micro/Immuno Stats}
+An example dataset showing measurements of \emph{E. coli} doubling times (in min) measured by 10 different students in 3 independent experiments each. Note that Experiments are just called Exp1-Exp3 even though Exp1 of any of the students are not connected in anyway - this will confuse R! Data are from \href{https://biostats.shenoylab.com/}{Micro/Immuno Stats}
 }
 \keyword{datasets}

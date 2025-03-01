@@ -70,7 +70,7 @@
 
 #' @title Doubling time of E.coli measured by 10 students three independent times.
 #'
-#' @description An example dataset showing measurements of _E. coli_ doubling times (in min) measured by 10 different students in 3 independent experiments each. Note that Experiments are just called Exp1-Exp3 even though Exp1 of any of the students are not connected in anyway - this will confuse R! Data are from [Micro/Immuno Stats](https://microimmunostats.netlify.app)
+#' @description An example dataset showing measurements of _E. coli_ doubling times (in min) measured by 10 different students in 3 independent experiments each. Note that Experiments are just called Exp1-Exp3 even though Exp1 of any of the students are not connected in anyway - this will confuse R! Data are from [Micro/Immuno Stats](https://biostats.shenoylab.com/)
 #'
 #' @format tibble:	30 obs. of  3 variables:
 #'
@@ -83,7 +83,7 @@
 
 #' @title Hierarchical data from 25 subjects either treated or not at 5 hospitals - two-way ANOVA design with repeated measures.
 #'
-#' @description An example dataset on measurements of blood cholesterol levels measured in 5 subjects measured before and after receiving a Drug. Five patients each were recruited at 5 hospitals (a-e), so that there are 25 different subjects (1-25) measured twice.  Data are from [Micro/Immuno Stats](https://microimmunostats.netlify.app)
+#' @description An example dataset on measurements of blood cholesterol levels measured in 5 subjects measured before and after receiving a Drug. Five patients each were recruited at 5 hospitals (a-e), so that there are 25 different subjects (1-25) measured twice.  Data are from [Micro/Immuno Stats](https://biostats.shenoylab.com/)
 #'
 #' @format tibble:	30 obs. of  3 variables:
 #'

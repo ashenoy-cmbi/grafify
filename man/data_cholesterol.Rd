@@ -18,6 +18,6 @@ tibble:	30 obs. of  3 variables:
 data_cholesterol
 }
 \description{
-An example dataset on measurements of blood cholesterol levels measured in 5 subjects measured before and after receiving a Drug. Five patients each were recruited at 5 hospitals (a-e), so that there are 25 different subjects (1-25) measured twice.  Data are from \href{https://microimmunostats.netlify.app}{Micro/Immuno Stats}
+An example dataset on measurements of blood cholesterol levels measured in 5 subjects measured before and after receiving a Drug. Five patients each were recruited at 5 hospitals (a-e), so that there are 25 different subjects (1-25) measured twice.  Data are from \href{https://biostats.shenoylab.com/}{Micro/Immuno Stats}
 }
 \keyword{datasets}
