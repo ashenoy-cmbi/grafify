@@ -53,6 +53,7 @@
 #' BinSize = 10)
 
 plot_histogram <- function(data, ycol, group, facet, PlotType = c("Counts", "Normalised counts"), BinSize = 30, c_alpha = 0.8, TextXAngle = 0, facet_scales = "fixed", fontsize = 20, linethick, alpha, LogYTrans, LogYBreaks = waiver(), LogYLabels = waiver(), LogYLimits = NULL, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, SingleColour = NULL, ...){
+  message("Showing default plot of Counts in bins set by `Binsize`. `PlotType` can be changed to 'Normalised counts' as an alternative.")
   if(missing(linethick)) {linethick = fontsize/22}
   if (!missing("alpha")) {
     warning("Use `c_alpha` argument instead, as `alpha` is deprecated.")

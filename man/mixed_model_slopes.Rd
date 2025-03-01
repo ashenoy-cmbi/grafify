@@ -10,6 +10,7 @@ mixed_model_slopes(
   Fixed_Factor,
   Slopes_Factor,
   Random_Factor,
+  AvgRF = TRUE,
   ...
 )
 }
@@ -23,6 +24,8 @@ mixed_model_slopes(
 \item{Slopes_Factor}{name of factor to allow varying slopes on.}
 
 \item{Random_Factor}{name(s) of random factors to allow random intercepts; to be provided as a vector when more than one or within "quotes".}
+
+\item{AvgRF}{this is a new argument since v4.1.0. The default \code{AvgRF = TRUE} will use the mean of \code{Y_value} (the response variable) in the data frame by \code{Fixed_Factor} and \code{Random_Factor}  (using \code{\link{table_summary}}). This ensures that replicates within \code{Random_Factor} are averaged (e.g., technical replicates nested within experimental blocks) before fitting a linear model and the denominator Df values are sensible. The behaviour like versions <4.1.0 can be obtained with \code{AvgRF = FALSE}.}
 
 \item{...}{any additional arguments to pass on to \code{\link[lme4]{lmer}} if required.}
 }

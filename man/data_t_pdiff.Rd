@@ -17,6 +17,6 @@ data.frame:	20 obs. of  3 variables:
 data_t_pdiff
 }
 \description{
-An example dataset for paired difference Student's \emph{t} test. These are bodyweight (Mass) in grams of same mice left untreated or treated, which are two groups to be compared. The data are in a longtable format, and the two groups are levels within the factor "Condition". The Subject column lists ID of matched mice that were measured without and with treatment. These data are from \href{https://doi.org/10.1126/scisignal.aat6903}{Sanchez-Garrido \emph{et al}, Sci Signal, 2018, DOI: 10.1126/scisignal.aat6903}.
+An example dataset for paired difference Student's \emph{t} test. These are bodyweight (Mass) in grams of same mice left untreated or treated, which are two groups to be compared. The data are in a longtable format, and the two groups are levels within the factor "Condition". The Subject column lists ID of matched mice that were measured without and with treatment. These data are from Sanchez-Garrido \emph{et al}, Sci Signal, 2018 (\doi{10.1126/scisignal.aat6903}).
 }
 \keyword{datasets}

@@ -4,7 +4,7 @@
 \alias{mixed_model}
 \title{Model from a linear mixed effects model}
 \usage{
-mixed_model(data, Y_value, Fixed_Factor, Random_Factor, ...)
+mixed_model(data, Y_value, Fixed_Factor, Random_Factor, AvgRF = TRUE, ...)
 }
 \arguments{
 \item{data}{a data table object, e.g. data.frame or tibble.}
@@ -14,6 +14,8 @@ mixed_model(data, Y_value, Fixed_Factor, Random_Factor, ...)
 \item{Fixed_Factor}{name(s) of categorical fixed factors (independent variables) provided as a vector if more than one or within "quotes".}
 
 \item{Random_Factor}{name(s) of random factors to allow random intercepts; to be provided as a vector when more than one or within "quotes".}
+
+\item{AvgRF}{this is a new argument since v4.1.0. The default \code{AvgRF = TRUE} will use the mean of \code{Y_value} (the response variable) in the data frame by \code{Fixed_Factor} and \code{Random_Factor}  (using \code{\link{table_summary}}). This ensures that replicates within \code{Random_Factor} are averaged (e.g., technical replicates nested within experimental blocks) before fitting a linear model and the denominator Df values are sensible. The behaviour like versions <4.1.0 can be obtained with \code{AvgRF = FALSE}.}
 
 \item{...}{any additional arguments to pass on to \code{\link[lme4]{lmer}} if required.}
 }

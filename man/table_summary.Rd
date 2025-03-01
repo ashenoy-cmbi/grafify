@@ -17,7 +17,7 @@ table_summary(data, Ycol, ByGroup)
 this function takes in a data.frame or tibble and returns a data.frame or tibble.
 }
 \description{
-This is a wrapper around \code{\link{aggregate}} function in base R to obtain mean, median, standard deviation and count for quantitative variable(s) grouped by one or more factors. More than one column containing of quantitative variables can be passed on, and summaries for each is provided with column names with a \code{.}.
+This is a wrapper around \code{\link[stats]{aggregate}} function in base R to obtain mean, median, standard deviation and count for quantitative variable(s) grouped by one or more factors. More than one column containing of quantitative variables can be passed on, and summaries for each is provided with column names with a \code{.}.
 }
 \examples{
 table_summary(Ycol = "cty",

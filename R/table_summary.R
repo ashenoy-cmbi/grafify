@@ -1,6 +1,6 @@
 #' Get numeric summary grouped by factors
 #' 
-#' This is a wrapper around \code{\link{aggregate}} function in base R to obtain mean, median, standard deviation and count for quantitative variable(s) grouped by one or more factors. More than one column containing of quantitative variables can be passed on, and summaries for each is provided with column names with a `.`. 
+#' This is a wrapper around \code{\link[stats]{aggregate}} function in base R to obtain mean, median, standard deviation and count for quantitative variable(s) grouped by one or more factors. More than one column containing of quantitative variables can be passed on, and summaries for each is provided with column names with a `.`. 
 #'
 #' @param data name of the data table.
 #' @param Ycol name of one column (in quotes) or a vector of column names containing the numerical variable to be summarised.

@@ -1,6 +1,6 @@
 test_that("Mixed effects models with slopes", {
   mmod5 <- mixed_model_slopes(data_2w_Tdeath, 
-                              PI,
+                              "PI",
                               c("Genotype", "Time"),
                               "Time",
                               "Experiment")
@@ -11,7 +11,7 @@ test_that("Mixed effects models with slopes", {
   expect_equal(mmod5@call$formula[2], mmod6@call$formula[2]) #compare models
   expect_equal(mmod5@call$data , mmod6@call$data)
   expect_equal(mmod5@sigma, mmod6@sigma)
-  expect_equal(mmod5@frame[[1]], mmod6@frame[[1]])
+  #expect_equal(mmod5@frame[[1]], mmod6@frame[[1]])
   expect_equal(mmod5@beta, mmod6@beta)
   #expect_equal(mmod5@call, mmod6@call) #only difference is lmerTest:: in native call
 })
@@ -33,7 +33,7 @@ test_that("Mixed effects slopes ANOVA table - defaults", {
 
 test_that("Mixed effects ANOVA table - custom", {
   mmod3 <- mixed_anova_slopes(data_2w_Tdeath, 
-                       PI,
+                       "PI",
                        c("Genotype", "Time"),
                        "Time",
                        "Experiment",

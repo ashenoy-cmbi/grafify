@@ -17,6 +17,6 @@ data.frame: 15 obs. of  3 variables.
 data_1w_death
 }
 \description{
-These data are from in vitro measurements of death of host cells (measured as percentage of total cells) after infection with three different strains of a pathogenic bacterium, from five independent experiments. The three strains are three levels within the fixed factor Genotype. The five independent experiments are levels within the random variable Experiment. These data can be analysed using linear mixed effects modelling. These data are from \href{https://doi.org/10.1016/j.celrep.2019.03.100}{Goddard \emph{et al}, Cell Rep, 2019, doi.org/10.1016/j.celrep.2019.03.100}
+These data are from in vitro measurements of death of host cells (measured as percentage of total cells) after infection with three different strains of a pathogenic bacterium, from five independent experiments. The three strains are three levels within the fixed factor Genotype. The five independent experiments are levels within the random variable Experiment. These data can be analysed using linear mixed effects modelling. These data are from Goddard \emph{et al}, Cell Rep, 2019 (\doi{10.1016/j.celrep.2019.03.100}).
 }
 \keyword{datasets}

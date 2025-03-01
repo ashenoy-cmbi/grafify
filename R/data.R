@@ -1,6 +1,6 @@
 #' @title In vitro experiments measuring percentage cell death in three genotypes of cells.
 #'
-#' @description These data are from in vitro measurements of death of host cells (measured as percentage of total cells) after infection with three different strains of a pathogenic bacterium, from five independent experiments. The three strains are three levels within the fixed factor Genotype. The five independent experiments are levels within the random variable Experiment. These data can be analysed using linear mixed effects modelling. These data are from [Goddard _et al_, Cell Rep, 2019, doi.org/10.1016/j.celrep.2019.03.100](https://doi.org/10.1016/j.celrep.2019.03.100)
+#' @description These data are from in vitro measurements of death of host cells (measured as percentage of total cells) after infection with three different strains of a pathogenic bacterium, from five independent experiments. The three strains are three levels within the fixed factor Genotype. The five independent experiments are levels within the random variable Experiment. These data can be analysed using linear mixed effects modelling. These data are from Goddard _et al_, Cell Rep, 2019 (\doi{10.1016/j.celrep.2019.03.100}).
 #'
 #' @format data.frame: 15 obs. of  3 variables.
 #'
@@ -13,7 +13,7 @@
 
 #' @title Data from two-way ANOVA with randomised block design of treatments of strains of mice.
 #'
-#' @description Data from Festing, ILAR Journal (2014) 55, 472--476 <doi: 10.1093/ilar/ilu045>. These data are suitable for two-way linear mixed effects modelling.
+#' @description Data from Festing, ILAR Journal (2014) 55, 472--476 (\doi{10.1093/ilar/ilu045}). These data are suitable for two-way linear mixed effects modelling.
 #' The activity of GST (numerical dependent variable) was measured in 4 strains of mice (levels with the fixed factor Strain) either treated or controls (levels within the fixed factor Treatment). Once mouse each was used in two randomised blocks, which is the random factor (Block).
 #'
 #' @format data.frame:	16 obs. of  4 variables:
@@ -28,7 +28,7 @@
 
 #' @title Matched data from two groups where difference between them is consistent.
 #'
-#' @description An example dataset for paired difference Student's _t_ test. These are bodyweight (Mass) in grams of same mice left untreated or treated, which are two groups to be compared. The data are in a longtable format, and the two groups are levels within the factor "Condition". The Subject column lists ID of matched mice that were measured without and with treatment. These data are from [Sanchez-Garrido _et al_, Sci Signal, 2018, DOI: 10.1126/scisignal.aat6903](https://doi.org/10.1126/scisignal.aat6903).
+#' @description An example dataset for paired difference Student's _t_ test. These are bodyweight (Mass) in grams of same mice left untreated or treated, which are two groups to be compared. The data are in a longtable format, and the two groups are levels within the factor "Condition". The Subject column lists ID of matched mice that were measured without and with treatment. These data are from Sanchez-Garrido _et al_, Sci Signal, 2018 (\doi{10.1126/scisignal.aat6903}).
 #'
 #' @format data.frame:	20 obs. of  3 variables:
 #'

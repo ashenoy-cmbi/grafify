@@ -23,6 +23,7 @@
 #' @param Random_Factor name(s) of random factors to allow random intercepts; to be provided as a vector when more than one or within "quotes".
 #' @param Df_method method for calculating degrees of freedom. Default is Kenward-Roger, can be changed to "Satterthwaite".
 #' @param SS_method type of sum of square, default is type II, can be changed to "I", "III", "1" or "2", or others.
+#' @param AvgRF this is a new argument since v4.1.0. The default `AvgRF = TRUE` will use the mean of `Y_value` (the response variable) in the data frame by `Fixed_Factor` and `Random_Factor`  (using \code{\link{table_summary}}). This ensures that replicates within `Random_Factor` are averaged (e.g., technical replicates nested within experimental blocks) before fitting a linear model and the denominator Df values are sensible. Behaviour like versions <4.1.0 can be obtained with `AvgRF = FALSE`.
 #' @param ... any additional arguments to pass on to \code{\link[lme4]{lmer}} if required.
 #'
 #' @return ANOVA table of class "anova" and "data.frame".
@@ -45,30 +46,72 @@
 #' Random_Factor = "Subject")
 #'
 
-mixed_anova <- function(data, Y_value, Fixed_Factor, Random_Factor, Df_method = "Kenward-Roger", SS_method = "II", ...){
-  Y <- substitute(Y_value)
-  d <- substitute(data)
+mixed_anova <- function(data, Y_value, Fixed_Factor, Random_Factor, Df_method = "Kenward-Roger", SS_method = "II", AvgRF = TRUE, ...){
+  if(AvgRF == TRUE){
+    message("The new argument `AvgRF` is set to TRUE by default in >=v4.1.0). See help for details.")}
+  df <- data
+  lx1r = length(Fixed_Factor)+length(Random_Factor)
+  if(AvgRF == TRUE){
+    avgdf <- table_summary(df,
+                           Y_value,
+                           c(Fixed_Factor, 
+                             Random_Factor))
+    avgdf <- avgdf[, c(1:(lx1r + 1))]
+    colnames(avgdf) <- c(Fixed_Factor, Random_Factor, Y_value)
+    df <- avgdf
+  }
+  if(AvgRF == FALSE){
+    df <- data
+  }
+  
   ifelse(length(Fixed_Factor) == 1,
          Facs <- paste0(Fixed_Factor, collapse = ""),
          Facs <- paste0(Fixed_Factor, collapse = "*"))
-
+  
   ifelse((length(Random_Factor) == 1),
          RFacs <- paste0("(1|", Random_Factor, ")"),
          RFacs <- paste0("(1|", Random_Factor, ")", collapse = "+"))
-
-  fo <- as.formula(paste(Y,
+  
+  fo <- as.formula(paste(Y_value,
                          paste(paste(Facs, collapse = ""),
                                paste(RFacs, collapse = ""),
                                sep = "+"),
                          sep = " ~ "))
-  call1 <- paste0("lmer(formula = ", 
-                  deparse1(fo), 
-                  ", data = ", 
-                  deparse1(d), 
-                  ", ...)")
-  mod1 <- eval(parse(text = call1))
-  mod1 <- as_lmerModLmerTest(mod1)
+  
+  ########## like grafify online
+  mod1 <- lmer(formula = fo,
+               data = df)
+  mod1@call$formula <- fo
+  mod1@call$data <- substitute(data)
+  mod1 <- lmerTest::as_lmerModLmerTest(mod1)
+  mod1
   anova(mod1,
         type = SS_method,
         ddf = Df_method)
+  ######################
+#  Y <- substitute(Y_value)
+#  d <- substitute(data)
+#  ifelse(length(Fixed_Factor) == 1,
+#         Facs <- paste0(Fixed_Factor, collapse = ""),
+#         Facs <- paste0(Fixed_Factor, collapse = "*"))
+#
+#  ifelse((length(Random_Factor) == 1),
+#         RFacs <- paste0("(1|", Random_Factor, ")"),
+#         RFacs <- paste0("(1|", Random_Factor, ")", collapse = "+"))
+#
+#  fo <- as.formula(paste(Y,
+#                         paste(paste(Facs, collapse = ""),
+#                               paste(RFacs, collapse = ""),
+#                               sep = "+"),
+#                         sep = " ~ "))
+#  call1 <- paste0("lmer(formula = ", 
+#                  deparse1(fo), 
+#                  ", data = ", 
+#                  deparse1(d), 
+#                  ", ...)")
+#  mod1 <- eval(parse(text = call1))
+#  mod1 <- as_lmerModLmerTest(mod1)
+#  anova(mod1,
+#        type = SS_method,
+#        ddf = Df_method)
 }

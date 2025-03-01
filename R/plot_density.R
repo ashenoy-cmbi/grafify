@@ -49,6 +49,7 @@
 #' facet = Treatment, fontsize = 12)
 #' 
 plot_density <- function(data, ycol, group, facet, PlotType = c("Density", "Counts", "Normalised counts"), c_alpha = 0.2, TextXAngle = 0, facet_scales = "fixed", fontsize = 20, linethick, LogYTrans, LogYBreaks = waiver(), LogYLabels = waiver(), LogYLimits = NULL, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, SingleColour = NULL, ...){
+  message("Showing plot of smooth kernel density (default). `PlotType` can be changed to 'Counts' or 'Normalised counts'.")
   if(missing(linethick)) {linethick = fontsize/22}
   ColPal <- match.arg(ColPal)
   PlotType <- match.arg(PlotType)

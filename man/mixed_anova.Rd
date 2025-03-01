@@ -11,6 +11,7 @@ mixed_anova(
   Random_Factor,
   Df_method = "Kenward-Roger",
   SS_method = "II",
+  AvgRF = TRUE,
   ...
 )
 }
@@ -26,6 +27,8 @@ mixed_anova(
 \item{Df_method}{method for calculating degrees of freedom. Default is Kenward-Roger, can be changed to "Satterthwaite".}
 
 \item{SS_method}{type of sum of square, default is type II, can be changed to "I", "III", "1" or "2", or others.}
+
+\item{AvgRF}{this is a new argument since v4.1.0. The default \code{AvgRF = TRUE} will use the mean of \code{Y_value} (the response variable) in the data frame by \code{Fixed_Factor} and \code{Random_Factor}  (using \code{\link{table_summary}}). This ensures that replicates within \code{Random_Factor} are averaged (e.g., technical replicates nested within experimental blocks) before fitting a linear model and the denominator Df values are sensible. Behaviour like versions <4.1.0 can be obtained with \code{AvgRF = FALSE}.}
 
 \item{...}{any additional arguments to pass on to \code{\link[lme4]{lmer}} if required.}
 }

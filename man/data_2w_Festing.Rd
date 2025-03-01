@@ -18,7 +18,7 @@ data.frame:	16 obs. of  4 variables:
 data_2w_Festing
 }
 \description{
-Data from Festing, ILAR Journal (2014) 55, 472--476 <doi: 10.1093/ilar/ilu045>. These data are suitable for two-way linear mixed effects modelling.
+Data from Festing, ILAR Journal (2014) 55, 472--476 (\doi{10.1093/ilar/ilu045}). These data are suitable for two-way linear mixed effects modelling.
 The activity of GST (numerical dependent variable) was measured in 4 strains of mice (levels with the fixed factor Strain) either treated or controls (levels within the fixed factor Treatment). Once mouse each was used in two randomised blocks, which is the random factor (Block).
 }
 \keyword{datasets}
