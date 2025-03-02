@@ -18,7 +18,7 @@
 #' In this experimental implementation, random slopes and intercepts are fitted (\code{(Slopes_Factor|Random_Factor)}). Only one term each is allowed for `Slopes_Factor` and `Random_Factor`.
 #'
 #' @param data a data table object, e.g. data.frame or tibble.
-#' @param Y_value name of column containing quantitative (dependent) variable, provided within "quotes". If you want to use log-transformation of variable x, you can enter "log(Y_value)", "log2(Y_value)" or "log10(Y_value)". Posthoc-comparisons functions will back-transform these to the original scale.
+#' @param Y_value name of column containing quantitative (dependent) variable, provided within "quotes". The following transformations are permitted: "log(Y_value)", "log(Y_value + c)" where c a positive number, "logit(Y_value)" or "logit(Y_value/100)" which may be useful when `Y_value` are percentages  (note quotes outside the log or logit calls). During posthoc-comparisons, the quantitative variable will back-transform to its original scale.
 #' @param Fixed_Factor name(s) of categorical fixed factors (independent variables) provided as a vector if more than one or within "quotes".
 #' @param Slopes_Factor name of factor to allow varying slopes on. 
 #' @param Random_Factor name(s) of random factors to allow random intercepts; to be provided as a vector when more than one or within "quotes".
@@ -32,7 +32,8 @@
 #' @importFrom lmerTest as_lmerModLmerTest
 #' @importFrom stats as.formula anova
 #' @importFrom lme4 lmer
-#'
+#' @importFrom car logit
+#' 
 #' @examples
 #' mixed_anova_slopes(data = data_2w_Tdeath,
 #' Y_value = "PI",
@@ -47,9 +48,16 @@ mixed_anova_slopes <- function(data, Y_value, Fixed_Factor, Slopes_Factor, Rando
   df <- data
   var_name <- Y_value
   lx1r = length(Fixed_Factor)+length(Random_Factor)
-  if (grepl("^log(2|10)?\\((.*)\\)$", Y_value)) {
-    # Extract the variable name inside log(), log2(), or log10()
-    var_name <- sub("^log(2|10)?\\((.*)\\)$", "\\2", Y_value)}
+  # Check if the Y_value contains a transformation
+  if (grepl("\\(|\\^", Y_value)) {
+    # Extract the base variable name from the Y_value input
+    var_name <- sub("^.*\\(([^\\)]+)\\).*|\\^.*$", "\\1", Y_value)
+    # Further extract the variable name if it includes an addition or division (e.g., log(y + 0.1) or logit(y / 100))
+    var_name <- sub("^(.*?)(\\s*\\+\\s*.*|\\s*/\\s*100)?$", "\\1", var_name)
+  } else {
+    # If no transformation, use the Y_value as is
+    var_name <- Y_value
+  }
   if(AvgRF == TRUE){
     avgdf <- table_summary(df,
                            var_name,

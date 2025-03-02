@@ -18,7 +18,7 @@
 #' In this experimental implementation, random slopes and intercepts are fitted (\code{(Slopes_Factor|Random_Factor)}). Only one term each is allowed for `Slopes_Factor` and `Random_Factor`.
 #'
 #' @param data a data table object, e.g. data.frame or tibble.
-#' @param Y_value name of column containing quantitative (dependent) variable, provided within "quotes". If you want to use log-transformation of variable x, you can enter "log(Y_value)", "log2(Y_value)" or "log10(Y_value)". Posthoc-comparisons functions will back-transform these to the original scale.
+#' @param Y_value name of column containing quantitative (dependent) variable, provided within "quotes". The following transformations are permitted: "log(Y_value)", "log(Y_value + c)" where c a positive number, "logit(Y_value)" or "logit(Y_value/100)" which may be useful when `Y_value` are percentages  (note quotes outside the log or logit calls). During posthoc-comparisons, the quantitative variable will back-transform to its original scale.
 #' @param Fixed_Factor name(s) of categorical fixed factors (independent variables) provided as a vector if more than one or within "quotes".
 #' @param Random_Factor name(s) of random factors to allow random intercepts; to be provided as a vector when more than one or within "quotes".
 #' @param AvgRF this is a new argument since v4.1.0. The default `AvgRF = TRUE` will use the mean of `Y_value` (the response variable) grouped by levels of the `Fixed_Factor` and `Random_Factor`  (using \code{\link{table_summary}}). This ensures that replicates within `Random_Factor` (or any other unused variable) are averaged (e.g., technical replicates nested within experimental blocks) before fitting a linear model and the denominator Df values are sensible. Setting `AvgRF = FALSE` will lead to behaviour like versions <4.1.0.
@@ -29,7 +29,8 @@
 #' @importFrom lme4 lmer
 #' @importFrom lmerTest as_lmerModLmerTest
 #' @importFrom stats as.formula
-#'
+#' @importFrom car logit
+#' 
 #' @examples
 #' #one fixed factor and random factor
 #' mixed_model(data = data_doubling_time, 
@@ -59,9 +60,16 @@ mixed_model <- function(data, Y_value, Fixed_Factor, Random_Factor, AvgRF = TRUE
   
   var_name <- Y_value
   lx1r = length(Fixed_Factor)+length(Random_Factor)
-  if (grepl("^log(2|10)?\\((.*)\\)$", Y_value)) {
-    # Extract the variable name inside log(), log2(), or log10()
-    var_name <- sub("^log(2|10)?\\((.*)\\)$", "\\2", Y_value)}
+  # Check if the Y_value contains a transformation
+  if (grepl("\\(|\\^", Y_value)) {
+    # Extract the base variable name from the Y_value input
+    var_name <- sub("^.*\\(([^\\)]+)\\).*|\\^.*$", "\\1", Y_value)
+    # Further extract the variable name if it includes an addition or division (e.g., log(y + 0.1) or logit(y / 100))
+    var_name <- sub("^(.*?)(\\s*\\+\\s*.*|\\s*/\\s*100)?$", "\\1", var_name)
+  } else {
+    # If no transformation, use the Y_value as is
+    var_name <- Y_value
+  }
   if(AvgRF == TRUE){
     avgdf <- table_summary(df,
                            var_name,

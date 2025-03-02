@@ -15,13 +15,14 @@
 #' Output of this function can be used with \code{\link{posthoc_Pairwise}}, \code{\link{posthoc_Levelwise}} and \code{\link{posthoc_vsRef}}, or with \code{\link[emmeans]{emmeans}}.
 #'
 #' @param data a data table object, e.g. data.frame or tibble.
-#' @param Y_value name of column containing quantitative (dependent) variable, provided within "quotes".
+#' @param Y_value name of column containing quantitative (dependent) variable, provided within "quotes". Data transformations, such as "log(Y_value)" or "logit(Y_value)" are accepted (note quotes outside the log or logit calls).
 #' @param Fixed_Factor name(s) of categorical fixed factors (independent variables) provided as a vector if more than one or within "quotes".
 #' @param ... any additional arguments to pass on to \code{\link{lm}} if required.
 #'
 #' @return This function returns an object of class "lm".
 #' @export simple_model
 #' @importFrom stats as.formula lm
+#' @importFrom car logit
 #'
 #' @examples
 #' #fixed factors provided as a vector

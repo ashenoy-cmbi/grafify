@@ -9,7 +9,7 @@ simple_model(data, Y_value, Fixed_Factor, ...)
 \arguments{
 \item{data}{a data table object, e.g. data.frame or tibble.}
 
-\item{Y_value}{name of column containing quantitative (dependent) variable, provided within "quotes".}
+\item{Y_value}{name of column containing quantitative (dependent) variable, provided within "quotes". Data transformations, such as "log(Y_value)" or "logit(Y_value)" are accepted (note quotes outside the log or logit calls).}
 
 \item{Fixed_Factor}{name(s) of categorical fixed factors (independent variables) provided as a vector if more than one or within "quotes".}
 

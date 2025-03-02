@@ -19,7 +19,7 @@ mixed_anova_slopes(
 \arguments{
 \item{data}{a data table object, e.g. data.frame or tibble.}
 
-\item{Y_value}{name of column containing quantitative (dependent) variable, provided within "quotes". If you want to use log-transformation of variable x, you can enter "log(Y_value)", "log2(Y_value)" or "log10(Y_value)". Posthoc-comparisons functions will back-transform these to the original scale.}
+\item{Y_value}{name of column containing quantitative (dependent) variable, provided within "quotes". The following transformations are permitted: "log(Y_value)", "log(Y_value + c)" where c a positive number, "logit(Y_value)" or "logit(Y_value/100)" which may be useful when \code{Y_value} are percentages  (note quotes outside the log or logit calls). During posthoc-comparisons, the quantitative variable will back-transform to its original scale.}
 
 \item{Fixed_Factor}{name(s) of categorical fixed factors (independent variables) provided as a vector if more than one or within "quotes".}
 

@@ -13,13 +13,13 @@
 #' This function is related to \code{link{simple_model}}.
 #'
 #' @param data a data table object, e.g. data.frame or tibble.
-#' @param Y_value name of column containing quantitative (dependent) variable, provided within "quotes".
+#' @param Y_value name of column containing quantitative (dependent) variable, provided within "quotes".  Data transformations, such as "log(Y_value)" or "logit(Y_value)" are accepted (note quotes outside the log or logit calls).
 #' @param Fixed_Factor name(s) of categorical fixed factors (independent variables) provided as a vector if more than one or within "quotes".
 #' @param ... any additional argument to pass on to \code{\link{lm}} if required.
 #'
 #' @return ANOVA table of class "anova" and "data.frame".
 #' @export simple_anova
-#' @importFrom car Anova
+#' @importFrom car Anova logit
 #' @importFrom stats as.formula lm
 #'
 #' @examples
