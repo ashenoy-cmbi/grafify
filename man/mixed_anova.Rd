@@ -28,7 +28,7 @@ mixed_anova(
 
 \item{SS_method}{type of sum of square, default is type II, can be changed to "I", "III", "1" or "2", or others.}
 
-\item{AvgRF}{this is a new argument since v4.1.0. The default \code{AvgRF = TRUE} will use the mean of \code{Y_value} (the response variable) grouped by levels of the \code{Fixed_Factor} and \code{Random_Factor}  (using \code{\link{table_summary}}). This ensures that replicates within \code{Random_Factor} (or any other unused variable) are averaged (e.g., technical replicates nested within experimental blocks) before fitting a linear model and the denominator Df values are sensible. Setting \code{AvgRF = FALSE} will lead to behaviour like versions <4.1.0.}
+\item{AvgRF}{this is a new argument since v4.1.0. The default \code{AvgRF = TRUE} will use the mean of \code{Y_value} (the response variable) grouped by levels of the \code{Fixed_Factor} and \code{Random_Factor}  (using \code{\link{table_summary}}). This ensures that replicates within \code{Random_Factor} (or any other unused variable) are averaged (e.g., technical replicates nested within experimental blocks) before fitting a linear model and the denominator Df values are sensible. The name of the data frame in the model object will have \code{(AvgRF)} appended to it to indicate the averaging within levels of the \code{Random_Factor}. Using \code{AvgRF = FALSE} will lead to behaviour like versions <4.1.0.}
 
 \item{...}{any additional arguments to pass on to \code{\link[lme4]{lmer}} if required.}
 }

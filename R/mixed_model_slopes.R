@@ -22,7 +22,7 @@
 #' @param Fixed_Factor name(s) of categorical fixed factors (independent variables) provided as a vector if more than one or within "quotes".
 #' @param Slopes_Factor name of factor to allow varying slopes on. 
 #' @param Random_Factor name(s) of random factors to allow random intercepts; to be provided as a vector when more than one or within "quotes".
-#' @param AvgRF this is a new argument since v4.1.0. The default `AvgRF = TRUE` will use the mean of `Y_value` (the response variable) grouped by levels of the `Fixed_Factor` and `Random_Factor`  (using \code{\link{table_summary}}). This ensures that replicates within `Random_Factor` (or any other unused variable) are averaged (e.g., technical replicates nested within experimental blocks) before fitting a linear model and the denominator Df values are sensible. Setting `AvgRF = FALSE` will lead to behaviour like versions <4.1.0.
+#' @param AvgRF this is a new argument since v4.1.0. The default `AvgRF = TRUE` will use the mean of `Y_value` (the response variable) grouped by levels of the `Fixed_Factor` and `Random_Factor`  (using \code{\link{table_summary}}). This ensures that replicates within `Random_Factor` (or any other unused variable) are averaged (e.g., technical replicates nested within experimental blocks) before fitting a linear model and the denominator Df values are sensible. The name of the data frame in the model object will have `(AvgRF)` appended to it to indicate the averaging within levels of the `Random_Factor`. Using `AvgRF = FALSE` will lead to behaviour like versions <4.1.0.
 #' @param ... any additional arguments to pass on to \code{\link[lme4]{lmer}} if required.
 #'
 #' @return This function returns an S4 object of class "lmerModLmerTest".
@@ -47,6 +47,10 @@ mixed_model_slopes <- function(data, Y_value, Fixed_Factor, Slopes_Factor, Rando
   if(AvgRF == TRUE){
     message("The new argument `AvgRF` is set to TRUE by default in >=v4.1.0). See help for details.")}  
   df <- data
+  #rename dataframe with _AvgRF so it is not identical to original if AvgRF=TRUE
+  data_name <- deparse(substitute(data))
+  new_data_name <- if (AvgRF) paste0(data_name, " (AvgRF)") else data_name
+  
   var_name <- Y_value
   lx1r = length(Fixed_Factor)+length(Random_Factor)
   # Check if the Y_value contains a transformation
@@ -71,6 +75,9 @@ mixed_model_slopes <- function(data, Y_value, Fixed_Factor, Slopes_Factor, Rando
   if(AvgRF == FALSE){
     df <- data
   }
+  # Create a new environment to store the filtered data frame
+  env <- new.env()
+  assign(new_data_name, df, envir = env)
   ########## old formula code
   ifelse(length(Fixed_Factor) == 1,
          Facs <- paste0(Fixed_Factor, collapse = ""),
@@ -90,8 +97,10 @@ mixed_model_slopes <- function(data, Y_value, Fixed_Factor, Slopes_Factor, Rando
   mod1 <- lmer(formula = fo,
                data = df)
   mod1@call$formula <- fo
-  mod1@call$data <- substitute(data)
   mod1 <- lmerTest::as_lmerModLmerTest(mod1)
+  mod1@call$data <- as.name(new_data_name)
+  # Clean up the environment
+  rm(list = ls(envir = env), envir = env)
   mod1
   ################### 
   

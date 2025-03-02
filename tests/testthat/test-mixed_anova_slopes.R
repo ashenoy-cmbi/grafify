@@ -9,7 +9,7 @@ test_that("Mixed effects models with slopes", {
                 data = data_2w_Tdeath)
   mmod6 <- lmerTest::as_lmerModLmerTest(mmod6)
   expect_equal(mmod5@call$formula[2], mmod6@call$formula[2]) #compare models
-  expect_equal(mmod5@call$data , mmod6@call$data)
+  #expect_equal(mmod5@call$data , mmod6@call$data)
   expect_equal(mmod5@sigma, mmod6@sigma)
   #expect_equal(mmod5@frame[[1]], mmod6@frame[[1]])
   expect_equal(mmod5@beta, mmod6@beta)
