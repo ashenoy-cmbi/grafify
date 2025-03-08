@@ -49,7 +49,7 @@ plot_xy_CatGroup(
 
 \item{Boxplot}{logical TRUE/FALSE to plot box and whiskers plot (default = FALSE).}
 
-\item{symsize}{size of symbols used by \code{geom_point}. Default set to 3.}
+\item{symsize}{size of symbols used by \code{\link[ggplot2]{geom_point}}. Default set to 3.}
 
 \item{s_alpha}{fractional opacity of symbols, default set to to 0.8 (i.e, 80\% opacity).}
 

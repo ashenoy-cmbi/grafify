@@ -9,7 +9,13 @@ Full reference to all functions available at [`grafify` GitHub pages](https://as
 
 # grafify v5.0.0
 
-This version has major updates to `plot_density` and `plot_histogram`, which can now plot probability density, counts or normalised counts (only latter two options for histograms). Most old code should still work, but care is needed if arguments are not explicitly called. Changes as follows:
+This version has major updates to linear mixed effects models functions (`mixed_model`, `mixed_anova`, `mixed_model_slopes`, `mixed_anova_slopes`). The other major updates are to `plot_density` and `plot_histogram`, which can now plot probability density, counts or normalised counts (only latter two options for histograms). Most old code should still work, but care is needed if arguments are not explicitly called. Changes as follows:
+
+1. Updates to `mixed_model`, `mixed_anova`, `mixed_model_slopes`, `mixed_anova_slopes`:
+    
+    a. All functions now have a new argument `AvgRF`, which is set to TRUE by default. This means that values of the response variable (`Y_value`) are averaged before a linear mixed effects model is fitted. This avoids pseudoreplication if there are multiple 'technical replicates' within levels of the `Random_Factor`. For behaviour like before (v4.0.1 or lower), set `AvgRF = FALSE`.
+    b. The `Formula` argument allows the user to directly provide a formula to lmer(), which may be useful in more complex scenarios (e.g., nested designs). This argument is available in `mixed_model` and `mixed_anova` functions.
+    c. The following transformations can be called directly on x (where x is a numeric variable passed on to `Y_value` or `Fixed_Factor`: log(x), log(x + c), logit(x), log(x/100), sqrt() or exponents (e.g., (c)^2).
 
 1. Updates to arguments in `plot_density` and `plot_histogram`:
   

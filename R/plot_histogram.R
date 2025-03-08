@@ -27,8 +27,8 @@
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param SingleColour a colour hexcode (starting with #), a number between 1-154, or names of colours from `grafify` palettes or base R to fill along X-axis aesthetic. Accepts any colour other than "black"; use `grey_lin11`, which is almost black.
 #' @param LogYTrans transform Y axis into "log10" or "log2"
-#' @param LogYBreaks argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is `waiver()`, or provide a vector of desired breaks.
-#' @param LogYLabels argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
+#' @param LogYBreaks argument for \code{\link[ggplot2]{scale_y_continuous}} for Y axis breaks on log scales, default is `waiver()`, or provide a vector of desired breaks.
+#' @param LogYLabels argument for \code{\link[ggplot2]{scale_y_continuous}} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
 #' @param LogYLimits a vector of length two specifying the range (minimum and maximum) of the Y axis.
 #' @param ... any additional arguments to pass to \code{\link[ggplot2]{geom_histogram}}.
 #'
@@ -63,14 +63,13 @@ plot_histogram <- function(data, ycol, group, facet, PlotType = c("Counts", "Nor
     stop("`PlotType` can only be 'Counts' or 'Normalised Counts'.")
   }
   if(missing(group) & missing(SingleColour)) {message("You did not provide a grouping variable, so grafify used the default colour. You can change this with the `SingleColour` argument.") }
-  if(missing(group) & missing(SingleColour)) SingleColour <- "#E69F00"
-  if(missing(group) & !missing(SingleColour)) {
+  if(!is.null(SingleColour)){
     ifelse(grepl("#", SingleColour), 
            a <- SingleColour,
            ifelse(isTRUE(get_graf_colours(SingleColour) != 0), 
                   a <- unname(get_graf_colours(SingleColour)), 
                   a <- SingleColour))
-  }
+  } else a <- "#E69F00"
   if(missing(group)) {
     suppressWarnings(P <- ggplot2::ggplot(data, 
                                           aes({{ ycol }},
@@ -83,13 +82,7 @@ plot_histogram <- function(data, ycol, group, facet, PlotType = c("Counts", "Nor
     suppressWarnings(P <- ggplot2::ggplot(data, 
                                           aes({{ ycol }},
                                               fill = factor({{ group }}),
-                                              colour = factor({{ group }}))) +
-                       scale_fill_grafify(palette = ColPal, 
-                                          reverse = ColRev, 
-                                          ColSeq = ColSeq)+
-                       scale_colour_grafify(palette = ColPal, 
-                                            reverse = ColRev, 
-                                            ColSeq = ColSeq))
+                                              colour = factor({{ group }}))))
   }
   if(PlotType == "Counts") {
     P <- P +                     
@@ -139,11 +132,31 @@ plot_histogram <- function(data, ycol, group, facet, PlotType = c("Counts", "Nor
                         scales = facet_scales, 
                         ...)
   }
-  P <- P +
-    labs(fill = enquo(group))+
-    labs(colour = enquo(group))+
+  if (!is.null(SingleColour)) {
+    if (missing(group)) {
+      P <- P +
+        scale_fill_manual(values = rep(a, times = 1)) +
+        scale_colour_manual(values = rep(a, times = 1))
+    } else {
+      group <- deparse(substitute(group))
+      x <- length(levels(factor(data[[group]])))
+      P <- P +
+        scale_fill_manual(values = rep(a, times = x)) +
+        scale_colour_manual(values = rep(a, times = x))
+    }
+  } else {
+    P <- P  +
+      scale_fill_grafify(palette = ColPal, 
+                         reverse = ColRev, 
+                         ColSeq = ColSeq)+
+      scale_colour_grafify(palette = ColPal, 
+                           reverse = ColRev, 
+                           ColSeq = ColSeq) +
+      labs(fill = enquo(group),
+           colour = enquo(group))
+  }
+  P <- P  +
     theme_grafify(base_size = fontsize)+
-    theme(strip.background = element_blank())+
     guides(x = guide_axis(angle = TextXAngle))
   P
 }

@@ -40,7 +40,7 @@ plot_befafter_shapes(
 
 \item{ycol}{name of the column containing the quantitative Y values.}
 
-\item{match}{name of the column with the matching variable to pass on to \code{geom_line}.}
+\item{match}{name of the column with the matching variable to pass on to \code{\link[ggplot2]{geom_line}}.}
 
 \item{facet}{add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
 
@@ -58,9 +58,9 @@ plot_befafter_shapes(
 
 \item{LogYTrans}{transform Y axis into "log10" or "log2"}
 
-\item{LogYBreaks}{argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is \code{waiver()}, or provide a vector of desired breaks.}
+\item{LogYBreaks}{argument for \code{\link[ggplot2]{scale_y_continuous}} for Y axis breaks on log scales, default is \code{waiver()}, or provide a vector of desired breaks.}
 
-\item{LogYLabels}{argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is \code{waiver()}, or provide a vector of desired labels.}
+\item{LogYLabels}{argument for \code{\link[ggplot2]{scale_y_continuous}} for Y axis labels on log scales, default is \code{waiver()}, or provide a vector of desired labels.}
 
 \item{LogYLimits}{a vector of length two specifying the range (minimum and maximum) of the Y axis.}
 

@@ -7,12 +7,12 @@
 #' @param Plot a ggplot2 object. 
 #' @param LogYTrans transform Y axis into "log10" (default) or "log2"
 #' @param LogXTrans transform X axis into "log10" or "log2"
-#' @param LogYBreaks argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is `waiver()`, or provide a vector of desired breaks.
-#' @param LogXBreaks argument for \code{ggplot2[scale_x_continuous]} for Y axis breaks on log scales, default is `waiver()`, or provide a vector of desired breaks.
+#' @param LogYBreaks argument for \code{\link[ggplot2]{scale_y_continuous}} for Y axis breaks on log scales, default is `waiver()`, or provide a vector of desired breaks.
+#' @param LogXBreaks argument for \code{\link[ggplot2]{scale_x_continuous}} for Y axis breaks on log scales, default is `waiver()`, or provide a vector of desired breaks.
 #' @param LogYLimits a vector of length two specifying the range (minimum and maximum) of the Y axis.
 #' @param LogXLimits a vector of length two specifying the range (minimum and maximum) of the X axis.
-#' @param LogYLabels argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
-#' @param LogXLabels argument for \code{ggplot2[scale_x_continuous]} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
+#' @param LogYLabels argument for \code{\link[ggplot2]{scale_y_continuous}} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
+#' @param LogXLabels argument for \code{\link[ggplot2]{scale_x_continuous}} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
 #' @param fontsize this parameter sets the linewidth of the `log10` tickmarks (`8*fontsize/22` for long ticks and `4*fontsize/22` for middle ticks). It is set to 20 as default to be consistent with rest of `grafify`. It will need to be changed to 12, which is the default fontsize for graphs produced natively with `ggplot2`.
 #' @param ... any other arguments to pass to \code{\link[ggplot2]{scale_y_continuous}} or \code{\link[ggplot2]{scale_x_continuous}}
 #'

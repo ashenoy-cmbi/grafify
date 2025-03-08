@@ -1,12 +1,12 @@
 #' Model from a linear model fit to data.
 #'
-#' One of two functions for simple ANOVA tables and linear models without random effects, which use \code{\link{lm}} to fit a linear models. 
+#' One of two functions for simple ANOVA tables and linear models without random effects, which use \code{\link[stats]{lm}} to fit a linear models. 
 #' 1. \code{link{simple_anova}}
 #' 2. \code{link{simple_model}}
 #' 
-#' Update in v0.2.1: This function uses \code{\link{lm}} to fit a linear model to data, passes it on to \code{\link[car]{Anova}}, and outputs the ANOVA table with type II sum of squares with F statistics and _P_ values. 
+#' Update in v0.2.1: This function uses \code{\link[stats]{lm}} to fit a linear model to data, passes it on to \code{\link[car]{Anova}}, and outputs the ANOVA table with type II sum of squares with F statistics and _P_ values. 
 #' 
-#' (Previous versions produced type I sum of squares using \code{\link{anova}} call.)
+#' (Previous versions produced type I sum of squares using \code{\link[stats]{anova}} call.)
 #' It requires a data table, one quantitative dependent variable and one or more independent variables. 
 #' 
 #' The model output can be used to extract coefficients and other information, including post-hoc comparisons. If your experiment design has random factors, use the related function \code{\link{mixed_model}}.
@@ -17,7 +17,7 @@
 #' @param data a data table object, e.g. data.frame or tibble.
 #' @param Y_value name of column containing quantitative (dependent) variable, provided within "quotes". The following transformations are permitted: "log(Y_value)", "log(Y_value + c)" where c a positive number, "logit(Y_value)" or "logit(Y_value/100)" which may be useful when `Y_value` are percentages  (note quotes outside the log or logit calls); "sqrt(Y_value)" or "(Y_value)^2" should also work. During posthoc-comparisons, log and logit transformations will be back-transformed to the original scale. Other transformations, e.g., "sqrt(Y_value)" will not be back-transformed. Check out the \code{\link[emmeans]{regrid}} and \code{\link[emmeans]{ref_grid}} for details if you need back-transformation to the response scale. 
 #' @param Fixed_Factor name(s) of categorical fixed factors (independent variables) provided as a vector if more than one or within "quotes". If a numeric variable(s) is used, transformations similar to `Y_value` are permitted.
-#' @param ... any additional arguments to pass on to \code{\link{lm}} if required.
+#' @param ... any additional arguments to pass on to \code{\link[stats]{lm}} if required.
 #'
 #' @return This function returns an object of class "lm".
 #' @export simple_model

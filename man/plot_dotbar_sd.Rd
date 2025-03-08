@@ -57,9 +57,9 @@ plot_dotbar_sd(
 
 \item{LogYTrans}{transform Y axis into "log10" or "log2"}
 
-\item{LogYBreaks}{argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is \code{waiver()}, or provide a vector of desired breaks.}
+\item{LogYBreaks}{argument for \code{\link[ggplot2]{scale_y_continuous}} for Y axis breaks on log scales, default is \code{waiver()}, or provide a vector of desired breaks.}
 
-\item{LogYLabels}{argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is \code{waiver()}, or provide a vector of desired labels.}
+\item{LogYLabels}{argument for \code{\link[ggplot2]{scale_y_continuous}} for Y axis labels on log scales, default is \code{waiver()}, or provide a vector of desired labels.}
 
 \item{LogYLimits}{a vector of length two specifying the range (minimum and maximum) of the Y axis.}
 
@@ -67,7 +67,7 @@ plot_dotbar_sd(
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
-\item{dotthick}{thickness of dot border (\code{stroke} parameter of \code{geom_dotplot}), default set to \code{fontsize}/22.}
+\item{dotthick}{thickness of dot border (\code{stroke} parameter of \code{\link[ggplot2]{geom_dotplot}}), default set to \code{fontsize}/22.}
 
 \item{bthick}{thickness (in 'pt' units) of bar and error bar lines; default = \code{fontsize}/22.}
 

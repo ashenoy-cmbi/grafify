@@ -2,7 +2,7 @@
 #'
 #' This function takes a data table, a quantitative variable (`ycol`), and a categorical grouping variable (`group`), if available, and plots a QQ graph using \code{\link[ggplot2]{stat_qq}} and \code{\link[ggplot2]{stat_qq_line}}.  Alternatives are \code{\link{plot_histogram}}, or \code{\link{plot_qqline}}.
 #' 
-#' Note that the function requires the quantitative Y variable first, and a grouping variable as `group` if required. The graph plots sample quantiles on Y axis & theoretical quantiles on X axis. The X variable is mapped to the \code{fill} aesthetic in\code{stat_qq} and \code{colour} aesthetic for the \code{stat_qq_line}.
+#' Note that the function requires the quantitative Y variable first, and a grouping variable as `group` if required. The graph plots sample quantiles on Y axis & theoretical quantiles on X axis. The X variable is mapped to the \code{fill} aesthetic in\code{\link[ggplot2]{stat_qq}} and \code{colour} aesthetic for the \code{\link[ggplot2]{stat_qq_line}}.
 #' 
 #' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}. When only one level is present within `group`, symbols will receive "ok_orange" colour. 
 #' `ColPal` can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".

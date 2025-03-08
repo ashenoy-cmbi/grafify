@@ -13,7 +13,7 @@ posthoc_Trends_Pairwise(
 )
 }
 \arguments{
-\item{Model}{a model object fit using \code{\link{simple_model}} or \code{\link{mixed_model}} (or \code{\link{lm}} or \code{\link[lmerTest]{lmer}}).}
+\item{Model}{a model object fit using \code{\link{simple_model}} or \code{\link{mixed_model}} (or \code{\link[stats]{lm}} or \code{\link[lmerTest]{lmer}}).}
 
 \item{Fixed_Factor}{one or  more categorical variables, provided as a vector (see Examples), whose levels you wish to compare pairwise. Names of Fixed_Factor should match Fixed_Factor used to fit the model. When more than one factor is provided e.g. \code{Fixed_factor = c("A", "B")}, this function passes this on as \code{specs = A:B} (note the colon between the two Fixed_Factor) to \code{\link[emmeans]{emmeans}} to produce pairwise comparisons.}
 

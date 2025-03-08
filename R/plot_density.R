@@ -23,8 +23,8 @@
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param SingleColour a colour hexcode (starting with #), a number between 1-154, or names of colours from `grafify` palettes or base R to fill along X-axis aesthetic. Accepts any colour other than "black"; use `grey_lin11`, which is almost black.
 #' @param LogYTrans transform Y axis into "log10" or "log2"
-#' @param LogYBreaks argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is `waiver()`, or provide a vector of desired breaks.
-#' @param LogYLabels argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
+#' @param LogYBreaks argument for \code{\link[ggplot2]{scale_y_continuous}} for Y axis breaks on log scales, default is `waiver()`, or provide a vector of desired breaks.
+#' @param LogYLabels argument for \code{\link[ggplot2]{scale_y_continuous}} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
 #' @param LogYLimits a vector of length two specifying the range (minimum and maximum) of the Y axis.
 #' @param ... any additional arguments to pass to \code{\link[ggplot2]{geom_density}}.
 #'
@@ -55,34 +55,25 @@ plot_density <- function(data, ycol, group, facet, PlotType = c("Density", "Coun
   if (!(PlotType %in% c("Density", "Counts", "Normalised counts"))) {
     stop("`PlotType` can only be NULL, count or max_counts")
   }
-  if(missing(group) & missing(SingleColour)) {message("You did not provide a grouping variable, so grafify used the default colour. You can change this with the `SingleColour` argument.") }
-  if(missing(group) & missing(SingleColour)) SingleColour <- "#E69F00"
-  if(missing(group) & !missing(SingleColour)) {
+  if(missing(group) & is.null(SingleColour)) {message("You did not provide a grouping variable, so grafify used the default colour. You can change this with the `SingleColour` argument.") }
+  if(!is.null(SingleColour)){
     ifelse(grepl("#", SingleColour), 
            a <- SingleColour,
            ifelse(isTRUE(get_graf_colours(SingleColour) != 0), 
                   a <- unname(get_graf_colours(SingleColour)), 
                   a <- SingleColour))
-  }
+  } else a <- "#E69F00"
   if(missing(group)) {
     suppressWarnings(P <- ggplot2::ggplot(data, 
                                           aes(x = {{ ycol }},
                                               fill = "one",
-                                              colour = "one")) + 
-                       scale_fill_manual(values = a)+
-                       scale_colour_manual(values = a)+
-                       guides(fill = "none", colour = "none"))
+                                              colour = "one")) +
+                       guides(fill = "none", colour = "none")) 
   } else {
     suppressWarnings(P <- ggplot2::ggplot(data, 
                                           aes(x = {{ ycol }},
                                               fill = factor({{ group }}),
-                                              colour = factor({{ group }}))) +
-                       scale_fill_grafify(palette = ColPal, 
-                                          reverse = ColRev, 
-                                          ColSeq = ColSeq)+
-                       scale_colour_grafify(palette = ColPal, 
-                                            reverse = ColRev, 
-                                            ColSeq = ColSeq))
+                                              colour = factor({{ group }}))))
   }
   if(PlotType == "Density") {
     suppressWarnings(P <- P +
@@ -135,10 +126,31 @@ plot_density <- function(data, ycol, group, facet, PlotType = c("Density", "Coun
                         scales = facet_scales, 
                         ...)
   }
+  if (!is.null(SingleColour)) {
+    if (missing(group)) {
+      P <- P +
+        scale_fill_manual(values = rep(a, times = 1)) +
+        scale_colour_manual(values = rep(a, times = 1))
+    } else {
+      group <- deparse(substitute(group))
+      x <- length(levels(factor(data[[group]])))
+      P <- P +
+        scale_fill_manual(values = rep(a, times = x)) +
+        scale_colour_manual(values = rep(a, times = x))
+    }
+  } else {
+    P <- P  +
+      scale_fill_grafify(palette = ColPal, 
+                         reverse = ColRev, 
+                         ColSeq = ColSeq)+
+      scale_colour_grafify(palette = ColPal, 
+                           reverse = ColRev, 
+                           ColSeq = ColSeq) +
+      labs(fill = enquo(group),
+           colour = enquo(group))
+  }
   P <- P +
     theme_grafify(base_size = fontsize) +
-    guides(x = guide_axis(angle = TextXAngle)) +
-    labs(fill = enquo(group),
-         colour = enquo(group))
+    guides(x = guide_axis(angle = TextXAngle))
   P
 }

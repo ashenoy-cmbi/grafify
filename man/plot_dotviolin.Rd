@@ -75,7 +75,7 @@ plot_dotviolin(
 
 \item{fontsize}{parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.}
 
-\item{dotthick}{thickness of dot border (\code{stroke} parameter of \code{geom_dotplot}), default set to \code{fontsize}/22.}
+\item{dotthick}{thickness of dot border (\code{stroke} parameter of \code{\link[ggplot2]{geom_dotplot}}), default set to \code{fontsize}/22.}
 
 \item{bthick}{thickness (in 'pt' units) of boxplots; default = \code{fontsize}/22.}
 

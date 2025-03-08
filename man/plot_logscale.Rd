@@ -25,17 +25,17 @@ plot_logscale(
 
 \item{LogXTrans}{transform X axis into "log10" or "log2"}
 
-\item{LogYBreaks}{argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is \code{waiver()}, or provide a vector of desired breaks.}
+\item{LogYBreaks}{argument for \code{\link[ggplot2]{scale_y_continuous}} for Y axis breaks on log scales, default is \code{waiver()}, or provide a vector of desired breaks.}
 
-\item{LogXBreaks}{argument for \code{ggplot2[scale_x_continuous]} for Y axis breaks on log scales, default is \code{waiver()}, or provide a vector of desired breaks.}
+\item{LogXBreaks}{argument for \code{\link[ggplot2]{scale_x_continuous}} for Y axis breaks on log scales, default is \code{waiver()}, or provide a vector of desired breaks.}
 
 \item{LogYLimits}{a vector of length two specifying the range (minimum and maximum) of the Y axis.}
 
 \item{LogXLimits}{a vector of length two specifying the range (minimum and maximum) of the X axis.}
 
-\item{LogYLabels}{argument for \code{ggplot2[scale_y_continuous]} for Y axis labels on log scales, default is \code{waiver()}, or provide a vector of desired labels.}
+\item{LogYLabels}{argument for \code{\link[ggplot2]{scale_y_continuous}} for Y axis labels on log scales, default is \code{waiver()}, or provide a vector of desired labels.}
 
-\item{LogXLabels}{argument for \code{ggplot2[scale_x_continuous]} for Y axis labels on log scales, default is \code{waiver()}, or provide a vector of desired labels.}
+\item{LogXLabels}{argument for \code{\link[ggplot2]{scale_x_continuous}} for Y axis labels on log scales, default is \code{waiver()}, or provide a vector of desired labels.}
 
 \item{fontsize}{this parameter sets the linewidth of the \code{log10} tickmarks (\code{8*fontsize/22} for long ticks and \code{4*fontsize/22} for middle ticks). It is set to 20 as default to be consistent with rest of \code{grafify}. It will need to be changed to 12, which is the default fontsize for graphs produced natively with \code{ggplot2}.}
 
