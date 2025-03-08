@@ -136,7 +136,9 @@ plot_density <- function(data, ycol, group, facet, PlotType = c("Density", "Coun
       x <- length(levels(factor(data[[group]])))
       P <- P +
         scale_fill_manual(values = rep(a, times = x)) +
-        scale_colour_manual(values = rep(a, times = x))
+        scale_colour_manual(values = rep(a, times = x))+
+        labs(fill = enquo(group),
+             colour = enquo(group))
     }
   } else {
     P <- P  +

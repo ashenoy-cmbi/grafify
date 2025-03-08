@@ -142,7 +142,9 @@ plot_histogram <- function(data, ycol, group, facet, PlotType = c("Counts", "Nor
       x <- length(levels(factor(data[[group]])))
       P <- P +
         scale_fill_manual(values = rep(a, times = x)) +
-        scale_colour_manual(values = rep(a, times = x))
+        scale_colour_manual(values = rep(a, times = x)) +
+        labs(fill = enquo(group),
+             colour = enquo(group))
     }
   } else {
     P <- P  +
