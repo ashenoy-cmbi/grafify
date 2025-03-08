@@ -21,6 +21,8 @@
 #' #make linear models first
 #' DoublMod <- simple_model(data = data_doubling_time, 
 #' Y_value =  "Doubling_time", Fixed_Factor = "Student") 
+#' 
+#' #mixed model
 #' CholMod <- mixed_model(data = data_cholesterol, 
 #' Y_value = "Cholesterol",
 #' Fixed_Factor = c("Hospital", "Treatment"), 

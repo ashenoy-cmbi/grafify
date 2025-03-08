@@ -24,7 +24,7 @@
 #' Fixed_Factor = c("Hospital", "Treatment"),
 #' Random_Factor =  "Subject") 
 #' 
-#' #note quotes used only for fixed Fixed_Factor
+#' #note Fixed_Factor needs a vector or variable in quotes
 #' #to get comparisons between different hospitals separately for each level of Treatment
 #' posthoc_Levelwise(Model = CholMod, 
 #' Fixed_Factor = c("Hospital", "Treatment"))

@@ -21,9 +21,9 @@ mixed_model_slopes(
 
 \item{Fixed_Factor}{name(s) of categorical fixed factors (independent variables) provided as a vector if more than one or within "quotes". If a numeric variable(s) is used, transformations similar to \code{Y_value} are permitted.}
 
-\item{Slopes_Factor}{name of factor to allow varying slopes on.}
+\item{Slopes_Factor}{name of factor to allow varying slopes on. One one variable is allowed.}
 
-\item{Random_Factor}{name(s) of random factors to allow random intercepts; to be provided as a vector when more than one or within "quotes".}
+\item{Random_Factor}{name(s) of random factors to allow random intercepts; to be provided as a vector when more than one or within "quotes". Only one variable is allowed.}
 
 \item{AvgRF}{this is a new argument since v5.0.0. The default \code{AvgRF = TRUE} will use the mean of \code{Y_value} (the response variable) grouped by levels of the \code{Fixed_Factor} and \code{Random_Factor}  (using \code{\link{table_summary}}). This ensures that replicates within \code{Random_Factor} (or any other unused variable) are averaged (e.g., technical replicates nested within experimental blocks) before fitting a linear model and the denominator Df values are sensible. The name of the data frame in the model object will have \code{(AvgRF)} appended to it to indicate the averaging within levels of the \code{Random_Factor}. Using \code{AvgRF = FALSE} will lead to behaviour like versions <5.0.0.}
 
@@ -42,7 +42,9 @@ One of four related functions for mixed effects analyses (based on \code{\link[l
 }
 }
 \details{
-These functions require a data table, one dependent variable (Y_value), one or more independent variables (Fixed_Factor), and at least one random factor (Random_Factor). These should match names of variables in the long-format data table exactly. Since v5.0.0, if \code{AvgRF = TRUE}, the response variable is averaged over levels of the fixed and random factors (to collapse replicate observations) and reduce the number of denominator degrees of freedom. If you do not want to do this, set \code{AvgRF = FALSE}. For more advanced models with slopes and intercept, use \code{\link{mixed_model}} or \code{\link{mixed_anova}} using the \code{Formula} argument.
+These functions require a data table, one dependent variable (Y_value), one or more independent variables (Fixed_Factor), and at least one random factor (Random_Factor). These should match names of variables in the long-format data table exactly. Since v5.0.0, if \code{AvgRF = TRUE}, the response variable is averaged over levels of the fixed and random factors (to collapse replicate observations) and reduce the number of denominator degrees of freedom. If you do not want to do this, set \code{AvgRF = FALSE}.
+
+For more advanced models with slopes and intercept, use \code{\link{mixed_model}} or \code{\link{mixed_anova}} using the \code{Formula} argument.
 
 Outputs of \code{mixed_model} and \code{mixed_model_slopes} can be used for post-hoc comparisons with \code{\link{posthoc_Pairwise}}, \code{\link{posthoc_Levelwise}}, \code{\link{posthoc_vsRef}}, \code{\link{posthoc_Trends_Pairwise}}, \code{\link{posthoc_Trends_Levelwise}} and \code{\link{posthoc_Trends_vsRef}}or with \code{\link[emmeans]{emmeans}}.
 

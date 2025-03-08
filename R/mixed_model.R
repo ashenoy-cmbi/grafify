@@ -60,30 +60,26 @@ mixed_model <- function(data, Y_value, Fixed_Factor, Random_Factor, AvgRF = TRUE
   } else {
     if (AvgRF == TRUE) {
       # Check if Y_value, Fixed_Factor, and Random_Factor are provided when AvgRF is TRUE
-      if (is.null(Y_value) || is.null(Fixed_Factor) || is.null(Random_Factor)) {
+      if (is.null(Y_value) ||
+          is.null(Fixed_Factor) || is.null(Random_Factor)) {
         stop("Y_value, Fixed_Factor, and Random_Factor must be provided when AvgRF is TRUE.")
       }
-      message("The new argument `AvgRF` is set to TRUE by default in >=5.0.0). Response variable is averaged over levels of Fixed and Random factors. Use help for details.")
+      message(
+        "The new argument `AvgRF` is set to TRUE by default in >=5.0.0). Response variable is averaged over levels of Fixed and Random factors. Use help for details."
+      )
     }
-    
     df <- data
     data_name <- deparse(substitute(data))  # Get the name of the data frame
-    new_data_name <- if (AvgRF) paste0(data_name, " (AvgRF)") else data_name  # Create a new name for the data frame if AvgRF is TRUE
+    new_data_name <- if (AvgRF)
+      paste0(data_name, " (AvgRF)")
+    else
+      data_name  # Create a new name for the data frame if AvgRF is TRUE
     
     lx1r <- length(Fixed_Factor) + length(Random_Factor)  # Calculate the total number of factors
     
     # Function to extract variable names from input strings
     extract_var_name <- function(input) {
-      input <- gsub("\\s+", "", input)  # Remove all spaces
-      var_name <- gsub(".*\\((.*)\\).*", "\\1", input)  # Extract variable name from transformations
-      var_name <- gsub("/.*", "", var_name)  # Remove division if present
-      var_name <- gsub("\\+.*", "", var_name)  # Remove addition if present
-      var_name <- gsub("\\-.*", "", var_name)  # Remove subtraction if present
-      var_name <- gsub("\\*.*", "", var_name)  # Remove multiplication if present
-      var_name <- gsub("\\^.*", "", var_name)  # Remove power if present
-      var_name <- gsub("\\).*", "", var_name)  # Remove closing parenthesis if present
-      var_name <- gsub(".*\\(", "", var_name)  # Remove opening parenthesis if present
-      return(var_name)
+      gsub(".*\\((.*)\\).*", "\\1", gsub("\\s+|/.*|\\+.*|\\-.*|\\*.*|\\^.*|\\).*|.*\\(", "", input))
     }
     
     res_var <- extract_var_name(Y_value)  # Extract response variable name
@@ -100,55 +96,23 @@ mixed_model <- function(data, Y_value, Fixed_Factor, Random_Factor, AvgRF = TRUE
     if (AvgRF == FALSE) {
       df <- data
     }
-    
     #env <- new.env()  # Create a new environment to store the filtered data frame
     assign(new_data_name, df, envir = environment())  # Assign the new data frame to the environment
     
     # Construct the formula for the model
-    ifelse(length(Fixed_Factor) == 1, 
-           Facs <- paste0(Fixed_Factor, collapse = ""), 
-           Facs <- paste0(Fixed_Factor, collapse = "*"))
-    ifelse((length(Random_Factor) == 1), 
-           RFacs <- paste0("(1|", Random_Factor, ")"), 
-           RFacs <- paste0("(1|", Random_Factor, ")", collapse = "+"))
-    fo <- as.formula(paste(Y_value, paste(paste(Facs, collapse = ""), paste(RFacs, collapse = ""), sep = "+"), sep = " ~ "))
+    ifelse(
+      length(Fixed_Factor) == 1,
+      Facs <- paste0(Fixed_Factor, collapse = ""),
+      Facs <- paste0(Fixed_Factor, collapse = "*")
+    )
+    ifelse((length(Random_Factor) == 1),
+           RFacs <- paste0("(1|", Random_Factor, ")"),
+           RFacs <- paste0("(1|", Random_Factor, ")", collapse = "+")
+    )
+    fo <- as.formula(paste(Y_value, paste(
+      paste(Facs, collapse = ""), paste(RFacs, collapse = ""), sep = "+"
+    ), sep = " ~ "))
   }
-  
-  # Fit the linear mixed effects model
-  #mod1 <- lmer(formula = fo, data = df)
-  #mod1@call$formula <- as.call(fo)  # Update the formula in the model object
-  #mod1 <- lmerTest::as_lmerModLmerTest(mod1)  # Convert the model to lmerTest format
-  #  if (is.null(Formula)) {
-  #  mod1@call$data <- as.name(new_data_name)  # Update the data name in the model object
-  #  rm(list = ls(envir = env), envir = env)  # Clean up the environment
-  #} else {
-  #  mod1@call$data <- as.name(deparse(substitute(data)))  # Use the original data name if Formula is provided
-  #}
-  #
-  #mod1  # Return the model object
-  ################### 
-  
-  
-  #Y <- substitute(Y_value)
-  #d <- substitute(data)
-  #ifelse(length(Fixed_Factor) == 1,
-  #       Facs <- paste0(Fixed_Factor, collapse = ""),
-  #       Facs <- paste0(Fixed_Factor, collapse = "*"))
-#
-  #ifelse((length(Random_Factor) == 1),
-  #       RFacs <- paste0("(1|", Random_Factor, ")"),
-  #       RFacs <- paste0("(1|", Random_Factor, ")", collapse = "+"))
-#
-  #fo <- as.formula(paste(Y,
-  #                       paste(paste(Facs, collapse = ""),
-  #                             paste(RFacs, collapse = ""),
-  #                             sep = "+"),
-  #                       sep = " ~ "))
-  #call1 <- paste0("lmer(formula = ", 
-  #                deparse1(fo), 
-  #                ", data = ", 
-  #                deparse1(df), 
-  #                ", ...)")
   mod1 <- do.call("lmer", list(formula = fo, data = df, ...))
   #mod1 <- eval(parse(text = call1))
   mod1 <- as_lmerModLmerTest(mod1)
