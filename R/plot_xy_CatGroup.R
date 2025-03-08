@@ -30,7 +30,7 @@
 #' @param LogYLimits a vector of length two specifying the range (minimum and maximum) of the Y axis.
 #' @param LogXLimits a vector of length two specifying the range (minimum and maximum) of the X axis.
 #' @param facet_scales whether or not to fix scales on X & Y axes for all graphs. Can be `fixed` (default), `free`, `free_y` or `free_x` (for Y and X axis one at a time, respectively).
-#' @param fontsize parameter of \code{base_size} of fonts in \code{theme_classic}, default set to size 20.
+#' @param fontsize parameter of \code{base_size} of fonts in \code{\link[ggplot2]{theme_classic}}, default set to size 20.
 #' @param bwid width of boxplot (default = 0.3).
 #' @param b_alpha fractional opacity of boxes, (default = 0.3).
 #' @param l_alpha fractional opacity of lines joining boxes, (default = 0.8).
