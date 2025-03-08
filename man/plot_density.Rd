@@ -32,7 +32,7 @@ plot_density(
 
 \item{ycol}{name of the column containing the quantitative variable whose density distribution is to be plotted.}
 
-\item{group}{name of the column containing a categorical grouping variable (optional since v4.1.0).}
+\item{group}{name of the column containing a categorical grouping variable (optional Since v5.0.0).}
 
 \item{facet}{add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
 

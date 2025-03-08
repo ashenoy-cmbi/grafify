@@ -12,6 +12,7 @@ mixed_anova(
   Df_method = "Kenward-Roger",
   SS_method = "II",
   AvgRF = TRUE,
+  Formula = NULL,
   ...
 )
 }
@@ -20,7 +21,7 @@ mixed_anova(
 
 \item{Y_value}{name of column containing quantitative (dependent) variable, provided within "quotes". The following transformations are permitted: "log(Y_value)", "log(Y_value + c)" where c a positive number, "logit(Y_value)" or "logit(Y_value/100)" which may be useful when \code{Y_value} are percentages  (note quotes outside the log or logit calls); "sqrt(Y_value)" or "(Y_value)^2" should also work. During posthoc-comparisons, log and logit transformations will be back-transformed to the original scale. Other transformations, e.g., "sqrt(Y_value)" will not be back-transformed. Check out the \code{\link[emmeans]{regrid}} and \code{\link[emmeans]{ref_grid}} for details if you need back-transformation to the response scale.}
 
-\item{Fixed_Factor}{name(s) of categorical fixed factors (independent variables) provided as a vector if more than one or within "quotes".}
+\item{Fixed_Factor}{name(s) of categorical fixed factors (independent variables) provided as a vector if more than one or within "quotes". If a numeric variable(s) is used, transformations similar to \code{Y_value} are permitted.}
 
 \item{Random_Factor}{name(s) of random factors to allow random intercepts; to be provided as a vector when more than one or within "quotes".}
 
@@ -28,7 +29,9 @@ mixed_anova(
 
 \item{SS_method}{type of sum of square, default is type II, can be changed to "I", "III", "1" or "2", or others.}
 
-\item{AvgRF}{this is a new argument since v4.1.0. The default \code{AvgRF = TRUE} will use the mean of \code{Y_value} (the response variable) grouped by levels of the \code{Fixed_Factor} and \code{Random_Factor}  (using \code{\link{table_summary}}). This ensures that replicates within \code{Random_Factor} (or any other unused variable) are averaged (e.g., technical replicates nested within experimental blocks) before fitting a linear model and the denominator Df values are sensible. The name of the data frame in the model object will have \code{(AvgRF)} appended to it to indicate the averaging within levels of the \code{Random_Factor}. Using \code{AvgRF = FALSE} will lead to behaviour like versions <4.1.0.}
+\item{AvgRF}{this is a new argument since v5.0.0. The default \code{AvgRF = TRUE} will use the mean of \code{Y_value} (the response variable) grouped by levels of the \code{Fixed_Factor} and \code{Random_Factor}  (using \code{\link{table_summary}}). This ensures that replicates within \code{Random_Factor} (or any other unused variable) are averaged (e.g., technical replicates nested within experimental blocks) before fitting a linear model and the denominator Df values are sensible. The name of the data frame in the model object will have \code{(AvgRF)} appended to it to indicate the averaging within levels of the \code{Random_Factor}. Using \code{AvgRF = FALSE} will lead to behaviour like versions <5.0.0.}
+
+\item{Formula}{directly provide an a formula (within quotes) as you would if you were using \code{\link{lme4}{lmer}}. If \code{Y_value}, \code{Fixed_Factor} and \code{Random_Factor} are provided, they will be ignored. This is basically a wrapper, which may be useful if fitting more complex random factor structures.}
 
 \item{...}{any additional arguments to pass on to \code{\link[lme4]{lmer}} if required.}
 }
@@ -45,7 +48,7 @@ One of four related functions for mixed effects analyses (based on \code{\link[l
 }
 }
 \details{
-These functions require a data table, one dependent variable (Y_value), one or more independent variables (Fixed_Factor), and at least one random factor (Random_Factor). These should match names of variables in the long-format data table exactly. Since v4.1.0, if \code{AvgRF = TRUE}, the response variable is averaged over levels of the fixed and random factors (to collapse replicate observations) and reduce the number of denominator degrees of freedom. If you do not want to do this, set \code{AvgRF = FALSE}.
+These functions require a data table, one dependent variable (Y_value), one or more independent variables (Fixed_Factor), and at least one random factor (Random_Factor). These should match names of variables in the long-format data table exactly. Since v5.0.0, if \code{AvgRF = TRUE}, the response variable is averaged over levels of the fixed and random factors (to collapse replicate observations) and reduce the number of denominator degrees of freedom. If you do not want to do this, set \code{AvgRF = FALSE}.
 
 Outputs of \code{mixed_model} and \code{mixed_model_slopes} can be used for post-hoc comparisons with \code{\link{posthoc_Pairwise}}, \code{\link{posthoc_Levelwise}}, \code{\link{posthoc_vsRef}}, \code{\link{posthoc_Trends_Pairwise}}, \code{\link{posthoc_Trends_Levelwise}} and \code{\link{posthoc_Trends_vsRef}}or with \code{\link[emmeans]{emmeans}}.
 
@@ -62,10 +65,7 @@ Y_value = "Doubling_time",
 Fixed_Factor = "Student", 
 Random_Factor = "Experiment")
 
-#two fixed factors provided as a vector
-mixed_anova(data = data_cholesterol, 
-Y_value = "Cholesterol", 
-Fixed_Factor = c("Treatment", "Hospital"), 
-Random_Factor = "Subject")
-
+#with formula
+mixed_anova(data = data_doubling_time, 
+Formula = "Doubling_time ~ Student +(1|Experiment)")
 }

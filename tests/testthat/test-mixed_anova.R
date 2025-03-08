@@ -29,3 +29,5 @@ test_that("Mixed effects ANOVA table - custom", {
   expect_equal(mmod3$`Pr(>F)`[1], mmod4$`Pr(>F)`[1])
   expect_equal(class(mmod3), class(mmod4))
 })
+
+

@@ -10,7 +10,7 @@
 #'
 #' @param data a data table e.g. data.frame or tibble.
 #' @param ycol name of the column containing the quantitative variable whose density distribution is to be plotted.
-#' @param group name of the column containing a categorical grouping variable (optional since v4.1.0).
+#' @param group name of the column containing a categorical grouping variable (optional Since v5.0.0).
 #' @param facet add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.
 #' @param PlotType the default (`Density`) plot will be the probability density curve, which can be changed to `Counts` or `Normalised counts`. 
 #' @param c_alpha fractional opacity of filled colours under the curve, default set to 0.2 (i.e. 20% opacity).

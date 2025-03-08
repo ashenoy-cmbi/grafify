@@ -7,7 +7,7 @@ output:
 
 Full reference to all functions available at [`grafify` GitHub pages](https://ashenoy-cmbi.github.io/grafify/index.html). 
 
-# grafify v4.1.0
+# grafify v5.0.0
 
 This version has major updates to `plot_density` and `plot_histogram`, which can now plot probability density, counts or normalised counts (only latter two options for histograms). Most old code should still work, but care is needed if arguments are not explicitly called. Changes as follows:
 
