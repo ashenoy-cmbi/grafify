@@ -10,7 +10,7 @@ tibble:	1127 obs. of  8 variables:
 \describe{
 \item{day}{Numeric integer variable.}
 \item{year}{Numeric integer variable of years during which data were collected.}
-\item{lake}{This data is for lake Menona; data for other others not included in this subset.}
+\item{lake}{This data is for lake Menon; data for other others not included in this subset.}
 \item{taxon}{Names of zooplankton taxa as factor of 8 levels.}
 \item{density}{Numeric values of density of measurements.}
 \item{density_adj}{Numeric values of adjusted density .}
