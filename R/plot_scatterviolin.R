@@ -80,6 +80,7 @@ plot_scatterviolin <- function(data, xcol, ycol, facet, symsize = 3,  s_alpha = 
                                                   y = {{ ycol }}))+
                      geom_violin(aes(fill = factor({{ xcol }})),
                                  alpha = v_alpha,
+                                 drop = FALSE,
                                  trim = trim,
                                  scale = scale,
                                  colour = "black", 

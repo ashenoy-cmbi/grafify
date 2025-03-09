@@ -81,7 +81,7 @@ plot_4d_scatterviolin <- function(data, xcol, ycol, boxes, shapes, facet, symsiz
                                                   y = {{ ycol }},
                                                   group = interaction(factor({{ boxes }}),
                                                                       factor({{ xcol }}))))+
-                     geom_violin(scale = scale, 
+                     geom_violin(scale = scale, drop = FALSE,
                                  alpha = v_alpha, 
                                  size = vthick,
                                  colour = "black",

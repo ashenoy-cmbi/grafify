@@ -9,6 +9,8 @@ Full reference to all functions available at [`grafify` GitHub pages](https://as
 
 # grafify v5.0.0
 
+## Major updates
+
 This version has major updates to linear mixed effects models functions (`mixed_model`, `mixed_anova`, `mixed_model_slopes`, `mixed_anova_slopes`). The other major updates are to `plot_density` and `plot_histogram`, which can now plot probability density, counts or normalised counts (only latter two options for histograms). Most old code should still work, but care is needed if arguments are not explicitly called. Changes as follows:
 
 1. Updates to `mixed_model`, `mixed_anova`, `mixed_model_slopes`, `mixed_anova_slopes`:
@@ -23,9 +25,12 @@ This version has major updates to linear mixed effects models functions (`mixed_
     b. both functions also can do "log10" and "log2" along the X-axis (for plotting on semi-log plots). For consistency with other `plot_` functions in `grafify`, these arguments are `LogYTrans`, `LogYBreaks`, `LogYLabels` and `LogYLimits`.
     c. a `SingleColour` argument has been added to change colours when a grouping variable is missing, i.e., when the argument `group` is not provided with a value. If a value is provided, however, `SingleColour` is ignored and the `ColPal` value is applied.
       
+## Minor updates
+
 2. In a couple of `plot_..` functions, the `LogYLabels` argument was called `Ylabels`, which has now been deprecated for consistency (old code will still work).
 3. Since `ggplot2` v3.5, the `discrete_scale()` has been updated and an argument (`scale_name`) has been dropped. The `scale_fill_grafify` and `scale_colour_grafify` functions have been accordingly updated.
 4. Some documentation updated for correct links to other packages and DOIs.
+5. In plots that use `geom_violin` (i.e., `plot_scatterviolin`, `plot_3d_scatterviolin` and `plot_4d_scatterviolin`), `drop = FALSE` has been added to avoid throwing up errors. Be careful if you have fewer than 2 data points.
 
 # grafify v4.0.1
 
