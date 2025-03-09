@@ -1,4 +1,6 @@
 
+### **Latest version: v5.0.0 on CRAN & GitHub**
+
 ### Features
 
 `grafify` has three main features:
@@ -156,7 +158,7 @@ The best place to see `grafify` in action is the
 [vignettes](https://grafify-vignettes.netlify.app) website, which has
 detailed description of all functions.
 
-### **Latest version: v4.0.1 on CRAN or GitHub**
+### **Latest version: v5.0.0 on CRAN and GitHub**
 
 Find out about [latest updates
 here](https://grafify.shenoylab.com/release_notes.html).
@@ -192,8 +194,8 @@ analyses of randomised block designs to new users.
 ### Statistics for Micro/immuno biologists
 
 Also visit Statistics for [Micro/Immuno
-Biologists](https://biostats.shenoylab.com/) for basic statistics
-theory and data analyses in R.
+Biologists](https://biostats.shenoylab.com/) for basic statistics theory
+and data analyses in R.
 
 ### Function references
 

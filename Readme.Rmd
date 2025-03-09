@@ -2,6 +2,8 @@
 output: github_document
 ---
 
+### **Latest version: v5.0.0 on CRAN & GitHub** 
+
 ### Features
 
 `grafify` has three main features: 
@@ -133,7 +135,7 @@ Generating random one-way and two-way data based on mean and SD and residual err
 
 The best place to see `grafify`  in action is the [vignettes](https://grafify-vignettes.netlify.app) website, which has detailed description of all functions.
 
-### **Latest version: v5.0.0 on CRAN or GitHub** 
+### **Latest version: v5.0.0 on CRAN and GitHub** 
 
 Find out about [latest updates here](https://grafify.shenoylab.com/release_notes.html).
 
