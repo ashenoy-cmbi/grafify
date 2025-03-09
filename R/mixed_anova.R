@@ -24,7 +24,7 @@
 #' @param Df_method method for calculating degrees of freedom. Default is Kenward-Roger, can be changed to "Satterthwaite".
 #' @param SS_method type of sum of square, default is type II, can be changed to "I", "III", "1" or "2", or others.
 #' @param AvgRF this is a new argument since v5.0.0. The default `AvgRF = TRUE` will use the mean of `Y_value` (the response variable) grouped by levels of the `Fixed_Factor` and `Random_Factor`  (using \code{\link{table_summary}}). This ensures that replicates within `Random_Factor` (or any other unused variable) are averaged (e.g., technical replicates nested within experimental blocks) before fitting a linear model and the denominator Df values are sensible. The name of the data frame in the model object will have `(AvgRF)` appended to it to indicate the averaging within levels of the `Random_Factor`. Using `AvgRF = FALSE` will lead to behaviour like versions <5.0.0.
-#' @param Formula directly provide an a formula (within quotes) as you would if you were using \code{\link{lme4}{lmer}}. If `Y_value`, `Fixed_Factor` and `Random_Factor` are provided, they will be ignored. This is basically a wrapper, which may be useful if fitting more complex random factor structures.
+#' @param Formula directly provide an a formula (within quotes) as you would if you were using \code{\link[lme4]{lmer}}. If `Y_value`, `Fixed_Factor` and `Random_Factor` are provided, they will be ignored. This is basically a wrapper, which may be useful if fitting more complex random factor structures.
 #' @param ... any additional arguments to pass on to \code{\link[lme4]{lmer}} if required.
 #'
 #' @return ANOVA table of class "anova" and "data.frame".

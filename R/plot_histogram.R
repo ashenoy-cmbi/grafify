@@ -1,6 +1,6 @@
 #' Plot data distribution as histograms.
 #'
-#' This function takes a data table, a quantitative variable (`ycol`) and a grouping variable (`group`), if available, and plots a histogram graph using \code{\link{geom_histogram}}).  Alternatives are \code{\link{plot_density}}, or \code{\link{plot_qqline}}. 
+#' This function takes a data table, a quantitative variable (`ycol`) and a grouping variable (`group`), if available, and plots a histogram graph using \code{\link[ggplot2]{geom_histogram}}).  Alternatives are \code{\link{plot_density}}, or \code{\link{plot_qqline}}. 
 #' 
 #' Note that the function requires the quantitative Y variable first, and groups them based on a categorical variable passed on via the `group` argument. The grouping variable is mapped to the \code{fill} aesthetics in \code{\link[ggplot2]{geom_histogram}}.
 #' 

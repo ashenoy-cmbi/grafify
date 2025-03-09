@@ -31,7 +31,7 @@ mixed_anova(
 
 \item{AvgRF}{this is a new argument since v5.0.0. The default \code{AvgRF = TRUE} will use the mean of \code{Y_value} (the response variable) grouped by levels of the \code{Fixed_Factor} and \code{Random_Factor}  (using \code{\link{table_summary}}). This ensures that replicates within \code{Random_Factor} (or any other unused variable) are averaged (e.g., technical replicates nested within experimental blocks) before fitting a linear model and the denominator Df values are sensible. The name of the data frame in the model object will have \code{(AvgRF)} appended to it to indicate the averaging within levels of the \code{Random_Factor}. Using \code{AvgRF = FALSE} will lead to behaviour like versions <5.0.0.}
 
-\item{Formula}{directly provide an a formula (within quotes) as you would if you were using \code{\link{lme4}{lmer}}. If \code{Y_value}, \code{Fixed_Factor} and \code{Random_Factor} are provided, they will be ignored. This is basically a wrapper, which may be useful if fitting more complex random factor structures.}
+\item{Formula}{directly provide an a formula (within quotes) as you would if you were using \code{\link[lme4]{lmer}}. If \code{Y_value}, \code{Fixed_Factor} and \code{Random_Factor} are provided, they will be ignored. This is basically a wrapper, which may be useful if fitting more complex random factor structures.}
 
 \item{...}{any additional arguments to pass on to \code{\link[lme4]{lmer}} if required.}
 }

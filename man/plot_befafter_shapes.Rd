@@ -40,7 +40,7 @@ plot_befafter_shapes(
 
 \item{ycol}{name of the column (without quotes) with the quantitative variable to plot on the Y axis.}
 
-\item{match}{name of the column with the matching variable to pass on to \code{\link[ggplot2]{geom_line}}.}
+\item{match}{name of the column (without quotes) with the matching variable to pass on to \code{\link[ggplot2]{geom_line}}.}
 
 \item{facet}{add another variable (without quotes) from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
 
