@@ -26,11 +26,11 @@ plot_qqline(
 \arguments{
 \item{data}{a data table e.g. data.frame or tibble.}
 
-\item{ycol}{name of the column containing the quantitative variable whose distribution is to be plotted.}
+\item{ycol}{name of the column (without quotes) with the quantitative variable whose distribution is to be plotted.}
 
 \item{group}{name of the column containing a categorical grouping variable.}
 
-\item{facet}{add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
+\item{facet}{add another variable (without quotes) from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
 
 \item{symsize}{size of symbols, default set to 3.}
 
@@ -46,7 +46,7 @@ plot_qqline(
 
 \item{linethick}{thickness of lines, default set to \code{fontsize}/22.}
 
-\item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
+\item{ColPal}{grafify colour palette to apply (in quotes), default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 

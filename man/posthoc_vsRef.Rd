@@ -9,11 +9,11 @@ posthoc_vsRef(Model, Fixed_Factor, Ref_Level = 1, P_Adj = "fdr", Factor, ...)
 \arguments{
 \item{Model}{a model object fit using \code{\link{simple_model}} or \code{\link{mixed_model}} or related.}
 
-\item{Fixed_Factor}{Fixed_Factor one or  more categorical variables, provided as a vector (see Examples), whose levels you wish to compare pairwise. Names of Fixed_Factor should match Fixed_Factor used to fit the model. When more than one factor is provided e.g. \code{Fixed_factor = c("A", "B")}, this function passes this on as \code{specs = A|B} (note the vertical | between the two Fixed_Factor) to \code{\link[emmeans]{emmeans}}. The specification internally is set to \code{specs = trt.vs.ctrl, Ref_Level = 1} to compare each group in A to the reference first group in A, separately at each level of B.}
+\item{Fixed_Factor}{Fixed_Factor one or  more categorical variables, provided as a vector (e.g., c("A", "B")), whose levels you wish to compare pairwise. Names of Fixed_Factor should match Fixed_Factor used to fit the model. When more than one factor is provided e.g. \code{Fixed_factor = c("A", "B")}, this function passes this on as \code{specs = A|B} (note the vertical | between the two Fixed_Factor) to \code{\link[emmeans]{emmeans}}. The specification internally is set to \code{specs = trt.vs.ctrl, Ref_Level = 1} to compare each group in A to the reference first group in A, separately at each level of B.}
 
 \item{Ref_Level}{the level within that factor to be considered the reference or control to compare other levels to (to be provided as a number - by default R orders levels alphabetically); default \code{Ref_Level = 1}.}
 
-\item{P_Adj}{method for correcting P values for multiple comparisons. Default is set to false discovery rate ("fdr"), can be changed to "none", "tukey", "bonferroni", "sidak". See Interaction analysis in emmeans in the \href{https://CRAN.R-project.org/package=emmeans}{manual} for \code{emmeans}.}
+\item{P_Adj}{method for correcting P values for multiple comparisons. Default is set to false discovery rate ("fdr"), can be changed to "none", "tukey", "bonferroni", "sidak" (in quotes). See Interaction analysis in emmeans in the \href{https://CRAN.R-project.org/package=emmeans}{manual} for \code{emmeans}.}
 
 \item{Factor}{old argument name for \code{Fixed_Factor}; retained for backward compatibility.}
 

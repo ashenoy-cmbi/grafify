@@ -41,13 +41,13 @@ plot_3d_scatterviolin(
 \arguments{
 \item{data}{a data table, e.g. data.frame or tibble.}
 
-\item{xcol}{name of the column with the categorical factor to be plotted on X axis. If your table has numeric X, enter \code{xcol = factor(name of colum)}.}
+\item{xcol}{name of the column (without quotes) with the categorical factor to be plotted on X axis. If your table has numeric X, enter \code{xcol = factor(name of colum)}.}
 
-\item{ycol}{name of the column with quantitative variable to plot on the Y axis.}
+\item{ycol}{name of the column (without quotes) with quantitative variable to plot on the Y axis.}
 
-\item{shapes}{name of the column with the second categorical factor in a two-way ANOVA design.}
+\item{shapes}{name of the column (without quotes) with the second categorical factor in a two-way ANOVA design.}
 
-\item{facet}{add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
+\item{facet}{add another variable (without quotes) from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
 
 \item{symsize}{size of symbols, default set to 3.}
 
@@ -69,7 +69,7 @@ plot_3d_scatterviolin(
 
 \item{trim}{set whether tips of violin plot should be trimmed at high/low data. Default \code{trim = T}, can be changed to F.}
 
-\item{LogYTrans}{transform Y axis into "log10" or "log2"}
+\item{LogYTrans}{transform Y axis into "log10" or "log2" (in quotes).}
 
 \item{LogYBreaks}{argument for \code{\link[ggplot2]{scale_y_continuous}} for Y axis breaks on log scales, default is \code{waiver()}, or provide a vector of desired breaks.}
 
@@ -89,13 +89,13 @@ plot_3d_scatterviolin(
 
 \item{bvthick}{thickness (in 'pt' units) of both violins and boxplots; default = \code{fontsize}/22.}
 
-\item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
+\item{ColPal}{grafify colour palette to apply (in quotes), default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 
 \item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
 
-\item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} or base R palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
+\item{SingleColour}{a colour hexcode (starting with #, e.g., "#E69F00"), a number between 1-154, or names of colours from \code{grafify} or base R palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
 
 \item{...}{any additional arguments to pass to \code{\link[ggplot2]{geom_boxplot}} or \code{\link[ggplot2]{geom_violin}}.}
 }

@@ -4,9 +4,9 @@
 #' 
 #' It uses two base R functions: `as.factor` to first force the user-selected column into a factor, and `factor` that reorders levels based on a user-provided vector. 
 #'
-#' @param data a data table
-#' @param xcol name of column in above data table (provided within quotes) whose levels are to be reordered
-#' @param OrderX a vector of group names in the desired order
+#' @param data a data table or tibble.
+#' @param xcol name of column in above data table (in quotes), e.g., "A", whose levels are to be reordered.
+#' @param OrderX a vector of group names within the column selected in `xcol` in the desired order, .e.g., c("D", "A", "C").
 #' @param ... any additional arguments for `factor` call.
 #'
 #' @return This function returns a data frame with a selected column converted into factor with reordered levels.

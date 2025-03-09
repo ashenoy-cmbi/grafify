@@ -67,7 +67,7 @@
     <dl><dt>Model</dt>
 <dd><p>a model object fit using <code><a href="simple_model.html">simple_model</a></code> or <code><a href="mixed_model.html">mixed_model</a></code> (or <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></code> or <code><a href="https://rdrr.io/pkg/lmerTest/man/lmer.html" class="external-link">lmer</a></code>).</p></dd>
 <dt>Fixed_Factor</dt>
-<dd><p>one or  more categorical variables, provided as a vector (see Examples), whose levels you wish to compare pairwise. Names of Fixed_Factor should match Fixed_Factor used to fit the model. When more than one factor is provided e.g. <code>Fixed_factor = c("A", "B")</code>, this function passes this on as <code>specs = A:B</code> (note the colon between the two Fixed_Factor) to <code><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></code> to produce pairwise comparisons.</p></dd>
+<dd><p>one or  more categorical variables, provided as a vector (e.g., c("A", "B")), whose levels you wish to compare pairwise. Names of Fixed_Factor should match Fixed_Factor used to fit the model. When more than one factor is provided e.g. <code>Fixed_factor = c("A", "B")</code>, this function passes this on as <code>specs = A:B</code> (note the colon between the two Fixed_Factor) to <code><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></code> to produce pairwise comparisons.</p></dd>
 <dt>Trend_Factor</dt>
 <dd><p>a quantitative variable that interacts with a factor and whose slope (trend) is to be compared</p></dd>
 <dt>P_Adj</dt>

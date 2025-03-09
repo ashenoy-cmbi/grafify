@@ -19,17 +19,17 @@
 #' The resulting `ggplot2` graph can take additional geometries or other layers. 
 #' 
 #' @param data a data table object, e.g. data.frame or tibble.
-#' @param xcol name of the column containing the categorical variable to be plotted on the X axis.
-#' @param ycol name of the column containing the quantitative Y values.
-#' @param match name of the column with the matching variable to pass on to \code{\link[ggplot2]{geom_line}}.
-#' @param facet add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.
+#' @param xcol name of the column (without quotes) containing the categorical variable to be plotted on the X axis.
+#' @param ycol name of the column (without quotes) with the quantitative variable to plot on the Y axis.
+#' @param match name of the column (without quotes) with the matching variable to pass on to \code{\link[ggplot2]{geom_line}}.
+#' @param facet add another variable (without quotes) from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.
 #' @param Boxplot logical TRUE/FALSE, whether to show box and whisker plot or not (default is FALSE)
 #' @param symsize size of symbols, default set to 3.
 #' @param s_alpha fractional opacity of symbols, default set to 1 (i.e. maximum opacity & zero transparency).
 #' @param bwid width of boxplots; default 0.4.
 #' @param jitter extent of jitter (scatter) of symbols, default is 0.1. Increase to reduce symbol overlap, set to 0 for aligned symbols.  
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
-#' @param LogYTrans transform Y axis into "log10" or "log2"
+#' @param LogYTrans transform Y axis into "log10" or "log2" (in quotes).
 #' @param LogYBreaks argument for \code{\link[ggplot2]{scale_y_continuous}} for Y axis breaks on log scales, default is `waiver()`, or provide a vector of desired breaks.
 #' @param LogYLabels argument for \code{\link[ggplot2]{scale_y_continuous}} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
 #' @param LogYLimits a vector of length two specifying the range (minimum and maximum) of the Y axis.
@@ -38,10 +38,10 @@
 #' @param symthick size (in 'pt' units) of outline of symbol lines (\code{stroke}), default = `fontsize`/22.
 #' @param bthick thickness (in 'pt' units) of boxes; default = `(fontsize)/22`.
 #' @param lthick thickness (in 'pt' units) of lines; default = `(fontsize/1.2)/22`.
-#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
+#' @param ColPal grafify colour palette to apply (in quotes), default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
-#' @param SingleColour a colour hexcode (starting with #), a number between 1-154, or names of colours from `grafify` or base R palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use `grey_lin11`, which is almost black.
+#' @param SingleColour a colour hexcode (starting with #, e.g., "#E69F00"), a number between 1-154, or names of colours from `grafify` or base R palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use `grey_lin11`, which is almost black.
 #' @param ... any additional arguments to pass to \code{\link[ggplot2]{geom_line}} or \code{\link[ggplot2]{geom_point}}.
 #'
 #' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".

@@ -7,11 +7,11 @@
 table_x_reorder(data, xcol, OrderX, ...)
 }
 \arguments{
-\item{data}{a data table}
+\item{data}{a data table or tibble.}
 
-\item{xcol}{name of column in above data table (provided within quotes) whose levels are to be reordered}
+\item{xcol}{name of column in above data table (in quotes), e.g., "A", whose levels are to be reordered.}
 
-\item{OrderX}{a vector of group names in the desired order}
+\item{OrderX}{a vector of group names within the column selected in \code{xcol} in the desired order, .e.g., c("D", "A", "C").}
 
 \item{...}{any additional arguments for \code{factor} call.}
 }

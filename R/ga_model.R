@@ -11,7 +11,7 @@
 #'
 #' @param data a data frame where categorical independent variables are converted to factors using `as.factor()` first. The function will throw errors without this.
 #' @param Y_value name of column containing quantitative (dependent) variable, provided within "quotes".
-#' @param Fixed_Factor name(s) of categorical fixed factors (independent variables) provided as a vector if more than one or within "quotes". Convert to factors first with `as.factor`.
+#' @param Fixed_Factor name(s) of categorical fixed factors (independent variables) provided within quotes (e.g., "A") or as a vector if more than one (e.g., c("A", "B"). Convert to factors first with `as.factor`.
 #' @param Smooth_Factor the continuous variable to fit smoothly with a basis function, provided within "quotes" (only 1 Smooth_Factor allowed).
 #' @param Random_Factor name(s) of random factors to be provided in "quotes" (only 1 Random_Factor allowed). Convert to factor with `as.factor` first.
 #' @param Nodes number of nodes (the parameter `k` in `gam`). 

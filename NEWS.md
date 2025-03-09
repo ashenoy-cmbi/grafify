@@ -31,6 +31,7 @@ This version has major updates to linear mixed effects models functions (`mixed_
 3. Since `ggplot2` v3.5, the `discrete_scale()` has been updated and an argument (`scale_name`) has been dropped. The `scale_fill_grafify` and `scale_colour_grafify` functions have been accordingly updated.
 4. Some documentation updated for correct links to other packages and DOIs.
 5. In plots that use `geom_violin` (i.e., `plot_scatterviolin`, `plot_3d_scatterviolin` and `plot_4d_scatterviolin`), `drop = FALSE` has been added to avoid throwing up errors. Be careful if you have fewer than 2 data points.
+6. Updated documentation in many functions. 
 
 # grafify v4.0.1
 

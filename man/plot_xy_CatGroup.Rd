@@ -39,13 +39,13 @@ plot_xy_CatGroup(
 \arguments{
 \item{data}{a data table object, e.g. data.frame or tibble.}
 
-\item{xcol}{name of the column with quantitative X variable.}
+\item{xcol}{name of the column (without quotes) with quantitative X variable.}
 
-\item{ycol}{name of the column with quantitative Y variable.}
+\item{ycol}{name of the column (without quotes) with quantitative Y variable.}
 
 \item{CatGroup}{a categorical variable as grouping factor for colour of data points, should be a categorical variable for default colours to work. Will be converted to \code{factor} if your column is numeric}
 
-\item{facet}{add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
+\item{facet}{add another variable (without quotes) from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
 
 \item{Boxplot}{logical TRUE/FALSE to plot box and whiskers plot (default = FALSE).}
 
@@ -55,7 +55,7 @@ plot_xy_CatGroup(
 
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
-\item{LogYTrans}{transform Y axis into "log10" or "log2"}
+\item{LogYTrans}{transform Y axis into "log10" or "log2" (in quotes).}
 
 \item{LogXTrans}{transform X axis into "log10" or "log2"}
 
@@ -85,7 +85,7 @@ plot_xy_CatGroup(
 
 \item{bthick}{size (in 'pt' units) of outline of boxes, whisker and joining lines (\code{stroke}), default = \code{fontsize}/22.}
 
-\item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
+\item{ColPal}{grafify colour palette to apply (in quotes), default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 

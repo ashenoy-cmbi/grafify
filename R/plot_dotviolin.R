@@ -17,9 +17,9 @@
 #' If you prefer a single colour for the graph, use the `SingleColour` argument.
 #' 
 #' @param data a data table object, e.g. data.frame or tibble.
-#' @param xcol name of the column to plot on X axis. This should be a categorical variable.
-#' @param ycol name of the column to plot on quantitative Y axis. This should be a quantitative variable.
-#' @param facet add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.
+#' @param xcol name of the column (without quotes) to plot on X axis. This should be a categorical variable.
+#' @param ycol name of the column (without quotes) with the quantitative variable to plot on the Y axis. This should be a quantitative variable.
+#' @param facet add another variable (without quotes) from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.
 #' @param dotsize size of dots relative to \code{binwidth} used by \code{\link[ggplot2]{geom_dotplot}}. Default set to 1.5, increase/decrease as needed.
 #' @param d_alpha fractional opacity of dots, default set to 0.8 (i.e., 80% opacity).
 #' @param b_alpha fractional opacity of boxplots.  Default is set to 0, which results in white boxes inside violins. Change to any value >0 up to 1 for different levels of transparency. 
@@ -29,7 +29,7 @@
 #' @param trim set whether tips of violin plot should be trimmed at high/low data. Default \code{trim = TRUE}, can be changed to FALSE.
 #' @param scale set to "area" by default, can be changed to "count" or "width".
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
-#' @param LogYTrans transform Y axis into "log10" or "log2"
+#' @param LogYTrans transform Y axis into "log10" or "log2" (in quotes).
 #' @param LogYBreaks argument for \code{\link[ggplot2]{scale_y_continuous}} for Y axis breaks on log scales, default is `waiver()`, or provide a vector of desired breaks.
 #' @param LogYLabels argument for \code{\link[ggplot2]{scale_y_continuous}} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
 #' @param LogYLimits a vector of length two specifying the range (minimum and maximum) of the Y axis.
@@ -39,10 +39,10 @@
 #' @param bthick thickness (in 'pt' units) of boxplots; default = `fontsize`/22.
 #' @param vthick thickness (in 'pt' units) of violins; default = `fontsize`/22.
 #' @param bvthick thickness (in 'pt' units) of both violins and boxplots; default = `fontsize`/22.
-#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
+#' @param ColPal grafify colour palette to apply (in quotes), default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
-#' @param SingleColour a colour hexcode (starting with #), a number between 1-154, or names of colours from `grafify` or base R palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use `grey_lin11`, which is almost black.
+#' @param SingleColour a colour hexcode (starting with #, e.g., "#E69F00"), a number between 1-154, or names of colours from `grafify` or base R palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use `grey_lin11`, which is almost black.
 #' @param ... any additional arguments to pass to \code{\link[ggplot2]{geom_boxplot}}, \code{\link[ggplot2]{geom_dotplot}} or \code{\link[ggplot2]{geom_violin}}.
 #'
 #' @return This function returns a \code{ggplot2} object of class "gg" and "ggplot".

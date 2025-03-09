@@ -37,13 +37,13 @@ plot_befafter_box(
 \arguments{
 \item{data}{a data table object, e.g. data.frame or tibble.}
 
-\item{xcol}{name of the column containing the categorical variable to be plotted on the X axis.}
+\item{xcol}{name of the column (without quotes) containing the categorical variable to be plotted on the X axis.}
 
-\item{ycol}{name of the column containing the quantitative Y values.}
+\item{ycol}{name of the column (without quotes) with the quantitative variable to plot on the Y axis.}
 
 \item{match}{name of the column with the grouping variable to pass on to \code{\link[ggplot2]{geom_line}}.}
 
-\item{facet}{add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
+\item{facet}{add another variable (without quotes) from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
 
 \item{PlotShapes}{logical TRUE or FALSE (default = FALSE) if the shape of the symbol is to be mapped to the \code{match} variable. Note that only 25 shapes allowed.}
 
@@ -59,7 +59,7 @@ plot_befafter_box(
 
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
-\item{LogYTrans}{transform Y axis into "log10" or "log2"}
+\item{LogYTrans}{transform Y axis into "log10" or "log2" (in quotes).}
 
 \item{LogYBreaks}{argument for \code{\link[ggplot2]{scale_y_continuous}} for Y axis breaks on log scales, default is \code{waiver()}, or provide a vector of desired breaks.}
 
@@ -77,13 +77,13 @@ plot_befafter_box(
 
 \item{lthick}{thickness (in 'pt' units) of lines; default = \code{(fontsize/1.2)/22}.}
 
-\item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
+\item{ColPal}{grafify colour palette to apply (in quotes), default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 
 \item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
 
-\item{SingleColour}{a colour hexcode (starting with #), a number between 1-154, or names of colours from \code{grafify} or base R palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
+\item{SingleColour}{a colour hexcode (starting with #, e.g., "#E69F00"), a number between 1-154, or names of colours from \code{grafify} or base R palettes to fill along X-axis aesthetic. Accepts any colour other than "black"; use \code{grey_lin11}, which is almost black.}
 
 \item{...}{any additional arguments to pass to \code{\link[ggplot2]{geom_line}},  \code{\link[ggplot2]{geom_point}}, or \code{\link[ggplot2]{facet_wrap}}.}
 }

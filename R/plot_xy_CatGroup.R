@@ -13,15 +13,15 @@
 #' When summary statistics (mean/median) are required, use \code{\link{plot_3d_scatterbar}}, \code{\link{plot_3d_scatterbox}} or \code{\link{plot_4d_scatterbox}}. 
 #'
 #' @param data a data table object, e.g. data.frame or tibble.
-#' @param xcol name of the column with quantitative X variable.
-#' @param ycol name of the column with quantitative Y variable.
+#' @param xcol name of the column (without quotes) with quantitative X variable.
+#' @param ycol name of the column (without quotes) with quantitative Y variable.
 #' @param CatGroup a categorical variable as grouping factor for colour of data points, should be a categorical variable for default colours to work. Will be converted to `factor` if your column is numeric
-#' @param facet add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.
+#' @param facet add another variable (without quotes) from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.
 #' @param Boxplot logical TRUE/FALSE to plot box and whiskers plot (default = FALSE).
 #' @param symsize size of symbols used by \code{\link[ggplot2]{geom_point}}. Default set to 3.
 #' @param s_alpha fractional opacity of symbols, default set to to 0.8 (i.e, 80% opacity).
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
-#' @param LogYTrans transform Y axis into "log10" or "log2"
+#' @param LogYTrans transform Y axis into "log10" or "log2" (in quotes).
 #' @param LogXTrans transform X axis into "log10" or "log2"
 #' @param LogYBreaks argument for \code{ggplot2[scale_y_continuous]} for Y axis breaks on log scales, default is `waiver()`, or provide a vector of desired breaks.
 #' @param LogXBreaks argument for \code{ggplot2[scale_x_continuous]} for Y axis breaks on log scales, default is `waiver()`, or provide a vector of desired breaks.
@@ -36,7 +36,7 @@
 #' @param l_alpha fractional opacity of lines joining boxes, (default = 0.8).
 #' @param symthick size (in 'pt' units) of outline of symbol lines (\code{stroke}), default = `fontsize`/22.
 #' @param bthick size (in 'pt' units) of outline of boxes, whisker and joining lines (\code{stroke}), default = `fontsize`/22.
-#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
+#' @param ColPal grafify colour palette to apply (in quotes), default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param ... any additional arguments to pass on.

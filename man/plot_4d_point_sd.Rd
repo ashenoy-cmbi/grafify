@@ -40,15 +40,15 @@ plot_4d_point_sd(
 \arguments{
 \item{data}{a data table, e.g. data.frame or tibble.}
 
-\item{xcol}{name of the column with the variable to plot on X axis (will be converted to a factor/categorical variable).}
+\item{xcol}{name of the column (without quotes) with the variable to plot on X axis (will be converted to a factor/categorical variable).}
 
-\item{ycol}{name of the column to plot on quantitative variable on the Y axis.}
+\item{ycol}{name of the column (without quotes) with the quantitative variable to plot on the Y axis.}
 
 \item{points}{name of the column with grouping within the factor plotted on X-axis (will be converted to a factor/categorical variable).}
 
-\item{shapes}{name of the column that contains matched observations (e.g. subject IDs, experiment number) or another variable to pass on to symbol shapes (will be converted to a factor/categorical variable). If not provided, the shapes for all groups is the same, and can be changed with \code{all_shapes}, \code{all_alpha}, \code{all_size} etc.}
+\item{shapes}{name of the column (without quotes) that contains matched observations (e.g. subject IDs, experiment number) or another variable to pass on to symbol shapes (will be converted to a factor/categorical variable). If not provided, the shapes for all groups is the same, and can be changed with \code{all_shapes}, \code{all_alpha}, \code{all_size} etc.}
 
-\item{facet}{add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
+\item{facet}{add another variable (without quotes) from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
 
 \item{ErrorType}{select the type of error bars to display. Default is "SD" (standard deviation). Other options are "SEM" (standard error of the mean) and "CI95" (95\% confidence interval based on t distributions).}
 
@@ -72,7 +72,7 @@ plot_4d_point_sd(
 
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
-\item{LogYTrans}{transform Y axis into "log10" or "log2"}
+\item{LogYTrans}{transform Y axis into "log10" or "log2" (in quotes).}
 
 \item{LogYBreaks}{argument for \code{\link[ggplot2]{scale_y_continuous}} for Y axis breaks on log scales, default is \code{waiver()}, or provide a vector of desired breaks.}
 
@@ -88,7 +88,7 @@ plot_4d_point_sd(
 
 \item{ethick}{thickness of error bar lines; default \code{fontsize}/22.}
 
-\item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
+\item{ColPal}{grafify colour palette to apply (in quotes), default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 

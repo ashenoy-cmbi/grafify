@@ -11,9 +11,9 @@
 #' `ColSeq` decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
 #'
 #' @param data a data table e.g. data.frame or tibble.
-#' @param ycol name of the column containing the quantitative variable whose histogram distribution is to be plotted.
+#' @param ycol name of the column (without quotes) with the quantitative variable whose histogram distribution is to be plotted.
 #' @param group name of the column containing a categorical grouping variable.
-#' @param facet add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.
+#' @param facet add another variable (without quotes) from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.
 #' @param PlotType the default (`Counts`) plot will plot counts in the bins, which can be changed to `Normalised counts`. 
 #' @param BinSize number of distinct bins to use on X-axis, default set to 30.
 #' @param c_alpha fractional opacity of colour filled within histograms, default set to 0.8 (i.e. 80% opacity).
@@ -22,11 +22,11 @@
 #' @param fontsize parameter of \code{base_size} of fonts in \code{\link[ggplot2]{theme_classic}}, default set to size 20.
 #' @param linethick thickness of symbol border, default set to `fontsize`/22.
 #' @param alpha deprecated old argument for `c_alpha`; retained for backward compatibility.
-#' @param ColPal grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
+#' @param ColPal grafify colour palette to apply (in quotes), default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
-#' @param SingleColour a colour hexcode (starting with #), a number between 1-154, or names of colours from `grafify` palettes or base R to fill along X-axis aesthetic. Accepts any colour other than "black"; use `grey_lin11`, which is almost black.
-#' @param LogYTrans transform Y axis into "log10" or "log2"
+#' @param SingleColour a colour hexcode (starting with #, e.g., "#E69F00"), a number between 1-154, or names of colours from `grafify` palettes or base R to fill along X-axis aesthetic. Accepts any colour other than "black"; use `grey_lin11`, which is almost black.
+#' @param LogYTrans transform Y axis into "log10" or "log2" (in quotes).
 #' @param LogYBreaks argument for \code{\link[ggplot2]{scale_y_continuous}} for Y axis breaks on log scales, default is `waiver()`, or provide a vector of desired breaks.
 #' @param LogYLabels argument for \code{\link[ggplot2]{scale_y_continuous}} for Y axis labels on log scales, default is `waiver()`, or provide a vector of desired labels. 
 #' @param LogYLimits a vector of length two specifying the range (minimum and maximum) of the Y axis.

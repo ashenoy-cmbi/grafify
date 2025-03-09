@@ -19,7 +19,7 @@ ga_anova(
 
 \item{Y_value}{name of column containing quantitative (dependent) variable, provided within "quotes".}
 
-\item{Fixed_Factor}{name(s) of categorical fixed factors (independent variables) provided as a vector if more than one or within "quotes". Convert to factors first with \code{as.factor}.}
+\item{Fixed_Factor}{name(s) of categorical fixed factors (independent variables) provided within quotes (e.g., "A") or as a vector if more than one (e.g., c("A", "B"). Convert to factors first with \code{as.factor}.}
 
 \item{Smooth_Factor}{the continuous variable to fit smoothly with a basis function, provided within "quotes" (only 1 Smooth_Factor allowed).}
 

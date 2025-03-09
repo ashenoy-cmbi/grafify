@@ -37,13 +37,13 @@ plot_xy_NumGroup(
 \arguments{
 \item{data}{a data table object, e.g. data.frame or tibble.}
 
-\item{xcol}{name of the column with quantitative X variable.}
+\item{xcol}{name of the column (without quotes) with quantitative X variable.}
 
-\item{ycol}{name of the column with quantitative Y variable.}
+\item{ycol}{name of the column (without quotes) with quantitative Y variable.}
 
 \item{NumGroup}{a numeric factor for \code{fill} aesthetic of data points.}
 
-\item{facet}{add another variable from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
+\item{facet}{add another variable (without quotes) from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
 
 \item{Boxplot}{logical TRUE/FALSE to plot box and whiskers plot (default = FALSE).}
 
@@ -53,7 +53,7 @@ plot_xy_NumGroup(
 
 \item{TextXAngle}{orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.}
 
-\item{LogYTrans}{transform Y axis into "log10" or "log2"}
+\item{LogYTrans}{transform Y axis into "log10" or "log2" (in quotes).}
 
 \item{LogXTrans}{transform X axis into "log10" or "log2"}
 
@@ -83,7 +83,7 @@ plot_xy_NumGroup(
 
 \item{bthick}{size (in 'pt' units) of outline of boxes, whisker and joining lines (\code{stroke}), default = \code{fontsize}/22.}
 
-\item{ColPal}{grafify colour palette to apply, default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
+\item{ColPal}{grafify colour palette to apply (in quotes), default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
 
 \item{ColRev}{whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).}
 

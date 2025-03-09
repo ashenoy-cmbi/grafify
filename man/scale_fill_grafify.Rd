@@ -13,7 +13,7 @@ scale_fill_grafify(
 )
 }
 \arguments{
-\item{palette}{Name of the \code{grafify} palettes from above, provide within quotes. Default discrete palette is \code{okabe_ito}. For quantitative palette, set \code{discrete = FALSE} (which will apply \code{blue_conti} unless another palette is chosen).}
+\item{palette}{Name of the \code{grafify} palettes from above, provide within quotes, e.g., \code{palette = "vibrant"}. Default discrete palette is \code{okabe_ito}. For quantitative palette, set \code{discrete = FALSE} (which will apply \code{blue_conti} unless another palette is chosen).}
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours.}
 

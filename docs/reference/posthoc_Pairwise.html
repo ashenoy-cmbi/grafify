@@ -69,11 +69,11 @@
 
 
 <dt>Fixed_Factor</dt>
-<dd><p>one or  more categorical variables, provided as a vector (see Examples), whose levels you wish to compare pairwise. Names of Fixed_Factor should match Fixed_Factor used to fit the model. When more than one factor is provided e.g. <code>Fixed_factor = c("A", "B")</code>, this function passes this on as <code>specs = A:B</code> (note the colon between the two Fixed_Factor) to <code><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></code> to produce pairwise comparisons.</p></dd>
+<dd><p>one or  more categorical variables, provided as a vector (e.g., c("A", "B")), whose levels you wish to compare pairwise. Names of Fixed_Factor should match Fixed_Factor used to fit the model. When more than one factor is provided e.g. <code>Fixed_factor = c("A", "B")</code>, this function passes this on as <code>specs = A:B</code> (note the colon between the two Fixed_Factor) to <code><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></code> to produce pairwise comparisons.</p></dd>
 
 
 <dt>P_Adj</dt>
-<dd><p>method for correcting P values for multiple comparisons. Default is set to false discovery rate ("fdr"), can be changed to "none", "tukey", "bonferroni", "sidak". See Interaction analysis in emmeans in the <a href="https://CRAN.R-project.org/package=emmeans" class="external-link">manual</a> for <code>emmeans</code>.</p></dd>
+<dd><p>method for correcting P values for multiple comparisons. Default is set to false discovery rate ("fdr"), can be changed to "none", "tukey", "bonferroni", "sidak" (in quotes). See Interaction analysis in emmeans in the <a href="https://CRAN.R-project.org/package=emmeans" class="external-link">manual</a> for <code>emmeans</code>.</p></dd>
 
 
 <dt>Factor</dt>

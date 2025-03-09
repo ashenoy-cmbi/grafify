@@ -9,9 +9,9 @@ table_summary(data, Ycol, ByGroup)
 \arguments{
 \item{data}{name of the data table.}
 
-\item{Ycol}{name of one column (in quotes) or a vector of column names containing the numerical variable to be summarised.}
+\item{Ycol}{name of one column (in quotes) or a vector of column names (e.g., c("Y1", "Y2")) containing the numerical variable to be summarised.}
 
-\item{ByGroup}{name of one column (in quotes) or a vector of column names containing the grouping factors}
+\item{ByGroup}{name of one column (in quotes) or a vector of column names (e.g., c("A", "B")) containing the grouping factors}
 }
 \value{
 this function takes in a data.frame or tibble and returns a data.frame or tibble.
