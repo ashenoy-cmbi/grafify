@@ -1,5 +1,5 @@
 
-### **Latest version: v5.0.0 on CRAN & GitHub**
+### **Latest version: v5.0.1 on [CRAN](https://CRAN.R-project.org/package=grafify) & GitHub**
 
 ### Features
 
@@ -158,7 +158,7 @@ The best place to see `grafify` in action is the
 [vignettes](https://grafify-vignettes.netlify.app) website, which has
 detailed description of all functions.
 
-### **Latest version: v5.0.0 on CRAN and GitHub**
+### **Latest version: v5.0.1 on [CRAN](https://CRAN.R-project.org/package=grafify) and GitHub**
 
 Find out about [latest updates
 here](https://grafify.shenoylab.com/release_notes.html).

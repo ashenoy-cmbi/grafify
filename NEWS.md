@@ -7,6 +7,10 @@ output:
 
 Full reference to all functions available at [`grafify` GitHub pages](https://ashenoy-cmbi.github.io/grafify/index.html). 
 
+# grafify v5.0.1
+
+This is a minor update with fixes to unit tests for M1Mac.
+
 # grafify v5.0.0
 
 ## Major updates
