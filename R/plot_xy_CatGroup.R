@@ -18,6 +18,8 @@
 #' @param CatGroup a categorical variable as grouping factor for colour of data points, should be a categorical variable for default colours to work. Will be converted to `factor` if your column is numeric
 #' @param facet add another variable (without quotes) from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.
 #' @param Boxplot logical TRUE/FALSE to plot box and whiskers plot (default = FALSE).
+#' @param Mean logical TRUE/FALSE to plot mean and SD/SEM/CI95 error bars (default = FALSE).
+#' @param ErrorType select the type of error bars to display. Default is "SD" (standard deviation). Other options are "SEM" (standard error of the mean) and "CI95" (95% confidence interval based on t distributions).
 #' @param symsize size of symbols used by \code{\link[ggplot2]{geom_point}}. Default set to 3.
 #' @param s_alpha fractional opacity of symbols, default set to to 0.8 (i.e, 80% opacity).
 #' @param TextXAngle orientation of text on X-axis; default 0 degrees. Change to 45 or 90 to remove overlapping text.
@@ -36,6 +38,11 @@
 #' @param l_alpha fractional opacity of lines joining boxes, (default = 0.8).
 #' @param symthick size (in 'pt' units) of outline of symbol lines (\code{stroke}), default = `fontsize`/22.
 #' @param bthick size (in 'pt' units) of outline of boxes, whisker and joining lines (\code{stroke}), default = `fontsize`/22.
+#' @param all_alpha fractional opacity of all data points (default = 0.3). Set to non-zero value if you would like all data points plotted in addition to the mean.
+#' @param all_size size of symbols of all data points, if shown (default = 2.5).
+#' @param ewid width of error bars, default set to 0.2.
+#' @param e_alpha fractional opacity of error bars, (default = 0.8).
+#' @param ethick thickness of error bar lines; default `fontsize`/22.
 #' @param ColPal grafify colour palette to apply (in quotes), default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
@@ -64,78 +71,238 @@
 #' Boxplot = TRUE)
 #' 
 
-plot_xy_CatGroup <- function(data, xcol, ycol, CatGroup, facet, Boxplot = FALSE, symsize = 3, s_alpha = 0.8, TextXAngle = 0, LogYTrans, LogXTrans, LogYBreaks = waiver(), LogXBreaks = waiver(), LogYLabels = waiver(), LogXLabels = waiver(), LogYLimits = NULL, LogXLimits = NULL, facet_scales = "fixed", fontsize = 20, bwid = 0.3, b_alpha = 0.3, l_alpha = 0.8, symthick, bthick, ColPal = c("okabe_ito", "all_grafify", "bright",  "contrast",  "dark",  "fishy",  "kelly",  "light",  "muted",  "pale",  "r4",  "safe",  "vibrant"), ColSeq = TRUE, ColRev = FALSE, ...){
+plot_xy_CatGroup <- function(data,
+                             xcol,
+                             ycol,
+                             CatGroup,
+                             facet,
+                             Boxplot = FALSE,
+                             Mean = FALSE,
+                             ErrorType = "SD",
+                             symsize = 3,
+                             s_alpha = 0.8,
+                             TextXAngle = 0,
+                             LogYTrans,
+                             LogXTrans,
+                             LogYBreaks = waiver(),
+                             LogXBreaks = waiver(),
+                             LogYLabels = waiver(),
+                             LogXLabels = waiver(),
+                             LogYLimits = NULL,
+                             LogXLimits = NULL,
+                             facet_scales = "fixed",
+                             fontsize = 20,
+                             bwid = 0.3,
+                             b_alpha = 0.3,
+                             l_alpha = 0.8,
+                             e_alpha = 0.8,
+                             all_size = 2,
+                             all_alpha = 0.5,
+                             symthick,
+                             bthick,
+                             ethick,
+                             ewid = 0.2,
+                             ColPal = c(
+                               "okabe_ito",
+                               "all_grafify",
+                               "bright",
+                               "contrast",
+                               "dark",
+                               "fishy",
+                               "kelly",
+                               "light",
+                               "muted",
+                               "pale",
+                               "r4",
+                               "safe",
+                               "vibrant"
+                             ),
+                             ColSeq = TRUE,
+                             ColRev = FALSE,
+                             ...) {
   ColPal <- match.arg(ColPal)
-  if (missing(symthick)) {symthick = fontsize/22}
-  if (missing(bthick)) {bthick = fontsize/22}
-  #data[[deparse(substitute(CatGroup))]] <- factor(#data[[deparse(substitute(CatGroup))]])
-  if (!(Boxplot)) {
-    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
-                                                    y = {{ ycol }}))+
-                       geom_point(size = symsize, 
-                                  alpha = s_alpha,
-                                  aes(fill = factor({{ CatGroup }})),
-                                  shape = 21, 
-                                  stroke = symthick, 
-                                  ...))
-  } else {
-    suppressWarnings(P <- ggplot2::ggplot(data, aes(x = {{ xcol }},
-                                                    y = {{ ycol }}))+
-                       geom_boxplot(aes(group = interaction({{ xcol }},
-                                                            factor({{ CatGroup }})),
-                                        fill = factor({{ CatGroup }})),
-                                    linewidth = bthick,
-                                    outlier.alpha = 0,
-                                    width = bwid,
-                                    alpha = b_alpha,
-                                    position = position_identity(),
-                                    show.legend = FALSE)+
-                       stat_summary(geom = "line",
-                                    linewidth = bthick,
-                                    alpha = l_alpha,
-                                    aes(colour = factor({{ CatGroup }})),
-                                    fun = "median")+
-                       scale_colour_grafify(palette = ColPal,
-                                            reverse = ColRev,
-                                            ColSeq = ColSeq)+
-                       geom_point(size = symsize, 
-                                  alpha = s_alpha,
-                                  aes(fill = factor({{ CatGroup }})),
-                                  shape = 21, 
-                                  stroke = symthick,
-                                  ...))
-  } 
-  if(!missing(facet)) {
-    P <- P + facet_wrap(vars({{ facet }}), 
-                        scales = facet_scales, 
-                        ...)
+  if (!(ErrorType %in% c("SD", "SEM", "CI95"))) {
+    stop('ErrorType should be "SD", "SEM" or "CI95".')
+  }
+  if (ErrorType == "SD") {
+    ER <- "mean_sdl"
+  }
+  if (ErrorType == "SEM") {
+    ER <- "mean_se"
+  }
+  if (ErrorType == "CI95") {
+    ER <- "mean_cl_normal"
+  }
+  if (missing(ethick)) {
+    ethick = fontsize / 22
+  }
+  if (missing(symthick)) {
+    symthick = fontsize / 22
+  }
+  if (missing(bthick)) {
+    bthick = fontsize / 22
+  }
+  if (Boxplot) {
+    suppressWarnings(
+      P <- ggplot2::ggplot(data, aes(x = {{ xcol }}, 
+                                     y = {{ ycol }})) +
+        geom_boxplot(
+          aes(group = interaction({{ xcol }}, 
+                                  factor({{ CatGroup }})), 
+              fill = factor({{ CatGroup }})),
+          linewidth = bthick,
+          outlier.alpha = 0,
+          width = bwid,
+          alpha = b_alpha,
+          position = position_identity(),
+          show.legend = FALSE
+        ) +
+        stat_summary(
+          geom = "line",
+          linewidth = bthick,
+          alpha = l_alpha,
+          aes(colour = factor({{ CatGroup }})),
+          fun = "median"
+        )) 
+  } else {  
+    suppressWarnings(P <- ggplot2::ggplot(data, aes(
+      x = {{ xcol }},
+      y = {{ ycol }},
+      group = interaction({{ xcol }}, factor({{ CatGroup }}))))+
+        geom_point(
+          size = symsize,
+          alpha = s_alpha,
+          aes(fill = factor({{ CatGroup }})),
+          shape = 21,
+          stroke = symthick))
+  }
+  P <- P +
+    geom_point(
+      size = symsize,
+      alpha = s_alpha,
+      aes(fill = factor({{ CatGroup }})),
+      shape = 21,
+      stroke = symthick
+    )
+  if (Mean) {
+    if (ER == "mean_cl_normal") {
+      suppressWarnings(
+        P <- ggplot2::ggplot(data, aes(x = {{ xcol }}, 
+                                       y = {{ ycol }}, 
+                                       group = interaction({{ xcol }}, 
+                                                           factor({{ CatGroup }})))) +
+          geom_point(
+            size = all_size,
+            alpha = all_alpha,
+            aes(colour = factor({{ CatGroup }})),
+            shape = 16,
+          ) +
+          stat_summary(
+            geom = "errorbar",
+            fun.data = "mean_cl_normal",
+            size = ethick,
+            width = ewid,
+            alpha = e_alpha 
+          ) +
+          stat_summary(
+            geom = "line",
+            linewidth = bthick,
+            alpha = l_alpha,
+            aes(colour = factor({{ CatGroup }}), 
+                group = factor({{ CatGroup }})),
+            fun = "mean"
+          ) +
+          stat_summary(
+            geom = "point",
+            shape = 21,
+            size = symsize,
+            stroke = symthick,
+            alpha = s_alpha,
+            fun = "mean",
+            aes(fill = factor({{ CatGroup }}))
+          )
+      )
+    } else {
+      suppressWarnings(
+        P <- ggplot2::ggplot(data, aes(x = {{ xcol }}, 
+                                       y = {{ ycol }},
+                                       group = interaction({{ xcol }}, 
+                                                           factor({{ CatGroup }})))) +
+          geom_point(
+            size = all_size,
+            alpha = all_alpha,
+            aes(colour = factor({{ CatGroup }})),
+            shape = 16,
+          ) +
+          stat_summary(
+            geom = "errorbar",
+            fun.data = ER,
+            size = ethick,
+            fun.args = list(mult = 1),
+            width = ewid,
+            alpha = e_alpha
+          ) +
+          stat_summary(
+            geom = "line",
+            linewidth = bthick,
+            alpha = e_alpha,
+            aes(colour = factor({{ CatGroup }}),
+                group = factor({{ CatGroup }})),
+            fun = "mean"
+          ) +
+          stat_summary(
+            geom = "point",
+            shape = 21,
+            size = symsize,
+            stroke = symthick,
+            alpha = s_alpha,
+            fun = "mean",
+            aes(fill = factor({{ CatGroup }}))
+          )
+      )
+    }
+  }
+  
+  if (!missing(facet)) {
+    P <- P + facet_wrap(vars({{ facet }}), scales = facet_scales, ...)
   }
   if (!missing(LogYTrans)) {
     if (!(LogYTrans %in% c("log2", "log10"))) {
       stop("LogYTrans only allows 'log2' or 'log10' transformation.")
     }
     if (LogYTrans == "log10") {
-      P <- P + 
-        scale_y_continuous(trans = "log10", 
-                           breaks = LogYBreaks, 
-                           labels = LogYLabels, 
-                           limits = LogYLimits, 
-                           ...)+
-        annotation_logticks(sides = "l", 
-                            outside = TRUE,
-                            base = 10, color = "grey20",
-                            long = unit(7*fontsize/22, "pt"), size = unit(fontsize/22, "pt"),# 
-                            short = unit(4*fontsize/22, "pt"), mid = unit(4*fontsize/22, "pt"),#
-                            ...)+ 
+      P <- P +
+        scale_y_continuous(
+          trans = "log10",
+          breaks = LogYBreaks,
+          labels = LogYLabels,
+          limits = LogYLimits,
+          ...
+        ) +
+        annotation_logticks(
+          sides = "l",
+          outside = TRUE,
+          base = 10,
+          color = "grey20",
+          long = unit(7 * fontsize / 22, "pt"),
+          size = unit(fontsize / 22, "pt"),
+          #
+          short = unit(4 * fontsize / 22, "pt"),
+          mid = unit(4 * fontsize / 22, "pt"),
+          #
+          ...
+        ) +
         coord_cartesian(clip = "off", ...)
     }
     if (LogYTrans == "log2") {
-      P <- P + 
-        scale_y_continuous(trans = "log2", 
-                           breaks = LogYBreaks, 
-                           labels = LogYLabels,  
-                           limits = LogYLimits,
-                           ...)
+      P <- P +
+        scale_y_continuous(
+          trans = "log2",
+          breaks = LogYBreaks,
+          labels = LogYLabels,
+          limits = LogYLimits,
+          ...
+        )
     }
   }
   if (!missing(LogXTrans)) {
@@ -143,36 +310,50 @@ plot_xy_CatGroup <- function(data, xcol, ycol, CatGroup, facet, Boxplot = FALSE,
       stop("LogXTrans only allows 'log2' or 'log10' transformation.")
     }
     if (LogXTrans == "log10") {
-      P <- P + 
-        scale_x_continuous(trans = "log10", 
-                           breaks = LogXBreaks, 
-                           labels = LogXLabels, 
-                           limits = LogXLimits, 
-                           ...)+
-        annotation_logticks(sides = "b", 
-                            outside = TRUE,
-                            base = 10, color = "grey20",
-                            long = unit(7*fontsize/22, "pt"), size = unit(fontsize/22, "pt"),# 
-                            short = unit(4*fontsize/22, "pt"), mid = unit(4*fontsize/22, "pt"),#
-                            ...)+ 
+      P <- P +
+        scale_x_continuous(
+          trans = "log10",
+          breaks = LogXBreaks,
+          labels = LogXLabels,
+          limits = LogXLimits,
+          ...
+        ) +
+        annotation_logticks(
+          sides = "b",
+          outside = TRUE,
+          base = 10,
+          color = "grey20",
+          long = unit(7 * fontsize / 22, "pt"),
+          size = unit(fontsize / 22, "pt"),
+          #
+          short = unit(4 * fontsize / 22, "pt"),
+          mid = unit(4 * fontsize / 22, "pt"),
+          #
+          ...
+        ) +
         coord_cartesian(clip = "off", ...)
     }
     if (LogXTrans == "log2") {
-      P <- P + 
-        scale_x_continuous(trans = "log2", 
-                           breaks = LogXBreaks, 
-                           labels = LogXLabels, 
-                           limits = LogXLimits,  
-                           ...)
+      P <- P +
+        scale_x_continuous(
+          trans = "log2",
+          breaks = LogXBreaks,
+          labels = LogXLabels,
+          limits = LogXLimits,
+          ...
+        )
     }
   }
   P <- P +
-    labs(fill = enquo(CatGroup),
-         colour = enquo(CatGroup))+
-    theme_grafify(base_size = fontsize)+
-    guides(x = guide_axis(angle = TextXAngle))+
-    scale_fill_grafify(palette = ColPal, 
-                       reverse = ColRev, 
-                       ColSeq = ColSeq)
+    labs(fill = enquo(CatGroup), colour = enquo(CatGroup)) +
+    theme_grafify(base_size = fontsize) +
+    guides(x = guide_axis(angle = TextXAngle)) +
+    scale_fill_grafify(palette = ColPal,
+                       reverse = ColRev,
+                       ColSeq = ColSeq)+
+    scale_colour_grafify(palette = ColPal,
+                         reverse = ColRev,
+                         ColSeq = ColSeq)
+  
   P
 }

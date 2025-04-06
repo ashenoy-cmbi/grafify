@@ -11,6 +11,8 @@ plot_xy_CatGroup(
   CatGroup,
   facet,
   Boxplot = FALSE,
+  Mean = FALSE,
+  ErrorType = "SD",
   symsize = 3,
   s_alpha = 0.8,
   TextXAngle = 0,
@@ -27,8 +29,13 @@ plot_xy_CatGroup(
   bwid = 0.3,
   b_alpha = 0.3,
   l_alpha = 0.8,
+  e_alpha = 0.8,
+  all_size = 2,
+  all_alpha = 0.5,
   symthick,
   bthick,
+  ethick,
+  ewid = 0.2,
   ColPal = c("okabe_ito", "all_grafify", "bright", "contrast", "dark", "fishy", "kelly",
     "light", "muted", "pale", "r4", "safe", "vibrant"),
   ColSeq = TRUE,
@@ -48,6 +55,10 @@ plot_xy_CatGroup(
 \item{facet}{add another variable (without quotes) from the data table to create faceted graphs using \code{\link[ggplot2]{facet_wrap}}.}
 
 \item{Boxplot}{logical TRUE/FALSE to plot box and whiskers plot (default = FALSE).}
+
+\item{Mean}{logical TRUE/FALSE to plot mean and SD/SEM/CI95 error bars (default = FALSE).}
+
+\item{ErrorType}{select the type of error bars to display. Default is "SD" (standard deviation). Other options are "SEM" (standard error of the mean) and "CI95" (95\% confidence interval based on t distributions).}
 
 \item{symsize}{size of symbols used by \code{\link[ggplot2]{geom_point}}. Default set to 3.}
 
@@ -81,9 +92,19 @@ plot_xy_CatGroup(
 
 \item{l_alpha}{fractional opacity of lines joining boxes, (default = 0.8).}
 
+\item{e_alpha}{fractional opacity of error bars, (default = 0.8).}
+
+\item{all_size}{size of symbols of all data points, if shown (default = 2.5).}
+
+\item{all_alpha}{fractional opacity of all data points (default = 0.3). Set to non-zero value if you would like all data points plotted in addition to the mean.}
+
 \item{symthick}{size (in 'pt' units) of outline of symbol lines (\code{stroke}), default = \code{fontsize}/22.}
 
 \item{bthick}{size (in 'pt' units) of outline of boxes, whisker and joining lines (\code{stroke}), default = \code{fontsize}/22.}
+
+\item{ethick}{thickness of error bar lines; default \code{fontsize}/22.}
+
+\item{ewid}{width of error bars, default set to 0.2.}
 
 \item{ColPal}{grafify colour palette to apply (in quotes), default "okabe_ito"; see \code{\link{graf_palettes}} for available palettes.}
 
