@@ -1,12 +1,12 @@
 test_that("Check 3d scatter bars", {
   sb1 <- plot_3d_scatterbar(data_2w_Tdeath, #plotted with grafify
-                            Genotype, 
-                            PI, 
+                            Genotype,
+                            PI,
                             Time,
                             TextXAngle = 45,
                             ColPal = "muted",
-                            ColRev = T)       
-  
+                            ColRev = T)
+
   sb2 <- ggplot(data = data_2w_Tdeath,  #with ggplot2
                 aes(x = Genotype,
                     y = PI,
@@ -30,8 +30,8 @@ test_that("Check 3d scatter bars", {
                  fun.args = list(mult = 1),
                  position = position_dodge(width = 0.8))+
     scale_shape_manual(values = 0:25)+
-    labs(x = "Genotype", 
-         y = "PI", 
+    labs(x = "Genotype",
+         y = "PI",
          shape = "Time")+
     theme_classic(base_size = 20)+
     theme(strip.background = element_blank())+
@@ -41,25 +41,30 @@ test_that("Check 3d scatter bars", {
            shape = guide_legend(title = "Time"))+
     scale_fill_grafify(palette = "all_grafify",
                        reverse = FALSE)
-  
+
   #test key layers and data file
   expect_equal(sb1$data, sb2$data)
   expect_s3_class(sb1, "ggplot")
   expect_equal(sb1$theme$text$size, 20)
   #match aesthetics in labels
   #next line doesn't work in 4.0.1
-  #expect_match(as.character(rlang::quo_get_expr(sb1$labels$x)), 
+  #expect_match(as.character(rlang::quo_get_expr(sb1$labels$x)),
   #             "Genotype")
-  expect_match(sb1$labels$y, 
-               "PI")
+  #expect_match(sb1$labels$y,
+  #             "PI")
   #check guide titles from 3.2.1 onwards
   #next line doesn't work in 4.0.1
   #expect_match(sb1$labels$x, "Genotype")
   #next line doesn't work in 4.0.1
-  #expect_match(sb1$labels$shape, 
+  #expect_match(sb1$labels$shape,
   #             "Time")
-  expect_match(as.character(rlang::quo_get_expr(sb1$labels$fill)), 
+  expect_match(as.character(rlang::quo_get_expr(sb1$labels$fill)),
                "Genotype")
   #check text angle is passed on
   expect_equal(get_guide_angle(sb1, "x"), 45)
+  ## new 13/06/2025 tests PASS
+  labels <- get_labs(sb1)
+  expect_match(labels$y, "PI")
+  #expect_true(inherits(sb1$labels, c("ggplot2::labels", "labels")))
+  ##
 })
