@@ -52,6 +52,18 @@
 #' @export plot_xy_Group
 #' @import ggplot2
 #' @importFrom stats qt
+#' 
+#' @examples
+#' #The grouping factor cyl  is automatically converted to categorical variable
+#' plot_xy_Group(data = mpg,
+#' xcol = cyl, ycol = cty, Group = drv,
+#' ErrorType = "SD")
+#' 
+#' #with a Linear smooth line
+#' plot_xy_Group(data = mpg,
+#' xcol = cyl, ycol = cty, Group = drv,
+#' ErrorType = "SD", SmoothType = "Linear")
+#'  
 
 plot_xy_Group <- function(data, xcol, ycol, Group, facet, 
          ErrorType = c("none", "SD", "SEM", "CI95", "Boxplot"), 

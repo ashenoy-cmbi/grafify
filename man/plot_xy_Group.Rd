@@ -128,3 +128,15 @@ Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} argum
 
 This plot is related to  \code{\link{plot_xy_CatGroup}}  and \code{\link{plot_xy_NumGroup}}, and might eventually replace them in future updates.
 }
+\examples{
+#The grouping factor cyl  is automatically converted to categorical variable
+plot_xy_Group(data = mpg,
+xcol = cyl, ycol = cty, Group = drv,
+ErrorType = "SD")
+
+#with a Linear smooth line
+plot_xy_Group(data = mpg,
+xcol = cyl, ycol = cty, Group = drv,
+ErrorType = "SD", SmoothType = "Linear")
+ 
+}
