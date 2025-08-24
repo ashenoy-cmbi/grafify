@@ -1,17 +1,20 @@
 #' Plot points on a quantitative X - Y plot & a grouping variable.
 #'
-#' This function takes a data table, quantitative X and Y variables along with a categorical grouping variable, and a and plots a graph with using \code{\link[ggplot2]{geom_point}}. The categorical `CatGroup` variable is mapped to the \code{fill} aesthetic of symbols.
+#' This function takes a data table, quantitative X and Y variables along with a grouping variable that is either categorical or numeric. The colour of data symbols is mapped to the grouping variable. This function is related to  \code{\link{plot_xy_CatGroup}}  and \code{\link{plot_xy_NumGroup}}, and could eventually replace them in future updates.
+#'   
+#' Central value and scatter can be shown by choosing the `ErrorType` argument. Mean and error bars (SD, SEM or CI95) or box and whisker plot options are available. 
 #' 
-#' Data summary can be shown with mean and error bars (SD, SEM or CI95) or box and whisker plot. A line joining the central value (mean or median, respectively) will also appear. The line can be removed by setting its opacity to 0 (`l_alpha = 0`). The smooth line type can be changed to linear or loess fit with the `SmoothType` argument, which can take the following options: `none`, `Linear` or `Loess`. Both options are fitted using \code{\link[ggplot2]{stat_smooth}} with options `lm` or `loess`, respectively.
+#' When `ErrorType` is set to a value other than `none`, a line joining the central value (mean or median, respectively) will also appear (set `l_alpha = 0` if this is not desired). Other options for `ErrorType` are: `SD`, `SEM`, `CI95`, `Boxplot`. 
 #' 
-#' Data summary options can be accessed with the `ErrorType` argument (default is `none`, with data scatter shown). The following options exist for this argument: `SD`, `SEM`, `CI95`, `Boxplot`, to additionally data summaries. The mean value will appear as a larger square symbol. Its opacity and size can be adjusted with `m_alpha` and `mean_size`, respectively.
+#' When `SD`/`SEM`/`CI95` are chosen, the mean value will appear as a larger square symbol. Its opacity and size can be adjusted with `m_alpha` and `mean_size`, respectively.
+#' 
+#' The smooth fitted line type can be shown with the `SmoothType` argument, which can take the following options: `none`, `Linear` or `Loess`. Latter two options are fitted using \code{\link[ggplot2]{stat_smooth}} with `lm` or `loess` options, respectively.
 #' 
 #' Colours can be changed using `ColPal`, `ColRev` or `ColSeq` arguments. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
 #' `ColPal` can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
 #' `ColRev` (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette. 
 #' `ColSeq` (logical TRUE/FALSE) decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
 #' 
-#' This plot is related to  \code{\link{plot_xy_CatGroup}}  and \code{\link{plot_xy_NumGroup}}, and might eventually replace them in future updates.
 #'
 #' @param data A data frame containing the variables to be plotted.
 #' @param xcol A column name in `data` for the x-axis (typically a factor or grouping variable).

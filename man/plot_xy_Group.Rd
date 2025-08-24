@@ -114,19 +114,21 @@ plot_xy_Group(
 This function returns a \code{ggplot2} object of class "gg" and "ggplot".
 }
 \description{
-This function takes a data table, quantitative X and Y variables along with a categorical grouping variable, and a and plots a graph with using \code{\link[ggplot2]{geom_point}}. The categorical \code{CatGroup} variable is mapped to the \code{fill} aesthetic of symbols.
+This function takes a data table, quantitative X and Y variables along with a grouping variable that is either categorical or numeric. The colour of data symbols is mapped to the grouping variable. This function is related to  \code{\link{plot_xy_CatGroup}}  and \code{\link{plot_xy_NumGroup}}, and could eventually replace them in future updates.
+
+Central value and scatter can be shown by choosing the \code{ErrorType} argument. Mean and error bars (SD, SEM or CI95) or box and whisker plot options are available.
 }
 \details{
-Data summary can be shown with mean and error bars (SD, SEM or CI95) or box and whisker plot. A line joining the central value (mean or median, respectively) will also appear. The line can be removed by setting its opacity to 0 (\code{l_alpha = 0}). The smooth line type can be changed to linear or loess fit with the \code{SmoothType} argument, which can take the following options: \code{none}, \code{Linear} or \code{Loess}. Both options are fitted using \code{\link[ggplot2]{stat_smooth}} with options \code{lm} or \code{loess}, respectively.
+When \code{ErrorType} is set to a value other than \code{none}, a line joining the central value (mean or median, respectively) will also appear (set \code{l_alpha = 0} if this is not desired). Other options for \code{ErrorType} are: \code{SD}, \code{SEM}, \code{CI95}, \code{Boxplot}.
 
-Data summary options can be accessed with the \code{ErrorType} argument (default is \code{none}, with data scatter shown). The following options exist for this argument: \code{SD}, \code{SEM}, \code{CI95}, \code{Boxplot}, to additionally data summaries. The mean value will appear as a larger square symbol. Its opacity and size can be adjusted with \code{m_alpha} and \code{mean_size}, respectively.
+When \code{SD}/\code{SEM}/\code{CI95} are chosen, the mean value will appear as a larger square symbol. Its opacity and size can be adjusted with \code{m_alpha} and \code{mean_size}, respectively.
+
+The smooth fitted line type can be shown with the \code{SmoothType} argument, which can take the following options: \code{none}, \code{Linear} or \code{Loess}. Latter two options are fitted using \code{\link[ggplot2]{stat_smooth}} with \code{lm} or \code{loess} options, respectively.
 
 Colours can be changed using \code{ColPal}, \code{ColRev} or \code{ColSeq} arguments. Colours available can be seen quickly with \code{\link{plot_grafify_palette}}.
 \code{ColPal} can be one of the following: "okabe_ito", "dark", "light", "bright", "pale", "vibrant,  "muted" or "contrast".
 \code{ColRev} (logical TRUE/FALSE) decides whether colours are chosen from first-to-last or last-to-first from within the chosen palette.
 \code{ColSeq} (logical TRUE/FALSE) decides whether colours are picked by respecting the order in the palette or the most distant ones using \code{\link[grDevices]{colorRampPalette}}.
-
-This plot is related to  \code{\link{plot_xy_CatGroup}}  and \code{\link{plot_xy_NumGroup}}, and might eventually replace them in future updates.
 }
 \examples{
 #The grouping factor cyl  is automatically converted to categorical variable
