@@ -16,9 +16,9 @@
 #' @param data A data frame containing the variables to be plotted.
 #' @param xcol A column name in `data` for the x-axis (typically a factor or grouping variable).
 #' @param ycol A column name in `data` for the y-axis (numeric).
-#' @param Group A grouping variable used for color/fill aesthetics. Whether this variable is numeric or not will determine colour palette choice for the `ColPal` argument. 
+#' @param Group A grouping variable used for colour/fill aesthetics. Whether this variable is numeric or not will determine colour palette choice for the `ColPal` argument. 
 #' @param facet An optional variable for faceting the plot using `facet_wrap()`.
-#' @param ErrorType select the way to show data centrality and dispersion. The default is "none", which can be changed to "SD" (standard deviation), "SEM" (standard error of the mean) or "CI95" (95% confidence interval based on *t* distributions); all these will be displayed with a square symbol representing the mean. Choosing `Boxplot` will show a box and whiskers plot and the median. A line joining the central values will also apear. Use `l_alpha = 0` to not show the line.
+#' @param ErrorType select the way to show data centrality and dispersion. The default is "none", which can be changed to "SD" (standard deviation), "SEM" (standard error of the mean) or "CI95" (95% confidence interval based on *t* distributions); all these will be displayed with a square symbol representing the mean. Choosing `Boxplot` will show a box and whiskers plot and the median. A line joining the central values will also appear. Use `l_alpha = 0` to not show the line.
 #' @param SmoothType Add a smoothened average using 'Loess' or 'Linear', which will be passed on to `stat_smooth` as `method = "loess"` or `method = "lm"`, respectively. 
 #' @param symsize Size of the raw data points. Default is `3`.
 #' @param s_alpha Alpha transparency for raw data points. Default is `0.8`, which will reduce to `0.2` when an `ErrorType` is set.
@@ -43,7 +43,7 @@
 #' @param e_alpha fractional opacity of error bars (default = 1).
 #' @param symthick size (in 'pt' units) of outline of symbol lines (\code{stroke}), default = `fontsize`/22.
 #' @param bthick size (in 'pt' units) of outline of boxes, whisker and joining lines (\code{stroke}), default = `fontsize`/22.
-#' @param ColPal Character. Name of the color palette to use from grafify. For categorical variables, one of: `"okabe_ito"`, `"all_grafify"`, `"bright"`, `"contrast"`, `"dark"`, `"fishy"`, `"kelly"`, `"light"`, `"muted"`, `"pale"`, `"r4"`, `"safe"`, `"vibrant"`. For quantitative variables, one of: `blue_conti`, `yellow_conti`, `grey_conti`, `PrGn_div`, `PrGn_div`.
+#' @param ColPal Character. Name of the colour palette to use from grafify. For categorical variables, one of: `"okabe_ito"`, `"all_grafify"`, `"bright"`, `"contrast"`, `"dark"`, `"fishy"`, `"kelly"`, `"light"`, `"muted"`, `"pale"`, `"r4"`, `"safe"`, `"vibrant"`. For quantitative variables, one of: `blue_conti`, `yellow_conti`, `grey_conti`, `PrGn_div`, `PrGn_div`.
 #' @param ColSeq logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.
 #' @param ColRev whether to reverse order of colour within the selected palette, default F (FALSE); can be set to T (TRUE).
 #' @param ... Additional arguments passed to `ggplot2` geoms or scales.
@@ -216,7 +216,7 @@ plot_xy_Group <- function(data, xcol, ycol, Group, facet,
                                 ...)
     if (LogYTrans == "log10") {
       P <- P + annotation_logticks(sides = "l", outside = TRUE,
-                                   base = 10, color = "grey20",
+                                   base = 10, colour = "grey20",
                                    long = unit(7 * fontsize / 22, "pt"),
                                    size = unit(fontsize / 22, "pt"),
                                    short = unit(4 * fontsize / 22, "pt"),
@@ -235,7 +235,7 @@ plot_xy_Group <- function(data, xcol, ycol, Group, facet,
                                 ...)
     if (LogXTrans == "log10") {
       P <- P + annotation_logticks(sides = "b", outside = TRUE,
-                                   base = 10, color = "grey20",
+                                   base = 10, colour = "grey20",
                                    long = unit(7 * fontsize / 22, "pt"),
                                    size = unit(fontsize / 22, "pt"),
                                    short = unit(4 * fontsize / 22, "pt"),
@@ -245,7 +245,7 @@ plot_xy_Group <- function(data, xcol, ycol, Group, facet,
     }
   }
   
-  # Apply appropriate color scales
+  # Apply appropriate colour scales
   P <- P +
     scale_fill_grafify(palette = ColPal, reverse = ColRev, ColSeq = ColSeq) +
     scale_colour_grafify(palette = ColPal, reverse = ColRev, ColSeq = ColSeq) +

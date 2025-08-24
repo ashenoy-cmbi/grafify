@@ -48,11 +48,11 @@ plot_xy_Group(
 
 \item{ycol}{A column name in \code{data} for the y-axis (numeric).}
 
-\item{Group}{A grouping variable used for color/fill aesthetics. Whether this variable is numeric or not will determine colour palette choice for the \code{ColPal} argument.}
+\item{Group}{A grouping variable used for colour/fill aesthetics. Whether this variable is numeric or not will determine colour palette choice for the \code{ColPal} argument.}
 
 \item{facet}{An optional variable for faceting the plot using \code{facet_wrap()}.}
 
-\item{ErrorType}{select the way to show data centrality and dispersion. The default is "none", which can be changed to "SD" (standard deviation), "SEM" (standard error of the mean) or "CI95" (95\% confidence interval based on \emph{t} distributions); all these will be displayed with a square symbol representing the mean. Choosing \code{Boxplot} will show a box and whiskers plot and the median. A line joining the central values will also apear. Use \code{l_alpha = 0} to not show the line.}
+\item{ErrorType}{select the way to show data centrality and dispersion. The default is "none", which can be changed to "SD" (standard deviation), "SEM" (standard error of the mean) or "CI95" (95\% confidence interval based on \emph{t} distributions); all these will be displayed with a square symbol representing the mean. Choosing \code{Boxplot} will show a box and whiskers plot and the median. A line joining the central values will also appear. Use \code{l_alpha = 0} to not show the line.}
 
 \item{SmoothType}{Add a smoothened average using 'Loess' or 'Linear', which will be passed on to \code{stat_smooth} as \code{method = "loess"} or \code{method = "lm"}, respectively.}
 
@@ -102,7 +102,7 @@ plot_xy_Group(
 
 \item{e_alpha}{fractional opacity of error bars (default = 1).}
 
-\item{ColPal}{Character. Name of the color palette to use from grafify. For categorical variables, one of: \code{"okabe_ito"}, \code{"all_grafify"}, \code{"bright"}, \code{"contrast"}, \code{"dark"}, \code{"fishy"}, \code{"kelly"}, \code{"light"}, \code{"muted"}, \code{"pale"}, \code{"r4"}, \code{"safe"}, \code{"vibrant"}. For quantitative variables, one of: \code{blue_conti}, \code{yellow_conti}, \code{grey_conti}, \code{PrGn_div}, \code{PrGn_div}.}
+\item{ColPal}{Character. Name of the colour palette to use from grafify. For categorical variables, one of: \code{"okabe_ito"}, \code{"all_grafify"}, \code{"bright"}, \code{"contrast"}, \code{"dark"}, \code{"fishy"}, \code{"kelly"}, \code{"light"}, \code{"muted"}, \code{"pale"}, \code{"r4"}, \code{"safe"}, \code{"vibrant"}. For quantitative variables, one of: \code{blue_conti}, \code{yellow_conti}, \code{grey_conti}, \code{PrGn_div}, \code{PrGn_div}.}
 
 \item{ColSeq}{logical TRUE or FALSE. Default TRUE for sequential colours from chosen palette. Set to FALSE for distant colours, which will be applied using  \code{scale_fill_grafify2}.}
 
