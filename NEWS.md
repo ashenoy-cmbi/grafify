@@ -15,7 +15,7 @@ This is an update with a new function `plot_xy_Group`, therefore the number incr
 
 1. New function `plot_xy_Group` that is for data with numeric variables on both X- and Y-axes and a grouping variable, which can be either categorical or numeric. This function could replace `plot_xy_CatGroup` and `plot_xy_NumGroup` in future releases. The new feature is that now data can be summarised as mean and SD/SEM/CI95 or box and whiskers. A line joining the central value (mean or median) can also be added. Alternatively, a fitted smooth "linear" or "loess" line can be added to data. This is added via  `stat_smooth` with `lm` or `loess` can also be added. 
 
-## Major update
+## Minor update
 
 1. Fixed tests to be compatible with latest release of `ggplot2`.
 
