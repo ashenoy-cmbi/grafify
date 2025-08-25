@@ -1,6 +1,6 @@
 #' List of hexcodes of colours in grafify palettes
 #' 
-#' To visualise these colours use \code{plot_grafify_palette}. `okabe_ito`, `bright`, `contrast`, `dark`, `light`, `muted`, `pale`, `vibrant`, `yello_conti` from Paul Tol's [post](https://CRAN.R-project.org/package=khroma). Zesty, Pastel, Elegant from this [link](https://venngage.com/blog/color-blind-friendly-palette/). Colour hexcodes for `fishy`, `kelly`, `r4`, `safe`, `OrBl_div`, `PrGn_div`, `blue_conti`, `grey_conti` taken from [cols4all:c4a_gui](https://github.com/cols4all/cols4all-R) package. All schemes are colour blind-friendly.
+#' To visualise these colours use \code{plot_grafify_palette}. `okabe_ito`, `bright`, `contrast`, `dark`, `light`, `muted`, `pale`, `vibrant`, `yello_conti` from Paul Tol's colours (also see `khroma` [package](https://CRAN.R-project.org/package=khroma)). Zesty, Pastel, Elegant from this [link](https://venngage.com/blog/color-blind-friendly-palette/). Colour hexcodes for `fishy`, `kelly`, `r4`, `safe`, `OrBl_div`, `PrGn_div`, `blue_conti`, `grey_conti` taken from [cols4all:c4a_gui](https://github.com/cols4all/cols4all-R) package. All schemes are colour blind-friendly.
 #' 
 #' @return This is a character vector with names and hexcodes of colours used by palette functions. It is used by \code{get_graf_colours} to generate palettes.
 #' 

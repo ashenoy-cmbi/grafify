@@ -14,6 +14,6 @@ graf_colours
 This is a character vector with names and hexcodes of colours used by palette functions. It is used by \code{get_graf_colours} to generate palettes.
 }
 \description{
-To visualise these colours use \code{plot_grafify_palette}. \code{okabe_ito}, \code{bright}, \code{contrast}, \code{dark}, \code{light}, \code{muted}, \code{pale}, \code{vibrant}, \code{yello_conti} from Paul Tol's \href{https://CRAN.R-project.org/package=khroma}{post}. Zesty, Pastel, Elegant from this \href{https://venngage.com/blog/color-blind-friendly-palette/}{link}. Colour hexcodes for \code{fishy}, \code{kelly}, \code{r4}, \code{safe}, \code{OrBl_div}, \code{PrGn_div}, \code{blue_conti}, \code{grey_conti} taken from \href{https://github.com/cols4all/cols4all-R}{cols4all:c4a_gui} package. All schemes are colour blind-friendly.
+To visualise these colours use \code{plot_grafify_palette}. \code{okabe_ito}, \code{bright}, \code{contrast}, \code{dark}, \code{light}, \code{muted}, \code{pale}, \code{vibrant}, \code{yello_conti} from Paul Tol's colours (also see \code{khroma} \href{https://CRAN.R-project.org/package=khroma}{package}). Zesty, Pastel, Elegant from this \href{https://venngage.com/blog/color-blind-friendly-palette/}{link}. Colour hexcodes for \code{fishy}, \code{kelly}, \code{r4}, \code{safe}, \code{OrBl_div}, \code{PrGn_div}, \code{blue_conti}, \code{grey_conti} taken from \href{https://github.com/cols4all/cols4all-R}{cols4all:c4a_gui} package. All schemes are colour blind-friendly.
 }
 \keyword{datasets}

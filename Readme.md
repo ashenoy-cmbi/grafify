@@ -1,5 +1,5 @@
 
-### **Latest version: v5.0.1 on [CRAN](https://CRAN.R-project.org/package=grafify) & GitHub**
+### **Latest version: v5.0.0.1 on [CRAN](https://CRAN.R-project.org/package=grafify) & GitHub**
 
 ### Features
 
@@ -102,8 +102,9 @@ can be used to apply all `grafify` palettes to any `ggplot2` object.
 
 All palettes are colourblind-friendly. (See Mike Mol’s
 [blog](https://mikemol.github.io/technique/colorblind/2018/02/11/color-safe-palette.html)
-and Paul Tol’s [blog](https://CRAN.R-project.org/package=khroma).
-Additional colour schemes were chosen from [`cols4all`
+and Paul Tol’s post and also available in the `khroma`
+[package](https://CRAN.R-project.org/package=khroma). Additional colour
+schemes were chosen from [`cols4all`
 package](https://github.com/cols4all/cols4all-R)).
 
 #### `grafify` theme & adding log-scales
@@ -158,7 +159,7 @@ The best place to see `grafify` in action is the
 [vignettes](https://grafify-vignettes.netlify.app) website, which has
 detailed description of all functions.
 
-### **Latest version: v5.0.1 on [CRAN](https://CRAN.R-project.org/package=grafify) and GitHub**
+### **Latest version: v5.0.0.1 on [CRAN](https://CRAN.R-project.org/package=grafify) and GitHub**
 
 Find out about [latest updates
 here](https://grafify.shenoylab.com/release_notes.html).

@@ -288,7 +288,7 @@ Bug fixes in `mixed_model` and `simple_model` which now correctly lists the data
 
 1. the main difference from v0.1.0 is that all `plot_` functions apply the `all_grafify` colour scheme by default (see `plot_` vignettes on how to change colours)
 2. two new types of graphs are possible with two quantitative X-Y plots with a third variable that is either numeric (`plot_xy_NumGroup`) or categorical (`plot_xy_CatGroup`).
-3. there are two new continuous colour schemes (`scale_fill_grafify_c` and `scale_colour_grafify_c`), based on [Paul Tol's variant](https://CRAN.R-project.org/package=khroma) of YlOrBl scheme.
+3. there are two new continuous colour schemes (`scale_fill_grafify_c` and `scale_colour_grafify_c`), based on Paul Tol's variant (also see `khroma` [package](https://CRAN.R-project.org/package=khroma)) of YlOrBl scheme.
 
 ### Minor changes
 
