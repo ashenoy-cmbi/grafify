@@ -102,7 +102,7 @@ can be used to apply all `grafify` palettes to any `ggplot2` object.
 
 All palettes are colourblind-friendly. (See Mike Mol’s
 [blog](https://mikemol.github.io/technique/colorblind/2018/02/11/color-safe-palette.html)
-and Paul Tol’s [blog](https://personal.sron.nl/~pault/#sec:qualitative).
+and Paul Tol’s [blog](https://CRAN.R-project.org/package=khroma).
 Additional colour schemes were chosen from [`cols4all`
 package](https://github.com/cols4all/cols4all-R)).
 
